@@ -16,6 +16,7 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "Basis/MullikenPartitioning/RMullikenPartitioning.hpp"
+#include "Utilities/complex.hpp"
 #include "gqcpy/include/interfaces.hpp"
 
 #include <pybind11/pybind11.h>
@@ -30,18 +31,25 @@ using namespace GQCP;
 
 
 /**
- *  Register `RMullikenPartitioning_d` to the gqcpy module and expose a part of its C++ interface to Python.
+ *  Register `RMullikenPartitioning` to the gqcpy module and expose a part of its C++ interface to Python.
  * 
- *  @param module           The Pybind11 module in which `RMullikenPartitioning_d` should be registered.
+ *  @param module           The Pybind11 module in which `RMullikenPartitioning` should be registered.
  */
 void bindRMullikenPartitioning(py::module& module) {
 
-    // Define the Python class for `RMullikenPartitioning`.
-    py::class_<RMullikenPartitioning<double>> py_RMullikenPartitioning_d {module, "RMullikenPartitioning_d", "A restricted Mulliken-based partitioning of an AO basis."};
+    // Define the Python class for `RMullikenPartitioning_d`.
+    py::class_<RMullikenPartitioning<double>> py_RMullikenPartitioning_d {module, "RMullikenPartitioning_d", "A real restricted Mulliken-based partitioning of an AO basis."};
 
     // Expose the "Mulliken partitioning" interface to the Python class.
     bindMullikenPartitioningIndicesInterface(py_RMullikenPartitioning_d);
     bindMullikenPartitioningMatricesInterface(py_RMullikenPartitioning_d);
+
+    // Define the Python class for `RMullikenPartitioning_cd`.
+    py::class_<RMullikenPartitioning<complex>> py_RMullikenPartitioning_cd {module, "RMullikenPartitioning_cd", "A complex restricted Mulliken-based partitioning of an AO basis."};
+
+    // Expose the "Mulliken partitioning" interface to the Python class.
+    bindMullikenPartitioningIndicesInterface(py_RMullikenPartitioning_cd);
+    bindMullikenPartitioningMatricesInterface(py_RMullikenPartitioning_cd);
 }
 
 
