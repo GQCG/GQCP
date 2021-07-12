@@ -17,6 +17,7 @@
 
 #include "Basis/MullikenPartitioning/UMullikenPartitioningComponent.hpp"
 #include "gqcpy/include/interfaces.hpp"
+#include "Utilities/complex.hpp"
 
 #include <pybind11/pybind11.h>
 
@@ -30,18 +31,25 @@ using namespace GQCP;
 
 
 /**
- *  Register `UMullikenPartitioningComponent_d` to the gqcpy module and expose a part of its C++ interface to Python.
+ *  Register `UMullikenPartitioningComponent` to the gqcpy module and expose a part of its C++ interface to Python.
  * 
- *  @param module           The Pybind11 module in which `UMullikenPartitioningComponent_d` should be registered.
+ *  @param module           The Pybind11 module in which `UMullikenPartitioningComponent` should be registered.
  */
 void bindUMullikenPartitioningComponent(py::module& module) {
 
-    // Define the Python class for `UMullikenPartitioningComponent`.
-    py::class_<UMullikenPartitioningComponent<double>> py_UMullikenPartitioningComponent_d {module, "UMullikenPartitioningComponent", "One of the components of an unrestricted Mulliken-based partitioning of an AO basis."};
+    // Define the Python class for `UMullikenPartitioningComponent_d`.
+    py::class_<UMullikenPartitioningComponent<double>> py_UMullikenPartitioningComponent_d {module, "UMullikenPartitioningComponent_d", "One of the components of a real unrestricted Mulliken-based partitioning of an AO basis."};
 
     // Expose the "Mulliken partitioning" interface to the Python class.
     bindMullikenPartitioningIndicesInterface(py_UMullikenPartitioningComponent_d);
     bindMullikenPartitioningMatricesInterface(py_UMullikenPartitioningComponent_d);
+
+    // Define the Python class for `UMullikenPartitioningComponent_cd`.
+    py::class_<UMullikenPartitioningComponent<complex>> py_UMullikenPartitioningComponent_cd {module, "UMullikenPartitioningComponent_cd", "One of the components of a complex unrestricted Mulliken-based partitioning of an AO basis."};
+
+    // Expose the "Mulliken partitioning" interface to the Python class.
+    bindMullikenPartitioningIndicesInterface(py_UMullikenPartitioningComponent_cd);
+    bindMullikenPartitioningMatricesInterface(py_UMullikenPartitioningComponent_cd);
 }
 
 

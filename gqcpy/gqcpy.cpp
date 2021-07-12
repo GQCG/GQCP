@@ -42,6 +42,7 @@ void bindIntegralEngine(py::module& module);
 
 
 // Basis - MullikenPartitioning
+void bindGMullikenPartitioning(py::module& module);
 void bindRMullikenPartitioning(py::module& module);
 void bindUMullikenPartitioning(py::module& module);
 void bindUMullikenPartitioningComponent(py::module& module);
@@ -289,6 +290,7 @@ PYBIND11_MODULE(gqcpy, module) {
 
 
     // Basis - MullikenPartitioning
+    gqcpy::bindGMullikenPartitioning(module);
     gqcpy::bindRMullikenPartitioning(module);
     gqcpy::bindUMullikenPartitioning(module);
     gqcpy::bindUMullikenPartitioningComponent(module);

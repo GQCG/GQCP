@@ -17,6 +17,7 @@
 
 #include "Basis/MullikenPartitioning/UMullikenPartitioning.hpp"
 #include "gqcpy/include/interfaces.hpp"
+#include "Utilities/complex.hpp"
 
 #include <pybind11/pybind11.h>
 
@@ -30,21 +31,29 @@ using namespace GQCP;
 
 
 /**
- *  Register `UMullikenPartitioning_d` to the gqcpy module and expose a part of its C++ interface to Python.
+ *  Register `UMullikenPartitioning` to the gqcpy module and expose a part of its C++ interface to Python.
  * 
- *  @param module           The Pybind11 module in which `UMullikenPartitioning_d` should be registered.
+ *  @param module           The Pybind11 module in which `UMullikenPartitioning` should be registered.
  */
 void bindUMullikenPartitioning(py::module& module) {
 
-    // Define the Python class for `UMullikenPartitioning`.
-    py::class_<UMullikenPartitioning<double>> py_UMullikenPartitioning_d {module, "UMullikenPartitioning_d", "An unrestricted Mulliken-based partitioning of an AO basis."};
-
+    // Define the Python class for `UMullikenPartitioning_d`.
+    py::class_<UMullikenPartitioning<double>> py_UMullikenPartitioning_d {module, "UMullikenPartitioning_d", "A real unrestricted Mulliken-based partitioning of an AO basis."};
 
     // Expose the "Mulliken partitioning" interface to the Python class.
     bindMullikenPartitioningMatricesInterface(py_UMullikenPartitioning_d);
 
     // Expose the `SpinResolvedBase` interface to the Python class.
     bindSpinResolvedBaseInterface(py_UMullikenPartitioning_d);
+
+    // Define the Python class for `UMullikenPartitioning_cd`.
+    py::class_<UMullikenPartitioning<complex>> py_UMullikenPartitioning_cd {module, "UMullikenPartitioning_cd", "A complex unrestricted Mulliken-based partitioning of an AO basis."};
+
+    // Expose the "Mulliken partitioning" interface to the Python class.
+    bindMullikenPartitioningMatricesInterface(py_UMullikenPartitioning_cd);
+
+    // Expose the `SpinResolvedBase` interface to the Python class.
+    bindSpinResolvedBaseInterface(py_UMullikenPartitioning_cd);
 }
 
 
