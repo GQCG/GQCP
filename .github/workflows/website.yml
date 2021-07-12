@@ -40,6 +40,7 @@ jobs:
     # Build the website
     - name: Build website
       run: |
+        jupyter-book toc migrate website/_toc.yml -o website/_toc.yml
         jupyter-book build website
 
     # Upload an artifact of the website on pull request.
