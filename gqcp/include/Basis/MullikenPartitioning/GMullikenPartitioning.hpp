@@ -90,7 +90,7 @@ public:
     SquareMatrix<Scalar> partitionMatrix() const {
 
         const auto M = this->numberOfOrbitals();
-        const auto K = this->indices().size();
+        const auto K = M / 2;
 
         // Set up the top-left (alpha) and bottom-right (beta) blocks of the total partition matrix.
         SquareMatrix<Scalar> P = SquareMatrix<Scalar>::Zero(M);
