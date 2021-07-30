@@ -79,6 +79,8 @@ void bindCIEnvironments(py::module& module) {
     bindCIEnvironment<RSQHamiltonian<double>, SpinResolvedSelectedONVBasis>(submodule, "Return an environment suitable for solving spin-resolved selected eigenvalue problems.");
     bindCIEnvironment<USQHamiltonian<double>, SpinResolvedSelectedONVBasis>(submodule, "Return an environment suitable for solving spin-resolved selected eigenvalue problems.");
 
+    bindCIEnvironment<RSQHamiltonian<double>, SeniorityZeroONVBasis>(submodule, "Return an environment suitable for solving seniority zero eigenvalue problems.");
+
     // We haven't implemented matrix-vector products for `SpinUnresolvedSelectedONVBasis`, so we can't use the `Iterative` APIs.
     submodule.def(
         "Dense",
