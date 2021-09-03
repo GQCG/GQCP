@@ -25,10 +25,13 @@
 #include "Basis/Transformations/SpinResolvedBasisTransformable.hpp"
 #include "Basis/Transformations/SpinResolvedJacobiRotatable.hpp"
 #include "Basis/Transformations/UTransformation.hpp"
+#include "Mathematical/Functions/CartesianDirection.hpp"
 #include "Operator/FirstQuantized/CoulombRepulsionOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicDipoleOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicSpin_zOperator.hpp"
 #include "Operator/FirstQuantized/FQMolecularHamiltonian.hpp"
+#include "Operator/FirstQuantized/FQMolecularMagneticHamiltonian.hpp"
+#include "Operator/FirstQuantized/FQMolecularPauliHamiltonian.hpp"
 #include "Operator/FirstQuantized/KineticOperator.hpp"
 #include "Operator/FirstQuantized/NuclearAttractionOperator.hpp"
 #include "Operator/FirstQuantized/OverlapOperator.hpp"
@@ -44,7 +47,7 @@ namespace GQCP {
 
 /**
  *  A class that represents an unrestricted spin-orbital basis. The difference with a restricted spin-orbital basis is that the alpha- and beta-spin-orbitals have an individual (i.e. possibly different) expansion in their (possibly different) underlying scalar bases.
- * 
+ *
  *  @tparam _ExpansionScalar                The scalar type used to represent an expansion coefficient of the spinors in the underlying scalar orbitals: real or complex.
  *  @tparam _Shell                          The type of shell that the underlying scalar basis contains.
 the type of shell the underlying scalar bases contain
@@ -85,7 +88,7 @@ public:
 
     /**
      *  Create an `USpinOrbitalBasis` from an alpha and a beta-spin-orbital basis and a transformation that expresses the current spin-orbitals in terms of that underlying scalar basis.
-     * 
+     *
      *  @param alpha_scalar_basis           The scalar basis in which the alpha spin-orbitals are expanded.
      *  @param beta_scalar_basis            The scalar basis in which the beta spin-orbitals are expanded.
      *  @param C                            The transformation that relates the current set of spinors with the atomic spinors.
@@ -117,7 +120,7 @@ public:
 
     /**
      *  Construct an unrestricted spin-orbital basis with two different underlying scalar bases, and a coefficient matrix being the identity. The resulting spin-orbital basis then corresponds to the (non-orthogonal) atomic spin-orbitals (AOs).
-     * 
+     *
      *  @param alpha_scalar_basis           The scalar basis in which the alpha spin-orbitals are expanded.
      *  @param beta_scalar_basis            The scalar basis in which the beta spin-orbitals are expanded.
      */
@@ -260,7 +263,7 @@ public:
 
     /**
      *  Check if this spin-orbital basis is orthonormal, within a given precision.
-     * 
+     *
      *  @param precision            The precision used to test orthonormality.
      *
      *  @return If this spin-orbital basis is orthonormal.
@@ -295,15 +298,12 @@ public:
 
     /**
      *  Quantize the z-component of the electronic spin operator in this unrestricted spin-orbital basis, i.e. express/project the one-electron operator in/onto this spin-orbital basis.
-     * 
+     *
      *  @param fq_op                                The first-quantized one-electron operator.
      *
-     *  @tparam FQOneElectronOperator               The type of the first-quantized one-electron operator.
-     * 
      *  @return The second-quantized operator corresponding to the given first-quantized operator.
      */
-    template <typename Z = Shell>
-    auto quantize(const ElectronicSpin_zOperator& fq_op) const -> enable_if_t<std::is_same<Z, GTOShell>::value, USQOneElectronOperator<product_t<ElectronicSpin_zOperator::Scalar, ExpansionScalar>, ElectronicSpin_zOperator::Vectorizer>> {
+    USQOneElectronOperator<product_t<ElectronicSpin_zOperator::Scalar, ExpansionScalar>, ElectronicSpin_zOperator::Vectorizer> quantize(const ElectronicSpin_zOperator& fq_op) const {
 
         using ResultScalar = product_t<ElectronicSpin_zOperator::Scalar, ExpansionScalar>;
         using ResultOperator = USQOneElectronOperator<ResultScalar, ElectronicSpin_zOperator::Vectorizer>;
@@ -320,8 +320,27 @@ public:
 
 
     /**
+     *  Quantize the z-component of the electronic spin operator in this unrestricted spin-orbital basis, i.e. express/project the one-electron operator in/onto this spin-orbital basis.
+     *
+     *  @param fq_op                                The first-quantized one-electron operator.
+     *
+     *  @return The second-quantized operator corresponding to the given first-quantized operator.
+     */
+    template <typename Z = Shell>
+    auto quantize(const SpinZeemanOperator& fq_op) const -> enable_if_t<std::is_same<Z, LondonGTOShell>::value, USQOneElectronOperator<product_t<SpinZeemanOperator::Scalar, ExpansionScalar>, SpinZeemanOperator::Vectorizer>> {
+
+        const auto& B = fq_op.magneticField().strength();
+        if ((std::abs(B(CartesianDirection::x)) > 1.0e-12) || (std::abs(B(CartesianDirection::y)) > 1.0e-12)) {
+            throw std::invalid_argument("USpinOrbitalBasis::quantize(const FQMolecularPauliHamiltonian&): Only the spin Zeeman operator for a magnetic field along the z-axis can be quantized in an USpinOrbitalBasis.");
+        }
+
+        return complex(B(CartesianDirection::z)) * this->quantize(ElectronicSpin_zOperator());
+    }
+
+
+    /**
      *  Quantize the overlap operator in this spin-orbital basis.
-     * 
+     *
      *  @return The second-quantized overlap operator.
      */
     ScalarUSQOneElectronOperator<ExpansionScalar> overlap() const { return this->quantize(OverlapOperator()); }
@@ -329,9 +348,9 @@ public:
 
     /**
      *  Quantize the Coulomb operator in this unrestricted spin-orbital basis, i.e. express/project the one-electron operator in/onto this spin-orbital basis.
-     * 
+     *
      *  @param coulomb_op               The first-quantized Coulomb operator operator.
-     * 
+     *
      *  @return The second-quantized Coulomb operator.
      */
     template <typename Z = Shell>
@@ -378,9 +397,9 @@ public:
 
     /**
      *  Quantize the Coulomb operator in this unrestricted spin-orbital basis, i.e. express/project the one-electron operator in/onto this spin-orbital basis.
-     * 
+     *
      *  @param coulomb_op               The first-quantized Coulomb operator operator.
-     * 
+     *
      *  @return The second-quantized Coulomb operator.
      */
     template <typename Z = Shell>
@@ -426,9 +445,9 @@ public:
 
     /**
      *  Quantize the molecular magnetic Hamiltonian.
-     * 
+     *
      *  @param fq_hamiltonian           The molecular magnetic Hamiltonian.
-     * 
+     *
      *  @return The second-quantized molecular magnetic Hamiltonian.
      */
     template <typename Z = Shell>
@@ -446,17 +465,41 @@ public:
     }
 
 
+    /**
+     *  Quantize the molecular Pauli Hamiltonian.
+     *
+     *  @param fq_hamiltonian           The molecular Pauli Hamiltonian.
+     *
+     *  @return The second-quantized molecular Pauli Hamiltonian.
+     */
+    template <typename Z = Shell>
+    enable_if_t<std::is_same<Z, LondonGTOShell>::value, USQHamiltonian<ExpansionScalar>> quantize(const FQMolecularPauliHamiltonian& fq_hamiltonian) const {
+
+        const auto T = this->quantize(fq_hamiltonian.kinetic());
+        const auto OZ = this->quantize(fq_hamiltonian.orbitalZeeman());
+        const auto D = this->quantize(fq_hamiltonian.diamagnetic());
+
+        const auto SZ = this->quantize(fq_hamiltonian.spinZeeman());
+
+        const auto V = this->quantize(fq_hamiltonian.nuclearAttraction());
+
+        const auto g = this->quantize(fq_hamiltonian.coulombRepulsion());
+
+        return USQHamiltonian<ExpansionScalar> {{T, OZ, D, V, SZ}, {g}};
+    }
+
+
     /*
      *  MARK: Quantization of first-quantized operators
      */
 
     /**
      *  Quantize a one-electron operator in this unrestricted spin-orbital basis, i.e. express/project the one-electron operator in/onto this spin-orbital basis.
-     * 
+     *
      *  @param fq_op                                The first-quantized one-electron operator.
      *
      *  @tparam FQOneElectronOperator               The type of the first-quantized one-electron operator.
-     * 
+     *
      *  @return The second-quantized operator corresponding to the given first-quantized operator.
      */
     template <typename FQOneElectronOperator>
@@ -475,9 +518,9 @@ public:
 
     /**
      *  Quantize the molecular Hamiltonian.
-     * 
+     *
      *  @param fq_hamiltonian           The molecular Hamiltonian.
-     * 
+     *
      *  @return The second-quantized molecular Hamiltonian.
      */
     USQHamiltonian<ExpansionScalar> quantize(const FQMolecularHamiltonian& fq_hamiltonian) const {
@@ -497,9 +540,9 @@ public:
 
     /**
      *  Partition this set of unrestricted spin-orbitals according to the Mulliken partitioning scheme.
-     * 
+     *
      *  @param selector             A function that returns true for basis functions that should be included the Mulliken partitioning.
-     * 
+     *
      *  @return A `UMullikenPartitioning` for the AOs selected by the supplied selector function.
      */
     UMullikenPartitioning<ExpansionScalar> mullikenPartitioning(const std::function<bool(const BasisFunction&)>& selector) const {
@@ -510,9 +553,9 @@ public:
 
     /**
      *  Partition this set of unrestricted spin-orbitals according to the Mulliken partitioning scheme.
-     * 
+     *
      *  @param selector             A function that returns true for shells that should be included the Mulliken partitioning.
-     * 
+     *
      *  @return A `UMullikenPartitioning` for the AOs selected by the supplied selector function.
      */
     UMullikenPartitioning<ExpansionScalar> mullikenPartitioning(const std::function<bool(const Shell&)>& selector) const {
