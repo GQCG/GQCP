@@ -6,7 +6,7 @@ package:
     version: {{ version }}
 source:
     git_url: https://github.com/GQCG/GQCP.git
-    git_tag: ${{ GIT_BRANCH }}
+    git_tag: {{ $GIT_BRANCH }}
 requirements:
     build:
       - benchmark
