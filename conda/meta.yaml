@@ -6,7 +6,7 @@ package:
     version: {{ version }}
 source:
     git_url: https://github.com/GQCG/GQCP.git
-    git_tag: {{ (git symbolic-ref HEAD --short 2>/dev/null) }}
+    git_tag: {{ $(git symbolic-ref HEAD --short 2>/dev/null) }}
 requirements:
     build:
       - benchmark
