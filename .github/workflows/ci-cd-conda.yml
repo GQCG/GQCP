@@ -57,6 +57,8 @@ jobs:
           GIT_SHA=$(git rev-parse HEAD)
           echo "dit is de commit"
           echo $GIT_SHA
+          pwd
+          ls
           sed -i '' 's|develop|$GITHUB_SHA|g' conda/meta.yaml
           conda create -n packaging -c conda-forge python=${{ matrix.py }} conda-build anaconda-client conda-verify
           source activate packaging
