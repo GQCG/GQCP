@@ -8,7 +8,7 @@ fi
 
 mkdir build && cd build
 
-echo running on branch ${GITHUB_REF##*/}
+echo running on branch $(git rev-parse --abbrev-ref HEAD)
 
 if [ `uname` == Darwin ]; then
     ${BUILD_PREFIX}/bin/cmake \
