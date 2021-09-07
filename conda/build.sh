@@ -7,6 +7,9 @@ if [[ ${target_platform} =~ .*linux.* ]]; then
 fi
 
 mkdir build && cd build
+
+echo running on branch ${GITHUB_REF##*/}
+
 if [ `uname` == Darwin ]; then
     ${BUILD_PREFIX}/bin/cmake \
         .. \
