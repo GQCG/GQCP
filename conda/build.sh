@@ -8,9 +8,6 @@ fi
 
 mkdir build && cd build
 
-echo "show current branch"
-git branch --show-current
-
 if [ `uname` == Darwin ]; then
     ${BUILD_PREFIX}/bin/cmake \
         .. \
