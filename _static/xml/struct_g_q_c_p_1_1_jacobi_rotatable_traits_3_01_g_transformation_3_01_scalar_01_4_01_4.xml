@@ -20,7 +20,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/GTransformation.hpp" line="186" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/GTransformation.hpp" bodystart="186" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/GTransformation.hpp" line="200" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/GTransformation.hpp" bodystart="200" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -34,7 +34,7 @@
         <link refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_g_transformation_3_01_scalar_01_4_01_4"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/GTransformation.hpp" line="183" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/GTransformation.hpp" bodystart="183" bodyend="187"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/GTransformation.hpp" line="197" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/GTransformation.hpp" bodystart="197" bodyend="201"/>
     <listofallmembers>
       <member refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_g_transformation_3_01_scalar_01_4_01_4_1a42939f9fede9f4439c965fd610c44786" prot="public" virt="non-virtual"><scope>GQCP::JacobiRotatableTraits&lt; GTransformation&lt; Scalar &gt; &gt;</scope><name>JacobiRotationType</name></member>
     </listofallmembers>

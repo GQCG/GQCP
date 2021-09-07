@@ -20,7 +20,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G2DM.hpp" line="85" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G2DM.hpp" bodystart="85" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G2DM.hpp" line="137" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G2DM.hpp" bodystart="137" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -34,7 +34,7 @@
         <link refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g2_d_m_3_01_scalar_01_4_01_4"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G2DM.hpp" line="82" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G2DM.hpp" bodystart="82" bodyend="86"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G2DM.hpp" line="134" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G2DM.hpp" bodystart="134" bodyend="138"/>
     <listofallmembers>
       <member refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g2_d_m_3_01_scalar_01_4_01_4_1a1d6f17ed238fe2968ed301325131af87" prot="public" virt="non-virtual"><scope>GQCP::BasisTransformableTraits&lt; G2DM&lt; Scalar &gt; &gt;</scope><name>Transformation</name></member>
     </listofallmembers>

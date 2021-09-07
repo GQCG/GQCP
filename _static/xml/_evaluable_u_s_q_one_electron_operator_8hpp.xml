@@ -49,7 +49,7 @@
         <label>Operator/SecondQuantized/OperatorTraits.hpp</label>
         <link refid="_operator_traits_8hpp"/>
       </node>
-      <node id="83">
+      <node id="80">
         <label>DensityMatrix/SpinDensity1DM.hpp</label>
         <link refid="_spin_density1_d_m_8hpp"/>
         <childnode refid="67" relation="include">
@@ -95,9 +95,7 @@
         </childnode>
         <childnode refid="79" relation="include">
         </childnode>
-        <childnode refid="82" relation="include">
-        </childnode>
-        <childnode refid="83" relation="include">
+        <childnode refid="80" relation="include">
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
@@ -137,7 +135,7 @@
         <label>Basis/SpinorBasis/OccupationType.hpp</label>
         <link refid="_occupation_type_8hpp"/>
       </node>
-      <node id="89">
+      <node id="86">
         <label>QuantumChemical/DoublySpinResolvedBase.hpp</label>
         <link refid="_doubly_spin_resolved_base_8hpp"/>
         <childnode refid="54" relation="include">
@@ -145,7 +143,7 @@
         <childnode refid="24" relation="include">
         </childnode>
       </node>
-      <node id="92">
+      <node id="89">
         <label>QuantumChemical/spinor_tags.hpp</label>
         <link refid="spinor__tags_8hpp"/>
       </node>
@@ -155,7 +153,7 @@
       <node id="31">
         <label>numeric</label>
       </node>
-      <node id="91">
+      <node id="88">
         <label>Basis/MullikenPartitioning/RMullikenPartitioning.hpp</label>
         <link refid="_r_mulliken_partitioning_8hpp"/>
         <childnode refid="67" relation="include">
@@ -292,12 +290,6 @@
       <node id="13">
         <label>ostream</label>
       </node>
-      <node id="81">
-        <label>Basis/Transformations/GOrbitalRotationGenerators.hpp</label>
-        <link refid="_g_orbital_rotation_generators_8hpp"/>
-        <childnode refid="34" relation="include">
-        </childnode>
-      </node>
       <node id="14">
         <label>Basis/Transformations/OrbitalRotationGeneratorTraits.hpp</label>
         <link refid="_orbital_rotation_generator_traits_8hpp"/>
@@ -326,24 +318,24 @@
         <childnode refid="24" relation="include">
         </childnode>
       </node>
-      <node id="84">
+      <node id="81">
         <label>DensityMatrix/SpinResolved2DM.hpp</label>
         <link refid="_spin_resolved2_d_m_8hpp"/>
-        <childnode refid="85" relation="include">
+        <childnode refid="82" relation="include">
         </childnode>
-        <childnode refid="86" relation="include">
+        <childnode refid="83" relation="include">
         </childnode>
         <childnode refid="71" relation="include">
         </childnode>
         <childnode refid="66" relation="include">
         </childnode>
-        <childnode refid="87" relation="include">
+        <childnode refid="84" relation="include">
         </childnode>
-        <childnode refid="88" relation="include">
+        <childnode refid="85" relation="include">
         </childnode>
         <childnode refid="59" relation="include">
         </childnode>
-        <childnode refid="89" relation="include">
+        <childnode refid="86" relation="include">
         </childnode>
         <childnode refid="73" relation="include">
         </childnode>
@@ -356,16 +348,6 @@
         <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="49" relation="include">
-        </childnode>
-      </node>
-      <node id="79">
-        <label>DensityMatrix/G1DM.hpp</label>
-        <link refid="_g1_d_m_8hpp"/>
-        <childnode refid="80" relation="include">
-        </childnode>
-        <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
         </childnode>
       </node>
       <node id="45">
@@ -469,18 +451,6 @@
         <childnode refid="20" relation="include">
         </childnode>
       </node>
-      <node id="80">
-        <label>Basis/Transformations/GTransformation.hpp</label>
-        <link refid="_g_transformation_8hpp"/>
-        <childnode refid="81" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="66" relation="include">
-        </childnode>
-        <childnode refid="75" relation="include">
-        </childnode>
-      </node>
       <node id="24">
         <label>vector</label>
       </node>
@@ -527,14 +497,14 @@
         <childnode refid="76" relation="include">
         </childnode>
       </node>
-      <node id="88">
+      <node id="85">
         <label>DensityMatrix/Orbital2DM.hpp</label>
         <link refid="_orbital2_d_m_8hpp"/>
         <childnode refid="67" relation="include">
         </childnode>
         <childnode refid="43" relation="include">
         </childnode>
-        <childnode refid="82" relation="include">
+        <childnode refid="79" relation="include">
         </childnode>
         <childnode refid="60" relation="include">
         </childnode>
@@ -590,7 +560,7 @@
         <childnode refid="63" relation="include">
         </childnode>
       </node>
-      <node id="85">
+      <node id="82">
         <label>Basis/Transformations/DoublySpinResolvedBasisTransformable.hpp</label>
         <link refid="_doubly_spin_resolved_basis_transformable_8hpp"/>
         <childnode refid="6" relation="include">
@@ -641,29 +611,29 @@
         </childnode>
         <childnode refid="78" relation="include">
         </childnode>
-        <childnode refid="84" relation="include">
+        <childnode refid="81" relation="include">
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="90" relation="include">
+        <childnode refid="87" relation="include">
         </childnode>
         <childnode refid="57" relation="include">
         </childnode>
         <childnode refid="72" relation="include">
         </childnode>
-        <childnode refid="92" relation="include">
+        <childnode refid="89" relation="include">
         </childnode>
       </node>
-      <node id="90">
+      <node id="87">
         <label>Operator/SecondQuantized/RSQOneElectronOperator.hpp</label>
         <link refid="_r_s_q_one_electron_operator_8hpp"/>
-        <childnode refid="91" relation="include">
+        <childnode refid="88" relation="include">
         </childnode>
         <childnode refid="67" relation="include">
         </childnode>
-        <childnode refid="82" relation="include">
+        <childnode refid="79" relation="include">
         </childnode>
-        <childnode refid="88" relation="include">
+        <childnode refid="85" relation="include">
         </childnode>
         <childnode refid="53" relation="include">
         </childnode>
@@ -671,10 +641,10 @@
         </childnode>
         <childnode refid="57" relation="include">
         </childnode>
-        <childnode refid="92" relation="include">
+        <childnode refid="89" relation="include">
         </childnode>
       </node>
-      <node id="87">
+      <node id="84">
         <label>DensityMatrix/MixedSpinResolved2DMComponent.hpp</label>
         <link refid="_mixed_spin_resolved2_d_m_component_8hpp"/>
         <childnode refid="4" relation="include">
@@ -695,7 +665,7 @@
       <node id="26">
         <label>algorithm</label>
       </node>
-      <node id="86">
+      <node id="83">
         <label>Basis/Transformations/DoublySpinResolvedJacobiRotatable.hpp</label>
         <link refid="_doubly_spin_resolved_jacobi_rotatable_8hpp"/>
         <childnode refid="8" relation="include">
@@ -723,7 +693,7 @@
         <label>Mathematical/Functions/CartesianDirection.hpp</label>
         <link refid="_cartesian_direction_8hpp"/>
       </node>
-      <node id="82">
+      <node id="79">
         <label>DensityMatrix/Orbital1DM.hpp</label>
         <link refid="_orbital1_d_m_8hpp"/>
         <childnode refid="67" relation="include">

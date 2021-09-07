@@ -14,6 +14,7 @@
     <innerfile refid="_electronic_quadrupole_operator_8hpp">ElectronicQuadrupoleOperator.hpp</innerfile>
     <innerfile refid="_electronic_spin__z_operator_8hpp">ElectronicSpin_zOperator.hpp</innerfile>
     <innerfile refid="_electronic_spin_operator_8hpp">ElectronicSpinOperator.hpp</innerfile>
+    <innerfile refid="_electronic_spin_squared_operator_8hpp">ElectronicSpinSquaredOperator.hpp</innerfile>
     <innerfile refid="_f_q_molecular_hamiltonian_8hpp">FQMolecularHamiltonian.hpp</innerfile>
     <innerfile refid="_f_q_molecular_magnetic_hamiltonian_8hpp">FQMolecularMagneticHamiltonian.hpp</innerfile>
     <innerfile refid="_f_q_molecular_pauli_hamiltonian_8hpp">FQMolecularPauliHamiltonian.hpp</innerfile>

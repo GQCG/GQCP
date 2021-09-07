@@ -5,6 +5,7 @@
     <basecompoundref refid="class_g_q_c_p_1_1_s_q_operator_storage" prot="public" virt="non-virtual">GQCP::SQOperatorStorage&lt; SquareRankFourTensor&lt; _Scalar &gt;, _Vectorizer, SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;</basecompoundref>
     <basecompoundref refid="class_g_q_c_p_1_1_basis_transformable" prot="public" virt="non-virtual">GQCP::BasisTransformable&lt; _DerivedOperator &gt;</basecompoundref>
     <basecompoundref refid="class_g_q_c_p_1_1_jacobi_rotatable" prot="public" virt="non-virtual">GQCP::JacobiRotatable&lt; _DerivedOperator &gt;</basecompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_g_s_q_two_electron_operator" prot="public" virt="non-virtual">GQCP::GSQTwoElectronOperator&lt; Scalar &gt;</derivedcompoundref>
     <includes refid="_simple_s_q_two_electron_operator_8hpp" local="no">SimpleSQTwoElectronOperator.hpp</includes>
     <templateparamlist>
       <param>
@@ -575,6 +576,12 @@
       <node id="7">
         <label>GQCP::JacobiRotatable&lt; _DerivedOperator &gt;</label>
         <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      </node>
+      <node id="8">
+        <label>GQCP::GSQTwoElectronOperator&lt; Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_g_s_q_two_electron_operator"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
       </node>
       <node id="1">
         <label>GQCP::SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt;</label>

@@ -92,78 +92,106 @@ $(function() {
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_g_transformation_8hpp.html">Basis/Transformations/GTransformation.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_density_matrix_traits_8hpp.html">DensityMatrix/DensityMatrixTraits.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_simple1_d_m_8hpp.html">DensityMatrix/Simple1DM.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_spin_resolved1_d_m_8hpp.html">DensityMatrix/SpinResolved1DM.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_g_q_c_p.html">GQCP</a> {</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_g_q_c_p.html">GQCP</a> {</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment"> *  MARK: G1DM implementation</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> _Scalar&gt;</div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_g1_d_m.html">   39</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_g_q_c_p_1_1_g1_d_m.html">G1DM</a>:</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">public</span> <a class="code" href="class_g_q_c_p_1_1_simple1_d_m.html">Simple1DM</a>&lt;_Scalar, G1DM&lt;_Scalar&gt;&gt; {</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="comment">// The scalar type used for a density matrix element: real or complex.</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_g1_d_m.html#a7027b6b4375942fa7c56c4c1699ff754">   43</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="class_g_q_c_p_1_1_g1_d_m.html#a7027b6b4375942fa7c56c4c1699ff754">Scalar</a> = _Scalar;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="comment">/*</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">     *  MARK: Constructors</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="comment">// Inherit `Simple1DM`&#39;s constructors.</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">using</span> <a class="code" href="class_g_q_c_p_1_1_simple1_d_m.html">Simple1DM&lt;Scalar, G1DM&lt;Scalar&gt;</a>&gt;<a class="code" href="class_g_q_c_p_1_1_simple1_d_m.html#ae16447c5b63cd60e31d154e791d79dc0">::Simple1DM</a>;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;};</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment"> *  MARK: G1DM implementation</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> _Scalar&gt;</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_g1_d_m.html">   40</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_g_q_c_p_1_1_g1_d_m.html">G1DM</a>:</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">public</span> <a class="code" href="class_g_q_c_p_1_1_simple1_d_m.html">Simple1DM</a>&lt;_Scalar, G1DM&lt;_Scalar&gt;&gt; {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="comment">// The scalar type used for a density matrix element: real or complex.</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_g1_d_m.html#a7027b6b4375942fa7c56c4c1699ff754">   44</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="class_g_q_c_p_1_1_g1_d_m.html#a7027b6b4375942fa7c56c4c1699ff754">Scalar</a> = _Scalar;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">     *  MARK: Constructors</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="comment">// Inherit `Simple1DM`&#39;s constructors.</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">using</span> <a class="code" href="class_g_q_c_p_1_1_simple1_d_m.html">Simple1DM&lt;Scalar, G1DM&lt;Scalar&gt;</a>&gt;<a class="code" href="class_g_q_c_p_1_1_simple1_d_m.html#ae16447c5b63cd60e31d154e791d79dc0">::Simple1DM</a>;</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment"> *  MARK: `BasisTransformableTraits`</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> Scalar&gt;</div>
-<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g1_d_m_3_01_scalar_01_4_01_4.html">   63</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_g_q_c_p_1_1_basis_transformable_traits.html">BasisTransformableTraits</a>&lt;<a class="code" href="class_g_q_c_p_1_1_g1_d_m.html">G1DM</a>&lt;Scalar&gt;&gt; {</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="comment">// The type of transformation that is naturally related to a `G1DM`.</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g1_d_m_3_01_scalar_01_4_01_4.html#a285912020efc30daaf8a287766270f72">   66</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="class_g_q_c_p_1_1_g_transformation.html">Transformation</a> = <a class="code" href="class_g_q_c_p_1_1_g_transformation.html">GTransformation&lt;Scalar&gt;</a>;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;};</div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="class_g_q_c_p_1_1_g1_d_m.html#a3011aa827c98e2f39bf32a2348974376">   62</a></span>&#160;    <span class="keyword">static</span> <a class="code" href="class_g_q_c_p_1_1_g1_d_m.html">G1DM&lt;Scalar&gt;</a> <a class="code" href="class_g_q_c_p_1_1_g1_d_m.html#a3011aa827c98e2f39bf32a2348974376">FromSpinResolved</a>(<span class="keyword">const</span> <a class="code" href="class_g_q_c_p_1_1_spin_resolved1_d_m.html">SpinResolved1DM&lt;Scalar&gt;</a>&amp; D) {</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="comment">// The goal in this named constructor is to build up the general density matrix (2K x 2K) from the spin-resolved (K_sigma x K_sigma) ones.</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span> K_alpha = D.<a class="code" href="class_g_q_c_p_1_1_spin_resolved_base.html#ae525d777321321160dbf3e10158d3599">alpha</a>().<a class="code" href="class_g_q_c_p_1_1_simple1_d_m.html#a4119731fc8031d5bcaecba3db59297bb">numberOfOrbitals</a>();</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span> K_beta = D.<a class="code" href="class_g_q_c_p_1_1_spin_resolved_base.html#a01de2ba3a5e4723aeea6b79e7cd0e1a4">beta</a>().<a class="code" href="class_g_q_c_p_1_1_simple1_d_m.html#a4119731fc8031d5bcaecba3db59297bb">numberOfOrbitals</a>();</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span> M = K_alpha + K_beta;</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment"> *  MARK: `JacobiRotatableTraits`</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> Scalar&gt;</div>
-<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_g1_d_m_3_01_scalar_01_4_01_4.html">   78</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_g_q_c_p_1_1_jacobi_rotatable_traits.html">JacobiRotatableTraits</a>&lt;<a class="code" href="class_g_q_c_p_1_1_g1_d_m.html">G1DM</a>&lt;Scalar&gt;&gt; {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <a class="code" href="class_g_q_c_p_1_1_square_matrix.html">SquareMatrix&lt;Scalar&gt;</a> D_general = <a class="code" href="class_g_q_c_p_1_1_square_matrix.html#ae3551bb3ac15b2560846f7a5956d1d90">SquareMatrix&lt;Scalar&gt;::Zero</a>(M);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="comment">//      alpha |  0</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="comment">//        0   | beta</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        D_general.topLeftCorner(K_alpha, K_alpha) = D.<a class="code" href="class_g_q_c_p_1_1_spin_resolved_base.html#ae525d777321321160dbf3e10158d3599">alpha</a>().<a class="code" href="class_g_q_c_p_1_1_simple1_d_m.html#a4a9790b2d1ceb12a2fc3d62002923151">matrix</a>();</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        D_general.bottomRightCorner(K_beta, K_beta) = D.<a class="code" href="class_g_q_c_p_1_1_spin_resolved_base.html#a01de2ba3a5e4723aeea6b79e7cd0e1a4">beta</a>().<a class="code" href="class_g_q_c_p_1_1_simple1_d_m.html#a4a9790b2d1ceb12a2fc3d62002923151">matrix</a>();</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_g_q_c_p_1_1_g1_d_m.html">G1DM&lt;Scalar&gt;</a> {D_general};</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    }</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;};</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="comment">// The type of Jacobi rotation that is naturally related to a `G1DM`.</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_g1_d_m_3_01_scalar_01_4_01_4.html#a38ec4172e00a389532de6f2ecacf8ce1">   81</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="class_g_q_c_p_1_1_jacobi_rotation.html">JacobiRotationType</a> = <a class="code" href="class_g_q_c_p_1_1_jacobi_rotation.html">JacobiRotation</a>;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;};</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment"> *  MARK: `BasisTransformableTraits`</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment"> *  MARK: `DensityMatrixTraits`</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> Scalar&gt;</div>
-<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="struct_g_q_c_p_1_1_density_matrix_traits_3_01_g1_d_m_3_01_scalar_01_4_01_4.html">   93</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_g_q_c_p_1_1_density_matrix_traits.html">DensityMatrixTraits</a>&lt;<a class="code" href="class_g_q_c_p_1_1_g1_d_m.html">G1DM</a>&lt;Scalar&gt;&gt; {</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> Scalar&gt;</div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g1_d_m_3_01_scalar_01_4_01_4.html">   89</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_g_q_c_p_1_1_basis_transformable_traits.html">BasisTransformableTraits</a>&lt;<a class="code" href="class_g_q_c_p_1_1_g1_d_m.html">G1DM</a>&lt;Scalar&gt;&gt; {</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="comment">// The type of transformation that is naturally related to a `G1DM`.</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g1_d_m_3_01_scalar_01_4_01_4.html#a285912020efc30daaf8a287766270f72">   92</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="class_g_q_c_p_1_1_g_transformation.html">Transformation</a> = <a class="code" href="class_g_q_c_p_1_1_g_transformation.html">GTransformation&lt;Scalar&gt;</a>;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;};</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="comment">// The type of transformation that is naturally related to a `G1DM`.</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="struct_g_q_c_p_1_1_density_matrix_traits_3_01_g1_d_m_3_01_scalar_01_4_01_4.html#a6f7e50e3ecd40f108172b96a2d8de70c">   96</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="class_g_q_c_p_1_1_g_transformation.html">Transformation</a> = <a class="code" href="class_g_q_c_p_1_1_g_transformation.html">GTransformation&lt;Scalar&gt;</a>;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;};</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment"> *  MARK: `JacobiRotatableTraits`</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;}  <span class="comment">// namespace GQCP</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> Scalar&gt;</div>
+<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_g1_d_m_3_01_scalar_01_4_01_4.html">  104</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_g_q_c_p_1_1_jacobi_rotatable_traits.html">JacobiRotatableTraits</a>&lt;<a class="code" href="class_g_q_c_p_1_1_g1_d_m.html">G1DM</a>&lt;Scalar&gt;&gt; {</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="comment">// The type of Jacobi rotation that is naturally related to a `G1DM`.</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_g1_d_m_3_01_scalar_01_4_01_4.html#a38ec4172e00a389532de6f2ecacf8ce1">  107</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="class_g_q_c_p_1_1_jacobi_rotation.html">JacobiRotationType</a> = <a class="code" href="class_g_q_c_p_1_1_jacobi_rotation.html">JacobiRotation</a>;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;};</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment"> *  MARK: `DensityMatrixTraits`</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> Scalar&gt;</div>
+<div class="line"><a name="l00119"></a><span class="lineno"><a class="line" href="struct_g_q_c_p_1_1_density_matrix_traits_3_01_g1_d_m_3_01_scalar_01_4_01_4.html">  119</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_g_q_c_p_1_1_density_matrix_traits.html">DensityMatrixTraits</a>&lt;<a class="code" href="class_g_q_c_p_1_1_g1_d_m.html">G1DM</a>&lt;Scalar&gt;&gt; {</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="comment">// The type of transformation that is naturally related to a `G1DM`.</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="struct_g_q_c_p_1_1_density_matrix_traits_3_01_g1_d_m_3_01_scalar_01_4_01_4.html#a6f7e50e3ecd40f108172b96a2d8de70c">  122</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="class_g_q_c_p_1_1_g_transformation.html">Transformation</a> = <a class="code" href="class_g_q_c_p_1_1_g_transformation.html">GTransformation&lt;Scalar&gt;</a>;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;};</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;}  <span class="comment">// namespace GQCP</span></div>
 <div class="ttc" id="a_density_matrix_traits_8hpp_html"><div class="ttname"><a href="_density_matrix_traits_8hpp.html">DensityMatrixTraits.hpp</a></div></div>
 <div class="ttc" id="a_g_transformation_8hpp_html"><div class="ttname"><a href="_g_transformation_8hpp.html">GTransformation.hpp</a></div></div>
 <div class="ttc" id="a_simple1_d_m_8hpp_html"><div class="ttname"><a href="_simple1_d_m_8hpp.html">Simple1DM.hpp</a></div></div>
-<div class="ttc" id="aclass_g_q_c_p_1_1_g1_d_m_html"><div class="ttname"><a href="class_g_q_c_p_1_1_g1_d_m.html">GQCP::G1DM</a></div><div class="ttdef"><b>Definition:</b> G1DM.hpp:40</div></div>
-<div class="ttc" id="aclass_g_q_c_p_1_1_g1_d_m_html_a7027b6b4375942fa7c56c4c1699ff754"><div class="ttname"><a href="class_g_q_c_p_1_1_g1_d_m.html#a7027b6b4375942fa7c56c4c1699ff754">GQCP::G1DM::Scalar</a></div><div class="ttdeci">_Scalar Scalar</div><div class="ttdef"><b>Definition:</b> G1DM.hpp:43</div></div>
+<div class="ttc" id="a_spin_resolved1_d_m_8hpp_html"><div class="ttname"><a href="_spin_resolved1_d_m_8hpp.html">SpinResolved1DM.hpp</a></div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_g1_d_m_html"><div class="ttname"><a href="class_g_q_c_p_1_1_g1_d_m.html">GQCP::G1DM</a></div><div class="ttdef"><b>Definition:</b> G1DM.hpp:41</div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_g1_d_m_html_a3011aa827c98e2f39bf32a2348974376"><div class="ttname"><a href="class_g_q_c_p_1_1_g1_d_m.html#a3011aa827c98e2f39bf32a2348974376">GQCP::G1DM::FromSpinResolved</a></div><div class="ttdeci">static G1DM&lt; Scalar &gt; FromSpinResolved(const SpinResolved1DM&lt; Scalar &gt; &amp;D)</div><div class="ttdef"><b>Definition:</b> G1DM.hpp:62</div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_g1_d_m_html_a7027b6b4375942fa7c56c4c1699ff754"><div class="ttname"><a href="class_g_q_c_p_1_1_g1_d_m.html#a7027b6b4375942fa7c56c4c1699ff754">GQCP::G1DM::Scalar</a></div><div class="ttdeci">_Scalar Scalar</div><div class="ttdef"><b>Definition:</b> G1DM.hpp:44</div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_g_transformation_html"><div class="ttname"><a href="class_g_q_c_p_1_1_g_transformation.html">GQCP::GTransformation&lt; Scalar &gt;</a></div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_jacobi_rotation_html"><div class="ttname"><a href="class_g_q_c_p_1_1_jacobi_rotation.html">GQCP::JacobiRotation</a></div><div class="ttdef"><b>Definition:</b> JacobiRotation.hpp:33</div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_simple1_d_m_html"><div class="ttname"><a href="class_g_q_c_p_1_1_simple1_d_m.html">GQCP::Simple1DM</a></div><div class="ttdef"><b>Definition:</b> Simple1DM.hpp:48</div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_simple1_d_m_html_a4119731fc8031d5bcaecba3db59297bb"><div class="ttname"><a href="class_g_q_c_p_1_1_simple1_d_m.html#a4119731fc8031d5bcaecba3db59297bb">GQCP::Simple1DM::numberOfOrbitals</a></div><div class="ttdeci">size_t numberOfOrbitals() const</div><div class="ttdef"><b>Definition:</b> Simple1DM.hpp:111</div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_simple1_d_m_html_a4a9790b2d1ceb12a2fc3d62002923151"><div class="ttname"><a href="class_g_q_c_p_1_1_simple1_d_m.html#a4a9790b2d1ceb12a2fc3d62002923151">GQCP::Simple1DM::matrix</a></div><div class="ttdeci">const SquareMatrix&lt; Scalar &gt; &amp; matrix() const</div><div class="ttdef"><b>Definition:</b> Simple1DM.hpp:96</div></div>
 <div class="ttc" id="aclass_g_q_c_p_1_1_simple1_d_m_html_ae16447c5b63cd60e31d154e791d79dc0"><div class="ttname"><a href="class_g_q_c_p_1_1_simple1_d_m.html#ae16447c5b63cd60e31d154e791d79dc0">GQCP::Simple1DM&lt; _Scalar, G1DM&lt; _Scalar &gt; &gt;::Simple1DM</a></div><div class="ttdeci">Simple1DM()</div><div class="ttdef"><b>Definition:</b> Simple1DM.hpp:85</div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_spin_resolved1_d_m_html"><div class="ttname"><a href="class_g_q_c_p_1_1_spin_resolved1_d_m.html">GQCP::SpinResolved1DM</a></div><div class="ttdef"><b>Definition:</b> SpinResolved1DM.hpp:44</div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_spin_resolved_base_html_a01de2ba3a5e4723aeea6b79e7cd0e1a4"><div class="ttname"><a href="class_g_q_c_p_1_1_spin_resolved_base.html#a01de2ba3a5e4723aeea6b79e7cd0e1a4">GQCP::SpinResolvedBase::beta</a></div><div class="ttdeci">const Of &amp; beta() const</div><div class="ttdef"><b>Definition:</b> SpinResolvedBase.hpp:138</div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_spin_resolved_base_html_ae525d777321321160dbf3e10158d3599"><div class="ttname"><a href="class_g_q_c_p_1_1_spin_resolved_base.html#ae525d777321321160dbf3e10158d3599">GQCP::SpinResolvedBase::alpha</a></div><div class="ttdeci">const Of &amp; alpha() const</div><div class="ttdef"><b>Definition:</b> SpinResolvedBase.hpp:128</div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_square_matrix_html"><div class="ttname"><a href="class_g_q_c_p_1_1_square_matrix.html">GQCP::SquareMatrix&lt; Scalar &gt;</a></div></div>
+<div class="ttc" id="aclass_g_q_c_p_1_1_square_matrix_html_ae3551bb3ac15b2560846f7a5956d1d90"><div class="ttname"><a href="class_g_q_c_p_1_1_square_matrix.html#ae3551bb3ac15b2560846f7a5956d1d90">GQCP::SquareMatrix::Zero</a></div><div class="ttdeci">static Self Zero(const size_t dim)</div><div class="ttdef"><b>Definition:</b> SquareMatrix.hpp:262</div></div>
 <div class="ttc" id="anamespace_g_q_c_p_html"><div class="ttname"><a href="namespace_g_q_c_p.html">GQCP</a></div><div class="ttdef"><b>Definition:</b> BaseOneElectronIntegralBuffer.hpp:25</div></div>
 <div class="ttc" id="astruct_g_q_c_p_1_1_basis_transformable_traits_html"><div class="ttname"><a href="struct_g_q_c_p_1_1_basis_transformable_traits.html">GQCP::BasisTransformableTraits</a></div><div class="ttdef"><b>Definition:</b> BasisTransformable.hpp:37</div></div>
 <div class="ttc" id="astruct_g_q_c_p_1_1_density_matrix_traits_html"><div class="ttname"><a href="struct_g_q_c_p_1_1_density_matrix_traits.html">GQCP::DensityMatrixTraits</a></div><div class="ttdef"><b>Definition:</b> DensityMatrixTraits.hpp:28</div></div>

@@ -6,6 +6,7 @@
     <includes refid="_f_q_molecular_hamiltonian_8hpp" local="yes">Operator/FirstQuantized/FQMolecularHamiltonian.hpp</includes>
     <includes refid="_orbital_zeeman_operator_8hpp" local="yes">Operator/FirstQuantized/OrbitalZeemanOperator.hpp</includes>
     <includedby refid="_r_spin_orbital_basis_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp</includedby>
+    <includedby refid="_u_spin_orbital_basis_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp</includedby>
     <includedby refid="_f_q_molecular_pauli_hamiltonian_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/FQMolecularPauliHamiltonian.hpp</includedby>
     <includedby refid="_f_q_molecular_magnetic_hamiltonian_8cpp" local="yes">/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/FQMolecularMagneticHamiltonian.cpp</includedby>
     <incdepgraph>
@@ -305,6 +306,8 @@
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
         <childnode refid="44" relation="include">
         </childnode>
       </node>
@@ -546,6 +549,8 @@
         <label>/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/FQMolecularMagneticHamiltonian.hpp</label>
         <link refid="_f_q_molecular_magnetic_hamiltonian_8hpp"/>
         <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
         </childnode>
         <childnode refid="43" relation="include">
         </childnode>

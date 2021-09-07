@@ -713,26 +713,26 @@
 </para>
     </detaileddescription>
     <inheritancegraph>
-      <node id="15">
+      <node id="16">
         <label>GQCP::RSQOneElectronOperator&lt; Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_r_s_q_one_electron_operator"/>
-        <childnode refid="13" relation="public-inheritance">
+        <childnode refid="14" relation="public-inheritance">
         </childnode>
       </node>
       <node id="1">
         <label>GQCP::SQOperatorStorageBase&lt; _MatrixRepresentation, _Vectorizer, _DerivedOperator &gt;</label>
         <link refid="class_g_q_c_p_1_1_s_q_operator_storage_base"/>
       </node>
-      <node id="24">
+      <node id="25">
         <label>GQCP::PureUSQTwoElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt;</label>
         <link refid="class_g_q_c_p_1_1_pure_u_s_q_two_electron_operator_component"/>
-        <childnode refid="23" relation="public-inheritance">
+        <childnode refid="24" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="22">
+      <node id="23">
         <label>GQCP::GSQOneElectronOperator&lt; _Scalar, _Vectorizer &gt;</label>
         <link refid="class_g_q_c_p_1_1_g_s_q_one_electron_operator"/>
-        <childnode refid="21" relation="public-inheritance">
+        <childnode refid="22" relation="public-inheritance">
         </childnode>
       </node>
       <node id="2">
@@ -741,10 +741,10 @@
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="27">
+      <node id="28">
         <label>GQCP::SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, RSQTwoElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator"/>
-        <childnode refid="16" relation="public-inheritance">
+        <childnode refid="17" relation="public-inheritance">
         </childnode>
       </node>
       <node id="5">
@@ -753,10 +753,10 @@
         <childnode refid="4" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="13">
+      <node id="14">
         <label>GQCP::SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator"/>
-        <childnode refid="12" relation="public-inheritance">
+        <childnode refid="13" relation="public-inheritance">
         </childnode>
       </node>
       <node id="9">
@@ -765,22 +765,28 @@
         <childnode refid="8" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="19">
+      <node id="20">
         <label>GQCP::SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, USQOneElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator"/>
-        <childnode refid="16" relation="public-inheritance">
+        <childnode refid="17" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="26">
+      <node id="27">
         <label>GQCP::GSQTwoElectronOperator&lt; _Scalar, _Vectorizer &gt;</label>
         <link refid="class_g_q_c_p_1_1_g_s_q_two_electron_operator"/>
-        <childnode refid="25" relation="public-inheritance">
+        <childnode refid="26" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="17">
+      <node id="18">
         <label>GQCP::SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, RSQOneElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator"/>
-        <childnode refid="16" relation="public-inheritance">
+        <childnode refid="17" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>GQCP::GSQTwoElectronOperator&lt; Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_g_s_q_two_electron_operator"/>
+        <childnode refid="11" relation="public-inheritance">
         </childnode>
       </node>
       <node id="3">
@@ -789,22 +795,22 @@
         <childnode refid="2" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="18">
+      <node id="19">
         <label>GQCP::RSQOneElectronOperator&lt; _Scalar, _Vectorizer &gt;</label>
         <link refid="class_g_q_c_p_1_1_r_s_q_one_electron_operator"/>
-        <childnode refid="17" relation="public-inheritance">
+        <childnode refid="18" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="16">
+      <node id="17">
         <label>GQCP::SQOperatorStorage&lt; _MatrixRepresentation, _Vectorizer, _DerivedOperator &gt;</label>
         <link refid="class_g_q_c_p_1_1_s_q_operator_storage"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="20">
+      <node id="21">
         <label>GQCP::USQOneElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt;</label>
         <link refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator_component"/>
-        <childnode refid="19" relation="public-inheritance">
+        <childnode refid="20" relation="public-inheritance">
         </childnode>
       </node>
       <node id="6">
@@ -825,16 +831,16 @@
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="23">
+      <node id="24">
         <label>GQCP::SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, PureUSQTwoElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator"/>
-        <childnode refid="16" relation="public-inheritance">
+        <childnode refid="17" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="25">
+      <node id="26">
         <label>GQCP::SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, GSQTwoElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator"/>
-        <childnode refid="16" relation="public-inheritance">
+        <childnode refid="17" relation="public-inheritance">
         </childnode>
       </node>
       <node id="10">
@@ -843,10 +849,10 @@
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="14">
+      <node id="15">
         <label>GQCP::GSQOneElectronOperator&lt; Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_g_s_q_one_electron_operator"/>
-        <childnode refid="13" relation="public-inheritance">
+        <childnode refid="14" relation="public-inheritance">
         </childnode>
       </node>
       <node id="4">
@@ -855,22 +861,22 @@
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="12">
+      <node id="13">
         <label>GQCP::SQOperatorStorage&lt; SquareMatrix&lt; _Scalar &gt;, _Vectorizer, SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_s_q_operator_storage"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="21">
+      <node id="22">
         <label>GQCP::SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, GSQOneElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator"/>
-        <childnode refid="16" relation="public-inheritance">
+        <childnode refid="17" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="28">
+      <node id="29">
         <label>GQCP::RSQTwoElectronOperator&lt; _Scalar, _Vectorizer &gt;</label>
         <link refid="class_g_q_c_p_1_1_r_s_q_two_electron_operator"/>
-        <childnode refid="27" relation="public-inheritance">
+        <childnode refid="28" relation="public-inheritance">
         </childnode>
       </node>
       <node id="7">

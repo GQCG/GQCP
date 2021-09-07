@@ -11,7 +11,7 @@ Inheritance diagram for GQCP\+::GTransformation$<$ \+\_\+\+Scalar $>$\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{class_g_q_c_p_1_1_g_transformation__inherit__graph}
+\includegraphics[height=550pt]{class_g_q_c_p_1_1_g_transformation__inherit__graph}
 \end{center}
 \end{figure}
 
@@ -21,7 +21,7 @@ Collaboration diagram for GQCP\+::GTransformation$<$ \+\_\+\+Scalar $>$\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{class_g_q_c_p_1_1_g_transformation__coll__graph}
+\includegraphics[height=550pt]{class_g_q_c_p_1_1_g_transformation__coll__graph}
 \end{center}
 \end{figure}
 \doxysubsection*{Public Types}
@@ -44,6 +44,8 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_aa5372444af700cc045488
 \end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{GTransformation}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_aa5372444af700cc04548803517a225d3}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_a7984f715c1907b1e9756c86a4566e302}{From\+Restricted}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{RTransformation}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_aa5372444af700cc04548803517a225d3}{Scalar}} $>$ \&r\+\_\+transformation)
 \item 
 static \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{GTransformation}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_aa5372444af700cc04548803517a225d3}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_a511cfa0246d40baa45e7dcee1f79cacb}{From\+Unrestricted}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_aa5372444af700cc04548803517a225d3}{Scalar}} $>$ \&u\+\_\+transformation)
 \item 
@@ -147,6 +149,23 @@ The part of the general transformation matrix that describes the expansion coeff
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 The part of the general transformation that describes the spinors of the requested component. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_transformation_a7984f715c1907b1e9756c86a4566e302}\label{class_g_q_c_p_1_1_g_transformation_a7984f715c1907b1e9756c86a4566e302}} 
+\index{GQCP::GTransformation$<$ \_Scalar $>$@{GQCP::GTransformation$<$ \_Scalar $>$}!FromRestricted@{FromRestricted}}
+\index{FromRestricted@{FromRestricted}!GQCP::GTransformation$<$ \_Scalar $>$@{GQCP::GTransformation$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{FromRestricted()}{FromRestricted()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+static \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{GTransformation}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_aa5372444af700cc04548803517a225d3}{Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{GQCP\+::\+GTransformation}}$<$ \+\_\+\+Scalar $>$\+::From\+Restricted (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{RTransformation}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_aa5372444af700cc04548803517a225d3}{Scalar}} $>$ \&}]{r\+\_\+transformation }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Convert an {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{RTransformation}}} into its generalized counterpart.
+
+
+\begin{DoxyParams}{Parameters}
+{\em r\+\_\+transformation} & The restricted transformation.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{GTransformation}}} that corresponds to the {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{RTransformation}}}. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_g_transformation_a511cfa0246d40baa45e7dcee1f79cacb}\label{class_g_q_c_p_1_1_g_transformation_a511cfa0246d40baa45e7dcee1f79cacb}} 
 \index{GQCP::GTransformation$<$ \_Scalar $>$@{GQCP::GTransformation$<$ \_Scalar $>$}!FromUnrestricted@{FromUnrestricted}}

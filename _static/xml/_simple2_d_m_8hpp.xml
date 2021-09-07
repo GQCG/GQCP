@@ -645,6 +645,8 @@
         <link refid="_spin_resolved2_d_m_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
         <childnode refid="105" relation="include">
         </childnode>
         <childnode refid="107" relation="include">

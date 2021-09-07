@@ -35,6 +35,7 @@
         <name>operator+=</name>
         <reimplementedby refid="class_g_q_c_p_1_1_simple1_d_m_1a3730b13257db341c113e49aa26b3fee4">operator+=</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_simple2_d_m_1ad39edb07d7dcd4b8cf1b8d64a5355e8d">operator+=</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a2a833747358b8f6b50481ed94beb90f2">operator+=</reimplementedby>
         <param>
           <type>const T &amp;</type>
           <declname>rhs</declname>
@@ -62,6 +63,7 @@
         <reimplementedby refid="class_g_q_c_p_1_1_simple1_d_m_1adf9829fb7c3d3f634ad83ca0a37fea96">operator*=</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_simple2_d_m_1aec142ff4054c04001007500e9009513b">operator*=</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_spin_resolved1_d_m_1aebf277a6623597c7dd2b196c1907ddbe">operator*=</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a915528b3fe1c159e99e9cd73e5044383">operator*=</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1ad2641d7ed0bb28069712ad51522ac228">operator*=</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_t1_amplitudes_1ae54c6b87b0924981ce657f83f3c8d8fb">operator*=</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_t1_amplitudes_1ae54c6b87b0924981ce657f83f3c8d8fb">operator*=</reimplementedby>
@@ -249,22 +251,22 @@
 </para>
     </detaileddescription>
     <inheritancegraph>
-      <node id="12">
+      <node id="13">
         <label>GQCP::RSQOneElectronOperator&lt; Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_r_s_q_one_electron_operator"/>
-        <childnode refid="10" relation="public-inheritance">
+        <childnode refid="11" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="29">
+      <node id="30">
         <label>GQCP::USQOneElectronOperator&lt; Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="10">
+      <node id="11">
         <label>GQCP::SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator"/>
-        <childnode refid="9" relation="public-inheritance">
+        <childnode refid="10" relation="public-inheritance">
         </childnode>
       </node>
       <node id="6">
@@ -273,19 +275,19 @@
         <childnode refid="5" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="13">
+      <node id="14">
         <label>GQCP::Simple1DM&lt; _Scalar, SpinDensity1DM&lt; _Scalar &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple1_d_m"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="21">
+      <node id="22">
         <label>GQCP::Simple2DM&lt; _Scalar, G2DM&lt; _Scalar &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple2_d_m"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="23">
+      <node id="24">
         <label>GQCP::Simple2DM&lt; _Scalar, Orbital2DM&lt; _Scalar &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple2_d_m"/>
         <childnode refid="1" relation="public-inheritance">
@@ -297,19 +299,25 @@
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="25">
+      <node id="9">
+        <label>GQCP::GSQTwoElectronOperator&lt; Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_g_s_q_two_electron_operator"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="26">
         <label>GQCP::Simple2DM&lt; _Scalar, PureSpinResolved2DMComponent&lt; _Scalar &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple2_d_m"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="20">
+      <node id="21">
         <label>GQCP::SpinResolved1DMComponent&lt; _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_spin_resolved1_d_m_component"/>
-        <childnode refid="19" relation="public-inheritance">
+        <childnode refid="20" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="19">
+      <node id="20">
         <label>GQCP::Simple1DM&lt; _Scalar, SpinResolved1DMComponent&lt; _Scalar &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple1_d_m"/>
         <childnode refid="1" relation="public-inheritance">
@@ -321,22 +329,22 @@
         <childnode refid="7" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="22">
+      <node id="23">
         <label>GQCP::G2DM&lt; _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_g2_d_m"/>
-        <childnode refid="21" relation="public-inheritance">
+        <childnode refid="22" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="17">
+      <node id="18">
         <label>GQCP::Simple1DM&lt; _Scalar, Orbital1DM&lt; _Scalar &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple1_d_m"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="16">
+      <node id="17">
         <label>GQCP::G1DM&lt; _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_g1_d_m"/>
-        <childnode refid="15" relation="public-inheritance">
+        <childnode refid="16" relation="public-inheritance">
         </childnode>
       </node>
       <node id="3">
@@ -351,16 +359,16 @@
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="24">
+      <node id="25">
         <label>GQCP::Orbital2DM&lt; _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_orbital2_d_m"/>
-        <childnode refid="23" relation="public-inheritance">
+        <childnode refid="24" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="18">
+      <node id="19">
         <label>GQCP::Orbital1DM&lt; _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_orbital1_d_m"/>
-        <childnode refid="17" relation="public-inheritance">
+        <childnode refid="18" relation="public-inheritance">
         </childnode>
       </node>
       <node id="7">
@@ -369,25 +377,25 @@
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="28">
+      <node id="29">
         <label>GQCP::T2Amplitudes&lt; Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_t2_amplitudes"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="11">
+      <node id="12">
         <label>GQCP::GSQOneElectronOperator&lt; Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_g_s_q_one_electron_operator"/>
-        <childnode refid="10" relation="public-inheritance">
+        <childnode refid="11" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="15">
+      <node id="16">
         <label>GQCP::Simple1DM&lt; _Scalar, G1DM&lt; _Scalar &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple1_d_m"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="9">
+      <node id="10">
         <label>GQCP::SQOperatorStorage&lt; SquareMatrix&lt; _Scalar &gt;, _Vectorizer, SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_s_q_operator_storage"/>
         <childnode refid="1" relation="public-inheritance">
@@ -403,22 +411,22 @@
         <childnode refid="2" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="26">
+      <node id="27">
         <label>GQCP::PureSpinResolved2DMComponent&lt; _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_pure_spin_resolved2_d_m_component"/>
-        <childnode refid="25" relation="public-inheritance">
+        <childnode refid="26" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="27">
+      <node id="28">
         <label>GQCP::T1Amplitudes&lt; Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_t1_amplitudes"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="14">
+      <node id="15">
         <label>GQCP::SpinDensity1DM&lt; _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_spin_density1_d_m"/>
-        <childnode refid="13" relation="public-inheritance">
+        <childnode refid="14" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>

@@ -20,7 +20,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G1DM.hpp" line="96" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G1DM.hpp" bodystart="96" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G1DM.hpp" line="122" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G1DM.hpp" bodystart="122" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -34,7 +34,7 @@
         <link refid="struct_g_q_c_p_1_1_density_matrix_traits_3_01_g1_d_m_3_01_scalar_01_4_01_4"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G1DM.hpp" line="93" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G1DM.hpp" bodystart="93" bodyend="97"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G1DM.hpp" line="119" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G1DM.hpp" bodystart="119" bodyend="123"/>
     <listofallmembers>
       <member refid="struct_g_q_c_p_1_1_density_matrix_traits_3_01_g1_d_m_3_01_scalar_01_4_01_4_1a6f7e50e3ecd40f108172b96a2d8de70c" prot="public" virt="non-virtual"><scope>GQCP::DensityMatrixTraits&lt; G1DM&lt; Scalar &gt; &gt;</scope><name>Transformation</name></member>
     </listofallmembers>

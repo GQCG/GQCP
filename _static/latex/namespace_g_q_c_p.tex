@@ -448,6 +448,8 @@ class \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_spin__z_operator}{Electronic
 \item 
 class \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_spin_operator}{Electronic\+Spin\+Operator}}
 \item 
+class \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_spin_squared_operator}{Electronic\+Spin\+Squared\+Operator}}
+\item 
 class \mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian}{FQMolecular\+Hamiltonian}}
 \item 
 class \mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian}{FQMolecular\+Magnetic\+Hamiltonian}}
@@ -505,6 +507,12 @@ struct \mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits_3_01_g_s_q_two_electr
 struct \mbox{\hyperlink{struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4}{Basis\+Transformable\+Traits$<$ GSQTwo\+Electron\+Operator$<$ Scalar, Vectorizer $>$ $>$}}
 \item 
 struct \mbox{\hyperlink{struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_g_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4}{Jacobi\+Rotatable\+Traits$<$ GSQTwo\+Electron\+Operator$<$ Scalar, Vectorizer $>$ $>$}}
+\item 
+class \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product}{Scalar\+GSQOne\+Electron\+Operator\+Product}}
+\item 
+struct \mbox{\hyperlink{struct_g_q_c_p_1_1_basis_transformable_traits_3_01_scalar_g_s_q_one_electron_operator_product_3_01_scalar_01_4_01_4}{Basis\+Transformable\+Traits$<$ Scalar\+GSQOne\+Electron\+Operator\+Product$<$ Scalar $>$ $>$}}
+\item 
+struct \mbox{\hyperlink{struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_scalar_g_s_q_one_electron_operator_product_3_01_scalar_01_4_01_4}{Jacobi\+Rotatable\+Traits$<$ Scalar\+GSQOne\+Electron\+Operator\+Product$<$ Scalar $>$ $>$}}
 \item 
 class \mbox{\hyperlink{class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component}{Mixed\+USQTwo\+Electron\+Operator\+Component}}
 \item 
@@ -956,6 +964,8 @@ enum \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4f}{Spin}
 {\footnotesize template$<$typename F1 , typename F2 , typename  = Is\+Function$<$\+F1$>$, typename  = Is\+Function$<$\+F2$>$$>$ }\\\mbox{\hyperlink{class_g_q_c_p_1_1_function_product}{Function\+Product}}$<$ F1, F2 $>$ \mbox{\hyperlink{namespace_g_q_c_p_a17e2cb3ed1f3e8391830d49b0727ba91}{operator$\ast$}} (const F1 \&lhs, const F2 \&rhs)
 \item 
 \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ \mbox{\hyperlink{namespace_g_q_c_p_a031eaf23d32296c8ccd6b437f7484685}{newton\+Step}} (const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ \&\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{x}}, const \mbox{\hyperlink{namespace_g_q_c_p_ae8a9e0086f5fbab030b1d49b05202054}{Vector\+Function}}$<$ double $>$ \&f, const \mbox{\hyperlink{namespace_g_q_c_p_afdcf4d963710902cad07f1c683df75bf}{Matrix\+Function}}$<$ double $>$ \&J)
+\item 
+{\footnotesize template$<$typename Scalar $>$ }\\\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product}{Scalar\+GSQOne\+Electron\+Operator\+Product}}$<$ Scalar $>$ \mbox{\hyperlink{namespace_g_q_c_p_a70316ef0c2cba0a1e505881a9dad9777}{operator$\ast$}} (const \mbox{\hyperlink{namespace_g_q_c_p_ae61b369ffb274e21947436ff6efb78fa}{Scalar\+GSQOne\+Electron\+Operator}}$<$ Scalar $>$ \&lhs, const \mbox{\hyperlink{namespace_g_q_c_p_ae61b369ffb274e21947436ff6efb78fa}{Scalar\+GSQOne\+Electron\+Operator}}$<$ Scalar $>$ \&rhs)
 \item 
 {\footnotesize template$<$typename Scalar $>$ }\\double \mbox{\hyperlink{namespace_g_q_c_p_a29e307419485ec5e35d6363f61e93bb7}{calculate\+Spin\+Squared}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved1_d_m}{Spin\+Resolved1\+DM}}$<$ Scalar $>$ \&one\+\_\+\+DMs, const \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved2_d_m}{Spin\+Resolved2\+DM}}$<$ Scalar $>$ \&two\+\_\+\+DMs)
 \item 
@@ -2045,7 +2055,7 @@ the Newton step J(x) p = -\/ f
 \mbox{\Hypertarget{namespace_g_q_c_p_a17e2cb3ed1f3e8391830d49b0727ba91}\label{namespace_g_q_c_p_a17e2cb3ed1f3e8391830d49b0727ba91}} 
 \index{GQCP@{GQCP}!operator$\ast$@{operator$\ast$}}
 \index{operator$\ast$@{operator$\ast$}!GQCP@{GQCP}}
-\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename F1 , typename F2 , typename  = Is\+Function$<$\+F1$>$, typename  = Is\+Function$<$\+F2$>$$>$ \\
 \mbox{\hyperlink{class_g_q_c_p_1_1_function_product}{Function\+Product}}$<$F1, F2$>$ GQCP\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const F1 \&}]{lhs,  }\item[{const F2 \&}]{rhs }\end{DoxyParamCaption})}
 
@@ -2060,6 +2070,23 @@ Multiply one function by another.
 \end{DoxyTemplParams}
 \begin{DoxyNote}{Note}
 This function is only enabled for actual functions, i.\+e. functions that derive from {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_function}{Function}}}. 
+\end{DoxyNote}
+\mbox{\Hypertarget{namespace_g_q_c_p_a70316ef0c2cba0a1e505881a9dad9777}\label{namespace_g_q_c_p_a70316ef0c2cba0a1e505881a9dad9777}} 
+\index{GQCP@{GQCP}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!GQCP@{GQCP}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Scalar $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product}{Scalar\+GSQOne\+Electron\+Operator\+Product}}$<$Scalar$>$ GQCP\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ae61b369ffb274e21947436ff6efb78fa}{Scalar\+GSQOne\+Electron\+Operator}}$<$ Scalar $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ae61b369ffb274e21947436ff6efb78fa}{Scalar\+GSQOne\+Electron\+Operator}}$<$ Scalar $>$ \&}]{rhs }\end{DoxyParamCaption})}
+
+Multiply one scalar, generalized one-\/electron operator by another.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Scalar} & The scalar type of one of the matrix elements\+: real or complex.\\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyNote}{Note}
+This function assumes that 
 \end{DoxyNote}
 \mbox{\Hypertarget{namespace_g_q_c_p_a7937d446bbf2002cbeb64115498ab03d}\label{namespace_g_q_c_p_a7937d446bbf2002cbeb64115498ab03d}} 
 \index{GQCP@{GQCP}!operator$<$$<$@{operator$<$$<$}}

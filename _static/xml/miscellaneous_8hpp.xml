@@ -194,7 +194,7 @@
         <link refid="_spin_density1_d_m_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="133" relation="include">
+        <childnode refid="136" relation="include">
         </childnode>
       </node>
       <node id="75">
@@ -282,7 +282,7 @@
         </childnode>
         <childnode refid="129" relation="include">
         </childnode>
-        <childnode refid="134" relation="include">
+        <childnode refid="133" relation="include">
         </childnode>
         <childnode refid="141" relation="include">
         </childnode>
@@ -303,10 +303,12 @@
         <childnode refid="66" relation="include">
         </childnode>
       </node>
-      <node id="133">
+      <node id="136">
         <label>/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved1DM.hpp</label>
         <link refid="_spin_resolved1_d_m_8hpp"/>
         <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="131" relation="include">
         </childnode>
         <childnode refid="120" relation="include">
         </childnode>
@@ -522,7 +524,7 @@
         <link refid="_u_orbital_rotation_generators_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="136" relation="include">
+        <childnode refid="135" relation="include">
         </childnode>
       </node>
       <node id="117">
@@ -594,7 +596,7 @@
         </childnode>
         <childnode refid="124" relation="include">
         </childnode>
-        <childnode refid="136" relation="include">
+        <childnode refid="135" relation="include">
         </childnode>
         <childnode refid="144" relation="include">
         </childnode>
@@ -620,7 +622,7 @@
         </childnode>
         <childnode refid="146" relation="include">
         </childnode>
-        <childnode refid="133" relation="include">
+        <childnode refid="136" relation="include">
         </childnode>
         <childnode refid="126" relation="include">
         </childnode>
@@ -824,7 +826,7 @@
         </childnode>
         <childnode refid="130" relation="include">
         </childnode>
-        <childnode refid="135" relation="include">
+        <childnode refid="134" relation="include">
         </childnode>
         <childnode refid="143" relation="include">
         </childnode>
@@ -876,6 +878,8 @@
         <link refid="_spin_resolved2_d_m_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
+        <childnode refid="132" relation="include">
+        </childnode>
         <childnode refid="120" relation="include">
         </childnode>
         <childnode refid="118" relation="include">
@@ -894,8 +898,6 @@
         </childnode>
         <childnode refid="132" relation="include">
         </childnode>
-        <childnode refid="133" relation="include">
-        </childnode>
         <childnode refid="78" relation="include">
         </childnode>
         <childnode refid="77" relation="include">
@@ -909,7 +911,7 @@
         <childnode refid="113" relation="include">
         </childnode>
       </node>
-      <node id="135">
+      <node id="134">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/RTransformation.hpp</label>
         <link refid="_r_transformation_8hpp"/>
         <childnode refid="2" relation="include">
@@ -918,7 +920,7 @@
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="136" relation="include">
+        <childnode refid="135" relation="include">
         </childnode>
         <childnode refid="138" relation="include">
         </childnode>
@@ -1269,7 +1271,7 @@
         <childnode refid="25" relation="include">
         </childnode>
       </node>
-      <node id="136">
+      <node id="135">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UTransformation.hpp</label>
         <link refid="_u_transformation_8hpp"/>
         <childnode refid="2" relation="include">
@@ -1280,7 +1282,7 @@
         </childnode>
         <childnode refid="130" relation="include">
         </childnode>
-        <childnode refid="133" relation="include">
+        <childnode refid="136" relation="include">
         </childnode>
         <childnode refid="137" relation="include">
         </childnode>
@@ -1796,7 +1798,7 @@
         </childnode>
         <childnode refid="139" relation="include">
         </childnode>
-        <childnode refid="133" relation="include">
+        <childnode refid="136" relation="include">
         </childnode>
         <childnode refid="116" relation="include">
         </childnode>
@@ -1843,12 +1845,12 @@
         <childnode refid="120" relation="include">
         </childnode>
       </node>
-      <node id="134">
+      <node id="133">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/ROrbitalRotationGenerators.hpp</label>
         <link refid="_r_orbital_rotation_generators_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="135" relation="include">
+        <childnode refid="134" relation="include">
         </childnode>
         <childnode refid="40" relation="include">
         </childnode>

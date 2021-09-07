@@ -20,7 +20,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/GTransformation.hpp" line="201" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/GTransformation.hpp" bodystart="201" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/GTransformation.hpp" line="215" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/GTransformation.hpp" bodystart="215" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -34,7 +34,7 @@
         <link refid="struct_g_q_c_p_1_1_orbital_rotation_generator_traits_3_01_g_transformation_3_01_scalar_01_4_01_4"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/GTransformation.hpp" line="198" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/GTransformation.hpp" bodystart="198" bodyend="202"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/GTransformation.hpp" line="212" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/GTransformation.hpp" bodystart="212" bodyend="216"/>
     <listofallmembers>
       <member refid="struct_g_q_c_p_1_1_orbital_rotation_generator_traits_3_01_g_transformation_3_01_scalar_01_4_01_4_1ac69bcfa8f2a5e8ada18ef7958617f0d1" prot="public" virt="non-virtual"><scope>GQCP::OrbitalRotationGeneratorTraits&lt; GTransformation&lt; Scalar &gt; &gt;</scope><name>OrbitalRotationGenerators</name></member>
     </listofallmembers>

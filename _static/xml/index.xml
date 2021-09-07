@@ -297,6 +297,9 @@
   <compound refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_r_transformation_3_01_scalar_01_4_01_4" kind="struct"><name>GQCP::BasisTransformableTraits&lt; RTransformation&lt; Scalar &gt; &gt;</name>
     <member refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_r_transformation_3_01_scalar_01_4_01_4_1af49c23dcc7bedd8a0ef5bfc849a49e97" kind="typedef"><name>Transformation</name></member>
   </compound>
+  <compound refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_scalar_g_s_q_one_electron_operator_product_3_01_scalar_01_4_01_4" kind="struct"><name>GQCP::BasisTransformableTraits&lt; ScalarGSQOneElectronOperatorProduct&lt; Scalar &gt; &gt;</name>
+    <member refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_scalar_g_s_q_one_electron_operator_product_3_01_scalar_01_4_01_4_1af4d444e48084797f7bd578004e6c361d" kind="typedef"><name>Transformation</name></member>
+  </compound>
   <compound refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_simple_s_q_two_electron_operator_3_01___scalac9aaaed38cee8ca8d58805ca730bc427" kind="struct"><name>GQCP::BasisTransformableTraits&lt; SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;</name>
     <member refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_simple_s_q_two_electron_operator_3_01___scalac9aaaed38cee8ca8d58805ca730bc427_1aa3c48369388eedecb93f0f4fb13b85ab" kind="typedef"><name>Transformation</name></member>
   </compound>
@@ -751,6 +754,8 @@
     <member refid="class_g_q_c_p_1_1_electronic_spin_operator_1a2e7b6d847387e9b5c1fe11ee409752a1" kind="variable"><name>NumberOfComponents</name></member>
     <member refid="class_g_q_c_p_1_1_electronic_spin_operator_1aa3c16886abcb0f675c85fb6ad6ffb2f0" kind="variable"><name>vectorizer</name></member>
   </compound>
+  <compound refid="class_g_q_c_p_1_1_electronic_spin_squared_operator" kind="class"><name>GQCP::ElectronicSpinSquaredOperator</name>
+  </compound>
   <compound refid="struct_g_q_c_p_1_1_libint_interfacer_1_1empty" kind="struct"><name>GQCP::LibintInterfacer::empty</name>
   </compound>
   <compound refid="class_g_q_c_p_1_1_e_r_jacobi_localizer" kind="class"><name>GQCP::ERJacobiLocalizer</name>
@@ -918,9 +923,11 @@
   </compound>
   <compound refid="class_g_q_c_p_1_1_g1_d_m" kind="class"><name>GQCP::G1DM</name>
     <member refid="class_g_q_c_p_1_1_g1_d_m_1a7027b6b4375942fa7c56c4c1699ff754" kind="typedef"><name>Scalar</name></member>
+    <member refid="class_g_q_c_p_1_1_g1_d_m_1a3011aa827c98e2f39bf32a2348974376" kind="function"><name>FromSpinResolved</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_g2_d_m" kind="class"><name>GQCP::G2DM</name>
     <member refid="class_g_q_c_p_1_1_g2_d_m_1ad4149720741791c5d0c0829be0bff34a" kind="typedef"><name>Scalar</name></member>
+    <member refid="class_g_q_c_p_1_1_g2_d_m_1a0d62f0c0d7a525c65e4939c13ff4224b" kind="function"><name>FromSpinResolved</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_geminal_coefficients_interface" kind="class"><name>GQCP::GeminalCoefficientsInterface</name>
     <member refid="class_g_q_c_p_1_1_geminal_coefficients_interface_1a4a009b427c91b6297bcb778e891da5a7" kind="function"><name>~GeminalCoefficientsInterface</name></member>
@@ -941,6 +948,7 @@
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a94148afa6f002a6e596e94ea828a170f" kind="function"><name>GHF</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1ae98e1ccfc4a780464894f855cef235d4" kind="function"><name>GHF</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a1c45714677f58679db6c27a712a16d5c" kind="function"><name>calculateExpectationValueOf</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a61630e87c2acd59a26d451d89c899cb7" kind="function"><name>calculateExpectationValueOf</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a92d639f5a65e3f777c452eb464231d38" kind="function"><name>excitationEnergies</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a414a85b05e97c2bd453cba49cbf79ecd" kind="function"><name>calculateOrthonormalBasis1DM</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a5a08f0a8a07d38d8eee3f6b7d929dc82" kind="function"><name>calculateOrthonormalBasis2DM</name></member>
@@ -1072,6 +1080,7 @@
     <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a3ecd98f5670a469e7b6b96d932669454" kind="function"><name>quantize</name></member>
     <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a5c563cb69664eb81c52c0ca8093c7d90" kind="function"><name>quantize</name></member>
     <member refid="class_g_q_c_p_1_1_g_spinor_basis_1aab715eecdc3a5b35ca8e0e6acff6c3cc" kind="function"><name>quantize</name></member>
+    <member refid="class_g_q_c_p_1_1_g_spinor_basis_1ae1373befd3ede50fe3a1b06ebdbe4cb1" kind="function"><name>quantize</name></member>
     <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a29e97fd11c496f40147b63fcbf42a623" kind="function"><name>scalarBases</name></member>
     <member refid="class_g_q_c_p_1_1_g_spinor_basis_1adf4e812f8804c98d441cea5ad8985dca" kind="function"><name>mullikenPartitioning</name></member>
     <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a67766903b77d04018df2eb22c050e68a" kind="function"><name>mullikenPartitioning</name></member>
@@ -1132,6 +1141,7 @@
     <member refid="class_g_q_c_p_1_1_g_transformation_1a35294c4513ec448c7740080377781eb6" kind="function"><name>alpha</name></member>
     <member refid="class_g_q_c_p_1_1_g_transformation_1a5c03564330bdb423500ded04404f7fe2" kind="function"><name>beta</name></member>
     <member refid="class_g_q_c_p_1_1_g_transformation_1a6bdc555980660dec5c3594ef4ad2199d" kind="function"><name>component</name></member>
+    <member refid="class_g_q_c_p_1_1_g_transformation_1a7984f715c1907b1e9756c86a4566e302" kind="function"><name>FromRestricted</name></member>
     <member refid="class_g_q_c_p_1_1_g_transformation_1a511cfa0246d40baa45e7dcee1f79cacb" kind="function"><name>FromUnrestricted</name></member>
     <member refid="class_g_q_c_p_1_1_g_transformation_1a31d3196ed11543a85afe55d53cf96cb2" kind="function"><name>Identity</name></member>
   </compound>
@@ -1332,6 +1342,9 @@
   </compound>
   <compound refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_r_transformation_3_01_scalar_01_4_01_4" kind="struct"><name>GQCP::JacobiRotatableTraits&lt; RTransformation&lt; Scalar &gt; &gt;</name>
     <member refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_r_transformation_3_01_scalar_01_4_01_4_1a077e8bcf51e345a325a98f2dfa613423" kind="typedef"><name>JacobiRotationType</name></member>
+  </compound>
+  <compound refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_scalar_g_s_q_one_electron_operator_product_3_01_scalar_01_4_01_4" kind="struct"><name>GQCP::JacobiRotatableTraits&lt; ScalarGSQOneElectronOperatorProduct&lt; Scalar &gt; &gt;</name>
+    <member refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_scalar_g_s_q_one_electron_operator_product_3_01_scalar_01_4_01_4_1a50a688465998e62b57be61b980a8b15c" kind="typedef"><name>JacobiRotationType</name></member>
   </compound>
   <compound refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_simple_s_q_two_electron_operator_3_01___scalar_00d91ca45987de7bd8c30b8b73d55a889" kind="struct"><name>GQCP::JacobiRotatableTraits&lt; SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;</name>
     <member refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_simple_s_q_two_electron_operator_3_01___scalar_00d91ca45987de7bd8c30b8b73d55a889_1a0a0a59859d13a1dbb1bea21632834fa2" kind="typedef"><name>JacobiRotationType</name></member>
@@ -2379,6 +2392,22 @@
   <compound refid="struct_eigen_1_1_scalar_binary_op_traits_3_01_g_q_c_p_1_1_evaluable_linear_combination_3_01_coeff48761ced5368c95f2a826daa428cd26" kind="struct"><name>Eigen::ScalarBinaryOpTraits&lt; GQCP::EvaluableLinearCombination&lt; Coefficient, FunctionType &gt;, Coefficient, Eigen::internal::scalar_product_op&lt; GQCP::EvaluableLinearCombination&lt; Coefficient, FunctionType &gt;, Coefficient &gt; &gt;</name>
     <member refid="struct_eigen_1_1_scalar_binary_op_traits_3_01_g_q_c_p_1_1_evaluable_linear_combination_3_01_coeff48761ced5368c95f2a826daa428cd26_1a5a53a262e6141d1c07b136d51b8c763b" kind="typedef"><name>ReturnType</name></member>
   </compound>
+  <compound refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product" kind="class"><name>GQCP::ScalarGSQOneElectronOperatorProduct</name>
+    <member refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a43b006e3a4eacbc3c52e9c43b19b1ad2" kind="typedef"><name>Scalar</name></member>
+    <member refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a9843b266f34d6dc297ce1080d965df61" kind="typedef"><name>Self</name></member>
+    <member refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1ac3f6d48808173f1f3c2f8858706b2086" kind="variable"><name>o</name></member>
+    <member refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a4e89a9c40a44dec32dfa44fb13729d63" kind="variable"><name>t</name></member>
+    <member refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1ae9a96050dd882275953bb1b22b9dfcbd" kind="function"><name>ScalarGSQOneElectronOperatorProduct</name></member>
+    <member refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a30d50232bd86a3732fb28dd8918f43f5" kind="function"><name>oneElectron</name></member>
+    <member refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1ac10d9604eeb97631b73173a84066575b" kind="function"><name>twoElectron</name></member>
+    <member refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a30781d00772a009d44d73a4c50e72ad1" kind="function"><name>oneElectron</name></member>
+    <member refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a6a67386d6818d0726eb5a8a2fe2c3da5" kind="function"><name>twoElectron</name></member>
+    <member refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a2a833747358b8f6b50481ed94beb90f2" kind="function"><name>operator+=</name></member>
+    <member refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a915528b3fe1c159e99e9cd73e5044383" kind="function"><name>operator*=</name></member>
+    <member refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a189822376a82602ef92b519a2959432d" kind="function"><name>transformed</name></member>
+    <member refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a555ca48e10ebe6ec4eabf755f32c1629" kind="function"><name>rotated</name></member>
+    <member refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a20bb473f3d35ea3f1d93f5c66dc54241" kind="function"><name>calculateExpectationValue</name></member>
+  </compound>
   <compound refid="class_g_q_c_p_1_1_shell_set" kind="class"><name>GQCP::ShellSet</name>
     <member refid="class_g_q_c_p_1_1_shell_set_1a4d526a30292159e7edc9c5bc0225967f" kind="typedef"><name>Shell</name></member>
     <member refid="class_g_q_c_p_1_1_shell_set_1a4434580128915230eabf525c93a56dde" kind="typedef"><name>Primitive</name></member>
@@ -2581,7 +2610,6 @@
     <member refid="class_g_q_c_p_1_1_spin_resolved1_d_m_1ad3022b1d3284208b6c1cec206a70c0ad" kind="typedef"><name>Self</name></member>
     <member refid="class_g_q_c_p_1_1_spin_resolved1_d_m_1a1aa236aa4365fd1c90451c1ebaf107f3" kind="typedef"><name>ComponentType</name></member>
     <member refid="class_g_q_c_p_1_1_spin_resolved1_d_m_1a4792f0eadb892f6cd03d3a50a511c27a" kind="function"><name>FromOrbital1DM</name></member>
-    <member refid="class_g_q_c_p_1_1_spin_resolved1_d_m_1adf4d99d6b3b6dd2ef32f28165e1ad61a" kind="function"><name>generalized</name></member>
     <member refid="class_g_q_c_p_1_1_spin_resolved1_d_m_1acc1ff594075221b82f3acefb75c2986e" kind="function"><name>norm</name></member>
     <member refid="class_g_q_c_p_1_1_spin_resolved1_d_m_1a265438d278110b0a2e0b151f7537e6d5" kind="function"><name>numberOfOrbitals</name></member>
     <member refid="class_g_q_c_p_1_1_spin_resolved1_d_m_1a2e2d38df90fee7b9265f4c8f317fffd6" kind="function"><name>spinDensity</name></member>
@@ -3071,11 +3099,13 @@
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1ad6d69d1e1c6dbb2787f10e36555ba9c6" kind="function"><name>isOrthonormal</name></member>
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1aa1f9ed2ffe54b230fad07dced29aa215" kind="function"><name>lowdinOrthonormalization</name></member>
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1a4eb3449b97998a8f1aad758fc9add0a3" kind="function"><name>lowdinOrthonormalize</name></member>
-    <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1a3c2deafb1c7c5cbd1343c8495b2a8bbe" kind="function"><name>quantize</name></member>
+    <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1ae2860d23306f3bfd1a987b60485fd8b1" kind="function"><name>quantize</name></member>
+    <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1a0e79ad71e61584a8933feb93a868aeb8" kind="function"><name>quantize</name></member>
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1ab8f9e7467685ee81d6cb0bb56f2fb88c" kind="function"><name>overlap</name></member>
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1afb495aa178b4039badd5236eefc6d027" kind="function"><name>quantize</name></member>
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1af375e276f954de740a93f264047b2b22" kind="function"><name>quantize</name></member>
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1a43f187483f1e671712e8015e38b154b4" kind="function"><name>quantize</name></member>
+    <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1a35ee2dc28bda2b64c75d8c6e2a2cd787" kind="function"><name>quantize</name></member>
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1a2200b24771de76df594a1971474ceeb7" kind="function"><name>quantize</name></member>
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1aa06df84fc3d1d8d81b04642a6195f382" kind="function"><name>quantize</name></member>
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1adfac25a81350065376e8951e605c84e4" kind="function"><name>mullikenPartitioning</name></member>
@@ -3339,6 +3369,7 @@
     <member refid="namespace_g_q_c_p_1a7ea37d174023b0589d8f1738af43f1cf" kind="function"><name>rotate</name></member>
     <member refid="namespace_g_q_c_p_1a17e2cb3ed1f3e8391830d49b0727ba91" kind="function"><name>operator*</name></member>
     <member refid="namespace_g_q_c_p_1a031eaf23d32296c8ccd6b437f7484685" kind="function"><name>newtonStep</name></member>
+    <member refid="namespace_g_q_c_p_1a70316ef0c2cba0a1e505881a9dad9777" kind="function"><name>operator*</name></member>
     <member refid="namespace_g_q_c_p_1a29e307419485ec5e35d6363f61e93bb7" kind="function"><name>calculateSpinSquared</name></member>
     <member refid="namespace_g_q_c_p_1aab2f368ef37a2428c9f180136c27f1ee" kind="function"><name>calculateSpinZ</name></member>
     <member refid="namespace_g_q_c_p_1a917e032b70cf6e08b8850d8e876e142b" kind="function"><name>calculateElectricPolarizability</name></member>
@@ -3747,6 +3778,8 @@
   <compound refid="_electronic_spin__z_operator_8hpp" kind="file"><name>ElectronicSpin_zOperator.hpp</name>
   </compound>
   <compound refid="_electronic_spin_operator_8hpp" kind="file"><name>ElectronicSpinOperator.hpp</name>
+  </compound>
+  <compound refid="_electronic_spin_squared_operator_8hpp" kind="file"><name>ElectronicSpinSquaredOperator.hpp</name>
   </compound>
   <compound refid="_f_q_molecular_hamiltonian_8hpp" kind="file"><name>FQMolecularHamiltonian.hpp</name>
   </compound>

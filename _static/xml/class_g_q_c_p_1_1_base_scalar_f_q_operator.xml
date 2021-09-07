@@ -6,6 +6,7 @@
     <derivedcompoundref refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" prot="public" virt="non-virtual">GQCP::CoulombRepulsionOperator</derivedcompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_diamagnetic_operator" prot="public" virt="non-virtual">GQCP::DiamagneticOperator</derivedcompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_electronic_density_operator" prot="public" virt="non-virtual">GQCP::ElectronicDensityOperator</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_electronic_spin_squared_operator" prot="public" virt="non-virtual">GQCP::ElectronicSpinSquaredOperator</derivedcompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_electronic_spin__z_operator" prot="public" virt="non-virtual">GQCP::ElectronicSpin_zOperator</derivedcompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_kinetic_operator" prot="public" virt="non-virtual">GQCP::KineticOperator</derivedcompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_nuclear_attraction_operator" prot="public" virt="non-virtual">GQCP::NuclearAttractionOperator</derivedcompoundref>
@@ -83,7 +84,7 @@
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="11">
+      <node id="12">
         <label>GQCP::SpinZeemanOperator&lt; complex &gt;</label>
         <link refid="class_g_q_c_p_1_1_spin_zeeman_operator"/>
         <childnode refid="1" relation="public-inheritance">
@@ -93,6 +94,12 @@
         <label>GQCP::BaseScalarFQOperator&lt; N, _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_base_scalar_f_q_operator"/>
         <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>GQCP::ElectronicSpinSquaredOperator&lt; complex &gt;</label>
+        <link refid="class_g_q_c_p_1_1_electronic_spin_squared_operator"/>
+        <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
       <node id="3">
@@ -107,19 +114,19 @@
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="7">
+      <node id="8">
         <label>GQCP::KineticOperator&lt; double &gt;</label>
         <link refid="class_g_q_c_p_1_1_kinetic_operator"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="6">
+      <node id="7">
         <label>GQCP::ElectronicSpin_zOperator&lt; double &gt;</label>
         <link refid="class_g_q_c_p_1_1_electronic_spin__z_operator"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="8">
+      <node id="9">
         <label>GQCP::NuclearAttractionOperator&lt; double &gt;</label>
         <link refid="class_g_q_c_p_1_1_nuclear_attraction_operator"/>
         <childnode refid="1" relation="public-inheritance">
@@ -129,13 +136,13 @@
         <label>GQCP::BaseFQOperator&lt; N, _Scalar, ScalarVectorizer &gt;</label>
         <link refid="class_g_q_c_p_1_1_base_f_q_operator"/>
       </node>
-      <node id="10">
+      <node id="11">
         <label>GQCP::OverlapOperator&lt; double &gt;</label>
         <link refid="class_g_q_c_p_1_1_overlap_operator"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="9">
+      <node id="10">
         <label>GQCP::OrbitalZeemanOperator&lt; complex &gt;</label>
         <link refid="class_g_q_c_p_1_1_orbital_zeeman_operator"/>
         <childnode refid="1" relation="public-inheritance">

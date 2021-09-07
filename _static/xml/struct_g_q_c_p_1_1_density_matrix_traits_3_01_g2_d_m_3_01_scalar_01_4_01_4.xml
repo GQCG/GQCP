@@ -20,7 +20,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G2DM.hpp" line="67" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G2DM.hpp" bodystart="67" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G2DM.hpp" line="119" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G2DM.hpp" bodystart="119" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="struct_g_q_c_p_1_1_density_matrix_traits_3_01_g2_d_m_3_01_scalar_01_4_01_4_1ada847f8c483ac2a413fdab85c4d54e05" prot="public" static="no">
         <type><ref refid="class_g_q_c_p_1_1_g1_d_m" kindref="compound">G1DM</ref>&lt; Scalar &gt;</type>
@@ -33,7 +33,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G2DM.hpp" line="70" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G2DM.hpp" bodystart="70" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G2DM.hpp" line="122" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G2DM.hpp" bodystart="122" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -47,7 +47,7 @@
         <link refid="struct_g_q_c_p_1_1_density_matrix_traits_3_01_g2_d_m_3_01_scalar_01_4_01_4"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G2DM.hpp" line="64" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G2DM.hpp" bodystart="64" bodyend="71"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G2DM.hpp" line="116" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G2DM.hpp" bodystart="116" bodyend="123"/>
     <listofallmembers>
       <member refid="struct_g_q_c_p_1_1_density_matrix_traits_3_01_g2_d_m_3_01_scalar_01_4_01_4_1ada847f8c483ac2a413fdab85c4d54e05" prot="public" virt="non-virtual"><scope>GQCP::DensityMatrixTraits&lt; G2DM&lt; Scalar &gt; &gt;</scope><name>OneDM</name></member>
       <member refid="struct_g_q_c_p_1_1_density_matrix_traits_3_01_g2_d_m_3_01_scalar_01_4_01_4_1a7007a9dd24296246a6921df82b33777a" prot="public" virt="non-virtual"><scope>GQCP::DensityMatrixTraits&lt; G2DM&lt; Scalar &gt; &gt;</scope><name>Transformation</name></member>

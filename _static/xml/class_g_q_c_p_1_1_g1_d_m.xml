@@ -21,7 +21,39 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G1DM.hpp" line="43" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G1DM.hpp" bodystart="43" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G1DM.hpp" line="44" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G1DM.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g1_d_m_1a3011aa827c98e2f39bf32a2348974376" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_g1_d_m" kindref="compound">G1DM</ref>&lt; <ref refid="class_g_q_c_p_1_1_g1_d_m_1a7027b6b4375942fa7c56c4c1699ff754" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static G1DM&lt;Scalar&gt; GQCP::G1DM&lt; _Scalar &gt;::FromSpinResolved</definition>
+        <argsstring>(const SpinResolved1DM&lt; Scalar &gt; &amp;D)</argsstring>
+        <name>FromSpinResolved</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m" kindref="compound">SpinResolved1DM</ref>&lt; <ref refid="class_g_q_c_p_1_1_g1_d_m_1a7027b6b4375942fa7c56c4c1699ff754" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>D</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create a <computeroutput><ref refid="class_g_q_c_p_1_1_g1_d_m" kindref="compound">G1DM</ref></computeroutput> from a <computeroutput><ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m" kindref="compound">SpinResolved1DM</ref></computeroutput>.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>D</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spin-resolved 1-DM.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A <computeroutput><ref refid="class_g_q_c_p_1_1_g1_d_m" kindref="compound">G1DM</ref></computeroutput> created from a <computeroutput><ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m" kindref="compound">SpinResolved1DM</ref></computeroutput>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G1DM.hpp" line="62" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G1DM.hpp" bodystart="62" bodyend="77"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -111,12 +143,13 @@
         <link refid="class_g_q_c_p_1_1_basis_transformable"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G1DM.hpp" line="39" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G1DM.hpp" bodystart="40" bodyend="52"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G1DM.hpp" line="40" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G1DM.hpp" bodystart="41" bodyend="78"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_c_r_t_p_1a2266d4aacaad437e302033b24e1d6d11" prot="public" virt="non-virtual"><scope>GQCP::G1DM</scope><name>derived</name></member>
       <member refid="class_g_q_c_p_1_1_c_r_t_p_1ab53c6ca668c4f27dd4aa51856b6aee91" prot="public" virt="non-virtual"><scope>GQCP::G1DM</scope><name>derived</name></member>
       <member refid="class_g_q_c_p_1_1_c_r_t_p_1ab72cbeb2fad6d811d4f6fcd2c962b55e" prot="public" virt="non-virtual"><scope>GQCP::G1DM</scope><name>Derived</name></member>
       <member refid="class_g_q_c_p_1_1_simple1_d_m_1a8b792b25e79a11342da60d54b5f1ed44" prot="public" virt="non-virtual"><scope>GQCP::G1DM</scope><name>DerivedDM</name></member>
+      <member refid="class_g_q_c_p_1_1_g1_d_m_1a3011aa827c98e2f39bf32a2348974376" prot="public" virt="non-virtual"><scope>GQCP::G1DM</scope><name>FromSpinResolved</name></member>
       <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a107861c91912a3808817f5845823204f" prot="public" virt="non-virtual"><scope>GQCP::G1DM</scope><name>JacobiRotationType</name></member>
       <member refid="class_g_q_c_p_1_1_simple1_d_m_1a4a9790b2d1ceb12a2fc3d62002923151" prot="public" virt="non-virtual"><scope>GQCP::G1DM</scope><name>matrix</name></member>
       <member refid="class_g_q_c_p_1_1_simple1_d_m_1a3e3c379b5a13002dc7332d2441798639" prot="public" virt="non-virtual"><scope>GQCP::G1DM</scope><name>matrix</name></member>

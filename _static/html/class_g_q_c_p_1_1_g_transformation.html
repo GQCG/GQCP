@@ -81,7 +81,7 @@ Inheritance diagram for GQCP::GTransformation&lt; _Scalar &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_g_q_c_p_1_1_g_transformation__inherit__graph.png" border="0" usemap="#a_g_q_c_p_1_1_g_transformation_3_01___scalar_01_4_inherit__map" alt="Inheritance graph"/></div>
 <map name="a_g_q_c_p_1_1_g_transformation_3_01___scalar_01_4_inherit__map" id="a_g_q_c_p_1_1_g_transformation_3_01___scalar_01_4_inherit__map">
-<area shape="rect" title=" " alt="" coords="127,549,302,729"/>
+<area shape="rect" title=" " alt="" coords="127,549,302,744"/>
 <area shape="rect" href="class_g_q_c_p_1_1_simple_transformation.html" title=" " alt="" coords="109,189,320,501"/>
 <area shape="rect" href="class_g_q_c_p_1_1_basis_transformable.html" title=" " alt="" coords="5,5,200,141"/>
 <area shape="rect" href="class_g_q_c_p_1_1_jacobi_rotatable.html" title=" " alt="" coords="225,27,431,119"/>
@@ -92,7 +92,7 @@ Collaboration diagram for GQCP::GTransformation&lt; _Scalar &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_g_q_c_p_1_1_g_transformation__coll__graph.png" border="0" usemap="#a_g_q_c_p_1_1_g_transformation_3_01___scalar_01_4_coll__map" alt="Collaboration graph"/></div>
 <map name="a_g_q_c_p_1_1_g_transformation_3_01___scalar_01_4_coll__map" id="a_g_q_c_p_1_1_g_transformation_3_01___scalar_01_4_coll__map">
-<area shape="rect" title=" " alt="" coords="127,549,302,729"/>
+<area shape="rect" title=" " alt="" coords="127,549,302,744"/>
 <area shape="rect" href="class_g_q_c_p_1_1_simple_transformation.html" title=" " alt="" coords="109,189,320,501"/>
 <area shape="rect" href="class_g_q_c_p_1_1_basis_transformable.html" title=" " alt="" coords="5,5,200,141"/>
 <area shape="rect" href="class_g_q_c_p_1_1_jacobi_rotatable.html" title=" " alt="" coords="225,27,431,119"/>
@@ -169,6 +169,8 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a7984f715c1907b1e9756c86a4566e302"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_g_q_c_p_1_1_g_transformation.html">GTransformation</a>&lt; <a class="el" href="class_g_q_c_p_1_1_g_transformation.html#aa5372444af700cc04548803517a225d3">Scalar</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_g_transformation.html#a7984f715c1907b1e9756c86a4566e302">FromRestricted</a> (const <a class="el" href="class_g_q_c_p_1_1_r_transformation.html">RTransformation</a>&lt; <a class="el" href="class_g_q_c_p_1_1_g_transformation.html#aa5372444af700cc04548803517a225d3">Scalar</a> &gt; &amp;r_transformation)</td></tr>
+<tr class="separator:a7984f715c1907b1e9756c86a4566e302"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a511cfa0246d40baa45e7dcee1f79cacb"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_g_q_c_p_1_1_g_transformation.html">GTransformation</a>&lt; <a class="el" href="class_g_q_c_p_1_1_g_transformation.html#aa5372444af700cc04548803517a225d3">Scalar</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_g_transformation.html#a511cfa0246d40baa45e7dcee1f79cacb">FromUnrestricted</a> (const <a class="el" href="class_g_q_c_p_1_1_u_transformation.html">UTransformation</a>&lt; <a class="el" href="class_g_q_c_p_1_1_g_transformation.html#aa5372444af700cc04548803517a225d3">Scalar</a> &gt; &amp;u_transformation)</td></tr>
 <tr class="separator:a511cfa0246d40baa45e7dcee1f79cacb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a31d3196ed11543a85afe55d53cf96cb2"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_g_q_c_p_1_1_g_transformation.html">GTransformation</a>&lt; <a class="el" href="class_g_q_c_p_1_1_g_transformation.html#aa5372444af700cc04548803517a225d3">Scalar</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_g_transformation.html#a31d3196ed11543a85afe55d53cf96cb2">Identity</a> (const size_t K_alpha, const size_t K_beta)</td></tr>
@@ -398,6 +400,42 @@ template&lt;typename _Scalar &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The part of the general transformation that describes the spinors of the requested component. </dd></dl>
+
+</div>
+</div>
+<a id="a7984f715c1907b1e9756c86a4566e302"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7984f715c1907b1e9756c86a4566e302">&#9670;&nbsp;</a></span>FromRestricted()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename _Scalar &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="class_g_q_c_p_1_1_g_transformation.html">GTransformation</a>&lt;<a class="el" href="class_g_q_c_p_1_1_g_transformation.html#aa5372444af700cc04548803517a225d3">Scalar</a>&gt; <a class="el" href="class_g_q_c_p_1_1_g_transformation.html">GQCP::GTransformation</a>&lt; _Scalar &gt;::FromRestricted </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_g_q_c_p_1_1_r_transformation.html">RTransformation</a>&lt; <a class="el" href="class_g_q_c_p_1_1_g_transformation.html#aa5372444af700cc04548803517a225d3">Scalar</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>r_transformation</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Convert an <code><a class="el" href="class_g_q_c_p_1_1_r_transformation.html">RTransformation</a></code> into its generalized counterpart.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">r_transformation</td><td>The restricted transformation.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The <code><a class="el" href="class_g_q_c_p_1_1_g_transformation.html">GTransformation</a></code> that corresponds to the <code><a class="el" href="class_g_q_c_p_1_1_r_transformation.html">RTransformation</a></code>. </dd></dl>
 
 </div>
 </div>

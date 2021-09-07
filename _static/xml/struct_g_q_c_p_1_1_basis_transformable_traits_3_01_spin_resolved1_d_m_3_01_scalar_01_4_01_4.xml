@@ -20,7 +20,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved1DM.hpp" line="208" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved1DM.hpp" bodystart="208" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved1DM.hpp" line="195" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved1DM.hpp" bodystart="195" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -34,7 +34,7 @@
         <link refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_spin_resolved1_d_m_3_01_scalar_01_4_01_4"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved1DM.hpp" line="205" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved1DM.hpp" bodystart="205" bodyend="209"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved1DM.hpp" line="192" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved1DM.hpp" bodystart="192" bodyend="196"/>
     <listofallmembers>
       <member refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_spin_resolved1_d_m_3_01_scalar_01_4_01_4_1ad9b7e13489d55f92ec78502a564aa11c" prot="public" virt="non-virtual"><scope>GQCP::BasisTransformableTraits&lt; SpinResolved1DM&lt; Scalar &gt; &gt;</scope><name>Transformation</name></member>
     </listofallmembers>

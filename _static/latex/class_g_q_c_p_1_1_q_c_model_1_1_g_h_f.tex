@@ -28,6 +28,8 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_a2f9ac97a05c0e312a2
 \item 
 \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}}, 3 $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_a1c45714677f58679db6c27a712a16d5c}{calculate\+Expectation\+Value\+Of}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_spin_operator}{Electronic\+Spin\+Operator}} \&spin\+\_\+op, const \mbox{\hyperlink{namespace_g_q_c_p_ae61b369ffb274e21947436ff6efb78fa}{Scalar\+GSQOne\+Electron\+Operator}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_a2f9ac97a05c0e312a20d79ef30eb86e4}{Scalar}} $>$ \&S) const
 \item 
+\mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}} \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_a61630e87c2acd59a26d451d89c899cb7}{calculate\+Expectation\+Value\+Of}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_spin_squared_operator}{Electronic\+Spin\+Squared\+Operator}} \&spin\+\_\+op, const \mbox{\hyperlink{namespace_g_q_c_p_ae61b369ffb274e21947436ff6efb78fa}{Scalar\+GSQOne\+Electron\+Operator}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_a2f9ac97a05c0e312a20d79ef30eb86e4}{Scalar}} $>$ \&S) const
+\item 
 \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{GQCP\+::\+MatrixX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_a2f9ac97a05c0e312a20d79ef30eb86e4}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_a92d639f5a65e3f777c452eb464231d38}{excitation\+Energies}} () const
 \item 
 \mbox{\hyperlink{class_g_q_c_p_1_1_g1_d_m}{G1\+DM}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_a2f9ac97a05c0e312a20d79ef30eb86e4}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_a414a85b05e97c2bd453cba49cbf79ecd}{calculate\+Orthonormal\+Basis1\+DM}} () const
@@ -174,7 +176,7 @@ The \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_g_h_f}{GHF}} error matrix.
 \mbox{\Hypertarget{class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_a1c45714677f58679db6c27a712a16d5c}\label{class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_a1c45714677f58679db6c27a712a16d5c}} 
 \index{GQCP::QCModel::GHF$<$ \_Scalar $>$@{GQCP::QCModel::GHF$<$ \_Scalar $>$}!calculateExpectationValueOf@{calculateExpectationValueOf}}
 \index{calculateExpectationValueOf@{calculateExpectationValueOf}!GQCP::QCModel::GHF$<$ \_Scalar $>$@{GQCP::QCModel::GHF$<$ \_Scalar $>$}}
-\doxysubsubsection{\texorpdfstring{calculateExpectationValueOf()}{calculateExpectationValueOf()}}
+\doxysubsubsection{\texorpdfstring{calculateExpectationValueOf()}{calculateExpectationValueOf()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
 \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$\mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}}, 3$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_g_h_f}{GQCP\+::\+QCModel\+::\+GHF}}$<$ \+\_\+\+Scalar $>$\+::calculate\+Expectation\+Value\+Of (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_spin_operator}{Electronic\+Spin\+Operator}} \&}]{spin\+\_\+op,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ae61b369ffb274e21947436ff6efb78fa}{Scalar\+GSQOne\+Electron\+Operator}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_a2f9ac97a05c0e312a20d79ef30eb86e4}{Scalar}} $>$ \&}]{S }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
@@ -187,6 +189,23 @@ The \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_g_h_f}{GHF}} error matrix.
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 The expectation value of the electronic spin operator. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_a61630e87c2acd59a26d451d89c899cb7}\label{class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_a61630e87c2acd59a26d451d89c899cb7}} 
+\index{GQCP::QCModel::GHF$<$ \_Scalar $>$@{GQCP::QCModel::GHF$<$ \_Scalar $>$}!calculateExpectationValueOf@{calculateExpectationValueOf}}
+\index{calculateExpectationValueOf@{calculateExpectationValueOf}!GQCP::QCModel::GHF$<$ \_Scalar $>$@{GQCP::QCModel::GHF$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{calculateExpectationValueOf()}{calculateExpectationValueOf()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}} \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_g_h_f}{GQCP\+::\+QCModel\+::\+GHF}}$<$ \+\_\+\+Scalar $>$\+::calculate\+Expectation\+Value\+Of (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_spin_squared_operator}{Electronic\+Spin\+Squared\+Operator}} \&}]{spin\+\_\+op,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ae61b369ffb274e21947436ff6efb78fa}{Scalar\+GSQOne\+Electron\+Operator}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_a2f9ac97a05c0e312a20d79ef30eb86e4}{Scalar}} $>$ \&}]{S }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em spin\+\_\+op} & The electronic spin squared operator. \\
+\hline
+{\em S} & The (spin-\/blocked) overlap matrix of the underlying AO bases.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The expectation value of the electronic spin squared operator. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_a414a85b05e97c2bd453cba49cbf79ecd}\label{class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_a414a85b05e97c2bd453cba49cbf79ecd}} 
 \index{GQCP::QCModel::GHF$<$ \_Scalar $>$@{GQCP::QCModel::GHF$<$ \_Scalar $>$}!calculateOrthonormalBasis1DM@{calculateOrthonormalBasis1DM}}

@@ -20,7 +20,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G2DM.hpp" line="100" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G2DM.hpp" bodystart="100" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G2DM.hpp" line="152" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G2DM.hpp" bodystart="152" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -34,7 +34,7 @@
         <link refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_g2_d_m_3_01_scalar_01_4_01_4"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G2DM.hpp" line="97" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G2DM.hpp" bodystart="97" bodyend="101"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G2DM.hpp" line="149" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G2DM.hpp" bodystart="149" bodyend="153"/>
     <listofallmembers>
       <member refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_g2_d_m_3_01_scalar_01_4_01_4_1a19d552e80d33afea82f12c1427d5d1de" prot="public" virt="non-virtual"><scope>GQCP::JacobiRotatableTraits&lt; G2DM&lt; Scalar &gt; &gt;</scope><name>JacobiRotationType</name></member>
     </listofallmembers>

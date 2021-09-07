@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_scalar_g_s_q_one_electron_operator_product_3_01_scalar_01_4_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>GQCP::JacobiRotatableTraits&lt; ScalarGSQOneElectronOperatorProduct&lt; Scalar &gt; &gt;</compoundname>
+    <includes refid="_g_s_q_two_electron_operator_8hpp" local="no">GSQTwoElectronOperator.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename Scalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_scalar_g_s_q_one_electron_operator_product_3_01_scalar_01_4_01_4_1a50a688465998e62b57be61b980a8b15c" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_jacobi_rotation" kindref="compound">JacobiRotation</ref></type>
+        <definition>using GQCP::JacobiRotatableTraits&lt; ScalarGSQOneElectronOperatorProduct&lt; Scalar &gt; &gt;::JacobiRotationType =  JacobiRotation</definition>
+        <argsstring></argsstring>
+        <name>JacobiRotationType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/GSQTwoElectronOperator.hpp" line="373" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/GSQTwoElectronOperator.hpp" bodystart="373" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A type that provides compile-time information related to the abstract interface <computeroutput><ref refid="class_g_q_c_p_1_1_jacobi_rotatable" kindref="compound">JacobiRotatable</ref></computeroutput>.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar type of one of the matrix elements: real or complex. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>GQCP::JacobiRotatableTraits&lt; ScalarGSQOneElectronOperatorProduct&lt; Scalar &gt; &gt;</label>
+        <link refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_scalar_g_s_q_one_electron_operator_product_3_01_scalar_01_4_01_4"/>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/GSQTwoElectronOperator.hpp" line="370" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/GSQTwoElectronOperator.hpp" bodystart="370" bodyend="374"/>
+    <listofallmembers>
+      <member refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_scalar_g_s_q_one_electron_operator_product_3_01_scalar_01_4_01_4_1a50a688465998e62b57be61b980a8b15c" prot="public" virt="non-virtual"><scope>GQCP::JacobiRotatableTraits&lt; ScalarGSQOneElectronOperatorProduct&lt; Scalar &gt; &gt;</scope><name>JacobiRotationType</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

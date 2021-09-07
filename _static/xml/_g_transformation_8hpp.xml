@@ -524,24 +524,6 @@
         <childnode refid="88" relation="include">
         </childnode>
       </node>
-      <node id="105">
-        <label>/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved1DM.hpp</label>
-        <link refid="_spin_resolved1_d_m_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="106" relation="include">
-        </childnode>
-        <childnode refid="108" relation="include">
-        </childnode>
-        <childnode refid="52" relation="include">
-        </childnode>
-        <childnode refid="86" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="102" relation="include">
-        </childnode>
-      </node>
       <node id="93">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFFockMatrixDIIS.hpp</label>
         <link refid="_u_h_f_fock_matrix_d_i_i_s_8hpp"/>
@@ -585,16 +567,6 @@
       <node id="41">
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/JacobiOrbitalOptimizer.cpp</label>
         <link refid="_jacobi_orbital_optimizer_8cpp"/>
-      </node>
-      <node id="108">
-        <label>/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp</label>
-        <link refid="_u_s_q_two_electron_operator_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="34" relation="include">
-        </childnode>
-        <childnode refid="32" relation="include">
-        </childnode>
       </node>
       <node id="79">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFDensityMatrixDamper.hpp</label>
@@ -762,8 +734,6 @@
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="104" relation="include">
-        </childnode>
-        <childnode refid="105" relation="include">
         </childnode>
         <childnode refid="30" relation="include">
         </childnode>
@@ -1186,24 +1156,6 @@
         <childnode refid="20" relation="include">
         </childnode>
       </node>
-      <node id="106">
-        <label>/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQOneElectronOperator.hpp</label>
-        <link refid="_u_s_q_one_electron_operator_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="34" relation="include">
-        </childnode>
-        <childnode refid="107" relation="include">
-        </childnode>
-        <childnode refid="32" relation="include">
-        </childnode>
-        <childnode refid="89" relation="include">
-        </childnode>
-        <childnode refid="86" relation="include">
-        </childnode>
-        <childnode refid="102" relation="include">
-        </childnode>
-      </node>
       <node id="101">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp</label>
         <link refid="_diagonal_r_h_f_fock_matrix_objective_8hpp"/>
@@ -1456,10 +1408,6 @@
         <childnode refid="100" relation="include">
         </childnode>
       </node>
-      <node id="107">
-        <label>/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableUSQOneElectronOperator.hpp</label>
-        <link refid="_evaluable_u_s_q_one_electron_operator_8hpp"/>
-      </node>
       <node id="16">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roG.hpp</label>
         <link refid="_q_c_method_2_geminals_2_a_p1ro_g_8hpp"/>
@@ -1549,92 +1497,99 @@
 <codeline lineno="87"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>Named<sp/>constructors</highlight></codeline>
 <codeline lineno="88"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="89"><highlight class="normal"></highlight></codeline>
-<codeline lineno="97" refid="class_g_q_c_p_1_1_g_transformation_1a511cfa0246d40baa45e7dcee1f79cacb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">GTransformation&lt;Scalar&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_g_transformation_1a511cfa0246d40baa45e7dcee1f79cacb" kindref="member">FromUnrestricted</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_u_transformation" kindref="compound">UTransformation&lt;Scalar&gt;</ref>&amp;<sp/>u_transformation)<sp/>{</highlight></codeline>
+<codeline lineno="97" refid="class_g_q_c_p_1_1_g_transformation_1a7984f715c1907b1e9756c86a4566e302" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">GTransformation&lt;Scalar&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_g_transformation_1a7984f715c1907b1e9756c86a4566e302" kindref="member">FromRestricted</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_r_transformation" kindref="compound">RTransformation&lt;Scalar&gt;</ref>&amp;<sp/>r_transformation)<sp/>{</highlight></codeline>
 <codeline lineno="98"><highlight class="normal"></highlight></codeline>
-<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>goal<sp/>in<sp/>this<sp/>named<sp/>constructor<sp/>is<sp/>to<sp/>build<sp/>up<sp/>the<sp/>general<sp/>coefficient<sp/>matrix<sp/>(2K<sp/>x<sp/>2K)<sp/>from<sp/>the<sp/>unrestricted<sp/>(K_sigma<sp/>x<sp/>K_sigma)<sp/>ones.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>K_alpha<sp/>=<sp/>u_transformation.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" kindref="member">alpha</ref>().numberOfOrbitals();</highlight></codeline>
-<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>K_beta<sp/>=<sp/>u_transformation.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" kindref="member">beta</ref>().numberOfOrbitals();</highlight></codeline>
-<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>M<sp/>=<sp/>K_alpha<sp/>+<sp/>K_beta;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>u_transformation<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_u_transformation_1a892cccce99627bf9deb70990ff18273c" kindref="member">GQCP::UTransformation&lt;Scalar&gt;::FromRestricted</ref>(r_transformation);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_g_transformation_1a511cfa0246d40baa45e7dcee1f79cacb" kindref="member">GTransformation&lt;Scalar&gt;::FromUnrestricted</ref>(u_transformation);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
 <codeline lineno="103"><highlight class="normal"></highlight></codeline>
-<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix&lt;Scalar&gt;</ref><sp/>T_general<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_square_matrix_1ae3551bb3ac15b2560846f7a5956d1d90" kindref="member">SquareMatrix&lt;Scalar&gt;::Zero</ref>(M);</highlight></codeline>
-<codeline lineno="105"><highlight class="normal"></highlight></codeline>
-<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/>alpha<sp/>|<sp/><sp/>0</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0<sp/><sp/><sp/>|<sp/>beta</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>T_general.topLeftCorner(K_alpha,<sp/>K_alpha)<sp/>=<sp/>u_transformation.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" kindref="member">alpha</ref>().matrix();</highlight></codeline>
-<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>T_general.bottomRightCorner(K_beta,<sp/>K_beta)<sp/>=<sp/>u_transformation.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" kindref="member">beta</ref>().matrix();</highlight></codeline>
-<codeline lineno="110"><highlight class="normal"></highlight></codeline>
-<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">GTransformation&lt;Scalar&gt;</ref><sp/>{T_general,<sp/>K_alpha,<sp/>K_beta};</highlight></codeline>
-<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="113"><highlight class="normal"></highlight></codeline>
-<codeline lineno="114"><highlight class="normal"></highlight></codeline>
-<codeline lineno="118" refid="class_g_q_c_p_1_1_g_transformation_1a31d3196ed11543a85afe55d53cf96cb2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">GTransformation&lt;Scalar&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_g_transformation_1a31d3196ed11543a85afe55d53cf96cb2" kindref="member">Identity</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>K_alpha,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>K_beta)<sp/>{</highlight></codeline>
+<codeline lineno="111" refid="class_g_q_c_p_1_1_g_transformation_1a511cfa0246d40baa45e7dcee1f79cacb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">GTransformation&lt;Scalar&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_g_transformation_1a511cfa0246d40baa45e7dcee1f79cacb" kindref="member">FromUnrestricted</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_u_transformation" kindref="compound">UTransformation&lt;Scalar&gt;</ref>&amp;<sp/>u_transformation)<sp/>{</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>goal<sp/>in<sp/>this<sp/>named<sp/>constructor<sp/>is<sp/>to<sp/>build<sp/>up<sp/>the<sp/>general<sp/>coefficient<sp/>matrix<sp/>(2K<sp/>x<sp/>2K)<sp/>from<sp/>the<sp/>unrestricted<sp/>(K_sigma<sp/>x<sp/>K_sigma)<sp/>ones.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>K_alpha<sp/>=<sp/>u_transformation.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" kindref="member">alpha</ref>().numberOfOrbitals();</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>K_beta<sp/>=<sp/>u_transformation.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" kindref="member">beta</ref>().numberOfOrbitals();</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>M<sp/>=<sp/>K_alpha<sp/>+<sp/>K_beta;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix&lt;Scalar&gt;</ref><sp/>T_general<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_square_matrix_1ae3551bb3ac15b2560846f7a5956d1d90" kindref="member">SquareMatrix&lt;Scalar&gt;::Zero</ref>(M);</highlight></codeline>
 <codeline lineno="119"><highlight class="normal"></highlight></codeline>
-<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">GTransformation&lt;Scalar&gt;</ref><sp/>{<ref refid="class_g_q_c_p_1_1_square_matrix_1aa6a5cf30d688d7b21a2605b4a46d2ca9" kindref="member">SquareMatrix&lt;Scalar&gt;::Identity</ref>(K_alpha<sp/>+<sp/>K_beta),<sp/>K_alpha,<sp/>K_beta};</highlight></codeline>
-<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="122"><highlight class="normal"></highlight></codeline>
-<codeline lineno="123"><highlight class="normal"></highlight></codeline>
-<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="125"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>Components</highlight></codeline>
-<codeline lineno="126"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/>alpha<sp/>|<sp/><sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0<sp/><sp/><sp/>|<sp/>beta</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>T_general.topLeftCorner(K_alpha,<sp/>K_alpha)<sp/>=<sp/>u_transformation.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" kindref="member">alpha</ref>().matrix();</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>T_general.bottomRightCorner(K_beta,<sp/>K_beta)<sp/>=<sp/>u_transformation.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" kindref="member">beta</ref>().matrix();</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">GTransformation&lt;Scalar&gt;</ref><sp/>{T_general,<sp/>K_alpha,<sp/>K_beta};</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="127"><highlight class="normal"></highlight></codeline>
-<codeline lineno="131" refid="class_g_q_c_p_1_1_g_transformation_1a35294c4513ec448c7740080377781eb6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">MatrixX&lt;Scalar&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_g_transformation_1a35294c4513ec448c7740080377781eb6" kindref="member">alpha</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_simple_transformation_1a006ae80a78c72409fad4769058c4e048" kindref="member">matrix</ref>().topRows(this-&gt;K.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" kindref="member">alpha</ref>());<sp/>}</highlight></codeline>
-<codeline lineno="132"><highlight class="normal"></highlight></codeline>
-<codeline lineno="136" refid="class_g_q_c_p_1_1_g_transformation_1a5c03564330bdb423500ded04404f7fe2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">MatrixX&lt;Scalar&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_g_transformation_1a5c03564330bdb423500ded04404f7fe2" kindref="member">beta</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_simple_transformation_1a006ae80a78c72409fad4769058c4e048" kindref="member">matrix</ref>().bottomRows(this-&gt;K.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" kindref="member">beta</ref>());<sp/>}</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132" refid="class_g_q_c_p_1_1_g_transformation_1a31d3196ed11543a85afe55d53cf96cb2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">GTransformation&lt;Scalar&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_g_transformation_1a31d3196ed11543a85afe55d53cf96cb2" kindref="member">Identity</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>K_alpha,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>K_beta)<sp/>{</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">GTransformation&lt;Scalar&gt;</ref><sp/>{<ref refid="class_g_q_c_p_1_1_square_matrix_1aa6a5cf30d688d7b21a2605b4a46d2ca9" kindref="member">SquareMatrix&lt;Scalar&gt;::Identity</ref>(K_alpha<sp/>+<sp/>K_beta),<sp/>K_alpha,<sp/>K_beta};</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
 <codeline lineno="137"><highlight class="normal"></highlight></codeline>
-<codeline lineno="143" refid="class_g_q_c_p_1_1_g_transformation_1a6bdc555980660dec5c3594ef4ad2199d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">MatrixX&lt;Scalar&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_g_transformation_1a6bdc555980660dec5c3594ef4ad2199d" kindref="member">component</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref><sp/>sigma)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="144"><highlight class="normal"></highlight></codeline>
-<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(sigma)<sp/>{</highlight></codeline>
-<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6" kindref="member">Spin::alpha</ref>:<sp/>{</highlight></codeline>
-<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_g_transformation_1a35294c4513ec448c7740080377781eb6" kindref="member">alpha</ref>();</highlight></codeline>
-<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="150"><highlight class="normal"></highlight></codeline>
-<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5" kindref="member">Spin::beta</ref>:<sp/>{</highlight></codeline>
-<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_g_transformation_1a5c03564330bdb423500ded04404f7fe2" kindref="member">beta</ref>();</highlight></codeline>
-<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="157"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="139"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>Components</highlight></codeline>
+<codeline lineno="140"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight></codeline>
+<codeline lineno="145" refid="class_g_q_c_p_1_1_g_transformation_1a35294c4513ec448c7740080377781eb6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">MatrixX&lt;Scalar&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_g_transformation_1a35294c4513ec448c7740080377781eb6" kindref="member">alpha</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_simple_transformation_1a006ae80a78c72409fad4769058c4e048" kindref="member">matrix</ref>().topRows(this-&gt;K.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" kindref="member">alpha</ref>());<sp/>}</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="150" refid="class_g_q_c_p_1_1_g_transformation_1a5c03564330bdb423500ded04404f7fe2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">MatrixX&lt;Scalar&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_g_transformation_1a5c03564330bdb423500ded04404f7fe2" kindref="member">beta</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_simple_transformation_1a006ae80a78c72409fad4769058c4e048" kindref="member">matrix</ref>().bottomRows(this-&gt;K.<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" kindref="member">beta</ref>());<sp/>}</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight></codeline>
+<codeline lineno="157" refid="class_g_q_c_p_1_1_g_transformation_1a6bdc555980660dec5c3594ef4ad2199d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">MatrixX&lt;Scalar&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_g_transformation_1a6bdc555980660dec5c3594ef4ad2199d" kindref="member">component</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref><sp/>sigma)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="158"><highlight class="normal"></highlight></codeline>
-<codeline lineno="159"><highlight class="normal"></highlight></codeline>
-<codeline lineno="160"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="161"><highlight class="comment"><sp/>*<sp/><sp/>MARK:<sp/>BasisTransformableTraits</highlight></codeline>
-<codeline lineno="162"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="163"><highlight class="normal"></highlight></codeline>
-<codeline lineno="167"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Scalar&gt;</highlight></codeline>
-<codeline lineno="168" refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g_transformation_3_01_scalar_01_4_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_g_q_c_p_1_1_basis_transformable_traits" kindref="compound">BasisTransformableTraits</ref>&lt;<ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">GTransformation</ref>&lt;Scalar&gt;&gt;<sp/>{</highlight></codeline>
-<codeline lineno="169"><highlight class="normal"></highlight></codeline>
-<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>type<sp/>of<sp/>the<sp/>transformation<sp/>for<sp/>which<sp/>the<sp/>basis<sp/>transformation<sp/>should<sp/>be<sp/>defined.<sp/>A<sp/>transformation<sp/>matrix<sp/>should<sp/>naturally<sp/>be<sp/>transformable<sp/>with<sp/>itself.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="171" refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g_transformation_3_01_scalar_01_4_01_4_1a412d57cec44aca4b92367e4ecb5a4499" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">Transformation</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">GTransformation&lt;Scalar&gt;</ref>;</highlight></codeline>
-<codeline lineno="172"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(sigma)<sp/>{</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6" kindref="member">Spin::alpha</ref>:<sp/>{</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_g_transformation_1a35294c4513ec448c7740080377781eb6" kindref="member">alpha</ref>();</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5" kindref="member">Spin::beta</ref>:<sp/>{</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_g_transformation_1a5c03564330bdb423500ded04404f7fe2" kindref="member">beta</ref>();</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="171"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight></codeline>
 <codeline lineno="173"><highlight class="normal"></highlight></codeline>
-<codeline lineno="174"><highlight class="normal"></highlight></codeline>
-<codeline lineno="175"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="176"><highlight class="comment"><sp/>*<sp/><sp/>MARK:<sp/>JacobiRotatableTraits</highlight></codeline>
-<codeline lineno="177"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="178"><highlight class="normal"></highlight></codeline>
-<codeline lineno="182"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Scalar&gt;</highlight></codeline>
-<codeline lineno="183" refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_g_transformation_3_01_scalar_01_4_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits" kindref="compound">JacobiRotatableTraits</ref>&lt;<ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">GTransformation</ref>&lt;Scalar&gt;&gt;<sp/>{</highlight></codeline>
-<codeline lineno="184"><highlight class="normal"></highlight></codeline>
-<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>type<sp/>of<sp/>Jacobi<sp/>rotation<sp/>for<sp/>which<sp/>the<sp/>Jacobi<sp/>rotation<sp/>should<sp/>be<sp/>defined.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="186" refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_g_transformation_3_01_scalar_01_4_01_4_1a42939f9fede9f4439c965fd610c44786" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_jacobi_rotation" kindref="compound">JacobiRotationType</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_jacobi_rotation" kindref="compound">JacobiRotation</ref>;</highlight></codeline>
-<codeline lineno="187"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="175"><highlight class="comment"><sp/>*<sp/><sp/>MARK:<sp/>BasisTransformableTraits</highlight></codeline>
+<codeline lineno="176"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Scalar&gt;</highlight></codeline>
+<codeline lineno="182" refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g_transformation_3_01_scalar_01_4_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_g_q_c_p_1_1_basis_transformable_traits" kindref="compound">BasisTransformableTraits</ref>&lt;<ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">GTransformation</ref>&lt;Scalar&gt;&gt;<sp/>{</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>type<sp/>of<sp/>the<sp/>transformation<sp/>for<sp/>which<sp/>the<sp/>basis<sp/>transformation<sp/>should<sp/>be<sp/>defined.<sp/>A<sp/>transformation<sp/>matrix<sp/>should<sp/>naturally<sp/>be<sp/>transformable<sp/>with<sp/>itself.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="185" refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g_transformation_3_01_scalar_01_4_01_4_1a412d57cec44aca4b92367e4ecb5a4499" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">Transformation</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">GTransformation&lt;Scalar&gt;</ref>;</highlight></codeline>
+<codeline lineno="186"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"></highlight></codeline>
 <codeline lineno="188"><highlight class="normal"></highlight></codeline>
-<codeline lineno="189"><highlight class="normal"></highlight></codeline>
-<codeline lineno="190"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="191"><highlight class="comment"><sp/>*<sp/><sp/>MARK:<sp/>OrbitalRotationGeneratorTraits</highlight></codeline>
-<codeline lineno="192"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="193"><highlight class="normal"></highlight></codeline>
-<codeline lineno="197"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Scalar&gt;</highlight></codeline>
-<codeline lineno="198" refid="struct_g_q_c_p_1_1_orbital_rotation_generator_traits_3_01_g_transformation_3_01_scalar_01_4_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_g_q_c_p_1_1_orbital_rotation_generator_traits" kindref="compound">OrbitalRotationGeneratorTraits</ref>&lt;<ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">GTransformation</ref>&lt;Scalar&gt;&gt;<sp/>{</highlight></codeline>
-<codeline lineno="199"><highlight class="normal"></highlight></codeline>
-<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>type<sp/>of<sp/>orbital<sp/>rotation<sp/>generators<sp/>associated<sp/>with<sp/>an<sp/>`GTransformation`.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="201" refid="struct_g_q_c_p_1_1_orbital_rotation_generator_traits_3_01_g_transformation_3_01_scalar_01_4_01_4_1ac69bcfa8f2a5e8ada18ef7958617f0d1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_g_orbital_rotation_generators" kindref="compound">OrbitalRotationGenerators</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_g_orbital_rotation_generators" kindref="compound">GOrbitalRotationGenerators&lt;Scalar&gt;</ref>;</highlight></codeline>
-<codeline lineno="202"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="190"><highlight class="comment"><sp/>*<sp/><sp/>MARK:<sp/>JacobiRotatableTraits</highlight></codeline>
+<codeline lineno="191"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Scalar&gt;</highlight></codeline>
+<codeline lineno="197" refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_g_transformation_3_01_scalar_01_4_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits" kindref="compound">JacobiRotatableTraits</ref>&lt;<ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">GTransformation</ref>&lt;Scalar&gt;&gt;<sp/>{</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"></highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>type<sp/>of<sp/>Jacobi<sp/>rotation<sp/>for<sp/>which<sp/>the<sp/>Jacobi<sp/>rotation<sp/>should<sp/>be<sp/>defined.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="200" refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_g_transformation_3_01_scalar_01_4_01_4_1a42939f9fede9f4439c965fd610c44786" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_jacobi_rotation" kindref="compound">JacobiRotationType</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_jacobi_rotation" kindref="compound">JacobiRotation</ref>;</highlight></codeline>
+<codeline lineno="201"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"></highlight></codeline>
 <codeline lineno="203"><highlight class="normal"></highlight></codeline>
-<codeline lineno="204"><highlight class="normal"></highlight></codeline>
-<codeline lineno="205"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="204"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="205"><highlight class="comment"><sp/>*<sp/><sp/>MARK:<sp/>OrbitalRotationGeneratorTraits</highlight></codeline>
+<codeline lineno="206"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="207"><highlight class="normal"></highlight></codeline>
+<codeline lineno="211"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Scalar&gt;</highlight></codeline>
+<codeline lineno="212" refid="struct_g_q_c_p_1_1_orbital_rotation_generator_traits_3_01_g_transformation_3_01_scalar_01_4_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_g_q_c_p_1_1_orbital_rotation_generator_traits" kindref="compound">OrbitalRotationGeneratorTraits</ref>&lt;<ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">GTransformation</ref>&lt;Scalar&gt;&gt;<sp/>{</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"></highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>type<sp/>of<sp/>orbital<sp/>rotation<sp/>generators<sp/>associated<sp/>with<sp/>an<sp/>`GTransformation`.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="215" refid="struct_g_q_c_p_1_1_orbital_rotation_generator_traits_3_01_g_transformation_3_01_scalar_01_4_01_4_1ac69bcfa8f2a5e8ada18ef7958617f0d1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_g_orbital_rotation_generators" kindref="compound">OrbitalRotationGenerators</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_g_orbital_rotation_generators" kindref="compound">GOrbitalRotationGenerators&lt;Scalar&gt;</ref>;</highlight></codeline>
+<codeline lineno="216"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"></highlight></codeline>
+<codeline lineno="218"><highlight class="normal"></highlight></codeline>
+<codeline lineno="219"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/GTransformation.hpp"/>
   </compounddef>
