@@ -8,8 +8,6 @@ fi
 
 mkdir build && cd build
 
-export GIT_BRANCH=$(git symbolic-ref HEAD --short 2>/dev/null)
-
 if [ `uname` == Darwin ]; then
     ${BUILD_PREFIX}/bin/cmake \
         .. \
