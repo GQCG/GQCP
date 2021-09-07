@@ -7,6 +7,8 @@ if [[ ${target_platform} =~ .*linux.* ]]; then
 fi
 
 mkdir build && cd build
+echo "GIT HASH"
+echo ${GIT_FULL_HASH}
 
 if [ `uname` == Darwin ]; then
     ${BUILD_PREFIX}/bin/cmake \
