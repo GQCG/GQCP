@@ -24,7 +24,6 @@ target_include_directories(gqcp
 
 target_link_libraries(gqcp
     PUBLIC
-        gqcp_version
         Eigen3::Eigen
         Boost::boost
         Int2::Int2
