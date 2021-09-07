@@ -1,13 +1,12 @@
 {% set name = "GQCP" %}
 {% set version = "0.1.0" %}
-{% set git_branch =  "${GITHUB_SHA}" %}
 
 package:
     name: {{ name|lower }}
     version: {{ version }}
 source:
     git_url: https://github.com/GQCG/GQCP.git
-    git_tag: {{ git_branch }}
+    git_tag: ${GIT_BRANCH}
 requirements:
     build:
       - benchmark
