@@ -20,8 +20,9 @@
 
 #include "Mathematical/Functions/CartesianDirection.hpp"
 
+#include <stddef.h>
+
 #include <array>
-#include <cstddef.h>
 #include <vector>
 
 
