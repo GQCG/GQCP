@@ -59,7 +59,13 @@ jobs:
           echo $GIT_SHA
           pwd
           ls
-          sed -i '' 's|develop|$GITHUB_SHA|g' conda/meta.yaml
+          if [ matrix.os == 'ubuntu-18.04' ]
+          then
+            sed -i 's|develop|$GITHUB_SHA|g' conda/meta.yaml
+          else
+            sed -i '' "s|develop|$GITHUB_SHA|g" conda/meta.yaml
+          fi
+          
           conda create -n packaging -c conda-forge python=${{ matrix.py }} conda-build anaconda-client conda-verify
           source activate packaging
           conda config --set anaconda_upload no
