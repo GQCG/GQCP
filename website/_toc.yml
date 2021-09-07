@@ -35,6 +35,7 @@
     - file: examples/Integrals-over-GTOs
     - file: examples/London-integrals
     - file: examples/Mean-field-magnetic
+    - file: examples/Mulliken-constrained-CI
 
 - part: "Developer documentation"
   chapters:
