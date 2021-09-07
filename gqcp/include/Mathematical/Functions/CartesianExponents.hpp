@@ -34,7 +34,7 @@ namespace GQCP {
  */
 struct CartesianExponents {
 public:
-    std::array<std::size_t, 3> exponents;  // array containing the x, y, z exponents (in that order)
+    std::array<size_t, 3> exponents;  // array containing the x, y, z exponents (in that order)
 
 
 public:
@@ -43,19 +43,19 @@ public:
     /**
      *  @param array            the array containing the x-, y- and z-exponent (in that order)
      */
-    CartesianExponents(const std::array<std::size_t, 3>& array);
+    CartesianExponents(const std::array<size_t, 3>& array);
 
     /**
      *  @param x        the exponent in x
      *  @param y        the exponent in y
      *  @param z        the exponent in z
      */
-    CartesianExponents(const std::size_t x, const std::size_t y, const std::size_t z);
+    CartesianExponents(const size_t x, const size_t y, const size_t z);
 
     /**
      *  @param vector           the vector containing the x-, y- and z-exponent (in that order) 
      */
-    CartesianExponents(const std::vector<std::size_t>& vector);
+    CartesianExponents(const std::vector<size_t>& vector);
 
 
     // OPERATORS
@@ -91,7 +91,7 @@ public:
     /**
      *  @return the angular momentum corresponding to these exponents
      */
-    std::size_t angularMomentum() const;
+    size_t angularMomentum() const;
 
     /**
      *  @return a sorted list of all permutations (i.e. switching x, y, z) of these Cartesian exponents
@@ -101,7 +101,7 @@ public:
     /**
      *  @return the exponents as an array
      */
-    const std::array<std::size_t, 3>& asArray() const { return this->exponents; }
+    const std::array<size_t, 3>& asArray() const { return this->exponents; }
 
     /**
      *  @return a textual description of self
@@ -113,7 +113,7 @@ public:
      *
      *  @return the exponent in the given direction
      */
-    std::size_t value(const CartesianDirection direction) const { return this->exponents[direction]; }
+    size_t value(const CartesianDirection direction) const { return this->exponents[direction]; }
 };
 
 
