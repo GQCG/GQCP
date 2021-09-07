@@ -121,8 +121,6 @@ if (BUILD_PYTHON_BINDINGS)
     add_subdirectory(gqcpy)
 endif()
 
-target_link_libraries(gqcp_version PUBLIC gqcp)
-
 
 
 # Install the C++ library (relative to the CMAKE_INSTALL_PREFIX)
