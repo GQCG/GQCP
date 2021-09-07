@@ -20,13 +20,14 @@
 
 #include "Mathematical/Functions/CartesianDirection.hpp"
 
-#include <stddef.h>
-
 #include <array>
+#include <cstddef>
 #include <vector>
 
 
 namespace GQCP {
+
+using std::size_t;
 
 
 /**
