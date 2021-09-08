@@ -55,7 +55,7 @@ jobs:
         if: github.event_name == 'pull_request'
         run: |
           echo "dit is de ref"
-          echo ${{ github.ref }}
+          echo ${{ github.head_ref }}
           conda create -n packaging -c conda-forge python=${{ matrix.py }} conda-build anaconda-client conda-verify
           source activate packaging
           conda config --set anaconda_upload no
