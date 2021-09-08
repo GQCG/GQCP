@@ -6,7 +6,7 @@ package:
     version: {{ version }}
 source:
     git_url: https://github.com/GQCG/GQCP.git
-    git_tag: develop
+    git_tag: bugfix/conda-ci
 requirements:
     build:
       - benchmark

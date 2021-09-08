@@ -20,6 +20,8 @@
 
 #include "QuantumChemical/Spin.hpp"
 
+#include <stdexcept>
+
 #include <array>
 #include <vector>
 

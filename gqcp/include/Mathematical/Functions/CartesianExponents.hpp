@@ -21,6 +21,8 @@
 #include "Mathematical/Functions/CartesianDirection.hpp"
 
 #include <array>
+#include <cstddef>
+#include <string>
 #include <vector>
 
 

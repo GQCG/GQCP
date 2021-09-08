@@ -18,6 +18,8 @@
 #pragma once
 
 
+#include <stdexcept>
+
 #include <array>
 #include <cstddef>
 #include <numeric>
