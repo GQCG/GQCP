@@ -54,7 +54,7 @@ jobs:
       - name: Build conda package
         if: github.event_name == 'pull_request'
         run: |
-          GIT_BRANCH=$(git name-rev --name-only HEAD)
+          GIT_BRANCH=${GITHUB_REF##*/}
           echo "dit is de branch"
           echo $GIT_BRANCH
           sed -i -e "s|develop|$GIT_BRANCH|g" conda/meta.yaml
