@@ -54,6 +54,8 @@ jobs:
       - name: Build conda package
         if: github.event_name == 'pull_request'
         run: |
+          GIT_BRANCH=${{ github.head_ref }}
+          sed -i -e "s|develop|$GIT_BRANCH|g" conda/meta.yaml
           conda create -n packaging -c conda-forge python=${{ matrix.py }} conda-build anaconda-client conda-verify
           source activate packaging
           conda config --set anaconda_upload no
