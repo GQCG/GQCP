@@ -24,6 +24,8 @@ jobs:
       uses: eWaterCycle/setup-singularity@v5
       with: 
         singularity-version: 3.6.1
+    - name: Install seccomp
+      run: apt-get install seccomp
     - name: Build Singularity image
       run: singularity build gqcp.sif docker://gqcg/gqcp
     - name: Upload artifact
@@ -31,3 +33,4 @@ jobs:
       with:
         name: gqcp.sif
         path: gqcp.sif
+        retention-days: 3
