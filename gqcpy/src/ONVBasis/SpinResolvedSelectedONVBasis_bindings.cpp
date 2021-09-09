@@ -90,6 +90,10 @@ void bindSpinResolvedSelectedONVBasis(py::module& module) {
              &SpinResolvedSelectedONVBasis::dimension,
              "Return the dimension of the Fock subspace that is spanned by this selected ONV basis.")
 
+        .def("onvWithIndex",
+             &SpinResolvedSelectedONVBasis::onvWithIndex,
+             py::arg("i"),
+             "The ONV that corresponds to the given index/address.")
 
         /*
          *  MARK: Modifying
