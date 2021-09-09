@@ -26,3 +26,8 @@ jobs:
         singularity-version: 3.6.1
     - name: Build Singularity image
       run: singularity build gqcp.sif docker://gqcg/gqcp
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: gqcp.sif
+        path: gqcp.sif
