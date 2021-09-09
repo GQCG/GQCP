@@ -24,3 +24,5 @@ jobs:
       uses: eWaterCycle/setup-singularity@v5
       with: 
         singularity-version: 3.6.1
+    - name: Build Singularity image
+      run: singularity build gqcp.sif docker://gqcg/gqcp
