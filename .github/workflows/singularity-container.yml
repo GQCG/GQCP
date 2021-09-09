@@ -1,26 +1,10 @@
-name: Docker local image
+name: Singularity image
 
 on:
   push:
-    paths:
-      - '.github/workflows/docker-gqcp-deploy.yml'
-      - 'Dockerfile'
-      - '**.hpp'
-      - '**.cpp'
-      - '**.cmake'
-      - '**CMakeLists.txt'
-      - 'cmake/**'
     branches:
       - 'develop'
   pull_request:
-    paths:
-      - '.github/workflows/docker-gqcp-deploy.yml'
-      - 'Dockerfile'
-      - '**.hpp'
-      - '**.cpp'
-      - '**.cmake'
-      - '**CMakeLists.txt'
-      - 'cmake/**'
 
 
 jobs:
