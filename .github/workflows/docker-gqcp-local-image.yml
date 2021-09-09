@@ -42,7 +42,7 @@ jobs:
       with: 
         singularity-version: 3.6.1
     - name: Build Singularity image
-      run: singularity build gqcp.sif gqcp.tar
+      run: singularity build --fakeroot gqcp.sif gqcp.tar
     - name: Upload Docker artifact
       uses: actions/upload-artifact@v2
       with:
