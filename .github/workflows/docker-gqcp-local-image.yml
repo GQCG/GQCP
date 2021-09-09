@@ -1,17 +1,6 @@
 name: Docker local image
 
 on:
-  push:
-    paths:
-      - '.github/workflows/docker-gqcp-local-image.yml'
-      - 'Dockerfile'
-      - '**.hpp'
-      - '**.cpp'
-      - '**.cmake'
-      - '**CMakeLists.txt'
-      - 'cmake/**'
-    branches:
-      - 'develop'
   pull_request:
     paths:
       - '.github/workflows/docker-gqcp-local-image.yml'
@@ -48,9 +37,19 @@ jobs:
         file: docker/Dockerfile
         tags: gqcg/gqcp:local
         outputs: type=docker,dest=gqcp.tar
-    - name: Upload artifact
+    - name: Set up Singularity
+      uses: eWaterCycle/setup-singularity@v5
+      with: 
+        singularity-version: 3.6.1
+    - name: Build Singularity image
+      run: singularity build gqcp.sif gqcp.tar
+    - name: Upload Docker artifact
       uses: actions/upload-artifact@v2
       with:
         name: gqcp.tar
         path: gqcp.tar
-  
+    - name: Upload Singularity artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: gqcp.sif
+        path: gqcp.sif
