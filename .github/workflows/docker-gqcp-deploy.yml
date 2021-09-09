@@ -38,9 +38,3 @@ jobs:
         file: docker/Dockerfile
         push: true
         tags: gqcg/gqcp:latest
-        outputs: type=docker,dest=gqcp.tar
-    - name: Upload artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: gqcp
-        path: gqcp.tar

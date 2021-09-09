@@ -1,9 +1,9 @@
-name: Docker deploy
+name: Docker local image
 
 on:
   push:
     paths:
-      - '.github/workflows/docker-gqcp-deploy.yml'
+      - '.github/workflows/docker-gqcp-local-image.yml'
       - 'Dockerfile'
       - '**.hpp'
       - '**.cpp'
@@ -14,7 +14,7 @@ on:
       - 'develop'
   pull_request:
     paths:
-      - '.github/workflows/docker-gqcp-deploy.yml'
+      - '.github/workflows/docker-gqcp-local-image.yml'
       - 'Dockerfile'
       - '**.hpp'
       - '**.cpp'
@@ -41,7 +41,7 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
-    - name: Build
+    - name: Build local image
       uses: docker/build-push-action@v2
       with:
         context: .
@@ -51,5 +51,6 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
-        name: gqcp
+        name: gqcp.tar
         path: gqcp.tar
+  
