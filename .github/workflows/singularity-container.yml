@@ -22,5 +22,5 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     - name: Set up Singularity
         uses: eWaterCycle/setup-singularity@v5
-          with: 
-            singularity-version: 3.6.1
+        with: 
+          singularity-version: 3.6.1
