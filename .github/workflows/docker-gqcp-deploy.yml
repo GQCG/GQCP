@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - '.github/workflows/docker-gqcp-deploy.yml'
-      - 'Dockerfile'
+      - 'docker/Dockerfile'
       - '**.hpp'
       - '**.cpp'
       - '**.cmake'
