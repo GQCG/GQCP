@@ -16,8 +16,10 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "QuantumChemical/SpinResolved.hpp"
+#include "Utilities/complex.hpp"
 #include "gqcpy/include/interfaces.hpp"
 
+#include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
 
 
@@ -44,9 +46,13 @@ void bindSpinResolved(py::module& module, const std::string& name, const std::st
  */
 void bindSpinResolvedTypes(py::module& module) {
 
-    bindSpinResolved<size_t>(module, "SpinResolved_size_t", "A spin resolved encapsulation of two unsigned longs.");
-    bindSpinResolved<std::vector<double>>(module, "SpinResolved_std_vector_d", "A spin resolved encapsulation of two std::vectors.");
-    bindSpinResolved<VectorX<double>>(module, "SpinResolved_VectorX_d", "A spin resolved encapsulation of two GQCP::Vectors.");
+    bindSpinResolved<size_t>(module, "SpinResolved_size_t", "A spin-resolved encapsulation of two unsigned longs.");
+
+    bindSpinResolved<std::vector<double>>(module, "SpinResolved_std_vector_d", "A spin-resolved encapsulation of two real-valued std::vectors.");
+    bindSpinResolved<std::vector<complex>>(module, "SpinResolved_std_vector_cd", "A spin-resolved encapsulation of two complex-valued std::vectors.");
+
+    bindSpinResolved<VectorX<double>>(module, "SpinResolved_VectorX_d", "A spin-resolved encapsulation of two real-valued GQCP::Vectors.");
+    bindSpinResolved<VectorX<complex>>(module, "SpinResolved_VectorX_cd", "A spin-resolved encapsulation of two complex-valued GQCP::Vectors.");
 }
 
 }  // namespace gqcpy
