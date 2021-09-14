@@ -38,7 +38,7 @@ namespace QCModel {
 
 /**
  *  The unrestricted Hartree-Fock wave function model.
- * 
+ *
  *  @tparam _Scalar         the scalar representation of the coefficients in the coefficient matrix
  */
 template <typename _Scalar>
@@ -63,7 +63,7 @@ public:
 
     /**
      *  A basic constructor that sets all the properties.
-     * 
+     *
      *  @param N_alpha                                  The number of alpha electrons.
      *  @param N_beta                                   The number of beta electrons.
      *  @param orbital_energies_alpha                   The orbital energies for the alpha-spin-orbitals, sorted by ascending energy.
@@ -99,7 +99,7 @@ public:
 
     /**
      *  A constructor that initializes the orbital energies to zeros.
-     * 
+     *
      *  @param N_alpha                                  The number of alpha electrons.
      *  @param N_beta                                   The number of beta electrons.
      *  @param orbital_energies_alpha                   The orbital energies for the alpha-spin-orbitals, sorted by ascending energy.
@@ -116,7 +116,7 @@ public:
 
     /**
      *  Convert an RHF wave function model to an UHF wave function model.
-     * 
+     *
      *  @param rhf_model            A RHF wave function model
      */
     UHF(const GQCP::QCModel::RHF<Scalar>& rhf_model) :
@@ -150,10 +150,9 @@ public:
         Tensor<Scalar, 2> Z_beta_tensor = Tensor<Scalar, 2>(Z_beta_t);
 
         // To calculate the electronic energy, we must perform a double contraction (with prefactor 0.5):
-        //      0.5 P_sigma(mu nu) P_sigma(mu nu).
-        Tensor<Scalar, 0> contraction_alpha = 0.5 * Z_alpha_tensor.template einsum<2>("ij,ji->", P.alpha().matrix());
-
-        Tensor<Scalar, 0> contraction_beta = 0.5 * Z_beta_tensor.template einsum<2>("ij,ji->", P.beta().matrix());
+        //      0.5 Z_sigma(mu nu) P_sigma(mu nu).
+        Tensor<Scalar, 0> contraction_alpha = 0.5 * Z_alpha_tensor.template einsum<2>("ij,ij->", P.alpha().matrix());
+        Tensor<Scalar, 0> contraction_beta = 0.5 * Z_beta_tensor.template einsum<2>("ij,ij->", P.beta().matrix());
 
         // As the double contraction of two rank-2 tensors is a scalar (a tensor of rank 0), we should access the value as (0).
         return contraction_alpha(0) + contraction_beta(0);
@@ -164,7 +163,7 @@ public:
      *  @param F                  The Fock operators expressed in the AO basis.
      *  @param D                  The density matrices in the AO basis.
      *  @param S                  The overlap operator of the AO basis.
-     * 
+     *
      *  @return The error matrices.
      */
     static SpinResolved<SquareMatrix<Scalar>> calculateError(const ScalarUSQOneElectronOperator<Scalar>& F, const SpinResolved1DM<Scalar>& D, const ScalarUSQOneElectronOperator<Scalar>& S) {
@@ -179,7 +178,7 @@ public:
 
     /**
      *  Calculate and return the (spin-resolved) UHF 1-DM in an orthonormal spin-orbital basis.
-     * 
+     *
      *  @param K_a          The number of spatial orbitals for the alpha spin component.
      *  @param K_b          The number of spatial orbitals for the beta spin component.
      *  @param N_a          The number of alpha electrons, i.e. the number of occupied alpha spin-orbitals.
@@ -208,7 +207,7 @@ public:
 
     /**
      *  Calculate and return the (spin-resolved) UHF 2-DM in an orthonormal spin-orbital basis.
-     * 
+     *
      *  @param K            The number of spatial orbitals for the alpha and beta spin components.
      *  @param N_a          The number of alpha electrons, i.e. the number of occupied alpha spin-orbitals.
      *  @param N_b          The number of beta electrons, i.e. the number of occupied beta spin-orbitals.
@@ -291,7 +290,7 @@ public:
 
     /**
      *  Calculate the UHF 1-DM expressed in the underlying scalar basis.
-     * 
+     *
      *  @param C            The transformation between the UHF MOs and the atomic spin-orbitals.
      *  @param N_a          The number of alpha electrons, i.e. the number of occupied alpha spin-orbitals.
      *  @param N_b          The number of beta electrons, i.e. the number of occupied beta spin-orbitals.
@@ -311,10 +310,10 @@ public:
 
     /**
      *  Calculate the UHF direct (Coulomb) operator.
-     * 
+     *
      *  @param P                    The UHF alpha density matrix expressed in the underlying scalar orbital basis.
      *  @param sq_hamiltonian       The Hamiltonian expressed in the (same) underlying scalar orbital basis.
-     * 
+     *
      *  @return The UHF direct (Coulomb) operator.
      */
     static ScalarUSQOneElectronOperator<Scalar> calculateScalarBasisDirectMatrix(const SpinResolved1DM<Scalar>& P, const USQHamiltonian<Scalar>& sq_hamiltonian) {
@@ -337,10 +336,10 @@ public:
 
     /**
      *  Calculate the UHF exchange operator.
-     * 
+     *
      *  @param P                    The UHF sigma density matrix expressed in the underlying scalar orbital basis.
      *  @param sq_hamiltonian       The Hamiltonian expressed in the (same) underlying scalar orbital basis.
-     * 
+     *
      *  @return The UHF direct (Coulomb) operator.
      */
     static ScalarUSQOneElectronOperator<Scalar> calculateScalarBasisExchangeMatrix(const SpinResolved1DM<Scalar>& P, const USQHamiltonian<Scalar>& sq_hamiltonian) {
@@ -393,7 +392,7 @@ public:
      *  @param K_b            The number of beta spatial orbitals.
      *  @param N_a            The number of alpha electrons.
      *  @param N_b            The number of beta electrons.
-     * 
+     *
      *  @return The implicit (i.e. with ascending and contiguous orbital indices) occupied-virtual orbital space for both the alpha and beta components that corresponds to these UHF model parameters.
      */
     static SpinResolvedOrbitalSpace orbitalSpace(const size_t K_a, const size_t K_b, const size_t N_a, const size_t N_b) {
@@ -425,7 +424,7 @@ public:
 
     /**
      *  @return The (spin-resolved) UHF 2-DM expressed in an orthonormal spin-orbital basis for these UHF model parameters.
-     * 
+     *
      *  @note We assume that the total number of alpha and beta orbitals is the same.
      */
     SpinResolved2DM<Scalar> calculateOrthonormalBasis2DM() const {
@@ -456,18 +455,18 @@ public:
 
     /**
      * Construct a mixed-spin component of the spin-conserved stability matrix A'.
-     * 
+     *
      *  @note The formula for this component is as follows:
      *      A'_I(sigma)A(sigma)J(sigma_bar)B(sigma_bar) = (A(sigma)I(sigma)|J(sigma_bar)B(sigma_bar)).
-     * 
+     *
      *  @note Sigma_bar = alpha if sigma is beta and vice versa.
-     * 
+     *
      *  @note The name `Spin-conserved`comes from the article "Constraints and stability in Hartree-Fock theory" by Seeger, R. and Pople J.A. (https://doi.org/10.1063/1.434318).
-     * 
+     *
      *  @param usq_hamiltonian      The second quantized Hamiltonian, expressed in the orthonormal, 'unrestricted' spin orbital basis of the UHF MOs, which contains the necessary two-electron operators.
-     *  @param sigma                The spin-sigma component. 
+     *  @param sigma                The spin-sigma component.
      *  @param sigma_bar            The spin component, opposite to sigma.
-     * 
+     *
      *  @return The mixed spin sigma component of stability matrix A'.
      */
     GQCP::Matrix<Scalar> calculateMixedSpinConservedAComponent(const USQHamiltonian<Scalar>& usq_hamiltonian, const Spin sigma, const Spin sigma_bar) const {
@@ -524,18 +523,18 @@ public:
 
     /**
      * Construct a mixed-spin component of the spin-conserved stability matrix B'.
-     * 
+     *
      *  @note The formula for this component is as follows:
      *      B'_I(sigma)A(sigma)J(sigma_bar)B(sigma_bar) = (A(sigma)I(sigma)|B(sigma_bar)J(sigma_bar)).
-     * 
+     *
      *  @note Sigma_bar = alpha if sigma is beta and vice versa.
-     * 
+     *
      *  @note The name `Spin-conserved`comes from the article "Constraints and stability in Hartree-Fock theory" by Seeger, R. and Pople J.A. (https://doi.org/10.1063/1.434318).
-     * 
+     *
      *  @param usq_hamiltonian      The second quantized Hamiltonian, expressed in the orthonormal, 'unrestricted' spin orbital basis of the UHF MOs, which contains the necessary two-electron operators.
-     *  @param sigma                The spin-sigma component. 
+     *  @param sigma                The spin-sigma component.
      *  @param sigma_bar            The spin component, opposite to sigma.
-     * 
+     *
      *  @return The mixed spin sigma component of stability matrix B'.
      */
     GQCP::Matrix<Scalar> calculateMixedSpinConservedBComponent(const USQHamiltonian<Scalar>& usq_hamiltonian, const Spin sigma, const Spin sigma_bar) const {
@@ -592,15 +591,15 @@ public:
 
     /**
      * Construct a pure-spin component of the spin-conserved stability matrix A'.
-     * 
+     *
      *  @note The formula for this component is as follows:
      *      A'_I(sigma)A(sigma)J(sigma)B(sigma) = \delta_I(sigma)J(sigma) * F_B(sigma)A(sigma) - \delta_B(sigma)A(sigma) * F_I(sigma)J(sigma) + (A(sigma)I(sigma)||J(sigma)B(sigma)).
-     * 
+     *
      *  @note The name `Spin-conserved`comes from the article "Constraints and stability in Hartree-Fock theory" by Seeger, R. and Pople J.A. (https://doi.org/10.1063/1.434318).
-     * 
+     *
      *  @param usq_hamiltonian      The second quantized Hamiltonian, expressed in the orthonormal, 'unrestricted' spin orbital basis of the UHF MOs, which contains the necessary two-electron operators.
      *  @param sigma                The spin-sigma component. This method creates a pure spin component, so all sigma's in the formula are either alpha or beta.
-     * 
+     *
      *  @return The pure spin sigma component of stability matrix A'.
      */
     GQCP::Matrix<Scalar> calculatePureSpinConservedAComponent(const USQHamiltonian<Scalar>& usq_hamiltonian, const Spin sigma) const {
@@ -652,15 +651,15 @@ public:
 
     /**
      * Construct a pure-spin component of the spin-conserved stability matrix B'.
-     * 
+     *
      *  @note The formula for this component is as follows:
      *      B'_I(sigma)A(sigma)J(sigma)B(sigma) = (A(sigma)I(sigma)||B(sigma)J(sigma)).
-     * 
+     *
      *  @note The name `Spin-conserved`comes from the article "Constraints and stability in Hartree-Fock theory" by Seeger, R. and Pople J.A. (https://doi.org/10.1063/1.434318).
-     * 
+     *
      *  @param usq_hamiltonian      The second quantized Hamiltonian, expressed in the orthonormal, 'unrestricted' spin orbital basis of the UHF MOs, which contains the necessary two-electron operators.
      *  @param sigma                The spin-sigma component. This method creates a pure spin component, so all sigma's in the formula are either alpha or beta.
-     * 
+     *
      *  @return The pure spin sigma component of stability matrix B'.
      */
     GQCP::Matrix<Scalar> calculatePureSpinConservedBComponent(const USQHamiltonian<Scalar>& usq_hamiltonian, const Spin sigma) const {
@@ -701,15 +700,15 @@ public:
 
     /**
      * Construct the complete spin-conserved stability matrix A'.
-     * 
+     *
      *  @note The formula for this component is as follows:
      *      A' = (A'_aaaa   A'_aabb)
      *           (A'_bbaa   A'_bbbb).
-     * 
+     *
      *  @note The name `Spin-conserved`comes from the article "Constraints and stability in Hartree-Fock theory" by Seeger, R. and Pople J.A. (https://doi.org/10.1063/1.434318).
-     * 
+     *
      *  @param usq_hamiltonian      The second quantized Hamiltonian, expressed in the orthonormal, 'unrestricted' spin orbital basis of the UHF MOs, which contains the necessary two-electron operators.
-     * 
+     *
      *  @return The complete stability matrix A'.
      */
     GQCP::MatrixX<Scalar> calculateSpinConservedA(const USQHamiltonian<Scalar>& usq_hamiltonian) const {
@@ -742,15 +741,15 @@ public:
 
     /**
      * Construct the complete spin-conserved stability matrix B'.
-     * 
+     *
      *  @note The formula for this component is as follows:
      *      B' = (B'_aaaa   B'_aabb)
      *           (B'_bbaa   B'_bbbb).
-     * 
+     *
      *  @note The name `Spin-conserved`comes from the article "Constraints and stability in Hartree-Fock theory" by Seeger, R. and Pople J.A. (https://doi.org/10.1063/1.434318).
-     * 
+     *
      *  @param usq_hamiltonian      The second quantized Hamiltonian, expressed in the orthonormal, 'unrestricted' spin orbital basis of the UHF MOs, which contains the necessary two-electron operators.
-     * 
+     *
      *  @return The complete stability matrix B'.
      */
     GQCP::MatrixX<Scalar> calculateSpinConservedB(const USQHamiltonian<Scalar>& usq_hamiltonian) const {
@@ -783,18 +782,18 @@ public:
 
     /**
      * Construct a component of the spin-unconserved stability matrix A''.
-     * 
+     *
      *  @note The formula for this component is as follows:
      *      A''_I(sigma)A(sigma_bar)J(sigma)B(sigma_bar) = \delta_I(sigma)J(sigma) * F_B(sigma_bar)A(sigma_bar) - \delta_B(sigma_bar)A(sigma_bar) * F_I(sigma)J(sigma) - (A(sigma_bar)B(sigma_bar)|J(sigma)I(sigma)).
-     * 
+     *
      *  @note Sigma_bar = alpha if sigma is beta and vice versa.
-     * 
+     *
      *  @note The name `Spin-unconserved`comes from the article "Constraints and stability in Hartree-Fock theory" by Seeger, R. and Pople J.A. (https://doi.org/10.1063/1.434318).
-     * 
+     *
      *  @param usq_hamiltonian      The second quantized Hamiltonian, expressed in the orthonormal, 'unrestricted' spin orbital basis of the UHF MOs, which contains the necessary two-electron operators.
-     *  @param sigma                The spin-sigma component. 
+     *  @param sigma                The spin-sigma component.
      *  @param sigma_bar            The spin component, opposite to sigma.
-     * 
+     *
      *  @return A component of stability matrix A''.
      */
     GQCP::Matrix<Scalar> calculateSpinUnconservedAComponent(const USQHamiltonian<Scalar>& usq_hamiltonian, const Spin sigma, const Spin sigma_bar) const {
@@ -869,18 +868,18 @@ public:
 
     /**
      * Construct a component of the spin-unconserved stability matrix B''.
-     * 
+     *
      *  @note The formula for this component is as follows:
      *      B''_I(sigma)A(sigma_bar)J(sigma_bar)B(sigma) = - (A(sigma_bar)J(sigma_bar)|B(sigma)I(sigma)).
-     * 
+     *
      *  @note Sigma_bar = alpha if sigma is beta and vice versa.
-     * 
+     *
      *  @note The name `Spin-unconserved`comes from the article "Constraints and stability in Hartree-Fock theory" by Seeger, R. and Pople J.A. (https://doi.org/10.1063/1.434318).
-     * 
+     *
      *  @param usq_hamiltonian      The second quantized Hamiltonian, expressed in the orthonormal, 'unrestricted' spin orbital basis of the UHF MOs, which contains the necessary two-electron operators.
-     *  @param sigma                The spin-sigma component. 
+     *  @param sigma                The spin-sigma component.
      *  @param sigma_bar            The spin component, opposite to sigma.
-     * 
+     *
      *  @return A component of stability matrix B''.
      */
     GQCP::Matrix<Scalar> calculateSpinUnconservedBComponent(const USQHamiltonian<Scalar>& usq_hamiltonian, const Spin sigma, const Spin sigma_bar) const {
@@ -938,15 +937,15 @@ public:
 
     /**
      * Construct the complete spin-unconserved stability matrix A''.
-     * 
+     *
      *  @note The formula for this component is as follows:
      *      A'' = (A''_abab      0    )
      *            (   0       A''_baba).
-     * 
+     *
      *  @note The name `Spin-unconserved`comes from the article "Constraints and stability in Hartree-Fock theory" by Seeger, R. and Pople J.A. (https://doi.org/10.1063/1.434318).
-     * 
+     *
      *  @param usq_hamiltonian      The second quantized Hamiltonian, expressed in the orthonormal, 'unrestricted' spin orbital basis of the UHF MOs, which contains the necessary two-electron operators.
-     * 
+     *
      *  @return The complete stability matrix A''.
      */
     GQCP::MatrixX<Scalar> calculateSpinUnconservedA(const USQHamiltonian<Scalar>& usq_hamiltonian) const {
@@ -981,15 +980,15 @@ public:
 
     /**
      * Construct the complete spin-unconserved stability matrix B''.
-     * 
+     *
      *  @note The formula for this component is as follows:
      *      B'' = (   0     B''_abba)
      *            (B''_baab    0    ).
-     * 
+     *
      *  @note The name `Spin-unconserved`comes from the article "Constraints and stability in Hartree-Fock theory" by Seeger, R. and Pople J.A. (https://doi.org/10.1063/1.434318).
-     * 
+     *
      *  @param usq_hamiltonian      The second quantized Hamiltonian, expressed in the orthonormal, 'unrestricted' spin orbital basis of the UHF MOs, which contains the necessary two-electron operators.
-     * 
+     *
      *  @return The complete stability matrix B''.
      */
     GQCP::MatrixX<Scalar> calculateSpinUnconservedB(const USQHamiltonian<Scalar>& usq_hamiltonian) const {
@@ -1024,7 +1023,7 @@ public:
 
     /**
      *  Calculate the UHF stability matrices and return them.
-     * 
+     *
      *  @param usq_hamiltonian      The second quantized Hamiltonian, expressed in the orthonormal, 'unrestricted' spin orbital basis of the UHF MOs, which contains the necessary two-electron operators.
      *
      *  @return The UHF stability matrices.
@@ -1036,10 +1035,10 @@ public:
 
 
     /**
-     *  @return A matrix containing all the possible excitation energies of the wavefunction model, belonging to a certain spin component. 
-     * 
+     *  @return A matrix containing all the possible excitation energies of the wavefunction model, belonging to a certain spin component.
+     *
      *  @note       The rows are determined by the number of virtual sigma orbitals, the columns by the number of occupied sigma orbitals.
-     * 
+     *
      */
     SpinResolved<GQCP::MatrixX<Scalar>> excitationEnergies() const {
 
@@ -1097,7 +1096,7 @@ public:
 
     /**
      *  @param sigma            Alpha or beta.
-     * 
+     *
      *  @return The number of sigma spin-orbitals that these UHF model parameters describe.
      */
     size_t numberOfSpinOrbitals(const Spin sigma) const {
@@ -1138,7 +1137,7 @@ public:
     }
 
 
-    /**   
+    /**
      *  @return The orbital energies of the alpha and beta orbitals.
      */
     const SpinResolved<VectorX<Scalar>> orbitalEnergies() const { return this->orbital_energies; }
