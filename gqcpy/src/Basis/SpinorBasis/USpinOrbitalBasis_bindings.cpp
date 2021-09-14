@@ -114,6 +114,14 @@ void bindUSpinOrbitalBasisInterface(Class& py_class) {
 
     // Expose some quantization API to the Python class;
     bindSpinorBasisQuantizationInterface(py_class);
+
+    py_class
+        .def(
+            "quantize",
+            [](const Type& spin_orbital_basis, const ElectronicSpin_zOperator& op) {
+                return spin_orbital_basis.quantize(op);
+            },
+            "Return the spin Zeeman operator expressed in this spinor basis.");
 }
 
 
@@ -125,7 +133,7 @@ void bindUSpinOrbitalBasisInterface(Class& py_class) {
 void bindUSpinOrbitalBases(py::module& module) {
 
     // Define the Python class for `USpinOrbitalBasis_d`.
-    py::class_<USpinOrbitalBasis<double, GTOShell>> py_USpinOrbitalBasis_d {module, "USpinOrbitalBasis_d", "A class that represents a real, unrestricted spinor basis with underlying GTO shells."};
+    py::class_<USpinOrbitalBasis<double, GTOShell>> py_USpinOrbitalBasis_d {module, "USpinOrbitalBasis_d", "A class that represents a real, unrestricted spin-orbital basis with underlying GTO shells."};
 
     bindUSpinOrbitalBasisInterface(py_USpinOrbitalBasis_d);
     bindGTOUSpinOrbitalBasisInterface(py_USpinOrbitalBasis_d);
@@ -136,14 +144,7 @@ void bindUSpinOrbitalBases(py::module& module) {
             [](const USpinOrbitalBasis<double, GTOShell>& spin_orbital_basis, const ElectronicDipoleOperator& op) {
                 return spin_orbital_basis.quantize(op);
             },
-            "Return the electronic dipole operator expressed in this spinor basis.")
-
-        .def(
-            "quantize",
-            [](const USpinOrbitalBasis<double, GTOShell>& spin_orbital_basis, const ElectronicSpin_zOperator& op) {
-                return spin_orbital_basis.quantize(op);
-            },
-            "Return the z-component of the electronic spin operator (S_z) expressed in this spinor basis.");
+            "Return the electronic dipole operator expressed in this spin-orbital basis.");
 
 
     // Define the Python class for `USpinOrbitalBasis_cd`.

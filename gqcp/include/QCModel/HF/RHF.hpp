@@ -42,7 +42,7 @@ namespace QCModel {
 
 /**
  *  The restricted Hartree-Fock wave function model.
- * 
+ *
  *  @tparam _Scalar             The type of scalar that is used for the expansion of the spatial orbitals in their underlying scalar basis: real or complex.
  */
 template <typename _Scalar>
@@ -70,7 +70,7 @@ public:
 
     /**
      *  The standard member-wise constructor.
-     * 
+     *
      *  @param N_P                  The number of electron pairs.
      *  @param C                    The transformation that expresses the RHF MOs in terms of the atomic spinors.
      *  @param orbital_energies     The RHF MO energies.
@@ -111,7 +111,7 @@ public:
 
         // To calculate the electronic energy, we must perform a double contraction (with prefactor 0.5):
         //      0.5 D(nu mu) Z(mu nu).
-        Tensor<Scalar, 0> contraction = 0.5 * Z_tensor.template einsum<2>("ij,ji->", D.matrix());
+        Tensor<Scalar, 0> contraction = 0.5 * Z_tensor.template einsum<2>("ij,ij->", D.matrix());
 
         // As the double contraction of two matrices is a scalar (a tensor of rank 0), we should access the value as (0).
         return contraction(0);
@@ -120,7 +120,7 @@ public:
 
     /**
      *  @return A matrix containing all the possible excitation energies of the wavefunction model.
-     * 
+     *
      *  @note The rows are determined by the number of virtual orbitals, the columns by the number of occupied orbitals.
      */
     MatrixX<Scalar> excitationEnergies() const {
@@ -226,7 +226,7 @@ public:
 
     /**
      *  @param i            The index of the orbital.
-     * 
+     *
      *  @return The i-th orbital energy.
      */
     Scalar orbitalEnergy(const size_t i) const { return this->orbital_energies(i); }
@@ -240,7 +240,7 @@ public:
      *  @param F                The Fock operator expressed in a scalar basis.
      *  @param D                The RHF density matrix in the same scalar basis.
      *  @param S                The overlap operator of that scalar basis.
-     * 
+     *
      *  @return The RHF error matrix.
      */
     static SquareMatrix<Scalar> calculateError(const ScalarRSQOneElectronOperator<Scalar>& F, const Orbital1DM<Scalar>& D, const ScalarRSQOneElectronOperator<Scalar>& S) {
@@ -259,7 +259,7 @@ public:
      *  @param i                    The first occupied orbital index.
      *  @param b                    The second virtual orbital index.
      *  @param j                    The second occupied orbital index.
-     * 
+     *
      *  @return An element of the RHF orbital Hessian.
      */
     static Scalar calculateOrbitalHessianElement(const RSQHamiltonian<Scalar>& sq_hamiltonian, const size_t N_P, const size_t a, const size_t i, const size_t b, const size_t j) {
@@ -295,7 +295,7 @@ public:
     /**
      *  @param sq_hamiltonian       The Hamiltonian expressed in an orthonormal basis.
      *  @param N_P                  The number of electron pairs.
-     * 
+     *
      *  @return The RHF orbital Hessian as a ImplicitRankFourTensorSlice, i.e. an object with a suitable operator() implemented.
      */
     static ImplicitRankFourTensorSlice<Scalar> calculateOrbitalHessianTensor(const RSQHamiltonian<Scalar>& sq_hamiltonian, const size_t N_P) {
@@ -324,10 +324,10 @@ public:
 
     /**
      *  Calculate the RHF orbital Hessian (H_RI -i H_II), which can be used as a response force constant when solving the CP(R)HF equations for a purely imaginary response.
-     * 
+     *
      *  @param sq_hamiltonian               the Hamiltonian expressed in the canonical RHF orbital basis, resulting from a real optimization
      *  @param orbital_space                the orbital space that encapsulates the occupied-virtual separation
-     * 
+     *
      *  @return An RHF orbital Hessian.
      */
     template <typename Z = Scalar>
@@ -376,12 +376,12 @@ public:
 
     /**
      *  Construct the `singlet A` stability matrix from the RHF stability conditions.
-     * 
+     *
      *  @note The formula for the `singlet A` matrix is as follows:
      *      A_IAJB = \delta_IJ * (F_R)_BA - \delta_AB * (F_R)_IJ + 2 * (AI|JB) - (AB|JI).
-     * 
+     *
      *  @param rsq_hamiltonian      The second quantized Hamiltonian, expressed in the orthonormal, 'restricted' spin orbital basis of the RHF MOs, which contains the necessary two-electron operators.
-     * 
+     *
      *  @return The singlet-A stability matrix.
      */
     MatrixX<Scalar> calculateSingletAStabilityMatrix(const RSQHamiltonian<Scalar>& rsq_hamiltonian) const {
@@ -432,12 +432,12 @@ public:
 
     /**
      *  Construct the `singlet B` stability matrix from the RHF stability conditions.
-     * 
+     *
      *  @note The formula for the `singlet B` matrix is as follows:
      *      B_IAJB = 2 * (AI|BJ) - (AJ|BI).
-     * 
+     *
      *  @param rsq_hamiltonian      The second quantized Hamiltonian, expressed in the orthonormal, 'restricted' spin orbital basis of the RHF MOs, which contains the necessary two-electron operators.
-     * 
+     *
      *  @return The singlet-B stability matrix.
      */
     MatrixX<Scalar> calculateSingletBStabilityMatrix(const RSQHamiltonian<Scalar>& rsq_hamiltonian) const {
@@ -477,12 +477,12 @@ public:
 
     /**
      *  Construct the `triplet A` stability matrix from the RHF stability conditions.
-     * 
+     *
      *  @note The formula for the `triplet A` matrix is as follows:
      *      A_IAJB = \delta_IJ * (F_R)_BA - \delta_AB * (F_R)_IJ - (AB|JI).
-     * 
+     *
      *  @param rsq_hamiltonian      The second quantized Hamiltonian, expressed in the orthonormal, 'restricted' spin orbital basis of the RHF MOs, which contains the necessary two-electron operators.
-     * 
+     *
      *  @return the triplet-A stability matrix.
      */
     MatrixX<Scalar> calculateTripletAStabilityMatrix(const RSQHamiltonian<Scalar>& rsq_hamiltonian) const {
@@ -533,12 +533,12 @@ public:
 
     /**
      *  Construct the `triplet B` stability matrix from the RHF stability conditions.
-     * 
+     *
      *  @note The formula for the `triplet B` matrix is as follows:
      *      B_IAJB = - (AJ|BI).
-     * 
+     *
      *  @param rsq_hamiltonian      The second quantized Hamiltonian, expressed in the orthonormal, 'restricted' spin orbital basis of the RHF MOs, which contains the necessary two-electron operators.
-     * 
+     *
      *  @return The triplet-B stability matrix.
      */
     MatrixX<Scalar> calculateTripletBStabilityMatrix(const RSQHamiltonian<Scalar>& rsq_hamiltonian) const {
@@ -578,7 +578,7 @@ public:
 
     /**
      *  Calculate the RHF stability matrices and return them.
-     * 
+     *
      *  @param rsq_hamiltonian      The second quantized Hamiltonian, expressed in the orthonormal, 'restricted' spin orbital basis of the RHF MOs, which contains the necessary two-electron operators.
      *
      *  @return The RHF stability matrices.
@@ -595,7 +595,7 @@ public:
 
     /**
      *  Calculate the RHF 1-DM expressed in an orthonormal spin-orbital basis.
-     * 
+     *
      *  @param K            The number of spatial orbitals.
      *  @param N            The total number of electrons.
      *
@@ -634,7 +634,7 @@ public:
 
     /**
      *  Calculate the RHF 2-DM expressed in an orthonormal spin-orbital basis.
-     * 
+     *
      *  @param K            The number of spatial orbitals.
      *  @param N            The total number of electrons.
      *
@@ -796,7 +796,7 @@ public:
     /**
      *  @param K            The number of spatial orbitals.
      *  @param N_P          The number of electrons.
-     * 
+     *
      *  @return The implicit (i.e. with ascending and contiguous orbital indices) occupied-virtual orbital space that corresponds to these RHF model parameters.
      */
     static OrbitalSpace orbitalSpace(const size_t K, const size_t N_P) {
@@ -832,7 +832,7 @@ public:
 
     /**
      *  @param sigma            The spin of the electrons (alpha or beta).
-     * 
+     *
      *  @return The number of sigma-electrons that these RHF model parameters describe.
      */
     size_t numberOfElectrons(const Spin sigma) const { return this->numberOfElectronPairs(); }

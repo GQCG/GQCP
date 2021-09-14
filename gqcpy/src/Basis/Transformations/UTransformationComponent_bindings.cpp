@@ -16,6 +16,7 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "Basis/Transformations/UTransformationComponent.hpp"
+#include "Utilities/complex.hpp"
 #include "gqcpy/include/interfaces.hpp"
 
 #include <pybind11/pybind11.h>
@@ -30,18 +31,24 @@ using namespace GQCP;
 
 
 /**
- *  Register `UTransformationComponent_d` to the gqcpy module and expose a part of its C++ interface to Python.
- * 
- *  @param module           The Pybind11 module in which `UTransformationComponent_d` should be registered.
+ *  Register `UTransformationComponent_d` and `UTransformationComponent_cd` to the gqcpy module and expose a part of its C++ interface to Python.
+ *
+ *  @param module           The Pybind11 module in which `UTransformationComponent_d` and `UTransformationComponent_cd` should be registered.
  */
 void bindUTransformationComponent(py::module& module) {
 
     // Define the Python class for `UTransformationComponent_d`.
-    py::class_<UTransformationComponent<double>> py_UTransformationComponent_d {module, "UTransformationComponent_d", "One of the spin components of a `UTransformation`."};
-
+    py::class_<UTransformationComponent<double>> py_UTransformationComponent_d {module, "UTransformationComponent_d", "One of the spin components of a real-valued `UTransformation`."};
 
     // Expose the `SimpleTransformation` API to the Python class.
     bindSimpleTransformationInterface(py_UTransformationComponent_d);
+
+
+    // Define the Python class for `UTransformationComponent_cd`.
+    py::class_<UTransformationComponent<complex>> py_UTransformationComponent_cd {module, "UTransformationComponent_cd", "One of the spin components of a complex-valued `UTransformation`."};
+
+    // Expose the `SimpleTransformation` API to the Python class.
+    bindSimpleTransformationInterface(py_UTransformationComponent_cd);
 }
 
 
