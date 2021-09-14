@@ -101,11 +101,11 @@ void bindSpinResolved1DMInterface(Class& py_class) {
  */
 void bindSpinResolved1DM(py::module& module) {
 
-    // Define the Python class for `SpinResolved1DM_d`.
+    // Define the Python class for `SpinResolved1DM_d` and bind its interface.
     py::class_<SpinResolved1DM<double>> py_SpinResolved1DM_d {module, "SpinResolved1DM_d", "A type that encapsulates real-valued alpha and beta (spin-resolved) density matrices."};
     bindSpinResolved1DMInterface(py_SpinResolved1DM_d);
 
-    // Define the Python class for `SpinResolved1DM_cd`.
+    // Define the Python class for `SpinResolved1DM_cd` and bind its interface.
     py::class_<SpinResolved1DM<complex>> py_SpinResolved1DM_cd {module, "SpinResolved1DM_cd", "A type that encapsulates complex-valued alpha and beta (spin-resolved) density matrices."};
     bindSpinResolved1DMInterface(py_SpinResolved1DM_cd);
 }

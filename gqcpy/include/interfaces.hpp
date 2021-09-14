@@ -1013,6 +1013,13 @@ void bindQCModelHartreeFockInterface(Class& py_class) {
             "Return the 1-DM expressed in an orthonormal basis related to these optimal HF parameters.")
 
         .def(
+            "calculateOrthonormalBasis2DM",
+            [](const Type& parameters) {
+                return parameters.calculateOrthonormalBasis2DM();
+            },
+            "Return the 2-DM expressed in an orthonormal basis related to these optimal HF parameters.")
+
+        .def(
             "calculateScalarBasis1DM",
             [](const Type& parameters) {
                 return parameters.calculateScalarBasis1DM();
