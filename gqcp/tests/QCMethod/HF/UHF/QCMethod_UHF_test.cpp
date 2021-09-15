@@ -22,6 +22,7 @@
 #include "Basis/SpinorBasis/USpinOrbitalBasis.hpp"
 #include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
+#include "QCMethod/HF/UHF/UHF.hpp"
 #include "QCMethod/HF/UHF/UHFSCFSolver.hpp"
 
 
@@ -123,4 +124,29 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_diis) {
 
     BOOST_CHECK(ref_C.matrix().hasEqualSetsOfEigenvectorsAs(uhf_environment.coefficient_matrices.back().alpha().matrix(), 1.0e-05));
     BOOST_CHECK(ref_C.matrix().hasEqualSetsOfEigenvectorsAs(uhf_environment.coefficient_matrices.back().beta().matrix(), 1.0e-05));
+}
+
+/**
+ *  H3 has the same solution for real and complex UHF. This test checks whether complex UHF succeeds in finding the same solution.  
+ */
+BOOST_AUTO_TEST_CASE(h3_sto3g_complex) {
+
+    // Do our own GHF calculation.
+    const auto molecule = GQCP::Molecule::HRingFromDistance(3, 1.8897259886);  // H3-ring, 1 Angstrom apart.
+
+    const GQCP::USpinOrbitalBasis<GQCP::complex, GQCP::GTOShell> spinor_basis {molecule, "sto-3g"};
+    const auto sq_hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // In an AO basis.
+
+    auto uhf_environment = GQCP::UHFSCFEnvironment<GQCP::complex>::WithComplexlyTransformedCoreGuess(molecule.numberOfElectronPairs() + 1, molecule.numberOfElectronPairs(), sq_hamiltonian, spinor_basis.overlap());
+    auto plain_uhf_scf_solver = GQCP::UHFSCFSolver<GQCP::complex>::Plain(1.0e-04, 1000);
+    const auto qc_structure = GQCP::QCMethod::UHF<GQCP::complex>().optimize(plain_uhf_scf_solver, uhf_environment);
+    auto uhf_ground_state_energy = qc_structure.groundStateEnergy();
+    auto nuc_rep = GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
+
+    std::cout << uhf_ground_state_energy + nuc_rep << std::endl;
+    // Initialize a reference energy. (From the code of @xdvriend.)
+    const double reference_energy = -1.33598;
+
+    // Check if the converged energy matches the reference energy.
+    BOOST_CHECK(std::abs((uhf_ground_state_energy + nuc_rep) - reference_energy) < 1.0e-06);
 }
