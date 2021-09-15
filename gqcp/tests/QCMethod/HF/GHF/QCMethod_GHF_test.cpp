@@ -334,13 +334,12 @@ BOOST_AUTO_TEST_CASE(h3_sto3g_complex) {
     auto ghf_environment = GQCP::GHFSCFEnvironment<GQCP::complex>::WithComplexlyTransformedCoreGuess(molecule.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap());
     auto plain_ghf_scf_solver = GQCP::GHFSCFSolver<GQCP::complex>::Plain(1.0e-04, 1000);
     const auto qc_structure = GQCP::QCMethod::GHF<GQCP::complex>().optimize(plain_ghf_scf_solver, ghf_environment);
-    auto ghf_parameters = qc_structure.groundStateParameters();
     auto ghf_ground_state_energy = qc_structure.groundStateEnergy();
     auto nuc_rep = GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
 
-    // Initialize a reference energy.
+    // Initialize a reference energy. (From the code of @xdvriend.)
     const double reference_energy = -1.34044;
 
-    // Both external stability subcases are checked individually as well.
+    // Check if the converged energy matches the reference energy.
     BOOST_CHECK(std::abs((ghf_ground_state_energy + nuc_rep) - reference_energy) < 1.0e-08);
 }
