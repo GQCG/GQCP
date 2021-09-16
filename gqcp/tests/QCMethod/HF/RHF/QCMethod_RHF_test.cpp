@@ -360,7 +360,7 @@ BOOST_AUTO_TEST_CASE(h2_631gdp_diis) {
  *  The real RHF solution of a equilateral H_4 ring is internally stable, but externally unstable, both real->complex and restricted->unrestricted. (As confirmed by the implementation of @xdvriend.)
  *  This test checks whether the lower lying complex RHF solution can indeed be found.
  */
-BOOST_AUTO_TEST_CASE(h4_sto3g_complex) {
+BOOST_AUTO_TEST_CASE(h4_ccpvdz_complex) {
 
     // Do our own RHF calculation.
     const auto molecule = GQCP::Molecule::HRingFromDistance(4, 1.8897259886);  // H4-ring, 1 Angstrom apart.
