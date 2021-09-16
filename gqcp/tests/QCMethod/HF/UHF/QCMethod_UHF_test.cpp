@@ -143,7 +143,6 @@ BOOST_AUTO_TEST_CASE(h3_sto3g_complex) {
     auto uhf_ground_state_energy = qc_structure.groundStateEnergy();
     auto nuc_rep = GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
 
-    std::cout << uhf_ground_state_energy + nuc_rep << std::endl;
     // Initialize a reference energy. (From the code of @xdvriend.)
     const double reference_energy = -1.33598;
 
