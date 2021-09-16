@@ -341,5 +341,5 @@ BOOST_AUTO_TEST_CASE(h3_sto3g_complex) {
     const double reference_energy = -1.34044;
 
     // Check if the converged energy matches the reference energy.
-    BOOST_CHECK(std::abs((ghf_ground_state_energy + nuc_rep) - reference_energy) < 1.0e-08);
+    BOOST_CHECK(std::abs((ghf_ground_state_energy + nuc_rep) - reference_energy) < 1.0e-06);
 }
