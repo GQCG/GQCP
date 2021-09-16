@@ -357,7 +357,7 @@ BOOST_AUTO_TEST_CASE(h2_631gdp_diis) {
 }
 
 /**
- *  The RHF solution of a equilateral H_4 ring is internally stable, but externally unstable. (As confirmed by the implementation of @xdvriend.)
+ *  The real RHF solution of a equilateral H_4 ring is internally stable, but externally unstable, both real->complex and restricted->unrestricted. (As confirmed by the implementation of @xdvriend.)
  *  This test checks whether the lower lying complex RHF solution can indeed be found.
  */
 BOOST_AUTO_TEST_CASE(h4_sto3g_complex) {
@@ -376,8 +376,9 @@ BOOST_AUTO_TEST_CASE(h4_sto3g_complex) {
     auto rhf_ground_state_energy = qc_structure.groundStateEnergy();
     auto nuc_rep = GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
 
+    // Initialize a reference energy. (From the code of @xdvriend.)
     const double reference_energy = -1.95675;
 
-    // Both external stability subcases are checked individually as well.
+    // Check if the converged energy matches the reference energy.
     BOOST_CHECK(std::abs((rhf_ground_state_energy + nuc_rep) - reference_energy) < 1.0e-06);
 }
