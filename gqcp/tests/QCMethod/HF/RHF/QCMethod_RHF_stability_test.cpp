@@ -70,7 +70,7 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_stability) {
 BOOST_AUTO_TEST_CASE(h4_sto3g_stability) {
 
     // Do our own RHF calculation.
-    const auto molecule = GQCP::Molecule::HRingFromDistance(4, 1.0);  // H3-triangle, 1 bohr apart.
+    const auto molecule = GQCP::Molecule::HRingFromDistance(4, 1.0);  // H4-ring, 1 bohr apart.
 
     const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "6-31G"};
     const auto sq_hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // In an AO basis.

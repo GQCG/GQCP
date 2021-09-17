@@ -25,6 +25,7 @@
 #include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF/RHF.hpp"
 #include "QCMethod/HF/RHF/RHFSCFSolver.hpp"
+#include "Utilities/complex.hpp"
 
 
 /**
@@ -353,4 +354,31 @@ BOOST_AUTO_TEST_CASE(h2_631gdp_diis) {
 
     // Check the electronic energy.
     BOOST_CHECK(std::abs(rhf_environment.electronic_energies.back() - ref_electronic_energy) < 1.0e-06);
+}
+
+/**
+ *  The real RHF solution of a equilateral H_4 ring is internally stable, but externally unstable, both real->complex and restricted->unrestricted. (As confirmed by the implementation of @xdvriend.)
+ *  This test checks whether the lower lying complex RHF solution can indeed be found.
+ */
+BOOST_AUTO_TEST_CASE(h4_ccpvdz_complex) {
+
+    // Do our own RHF calculation.
+    const auto molecule = GQCP::Molecule::HRingFromDistance(4, 1.8897259886);  // H4-ring, 1 Angstrom apart.
+
+    const GQCP::RSpinOrbitalBasis<GQCP::complex, GQCP::GTOShell> spinor_basis {molecule, "cc-pvdz"};
+    const auto sq_hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // In an AO basis.
+    const GQCP::DiagonalRHFFockMatrixObjective<GQCP::complex> objective {sq_hamiltonian, 1.0e-04};
+
+    auto rhf_environment = GQCP::RHFSCFEnvironment<GQCP::complex>::WithComplexlyTransformedCoreGuess(molecule.numberOfElectrons(), sq_hamiltonian, spinor_basis.overlap());
+    auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<GQCP::complex>::Plain(1.0e-04, 1000);
+    const auto qc_structure = GQCP::QCMethod::RHF<GQCP::complex>().optimize(objective, plain_rhf_scf_solver, rhf_environment);
+    auto rhf_parameters = qc_structure.groundStateParameters();
+    auto rhf_ground_state_energy = qc_structure.groundStateEnergy();
+    auto nuc_rep = GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
+
+    // Initialize a reference energy. (From the code of @xdvriend.)
+    const double reference_energy = -1.95675;
+
+    // Check if the converged energy matches the reference energy.
+    BOOST_CHECK(std::abs((rhf_ground_state_energy + nuc_rep) - reference_energy) < 1.0e-06);
 }
