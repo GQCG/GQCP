@@ -28,7 +28,7 @@ namespace GQCP {
 
 
 /**
- *  A spin unresolved operator string.
+ *  A spin-unresolved operator string.
 
  *  A spin unresolved operator string represents a string of either annihilation or creation operators by its indices and a corresponding phase factor p.
  *  For example, an operator string represented by indices <1, 2, 3> represents either:
@@ -79,8 +79,7 @@ public:
      *  @param onv                The `SpinUnresolvedONV` encapsulating the operator indices of the ONV.
      */
     SpinUnresolvedOperatorString(const SpinUnresolvedONV& onv) :
-        indices {onv.occupiedIndices()},
-        p {1} {};
+        SpinUnresolvedOperatorString(onv.occupiedIndices()) {};
 
 
     /*
@@ -102,21 +101,7 @@ public:
      *
      *  Note: There are different cases when an operator string will result in a zero value. This method checks all of them.
      */
-    bool isZero() const {
-
-        // Check if the same index appears more than once in the operator string.
-        // Start by initializing a copy of the index vector associated with the operator string.
-        auto index_vector = this->operatorIndices();
-
-        // Since the operator string represents either only annihilation or creation operators, repetition of an index means that that index will be annihilated or created twice in any ONV following the operator string, which will automatically result in zero.
-        // We will use the std::unique function to check this condition. `std::unique` needs a sorted vector and removes all but the first instance of any unique group of elements. It then returns a sequence that's not necessarily equal to the original vector, as duplicate values are removed. Full explanation can be found here: https://stackoverflow.com/questions/46477764/check-stdvector-has-duplicates/46477901.
-        sort(index_vector.begin(), index_vector.end());
-        auto iterator = std::unique(index_vector.begin(), index_vector.end());
-
-        // If nothing was removed by `std::unique`, i.e. all indices were unique, the return value of the iterator shall equal the last value of the vector.
-        // Since the operator string will not be zero in this case, we must return false.
-        return (iterator != index_vector.end());
-    }
+    bool isZero() const;
 };
 
 

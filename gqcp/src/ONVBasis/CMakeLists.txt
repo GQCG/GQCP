@@ -3,8 +3,10 @@ target_sources(gqcp
         SeniorityZeroONVBasis.cpp
         SpinResolvedONV.cpp
         SpinResolvedONVBasis.cpp
+        SpinResolvedOperatorString.cpp
         SpinResolvedSelectedONVBasis.cpp
         SpinUnresolvedONV.cpp
         SpinUnresolvedONVBasis.cpp
+        SpinUnresolvedOperatorString.cpp
         SpinUnresolvedSelectedONVBasis.cpp
 )

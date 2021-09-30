@@ -50,6 +50,17 @@ BOOST_AUTO_TEST_CASE(test_resolved_constructor) {
 }
 
 
+BOOST_AUTO_TEST_CASE(test_unresolved_onv_constructor) {
+
+    const GQCP::SpinUnresolvedONV onv {4, 2, 5};
+    const GQCP::SpinUnresolvedOperatorString operator_string {onv};
+
+    const std::vector<size_t> correct_indices = {0, 2};
+
+    BOOST_CHECK_EQUAL_COLLECTIONS(operator_string.operatorIndices().begin(), operator_string.operatorIndices().end(), correct_indices.begin(), correct_indices.end());
+}
+
+
 /**
  *  Check whether the SpinUnresolvedOperatorString stores its information correctly.
  */
@@ -89,6 +100,7 @@ BOOST_AUTO_TEST_CASE(test_unresolved_isZero) {
     BOOST_CHECK_EQUAL(operator_string_2.isZero(), true);
 }
 
+
 /**
  *  Check whether the SpinResolvedOperatorString stores its information correctly.
  */
@@ -111,6 +123,7 @@ BOOST_AUTO_TEST_CASE(test_resolved_indices_spins) {
     BOOST_CHECK_EQUAL_COLLECTIONS(indices.begin(), indices.end(), operator_string_indices.begin(), operator_string_indices.end());
     BOOST_CHECK_EQUAL_COLLECTIONS(spins.begin(), spins.end(), operator_string_spins.begin(), operator_string_spins.end());
 }
+
 
 /**
  *  Check whether the SpinResolvedOperatorString can be correctly `SpinResolved` in its alpha and beta component, with the correct phase factors.
@@ -157,6 +170,7 @@ BOOST_AUTO_TEST_CASE(test_spin_resolve) {
     BOOST_CHECK_EQUAL(reference_phase_factor, spin_resolved_operator_string.alpha().phaseFactor());
 }
 
+
 /**
  *  Check whether the SpinResolvedOperatorString can be correctly `SpinResolved` in its alpha and beta component, with the correct phase factors.
  */
@@ -199,6 +213,7 @@ BOOST_AUTO_TEST_CASE(test_spin_resolve_2) {
     BOOST_CHECK_EQUAL_COLLECTIONS(beta_indices.begin(), beta_indices.end(), beta_operator_string_indices.begin(), beta_operator_string_indices.end());
     BOOST_CHECK_EQUAL(reference_phase_factor, spin_resolved_operator_string.alpha().phaseFactor());
 }
+
 
 /**
  *  Check whether the SpinResolvedOperatorString can be correctly `SpinResolved` in its alpha and beta component, with the correct phase factors.

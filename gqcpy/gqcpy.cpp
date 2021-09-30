@@ -128,6 +128,7 @@ void bindSpinResolvedONV(py::module& module);
 void bindSpinResolvedONVBasis(py::module& module);
 void bindSpinResolvedSelectedONVBasis(py::module& module);
 void bindSpinUnresolvedONV(py::module& module);
+void bindSpinUnresolvedOperatorString(py::module& module);
 void bindSpinUnresolvedONVBasis(py::module& module);
 void bindSpinUnresolvedSelectedONVBasis(py::module& module);
 
@@ -376,6 +377,7 @@ PYBIND11_MODULE(gqcpy, module) {
     gqcpy::bindSpinResolvedONVBasis(module);
     gqcpy::bindSpinResolvedSelectedONVBasis(module);
     gqcpy::bindSpinUnresolvedONV(module);
+    gqcpy::bindSpinUnresolvedOperatorString(module);
     gqcpy::bindSpinUnresolvedONVBasis(module);
     gqcpy::bindSpinUnresolvedSelectedONVBasis(module);
 
