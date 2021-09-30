@@ -18,6 +18,8 @@
 #pragma once
 
 
+#include "ONVBasis/SpinUnresolvedONV.hpp"
+
 #include <iterator>
 #include <vector>
 
@@ -69,6 +71,16 @@ public:
     SpinUnresolvedOperatorString(const std::vector<size_t>& index_vector, const int phase_factor) :
         indices {index_vector},
         p {phase_factor} {};
+
+
+    /**
+     *  Construct a `SpinUnresolvedOperatorString` from the occupied indices of a `SpinUnresolvedONV`.
+     * 
+     *  @param onv                The `SpinUnresolvedONV` encapsulating the operator indices of the ONV.
+     */
+    SpinUnresolvedOperatorString(const SpinUnresolvedONV& onv) :
+        indices {onv.occupiedIndices()},
+        p {1} {};
 
 
     /*
