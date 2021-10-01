@@ -30,7 +30,7 @@
 BOOST_AUTO_TEST_CASE(test_unresolved_onv_constructor) {
 
     const GQCP::SpinUnresolvedONV onv {4, 2, 5};  // "1010"
-    const GQCP::SpinUnresolvedOperatorString operator_string {onv};
+    const GQCP::SpinUnresolvedOperatorString operator_string = GQCP::SpinUnresolvedOperatorString::FromONV(onv);
 
     const std::vector<size_t> correct_indices = {0, 2};
 
@@ -74,12 +74,23 @@ BOOST_AUTO_TEST_CASE(test_resolved_onv_constructor) {
     const GQCP::SpinUnresolvedONV onv_beta {4, 2, 10};  //  "0101"
     const GQCP::SpinResolvedONV onv {onv_alpha, onv_beta};
 
-    const GQCP::SpinResolvedOperatorString operator_string {onv};
-    const std::vector<size_t> correct_indices = {0, 2, 1, 4};                                                                  // First the indices of the alpha operator string, then those of the beta operator string.
+    std::cout << "\nonv_alpha indices" << std::endl;
+    for (const size_t& i : onv.onv(GQCP::Spin::alpha).occupiedIndices()) {
+        std::cout << i << "\t";
+    }
+    std::cout << "\nonv_beta indices" << std::endl;
+    for (const size_t& i : onv.onv(GQCP::Spin::beta).occupiedIndices()) {
+        std::cout << i << "\t";
+    }
+
+    const GQCP::SpinResolvedOperatorString operator_string = GQCP::SpinResolvedOperatorString::FromONV(onv);
+    const auto operator_indices = operator_string.operatorIndices();
+    const auto operator_spins = operator_string.operatorSpins();
+    const std::vector<size_t> correct_indices = {0, 2, 1, 3};                                                                  // First the indices of the alpha operator string, then those of the beta operator string.
     const std::vector<GQCP::Spin> correct_spins = {GQCP::Spin::alpha, GQCP::Spin::alpha, GQCP::Spin::beta, GQCP::Spin::beta};  // First the alpha spins, then the beta spins.
 
-    BOOST_CHECK_EQUAL_COLLECTIONS(operator_string.operatorIndices().begin(), operator_string.operatorIndices().end(), correct_indices.begin(), correct_indices.end());
-    BOOST_CHECK_EQUAL_COLLECTIONS(operator_string.operatorSpins().begin(), operator_string.operatorSpins().end(), correct_spins.begin(), correct_spins.end());
+    BOOST_CHECK_EQUAL_COLLECTIONS(operator_indices.begin(), operator_indices.end(), correct_indices.begin(), correct_indices.end());
+    BOOST_CHECK_EQUAL_COLLECTIONS(operator_spins.begin(), operator_spins.end(), correct_spins.begin(), correct_spins.end());
 }
 
 

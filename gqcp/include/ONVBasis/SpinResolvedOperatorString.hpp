@@ -62,18 +62,21 @@ public:
     SpinResolvedOperatorString(const std::vector<size_t>& index_vector, const std::vector<Spin>& spin_vector);
 
 
-    SpinResolvedOperatorString(const SpinResolvedONV& onv) {
+    /*
+     * MARK: Named constructors
+     */
+
+    static SpinResolvedOperatorString FromONV(const SpinResolvedONV& onv) {
 
         const auto& onv_alpha = onv.onv(Spin::alpha);
         const auto& onv_beta = onv.onv(Spin::beta);
 
         std::vector<size_t> index_vector = onv_alpha.occupiedIndices();
         index_vector.insert(index_vector.end(), onv_beta.occupiedIndices().begin(), onv_beta.occupiedIndices().end());
-
-        std::vector<Spin> spin_vector(onv_alpha.numberOfElectrons(), Spin::alpha);
+        std::vector<Spin> spin_vector {onv_alpha.numberOfElectrons(), Spin::alpha};
         spin_vector.insert(spin_vector.end(), onv_beta.numberOfElectrons(), Spin::beta);
 
-        SpinResolvedOperatorString(index_vector, spin_vector);
+        return SpinResolvedOperatorString(index_vector, spin_vector);
     }
 
 
@@ -91,6 +94,11 @@ public:
      *  Retrieve the operator spins from the `SpinResolvedOperatorString`.
      */
     std::vector<Spin> operatorSpins() const;
+
+    /**
+     *  Retrieve the number of operators in the `SpinResolvedOperatorString`.
+     */
+    size_t size() const { return this->index_spin_pairs.size(); }
 
 
     /*

@@ -40,8 +40,12 @@ void bindSpinUnresolvedOperatorString(py::module& module) {
              py::arg("index_vector"),
              py::arg("phase_factor"))
 
-        .def(py::init<const GQCP::SpinUnresolvedONV&>(),
-             py::arg("onv"))
+        // NAMED CONSTRUCTORS
+
+        .def_static(
+            "FromONV",
+            &SpinUnresolvedOperatorString::FromONV,
+            py::arg("onv"))
 
         // PUBLIC METHODS
 

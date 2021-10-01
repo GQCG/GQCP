@@ -46,10 +46,8 @@ SpinResolvedOperatorString::SpinResolvedOperatorString(const std::vector<size_t>
     // Create the pairs and fill the pair vector.
     for (int i = 0; i < index_vector.size(); i++) {
         auto pair = std::pair<size_t, Spin> {index_vector[i], spin_vector[i]};
-        pair_vector.push_back(pair);
+        this->index_spin_pairs.push_back(pair);
     }
-
-    this->index_spin_pairs = pair_vector;
 }
 
 
@@ -64,7 +62,10 @@ std::vector<size_t> SpinResolvedOperatorString::operatorIndices() const {
     // For each pair in the operator string, save the index and return the vector containing them.
     auto index_vector = std::vector<size_t> {};
 
+    std::cout << "this pair vector size: " << this->index_spin_pairs.size() << std::endl;
+
     for (int i = 0; i < this->index_spin_pairs.size(); i++) {
+        std::cout << "pair: " << index_spin_pairs[i].first << "   " << index_spin_pairs[i].second << std::endl;
         index_vector.push_back(this->index_spin_pairs[i].first);
     }
 

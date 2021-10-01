@@ -73,13 +73,16 @@ public:
         p {phase_factor} {};
 
 
+    /*
+     * MARK: Named constructors
+     */
+
     /**
      *  Construct a `SpinUnresolvedOperatorString` from the occupied indices of a `SpinUnresolvedONV`.
      * 
      *  @param onv                The `SpinUnresolvedONV` encapsulating the operator indices of the ONV.
      */
-    SpinUnresolvedOperatorString(const SpinUnresolvedONV& onv) :
-        SpinUnresolvedOperatorString(onv.occupiedIndices()) {};
+    static SpinUnresolvedOperatorString FromONV(const SpinUnresolvedONV& onv) { return SpinUnresolvedOperatorString(onv.occupiedIndices()); };
 
 
     /*
