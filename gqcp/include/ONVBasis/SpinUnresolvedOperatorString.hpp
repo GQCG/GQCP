@@ -105,6 +105,11 @@ public:
      *  Note: There are different cases when an operator string will result in a zero value. This method checks all of them.
      */
     bool isZero() const;
+
+
+    /*
+     *  MARK: Public methods
+     */
 };
 
 

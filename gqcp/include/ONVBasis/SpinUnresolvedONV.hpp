@@ -85,7 +85,7 @@ public:
      *  @param occupied_indices             The indices that the electrons occupy, in order: e.g. the i-th element describes the spinor that the i-th electron occupies.
      *  @param M                            The total number of spinors.
      * 
-     *  @return A spin-resolved ONV from a set of occupied indices.
+     *  @return A spin-unresolved ONV from a set of occupied indices.
      */
     static SpinUnresolvedONV FromOccupiedIndices(const std::vector<size_t>& occupied_indices, const size_t M);
 
@@ -351,6 +351,9 @@ public:
      *       543210
      */
     size_t slice(const size_t index_start, const size_t index_end) const;
+
+
+    std::vector<SpinUnresolvedONV> splitIntoTwoSubsystems(const std::vector<std::vector<size_t>>& indices) const;
 
     /**
      *  @return The unsigned representation of this spin-unresolved ONV.

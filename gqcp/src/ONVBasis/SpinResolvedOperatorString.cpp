@@ -51,6 +51,20 @@ SpinResolvedOperatorString::SpinResolvedOperatorString(const std::vector<size_t>
 }
 
 
+SpinResolvedOperatorString SpinResolvedOperatorString::FromONV(const SpinResolvedONV& onv) {
+
+    const auto& onv_alpha = onv.onv(Spin::alpha);
+    const auto& onv_beta = onv.onv(Spin::beta);
+
+    std::vector<size_t> index_vector = onv_alpha.occupiedIndices();
+    index_vector.insert(index_vector.end(), onv_beta.occupiedIndices().begin(), onv_beta.occupiedIndices().end());
+    std::vector<Spin> spin_vector {onv_alpha.numberOfElectrons(), Spin::alpha};
+    spin_vector.insert(spin_vector.end(), onv_beta.numberOfElectrons(), Spin::beta);
+
+    return SpinResolvedOperatorString(index_vector, spin_vector);
+}
+
+
 /*
 *  MARK: General information
 */
@@ -62,10 +76,7 @@ std::vector<size_t> SpinResolvedOperatorString::operatorIndices() const {
     // For each pair in the operator string, save the index and return the vector containing them.
     auto index_vector = std::vector<size_t> {};
 
-    std::cout << "this pair vector size: " << this->index_spin_pairs.size() << std::endl;
-
     for (int i = 0; i < this->index_spin_pairs.size(); i++) {
-        std::cout << "pair: " << index_spin_pairs[i].first << "   " << index_spin_pairs[i].second << std::endl;
         index_vector.push_back(this->index_spin_pairs[i].first);
     }
 

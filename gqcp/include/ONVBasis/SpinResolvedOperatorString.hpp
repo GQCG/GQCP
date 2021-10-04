@@ -66,18 +66,7 @@ public:
      * MARK: Named constructors
      */
 
-    static SpinResolvedOperatorString FromONV(const SpinResolvedONV& onv) {
-
-        const auto& onv_alpha = onv.onv(Spin::alpha);
-        const auto& onv_beta = onv.onv(Spin::beta);
-
-        std::vector<size_t> index_vector = onv_alpha.occupiedIndices();
-        index_vector.insert(index_vector.end(), onv_beta.occupiedIndices().begin(), onv_beta.occupiedIndices().end());
-        std::vector<Spin> spin_vector {onv_alpha.numberOfElectrons(), Spin::alpha};
-        spin_vector.insert(spin_vector.end(), onv_beta.numberOfElectrons(), Spin::beta);
-
-        return SpinResolvedOperatorString(index_vector, spin_vector);
-    }
+    static SpinResolvedOperatorString FromONV(const SpinResolvedONV& onv);
 
 
     /*

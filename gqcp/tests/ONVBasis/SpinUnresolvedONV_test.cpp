@@ -688,6 +688,19 @@ BOOST_AUTO_TEST_CASE(unoccupiedIndices) {
 }
 
 
+BOOST_AUTO_TEST_CASE(splitIntoTwoSubsustems) {
+
+    const GQCP::SpinUnresolvedONV onv {6, 3, 13};  // "101100"
+
+    const std::vector<size_t> system_i {0, 1, 4};
+    const std::vector<size_t> system_j {2, 3, 5};
+    const std::vector<std::vector<size_t>> indices {system_i, system_j};
+    const auto subsystems = onv.splitIntoTwoSubsystems(indices);
+
+    BOOST_CHECK(subsystems[0].asString() == "001" && subsystems[1].asString() == "011");
+}
+
+
 /**
  *  Check if the overlap between a two GHF-related ONVs works as expected.
  *

@@ -34,7 +34,7 @@ namespace GQCP {
 
 /**
  *  @param M                                The number of spinors that this ONV is expressed in.
- *  @param N                                The number of electrons that appear in this ONV, i.e. the number of spinor that is occupied.
+ *  @param N                                The number of electrons that appear in this ONV, i.e. the number of spinors that is occupied.
  *  @param unsigned_representation          The representation of this ONV as an unsigned integer.
  */
 SpinUnresolvedONV::SpinUnresolvedONV(const size_t M, const size_t N, const size_t unsigned_representation) :
@@ -49,7 +49,7 @@ SpinUnresolvedONV::SpinUnresolvedONV(const size_t M, const size_t N, const size_
  *  Construct a SpinResolvedONV ONV without an unsigned representation.
  *
  *  @param M                The number of spinors that this ONV is expressed in.
- *  @param N                The number of electrons that appear in this ONV, i.e. the number of spinor that is occupied.
+ *  @param N                The number of electrons that appear in this ONV, i.e. the number of spinors that is occupied.
  */
 SpinUnresolvedONV::SpinUnresolvedONV(const size_t M, const size_t N) :
     M {M},
@@ -531,7 +531,7 @@ void SpinUnresolvedONV::forEach(const std::function<void(const size_t, const siz
 bool SpinUnresolvedONV::isOccupied(const size_t p) const {
 
     if (p > this->M - 1) {
-        throw std::invalid_argument("SpinUnresolvedONV::isOccupied(size_t): The index is out of the bitset bounds");
+        throw std::invalid_argument("SpinUnresolvedONV::isOccupied(size_t): The index is out of the bitset bounds.");
     }
 
     const size_t operator_string = 1U << p;
@@ -628,6 +628,27 @@ size_t SpinUnresolvedONV::slice(const size_t index_start, const size_t index_end
 
     // Use the mask.
     return u & mask;
+}
+
+
+std::vector<SpinUnresolvedONV> SpinUnresolvedONV::splitIntoTwoSubsystems(const std::vector<std::vector<size_t>>& indices) const {
+
+    // TO DO: Check if both systems do not have the same indices.
+
+    std::vector<SpinUnresolvedONV> subsystems;
+
+    for (int i = 0; i <= 1; ++i) {  // Iterate over the two systems.
+
+        std::string bitstring = "";
+        for (auto it = indices[i].rbegin(); it != indices[i].rend(); ++it) {
+            bitstring += std::to_string(this->isOccupied(*it));
+        }
+
+        const auto onv = this->FromString(bitstring);
+        subsystems.push_back(onv);
+    }
+
+    return subsystems;
 }
 
 
