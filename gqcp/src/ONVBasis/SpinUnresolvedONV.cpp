@@ -631,27 +631,6 @@ size_t SpinUnresolvedONV::slice(const size_t index_start, const size_t index_end
 }
 
 
-std::vector<SpinUnresolvedONV> SpinUnresolvedONV::splitIntoTwoSubsystems(const std::vector<std::vector<size_t>>& indices) const {
-
-    // TO DO: Check if both systems do not have the same indices.
-
-    std::vector<SpinUnresolvedONV> subsystems;
-
-    for (int i = 0; i <= 1; ++i) {  // Iterate over the two systems.
-
-        std::string bitstring = "";
-        for (auto it = indices[i].rbegin(); it != indices[i].rend(); ++it) {
-            bitstring += std::to_string(this->isOccupied(*it));
-        }
-
-        const auto onv = this->FromString(bitstring);
-        subsystems.push_back(onv);
-    }
-
-    return subsystems;
-}
-
-
 /**
  *  @return The spinor indices that are not occupied in this ONV.
  */

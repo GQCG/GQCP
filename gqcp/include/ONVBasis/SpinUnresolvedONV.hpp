@@ -353,8 +353,6 @@ public:
     size_t slice(const size_t index_start, const size_t index_end) const;
 
 
-    std::vector<SpinUnresolvedONV> splitIntoTwoSubsystems(const std::vector<std::vector<size_t>>& indices) const;
-
     /**
      *  @return The unsigned representation of this spin-unresolved ONV.
      */

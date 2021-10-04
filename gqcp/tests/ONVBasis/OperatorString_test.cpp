@@ -126,6 +126,35 @@ BOOST_AUTO_TEST_CASE(test_unresolved_isZero) {
 }
 
 
+BOOST_AUTO_TEST_CASE(test_unresolved_sorting) {
+
+    std::vector<size_t> indices1 = {1, 7, 4, 8};
+    std::vector<size_t> indices2 = {7, 4, 8, 1};
+    std::vector<size_t> indices3 = {1, 4, 7, 8};
+
+    std::vector<size_t> indices_correct_order = {1, 4, 7, 8};
+
+    GQCP::SpinUnresolvedOperatorString operator_string1 {indices1};
+    GQCP::SpinUnresolvedOperatorString operator_string2 {indices2};
+    GQCP::SpinUnresolvedOperatorString operator_string3 {indices3};
+
+    BOOST_CHECK_EQUAL(operator_string1.phaseFactorAfterSorting(), -1);
+    BOOST_CHECK_EQUAL(operator_string2.phaseFactorAfterSorting(), 1);
+    BOOST_CHECK_EQUAL(operator_string3.phaseFactorAfterSorting(), 1);
+
+    operator_string1.sortAscending();
+    operator_string2.sortAscending();
+    operator_string3.sortAscending();
+
+    BOOST_CHECK_EQUAL_COLLECTIONS(operator_string1.operatorIndices().begin(), operator_string1.operatorIndices().end(), indices_correct_order.begin(), indices_correct_order.end());
+    BOOST_CHECK_EQUAL_COLLECTIONS(operator_string2.operatorIndices().begin(), operator_string2.operatorIndices().end(), indices_correct_order.begin(), indices_correct_order.end());
+    BOOST_CHECK_EQUAL_COLLECTIONS(operator_string3.operatorIndices().begin(), operator_string3.operatorIndices().end(), indices_correct_order.begin(), indices_correct_order.end());
+    BOOST_CHECK_EQUAL(operator_string1.phaseFactor(), -1);
+    BOOST_CHECK_EQUAL(operator_string2.phaseFactor(), 1);
+    BOOST_CHECK_EQUAL(operator_string3.phaseFactor(), 1);
+}
+
+
 /**
  *  Check whether the SpinResolvedOperatorString stores its information correctly.
  */

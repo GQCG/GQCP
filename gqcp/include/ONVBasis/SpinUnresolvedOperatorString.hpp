@@ -110,6 +110,9 @@ public:
     /*
      *  MARK: Public methods
      */
+    int phaseFactorAfterSorting();
+
+    void sortAscending();
 };
 
 

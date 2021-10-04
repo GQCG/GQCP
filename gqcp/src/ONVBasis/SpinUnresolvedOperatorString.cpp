@@ -38,12 +38,43 @@ bool SpinUnresolvedOperatorString::isZero() const {
 
     // Since the operator string represents either only annihilation or creation operators, repetition of an index means that that index will be annihilated or created twice in any ONV following the operator string, which will automatically result in zero.
     // We will use the std::unique function to check this condition. `std::unique` needs a sorted vector and removes all but the first instance of any unique group of elements. It then returns a sequence that's not necessarily equal to the original vector, as duplicate values are removed. Full explanation can be found here: https://stackoverflow.com/questions/46477764/check-stdvector-has-duplicates/46477901.
-    sort(index_vector.begin(), index_vector.end());
+    std::sort(index_vector.begin(), index_vector.end());
     auto iterator = std::unique(index_vector.begin(), index_vector.end());
 
     // If nothing was removed by `std::unique`, i.e. all indices were unique, the return value of the iterator shall equal the last value of the vector.
     // Since the operator string will not be zero in this case, we must return false.
     return (iterator != index_vector.end());
+}
+
+
+/*
+*  MARK: Public methods
+*/
+
+int SpinUnresolvedOperatorString::phaseFactorAfterSorting() {
+
+    auto index_vector = this->operatorIndices();
+    const auto number_of_occupied_spinors = index_vector.size();
+    int phase_factor = 1;
+
+    for (int i = 0; i < number_of_occupied_spinors; ++i) {
+
+        for (int j = i; j >= 0; --j) {
+            if (index_vector[j] > index_vector[i]) {
+                phase_factor *= -1;
+            }
+        }
+    }
+    return phase_factor;
+}
+
+
+void SpinUnresolvedOperatorString::sortAscending() {
+
+    const auto phase_factor = this->phaseFactorAfterSorting();
+
+    std::sort(this->indices.begin(), this->indices.end());
+    this->p *= phase_factor;
 }
 
 
