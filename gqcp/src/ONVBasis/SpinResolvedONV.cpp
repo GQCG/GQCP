@@ -28,8 +28,8 @@ namespace GQCP {
  */
 
 /**
- *  @param onv_alpha                the ONV that describes the occupations of the alpha spin-orbitals
- *  @param onv_beta                 the ONV that describes the occupations of the beta spin-orbitals
+ *  @param onv_alpha                The ONV that describes the occupations of the alpha spin-orbitals.
+ *  @param onv_beta                 The ONV that describes the occupations of the beta spin-orbitals.
  */
 SpinResolvedONV::SpinResolvedONV(const SpinUnresolvedONV& onv_alpha, const SpinUnresolvedONV& onv_beta) :
     onv_alpha {onv_alpha},
@@ -41,9 +41,9 @@ SpinResolvedONV::SpinResolvedONV(const SpinUnresolvedONV& onv_alpha, const SpinU
  */
 
 /**
- *  @param other    the other spin-resolved ONV
+ *  @param other    The other spin-resolved ONV.
  *
- *  @return if this spin-resolved ONV is the same as the other spin-resolved ONV
+ *  @return If this spin-resolved ONV is the same as the other spin-resolved ONV.
  */
 bool SpinResolvedONV::operator==(const SpinResolvedONV& other) const {
 
@@ -52,9 +52,9 @@ bool SpinResolvedONV::operator==(const SpinResolvedONV& other) const {
 
 
 /**
- *  @param other    the other spin-resolved ONV
+ *  @param other    The other spin-resolved ONV.
  *
- *  @return if this spin-resolved ONV is not the same as the other spin-resolved ONV
+ *  @return If this spin-resolved ONV is not the same as the other spin-resolved ONV.
  */
 bool SpinResolvedONV::operator!=(const SpinResolvedONV& other) const {
 
@@ -69,8 +69,8 @@ bool SpinResolvedONV::operator!=(const SpinResolvedONV& other) const {
 /**
  *  Create a spin-resolved ONV from textual/string representations.
  * 
- *  @param string_representation_alpha              the textual representation of the alpha-part of the spin-resolved ONV, for example "0011", indicating that the first two alpha-spin-orbitals should be occupied
- *  @param string_representation_beta               the textual representation of the beta-part of the spin-resolved ONV, for example "0011", indicating that the first two beta-spin-orbitals should be occupied
+ *  @param string_representation_alpha              The textual representation of the alpha-part of the spin-resolved ONV, for example "0011", indicating that the first two alpha-spin-orbitals should be occupied.
+ *  @param string_representation_beta               The textual representation of the beta-part of the spin-resolved ONV, for example "0011", indicating that the first two beta-spin-orbitals should be occupied.
  * 
  *  @return a spin-unresolved ONV from textual/string representations.
  */
@@ -86,17 +86,17 @@ SpinResolvedONV SpinResolvedONV::FromString(const std::string& string_representa
 /**
  *  Create a spin-resolved ONV that represents the RHF single Slater determinant, occupying the N_P lowest alpha- and beta-spin-orbitals.
  * 
- *  @param K            the number of spatial orbitals
- *  @param N_P          the number of electron pairs
+ *  @param K            The number of spatial orbitals.
+ *  @param N_P          The number of electron pairs.
  * 
- *  @return a spin-resolved ONV that represents the RHF single Slater determinant
+ *  @return A spin-resolved ONV that represents the RHF single Slater determinant.
  * 
  * @note The ordering of the spin-orbitals is implicit: this method assumes that the spin-orbitals in the corresponding RSpinOrbitalBasis are sorted with increasing one-particle energy.
  */
 SpinResolvedONV SpinResolvedONV::RHF(const size_t K, const size_t N_P) {
 
-    const SpinUnresolvedONVBasis onv_basis {K, N_P};              // a proxy ONV basis
-    const auto sigma_onv = onv_basis.constructONVFromAddress(0);  // address 0 corresponds to the ONV with the right-most orbitals occupied
+    const SpinUnresolvedONVBasis onv_basis {K, N_P};              // A proxy ONV basis.
+    const auto sigma_onv = onv_basis.constructONVFromAddress(0);  // Address 0 corresponds to the ONV with the right-most orbitals occupied.
 
     return SpinResolvedONV(sigma_onv, sigma_onv);
 }
@@ -105,21 +105,21 @@ SpinResolvedONV SpinResolvedONV::RHF(const size_t K, const size_t N_P) {
 /**
  *  Create a spin-resolved ONV that represents the UHF single Slater determinant, occupying the N_alpha lowest alpha-spin-orbitals, and the N_beta lowest beta-spin-orbitals.
  * 
- *  @param K                the number of spatial orbitals
- *  @param N_alpha          the number of alpha-electrons
- *  @param N_beta           the number of beta-electrons
+ *  @param K                The number of spatial orbitals.
+ *  @param N_alpha          The number of alpha-electrons.
+ *  @param N_beta           The number of beta-electrons.
  * 
- *  @return a spin-resolved ONV that represents the UHF single Slater determinant
+ *  @return A spin-resolved ONV that represents the UHF single Slater determinant.
  * 
  * @note The ordering of the spin-orbitals is implicit: this method assumes that the spin-orbitals in the corresponding USpinOrbitalBasis are sorted with increasing one-particle energy.
  */
 SpinResolvedONV SpinResolvedONV::UHF(const size_t K, const size_t N_alpha, const size_t N_beta) {
 
-    const SpinUnresolvedONVBasis onv_basis_alpha {K, N_alpha};          // a proxy ONV basis for the alpha-electrons
-    const auto alpha_onv = onv_basis_alpha.constructONVFromAddress(0);  // address 0 corresponds to the ONV with the right-most orbitals occupied
+    const SpinUnresolvedONVBasis onv_basis_alpha {K, N_alpha};          // A proxy ONV basis for the alpha-electrons.
+    const auto alpha_onv = onv_basis_alpha.constructONVFromAddress(0);  // Address 0 corresponds to the ONV with the right-most orbitals occupied.
 
-    const SpinUnresolvedONVBasis onv_basis_beta {K, N_beta};          // a proxy ONV basis for the beta-electrons
-    const auto beta_onv = onv_basis_beta.constructONVFromAddress(0);  // address 0 corresponds to the ONV with the right-most orbitals occupied
+    const SpinUnresolvedONVBasis onv_basis_beta {K, N_beta};          // A proxy ONV basis for the beta-electrons.
+    const auto beta_onv = onv_basis_beta.constructONVFromAddress(0);  // Address 0 corresponds to the ONV with the right-most orbitals occupied.
 
     return SpinResolvedONV(alpha_onv, beta_onv);
 }
@@ -131,7 +131,7 @@ SpinResolvedONV SpinResolvedONV::UHF(const size_t K, const size_t N_alpha, const
 
 
 /**
- *  @return a textual representation of this spin-resolved ONV.
+ *  @return A textual representation of this spin-resolved ONV.
  */
 std::string SpinResolvedONV::asString() const {
 
@@ -150,7 +150,7 @@ std::string SpinResolvedONV::asString() const {
  *  @return The overlap element <on|of>.
  * 
  *  @example This method can be used to project UHF-ONVs onto RHF-ONVs, by calling
- *          uhf_onv.calculateProjection(rhf_onv, C_unrestricted, C_restricted, S)
+ *          uhf_onv.calculateProjection(rhf_onv, C_unrestricted, C_restricted, S).
  */
 double SpinResolvedONV::calculateProjection(const SpinResolvedONV& onv_on, const UTransformation<double>& C_unrestricted, const RTransformation<double>& C_restricted, const SquareMatrix<double>& S) const {
 
@@ -187,9 +187,9 @@ double SpinResolvedONV::calculateProjection(const SpinResolvedONV& onv_on, const
 
 
 /**
- *  @param sigma                alpha or beta
+ *  @param sigma                Alpha or beta.
  * 
- *  @return the number of sigma-electrons this spin-resolved ONV describes
+ *  @return The number of sigma-electrons this spin-resolved ONV describes.
  */
 size_t SpinResolvedONV::numberOfElectrons(const Spin sigma) const {
 
@@ -208,9 +208,9 @@ size_t SpinResolvedONV::numberOfElectrons(const Spin sigma) const {
 
 
 /**
- *  @param sigma                alpha or beta
+ *  @param sigma                Alpha or beta.
  * 
- *  @return the number of sigma-spatial orbitals/spin-orbitals that this ONV is expressed with
+ *  @return The number of sigma-spatial orbitals/spin-orbitals that this ONV is expressed with.
  */
 size_t SpinResolvedONV::numberOfSpatialOrbitals(const Spin sigma) const {
 
@@ -229,9 +229,9 @@ size_t SpinResolvedONV::numberOfSpatialOrbitals(const Spin sigma) const {
 
 
 /**
- *  @param sigma                alpha or beta
+ *  @param sigma                Alpha or beta.
  * 
- *  @return the ONV that describes the occupations of the sigma-spin orbitals.
+ *  @return The ONV that describes the occupations of the sigma-spin orbitals.
  */
 const SpinUnresolvedONV& SpinResolvedONV::onv(const Spin sigma) const {
 
