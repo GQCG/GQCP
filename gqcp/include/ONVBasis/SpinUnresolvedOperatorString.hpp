@@ -127,18 +127,18 @@ public:
     int phaseFactorAfterSorting();
 
     /**
-     *  Sort the operator string (in-place) in ascending order and adjust its phase factor.
+     *  Sort the operator string (in-place) in ascending order and adjust its phase factor. If two indices are equal, the phase factor may not be correct but it does not really matter since its effect on a wavefunction is zero.
      */
     void sort();
 
     /**
-     *  Split the `SpinUnresolvedOperatorString` into two new operator strings: a system and an environment.
+     *  Partition the `SpinUnresolvedOperatorString` into two new operator strings: a system and an environment.
      * 
      *  @param partition    The partition of the operator string into a system (denoted by 'I') and an environment (denoted by 'J').
      *  
      *  For example: Operator string "a1a2a4a0a3" is partitioned into system "a1a4a0" and environment "a2a3" by the partition {'I', 'J', 'I', 'I', 'J'}.
      */
-    std::vector<SpinUnresolvedOperatorString> splitIntoSystemAndEnvironment(const std::vector<char>& partition);
+    std::vector<SpinUnresolvedOperatorString> partitionIntoTwoSubsystems(const std::vector<char>& partition);
 };
 
 

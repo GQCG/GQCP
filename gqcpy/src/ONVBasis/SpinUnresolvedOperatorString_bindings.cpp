@@ -18,6 +18,7 @@
 #include "ONVBasis/SpinUnresolvedOperatorString.hpp"
 
 #include <pybind11/pybind11.h>
+#include <pybind11/stl.h>
 
 
 namespace gqcpy {
@@ -70,8 +71,8 @@ void bindSpinUnresolvedOperatorString(py::module& module) {
             "Sort the operator string in ascending order and adjust its phase factor.")
 
         .def(
-            "splitIntoSystemAndEnvironment",
-            &SpinUnresolvedOperatorString::splitIntoSystemAndEnvironment,
+            "partitionIntoTwoSubsystems",
+            &SpinUnresolvedOperatorString::partitionIntoTwoSubsystems,
             "Split the `SpinUnresolvedOperatorString` into two new operator strings: a system and an environment.",
             py::arg("partition"));
 }

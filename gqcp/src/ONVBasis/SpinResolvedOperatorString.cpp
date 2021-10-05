@@ -71,6 +71,8 @@ SpinResolvedOperatorString SpinResolvedOperatorString::FromONV(const SpinResolve
 
 /**
  *  Retrieve the operator indices from the `SpinResolvedOperatorString`.
+ * 
+ *  @return The operator indices as a vector.
  */
 std::vector<size_t> SpinResolvedOperatorString::operatorIndices() const {
     // For each pair in the operator string, save the index and return the vector containing them.
@@ -86,6 +88,8 @@ std::vector<size_t> SpinResolvedOperatorString::operatorIndices() const {
 
 /**
  *  Retrieve the operator spins from the `SpinResolvedOperatorString`.
+ * 
+ *  @return The operator spins as a vector.
  */
 std::vector<Spin> SpinResolvedOperatorString::operatorSpins() const {
     // For each pair in the operator string, save the spin and return the vector containing them.
@@ -104,7 +108,9 @@ std::vector<Spin> SpinResolvedOperatorString::operatorSpins() const {
 */
 
 /**
- *  Return the spin resolved operator string split in its two separate components, one containing the alpha operators, one containing the beta operators. The alpha operator string will recieve the total phase factor assiciated with this action, the phase factor of the beta string will be one.
+ *  Split the spin-resolved operator string into its two separate components, one containing the alpha operators, one containing the beta operators. The alpha operator string will recieve the total phase factor assiciated with this action, the phase factor of the beta string will be one.
+ * 
+ *  @return The two separate components of the spin-resolved operator string.
  */
 SpinResolved<SpinUnresolvedOperatorString> SpinResolvedOperatorString::spinResolve() const {
     // Split pairs in two separate spinUnresolvedOperatorStrings.

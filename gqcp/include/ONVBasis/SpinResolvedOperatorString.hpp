@@ -75,17 +75,23 @@ public:
 
     /**
      *  Retrieve the operator indices from the `SpinResolvedOperatorString`.
+     * 
+     *  @return The operator indices as a vector.
      */
     std::vector<size_t> operatorIndices() const;
 
 
     /**
      *  Retrieve the operator spins from the `SpinResolvedOperatorString`.
+     * 
+     *  @return The operator spins as a vector.
      */
     std::vector<Spin> operatorSpins() const;
 
     /**
      *  Retrieve the number of operators in the `SpinResolvedOperatorString`.
+     *  
+     *  @return The number of operators in this operator string.
      */
     size_t size() const { return this->index_spin_pairs.size(); }
 
@@ -95,7 +101,9 @@ public:
      */
 
     /**
-     *  Return the spin resolved operator string split in its two separate components, one containing the alpha operators, one containing the beta operators. The alpha operator string will recieve the total phase factor assiciated with this action, the phase factor of the beta string will be one.
+     *  Split the spin-resolved operator string into its two separate components, one containing the alpha operators, one containing the beta operators. The alpha operator string will recieve the total phase factor assiciated with this action, the phase factor of the beta string will be one.
+     * 
+     *  @return The two separate components of the spin-resolved operator string.
      */
     SpinResolved<SpinUnresolvedOperatorString> spinResolve() const;
 };
