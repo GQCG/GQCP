@@ -69,12 +69,40 @@ int SpinUnresolvedOperatorString::phaseFactorAfterSorting() {
 }
 
 
-void SpinUnresolvedOperatorString::sortAscending() {
+void SpinUnresolvedOperatorString::sort() {
 
     const auto phase_factor = this->phaseFactorAfterSorting();
 
     std::sort(this->indices.begin(), this->indices.end());
     this->p *= phase_factor;
+}
+
+
+std::vector<SpinUnresolvedOperatorString> SpinUnresolvedOperatorString::splitIntoSystemAndEnvironment(const std::vector<char>& partition) {
+
+    const auto& index_vector = this->operatorIndices();
+
+    std::vector<size_t> index_vector_I;
+    std::vector<size_t> index_vector_J;
+    int phase_factor = this->phaseFactor();
+
+    for (int i = 0; i < index_vector.size(); ++i) {
+
+        if (partition[i] == 'I') {
+            for (int j = i; j >= 0; --j) {
+                if (partition[j] == 'J') {
+                    phase_factor *= -1;
+                }
+            }
+            index_vector_I.push_back(index_vector[i]);
+        } else {
+            index_vector_J.push_back(index_vector[i]);
+        }
+    }
+
+    const SpinUnresolvedOperatorString operator_string_I {index_vector_I, phase_factor};
+    const SpinUnresolvedOperatorString operator_string_J {index_vector_J, 1};
+    return {operator_string_I, operator_string_J};
 }
 
 

@@ -112,7 +112,9 @@ public:
      */
     int phaseFactorAfterSorting();
 
-    void sortAscending();
+    void sort();
+
+    std::vector<SpinUnresolvedOperatorString> splitIntoSystemAndEnvironment(const std::vector<char>& partition);
 };
 
 

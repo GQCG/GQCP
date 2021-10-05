@@ -142,9 +142,9 @@ BOOST_AUTO_TEST_CASE(test_unresolved_sorting) {
     BOOST_CHECK_EQUAL(operator_string2.phaseFactorAfterSorting(), 1);
     BOOST_CHECK_EQUAL(operator_string3.phaseFactorAfterSorting(), 1);
 
-    operator_string1.sortAscending();
-    operator_string2.sortAscending();
-    operator_string3.sortAscending();
+    operator_string1.sort();
+    operator_string2.sort();
+    operator_string3.sort();
 
     BOOST_CHECK_EQUAL_COLLECTIONS(operator_string1.operatorIndices().begin(), operator_string1.operatorIndices().end(), indices_correct_order.begin(), indices_correct_order.end());
     BOOST_CHECK_EQUAL_COLLECTIONS(operator_string2.operatorIndices().begin(), operator_string2.operatorIndices().end(), indices_correct_order.begin(), indices_correct_order.end());
@@ -152,6 +152,35 @@ BOOST_AUTO_TEST_CASE(test_unresolved_sorting) {
     BOOST_CHECK_EQUAL(operator_string1.phaseFactor(), -1);
     BOOST_CHECK_EQUAL(operator_string2.phaseFactor(), 1);
     BOOST_CHECK_EQUAL(operator_string3.phaseFactor(), 1);
+}
+
+
+BOOST_AUTO_TEST_CASE(test_split_into_system_and_environment) {
+
+    std::vector<size_t> indices {0, 2, 3, 1, 5, 4};
+    GQCP::SpinUnresolvedOperatorString operator_string {indices};  // The phase factor is 1 by default.
+
+    std::vector<char> partition1 {'I', 'I', 'J', 'I', 'J', 'J'};
+    GQCP::SpinUnresolvedOperatorString operator_string_I1 {{0, 2, 1}, -1};  // One permutation between the operators from the system (I) and environment (J).
+    GQCP::SpinUnresolvedOperatorString operator_string_J1 {{3, 5, 4}, 1};
+
+    const auto partition_strings1 = operator_string.splitIntoSystemAndEnvironment(partition1);
+
+    BOOST_CHECK_EQUAL_COLLECTIONS(partition_strings1[0].operatorIndices().begin(), partition_strings1[0].operatorIndices().end(), operator_string_I1.operatorIndices().begin(), operator_string_I1.operatorIndices().end());
+    BOOST_CHECK_EQUAL_COLLECTIONS(partition_strings1[1].operatorIndices().begin(), partition_strings1[1].operatorIndices().end(), operator_string_J1.operatorIndices().begin(), operator_string_J1.operatorIndices().end());
+    BOOST_CHECK_EQUAL(partition_strings1[0].phaseFactor(), operator_string_I1.phaseFactor());
+    BOOST_CHECK_EQUAL(partition_strings1[1].phaseFactor(), operator_string_J1.phaseFactor());
+
+    operator_string.sort();                                                       // Phase factor becomes -1 due to three permutations.
+    GQCP::SpinUnresolvedOperatorString operator_string_I1_sorted {{0, 1, 3}, 1};  // The phase factor of the sorting (-1) multiplied by the phase factor of the splitting (-1) becomes 1.
+    GQCP::SpinUnresolvedOperatorString operator_string_J1_sorted {{2, 4, 5}, 1};
+
+    const auto partition_strings1_sorted = operator_string.splitIntoSystemAndEnvironment(partition1);
+
+    BOOST_CHECK_EQUAL_COLLECTIONS(partition_strings1_sorted[0].operatorIndices().begin(), partition_strings1_sorted[0].operatorIndices().end(), operator_string_I1_sorted.operatorIndices().begin(), operator_string_I1_sorted.operatorIndices().end());
+    BOOST_CHECK_EQUAL_COLLECTIONS(partition_strings1_sorted[1].operatorIndices().begin(), partition_strings1_sorted[1].operatorIndices().end(), operator_string_J1_sorted.operatorIndices().begin(), operator_string_J1_sorted.operatorIndices().end());
+    BOOST_CHECK_EQUAL(partition_strings1_sorted[0].phaseFactor(), operator_string_I1_sorted.phaseFactor());
+    BOOST_CHECK_EQUAL(partition_strings1_sorted[1].phaseFactor(), operator_string_I1_sorted.phaseFactor());
 }
 
 
