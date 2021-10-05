@@ -62,7 +62,18 @@ void bindSpinUnresolvedOperatorString(py::module& module) {
         .def(
             "isZero",
             &SpinUnresolvedOperatorString::isZero,
-            "Check whether the operator string in question will result in zero when applied to the wave function.");
+            "Check whether the operator string in question will result in zero when applied to the wave function.")
+
+        .def(
+            "sort",
+            &SpinUnresolvedOperatorString::sort,
+            "Sort the operator string in ascending order and adjust its phase factor.")
+
+        .def(
+            "splitIntoSystemAndEnvironment",
+            &SpinUnresolvedOperatorString::splitIntoSystemAndEnvironment,
+            "Split the `SpinUnresolvedOperatorString` into two new operator strings: a system and an environment.",
+            py::arg("partition"));
 }
 
 

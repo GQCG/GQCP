@@ -91,11 +91,15 @@ public:
 
     /**
      *  Retrieve the operator indices from the `SpinUnresolvedOperatorString`.
+     * 
+     *  @return The vector containing the operator indices.
      */
     const std::vector<size_t>& operatorIndices() const { return this->indices; }
 
     /**
      *  Retrieve the phase factor corresponding to the `SpinUnresolvedOperatorString`.
+     * 
+     *  @return The phase factor associated with the operator string.
      */
     int phaseFactor() const { return this->p; }
 
@@ -103,6 +107,8 @@ public:
      *  Check whether the operator string in question will result in zero when applied to the wave function.
      *
      *  Note: There are different cases when an operator string will result in a zero value. This method checks all of them.
+     * 
+     *  @return Whether the operator string in question will result in zero when applied to the wave function.
      */
     bool isZero() const;
 
@@ -110,10 +116,28 @@ public:
     /*
      *  MARK: Public methods
      */
+
+    /**
+     *  Retrieve the phase factor after sorting the `SpinUnresolvedOperatorString`.
+     * 
+     *  Note: Please refer to method `sort()` to perform the actual sorting.
+     * 
+     *  @return The phase factor after sorting the operator string.
+     */
     int phaseFactorAfterSorting();
 
+    /**
+     *  Sort the operator string (in-place) in ascending order and adjust its phase factor.
+     */
     void sort();
 
+    /**
+     *  Split the `SpinUnresolvedOperatorString` into two new operator strings: a system and an environment.
+     * 
+     *  @param partition    The partition of the operator string into a system (denoted by 'I') and an environment (denoted by 'J').
+     *  
+     *  For example: Operator string "a1a2a4a0a3" is partitioned into system "a1a4a0" and environment "a2a3" by the partition {'I', 'J', 'I', 'I', 'J'}.
+     */
     std::vector<SpinUnresolvedOperatorString> splitIntoSystemAndEnvironment(const std::vector<char>& partition);
 };
 

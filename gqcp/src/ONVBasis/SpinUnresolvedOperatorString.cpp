@@ -80,6 +80,10 @@ void SpinUnresolvedOperatorString::sort() {
 
 std::vector<SpinUnresolvedOperatorString> SpinUnresolvedOperatorString::splitIntoSystemAndEnvironment(const std::vector<char>& partition) {
 
+    if (partition.size() != this->operatorIndices().size()) {
+        throw std::invalid_argument("SpinUnresolvedOperatorString::splitIntoSystemAndEnvironment(const std::vector<char>& partition): The size of the partition does not match the number of operators in the operator string.");
+    }
+
     const auto& index_vector = this->operatorIndices();
 
     std::vector<size_t> index_vector_I;
