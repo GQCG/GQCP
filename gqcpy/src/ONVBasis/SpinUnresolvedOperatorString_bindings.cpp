@@ -71,9 +71,9 @@ void bindSpinUnresolvedOperatorString(py::module& module) {
             "Sort the operator string in ascending order and adjust its phase factor.")
 
         .def(
-            "partitionIntoTwoSubsystems",
-            &SpinUnresolvedOperatorString::partitionIntoTwoSubsystems,
-            "Split the `SpinUnresolvedOperatorString` into two new operator strings: a system and an environment.",
+            "schmidtDecomposition",
+            &SpinUnresolvedOperatorString::schmidtDecomposition,
+            "Decomposition of the `SpinUnresolvedOperatorString` into two new operator strings: a system and an environment.",
             py::arg("partition"));
 }
 

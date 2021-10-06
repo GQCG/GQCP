@@ -164,7 +164,7 @@ BOOST_AUTO_TEST_CASE(test_split_into_system_and_environment) {
     GQCP::SpinUnresolvedOperatorString operator_string_I1 {{0, 2, 1}, -1};  // One permutation between the operators from the system (I) and environment (J).
     GQCP::SpinUnresolvedOperatorString operator_string_J1 {{3, 5, 4}, 1};
 
-    const auto partition_strings1 = operator_string.partitionIntoTwoSubsystems(partition1);
+    const auto partition_strings1 = operator_string.schmidtDecomposition(partition1);
 
     BOOST_CHECK_EQUAL_COLLECTIONS(partition_strings1[0].operatorIndices().begin(), partition_strings1[0].operatorIndices().end(), operator_string_I1.operatorIndices().begin(), operator_string_I1.operatorIndices().end());
     BOOST_CHECK_EQUAL_COLLECTIONS(partition_strings1[1].operatorIndices().begin(), partition_strings1[1].operatorIndices().end(), operator_string_J1.operatorIndices().begin(), operator_string_J1.operatorIndices().end());
@@ -175,7 +175,7 @@ BOOST_AUTO_TEST_CASE(test_split_into_system_and_environment) {
     GQCP::SpinUnresolvedOperatorString operator_string_I1_sorted {{0, 1, 3}, 1};  // The phase factor of the sorting (-1) multiplied by the phase factor of the splitting (-1) becomes 1.
     GQCP::SpinUnresolvedOperatorString operator_string_J1_sorted {{2, 4, 5}, 1};
 
-    const auto partition_strings1_sorted = operator_string.partitionIntoTwoSubsystems(partition1);
+    const auto partition_strings1_sorted = operator_string.schmidtDecomposition(partition1);
 
     BOOST_CHECK_EQUAL_COLLECTIONS(partition_strings1_sorted[0].operatorIndices().begin(), partition_strings1_sorted[0].operatorIndices().end(), operator_string_I1_sorted.operatorIndices().begin(), operator_string_I1_sorted.operatorIndices().end());
     BOOST_CHECK_EQUAL_COLLECTIONS(partition_strings1_sorted[1].operatorIndices().begin(), partition_strings1_sorted[1].operatorIndices().end(), operator_string_J1_sorted.operatorIndices().begin(), operator_string_J1_sorted.operatorIndices().end());

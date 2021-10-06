@@ -89,16 +89,16 @@ void SpinUnresolvedOperatorString::sort() {
 
 
 /**
- *  Partition the `SpinUnresolvedOperatorString` into two new operator strings: a system and an environment.
+ *  Decomposition of the `SpinUnresolvedOperatorString` into two new operator strings: a system and an environment.
  * 
- *  @param partition    The partition of the operator string into a system (denoted by 'I') and an environment (denoted by 'J').
+ *  @param partition    The decomposition of the operator string into a system (denoted by 'I') and an environment (denoted by 'J').
  *  
- *  For example: Operator string "a1a2a4a0a3" is partitioned into system "a1a4a0" and environment "a2a3" by the partition {'I', 'J', 'I', 'I', 'J'}.
+ *  For example: Operator string "a1a2a4a0a3" is decomposed into system "a1a4a0" and environment "a2a3" by the partition {'I', 'J', 'I', 'I', 'J'}.
  */
-std::vector<SpinUnresolvedOperatorString> SpinUnresolvedOperatorString::partitionIntoTwoSubsystems(const std::vector<char>& partition) {
+std::vector<SpinUnresolvedOperatorString> SpinUnresolvedOperatorString::schmidtDecomposition(const std::vector<char>& partition) {
 
     if (partition.size() != this->operatorIndices().size()) {
-        throw std::invalid_argument("SpinUnresolvedOperatorString::partitionIntoTwoSubsystems(const std::vector<char>& partition): The size of the partition does not match the number of operators in the operator string.");
+        throw std::invalid_argument("SpinUnresolvedOperatorString::schmidtDecomposition(const std::vector<char>& partition): The size of the partition does not match the number of operators in the operator string.");
     }
 
     const auto& index_vector = this->operatorIndices();
