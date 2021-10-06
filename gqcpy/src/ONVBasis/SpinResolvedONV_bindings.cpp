@@ -34,6 +34,10 @@ void bindSpinResolvedONV(py::module& module) {
 
         // CONSTRUCTORS
 
+        .def(py::init<const SpinUnresolvedONV&, const SpinUnresolvedONV&>(),
+             py::arg("onv_alpha"),
+             py::arg("onv_beta"))
+
         .def_static(
             "RHF",
             [](const size_t K, const size_t N_P) {
