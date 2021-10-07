@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "ONVBasis/SpinResolvedONV.hpp"
 #include "ONVBasis/SpinUnresolvedOperatorString.hpp"
 #include "QuantumChemical/Spin.hpp"
 #include "QuantumChemical/SpinResolved.hpp"
@@ -43,7 +44,7 @@ namespace GQCP {
 class SpinResolvedOperatorString {
 private:
     // The vector representing the indices of the annihilation or creation operators in the operator string. Each index is paired with a certain spin.
-    std::vector<std::pair<size_t, GQCP::Spin>> index_spin_pairs;
+    std::vector<std::pair<size_t, Spin>> index_spin_pairs;
 
 public:
     /*
@@ -58,24 +59,14 @@ public:
      * 
      * Note: The index vector element zero will be matched with the spin vector element zero, the index vector element one will be matched with spin vector element one and so on.
      */
-    SpinResolvedOperatorString(const std::vector<size_t>& index_vector, const std::vector<GQCP::Spin>& spin_vector) {
+    SpinResolvedOperatorString(const std::vector<size_t>& index_vector, const std::vector<Spin>& spin_vector);
 
-        // Throw an exception if the vector dimensions don't match.
-        if (index_vector.size() != spin_vector.size()) {
-            throw std::invalid_argument("SpinUnresolvedOperatorString(const std::vector<size_t>& index_vector, const std::vector<GQCP::Spin>& spin_vector): The dimensions of the argument vectors don't match. They should be the same.");
-        }
 
-        // Initialize the empty spin pair vector.
-        auto pair_vector = std::vector<std::pair<size_t, GQCP::Spin>> {};
+    /*
+     * MARK: Named constructors
+     */
 
-        // Create the pairs and fill the pair vector.
-        for (int i = 0; i < index_vector.size(); i++) {
-            auto pair = std::pair<size_t, GQCP::Spin> {index_vector[i], spin_vector[i]};
-            pair_vector.push_back(pair);
-        }
-
-        this->index_spin_pairs = pair_vector;
-    };
+    static SpinResolvedOperatorString FromONV(const SpinResolvedONV& onv);
 
 
     /*
@@ -84,32 +75,25 @@ public:
 
     /**
      *  Retrieve the operator indices from the `SpinResolvedOperatorString`.
+     * 
+     *  @return The operator indices as a vector.
      */
-    std::vector<size_t> operatorIndices() const {
-        // For each pair in the operator string, save the index and return the vector containing them.
-        auto index_vector = std::vector<size_t> {};
-
-        for (int i = 0; i < this->index_spin_pairs.size(); i++) {
-            index_vector.push_back(this->index_spin_pairs[i].first);
-        }
-
-        return index_vector;
-    }
+    std::vector<size_t> operatorIndices() const;
 
 
     /**
      *  Retrieve the operator spins from the `SpinResolvedOperatorString`.
+     * 
+     *  @return The operator spins as a vector.
      */
-    std::vector<GQCP::Spin> operatorSpins() const {
-        // For each pair in the operator string, save the spin and return the vector containing them.
-        auto spin_vector = std::vector<GQCP::Spin> {};
+    std::vector<Spin> operatorSpins() const;
 
-        for (int i = 0; i < this->index_spin_pairs.size(); i++) {
-            spin_vector.push_back(this->index_spin_pairs[i].second);
-        }
-
-        return spin_vector;
-    }
+    /**
+     *  Retrieve the number of operators in the `SpinResolvedOperatorString`.
+     *  
+     *  @return The number of operators in this operator string.
+     */
+    size_t size() const { return this->index_spin_pairs.size(); }
 
 
     /*
@@ -117,47 +101,11 @@ public:
      */
 
     /**
-     *  Return the spin resolved operator string split in its two separate components, one containing the alpha operators, one containing the beta operators. The alpha operator string will recieve the total phase factor assiciated with this action, the phase factor of the beta string will be one.
+     *  Split the spin-resolved operator string into its two separate components, one containing the alpha operators, one containing the beta operators. The alpha operator string will recieve the total phase factor associated with this action, the phase factor of the beta string will be one.
+     * 
+     *  @return The two separate components of the spin-resolved operator string.
      */
-    SpinResolved<SpinUnresolvedOperatorString> spinResolve() const {
-        // Split pairs in two separate spinUnresolvedOperatorStrings.
-        // Define a separate vector for the alpha and beta components.
-        auto alpha_index_vector = std::vector<size_t> {};
-        auto beta_index_vector = std::vector<size_t> {};
-
-        // Loop over the original pair vector. If the pair contains an alpha spin, add the index to the alpha vector, if the pair contains a beta spin, add the index to the beta vector.
-        for (int i = 0; i < this->index_spin_pairs.size(); i++) {
-            if (this->index_spin_pairs[i].second == GQCP::Spin::alpha) {
-                alpha_index_vector.push_back(index_spin_pairs[i].first);
-            } else {
-                beta_index_vector.push_back(index_spin_pairs[i].first);
-            }
-        }
-
-        // Determine the phase factor needed to make the splitting of the original operator string in its spin components correspond with the fermion anti-commutation rules. In essence, we're counting the number of beta operators that appear in front of every alpha operator.
-        // We will define an intermediate phase factor, which is updated throughout the procedure.
-        int phase_factor = 1;
-
-        // First, we loop the spin string to check whether an element has alpha spin.
-        for (int i = 0; i < this->operatorSpins().size(); i++) {
-
-            // If it does, we continue, if it doesn't, we move on to the next pair in the vector.
-            if (this->operatorSpins()[i] == GQCP::Spin::alpha) {
-
-                // We check all elements left of our found alpha element, to see whether or not a beta element is found.
-                for (int j = i; j >= 0; j--) {
-
-                    // If we find a beta element left of the alpha element, we must swap the two elements in the vector and update the phase factor by multiplying it by -1, due to the anti-commutation rules.
-                    // We don't physically swap the elements in the vector, but by simply checking the number of beta's left of the alpha in question, we mimic the swap.
-                    if (this->operatorSpins()[j] == GQCP::Spin::beta) {
-                        phase_factor *= -1;
-                    }
-                }
-            }
-        }
-
-        return SpinResolved<SpinUnresolvedOperatorString> {SpinUnresolvedOperatorString(alpha_index_vector, phase_factor), SpinUnresolvedOperatorString {beta_index_vector}};
-    }
+    SpinResolved<SpinUnresolvedOperatorString> spinResolve() const;
 };
 
 

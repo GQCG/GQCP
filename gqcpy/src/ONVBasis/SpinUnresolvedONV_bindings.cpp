@@ -35,6 +35,15 @@ void bindSpinUnresolvedONV(py::module& module) {
 
         // CONSTRUCTORS
 
+        .def(py::init<const size_t, const size_t, const size_t>(),
+             py::arg("M"),
+             py::arg("N"),
+             py::arg("unsigned_representation"))
+
+        .def(py::init<const size_t, const size_t>(),
+             py::arg("M"),
+             py::arg("N"))
+
         .def_static(
             "FromString",
             [](const std::string& string_representation) {
@@ -79,12 +88,12 @@ void bindSpinUnresolvedONV(py::module& module) {
             py::arg("C_on"),
             py::arg("S"),
             "Calculate the overlap <on|of>: the projection of between this spin-unresolved ONV ('of') and another spin-unresolved ONV ('on'), expressed in different general orthonormal spinor bases.")
-        
+
         .def(
             "numberOfElectrons",
             &SpinUnresolvedONV::numberOfElectrons,
             "Return the number of electrons that this ONV contains.")
-        
+
         .def(
             "orbitalSpace",
             &SpinUnresolvedONV::orbitalSpace,

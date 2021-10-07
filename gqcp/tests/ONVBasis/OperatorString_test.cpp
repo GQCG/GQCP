@@ -25,6 +25,20 @@
 
 
 /**
+ *  Check whether the SpinUnresolvedOperatorString constructor works when a `SpinUnresolvedONV` is given as parameter.
+ */
+BOOST_AUTO_TEST_CASE(test_unresolved_onv_constructor) {
+
+    const GQCP::SpinUnresolvedONV onv {4, 2, 5};  // "1010"
+    const GQCP::SpinUnresolvedOperatorString operator_string = GQCP::SpinUnresolvedOperatorString::FromONV(onv);
+
+    const std::vector<size_t> correct_indices = {0, 2};
+
+    BOOST_CHECK_EQUAL_COLLECTIONS(operator_string.operatorIndices().begin(), operator_string.operatorIndices().end(), correct_indices.begin(), correct_indices.end());
+}
+
+
+/**
  *  Check whether the SpinResolvedOperatorString constructor works.
  */
 BOOST_AUTO_TEST_CASE(test_resolved_constructor) {
@@ -51,7 +65,28 @@ BOOST_AUTO_TEST_CASE(test_resolved_constructor) {
 
 
 /**
- *  Check whether the SpinUnresolvedOperatorString stores its information correctly.
+ * Check whether the `SpinResolvedOperatorString` stores its information correctly departing from an ONV.
+ */
+BOOST_AUTO_TEST_CASE(test_resolved_onv_constructor) {
+
+    const GQCP::SpinUnresolvedONV onv_alpha {4, 2, 5};  //  "1010"
+    const GQCP::SpinUnresolvedONV onv_beta {4, 2, 10};  //  "0101"
+    const GQCP::SpinResolvedONV onv {onv_alpha, onv_beta};
+
+    const GQCP::SpinResolvedOperatorString operator_string = GQCP::SpinResolvedOperatorString::FromONV(onv);
+
+    const auto operator_indices = operator_string.operatorIndices();
+    const auto operator_spins = operator_string.operatorSpins();
+    const std::vector<size_t> correct_indices = {0, 2, 1, 3};                                                                  // First the indices of the alpha operator string, then those of the beta operator string.
+    const std::vector<GQCP::Spin> correct_spins = {GQCP::Spin::alpha, GQCP::Spin::alpha, GQCP::Spin::beta, GQCP::Spin::beta};  // First the alpha spins, then the beta spins.
+
+    BOOST_CHECK_EQUAL_COLLECTIONS(operator_indices.begin(), operator_indices.end(), correct_indices.begin(), correct_indices.end());
+    BOOST_CHECK_EQUAL_COLLECTIONS(operator_spins.begin(), operator_spins.end(), correct_spins.begin(), correct_spins.end());
+}
+
+
+/**
+ *  Check whether the `SpinUnresolvedOperatorString` stores its information correctly.
  */
 BOOST_AUTO_TEST_CASE(test_unresolved_indices) {
 
@@ -70,7 +105,7 @@ BOOST_AUTO_TEST_CASE(test_unresolved_indices) {
 
 
 /**
- *  Check whether the SpinUnresolvedOperatorString`s `isZero()` check correctly checks whether the operator string will inherently equal zero when applied to any ONV.
+ *  Check whether the `SpinUnresolvedOperatorString`'s `isZero()` check correctly checks whether the operator string will inherently equal zero when applied to any ONV.
  */
 BOOST_AUTO_TEST_CASE(test_unresolved_isZero) {
 
@@ -88,6 +123,69 @@ BOOST_AUTO_TEST_CASE(test_unresolved_isZero) {
     BOOST_CHECK_EQUAL(operator_string_1.isZero(), false);
     BOOST_CHECK_EQUAL(operator_string_2.isZero(), true);
 }
+
+/**
+ * Check of the correct phase factor is returned after an in-place sorting of a `SpinUnresolvedOperatorString`.
+ */
+BOOST_AUTO_TEST_CASE(test_unresolved_sorting) {
+
+    std::vector<size_t> indices1 = {1, 7, 4, 8};
+    std::vector<size_t> indices2 = {7, 4, 8, 1};
+    std::vector<size_t> indices3 = {1, 4, 7, 8};
+
+    std::vector<size_t> indices_correct_order = {1, 4, 7, 8};
+
+    GQCP::SpinUnresolvedOperatorString operator_string1 {indices1};
+    GQCP::SpinUnresolvedOperatorString operator_string2 {indices2};
+    GQCP::SpinUnresolvedOperatorString operator_string3 {indices3};
+
+    BOOST_CHECK_EQUAL(operator_string1.phaseFactorAfterSorting(), -1);
+    BOOST_CHECK_EQUAL(operator_string2.phaseFactorAfterSorting(), 1);
+    BOOST_CHECK_EQUAL(operator_string3.phaseFactorAfterSorting(), 1);
+
+    operator_string1.sort();
+    operator_string2.sort();
+    operator_string3.sort();
+
+    BOOST_CHECK_EQUAL_COLLECTIONS(operator_string1.operatorIndices().begin(), operator_string1.operatorIndices().end(), indices_correct_order.begin(), indices_correct_order.end());
+    BOOST_CHECK_EQUAL_COLLECTIONS(operator_string2.operatorIndices().begin(), operator_string2.operatorIndices().end(), indices_correct_order.begin(), indices_correct_order.end());
+    BOOST_CHECK_EQUAL_COLLECTIONS(operator_string3.operatorIndices().begin(), operator_string3.operatorIndices().end(), indices_correct_order.begin(), indices_correct_order.end());
+    BOOST_CHECK_EQUAL(operator_string1.phaseFactor(), -1);
+    BOOST_CHECK_EQUAL(operator_string2.phaseFactor(), 1);
+    BOOST_CHECK_EQUAL(operator_string3.phaseFactor(), 1);
+}
+
+/**
+ * Check whether the `SpinUnresolvedOperatorString` is correctly decomposed into two subsystems.
+ */
+BOOST_AUTO_TEST_CASE(test_schmidt_decomposition) {
+
+    std::vector<size_t> indices {0, 2, 3, 1, 5, 4};
+    GQCP::SpinUnresolvedOperatorString operator_string {indices};  // The phase factor is 1 by default.
+
+    std::vector<char> partition1 {'I', 'I', 'J', 'I', 'J', 'J'};
+    GQCP::SpinUnresolvedOperatorString operator_string_I1 {{0, 2, 1}, -1};  // One permutation between the operators from the system (I) and environment (J).
+    GQCP::SpinUnresolvedOperatorString operator_string_J1 {{3, 5, 4}, 1};
+
+    const auto partition_strings1 = operator_string.schmidtDecomposition(partition1);
+
+    BOOST_CHECK_EQUAL_COLLECTIONS(partition_strings1[0].operatorIndices().begin(), partition_strings1[0].operatorIndices().end(), operator_string_I1.operatorIndices().begin(), operator_string_I1.operatorIndices().end());
+    BOOST_CHECK_EQUAL_COLLECTIONS(partition_strings1[1].operatorIndices().begin(), partition_strings1[1].operatorIndices().end(), operator_string_J1.operatorIndices().begin(), operator_string_J1.operatorIndices().end());
+    BOOST_CHECK_EQUAL(partition_strings1[0].phaseFactor(), operator_string_I1.phaseFactor());
+    BOOST_CHECK_EQUAL(partition_strings1[1].phaseFactor(), operator_string_J1.phaseFactor());
+
+    operator_string.sort();                                                       // Phase factor becomes -1 due to three permutations.
+    GQCP::SpinUnresolvedOperatorString operator_string_I1_sorted {{0, 1, 3}, 1};  // The phase factor of the sorting (-1) multiplied by the phase factor of the splitting (-1) becomes 1.
+    GQCP::SpinUnresolvedOperatorString operator_string_J1_sorted {{2, 4, 5}, 1};
+
+    const auto partition_strings1_sorted = operator_string.schmidtDecomposition(partition1);
+
+    BOOST_CHECK_EQUAL_COLLECTIONS(partition_strings1_sorted[0].operatorIndices().begin(), partition_strings1_sorted[0].operatorIndices().end(), operator_string_I1_sorted.operatorIndices().begin(), operator_string_I1_sorted.operatorIndices().end());
+    BOOST_CHECK_EQUAL_COLLECTIONS(partition_strings1_sorted[1].operatorIndices().begin(), partition_strings1_sorted[1].operatorIndices().end(), operator_string_J1_sorted.operatorIndices().begin(), operator_string_J1_sorted.operatorIndices().end());
+    BOOST_CHECK_EQUAL(partition_strings1_sorted[0].phaseFactor(), operator_string_I1_sorted.phaseFactor());
+    BOOST_CHECK_EQUAL(partition_strings1_sorted[1].phaseFactor(), operator_string_I1_sorted.phaseFactor());
+}
+
 
 /**
  *  Check whether the SpinResolvedOperatorString stores its information correctly.
@@ -111,6 +209,7 @@ BOOST_AUTO_TEST_CASE(test_resolved_indices_spins) {
     BOOST_CHECK_EQUAL_COLLECTIONS(indices.begin(), indices.end(), operator_string_indices.begin(), operator_string_indices.end());
     BOOST_CHECK_EQUAL_COLLECTIONS(spins.begin(), spins.end(), operator_string_spins.begin(), operator_string_spins.end());
 }
+
 
 /**
  *  Check whether the SpinResolvedOperatorString can be correctly `SpinResolved` in its alpha and beta component, with the correct phase factors.
@@ -157,6 +256,7 @@ BOOST_AUTO_TEST_CASE(test_spin_resolve) {
     BOOST_CHECK_EQUAL(reference_phase_factor, spin_resolved_operator_string.alpha().phaseFactor());
 }
 
+
 /**
  *  Check whether the SpinResolvedOperatorString can be correctly `SpinResolved` in its alpha and beta component, with the correct phase factors.
  */
@@ -199,6 +299,7 @@ BOOST_AUTO_TEST_CASE(test_spin_resolve_2) {
     BOOST_CHECK_EQUAL_COLLECTIONS(beta_indices.begin(), beta_indices.end(), beta_operator_string_indices.begin(), beta_operator_string_indices.end());
     BOOST_CHECK_EQUAL(reference_phase_factor, spin_resolved_operator_string.alpha().phaseFactor());
 }
+
 
 /**
  *  Check whether the SpinResolvedOperatorString can be correctly `SpinResolved` in its alpha and beta component, with the correct phase factors.

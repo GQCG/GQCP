@@ -203,7 +203,7 @@ public:
         // Translating a diagonal arc can be rewritten as a removal of the arc weight (p,n), followed by the addition of the arc weight (p,n-1).
         this->m_address += this->onv_basis.arcWeight(p, n - 1) - this->onv_basis.arcWeight(p, n);
 
-        // Since a left-translation describes the process of 'encountering an electron/occupied orbital', the sign factor should be updated according to the fermionic anticommutation rules.
+        // Since a left-translation describes the process of 'encountering an electron/occupied orbital', the sign factor should be updated according to the fermionic anti-commutation rules.
         this->m_sign *= -1;
 
         // In subsequent path manipulations, the orbital `p` should be occupied (while no 'net creation' has occurred), so the sub path's construction is considered fixed up until the indices (p+1,n).

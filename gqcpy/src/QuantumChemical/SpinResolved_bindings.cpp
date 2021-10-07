@@ -15,6 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
+#include "ONVBasis/SpinUnresolvedOperatorString.hpp"
 #include "QuantumChemical/SpinResolved.hpp"
 #include "Utilities/complex.hpp"
 #include "gqcpy/include/interfaces.hpp"
@@ -53,6 +54,7 @@ void bindSpinResolvedTypes(py::module& module) {
 
     bindSpinResolved<VectorX<double>>(module, "SpinResolved_VectorX_d", "A spin-resolved encapsulation of two real-valued GQCP::Vectors.");
     bindSpinResolved<VectorX<complex>>(module, "SpinResolved_VectorX_cd", "A spin-resolved encapsulation of two complex-valued GQCP::Vectors.");
+    bindSpinResolved<SpinUnresolvedOperatorString>(module, "SpinResolved_OperatorString", "A spin-resolved encapsulation of two GQCP::SpinUnresolvedOperatorStrings.");
 }
 
 }  // namespace gqcpy
