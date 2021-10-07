@@ -38,6 +38,16 @@ void bindSpinResolvedONV(py::module& module) {
              py::arg("onv_alpha"),
              py::arg("onv_beta"))
 
+        .def(
+            "__eq__",
+            &SpinResolvedONV::operator==,
+            py::arg("other ONV"))
+
+        .def(
+            "__neq__",
+            &SpinResolvedONV::operator!=,
+            py::arg("other ONV"))
+
         .def_static(
             "RHF",
             [](const size_t K, const size_t N_P) {
