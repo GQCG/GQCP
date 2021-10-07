@@ -56,10 +56,10 @@ SpinResolvedOperatorString SpinResolvedOperatorString::FromONV(const SpinResolve
     const auto& onv_alpha = onv.onv(Spin::alpha);
     const auto& onv_beta = onv.onv(Spin::beta);
 
-    // The occupied indices from the alpha part of a `spinResolvedONV` can be used to represent the alpha operator indices. The same holds for the beta indices. The beta operator indices are added to the total operator string, behind the alpha indices.
+    // The occupied indices from the alpha part of a `SpinResolvedONV` can be used to represent the alpha operator indices. The same holds for the beta indices. The beta operator indices are added to the total operator string, behind the alpha indices.
     std::vector<size_t> index_vector = onv_alpha.occupiedIndices();
     index_vector.insert(index_vector.end(), onv_beta.occupiedIndices().begin(), onv_beta.occupiedIndices().end());
-    
+
     // To determine the spins, we can use the number of alpha and beta electrons respectively. Once again, the beta components are appended at the end of the alpha components.
     std::vector<Spin> spin_vector {onv_alpha.numberOfElectrons(), Spin::alpha};
     spin_vector.insert(spin_vector.end(), onv_beta.numberOfElectrons(), Spin::beta);

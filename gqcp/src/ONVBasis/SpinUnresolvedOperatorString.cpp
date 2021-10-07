@@ -66,6 +66,7 @@ int SpinUnresolvedOperatorString::phaseFactorAfterSorting() {
 
     for (int i = 0; i < number_of_occupied_spinors; ++i) {
 
+        // If there are larger indices than the current index, we the phase factor must be changed accordingly due to the fermionic anti-commutation rules.
         for (int j = i; j >= 0; --j) {
             if (index_vector[j] > index_vector[i]) {
                 phase_factor *= -1;
@@ -83,6 +84,7 @@ void SpinUnresolvedOperatorString::sort() {
 
     const auto phase_factor = this->phaseFactorAfterSorting();
 
+    // In-place sorting of the indices. Due to the fermionic anti-commutation rules, the phase factor will change accordingly.
     std::sort(this->indices.begin(), this->indices.end());
     this->p *= phase_factor;
 }
@@ -105,24 +107,30 @@ std::vector<SpinUnresolvedOperatorString> SpinUnresolvedOperatorString::schmidtD
 
     const auto& index_vector = this->operatorIndices();
 
+    // Index vectors for the operator strings after decomposition.
     std::vector<size_t> index_vector_I;
     std::vector<size_t> index_vector_J;
-    int phase_factor = this->phaseFactor();
+    int phase_factor = this->phaseFactor();  // We start from the phase factor of our operator string.
 
     for (int i = 0; i < index_vector.size(); ++i) {
 
+        // If the operator is associated with the system ('I'), calculate its phase factor after moving it over all operators of the environment ('J').
         if (partition[i] == 'I') {
             for (int j = i; j >= 0; --j) {
                 if (partition[j] == 'J') {
-                    phase_factor *= -1;
+                    phase_factor *= -1;  // For each movement of the operator to the left, the phase factor is multiplied by -1 due to the fermionic anti-commutation rules.
                 }
             }
             index_vector_I.push_back(index_vector[i]);
-        } else {
+        }
+        // If the operator is associated with the environment ('J'), add it to the associated index vector.
+        // We do not have to take the phase factor into account, since only the operators of the system ('I') are moved.
+        else {
             index_vector_J.push_back(index_vector[i]);
         }
     }
 
+    // The resulting phase factor is assigned to the operator string of the system ('I').
     const SpinUnresolvedOperatorString operator_string_I {index_vector_I, phase_factor};
     const SpinUnresolvedOperatorString operator_string_J {index_vector_J, 1};
     return {operator_string_I, operator_string_J};

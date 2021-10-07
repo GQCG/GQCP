@@ -65,8 +65,7 @@ BOOST_AUTO_TEST_CASE(test_resolved_constructor) {
 
 
 /**
- * 
- * 
+ * Check whether the `SpinResolvedOperatorString` stores its information correctly departing from an ONV.
  */
 BOOST_AUTO_TEST_CASE(test_resolved_onv_constructor) {
 
@@ -87,7 +86,7 @@ BOOST_AUTO_TEST_CASE(test_resolved_onv_constructor) {
 
 
 /**
- *  Check whether the SpinUnresolvedOperatorString stores its information correctly.
+ *  Check whether the `SpinUnresolvedOperatorString` stores its information correctly.
  */
 BOOST_AUTO_TEST_CASE(test_unresolved_indices) {
 
@@ -106,7 +105,7 @@ BOOST_AUTO_TEST_CASE(test_unresolved_indices) {
 
 
 /**
- *  Check whether the SpinUnresolvedOperatorString`s `isZero()` check correctly checks whether the operator string will inherently equal zero when applied to any ONV.
+ *  Check whether the `SpinUnresolvedOperatorString`'s `isZero()` check correctly checks whether the operator string will inherently equal zero when applied to any ONV.
  */
 BOOST_AUTO_TEST_CASE(test_unresolved_isZero) {
 
@@ -125,7 +124,9 @@ BOOST_AUTO_TEST_CASE(test_unresolved_isZero) {
     BOOST_CHECK_EQUAL(operator_string_2.isZero(), true);
 }
 
-
+/**
+ * Check of the correct phase factor is returned after an in-place sorting of a `SpinUnresolvedOperatorString`.
+ */
 BOOST_AUTO_TEST_CASE(test_unresolved_sorting) {
 
     std::vector<size_t> indices1 = {1, 7, 4, 8};
@@ -154,8 +155,10 @@ BOOST_AUTO_TEST_CASE(test_unresolved_sorting) {
     BOOST_CHECK_EQUAL(operator_string3.phaseFactor(), 1);
 }
 
-
-BOOST_AUTO_TEST_CASE(test_split_into_system_and_environment) {
+/**
+ * Check whether the `SpinUnresolvedOperatorString` is correctly decomposed into two subsystems.
+ */
+BOOST_AUTO_TEST_CASE(test_schmidt_decomposition) {
 
     std::vector<size_t> indices {0, 2, 3, 1, 5, 4};
     GQCP::SpinUnresolvedOperatorString operator_string {indices};  // The phase factor is 1 by default.
