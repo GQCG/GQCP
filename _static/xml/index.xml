@@ -4093,11 +4093,15 @@
   </compound>
   <compound refid="_spin_resolved_o_n_v_basis_8cpp" kind="file"><name>SpinResolvedONVBasis.cpp</name>
   </compound>
+  <compound refid="_spin_resolved_operator_string_8cpp" kind="file"><name>SpinResolvedOperatorString.cpp</name>
+  </compound>
   <compound refid="_spin_resolved_selected_o_n_v_basis_8cpp" kind="file"><name>SpinResolvedSelectedONVBasis.cpp</name>
   </compound>
   <compound refid="_spin_unresolved_o_n_v_8cpp" kind="file"><name>SpinUnresolvedONV.cpp</name>
   </compound>
   <compound refid="_spin_unresolved_o_n_v_basis_8cpp" kind="file"><name>SpinUnresolvedONVBasis.cpp</name>
+  </compound>
+  <compound refid="_spin_unresolved_operator_string_8cpp" kind="file"><name>SpinUnresolvedOperatorString.cpp</name>
   </compound>
   <compound refid="_spin_unresolved_selected_o_n_v_basis_8cpp" kind="file"><name>SpinUnresolvedSelectedONVBasis.cpp</name>
   </compound>

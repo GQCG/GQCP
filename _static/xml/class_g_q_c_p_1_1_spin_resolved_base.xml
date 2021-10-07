@@ -28,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="40" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="40" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="42" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="42" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_spin_resolved_base_1a6074bc4e9b29958b9fb2ade214182b42" prot="public" static="no">
         <type>_Derived</type>
@@ -41,7 +41,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="43" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="43" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="45" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="45" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_spin_resolved_base_1ac2ecb42d733bb8ddf78fdb011855dcdc" prot="public" static="no">
         <type><ref refid="class_g_q_c_p_1_1_spin_resolved_base" kindref="compound">SpinResolvedBase</ref>&lt; <ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a012e7533770449f494a6066c36bd835a" kindref="member">Of</ref>, <ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a6074bc4e9b29958b9fb2ade214182b42" kindref="member">Derived</ref> &gt;</type>
@@ -54,7 +54,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="46" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="46" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="48" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="48" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-attrib">
@@ -69,7 +69,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="51" column="8" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="51" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="53" column="8" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="53" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_g_q_c_p_1_1_spin_resolved_base_1a3ee39f03838c02817ae4cd023006c822" prot="private" static="no" mutable="no">
         <type><ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a012e7533770449f494a6066c36bd835a" kindref="member">Of</ref></type>
@@ -82,7 +82,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="54" column="8" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="54" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="56" column="8" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="56" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -124,7 +124,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="68" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="68" bodyend="70"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="70" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="70" bodyend="72"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_spin_resolved_base_1a3830b1d56ee5b6bc0132d1026025ce07" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -152,7 +152,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="78" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="78" bodyend="84"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="80" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="80" bodyend="86"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_spin_resolved_base_1a855eff9779b50d5b390b39330d5c69ab" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -180,7 +180,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="92" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="92" bodyend="93"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="94" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="94" bodyend="95"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_spin_resolved_base_1a9fd9984b90c113bc10b86bcfe5631a32" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -208,7 +208,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="101" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="101" bodyend="102"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="103" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="103" bodyend="104"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a012e7533770449f494a6066c36bd835a" kindref="member">Of</ref> &amp;</type>
@@ -224,7 +224,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="128" column="14" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="128" bodyend="128"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="130" column="14" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="130" bodyend="130"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_spin_resolved_base_1ae1f7d908f2044e5fddd333eb5ef40a7c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a012e7533770449f494a6066c36bd835a" kindref="member">Of</ref> &amp;</type>
@@ -240,7 +240,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="133" column="8" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="133" bodyend="133"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="135" column="8" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="135" bodyend="135"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a012e7533770449f494a6066c36bd835a" kindref="member">Of</ref> &amp;</type>
@@ -256,7 +256,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="138" column="14" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="138" bodyend="138"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="140" column="14" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="140" bodyend="140"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_spin_resolved_base_1a072002b440456d996f8807898914f45c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a012e7533770449f494a6066c36bd835a" kindref="member">Of</ref> &amp;</type>
@@ -272,7 +272,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="143" column="8" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="143" bodyend="143"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="145" column="8" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="145" bodyend="145"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_spin_resolved_base_1a8f13ccdbe2b4db4f070e8eb81796f938" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a012e7533770449f494a6066c36bd835a" kindref="member">Of</ref> &amp;</type>
@@ -302,7 +302,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="152" column="14" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="152" bodyend="165"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="154" column="14" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="154" bodyend="167"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_spin_resolved_base_1a4c4f9f34b2517b877bd93d5bd884f855" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a012e7533770449f494a6066c36bd835a" kindref="member">Of</ref> &amp;</type>
@@ -332,7 +332,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="174" column="8" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="174" bodyend="174"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="176" column="8" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="176" bodyend="176"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
@@ -364,7 +364,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="116" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="116" bodyend="118"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="118" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="118" bodyend="120"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -432,7 +432,7 @@
         <link refid="class_g_q_c_p_1_1_spin_resolved_base"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="37" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="37" bodyend="175"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" line="39" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp" bodystart="39" bodyend="177"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" prot="public" virt="non-virtual"><scope>GQCP::SpinResolvedBase</scope><name>alpha</name></member>
       <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ae1f7d908f2044e5fddd333eb5ef40a7c" prot="public" virt="non-virtual"><scope>GQCP::SpinResolvedBase</scope><name>alpha</name></member>

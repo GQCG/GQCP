@@ -546,7 +546,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/DenseVectorizer.hpp" line="32" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/DenseVectorizer.hpp" bodystart="32" bodyend="38"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/DenseVectorizer.hpp" line="34" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/DenseVectorizer.hpp" bodystart="34" bodyend="40"/>
       </memberdef>
       <memberdef kind="enum" id="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" prot="public" static="no" strong="no">
         <type></type>
@@ -761,7 +761,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/DenseVectorizer.hpp" line="201" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/DenseVectorizer.hpp" bodystart="201" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/DenseVectorizer.hpp" line="203" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/DenseVectorizer.hpp" bodystart="203" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespace_g_q_c_p_1a75056d5799528c495b717e21cccc75f7" prot="public" static="no">
         <type><ref refid="class_g_q_c_p_1_1_dense_vectorizer" kindref="compound">DenseVectorizer</ref>&lt; 1 &gt;</type>
@@ -774,7 +774,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/DenseVectorizer.hpp" line="204" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/DenseVectorizer.hpp" bodystart="204" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/DenseVectorizer.hpp" line="206" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/DenseVectorizer.hpp" bodystart="206" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespace_g_q_c_p_1a46e9824d60535862f66d9cbd766602d0" prot="public" static="no">
         <type><ref refid="class_g_q_c_p_1_1_dense_vectorizer" kindref="compound">DenseVectorizer</ref>&lt; 2 &gt;</type>
@@ -787,7 +787,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/DenseVectorizer.hpp" line="207" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/DenseVectorizer.hpp" bodystart="207" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/DenseVectorizer.hpp" line="209" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/DenseVectorizer.hpp" bodystart="209" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespace_g_q_c_p_1afeec6a04a9b337813c4e16db0d6b5ecd" prot="public" static="no">
         <templateparamlist>
@@ -807,7 +807,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/DenseVectorizer.hpp" line="211" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/DenseVectorizer.hpp" bodystart="211" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/DenseVectorizer.hpp" line="213" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/DenseVectorizer.hpp" bodystart="213" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" prot="public" static="no">
         <templateparamlist>
@@ -3745,7 +3745,7 @@ Calculate the electric polarizability from the linear wave function response</pa
 <parametername>os</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the output stream which the ONV should be concatenated to </para>
+<para>The output stream which the ONV should be concatenated to. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -3753,11 +3753,11 @@ Calculate the electric polarizability from the linear wave function response</pa
 <parametername>onv</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the ONV that should be concatenated to the output stream</para>
+<para>The ONV that should be concatenated to the output stream.</para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>the updated output stream </para>
+<simplesect kind="return"><para>The updated output stream. </para>
 </simplesect>
 </para>
         </detaileddescription>

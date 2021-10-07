@@ -27,7 +27,10 @@
         <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="5">
+      <node id="3">
+        <label>stdexcept</label>
+      </node>
+      <node id="6">
         <label>numeric</label>
       </node>
       <node id="2">
@@ -39,11 +42,13 @@
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
-      </node>
-      <node id="3">
-        <label>array</label>
+        <childnode refid="6" relation="include">
+        </childnode>
       </node>
       <node id="4">
+        <label>array</label>
+      </node>
+      <node id="5">
         <label>cstddef</label>
       </node>
     </incdepgraph>

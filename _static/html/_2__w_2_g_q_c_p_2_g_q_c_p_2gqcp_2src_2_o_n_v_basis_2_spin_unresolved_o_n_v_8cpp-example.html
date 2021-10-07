@@ -67,12 +67,12 @@ $(function() {
 <div class="contents">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">index_start</td><td>the starting index (included), read from right to left </td></tr>
-    <tr><td class="paramname">index_end</td><td>the ending index (not included), read from right to left</td></tr>
+    <tr><td class="paramname">index_start</td><td>The starting index (included), read from right to left. </td></tr>
+    <tr><td class="paramname">index_end</td><td>The ending index (not included), read from right to left.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the representation of a slice (i.e. a subset) of the ONV (read from right to left) between index_start (included) and index_end (not included)</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The representation of a slice (i.e. a subset) of the ONV (read from right to left) between index_start (included) and index_end (not included).</dd></dl>
 <p>"010011".slice(1, 4) =&gt; "01[001]1" -&gt; "001", where the spinor indices are: 543210</p>
 <div class="fragment"><div class="line"><span class="comment">// This file is part of GQCG-GQCP.</span></div>
 <div class="line"><span class="comment">//</span></div>
@@ -112,7 +112,7 @@ $(function() {
 <div class="line">    SpinUnresolvedONV(M, N) {</div>
 <div class="line"> </div>
 <div class="line">    this-&gt;unsigned_representation = unsigned_representation;</div>
-<div class="line">    this-&gt;updateOccupationIndices();  <span class="comment">// throws error if the representation and N are not compatible</span></div>
+<div class="line">    this-&gt;updateOccupationIndices();  <span class="comment">// Throws error if the representation and N are not compatible.</span></div>
 <div class="line">}</div>
 <div class="line"> </div>
 <div class="line"> </div>
@@ -128,7 +128,7 @@ $(function() {
 <div class="line"> </div>
 <div class="line">SpinUnresolvedONV SpinUnresolvedONV::FromString(<span class="keyword">const</span> std::string&amp; string_representation) {</div>
 <div class="line"> </div>
-<div class="line">    boost::dynamic_bitset&lt;&gt; intermediate_bitset {string_representation};  <span class="comment">// the least significant bit has the highest position in the string</span></div>
+<div class="line">    boost::dynamic_bitset&lt;&gt; intermediate_bitset {string_representation};  <span class="comment">// The least significant bit has the highest position in the string.</span></div>
 <div class="line">    <span class="keyword">const</span> <span class="keyword">auto</span> M = intermediate_bitset.size();</div>
 <div class="line">    <span class="keyword">const</span> <span class="keyword">auto</span> N = intermediate_bitset.count();</div>
 <div class="line"> </div>
@@ -156,13 +156,13 @@ $(function() {
 <div class="line">    <span class="comment">// The GHF ONV is that one in which the N spinors with the lowest energy are occupied.</span></div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Create an array that contains the indices of the spinors with ascending energy.</span></div>
-<div class="line">    std::vector&lt;size_t&gt; indices(M);                <span class="comment">// zero-initialized with M elements</span></div>
-<div class="line">    std::iota(indices.begin(), indices.end(), 0);  <span class="comment">// start with 0</span></div>
+<div class="line">    std::vector&lt;size_t&gt; indices(M);                <span class="comment">// Zero-initialized with M elements.</span></div>
+<div class="line">    std::iota(indices.begin(), indices.end(), 0);  <span class="comment">// Start with 0.</span></div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Sort the indices according to the orbital energies.</span></div>
 <div class="line">    std::stable_sort(indices.begin(), indices.end(), [&amp;orbital_energies](<span class="keyword">const</span> <span class="keywordtype">size_t</span> i, <span class="keyword">const</span> <span class="keywordtype">size_t</span> j) { return orbital_energies(i) &lt; orbital_energies(j); });</div>
 <div class="line"> </div>
-<div class="line">    <span class="keyword">const</span> std::vector&lt;size_t&gt; occupied_indices {indices.begin(), indices.begin() + N};  <span class="comment">// the first N elements</span></div>
+<div class="line">    <span class="keyword">const</span> std::vector&lt;size_t&gt; occupied_indices {indices.begin(), indices.begin() + N};  <span class="comment">// The first N elements.</span></div>
 <div class="line">    <span class="keywordflow">return</span> SpinUnresolvedONV::FromOccupiedIndices(occupied_indices, M);</div>
 <div class="line">}</div>
 <div class="line"> </div>
@@ -204,7 +204,7 @@ $(function() {
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">bool</span> SpinUnresolvedONV::annihilate(<span class="keyword">const</span> <span class="keywordtype">size_t</span> p, <span class="keywordtype">int</span>&amp; sign) {</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordflow">if</span> (this-&gt;annihilate(p)) {  <span class="comment">// we have to first check if we can annihilate before applying the phase factor</span></div>
+<div class="line">    <span class="keywordflow">if</span> (this-&gt;annihilate(p)) {  <span class="comment">// We have to first check if we can annihilate before applying the phase factor.</span></div>
 <div class="line">        sign *= this-&gt;operatorPhaseFactor(p);</div>
 <div class="line">        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line">    } <span class="keywordflow">else</span> {</div>
@@ -215,7 +215,7 @@ $(function() {
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">bool</span> SpinUnresolvedONV::annihilateAll(<span class="keyword">const</span> std::vector&lt;size_t&gt;&amp; indices) {</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordflow">if</span> (this-&gt;areOccupied(indices)) {  <span class="comment">// only if all indices are occupied, we will annihilate</span></div>
+<div class="line">    <span class="keywordflow">if</span> (this-&gt;areOccupied(indices)) {  <span class="comment">// Only if all indices are occupied, we will annihilate.</span></div>
 <div class="line">        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; index : indices) {</div>
 <div class="line">            this-&gt;annihilate(index);</div>
 <div class="line">        }</div>
@@ -228,7 +228,7 @@ $(function() {
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">bool</span> SpinUnresolvedONV::annihilateAll(<span class="keyword">const</span> std::vector&lt;size_t&gt;&amp; indices, <span class="keywordtype">int</span>&amp; sign) {</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordflow">if</span> (this-&gt;areOccupied(indices)) {  <span class="comment">// only if all indices are occupied, we will annihilate</span></div>
+<div class="line">    <span class="keywordflow">if</span> (this-&gt;areOccupied(indices)) {  <span class="comment">// Only if all indices are occupied, we will annihilate.</span></div>
 <div class="line">        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; index : indices) {</div>
 <div class="line">            this-&gt;annihilate(index, sign);</div>
 <div class="line">        }</div>
@@ -247,7 +247,7 @@ $(function() {
 <div class="line">        }</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Only if all indices have been tested to be occupied, we can return true</span></div>
+<div class="line">    <span class="comment">// Only if all indices have been tested to be occupied, we can return true.</span></div>
 <div class="line">    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line">}</div>
 <div class="line"> </div>
@@ -260,7 +260,7 @@ $(function() {
 <div class="line">        }</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Only if all indices have been tested to be unoccupied, we can return true</span></div>
+<div class="line">    <span class="comment">// Only if all indices have been tested to be unoccupied, we can return true.</span></div>
 <div class="line">    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line">}</div>
 <div class="line"> </div>
@@ -268,7 +268,7 @@ $(function() {
 <div class="line">std::string SpinUnresolvedONV::asString()<span class="keyword"> const </span>{</div>
 <div class="line"> </div>
 <div class="line">    boost::dynamic_bitset&lt;&gt; intermediate_bitset {this-&gt;M, this-&gt;unsigned_representation};</div>
-<div class="line">    std::string text;  <span class="comment">// the string that will contain the textual representation of this spin-unresolved ONV</span></div>
+<div class="line">    std::string text;  <span class="comment">// The string that will contain the textual representation of this spin-unresolved ONV.</span></div>
 <div class="line"> </div>
 <div class="line">    boost::to_string(intermediate_bitset, text);</div>
 <div class="line">    <span class="keywordflow">return</span> text;</div>
@@ -326,7 +326,7 @@ $(function() {
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">bool</span> SpinUnresolvedONV::create(<span class="keyword">const</span> <span class="keywordtype">size_t</span> p, <span class="keywordtype">int</span>&amp; sign) {</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordflow">if</span> (this-&gt;create(p)) {  <span class="comment">// we have to first check if we can create before applying the phase factor</span></div>
+<div class="line">    <span class="keywordflow">if</span> (this-&gt;create(p)) {  <span class="comment">// We have to first check if we can create before applying the phase factor.</span></div>
 <div class="line">        sign *= this-&gt;operatorPhaseFactor(p);</div>
 <div class="line">        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line">    } <span class="keywordflow">else</span> {</div>
@@ -364,18 +364,18 @@ $(function() {
 <div class="line">std::vector&lt;size_t&gt; SpinUnresolvedONV::findDifferentOccupations(<span class="keyword">const</span> SpinUnresolvedONV&amp; other)<span class="keyword"> const </span>{</div>
 <div class="line"> </div>
 <div class="line">    <span class="keyword">const</span> <span class="keywordtype">size_t</span> differences = this-&gt;unsigned_representation ^ other.unsigned_representation;</div>
-<div class="line">    <span class="keywordtype">size_t</span> occupied_differences = differences &amp; this-&gt;unsigned_representation;  <span class="comment">// this holds all indices occupied in this, but unoccupied in other</span></div>
+<div class="line">    <span class="keywordtype">size_t</span> occupied_differences = differences &amp; this-&gt;unsigned_representation;  <span class="comment">// This holds all indices occupied in this, but unoccupied in other.</span></div>
 <div class="line"> </div>
 <div class="line">    <span class="keyword">const</span> <span class="keywordtype">size_t</span> number_of_occupied_differences = __builtin_popcountl(occupied_differences);</div>
 <div class="line">    std::vector&lt;size_t&gt; positions;</div>
 <div class="line">    positions.reserve(number_of_occupied_differences);</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Find the positions of the set bits in occupied_differences</span></div>
-<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> counter = 0; counter &lt; number_of_occupied_differences; counter++) {  <span class="comment">// counts the number of occupied differences we have already encountered</span></div>
-<div class="line">        <span class="keyword">const</span> <span class="keywordtype">size_t</span> position = __builtin_ctzl(occupied_differences);                <span class="comment">// count trailing zeros</span></div>
+<div class="line">    <span class="comment">// Find the positions of the set bits in occupied_differences.</span></div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> counter = 0; counter &lt; number_of_occupied_differences; counter++) {  <span class="comment">// Counts the number of occupied differences we have already encountered.</span></div>
+<div class="line">        <span class="keyword">const</span> <span class="keywordtype">size_t</span> position = __builtin_ctzl(occupied_differences);                <span class="comment">// Count trailing zeros.</span></div>
 <div class="line">        positions.push_back(position);</div>
 <div class="line"> </div>
-<div class="line">        occupied_differences ^= occupied_differences &amp; -occupied_differences;  <span class="comment">// annihilate the least significant set bit</span></div>
+<div class="line">        occupied_differences ^= occupied_differences &amp; -occupied_differences;  <span class="comment">// Annihilate the least significant set bit.</span></div>
 <div class="line">    }</div>
 <div class="line"> </div>
 <div class="line">    <span class="keywordflow">return</span> positions;</div>
@@ -391,12 +391,12 @@ $(function() {
 <div class="line">    positions.reserve(number_of_occupied_matches);</div>
 <div class="line"> </div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Find the positions of the set bits in occupied_differences</span></div>
-<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> counter = 0; counter &lt; number_of_occupied_matches; counter++) {  <span class="comment">// counts the number of occupied differences we have already encountered</span></div>
-<div class="line">        <span class="keyword">const</span> <span class="keywordtype">size_t</span> position = __builtin_ctzl(matches);                         <span class="comment">// count trailing zeros</span></div>
+<div class="line">    <span class="comment">// Find the positions of the set bits in occupied_differences.</span></div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> counter = 0; counter &lt; number_of_occupied_matches; counter++) {  <span class="comment">// Counts the number of occupied differences we have already encountered.</span></div>
+<div class="line">        <span class="keyword">const</span> <span class="keywordtype">size_t</span> position = __builtin_ctzl(matches);                         <span class="comment">// Count trailing zeros.</span></div>
 <div class="line">        positions.push_back(position);</div>
 <div class="line"> </div>
-<div class="line">        matches ^= matches &amp; -matches;  <span class="comment">// annihilate the least significant set bit</span></div>
+<div class="line">        matches ^= matches &amp; -matches;  <span class="comment">// Annihilate the least significant set bit.</span></div>
 <div class="line">    }</div>
 <div class="line"> </div>
 <div class="line">    <span class="keywordflow">return</span> positions;</div>
@@ -432,7 +432,7 @@ $(function() {
 <div class="line"><span class="keywordtype">bool</span> SpinUnresolvedONV::isOccupied(<span class="keyword">const</span> <span class="keywordtype">size_t</span> p)<span class="keyword"> const </span>{</div>
 <div class="line"> </div>
 <div class="line">    <span class="keywordflow">if</span> (p &gt; this-&gt;M - 1) {</div>
-<div class="line">        <span class="keywordflow">throw</span> std::invalid_argument(<span class="stringliteral">&quot;SpinUnresolvedONV::isOccupied(size_t): The index is out of the bitset bounds&quot;</span>);</div>
+<div class="line">        <span class="keywordflow">throw</span> std::invalid_argument(<span class="stringliteral">&quot;SpinUnresolvedONV::isOccupied(size_t): The index is out of the bitset bounds.&quot;</span>);</div>
 <div class="line">    }</div>
 <div class="line"> </div>
 <div class="line">    <span class="keyword">const</span> <span class="keywordtype">size_t</span> operator_string = 1U &lt;&lt; p;</div>
@@ -447,14 +447,14 @@ $(function() {
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">int</span> SpinUnresolvedONV::operatorPhaseFactor(<span class="keyword">const</span> <span class="keywordtype">size_t</span> p)<span class="keyword"> const </span>{</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordflow">if</span> (p == 0) {  <span class="comment">// we can&#39;t give this to this-&gt;slice(0, 0)</span></div>
+<div class="line">    <span class="keywordflow">if</span> (p == 0) {  <span class="comment">// We can&#39;t give this to this-&gt;slice(0, 0).</span></div>
 <div class="line">        <span class="keywordflow">return</span> 1;</div>
 <div class="line">    }</div>
-<div class="line">    <span class="keyword">const</span> <span class="keywordtype">size_t</span> m = __builtin_popcountl(this-&gt;slice(0, p));  <span class="comment">// count the number of set bits in the slice [0,p-1]</span></div>
+<div class="line">    <span class="keyword">const</span> <span class="keywordtype">size_t</span> m = __builtin_popcountl(this-&gt;slice(0, p));  <span class="comment">// Count the number of set bits in the slice [0,p-1].</span></div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordflow">if</span> (m % 2 == 0) {  <span class="comment">// even number of electrons: phase factor (+1)</span></div>
+<div class="line">    <span class="keywordflow">if</span> (m % 2 == 0) {  <span class="comment">// Even number of electrons: phase factor (+1).</span></div>
 <div class="line">        <span class="keywordflow">return</span> 1;</div>
-<div class="line">    } <span class="keywordflow">else</span> {  <span class="comment">// odd number of electrons: phase factor (-1)</span></div>
+<div class="line">    } <span class="keywordflow">else</span> {  <span class="comment">// Odd number of electrons: phase factor (-1).</span></div>
 <div class="line">        <span class="keywordflow">return</span> -1;</div>
 <div class="line">    }</div>
 <div class="line">}</div>
@@ -485,19 +485,19 @@ $(function() {
 <div class="line">        <span class="keywordflow">throw</span> std::invalid_argument(<span class="stringliteral">&quot;SpinUnresolvedONV::slice(size_t, size_t): The last slicing index index_end cannot be greater than the number of spatial orbitals M.&quot;</span>);</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// The union of these conditions also include the case that index_start &gt; this-&gt;M</span></div>
+<div class="line">    <span class="comment">// The union of these conditions also include the case that index_start &gt; this-&gt;M.</span></div>
 <div class="line"> </div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Shift bits to the right</span></div>
+<div class="line">    <span class="comment">// Shift bits to the right.</span></div>
 <div class="line">    <span class="keyword">const</span> <span class="keywordtype">size_t</span> u = this-&gt;unsigned_representation &gt;&gt; index_start;</div>
 <div class="line"> </div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Create the correct mask</span></div>
+<div class="line">    <span class="comment">// Create the correct mask.</span></div>
 <div class="line">    <span class="keyword">const</span> <span class="keywordtype">size_t</span> mask_length = index_end - index_start;</div>
 <div class="line">    <span class="keyword">const</span> <span class="keywordtype">size_t</span> mask = ((1U) &lt;&lt; mask_length) - 1;</div>
 <div class="line"> </div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Use the mask</span></div>
+<div class="line">    <span class="comment">// Use the mask.</span></div>
 <div class="line">    <span class="keywordflow">return</span> u &amp; mask;</div>
 <div class="line">}</div>
 <div class="line"> </div>
@@ -506,7 +506,7 @@ $(function() {
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Create a vector containing all indices.</span></div>
 <div class="line">    std::vector&lt;size_t&gt; all_indices(this-&gt;M);</div>
-<div class="line">    std::iota(all_indices.begin(), all_indices.end(), 0);  <span class="comment">// fill all_indices with increasing numbers, starting by 0</span></div>
+<div class="line">    std::iota(all_indices.begin(), all_indices.end(), 0);  <span class="comment">// Fill all_indices with increasing numbers, starting by 0.</span></div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// The unoccupied indices are {all indices}\{occupied indices}.</span></div>
 <div class="line">    std::vector&lt;size_t&gt; unoccupied_indices;</div>
@@ -523,14 +523,14 @@ $(function() {
 <div class="line">    <span class="keywordtype">int</span> electron_index = 0;</div>
 <div class="line"> </div>
 <div class="line">    <span class="keywordflow">while</span> (representation_copy != 0) {</div>
-<div class="line">        this-&gt;occupied_indices[electron_index] = __builtin_ctzl(representation_copy);  <span class="comment">// retrieves occupation index</span></div>
+<div class="line">        this-&gt;occupied_indices[electron_index] = __builtin_ctzl(representation_copy);  <span class="comment">// Retrieves occupation index.</span></div>
 <div class="line">        electron_index++;</div>
 <div class="line"> </div>
-<div class="line">        representation_copy ^= (representation_copy &amp; -representation_copy);  <span class="comment">// flip the least significant bit</span></div>
+<div class="line">        representation_copy ^= (representation_copy &amp; -representation_copy);  <span class="comment">// Flip the least significant bit.</span></div>
 <div class="line">    }</div>
 <div class="line"> </div>
 <div class="line">    <span class="keywordflow">if</span> (electron_index != this-&gt;N) {</div>
-<div class="line">        <span class="keywordflow">throw</span> std::invalid_argument(<span class="stringliteral">&quot;SpinUnresolvedONV::updateOccupationIndices(): The current representation and electron count are not compatible&quot;</span>);</div>
+<div class="line">        <span class="keywordflow">throw</span> std::invalid_argument(<span class="stringliteral">&quot;SpinUnresolvedONV::updateOccupationIndices(): The current representation and electron count are not compatible.&quot;</span>);</div>
 <div class="line">    }</div>
 <div class="line">}</div>
 <div class="line"> </div>

@@ -1,12 +1,13 @@
 <map id="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/ElectronicSpinSquaredOperator.hpp" name="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/ElectronicSpinSquaredOperator.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="103,5,358,61"/>
-<area shape="rect" id="node2" href="$_base_f_q_operator_8hpp.html" title=" " alt="" coords="47,109,223,151"/>
-<area shape="rect" id="node7" href="$complex_8hpp.html" title=" " alt="" coords="259,117,421,143"/>
-<area shape="rect" id="node3" href="$_dense_vectorizer_8hpp.html" title=" " alt="" coords="15,199,228,240"/>
-<area shape="rect" id="node4" title=" " alt="" coords="5,288,61,315"/>
-<area shape="rect" id="node5" title=" " alt="" coords="86,288,157,315"/>
-<area shape="rect" id="node6" title=" " alt="" coords="181,288,256,315"/>
-<area shape="rect" id="node8" href="$type__traits_8hpp.html" title=" " alt="" coords="253,206,427,233"/>
-<area shape="rect" id="node10" title=" " alt="" coords="451,206,530,233"/>
-<area shape="rect" id="node9" title=" " alt="" coords="294,288,386,315"/>
+<area shape="rect" id="node1" title=" " alt="" coords="208,5,463,61"/>
+<area shape="rect" id="node2" href="$_base_f_q_operator_8hpp.html" title=" " alt="" coords="151,109,327,151"/>
+<area shape="rect" id="node8" href="$complex_8hpp.html" title=" " alt="" coords="364,117,525,143"/>
+<area shape="rect" id="node3" href="$_dense_vectorizer_8hpp.html" title=" " alt="" coords="119,199,333,240"/>
+<area shape="rect" id="node4" title=" " alt="" coords="5,288,92,315"/>
+<area shape="rect" id="node5" title=" " alt="" coords="117,288,173,315"/>
+<area shape="rect" id="node6" title=" " alt="" coords="197,288,268,315"/>
+<area shape="rect" id="node7" title=" " alt="" coords="293,288,367,315"/>
+<area shape="rect" id="node9" href="$type__traits_8hpp.html" title=" " alt="" coords="357,206,532,233"/>
+<area shape="rect" id="node11" title=" " alt="" coords="556,206,635,233"/>
+<area shape="rect" id="node10" title=" " alt="" coords="399,288,491,315"/>
 </map>

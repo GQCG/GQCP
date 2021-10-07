@@ -5,9 +5,11 @@
     <innerfile refid="_seniority_zero_o_n_v_basis_8cpp">SeniorityZeroONVBasis.cpp</innerfile>
     <innerfile refid="_spin_resolved_o_n_v_8cpp">SpinResolvedONV.cpp</innerfile>
     <innerfile refid="_spin_resolved_o_n_v_basis_8cpp">SpinResolvedONVBasis.cpp</innerfile>
+    <innerfile refid="_spin_resolved_operator_string_8cpp">SpinResolvedOperatorString.cpp</innerfile>
     <innerfile refid="_spin_resolved_selected_o_n_v_basis_8cpp">SpinResolvedSelectedONVBasis.cpp</innerfile>
     <innerfile refid="_spin_unresolved_o_n_v_8cpp">SpinUnresolvedONV.cpp</innerfile>
     <innerfile refid="_spin_unresolved_o_n_v_basis_8cpp">SpinUnresolvedONVBasis.cpp</innerfile>
+    <innerfile refid="_spin_unresolved_operator_string_8cpp">SpinUnresolvedOperatorString.cpp</innerfile>
     <innerfile refid="_spin_unresolved_selected_o_n_v_basis_8cpp">SpinUnresolvedSelectedONVBasis.cpp</innerfile>
     <briefdescription>
     </briefdescription>

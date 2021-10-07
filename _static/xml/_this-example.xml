@@ -41,7 +41,7 @@
 </parameterlist>
 <simplesect kind="return"><para>The overlap element &lt;on|of&gt;.</para>
 </simplesect>
-method can be used to project UHF-ONVs onto RHF-ONVs, by calling uhf_onv.calculateProjection(rhf_onv, C_unrestricted, C_restricted, S) <programlisting filename="This"></programlisting> </para>
+method can be used to project UHF-ONVs onto RHF-ONVs, by calling uhf_onv.calculateProjection(rhf_onv, C_unrestricted, C_restricted, S). <programlisting filename="This"></programlisting> </para>
     </detaileddescription>
     <location file="/__w/GQCP/GQCP/gqcp/src/ONVBasis/SpinResolvedONV.cpp"/>
   </compounddef>

@@ -10,11 +10,11 @@
 <parametername>p</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the 0-based spinor index, counted in this ONV from right to left</para>
+<para>The 0-based spinor index, counted in this ONV from right to left.</para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>the phase factor (+1 or -1) that arises by applying an annihilation or creation operator on spinor p</para>
+<simplesect kind="return"><para>The phase factor (+1 or -1) that arises by applying an annihilation or creation operator on spinor p.</para>
 </simplesect>
 &apos;s say that there are m electrons in the orbitals up to p (not included). If m is even, the phase factor is (+1) and if m is odd, the phase factor is (-1), since electrons are fermions. <programlisting filename="Let"></programlisting> </para>
     </detaileddescription>

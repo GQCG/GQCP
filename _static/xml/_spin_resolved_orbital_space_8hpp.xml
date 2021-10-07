@@ -28,6 +28,9 @@
         <label>Basis/SpinorBasis/OccupationType.hpp</label>
         <link refid="_occupation_type_8hpp"/>
       </node>
+      <node id="26">
+        <label>stdexcept</label>
+      </node>
       <node id="18">
         <label>numeric</label>
       </node>
@@ -56,6 +59,8 @@
         <childnode refid="25" relation="include">
         </childnode>
         <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
         </childnode>
         <childnode refid="16" relation="include">
         </childnode>
@@ -125,7 +130,7 @@
         <label>QuantumChemical/Spin.hpp</label>
         <link refid="_spin_8hpp"/>
       </node>
-      <node id="26">
+      <node id="27">
         <label>array</label>
       </node>
       <node id="19">

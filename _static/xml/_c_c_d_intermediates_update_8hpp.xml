@@ -378,6 +378,8 @@
         <link refid="_spin_resolved_base_8hpp"/>
         <childnode refid="52" relation="include">
         </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
         <childnode refid="53" relation="include">
         </childnode>
         <childnode refid="20" relation="include">
@@ -616,6 +618,8 @@
       <node id="79">
         <label>Mathematical/Representation/DenseVectorizer.hpp</label>
         <link refid="_dense_vectorizer_8hpp"/>
+        <childnode refid="28" relation="include">
+        </childnode>
         <childnode refid="53" relation="include">
         </childnode>
         <childnode refid="80" relation="include">

@@ -1,13 +1,13 @@
 \hypertarget{_2__w_2_g_q_c_p_2_g_q_c_p_2gqcp_2src_2_o_n_v_basis_2_spin_unresolved_o_n_v_8cpp-example}{}\doxysection{/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/src/\+ONVBasis/\+Spin\+Unresolved\+ONV.\+cpp}
 
 \begin{DoxyParams}{Parameters}
-{\em index\+\_\+start} & the starting index (included), read from right to left \\
+{\em index\+\_\+start} & The starting index (included), read from right to left. \\
 \hline
-{\em index\+\_\+end} & the ending index (not included), read from right to left\\
+{\em index\+\_\+end} & The ending index (not included), read from right to left.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-the representation of a slice (i.\+e. a subset) of the ONV (read from right to left) between index\+\_\+start (included) and index\+\_\+end (not included)
+The representation of a slice (i.\+e. a subset) of the ONV (read from right to left) between index\+\_\+start (included) and index\+\_\+end (not included).
 \end{DoxyReturn}
 \char`\"{}010011\char`\"{}.slice(1, 4) =$>$ \char`\"{}01\mbox{[}001\mbox{]}1\char`\"{} -\/$>$ \char`\"{}001\char`\"{}, where the spinor indices are\+: 543210
 
@@ -51,7 +51,7 @@ the representation of a slice (i.\+e. a subset) of the ONV (read from right to l
 \DoxyCodeLine{    SpinUnresolvedONV(M, N) \{}
 \DoxyCodeLine{}
 \DoxyCodeLine{    this-\/>unsigned\_representation = unsigned\_representation;}
-\DoxyCodeLine{    this-\/>updateOccupationIndices();  \textcolor{comment}{// throws error if the representation and N are not compatible}}
+\DoxyCodeLine{    this-\/>updateOccupationIndices();  \textcolor{comment}{// Throws error if the representation and N are not compatible.}}
 \DoxyCodeLine{\}}
 \DoxyCodeLine{}
 \DoxyCodeLine{}
@@ -67,7 +67,7 @@ the representation of a slice (i.\+e. a subset) of the ONV (read from right to l
 \DoxyCodeLine{}
 \DoxyCodeLine{SpinUnresolvedONV SpinUnresolvedONV::FromString(\textcolor{keyword}{const} std::string\& string\_representation) \{}
 \DoxyCodeLine{}
-\DoxyCodeLine{    boost::dynamic\_bitset<> intermediate\_bitset \{string\_representation\};  \textcolor{comment}{// the least significant bit has the highest position in the string}}
+\DoxyCodeLine{    boost::dynamic\_bitset<> intermediate\_bitset \{string\_representation\};  \textcolor{comment}{// The least significant bit has the highest position in the string.}}
 \DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{auto} M = intermediate\_bitset.size();}
 \DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{auto} N = intermediate\_bitset.count();}
 \DoxyCodeLine{}
@@ -95,13 +95,13 @@ the representation of a slice (i.\+e. a subset) of the ONV (read from right to l
 \DoxyCodeLine{    \textcolor{comment}{// The GHF ONV is that one in which the N spinors with the lowest energy are occupied.}}
 \DoxyCodeLine{}
 \DoxyCodeLine{    \textcolor{comment}{// Create an array that contains the indices of the spinors with ascending energy.}}
-\DoxyCodeLine{    std::vector<size\_t> indices(M);                \textcolor{comment}{// zero-\/initialized with M elements}}
-\DoxyCodeLine{    std::iota(indices.begin(), indices.end(), 0);  \textcolor{comment}{// start with 0}}
+\DoxyCodeLine{    std::vector<size\_t> indices(M);                \textcolor{comment}{// Zero-\/initialized with M elements.}}
+\DoxyCodeLine{    std::iota(indices.begin(), indices.end(), 0);  \textcolor{comment}{// Start with 0.}}
 \DoxyCodeLine{}
 \DoxyCodeLine{    \textcolor{comment}{// Sort the indices according to the orbital energies.}}
 \DoxyCodeLine{    std::stable\_sort(indices.begin(), indices.end(), [\&orbital\_energies](\textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} i, \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} j) \{ return orbital\_energies(i) < orbital\_energies(j); \});}
 \DoxyCodeLine{}
-\DoxyCodeLine{    \textcolor{keyword}{const} std::vector<size\_t> occupied\_indices \{indices.begin(), indices.begin() + N\};  \textcolor{comment}{// the first N elements}}
+\DoxyCodeLine{    \textcolor{keyword}{const} std::vector<size\_t> occupied\_indices \{indices.begin(), indices.begin() + N\};  \textcolor{comment}{// The first N elements.}}
 \DoxyCodeLine{    \textcolor{keywordflow}{return} SpinUnresolvedONV::FromOccupiedIndices(occupied\_indices, M);}
 \DoxyCodeLine{\}}
 \DoxyCodeLine{}
@@ -143,7 +143,7 @@ the representation of a slice (i.\+e. a subset) of the ONV (read from right to l
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{keywordtype}{bool} SpinUnresolvedONV::annihilate(\textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} p, \textcolor{keywordtype}{int}\& sign) \{}
 \DoxyCodeLine{}
-\DoxyCodeLine{    \textcolor{keywordflow}{if} (this-\/>annihilate(p)) \{  \textcolor{comment}{// we have to first check if we can annihilate before applying the phase factor}}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (this-\/>annihilate(p)) \{  \textcolor{comment}{// We have to first check if we can annihilate before applying the phase factor.}}
 \DoxyCodeLine{        sign *= this-\/>operatorPhaseFactor(p);}
 \DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
 \DoxyCodeLine{    \} \textcolor{keywordflow}{else} \{}
@@ -154,7 +154,7 @@ the representation of a slice (i.\+e. a subset) of the ONV (read from right to l
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{keywordtype}{bool} SpinUnresolvedONV::annihilateAll(\textcolor{keyword}{const} std::vector<size\_t>\& indices) \{}
 \DoxyCodeLine{}
-\DoxyCodeLine{    \textcolor{keywordflow}{if} (this-\/>areOccupied(indices)) \{  \textcolor{comment}{// only if all indices are occupied, we will annihilate}}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (this-\/>areOccupied(indices)) \{  \textcolor{comment}{// Only if all indices are occupied, we will annihilate.}}
 \DoxyCodeLine{        \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& index : indices) \{}
 \DoxyCodeLine{            this-\/>annihilate(index);}
 \DoxyCodeLine{        \}}
@@ -167,7 +167,7 @@ the representation of a slice (i.\+e. a subset) of the ONV (read from right to l
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{keywordtype}{bool} SpinUnresolvedONV::annihilateAll(\textcolor{keyword}{const} std::vector<size\_t>\& indices, \textcolor{keywordtype}{int}\& sign) \{}
 \DoxyCodeLine{}
-\DoxyCodeLine{    \textcolor{keywordflow}{if} (this-\/>areOccupied(indices)) \{  \textcolor{comment}{// only if all indices are occupied, we will annihilate}}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (this-\/>areOccupied(indices)) \{  \textcolor{comment}{// Only if all indices are occupied, we will annihilate.}}
 \DoxyCodeLine{        \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& index : indices) \{}
 \DoxyCodeLine{            this-\/>annihilate(index, sign);}
 \DoxyCodeLine{        \}}
@@ -186,7 +186,7 @@ the representation of a slice (i.\+e. a subset) of the ONV (read from right to l
 \DoxyCodeLine{        \}}
 \DoxyCodeLine{    \}}
 \DoxyCodeLine{}
-\DoxyCodeLine{    \textcolor{comment}{// Only if all indices have been tested to be occupied, we can return true}}
+\DoxyCodeLine{    \textcolor{comment}{// Only if all indices have been tested to be occupied, we can return true.}}
 \DoxyCodeLine{    \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
 \DoxyCodeLine{\}}
 \DoxyCodeLine{}
@@ -199,7 +199,7 @@ the representation of a slice (i.\+e. a subset) of the ONV (read from right to l
 \DoxyCodeLine{        \}}
 \DoxyCodeLine{    \}}
 \DoxyCodeLine{}
-\DoxyCodeLine{    \textcolor{comment}{// Only if all indices have been tested to be unoccupied, we can return true}}
+\DoxyCodeLine{    \textcolor{comment}{// Only if all indices have been tested to be unoccupied, we can return true.}}
 \DoxyCodeLine{    \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
 \DoxyCodeLine{\}}
 \DoxyCodeLine{}
@@ -207,7 +207,7 @@ the representation of a slice (i.\+e. a subset) of the ONV (read from right to l
 \DoxyCodeLine{std::string SpinUnresolvedONV::asString()\textcolor{keyword}{ const }\{}
 \DoxyCodeLine{}
 \DoxyCodeLine{    boost::dynamic\_bitset<> intermediate\_bitset \{this-\/>M, this-\/>unsigned\_representation\};}
-\DoxyCodeLine{    std::string text;  \textcolor{comment}{// the string that will contain the textual representation of this spin-\/unresolved ONV}}
+\DoxyCodeLine{    std::string text;  \textcolor{comment}{// The string that will contain the textual representation of this spin-\/unresolved ONV.}}
 \DoxyCodeLine{}
 \DoxyCodeLine{    boost::to\_string(intermediate\_bitset, text);}
 \DoxyCodeLine{    \textcolor{keywordflow}{return} text;}
@@ -265,7 +265,7 @@ the representation of a slice (i.\+e. a subset) of the ONV (read from right to l
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{keywordtype}{bool} SpinUnresolvedONV::create(\textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} p, \textcolor{keywordtype}{int}\& sign) \{}
 \DoxyCodeLine{}
-\DoxyCodeLine{    \textcolor{keywordflow}{if} (this-\/>create(p)) \{  \textcolor{comment}{// we have to first check if we can create before applying the phase factor}}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (this-\/>create(p)) \{  \textcolor{comment}{// We have to first check if we can create before applying the phase factor.}}
 \DoxyCodeLine{        sign *= this-\/>operatorPhaseFactor(p);}
 \DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
 \DoxyCodeLine{    \} \textcolor{keywordflow}{else} \{}
@@ -303,18 +303,18 @@ the representation of a slice (i.\+e. a subset) of the ONV (read from right to l
 \DoxyCodeLine{std::vector<size\_t> SpinUnresolvedONV::findDifferentOccupations(\textcolor{keyword}{const} SpinUnresolvedONV\& other)\textcolor{keyword}{ const }\{}
 \DoxyCodeLine{}
 \DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} differences = this-\/>unsigned\_representation \string^ other.unsigned\_representation;}
-\DoxyCodeLine{    \textcolor{keywordtype}{size\_t} occupied\_differences = differences \& this-\/>unsigned\_representation;  \textcolor{comment}{// this holds all indices occupied in this, but unoccupied in other}}
+\DoxyCodeLine{    \textcolor{keywordtype}{size\_t} occupied\_differences = differences \& this-\/>unsigned\_representation;  \textcolor{comment}{// This holds all indices occupied in this, but unoccupied in other.}}
 \DoxyCodeLine{}
 \DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} number\_of\_occupied\_differences = \_\_builtin\_popcountl(occupied\_differences);}
 \DoxyCodeLine{    std::vector<size\_t> positions;}
 \DoxyCodeLine{    positions.reserve(number\_of\_occupied\_differences);}
 \DoxyCodeLine{}
-\DoxyCodeLine{    \textcolor{comment}{// Find the positions of the set bits in occupied\_differences}}
-\DoxyCodeLine{    \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} counter = 0; counter < number\_of\_occupied\_differences; counter++) \{  \textcolor{comment}{// counts the number of occupied differences we have already encountered}}
-\DoxyCodeLine{        \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} position = \_\_builtin\_ctzl(occupied\_differences);                \textcolor{comment}{// count trailing zeros}}
+\DoxyCodeLine{    \textcolor{comment}{// Find the positions of the set bits in occupied\_differences.}}
+\DoxyCodeLine{    \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} counter = 0; counter < number\_of\_occupied\_differences; counter++) \{  \textcolor{comment}{// Counts the number of occupied differences we have already encountered.}}
+\DoxyCodeLine{        \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} position = \_\_builtin\_ctzl(occupied\_differences);                \textcolor{comment}{// Count trailing zeros.}}
 \DoxyCodeLine{        positions.push\_back(position);}
 \DoxyCodeLine{}
-\DoxyCodeLine{        occupied\_differences \string^= occupied\_differences \& -\/occupied\_differences;  \textcolor{comment}{// annihilate the least significant set bit}}
+\DoxyCodeLine{        occupied\_differences \string^= occupied\_differences \& -\/occupied\_differences;  \textcolor{comment}{// Annihilate the least significant set bit.}}
 \DoxyCodeLine{    \}}
 \DoxyCodeLine{}
 \DoxyCodeLine{    \textcolor{keywordflow}{return} positions;}
@@ -330,12 +330,12 @@ the representation of a slice (i.\+e. a subset) of the ONV (read from right to l
 \DoxyCodeLine{    positions.reserve(number\_of\_occupied\_matches);}
 \DoxyCodeLine{}
 \DoxyCodeLine{}
-\DoxyCodeLine{    \textcolor{comment}{// Find the positions of the set bits in occupied\_differences}}
-\DoxyCodeLine{    \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} counter = 0; counter < number\_of\_occupied\_matches; counter++) \{  \textcolor{comment}{// counts the number of occupied differences we have already encountered}}
-\DoxyCodeLine{        \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} position = \_\_builtin\_ctzl(matches);                         \textcolor{comment}{// count trailing zeros}}
+\DoxyCodeLine{    \textcolor{comment}{// Find the positions of the set bits in occupied\_differences.}}
+\DoxyCodeLine{    \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} counter = 0; counter < number\_of\_occupied\_matches; counter++) \{  \textcolor{comment}{// Counts the number of occupied differences we have already encountered.}}
+\DoxyCodeLine{        \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} position = \_\_builtin\_ctzl(matches);                         \textcolor{comment}{// Count trailing zeros.}}
 \DoxyCodeLine{        positions.push\_back(position);}
 \DoxyCodeLine{}
-\DoxyCodeLine{        matches \string^= matches \& -\/matches;  \textcolor{comment}{// annihilate the least significant set bit}}
+\DoxyCodeLine{        matches \string^= matches \& -\/matches;  \textcolor{comment}{// Annihilate the least significant set bit.}}
 \DoxyCodeLine{    \}}
 \DoxyCodeLine{}
 \DoxyCodeLine{    \textcolor{keywordflow}{return} positions;}
@@ -371,7 +371,7 @@ the representation of a slice (i.\+e. a subset) of the ONV (read from right to l
 \DoxyCodeLine{\textcolor{keywordtype}{bool} SpinUnresolvedONV::isOccupied(\textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} p)\textcolor{keyword}{ const }\{}
 \DoxyCodeLine{}
 \DoxyCodeLine{    \textcolor{keywordflow}{if} (p > this-\/>M -\/ 1) \{}
-\DoxyCodeLine{        \textcolor{keywordflow}{throw} std::invalid\_argument(\textcolor{stringliteral}{"{}SpinUnresolvedONV::isOccupied(size\_t): The index is out of the bitset bounds"{}});}
+\DoxyCodeLine{        \textcolor{keywordflow}{throw} std::invalid\_argument(\textcolor{stringliteral}{"{}SpinUnresolvedONV::isOccupied(size\_t): The index is out of the bitset bounds."{}});}
 \DoxyCodeLine{    \}}
 \DoxyCodeLine{}
 \DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} operator\_string = 1U << p;}
@@ -386,14 +386,14 @@ the representation of a slice (i.\+e. a subset) of the ONV (read from right to l
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{keywordtype}{int} SpinUnresolvedONV::operatorPhaseFactor(\textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} p)\textcolor{keyword}{ const }\{}
 \DoxyCodeLine{}
-\DoxyCodeLine{    \textcolor{keywordflow}{if} (p == 0) \{  \textcolor{comment}{// we can't give this to this-\/>slice(0, 0)}}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (p == 0) \{  \textcolor{comment}{// We can't give this to this-\/>slice(0, 0).}}
 \DoxyCodeLine{        \textcolor{keywordflow}{return} 1;}
 \DoxyCodeLine{    \}}
-\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} m = \_\_builtin\_popcountl(this-\/>slice(0, p));  \textcolor{comment}{// count the number of set bits in the slice [0,p-\/1]}}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} m = \_\_builtin\_popcountl(this-\/>slice(0, p));  \textcolor{comment}{// Count the number of set bits in the slice [0,p-\/1].}}
 \DoxyCodeLine{}
-\DoxyCodeLine{    \textcolor{keywordflow}{if} (m \% 2 == 0) \{  \textcolor{comment}{// even number of electrons: phase factor (+1)}}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (m \% 2 == 0) \{  \textcolor{comment}{// Even number of electrons: phase factor (+1).}}
 \DoxyCodeLine{        \textcolor{keywordflow}{return} 1;}
-\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \{  \textcolor{comment}{// odd number of electrons: phase factor (-\/1)}}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \{  \textcolor{comment}{// Odd number of electrons: phase factor (-\/1).}}
 \DoxyCodeLine{        \textcolor{keywordflow}{return} -\/1;}
 \DoxyCodeLine{    \}}
 \DoxyCodeLine{\}}
@@ -424,19 +424,19 @@ the representation of a slice (i.\+e. a subset) of the ONV (read from right to l
 \DoxyCodeLine{        \textcolor{keywordflow}{throw} std::invalid\_argument(\textcolor{stringliteral}{"{}SpinUnresolvedONV::slice(size\_t, size\_t): The last slicing index index\_end cannot be greater than the number of spatial orbitals M."{}});}
 \DoxyCodeLine{    \}}
 \DoxyCodeLine{}
-\DoxyCodeLine{    \textcolor{comment}{// The union of these conditions also include the case that index\_start > this-\/>M}}
+\DoxyCodeLine{    \textcolor{comment}{// The union of these conditions also include the case that index\_start > this-\/>M.}}
 \DoxyCodeLine{}
 \DoxyCodeLine{}
-\DoxyCodeLine{    \textcolor{comment}{// Shift bits to the right}}
+\DoxyCodeLine{    \textcolor{comment}{// Shift bits to the right.}}
 \DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} u = this-\/>unsigned\_representation >> index\_start;}
 \DoxyCodeLine{}
 \DoxyCodeLine{}
-\DoxyCodeLine{    \textcolor{comment}{// Create the correct mask}}
+\DoxyCodeLine{    \textcolor{comment}{// Create the correct mask.}}
 \DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} mask\_length = index\_end -\/ index\_start;}
 \DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} mask = ((1U) << mask\_length) -\/ 1;}
 \DoxyCodeLine{}
 \DoxyCodeLine{}
-\DoxyCodeLine{    \textcolor{comment}{// Use the mask}}
+\DoxyCodeLine{    \textcolor{comment}{// Use the mask.}}
 \DoxyCodeLine{    \textcolor{keywordflow}{return} u \& mask;}
 \DoxyCodeLine{\}}
 \DoxyCodeLine{}
@@ -445,7 +445,7 @@ the representation of a slice (i.\+e. a subset) of the ONV (read from right to l
 \DoxyCodeLine{}
 \DoxyCodeLine{    \textcolor{comment}{// Create a vector containing all indices.}}
 \DoxyCodeLine{    std::vector<size\_t> all\_indices(this-\/>M);}
-\DoxyCodeLine{    std::iota(all\_indices.begin(), all\_indices.end(), 0);  \textcolor{comment}{// fill all\_indices with increasing numbers, starting by 0}}
+\DoxyCodeLine{    std::iota(all\_indices.begin(), all\_indices.end(), 0);  \textcolor{comment}{// Fill all\_indices with increasing numbers, starting by 0.}}
 \DoxyCodeLine{}
 \DoxyCodeLine{    \textcolor{comment}{// The unoccupied indices are \{all indices\}\(\backslash\)\{occupied indices\}.}}
 \DoxyCodeLine{    std::vector<size\_t> unoccupied\_indices;}
@@ -462,14 +462,14 @@ the representation of a slice (i.\+e. a subset) of the ONV (read from right to l
 \DoxyCodeLine{    \textcolor{keywordtype}{int} electron\_index = 0;}
 \DoxyCodeLine{}
 \DoxyCodeLine{    \textcolor{keywordflow}{while} (representation\_copy != 0) \{}
-\DoxyCodeLine{        this-\/>occupied\_indices[electron\_index] = \_\_builtin\_ctzl(representation\_copy);  \textcolor{comment}{// retrieves occupation index}}
+\DoxyCodeLine{        this-\/>occupied\_indices[electron\_index] = \_\_builtin\_ctzl(representation\_copy);  \textcolor{comment}{// Retrieves occupation index.}}
 \DoxyCodeLine{        electron\_index++;}
 \DoxyCodeLine{}
-\DoxyCodeLine{        representation\_copy \string^= (representation\_copy \& -\/representation\_copy);  \textcolor{comment}{// flip the least significant bit}}
+\DoxyCodeLine{        representation\_copy \string^= (representation\_copy \& -\/representation\_copy);  \textcolor{comment}{// Flip the least significant bit.}}
 \DoxyCodeLine{    \}}
 \DoxyCodeLine{}
 \DoxyCodeLine{    \textcolor{keywordflow}{if} (electron\_index != this-\/>N) \{}
-\DoxyCodeLine{        \textcolor{keywordflow}{throw} std::invalid\_argument(\textcolor{stringliteral}{"{}SpinUnresolvedONV::updateOccupationIndices(): The current representation and electron count are not compatible"{}});}
+\DoxyCodeLine{        \textcolor{keywordflow}{throw} std::invalid\_argument(\textcolor{stringliteral}{"{}SpinUnresolvedONV::updateOccupationIndices(): The current representation and electron count are not compatible."{}});}
 \DoxyCodeLine{    \}}
 \DoxyCodeLine{\}}
 \DoxyCodeLine{}

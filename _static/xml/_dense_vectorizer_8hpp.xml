@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="_dense_vectorizer_8hpp" kind="file" language="C++">
     <compoundname>DenseVectorizer.hpp</compoundname>
+    <includes local="no">stdexcept</includes>
     <includes local="no">array</includes>
     <includes local="no">cstddef</includes>
     <includes local="no">numeric</includes>
@@ -16,7 +17,10 @@
     <includedby refid="_r_s_q_two_electron_operator_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/RSQTwoElectronOperator.hpp</includedby>
     <includedby refid="_u_s_q_one_electron_operator_component_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQOneElectronOperatorComponent.hpp</includedby>
     <incdepgraph>
-      <node id="4">
+      <node id="2">
+        <label>stdexcept</label>
+      </node>
+      <node id="5">
         <label>numeric</label>
       </node>
       <node id="1">
@@ -28,11 +32,13 @@
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
-      </node>
-      <node id="2">
-        <label>array</label>
+        <childnode refid="5" relation="include">
+        </childnode>
       </node>
       <node id="3">
+        <label>array</label>
+      </node>
+      <node id="4">
         <label>cstddef</label>
       </node>
     </incdepgraph>
@@ -1803,150 +1809,152 @@
 <codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="19"><highlight class="normal"></highlight></codeline>
 <codeline lineno="20"><highlight class="normal"></highlight></codeline>
-<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;array&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstddef&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;numeric&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="24"><highlight class="normal"></highlight></codeline>
-<codeline lineno="25"><highlight class="normal"></highlight></codeline>
-<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_g_q_c_p" kindref="compound">GQCP</ref><sp/>{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdexcept&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;array&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstddef&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;numeric&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="32" refid="namespace_g_q_c_p_1aa03d875bac2a1696d399ae8136c705e5" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1aa03d875bac2a1696d399ae8136c705e5" kindref="member">Ordering</ref><sp/>{</highlight></codeline>
-<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Specifies<sp/>that<sp/>the<sp/>first<sp/>axis<sp/>is<sp/>contiguous.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1aa03d875bac2a1696d399ae8136c705e5af695e73139b1c1d06d77655104370f00" kindref="member">ColumnMajor</ref>,</highlight></codeline>
-<codeline lineno="35"><highlight class="normal"></highlight></codeline>
-<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Specifies<sp/>that<sp/>the<sp/>last<sp/>axis<sp/>is<sp/>contiguous.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1aa03d875bac2a1696d399ae8136c705e5abba47a7c03289a67ca347baa3f55be2f" kindref="member">RowMajor</ref></highlight></codeline>
-<codeline lineno="38"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="39"><highlight class="normal"></highlight></codeline>
-<codeline lineno="40"><highlight class="normal"></highlight></codeline>
-<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>A&gt;</highlight></codeline>
-<codeline lineno="47" refid="class_g_q_c_p_1_1_dense_vectorizer" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_dense_vectorizer" kindref="compound">DenseVectorizer</ref><sp/>{</highlight></codeline>
-<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>ordering<sp/>of<sp/>the<sp/>axes.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1aa03d875bac2a1696d399ae8136c705e5" kindref="member">Ordering</ref><sp/>m_ordering;</highlight></codeline>
-<codeline lineno="51"><highlight class="normal"></highlight></codeline>
-<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>dimensions<sp/>of<sp/>each<sp/>axis.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>std::array&lt;size_t,<sp/>A&gt;<sp/>m_dimensions;</highlight></codeline>
-<codeline lineno="54"><highlight class="normal"></highlight></codeline>
-<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>strides<sp/>associated<sp/>to<sp/>each<sp/>axis.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>std::array&lt;size_t,<sp/>A&gt;<sp/>m_strides;</highlight></codeline>
-<codeline lineno="57"><highlight class="normal"></highlight></codeline>
-<codeline lineno="58"><highlight class="normal"></highlight></codeline>
-<codeline lineno="59"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="61"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>CONSTRUCTORS</highlight></codeline>
-<codeline lineno="62"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="63"><highlight class="normal"></highlight></codeline>
-<codeline lineno="70" refid="class_g_q_c_p_1_1_dense_vectorizer_1ad7ea32c04b5fc8ba7f4ddfa882140625" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer_1ad7ea32c04b5fc8ba7f4ddfa882140625" kindref="member">DenseVectorizer</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;size_t,<sp/>A&gt;&amp;<sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer_1ac78a975787d5b6467a7c5433614c7b9d" kindref="member">dimensions</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1aa03d875bac2a1696d399ae8136c705e5" kindref="member">Ordering</ref><sp/>ordering<sp/>=<sp/><ref refid="namespace_g_q_c_p_1aa03d875bac2a1696d399ae8136c705e5af695e73139b1c1d06d77655104370f00" kindref="member">Ordering::ColumnMajor</ref>)<sp/>:</highlight></codeline>
-<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_ordering<sp/>{ordering},</highlight></codeline>
-<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_dimensions<sp/>{<ref refid="class_g_q_c_p_1_1_dense_vectorizer_1ac78a975787d5b6467a7c5433614c7b9d" kindref="member">dimensions</ref>}<sp/>{</highlight></codeline>
-<codeline lineno="73"><highlight class="normal"></highlight></codeline>
-<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Initialize<sp/>the<sp/>strides<sp/>for<sp/>every<sp/>dimension.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(this-&gt;m_ordering)<sp/>{</highlight></codeline>
-<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1aa03d875bac2a1696d399ae8136c705e5af695e73139b1c1d06d77655104370f00" kindref="member">Ordering::ColumnMajor</ref>:<sp/>{<sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>first<sp/>axis<sp/>is<sp/>contiguous</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>k<sp/>=<sp/>0;<sp/>k<sp/>&lt;<sp/>A;<sp/>k++)<sp/>{</highlight></codeline>
-<codeline lineno="78"><highlight class="normal"></highlight></codeline>
-<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer_1aba1a78ae4da4afc01eccace066cccd3a" kindref="member">stride</ref><sp/>{1};</highlight></codeline>
-<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>l<sp/>=<sp/>0;<sp/>l<sp/>&lt;<sp/>k;<sp/>l++)<sp/>{</highlight></codeline>
-<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer_1aba1a78ae4da4afc01eccace066cccd3a" kindref="member">stride</ref><sp/>*=<sp/>this-&gt;m_dimensions[l];</highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="83"><highlight class="normal"></highlight></codeline>
-<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;m_strides[k]<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer_1aba1a78ae4da4afc01eccace066cccd3a" kindref="member">stride</ref>;</highlight></codeline>
-<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="88"><highlight class="normal"></highlight></codeline>
-<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1aa03d875bac2a1696d399ae8136c705e5abba47a7c03289a67ca347baa3f55be2f" kindref="member">Ordering::RowMajor</ref>:<sp/>{<sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>last<sp/>axis<sp/>is<sp/>contiguous</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>k<sp/>=<sp/>0;<sp/>k<sp/>&lt;<sp/>A;<sp/>k++)<sp/>{</highlight></codeline>
-<codeline lineno="91"><highlight class="normal"></highlight></codeline>
-<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer_1aba1a78ae4da4afc01eccace066cccd3a" kindref="member">stride</ref><sp/>{1};</highlight></codeline>
-<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>l<sp/>=<sp/>k<sp/>+<sp/>1;<sp/>l<sp/>&lt;<sp/>A;<sp/>l++)<sp/>{</highlight></codeline>
-<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer_1aba1a78ae4da4afc01eccace066cccd3a" kindref="member">stride</ref><sp/>*=<sp/>this-&gt;m_dimensions[l];</highlight></codeline>
-<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="96"><highlight class="normal"></highlight></codeline>
-<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;m_strides[k]<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer_1aba1a78ae4da4afc01eccace066cccd3a" kindref="member">stride</ref>;</highlight></codeline>
-<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="103"><highlight class="normal"></highlight></codeline>
-<codeline lineno="107" refid="class_g_q_c_p_1_1_dense_vectorizer_1ae3532176463e4b0739df98172c5f4b67" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer_1ae3532176463e4b0739df98172c5f4b67" kindref="member">DenseVectorizer</ref>()<sp/>:</highlight></codeline>
-<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer" kindref="compound">DenseVectorizer</ref>(std::array&lt;size_t,<sp/>A&gt;<sp/>{})<sp/>{}</highlight></codeline>
-<codeline lineno="109"><highlight class="normal"></highlight></codeline>
-<codeline lineno="110"><highlight class="normal"></highlight></codeline>
-<codeline lineno="122" refid="class_g_q_c_p_1_1_dense_vectorizer_1a1ed21f7a475d6a73d0c870fce1a33abc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer_1a1ed21f7a475d6a73d0c870fce1a33abc" kindref="member">offset</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;size_t,<sp/>A&gt;&amp;<sp/>indices)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="123"><highlight class="normal"></highlight></codeline>
-<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>value<sp/>{0};</highlight></codeline>
-<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>k<sp/>=<sp/>0;<sp/>k<sp/>&lt;<sp/>A;<sp/>k++)<sp/>{</highlight></codeline>
-<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(indices[k]<sp/>&gt;<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_dense_vectorizer_1a28472ea97ca2632a3b0fa6a20435e00d" kindref="member">dimension</ref>(k))<sp/>{</highlight></codeline>
-<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(</highlight><highlight class="stringliteral">&quot;DenseVectorizer::offset(const<sp/>std::array&lt;size_t,<sp/>A&gt;&amp;):<sp/>The<sp/>index<sp/>is<sp/>not<sp/>supported<sp/>with<sp/>the<sp/>memory<sp/>layout.&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="129"><highlight class="normal"></highlight></codeline>
-<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value<sp/>+=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_dense_vectorizer_1aba1a78ae4da4afc01eccace066cccd3a" kindref="member">stride</ref>(k)<sp/>*<sp/>indices[k];</highlight></codeline>
-<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="132"><highlight class="normal"></highlight></codeline>
-<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>value;</highlight></codeline>
-<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="135"><highlight class="normal"></highlight></codeline>
-<codeline lineno="136"><highlight class="normal"></highlight></codeline>
-<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="138"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>General<sp/>information</highlight></codeline>
-<codeline lineno="139"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="140"><highlight class="normal"></highlight></codeline>
-<codeline lineno="146" refid="class_g_q_c_p_1_1_dense_vectorizer_1a28472ea97ca2632a3b0fa6a20435e00d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer_1a28472ea97ca2632a3b0fa6a20435e00d" kindref="member">dimension</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>axis)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(axis<sp/>&gt;=<sp/>A)<sp/>{</highlight></codeline>
-<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(</highlight><highlight class="stringliteral">&quot;DenseVectorizer::offset(const<sp/>std::array&lt;size_t,<sp/>A&gt;&amp;):<sp/>The<sp/>given<sp/>axis<sp/>does<sp/>not<sp/>exist.&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="150"><highlight class="normal"></highlight></codeline>
-<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_dense_vectorizer_1ac78a975787d5b6467a7c5433614c7b9d" kindref="member">dimensions</ref>()[axis];</highlight></codeline>
-<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="153"><highlight class="normal"></highlight></codeline>
-<codeline lineno="157" refid="class_g_q_c_p_1_1_dense_vectorizer_1ac78a975787d5b6467a7c5433614c7b9d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;size_t,<sp/>A&gt;&amp;<sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer_1ac78a975787d5b6467a7c5433614c7b9d" kindref="member">dimensions</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;m_dimensions;<sp/>}</highlight></codeline>
-<codeline lineno="158"><highlight class="normal"></highlight></codeline>
-<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>number<sp/>of<sp/>axes<sp/>for<sp/>this<sp/>vectorizer.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="160" refid="class_g_q_c_p_1_1_dense_vectorizer_1a56985fe9a137a3974a85b2feecb941d9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer_1a56985fe9a137a3974a85b2feecb941d9" kindref="member">NumberOfAxes</ref><sp/>=<sp/>A;</highlight></codeline>
-<codeline lineno="161"><highlight class="normal"></highlight></codeline>
-<codeline lineno="165" refid="class_g_q_c_p_1_1_dense_vectorizer_1ade9a8861fbacf06054d36647ad5f8c03" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer_1ade9a8861fbacf06054d36647ad5f8c03" kindref="member">numberOfAxes</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>A;<sp/>}</highlight></codeline>
-<codeline lineno="166"><highlight class="normal"></highlight></codeline>
-<codeline lineno="170" refid="class_g_q_c_p_1_1_dense_vectorizer_1a05907ab8cff671a7c0f95c068ac6babf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer_1a05907ab8cff671a7c0f95c068ac6babf" kindref="member">numberOfElements</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::accumulate(this-&gt;<ref refid="class_g_q_c_p_1_1_dense_vectorizer_1ac78a975787d5b6467a7c5433614c7b9d" kindref="member">dimensions</ref>().begin(),<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_dense_vectorizer_1ac78a975787d5b6467a7c5433614c7b9d" kindref="member">dimensions</ref>().end(),<sp/>1,<sp/>std::multiplies&lt;size_t&gt;());</highlight></codeline>
-<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="173"><highlight class="normal"></highlight></codeline>
-<codeline lineno="174"><highlight class="normal"></highlight></codeline>
-<codeline lineno="180" refid="class_g_q_c_p_1_1_dense_vectorizer_1aba1a78ae4da4afc01eccace066cccd3a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer_1aba1a78ae4da4afc01eccace066cccd3a" kindref="member">stride</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>axis)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(axis<sp/>&gt;=<sp/>A)<sp/>{</highlight></codeline>
-<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(</highlight><highlight class="stringliteral">&quot;DenseVectorizer::offset(const<sp/>std::array&lt;size_t,<sp/>A&gt;&amp;):<sp/>The<sp/>given<sp/>axis<sp/>does<sp/>not<sp/>exist.&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="184"><highlight class="normal"></highlight></codeline>
-<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_dense_vectorizer_1aff9da3e46ec3e9eb34c98d26b33edd39" kindref="member">strides</ref>()[axis];</highlight></codeline>
-<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="187"><highlight class="normal"></highlight></codeline>
-<codeline lineno="188"><highlight class="normal"></highlight></codeline>
-<codeline lineno="192" refid="class_g_q_c_p_1_1_dense_vectorizer_1aff9da3e46ec3e9eb34c98d26b33edd39" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;size_t,<sp/>A&gt;&amp;<sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer_1aff9da3e46ec3e9eb34c98d26b33edd39" kindref="member">strides</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;m_strides;<sp/>}</highlight></codeline>
-<codeline lineno="193"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="194"><highlight class="normal"></highlight></codeline>
-<codeline lineno="195"><highlight class="normal"></highlight></codeline>
-<codeline lineno="196"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="197"><highlight class="comment"><sp/>*<sp/><sp/>MARK:<sp/>Convenience<sp/>aliases</highlight></codeline>
-<codeline lineno="198"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="199"><highlight class="normal"></highlight></codeline>
-<codeline lineno="200"><highlight class="normal"></highlight><highlight class="comment">//<sp/>A<sp/>trivial<sp/>vectorizer<sp/>that<sp/>offers<sp/>tuple-based<sp/>indexing<sp/>for<sp/>0<sp/>arguments.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="201" refid="namespace_g_q_c_p_1a6c012317d3e2de845b7ee1a860c61e99" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer" kindref="compound">ScalarVectorizer</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer" kindref="compound">DenseVectorizer&lt;0&gt;</ref>;</highlight></codeline>
-<codeline lineno="202"><highlight class="normal"></highlight></codeline>
-<codeline lineno="203"><highlight class="normal"></highlight><highlight class="comment">//<sp/>A<sp/>vectorizer<sp/>that<sp/>offers<sp/>tuple-based<sp/>indexing<sp/>for<sp/>1<sp/>argument.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="204" refid="namespace_g_q_c_p_1a75056d5799528c495b717e21cccc75f7" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer" kindref="compound">VectorVectorizer</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer" kindref="compound">DenseVectorizer&lt;1&gt;</ref>;</highlight></codeline>
-<codeline lineno="205"><highlight class="normal"></highlight></codeline>
-<codeline lineno="206"><highlight class="normal"></highlight><highlight class="comment">//<sp/>A<sp/>vectorizer<sp/>that<sp/>offers<sp/>tuple-based<sp/>indexing<sp/>for<sp/>2<sp/>arguments.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="207" refid="namespace_g_q_c_p_1a46e9824d60535862f66d9cbd766602d0" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer" kindref="compound">MatrixVectorizer</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer" kindref="compound">DenseVectorizer&lt;2&gt;</ref>;</highlight></codeline>
-<codeline lineno="208"><highlight class="normal"></highlight></codeline>
-<codeline lineno="209"><highlight class="normal"></highlight><highlight class="comment">//<sp/>A<sp/>vectorizer<sp/>that<sp/>offers<sp/>tuple-based<sp/>indexing<sp/>for<sp/>a<sp/>general<sp/>number<sp/>of<sp/>arguments.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="210"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>A&gt;</highlight></codeline>
-<codeline lineno="211" refid="namespace_g_q_c_p_1afeec6a04a9b337813c4e16db0d6b5ecd" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer" kindref="compound">TensorVectorizer</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer" kindref="compound">DenseVectorizer&lt;A&gt;</ref>;</highlight></codeline>
-<codeline lineno="212"><highlight class="normal"></highlight></codeline>
-<codeline lineno="213"><highlight class="normal"></highlight></codeline>
-<codeline lineno="214"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_g_q_c_p" kindref="compound">GQCP</ref><sp/>{</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="namespace_g_q_c_p_1aa03d875bac2a1696d399ae8136c705e5" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1aa03d875bac2a1696d399ae8136c705e5" kindref="member">Ordering</ref><sp/>{</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Specifies<sp/>that<sp/>the<sp/>first<sp/>axis<sp/>is<sp/>contiguous.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1aa03d875bac2a1696d399ae8136c705e5af695e73139b1c1d06d77655104370f00" kindref="member">ColumnMajor</ref>,</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Specifies<sp/>that<sp/>the<sp/>last<sp/>axis<sp/>is<sp/>contiguous.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1aa03d875bac2a1696d399ae8136c705e5abba47a7c03289a67ca347baa3f55be2f" kindref="member">RowMajor</ref></highlight></codeline>
+<codeline lineno="40"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>A&gt;</highlight></codeline>
+<codeline lineno="49" refid="class_g_q_c_p_1_1_dense_vectorizer" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_dense_vectorizer" kindref="compound">DenseVectorizer</ref><sp/>{</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>ordering<sp/>of<sp/>the<sp/>axes.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1aa03d875bac2a1696d399ae8136c705e5" kindref="member">Ordering</ref><sp/>m_ordering;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>dimensions<sp/>of<sp/>each<sp/>axis.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>std::array&lt;size_t,<sp/>A&gt;<sp/>m_dimensions;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>strides<sp/>associated<sp/>to<sp/>each<sp/>axis.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>std::array&lt;size_t,<sp/>A&gt;<sp/>m_strides;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="63"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>CONSTRUCTORS</highlight></codeline>
+<codeline lineno="64"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72" refid="class_g_q_c_p_1_1_dense_vectorizer_1ad7ea32c04b5fc8ba7f4ddfa882140625" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer_1ad7ea32c04b5fc8ba7f4ddfa882140625" kindref="member">DenseVectorizer</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;size_t,<sp/>A&gt;&amp;<sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer_1ac78a975787d5b6467a7c5433614c7b9d" kindref="member">dimensions</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1aa03d875bac2a1696d399ae8136c705e5" kindref="member">Ordering</ref><sp/>ordering<sp/>=<sp/><ref refid="namespace_g_q_c_p_1aa03d875bac2a1696d399ae8136c705e5af695e73139b1c1d06d77655104370f00" kindref="member">Ordering::ColumnMajor</ref>)<sp/>:</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_ordering<sp/>{ordering},</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_dimensions<sp/>{<ref refid="class_g_q_c_p_1_1_dense_vectorizer_1ac78a975787d5b6467a7c5433614c7b9d" kindref="member">dimensions</ref>}<sp/>{</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Initialize<sp/>the<sp/>strides<sp/>for<sp/>every<sp/>dimension.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(this-&gt;m_ordering)<sp/>{</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1aa03d875bac2a1696d399ae8136c705e5af695e73139b1c1d06d77655104370f00" kindref="member">Ordering::ColumnMajor</ref>:<sp/>{<sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>first<sp/>axis<sp/>is<sp/>contiguous</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>k<sp/>=<sp/>0;<sp/>k<sp/>&lt;<sp/>A;<sp/>k++)<sp/>{</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer_1aba1a78ae4da4afc01eccace066cccd3a" kindref="member">stride</ref><sp/>{1};</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>l<sp/>=<sp/>0;<sp/>l<sp/>&lt;<sp/>k;<sp/>l++)<sp/>{</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer_1aba1a78ae4da4afc01eccace066cccd3a" kindref="member">stride</ref><sp/>*=<sp/>this-&gt;m_dimensions[l];</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;m_strides[k]<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer_1aba1a78ae4da4afc01eccace066cccd3a" kindref="member">stride</ref>;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1aa03d875bac2a1696d399ae8136c705e5abba47a7c03289a67ca347baa3f55be2f" kindref="member">Ordering::RowMajor</ref>:<sp/>{<sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>last<sp/>axis<sp/>is<sp/>contiguous</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>k<sp/>=<sp/>0;<sp/>k<sp/>&lt;<sp/>A;<sp/>k++)<sp/>{</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer_1aba1a78ae4da4afc01eccace066cccd3a" kindref="member">stride</ref><sp/>{1};</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>l<sp/>=<sp/>k<sp/>+<sp/>1;<sp/>l<sp/>&lt;<sp/>A;<sp/>l++)<sp/>{</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer_1aba1a78ae4da4afc01eccace066cccd3a" kindref="member">stride</ref><sp/>*=<sp/>this-&gt;m_dimensions[l];</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;m_strides[k]<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer_1aba1a78ae4da4afc01eccace066cccd3a" kindref="member">stride</ref>;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109" refid="class_g_q_c_p_1_1_dense_vectorizer_1ae3532176463e4b0739df98172c5f4b67" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer_1ae3532176463e4b0739df98172c5f4b67" kindref="member">DenseVectorizer</ref>()<sp/>:</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer" kindref="compound">DenseVectorizer</ref>(std::array&lt;size_t,<sp/>A&gt;<sp/>{})<sp/>{}</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124" refid="class_g_q_c_p_1_1_dense_vectorizer_1a1ed21f7a475d6a73d0c870fce1a33abc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer_1a1ed21f7a475d6a73d0c870fce1a33abc" kindref="member">offset</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;size_t,<sp/>A&gt;&amp;<sp/>indices)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>value<sp/>{0};</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>k<sp/>=<sp/>0;<sp/>k<sp/>&lt;<sp/>A;<sp/>k++)<sp/>{</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(indices[k]<sp/>&gt;<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_dense_vectorizer_1a28472ea97ca2632a3b0fa6a20435e00d" kindref="member">dimension</ref>(k))<sp/>{</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(</highlight><highlight class="stringliteral">&quot;DenseVectorizer::offset(const<sp/>std::array&lt;size_t,<sp/>A&gt;&amp;):<sp/>The<sp/>index<sp/>is<sp/>not<sp/>supported<sp/>with<sp/>the<sp/>memory<sp/>layout.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value<sp/>+=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_dense_vectorizer_1aba1a78ae4da4afc01eccace066cccd3a" kindref="member">stride</ref>(k)<sp/>*<sp/>indices[k];</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>value;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="140"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>General<sp/>information</highlight></codeline>
+<codeline lineno="141"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="148" refid="class_g_q_c_p_1_1_dense_vectorizer_1a28472ea97ca2632a3b0fa6a20435e00d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer_1a28472ea97ca2632a3b0fa6a20435e00d" kindref="member">dimension</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>axis)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(axis<sp/>&gt;=<sp/>A)<sp/>{</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(</highlight><highlight class="stringliteral">&quot;DenseVectorizer::offset(const<sp/>std::array&lt;size_t,<sp/>A&gt;&amp;):<sp/>The<sp/>given<sp/>axis<sp/>does<sp/>not<sp/>exist.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_dense_vectorizer_1ac78a975787d5b6467a7c5433614c7b9d" kindref="member">dimensions</ref>()[axis];</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="159" refid="class_g_q_c_p_1_1_dense_vectorizer_1ac78a975787d5b6467a7c5433614c7b9d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;size_t,<sp/>A&gt;&amp;<sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer_1ac78a975787d5b6467a7c5433614c7b9d" kindref="member">dimensions</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;m_dimensions;<sp/>}</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>number<sp/>of<sp/>axes<sp/>for<sp/>this<sp/>vectorizer.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="162" refid="class_g_q_c_p_1_1_dense_vectorizer_1a56985fe9a137a3974a85b2feecb941d9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer_1a56985fe9a137a3974a85b2feecb941d9" kindref="member">NumberOfAxes</ref><sp/>=<sp/>A;</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"></highlight></codeline>
+<codeline lineno="167" refid="class_g_q_c_p_1_1_dense_vectorizer_1ade9a8861fbacf06054d36647ad5f8c03" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer_1ade9a8861fbacf06054d36647ad5f8c03" kindref="member">numberOfAxes</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>A;<sp/>}</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172" refid="class_g_q_c_p_1_1_dense_vectorizer_1a05907ab8cff671a7c0f95c068ac6babf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer_1a05907ab8cff671a7c0f95c068ac6babf" kindref="member">numberOfElements</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::accumulate(this-&gt;<ref refid="class_g_q_c_p_1_1_dense_vectorizer_1ac78a975787d5b6467a7c5433614c7b9d" kindref="member">dimensions</ref>().begin(),<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_dense_vectorizer_1ac78a975787d5b6467a7c5433614c7b9d" kindref="member">dimensions</ref>().end(),<sp/>1,<sp/>std::multiplies&lt;size_t&gt;());</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight></codeline>
+<codeline lineno="182" refid="class_g_q_c_p_1_1_dense_vectorizer_1aba1a78ae4da4afc01eccace066cccd3a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer_1aba1a78ae4da4afc01eccace066cccd3a" kindref="member">stride</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>axis)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(axis<sp/>&gt;=<sp/>A)<sp/>{</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(</highlight><highlight class="stringliteral">&quot;DenseVectorizer::offset(const<sp/>std::array&lt;size_t,<sp/>A&gt;&amp;):<sp/>The<sp/>given<sp/>axis<sp/>does<sp/>not<sp/>exist.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_dense_vectorizer_1aff9da3e46ec3e9eb34c98d26b33edd39" kindref="member">strides</ref>()[axis];</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight></codeline>
+<codeline lineno="194" refid="class_g_q_c_p_1_1_dense_vectorizer_1aff9da3e46ec3e9eb34c98d26b33edd39" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;size_t,<sp/>A&gt;&amp;<sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer_1aff9da3e46ec3e9eb34c98d26b33edd39" kindref="member">strides</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;m_strides;<sp/>}</highlight></codeline>
+<codeline lineno="195"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"></highlight></codeline>
+<codeline lineno="197"><highlight class="normal"></highlight></codeline>
+<codeline lineno="198"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="199"><highlight class="comment"><sp/>*<sp/><sp/>MARK:<sp/>Convenience<sp/>aliases</highlight></codeline>
+<codeline lineno="200"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="201"><highlight class="normal"></highlight></codeline>
+<codeline lineno="202"><highlight class="normal"></highlight><highlight class="comment">//<sp/>A<sp/>trivial<sp/>vectorizer<sp/>that<sp/>offers<sp/>tuple-based<sp/>indexing<sp/>for<sp/>0<sp/>arguments.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="203" refid="namespace_g_q_c_p_1a6c012317d3e2de845b7ee1a860c61e99" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer" kindref="compound">ScalarVectorizer</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer" kindref="compound">DenseVectorizer&lt;0&gt;</ref>;</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"></highlight><highlight class="comment">//<sp/>A<sp/>vectorizer<sp/>that<sp/>offers<sp/>tuple-based<sp/>indexing<sp/>for<sp/>1<sp/>argument.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="206" refid="namespace_g_q_c_p_1a75056d5799528c495b717e21cccc75f7" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer" kindref="compound">VectorVectorizer</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer" kindref="compound">DenseVectorizer&lt;1&gt;</ref>;</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"></highlight></codeline>
+<codeline lineno="208"><highlight class="normal"></highlight><highlight class="comment">//<sp/>A<sp/>vectorizer<sp/>that<sp/>offers<sp/>tuple-based<sp/>indexing<sp/>for<sp/>2<sp/>arguments.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="209" refid="namespace_g_q_c_p_1a46e9824d60535862f66d9cbd766602d0" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer" kindref="compound">MatrixVectorizer</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer" kindref="compound">DenseVectorizer&lt;2&gt;</ref>;</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"></highlight></codeline>
+<codeline lineno="211"><highlight class="normal"></highlight><highlight class="comment">//<sp/>A<sp/>vectorizer<sp/>that<sp/>offers<sp/>tuple-based<sp/>indexing<sp/>for<sp/>a<sp/>general<sp/>number<sp/>of<sp/>arguments.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="212"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>A&gt;</highlight></codeline>
+<codeline lineno="213" refid="namespace_g_q_c_p_1afeec6a04a9b337813c4e16db0d6b5ecd" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer" kindref="compound">TensorVectorizer</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_dense_vectorizer" kindref="compound">DenseVectorizer&lt;A&gt;</ref>;</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"></highlight></codeline>
+<codeline lineno="215"><highlight class="normal"></highlight></codeline>
+<codeline lineno="216"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/DenseVectorizer.hpp"/>
   </compounddef>
