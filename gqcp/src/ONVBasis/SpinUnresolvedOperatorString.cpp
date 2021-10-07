@@ -94,6 +94,8 @@ void SpinUnresolvedOperatorString::sort() {
  *  @param partition    The decomposition of the operator string into a system (denoted by 'I') and an environment (denoted by 'J').
  *  
  *  For example: Operator string "a1a2a4a0a3" is decomposed into system "a1a4a0" and environment "a2a3" by the partition {'I', 'J', 'I', 'I', 'J'}.
+ 
+ * @return Two new operator strings corresponding to the defined system and environment respectively.
  */
 std::vector<SpinUnresolvedOperatorString> SpinUnresolvedOperatorString::schmidtDecomposition(const std::vector<char>& partition) {
 

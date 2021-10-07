@@ -101,7 +101,7 @@ public:
      */
 
     /**
-     *  Split the spin-resolved operator string into its two separate components, one containing the alpha operators, one containing the beta operators. The alpha operator string will recieve the total phase factor assiciated with this action, the phase factor of the beta string will be one.
+     *  Split the spin-resolved operator string into its two separate components, one containing the alpha operators, one containing the beta operators. The alpha operator string will recieve the total phase factor associated with this action, the phase factor of the beta string will be one.
      * 
      *  @return The two separate components of the spin-resolved operator string.
      */

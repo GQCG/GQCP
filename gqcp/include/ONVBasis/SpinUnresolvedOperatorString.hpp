@@ -30,7 +30,7 @@ namespace GQCP {
 /**
  *  A spin-unresolved operator string.
 
- *  A spin unresolved operator string represents a string of either annihilation or creation operators by its indices and a corresponding phase factor p.
+ *  A spin-unresolved operator string represents a string of either annihilation or creation operators by its indices and a corresponding phase factor p.
  *  For example, an operator string represented by indices <1, 2, 3> represents either:
  *       p * a_1^\dagger a_2^\dagger a_3^\dagger
  *  or
@@ -105,8 +105,6 @@ public:
 
     /**
      *  Check whether the operator string in question will result in zero when applied to the wave function.
-     *
-     *  Note: There are different cases when an operator string will result in a zero value. This method checks all of them.
      * 
      *  @return Whether the operator string in question will result in zero when applied to the wave function.
      */
