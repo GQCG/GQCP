@@ -136,7 +136,7 @@ public:
      *  
      *  For example: Operator string "a1a2a4a0a3" is decomposed into system "a1a4a0" and environment "a2a3" by the partition {'I', 'J', 'I', 'I', 'J'}.
      */
-    std::vector<SpinUnresolvedOperatorString> schmidtDecomposition(const std::vector<char>& partition);
+    std::vector<SpinUnresolvedOperatorString> resolveIntoSubsystems(const std::vector<char>& partition);
 };
 
 
