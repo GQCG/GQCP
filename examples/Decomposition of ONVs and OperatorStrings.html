@@ -520,7 +520,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/examples/Schmidt decomposition of ONVs and OperatorStrings.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/examples/Decomposition of ONVs and OperatorStrings.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -545,7 +545,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/GQCG/GQCP/develop?urlpath=tree/examples/Schmidt decomposition of ONVs and OperatorStrings.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/GQCG/GQCP/develop?urlpath=tree/examples/Decomposition of ONVs and OperatorStrings.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -660,7 +660,7 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">partition</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;J&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;J&#39;</span><span class="p">,</span> <span class="s1">&#39;J&#39;</span><span class="p">]</span>
 
-<span class="n">system</span><span class="p">,</span> <span class="n">environment</span> <span class="o">=</span> <span class="n">operator_string</span><span class="o">.</span><span class="n">schmidtDecomposition</span><span class="p">(</span><span class="n">partition</span><span class="p">)</span>
+<span class="n">system</span><span class="p">,</span> <span class="n">environment</span> <span class="o">=</span> <span class="n">operator_string</span><span class="o">.</span><span class="n">resolveIntoSubsystems</span><span class="p">(</span><span class="n">partition</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The system consists of sites: </span><span class="si">{}</span><span class="s2"> and has phase factor </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">system</span><span class="o">.</span><span class="n">operatorIndices</span><span class="p">(),</span> <span class="n">system</span><span class="o">.</span><span class="n">phaseFactor</span><span class="p">()))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The environment consists of sites: </span><span class="si">{}</span><span class="s2"> and has phase factor </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">environment</span><span class="o">.</span><span class="n">operatorIndices</span><span class="p">(),</span> <span class="n">environment</span><span class="o">.</span><span class="n">phaseFactor</span><span class="p">()))</span>
@@ -698,7 +698,7 @@ The beta string consists of sites: [0, 1] and has phase factor 1.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sites_partitioning</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s1">&#39;J&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;J&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">])</span><span class="c1"># &#39;I&#39; = system, &#39;J&#39; = environment.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sites_partitioning</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s1">&#39;J&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;J&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;J&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">])</span><span class="c1"># &#39;I&#39; = system, &#39;J&#39; = environment.</span>
 <span class="n">K_system</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">sites_partitioning</span> <span class="o">==</span> <span class="s1">&#39;I&#39;</span><span class="p">)</span>
 <span class="n">K_environment</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">sites_partitioning</span> <span class="o">==</span> <span class="s1">&#39;J&#39;</span><span class="p">)</span>
 
@@ -710,8 +710,8 @@ The beta string consists of sites: [0, 1] and has phase factor 1.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">system_alpha</span><span class="p">,</span> <span class="n">environment_alpha</span> <span class="o">=</span> <span class="n">operator_string_alpha</span><span class="o">.</span><span class="n">schmidtDecomposition</span><span class="p">(</span><span class="n">alpha_partition</span><span class="p">)</span>
-<span class="n">system_beta</span><span class="p">,</span> <span class="n">environment_beta</span> <span class="o">=</span> <span class="n">operator_string_beta</span><span class="o">.</span><span class="n">schmidtDecomposition</span><span class="p">(</span><span class="n">beta_partition</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">system_alpha</span><span class="p">,</span> <span class="n">environment_alpha</span> <span class="o">=</span> <span class="n">operator_string_alpha</span><span class="o">.</span><span class="n">resolveIntoSubsystems</span><span class="p">(</span><span class="n">alpha_partition</span><span class="p">)</span>
+<span class="n">system_beta</span><span class="p">,</span> <span class="n">environment_beta</span> <span class="o">=</span> <span class="n">operator_string_beta</span><span class="o">.</span><span class="n">resolveIntoSubsystems</span><span class="p">(</span><span class="n">beta_partition</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -738,16 +738,15 @@ The beta environment consists of sites: [0] and has phase factor 1.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">reduce_indices</span><span class="p">(</span><span class="n">indices_A</span><span class="p">,</span> <span class="n">indices_B</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">reduce_indices</span><span class="p">(</span><span class="n">indices_A</span><span class="p">,</span> <span class="n">indices_B</span><span class="p">,</span> <span class="n">partition</span><span class="p">):</span>
     
     <span class="n">indices_A</span><span class="p">,</span> <span class="n">indices_B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">indices_A</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">indices_B</span><span class="p">)</span>
     <span class="n">new_indices_A</span><span class="p">,</span> <span class="n">new_indices_B</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
     
-    
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">indices_A</span><span class="p">:</span>
-        <span class="n">new_indices_A</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">i</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">indices_B</span> <span class="o">&lt;</span> <span class="n">i</span><span class="p">)</span> <span class="p">)</span>
+        <span class="n">new_indices_A</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">i</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">partition</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;J&#39;</span><span class="p">)</span> <span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">indices_B</span><span class="p">:</span>
-        <span class="n">new_indices_B</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">i</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">indices_A</span> <span class="o">&lt;</span> <span class="n">i</span><span class="p">)</span> <span class="p">)</span>
+        <span class="n">new_indices_B</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">i</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">partition</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;I&#39;</span><span class="p">)</span> <span class="p">)</span>
     
     <span class="k">return</span> <span class="n">new_indices_A</span><span class="p">,</span> <span class="n">new_indices_B</span>
 </pre></div>
@@ -756,8 +755,8 @@ The beta environment consists of sites: [0] and has phase factor 1.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">system_alpha_indices</span><span class="p">,</span> <span class="n">environment_alpha_indices</span> <span class="o">=</span> <span class="n">reduce_indices</span><span class="p">(</span><span class="n">system_alpha</span><span class="o">.</span><span class="n">operatorIndices</span><span class="p">(),</span> <span class="n">environment_alpha</span><span class="o">.</span><span class="n">operatorIndices</span><span class="p">())</span>
-<span class="n">system_beta_indices</span><span class="p">,</span> <span class="n">environment_beta_indices</span> <span class="o">=</span> <span class="n">reduce_indices</span><span class="p">(</span><span class="n">system_beta</span><span class="o">.</span><span class="n">operatorIndices</span><span class="p">(),</span> <span class="n">environment_beta</span><span class="o">.</span><span class="n">operatorIndices</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">system_alpha_indices</span><span class="p">,</span> <span class="n">environment_alpha_indices</span> <span class="o">=</span> <span class="n">reduce_indices</span><span class="p">(</span><span class="n">system_alpha</span><span class="o">.</span><span class="n">operatorIndices</span><span class="p">(),</span> <span class="n">environment_alpha</span><span class="o">.</span><span class="n">operatorIndices</span><span class="p">(),</span> <span class="n">sites_partitioning</span><span class="p">)</span>
+<span class="n">system_beta_indices</span><span class="p">,</span> <span class="n">environment_beta_indices</span> <span class="o">=</span> <span class="n">reduce_indices</span><span class="p">(</span><span class="n">system_beta</span><span class="o">.</span><span class="n">operatorIndices</span><span class="p">(),</span> <span class="n">environment_beta</span><span class="o">.</span><span class="n">operatorIndices</span><span class="p">(),</span> <span class="n">sites_partitioning</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Alpha system: correction of indices </span><span class="si">{}</span><span class="s2"> to </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">system_alpha</span><span class="o">.</span><span class="n">operatorIndices</span><span class="p">(),</span> <span class="n">system_alpha_indices</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Beta system: correction of indices </span><span class="si">{}</span><span class="s2"> to </span><span class="si">{}</span><span class="s2">.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">system_beta</span><span class="o">.</span><span class="n">operatorIndices</span><span class="p">(),</span> <span class="n">system_beta_indices</span><span class="p">))</span>
@@ -796,8 +795,8 @@ Beta environment: correction of indices [0] to [0].
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The spin-resolved ONV of the system is: 0011|0001
-The spin-resolved ONV of the environment is: 11|01
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The spin-resolved ONV of the system is: 011|001
+The spin-resolved ONV of the environment is: 011|001
 </pre></div>
 </div>
 </div>
