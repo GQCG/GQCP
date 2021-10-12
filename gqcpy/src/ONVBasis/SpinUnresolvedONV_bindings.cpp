@@ -79,6 +79,16 @@ void bindSpinUnresolvedONV(py::module& module) {
             &SpinUnresolvedONV::asString)
 
         .def(
+            "__eq__",
+            &SpinUnresolvedONV::operator==,
+            py::arg("other ONV"))
+
+        .def(
+            "__neq__",
+            &SpinUnresolvedONV::operator!=,
+            py::arg("other ONV"))
+
+        .def(
             "calculateProjection",
             [](const SpinUnresolvedONV& onv_of, const SpinUnresolvedONV& onv_on, const Eigen::MatrixXd& C_of, const Eigen::MatrixXd& C_on, const Eigen::MatrixXd& S) {
                 return onv_of.calculateProjection(onv_on, GTransformation<double>(C_of), GTransformation<double>(C_on), SquareMatrix<double>(S));

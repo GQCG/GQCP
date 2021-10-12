@@ -99,10 +99,10 @@ void SpinUnresolvedOperatorString::sort() {
  
  * @return Two new operator strings corresponding to the defined system and environment respectively.
  */
-std::vector<SpinUnresolvedOperatorString> SpinUnresolvedOperatorString::schmidtDecomposition(const std::vector<char>& partition) {
+std::vector<SpinUnresolvedOperatorString> SpinUnresolvedOperatorString::resolveIntoSubsystems(const std::vector<char>& partition) {
 
     if (partition.size() != this->operatorIndices().size()) {
-        throw std::invalid_argument("SpinUnresolvedOperatorString::schmidtDecomposition(const std::vector<char>& partition): The size of the partition does not match the number of operators in the operator string.");
+        throw std::invalid_argument("SpinUnresolvedOperatorString::resolveIntoSubsystems(const std::vector<char>& partition): The size of the partition does not match the number of operators in the operator string.");
     }
 
     const auto& index_vector = this->operatorIndices();
@@ -113,6 +113,8 @@ std::vector<SpinUnresolvedOperatorString> SpinUnresolvedOperatorString::schmidtD
     int phase_factor = this->phaseFactor();  // We start from the phase factor of our operator string.
 
     for (int i = 0; i < index_vector.size(); ++i) {
+
+        size_t correction = 0;
 
         // If the operator is associated with the system ('I'), calculate its phase factor after moving it over all operators of the environment ('J').
         if (partition[i] == 'I') {
