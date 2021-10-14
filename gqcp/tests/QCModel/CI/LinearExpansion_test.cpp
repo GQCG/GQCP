@@ -39,10 +39,10 @@ BOOST_AUTO_TEST_CASE(reader_test) {
 
     // Provide the reference values.
     const GQCP::VectorX<double> ref_coefficients = GQCP::VectorX<double>::Unit(2, 0);  // (size, position)
-    const std::string alpha1_ref = "0000000000000000000000000000000000000000000001";
-    const std::string alpha2_ref = "0000000000000000000000000000000000000000000001";
-    const std::string beta1_ref = "0000000000000000000000000000000000000000000001";
-    const std::string beta2_ref = "0000000000000000000000000000000000000000000010";
+    const std::string alpha1_ref = "1000000000000000000000000000000000000000000000";
+    const std::string alpha2_ref = "1000000000000000000000000000000000000000000000";
+    const std::string beta1_ref = "1000000000000000000000000000000000000000000000";
+    const std::string beta2_ref = "0100000000000000000000000000000000000000000000";
 
 
     // Read in the GAMESS-US file and check the results.

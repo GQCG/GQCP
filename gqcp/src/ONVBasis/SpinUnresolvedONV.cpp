@@ -63,9 +63,9 @@ SpinUnresolvedONV::SpinUnresolvedONV(const size_t M, const size_t N) :
 
 /**
  *  Create a spin-unresolved ONV from a textual/string representation.
- * 
+ *
  *  @param string_representation                The textual representation of the spin-unresolved ONV, for example "0011", indicating that the first two spinors should be occupied.
- * 
+ *
  *  @return A spin-unresolved ONV from a textual/string representation.
  */
 SpinUnresolvedONV SpinUnresolvedONV::FromString(const std::string& string_representation) {
@@ -82,10 +82,10 @@ SpinUnresolvedONV SpinUnresolvedONV::FromString(const std::string& string_repres
 
 /**
  *  Create a spin-unresolved ONV from a set of occupied indices.
- * 
+ *
  *  @param occupied_indices             The indices that the electrons occupy, in order: e.g. the i-th element describes the spinor that the i-th electron occupies.
  *  @param M                            The total number of spinors.
- * 
+ *
  *  @return A spin-resolved ONV from a set of occupied indices.
  */
 SpinUnresolvedONV SpinUnresolvedONV::FromOccupiedIndices(const std::vector<size_t>& occupied_indices, const size_t M) {
@@ -103,11 +103,11 @@ SpinUnresolvedONV SpinUnresolvedONV::FromOccupiedIndices(const std::vector<size_
 
 /**
  *  Create a spin-unresolved ONV that represents the GHF single Slater determinant, occupying the N spinors with the lowest spinor energy.
- * 
+ *
  *  @param M                            The number of spinors.
  *  @param N                            The number of electrons.
  *  @param orbital_energies             The single-particle energies of the spinors.
- * 
+ *
  *  @return A spin-unresolved ONV that represents the GHF single Slater determinant.
  */
 SpinUnresolvedONV SpinUnresolvedONV::GHF(const size_t M, const size_t N, const VectorX<double>& orbital_energies) {
@@ -167,7 +167,7 @@ bool SpinUnresolvedONV::operator!=(const SpinUnresolvedONV& other) const {
 
 /**
  *  Annihilate the electron at a given spinor index.
- * 
+ *
  *  @param p            The 0-based spinor index, counted in this ONV from right to left.
  *
  *  @return If we can apply the annihilation operator (i.e. 1->0) for the p-th spinor and subsequently perform an in-place annihilation on that spinor.
@@ -188,7 +188,7 @@ bool SpinUnresolvedONV::annihilate(const size_t p) {
 
 /**
  *  Annihilate the electron at a given spinor index, keeping track of any sign changes.
- * 
+ *
  *  @param p            The 0-based spinor index, counted in this ONV from right to left.
  *  @param sign         The current sign of the operator string.
  *
@@ -209,7 +209,7 @@ bool SpinUnresolvedONV::annihilate(const size_t p, int& sign) {
 
 /**
  *  Annihilate the electrons at the given spinor indices.
- * 
+ *
  *  @param indices          The 0-based spinor indices, counted in this ONV from right to left.
  *
  *  @return If we can apply all annihilation operators (i.e. 1->0) on the given indices. If possible, subsequently perform in-place annihilations on all the given indices.
@@ -295,18 +295,20 @@ std::string SpinUnresolvedONV::asString() const {
     std::string text;  // The string that will contain the textual representation of this spin-unresolved ONV.
 
     boost::to_string(intermediate_bitset, text);
+    std::reverse(text.begin(), text.end());  // The bitstring is read from right to left, but we return it from left to right for easier reading.
+
     return text;
 }
 
 
 /**
  *  Calculate the overlap <on|of>: the projection of between this spin-unresolved ONV ('of') and another spin-unresolved ONV ('on'), expressed in different general orthonormal spinor bases.
- * 
+ *
  *  @param onv_on                       The spin-unresolved ONV that should be projected on.
  *  @param C_of                         The transformation between the spinors related to the ONV that is being projected and the atomic spinors.
  *  @param C_on                         The transformation between the spinors related to the ONV that is being projected on and the atomic spinors.
  *  @param S                            The overlap matrix of the underlying AOs.
- * 
+ *
  *  @return The overlap element <on|of>.
  */
 double SpinUnresolvedONV::calculateProjection(const SpinUnresolvedONV& onv_on, const GTransformation<double>& C_of, const GTransformation<double>& C_on, const SquareMatrix<double>& S) const {
@@ -358,7 +360,7 @@ size_t SpinUnresolvedONV::countNumberOfExcitations(const SpinUnresolvedONV& othe
 
 /**
  *  @param p            The 0-based spinor index, counted in this ONV from right to left.
- * 
+ *
  *  @return If we can apply the creation operator (i.e. 0->1) for the p-th spinor and subsequently perform an in-place annihilation on that spinor.
  *
  *  IMPORTANT: This function does not update the occupation indices for performance reasons. If required, call updateOccupationIndices()!
@@ -489,7 +491,7 @@ std::vector<size_t> SpinUnresolvedONV::findMatchingOccupations(const SpinUnresol
 
 /**
  *  Iterate over every occupied spinor index in this ONV and apply the given callback function.
- * 
+ *
  *  @param callback         The function that should be called in every iteration step over all occupied spinor indices. The argument of this callback function is the index of the occupied spinor.
  */
 void SpinUnresolvedONV::forEach(const std::function<void(const size_t)>& callback) const {
@@ -504,7 +506,7 @@ void SpinUnresolvedONV::forEach(const std::function<void(const size_t)>& callbac
 
 /**
  *  Iterate over every unique pair of occupied spinor indices in this ONV and apply the given callback function.
- * 
+ *
  *  @param callback         The function that should be called in every iteration step over all pairs of occupied spinor indices. The arguments of this callback function are the indices of the occupied spinor, where the first index is always larger than the second.
  */
 void SpinUnresolvedONV::forEach(const std::function<void(const size_t, const size_t)>& callback) const {
