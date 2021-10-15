@@ -93,7 +93,7 @@ protected:
     // The expansion coefficients of the occupied biorthogonal states are saved as raw matrices instead of `GTransformation`s because they are not square.
     std::pair<Matrix, Matrix> occupied_biorthogonal_state_expansions;
 
-    // The overlap operator in AO basis, constructed from the `GSpinorBasis` used to calculate the non-orthogonal states.
+    // The overlap operator in AO basis, constructed from the spinor/spin-orbital used to calculate the non-orthogonal states.
     SQOverlapOperator overlap_operator_AO;
 
     // The vector containing the biorthogonal overlaps.
@@ -109,11 +109,11 @@ public:
      *
      *  @param C_bra                            The transformation that represents the expansion coefficients of the bra non-orthogonal state.
      *  @param C_ket                            The transformation that represents the expansion coefficients of the ket non-orthogonal state.
-     *  @param S_AO                             The overlap operator in AO basis, constructed from the `GSpinorBasis` used to calculate the non-orthogonal states.
+     *  @param S_AO                             The overlap operator in AO basis, constructed from the spinor/spin-orbital used to calculate the non-orthogonal states.
      *  @param number_of_occupied_orbitals      The total number of occupied orbitals in the system.
      *  @param threshold                        The threshold at which a value is verified to be zero or not. Default is 1e-8.
      */
-    SimpleLowdinPairingBasis<Scalar>(const Transformation& C_bra, const Transformation& C_ket, const SQOverlapOperator& S_AO, const size_t number_of_occupied_orbitals, const double threshold = 1e-8) :
+    SimpleLowdinPairingBasis<Scalar, DerivedLowdinPairingBasis>(const Transformation& C_bra, const Transformation& C_ket, const SQOverlapOperator& S_AO, const size_t number_of_occupied_orbitals, const double threshold = 1e-8) :
         non_orthogonal_state_expansions {std::pair<Transformation, Transformation> {C_bra, C_ket}},
         overlap_operator_AO {S_AO},
         zero_threshold {threshold},
@@ -196,29 +196,29 @@ public:
 
     /**
      * @return The biorthogonalized expansion coefficients.
-     * 
-     * @note   Only the occupied expansion coefficients are biorthogonalized, so only these coefficients are returned. 
+     *
+     * @note   Only the occupied expansion coefficients are biorthogonalized, so only these coefficients are returned.
      */
     const std::pair<Matrix, Matrix>& biorthogonalExpansion() const { return this->occupied_biorthogonal_state_expansions; }
 
     /**
      * @return The biorthogonalized expansion coefficients belonging to the bra.
-     * 
-     * @note   Only the occupied expansion coefficients are biorthogonalized, so only these coefficients are returned. 
+     *
+     * @note   Only the occupied expansion coefficients are biorthogonalized, so only these coefficients are returned.
      */
     const Matrix& biorthogonalBraExpansion() const { return this->biorthogonalExpansion().first; }
 
     /**
      * @return The biorthogonalized expansion coefficients belonging to the ket.
-     * 
-     * @note   Only the occupied expansion coefficients are biorthogonalized, so only these coefficients are returned. 
+     *
+     * @note   Only the occupied expansion coefficients are biorthogonalized, so only these coefficients are returned.
      */
     const Matrix& biorthogonalKetExpansion() const { return this->biorthogonalExpansion().second; }
 
     /**
      * @return The biorthogonalized expansion coefficients.
-     * 
-     * @note   Only the occupied expansion coefficients are biorthogonalized, so only these coefficients are returned. 
+     *
+     * @note   Only the occupied expansion coefficients are biorthogonalized, so only these coefficients are returned.
      */
     const Vector& biorthogonalOverlaps() const { return this->biorthogonal_overlaps; }
 
@@ -229,7 +229,7 @@ public:
 
     /**
      * Determine the number of zero overlaps in the biorthogonal overlap vector.
-     * 
+     *
      * @return The number of zero overlaps.
      */
     int numberOfZeroOverlaps() const {
@@ -250,7 +250,7 @@ public:
 
     /**
      * Calculate the reduced overlap. I.e. The biorthogonal overlaps with the zero values get removed and the total remaining overlap is calculated.
-     * 
+     *
      * @return The reduced overlap.
      */
     Scalar reducedOverlap() const {
@@ -271,14 +271,14 @@ public:
         for (int i = 0; i < overlaps.size(); i++) {
             reduced_overlaps[i] = overlaps[i];
         }
-        //std::cout << reduced_overlaps << std::endl;
+        // std::cout << reduced_overlaps << std::endl;
         return reduced_overlaps.prod();
     }
 
 
     /**
      * Calculate and return the total overlap value of the biorthogonal coefficients.
-     * 
+     *
      * @return The total overlap value.
      */
     Scalar totalOverlap() const { return this->biorthogonalOverlaps().prod(); }
@@ -286,7 +286,7 @@ public:
 
     /**
      * Determine the indices of the zero overlap values in the biorthogonal overlap vector.
-     * 
+     *
      * @return The indices of the zero overlap values.
      */
     std::vector<int> zeroOverlapIndices() const {
@@ -311,11 +311,11 @@ public:
 
     /**
      * Calculate and return the co-density matrix for the given occupied orbital index.
-     * 
+     *
      * @param k     The occupied orbital index.
-     * 
+     *
      * @return The co-density matrix at occupied orbital index k.
-     * 
+     *
      * @note This implementation is based on equation 38b from the 2021 pper by Hugh Burton (https://aip.scitation.org/doi/abs/10.1063/5.0045442).
      */
     DM coDensity(const int k) const {
@@ -339,9 +339,9 @@ public:
 
     /**
      * Calculate and return the sum of the zero overlap co-density matrix, the weighted co-density matrix and the zero overlap co-density matrix of the biorthogonalized basis of the bra with itself.
-     *  
+     *
      * @return The sum of the co-density matrices.
-     * 
+     *
      * @note This implementation is based on equation 38d from the 2021 pper by Hugh Burton (https://aip.scitation.org/doi/abs/10.1063/5.0045442).
      */
     DM coDensitySum() const {
@@ -355,10 +355,10 @@ public:
 
     /**
      * Calculate and return the transition one-electron density matrix. The contractions vary depending on the number of zero overlaps (Burton equation 46 and 47).
-     * These matrices are then summed and returned. 
-     *  
+     * These matrices are then summed and returned.
+     *
      * @return The transition one-electron density matrix.
-     * 
+     *
      * @note This implementation is based on equation 45 from the 2021 pper by Hugh Burton (https://aip.scitation.org/doi/abs/10.1063/5.0045442).
      */
     DM transition1DM() const {
@@ -379,10 +379,10 @@ public:
 
     /**
      * Calculate and return the weighted co-density matrix. It calculates the co-density matrix contributions corresponding to the non-zero overlap values and divides them by that overlap value.
-     * These matrices are then summed and returned. 
-     *  
+     * These matrices are then summed and returned.
+     *
      * @return The weighted co-density matrix.
-     * 
+     *
      * @note This implementation is based on equation 38c from the 2021 pper by Hugh Burton (https://aip.scitation.org/doi/abs/10.1063/5.0045442).
      */
     DM weightedCoDensity() const {
@@ -403,10 +403,10 @@ public:
 
 
     /**
-     * Calculate and return the zero-overlap co-density matrix. It takes the indices of the zero overlaps and calculates the co-density matrix at each of these indices. The sum of those co-density matrices is returned. 
-     *  
+     * Calculate and return the zero-overlap co-density matrix. It takes the indices of the zero overlaps and calculates the co-density matrix at each of these indices. The sum of those co-density matrices is returned.
+     *
      * @return The zero overlap co-density matrix.
-     * 
+     *
      * @note This implementation is based on equation 38a from the 2021 pper by Hugh Burton (https://aip.scitation.org/doi/abs/10.1063/5.0045442).
      */
     DM zeroOverlapCoDensity() const {
