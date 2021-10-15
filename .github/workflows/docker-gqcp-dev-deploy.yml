@@ -46,3 +46,15 @@ jobs:
         file: docker/GQCP-dev.docker
         push: true
         tags: gqcg/gqcp-dev:latest
+    - name: Set up Singularity
+      uses: eWaterCycle/setup-singularity@v5
+      with: 
+         singularity-version: 3.6.1
+    - name: Build Singularity image
+      run: singularity build gqcp-dev.sif docker://gqcg/gqcp-dev
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+         name: gqcp-dev.sif
+         path: gqcp-dev.sif
+         retention-days: 5
