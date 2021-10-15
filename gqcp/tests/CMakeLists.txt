@@ -1,15 +1,15 @@
 set(test_target_sources)
 
-#add_subdirectory(Basis)
-#add_subdirectory(DensityMatrix)
-#add_subdirectory(Mathematical)
-#add_subdirectory(Molecule)
-#add_subdirectory(ONVBasis)
-#add_subdirectory(Operator)
-#add_subdirectory(Processing)
-#add_subdirectory(QCMethod)
+add_subdirectory(Basis)
+add_subdirectory(DensityMatrix)
+add_subdirectory(Mathematical)
+add_subdirectory(Molecule)
+add_subdirectory(ONVBasis)
+add_subdirectory(Operator)
+add_subdirectory(Processing)
+add_subdirectory(QCMethod)
 add_subdirectory(QCModel)
-#add_subdirectory(Utilities)
+add_subdirectory(Utilities)
 
 
 file(COPY data DESTINATION ${CMAKE_BINARY_DIR}/gqcp/tests)  # make sure that the paths in the source files point to the correct data files
