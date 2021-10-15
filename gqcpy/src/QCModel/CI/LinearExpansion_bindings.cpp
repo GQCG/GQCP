@@ -352,7 +352,8 @@ void bindLinearExpansions(py::module& module) {
             py::arg("system_onvs"),
             py::arg("environment_onvs"),
             py::arg("system_onv_basis"),
-            py::arg("environment_onv_basis"))
+            py::arg("environment_onv_basis"),
+            "Return the orbital reduced density matrix.")
 
         .def(
             "calculateOrbitalRDM",
@@ -362,7 +363,8 @@ void bindLinearExpansions(py::module& module) {
             py::arg("system_onvs"),
             py::arg("environment_onvs"),
             py::arg("system_onv_basis"),
-            py::arg("environment_onv_basis"))
+            py::arg("environment_onv_basis"),
+            "Return the orbital reduced density matrix")
 
         .def(
             "calculateNDMElement",

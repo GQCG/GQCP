@@ -824,42 +824,6 @@ public:
         return value;
     }
 
-    template <typename ONV>
-    GQCP::SquareMatrix<double> calculateOrbitalRDM(const std::vector<ONV>& system_onvs, const std::vector<ONV>& environment_onvs, const std::vector<ONV>& system_onv_basis, const std::vector<ONV>& environment_onv_basis) const {
-
-        if (system_onvs.size() != environment_onvs.size()) {
-            throw std::invalid_argument("LinearExpansion::calculateOrbitalRDM(std::vector<ONV>& system_onvs, std::vector<ONV>& environment_onvs, const ONV& onv_n_bra, const ONV& onv_b_ket) const: The amount of system ONVs should be exactly the same as the amount of environment ONVs.");
-        }
-
-        const auto dim = system_onv_basis.size();
-        GQCP::SquareMatrix<double> rho = GQCP::SquareMatrix<double>::Zero(dim);
-
-        for (size_t r = 0; r < dim; ++r) {
-            for (size_t c = 0; c < dim; ++c) {
-
-                double matrix_element = 0.0;
-
-                // \sum_j <j|<n|\Psi><\Psi|n'>|j> -> onv_n_bra = <n| and onv_n_ket = |n'>
-                for (size_t p = 0; p < system_onvs.size(); ++p) {      // Loop over |\Psi> = \sum_p |system_p>|environment_p>.
-                    for (size_t q = 0; q < system_onvs.size(); ++q) {  // Loop over <\Psi| = \sum_q <environment_q|<system_q|.
-                        // If <n|onv_system> and <onv_system'|n'> are both 1, we can calculate the overlap with the environment ONVs.
-                        if ((system_onv_basis[r] == system_onvs[p]) && (system_onvs[q] == system_onv_basis[c])) {
-                            for (size_t j = 0; j < environment_onv_basis.size(); ++j) {  // Loop over all ONVs of the environment. (\sum_j <j|...|j>)
-                                // If <j|environment_onv> and <environment_onv'|j> both are 1, the coefficients will contribute to the matrix element.
-                                if ((environment_onv_basis[j] == environment_onvs[p]) && (environment_onvs[q] == environment_onv_basis[j])) {
-                                    matrix_element += this->coefficient(p) * this->coefficient(q);
-                                }
-                            }
-                        }
-                    }
-                }
-                rho(r, c) = matrix_element;
-            }
-        }
-
-        return rho;
-    }
-
 
     /*
      *  MARK: Density matrices for spin-resolved ONV bases
@@ -1820,6 +1784,53 @@ public:
     /**
      *  MARK: Entropy
      */
+
+    /**
+     *  Calculate the orbital reduced density matrix as defined in equation (3) of Rissler2005 (https://doi.org/10.1016/j.chemphys.2005.10.018).
+     *
+     *  @param system_onvs      A vector of all ONVs of the system that is obtained after splitting an ONV basis into two subsystems.
+     *  @param environment_onvs      A vector of all ONVs of the environment that is obtained after splitting an ONV basis into two subsystems.
+     *  @param system_onv_basis     A vector containing the unique ONVs of the system.
+     *  @param environment_onv_basis    A vector containing the unique ONVs of the environment.
+     *
+     *  @return The orbital reduced density matrix.
+     */
+    template <typename ONV>
+    GQCP::SquareMatrix<double> calculateOrbitalRDM(const std::vector<ONV>& system_onvs, const std::vector<ONV>& environment_onvs, const std::vector<ONV>& system_onv_basis, const std::vector<ONV>& environment_onv_basis) const {
+
+        if (system_onvs.size() != environment_onvs.size()) {
+            throw std::invalid_argument("LinearExpansion::calculateOrbitalRDM(std::vector<ONV>& system_onvs, std::vector<ONV>& environment_onvs, const ONV& onv_n_bra, const ONV& onv_b_ket) const: The amount of system ONVs should be exactly the same as the amount of environment ONVs.");
+        }
+
+        const auto dim = system_onv_basis.size();
+        GQCP::SquareMatrix<double> rho = GQCP::SquareMatrix<double>::Zero(dim);
+
+        for (size_t r = 0; r < dim; ++r) {
+            for (size_t c = 0; c < dim; ++c) {
+
+                double matrix_element = 0.0;
+
+                // \sum_j <j|<n|\Psi><\Psi|n'>|j> -> onv_n_bra = <n| and onv_n_ket = |n'>
+                for (size_t p = 0; p < system_onvs.size(); ++p) {      // Loop over |\Psi> = \sum_p |system_p>|environment_p>.
+                    for (size_t q = 0; q < system_onvs.size(); ++q) {  // Loop over <\Psi| = \sum_q <environment_q|<system_q|.
+                        // If <n|onv_system> and <onv_system'|n'> are both 1, we can calculate the overlap with the environment ONVs.
+                        if ((system_onv_basis[r] == system_onvs[p]) && (system_onvs[q] == system_onv_basis[c])) {
+                            for (size_t j = 0; j < environment_onv_basis.size(); ++j) {  // Loop over all ONVs of the environment. (\sum_j <j|...|j>)
+                                // If <j|environment_onv> and <environment_onv'|j> both are 1, the coefficients will contribute to the matrix element.
+                                if ((environment_onv_basis[j] == environment_onvs[p]) && (environment_onvs[q] == environment_onv_basis[j])) {
+                                    matrix_element += this->coefficient(p) * this->coefficient(q);
+                                }
+                            }
+                        }
+                    }
+                }
+                rho(r, c) = matrix_element;
+            }
+        }
+
+        return rho;
+    }
+
 
     /**
      *  @return The Shannon entropy (information content) of the wave function.
