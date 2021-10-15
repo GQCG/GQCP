@@ -25,4 +25,4 @@ RUN conda install -c conda-forge -c intel -c gqcg openmp=8.0.1 cmake=3.20.2 boos
 
 RUN ldconfig
 
-ENTRYPOINT bash
+ENTRYPOINT bash 
