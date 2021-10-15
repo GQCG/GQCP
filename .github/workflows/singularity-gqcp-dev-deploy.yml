@@ -17,7 +17,7 @@ jobs:
       with: 
         singularity-version: 3.6.1
     - name: Build Singularity image
-      run: singularity build --fakeroot gqcp-dev.sif singularity/GQCP-dev.def
+      run: sudo singularity build gqcp-dev.sif singularity/GQCP-dev.def
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:

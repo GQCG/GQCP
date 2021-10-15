@@ -29,5 +29,5 @@ From: ubuntu:20.04
     exec echo "$@"
 
 %labels
-    Author GQCP
+    Author GQCG
     Version v0.1.0
