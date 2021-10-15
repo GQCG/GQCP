@@ -8,6 +8,7 @@ Stage: build
     export LIBINT_DATA_PATH=/usr/local/miniconda3/share/libint/2.6.0/basis
 
 %post
+    export DEBIAN_FRONTEND=noninteractive
     apt-get update 
     apt-get install -y wget build-essential clang git gdb 
     apt-get clean 
