@@ -18,6 +18,9 @@
 #pragma once
 
 
+#include "Basis/BiorthogonalBasis/GLowdinPairingBasis.hpp"
+#include "Basis/BiorthogonalBasis/RLowdinPairingBasis.hpp"
+#include "Basis/BiorthogonalBasis/SimpleLowdinPairingBasis.hpp"
 #include "Basis/Integrals/BaseOneElectronIntegralBuffer.hpp"
 #include "Basis/Integrals/BaseOneElectronIntegralEngine.hpp"
 #include "Basis/Integrals/BaseTwoElectronIntegralBuffer.hpp"
