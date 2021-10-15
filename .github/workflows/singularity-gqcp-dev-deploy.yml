@@ -1,7 +1,16 @@
 name: Singularity deploy
 
 on:
+  push:
+    paths:
+      - '.github/workflows/singularity-gqcp-dev-deploy.yml'
+      - 'singularity/GQCP-dev.def'
+    branches:
+      - 'develop'
   pull_request:
+    paths:
+      - '.github/workflows/singularity-gqcp-dev-deploy.yml'
+      - 'singularity/GQCP-dev.def'
 
 jobs:
   build:
@@ -12,11 +21,11 @@ jobs:
     steps:
     - name: Set up Git repository
       uses: actions/checkout@v2
-      - name: Set up Go 1.13
-        uses: actions/setup-go@v1
-        with:
-          go-version: 1.13
-        id: go
+    - name: Set up Go 1.13
+      uses: actions/setup-go@v1
+      with:
+        go-version: 1.13
+      id: go
     - name: Install Dependencies
       run: |
         sudo apt-get update && sudo apt-get install -y \
