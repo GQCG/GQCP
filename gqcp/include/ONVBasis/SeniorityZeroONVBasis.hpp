@@ -19,6 +19,7 @@
 
 
 #include "Mathematical/Representation/Matrix.hpp"
+#include "ONVBasis/SpinResolvedONV.hpp"
 #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 
@@ -32,6 +33,10 @@ namespace GQCP {
  *  A spin-resolved ONV basis that contains all seniority-zero (i.e. doubly-occupied) (spin-resolved) ONVs.
  */
 class SeniorityZeroONVBasis {
+public:
+    // The ONV that is naturally related to a seniority zero ONV basis.
+    using ONV = SpinResolvedONV;
+
 private:
     size_t K;    // The number of spatial orbitals.
     size_t N_P;  // The number of electron pairs.

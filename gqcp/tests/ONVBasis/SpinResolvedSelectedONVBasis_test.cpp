@@ -46,14 +46,14 @@ BOOST_AUTO_TEST_CASE(expandWith) {
 
 
     // Check if we can access the ONVs in order.
-    BOOST_CHECK(onv_basis.onvWithIndex(0).asString() == "001|001");
+    BOOST_CHECK(onv_basis.onvWithIndex(0).asString() == "100|100");
     BOOST_CHECK(onv_basis.onvWithIndex(1).asString() == "010|010");
 }
 
 
 /**
  *  Check if the matrix-vector product through a direct evaluation (i.e. through the dense Hamiltonian matrix representation) and the specialized implementation are equal.
- * 
+ *
  *  The test system is H2O in an STO-3G basisset, which has a FCI dimension of 441.
  */
 BOOST_AUTO_TEST_CASE(restricted_dense_vs_matvec) {
@@ -83,7 +83,7 @@ BOOST_AUTO_TEST_CASE(restricted_dense_vs_matvec) {
 
 /**
  *  Check if the diagonal of the matrix representation of a restricted Hamiltonian is equal to the diagonal that is calculated through a specialized routine.
- * 
+ *
  *  The test system is H2O in an STO-3G basisset, which has a FCI dimension of 441.
  */
 BOOST_AUTO_TEST_CASE(restricted_hamiltonian_diagonal) {

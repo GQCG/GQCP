@@ -46,7 +46,7 @@ namespace GQCP {
 
 /**
  *  A class that represents a linear expansion inside an ONV basis.
- * 
+ *
  *  @tparam _Scalar             The scalar type of the expansion coefficients: real or complex.
  *  @tparam _ONVBasis           The type of ONV basis.
  */
@@ -96,9 +96,9 @@ public:
 
     /**
      *  Create a linear expansion with a normalized coefficient vector (i.e. all the coefficients are equal).
-     * 
+     *
      *  @param onv_basis            The ONV basis with respect to which the coefficients are defined.
-     * 
+     *
      *  @return A constant LinearExpansion.
      */
     static LinearExpansion<Scalar, ONVBasis> Constant(const ONVBasis& onv_basis) {
@@ -112,9 +112,9 @@ public:
 
     /**
      *  Create a linear expansion that represents the Hartree-Fock wave function.
-     * 
+     *
      *  @param onv_basis            The ONV basis with respect to which the coefficients are defined.
-     * 
+     *
      *  @return a LinearExpansion
      */
     static LinearExpansion<Scalar, ONVBasis> HartreeFock(const ONVBasis& onv_basis) {
@@ -127,10 +127,10 @@ public:
 
     /**
      *  Create a normalized linear expansion inside a given ONV basis with possibly non-normalized coefficients.
-     * 
+     *
      *  @param onv_basis            The ONV basis with respect to which the coefficients are defined.
      *  @param coefficients         the expansion coefficients
-     * 
+     *
      *  @return A normalized LinearExpansion.
      */
     static LinearExpansion<Scalar, ONVBasis> Normalized(const ONVBasis& onv_basis, const VectorX<Scalar>& coefficients) {
@@ -143,9 +143,9 @@ public:
 
     /**
      *  Create a linear expansion with a random, normalized coefficient vector, with coefficients uniformly distributed in [-1, +1] before any normalization.
-     * 
+     *
      *  @param onv_basis            the ONV basis with respect to which the coefficients are defined
-     * 
+     *
      *  @return A random LinearExpansion.
      */
     static LinearExpansion<Scalar, ONVBasis> Random(const ONVBasis& onv_basis) {
@@ -159,9 +159,9 @@ public:
 
     /**
      *  Create a linear expansion by reading in a GAMESS-US file.
-     * 
+     *
      *  @param GAMESSUS_filename      The name of the GAMESS-US file that contains the spin-resolved selected wave function expansion.
-     * 
+     *
      *  @return The corresponding spin-resolved selected linear expansion from a given GAMESS-US file.
      */
     template <typename Z1 = Scalar, typename Z2 = ONVBasis>
@@ -273,11 +273,11 @@ public:
 
     /**
      *  Create the linear expansion of the given spin-resolved ONV that is expressed in the given USpinOrbitalBasis, by projection onto the spin-resolved ONVs expressed with respect to the given RSpinOrbitalBasis.
-     * 
+     *
      *  @param onv                      A spin-resolved ONV expressed with respect to an unrestricted spin-orbital basis.
      *  @param r_spinor_basis           The restricted spin-orbital basis that is used to define the resulting linear expansion of ONVs against.
      *  @param u_spinor_basis           The unrestricted spin-orbital basis against which the given ONV is expressed.
-     * 
+     *
      *  @return A linear expansion inside a spin-resolved ONV basis.
      */
     template <typename Z1 = Scalar, typename Z2 = ONVBasis>
@@ -326,11 +326,11 @@ public:
 
     /**
      *  Create the linear expansion of the given spin-unresolved ONV that is expressed in the given GSpinorBasis, by projection onto the spin-resolved ONVs expressed with respect to another given GSpinorBasis.
-     * 
+     *
      *  @param onv_of                   A spin-unresolved ONV expressed with respect to a general spinor basis.
      *  @param spinor_basis_on          The general spinor basis that is used to define the resulting linear expansion of ONVs against.
      *  @param spinor_basis_of          The general spinor basis against which the given ONV is expressed.
-     * 
+     *
      *  @return A linear expansion inside a spin-unresolved ONV basis.
      */
     template <typename Z1 = Scalar, typename Z2 = ONVBasis>
@@ -375,9 +375,9 @@ public:
 
     /**
      *  Access a coefficient of the linear expansion.
-     * 
+     *
      *  @param i    The index (address) of the coefficient that should be obtained.
-     * 
+     *
      *  @return The i-th expansion coefficient.
      */
     Scalar coefficient(const size_t i) const { return this->m_coefficients(i); }
@@ -401,7 +401,7 @@ public:
      *  Update the expansion coefficients of this linear expansion so that they correspond to the situation after a transformation of the underlying spinor basis with the given basis transformation.
      *
      *  @param T            The transformation between the old and the new restricted spin-orbital basis.
-     * 
+     *
      *  @note This method is only available for the full spin-resolved ONV basis.
      *  @note This algorithm was implemented from a description in Helgaker2000.
      */
@@ -438,7 +438,7 @@ public:
         auto N_beta = beta_onv_basis.numberOfElectrons();
 
 
-        /** 
+        /**
          *  The transformation of the expansion coefficients is adapted from Helgaker2000, chapter 11.9.
          *  For every orbital, a set of correction coefficients will be calculated (Delta C in Helgaker), to update the current coefficients.
          */
@@ -583,7 +583,7 @@ public:
 
     /*
      *  Calculate general one-electron density matrix for a spin-unresolved wave function expansion.
-     * 
+     *
      *  @return The generalized one-electron density matrix.
      */
     template <typename Z1 = Scalar, typename Z2 = ONVBasis>
@@ -652,12 +652,12 @@ public:
 
     /**
      *  Calculate an element of the N-electron density matrix.
-     * 
+     *
      *  @param bra_indices      The indices of the orbitals that should be annihilated on the left (on the bra).
      *  @param ket_indices      The indices of the orbitals that should be annihilated on the right (on the ket).
      *
      *  @return An element of the N-DM, as specified by the given bra and ket indices. `calculateNDMElement({0, 1}, {2, 1})` would calculate an element of the 2-NDM d^{(2)} (0, 1, 1, 2) corresponding the operator string: `a^\dagger_0 a^\dagger_1 a_2 a_1`.
-     * 
+     *
      *  @note This method is only enabled for linear expansions related to spin-unresolved ONV bases.
      */
     template <typename Z = ONVBasis>
@@ -740,12 +740,12 @@ public:
 
     /**
      *  Calculate an element of the N-electron density matrix.
-     * 
+     *
      *  @param bra_indices      The indices of the orbitals that should be annihilated on the left (on the bra).
      *  @param ket_indices      The indices of the orbitals that should be annihilated on the right (on the ket).
      *
      *  @return An element of the N-DM, as specified by the given bra and ket indices. `calculateNDMElement({0, 1}, {2, 1})` would calculate an element of the 2-NDM d^{(2)} (0, 1, 1, 2) corresponding the operator string: `a^\dagger_0 a^\dagger_1 a_2 a_1`.
-     * 
+     *
      *  @note This method is only enabled for linear expansions related to spin-unresolved selected ONV bases.
      */
     template <typename Z = ONVBasis>
@@ -831,7 +831,7 @@ public:
 
     /**
      *  Calculate the spin-resolved one-electron density matrix for a full spin-resolved wave function expansion.
-     * 
+     *
      *  @return The spin-resolved 1-DM.
      */
     template <typename Z1 = Scalar, typename Z2 = ONVBasis>
@@ -951,7 +951,7 @@ public:
 
     /**
      *  Calculate the spin-resolved two-electron density matrix for a full spin-resolved wave function expansion.
-     * 
+     *
      *  @return The spin-resolved 2-DM.
      */
     template <typename Z1 = Scalar, typename Z2 = ONVBasis>
@@ -1164,7 +1164,7 @@ public:
 
     /**
      *  Calculate the one-electron density matrix for a full spin-resolved wave function expansion.
-     * 
+     *
      *  @return The orbital (total, spin-summed) 1-DM
      */
     template <typename Z1 = Scalar, typename Z2 = ONVBasis>
@@ -1173,7 +1173,7 @@ public:
 
     /**
      *  Calculate the two-electron density matrix for a full spin-resolved wave function expansion.
-     * 
+     *
      *  @return The orbital (total, spin-summed) 2-DM.
      */
     template <typename Z1 = Scalar, typename Z2 = ONVBasis>
@@ -1186,7 +1186,7 @@ public:
 
     /**
      *  Calculate the orbital one-electron density matrix for a seniority-zero wave function expansion.
-     * 
+     *
      *  @return The orbital (total, spin-summed) 1-DM.
      */
     template <typename Z1 = Scalar, typename Z2 = ONVBasis>
@@ -1220,7 +1220,7 @@ public:
 
     /**
      *  Calculate the two-electron density matrix for a seniority-zero wave function expansion.
-     * 
+     *
      *  @return The orbital (total, spin-summed) 2-DM.
      */
     template <typename Z1 = Scalar, typename Z2 = ONVBasis>
@@ -1228,7 +1228,7 @@ public:
 
     /**
      *  Calculate the spin-resolved one-electron density matrix for a seniority-zero wave function expansion.
-     * 
+     *
      *  @return The spin-resolved 1-DM.
      */
     template <typename Z1 = Scalar, typename Z2 = ONVBasis>
@@ -1237,7 +1237,7 @@ public:
 
     /**
      *  Calculate the spin-resolved two-electron density matrix for a seniority-zero wave function expansion.
-     * 
+     *
      *  @return The spin-resolved 2-DM.
      */
     template <typename Z1 = Scalar, typename Z2 = ONVBasis>
@@ -1307,7 +1307,7 @@ public:
 
     /**
      *  Calculate the spin-resolved one-electron density matrix for a spin-resolved selected wave function expansion.
-     * 
+     *
      *  @return The spin-resolved 1-DM.
      */
     template <typename Z1 = Scalar, typename Z2 = ONVBasis>
@@ -1387,7 +1387,7 @@ public:
 
     /**
      *  Calculate the spin-resolved two-electron density matrix for a spin-resolved selected wave function expansion.
-     * 
+     *
      *  @return The spin-resolved 2-DM.
      */
     template <typename Z1 = Scalar, typename Z2 = ONVBasis>
@@ -1619,7 +1619,7 @@ public:
 
     /**
      *  Calculate the one-electron density matrix for a spin-resolved selected wave function expansion.
-     * 
+     *
      *  @return The orbital (total, spin-summed) 1-DM.
      */
     template <typename Z1 = Scalar, typename Z2 = ONVBasis>
@@ -1628,7 +1628,7 @@ public:
 
     /**
      *  Calculate the two-electron density matrix for a spin-resolved selected wave function expansion.
-     * 
+     *
      *  @return The orbital (total, spin-summed) 2-DM.
      */
     template <typename Z1 = Scalar, typename Z2 = ONVBasis>
@@ -1637,7 +1637,7 @@ public:
 
     /**
      *  Calculate the generalized (G) one-electron density matrix for a spin-unresolved selected wave function expansion.
-     * 
+     *
      *  @return The generalized (G) 1-DM.
      */
     template <typename Z = ONVBasis>
@@ -1685,7 +1685,7 @@ public:
 
     /**
      *  Calculate the generalized (G) two-electron density matrix (1-DM) for a spin-unresolved selected wave function expansion.
-     * 
+     *
      *  @return The generalized (G) 2-DM.
      */
     template <typename Z = ONVBasis>
@@ -1786,6 +1786,53 @@ public:
      */
 
     /**
+     *  Calculate the orbital reduced density matrix as defined in equation (3) of Rissler2005 (https://doi.org/10.1016/j.chemphys.2005.10.018).
+     *
+     *  @param system_onvs              A vector of all ONVs of the system that is obtained after splitting an ONV basis into two subsystems.
+     *  @param environment_onvs         A vector of all ONVs of the environment that is obtained after splitting an ONV basis into two subsystems.
+     *  @param system_onv_basis         A vector containing the unique ONVs of the system.
+     *  @param environment_onv_basis    A vector containing the unique ONVs of the environment.
+     *
+     *  @return The orbital reduced density matrix.
+     */
+    template <typename Z = ONVBasis>
+    enable_if_t<std::is_same<Z, SpinUnresolvedONVBasis>::value | std::is_same<Z, SpinResolvedONVBasis>::value, GQCP::SquareMatrix<Scalar>> calculateOrbitalRDM(const std::vector<typename ONVBasis::ONV>& system_onvs, const std::vector<typename ONVBasis::ONV>& environment_onvs, const std::vector<typename ONVBasis::ONV>& system_onv_basis, const std::vector<typename ONVBasis::ONV>& environment_onv_basis) const {
+
+        if (system_onvs.size() != environment_onvs.size()) {
+            throw std::invalid_argument("LinearExpansion::calculateOrbitalRDM(std::vector<ONV>& system_onvs, std::vector<ONV>& environment_onvs, const ONV& onv_n_bra, const ONV& onv_b_ket) const: The amount of system ONVs should be exactly the same as the amount of environment ONVs.");
+        }
+
+        const auto dim = system_onv_basis.size();
+        GQCP::SquareMatrix<Scalar> rho = GQCP::SquareMatrix<Scalar>::Zero(dim);
+
+        for (size_t r = 0; r < dim; ++r) {
+            for (size_t c = 0; c < dim; ++c) {
+
+                double matrix_element = 0.0;
+
+                // \sum_j <j|<n|\Psi><\Psi|n'>|j> -> onv_n_bra = <n| and onv_n_ket = |n'>
+                for (size_t p = 0; p < system_onvs.size(); ++p) {      // Loop over |\Psi> = \sum_p |system_p>|environment_p>.
+                    for (size_t q = 0; q < system_onvs.size(); ++q) {  // Loop over <\Psi| = \sum_q <environment_q|<system_q|.
+                        // If <n|onv_system> and <onv_system'|n'> are both 1, we can calculate the overlap with the environment ONVs.
+                        if ((system_onv_basis[r] == system_onvs[p]) && (system_onvs[q] == system_onv_basis[c])) {
+                            for (size_t j = 0; j < environment_onv_basis.size(); ++j) {  // Loop over all ONVs of the environment. (\sum_j <j|...|j>)
+                                // If <j|environment_onv> and <environment_onv'|j> both are 1, the coefficients will contribute to the matrix element.
+                                if ((environment_onv_basis[j] == environment_onvs[p]) && (environment_onvs[q] == environment_onv_basis[j])) {
+                                    matrix_element += this->coefficient(p) * this->coefficient(q);
+                                }
+                            }
+                        }
+                    }
+                }
+                rho(r, c) = matrix_element;
+            }
+        }
+
+        return rho;
+    }
+
+
+    /**
      *  @return The Shannon entropy (information content) of the wave function.
      */
     template <typename Z = Scalar>
@@ -1805,11 +1852,11 @@ public:
 
     /**
      *  Calculate the single orbital entropy of the orbital at the selected index, from the spin-resolved 1- and two-particle density matrix. The implementation is based on https://doi.org/10.1002/qua.24832.
-     * 
-     *  @param orbital_index      The index of the orbital for which the single orbital entropy needs to be calculated. 
+     *
+     *  @param orbital_index      The index of the orbital for which the single orbital entropy needs to be calculated.
      *
      *  @return The single orbital entropy of the orbital at the specified index.
-     * 
+     *
      *  @note This version of this method is used when the linear expansion is based on a spin-resolved ONV basis.
      */
     template <typename Z1 = Scalar, typename Z2 = ONVBasis>
@@ -1854,11 +1901,11 @@ public:
 
     /**
      * Calculate the single orbital entropy of the orbital at the selected index, from the spin-resolved 1- and two-particle density matrix. The implementation is based on https://doi.org/10.1002/qua.24832.
-     * 
-     *  @param orbital_index      The index of the orbital for which the single orbital entropy needs to be calculated. 
+     *
+     *  @param orbital_index      The index of the orbital for which the single orbital entropy needs to be calculated.
      *
      * @return The single orbital entropy of the orbital at the specified index.
-     * 
+     *
      * @note This version of this method is used when the linear expansion is based on a seniority-zero ONV basis.
      */
     template <typename Z1 = Scalar, typename Z2 = ONVBasis>
@@ -1903,7 +1950,7 @@ public:
 
     /**
      *  Iterate over all expansion coefficients and corresponding ONVs, and apply the given callback function.
-     * 
+     *
      *  @param callback                 The function to be applied in every iteration. Its arguments are an expansion coefficient and the corresponding ONV.
      */
     template <typename Z = ONVBasis>
@@ -1926,10 +1973,10 @@ public:
      *  MARK: Comparing
      */
 
-    /** 
+    /**
      *  @param other            The other linear expansion for the comparison.
      *  @param tolerance        The tolerance for the comparison of coefficients.
-     * 
+     *
      *  @return If the two linear expansions are equal within a given tolerance.
      */
     bool isApprox(const LinearExpansion<Scalar, ONVBasis>& other, double tolerance = 1.0e-12) const {
