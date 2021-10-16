@@ -1788,22 +1788,22 @@ public:
     /**
      *  Calculate the orbital reduced density matrix as defined in equation (3) of Rissler2005 (https://doi.org/10.1016/j.chemphys.2005.10.018).
      *
-     *  @param system_onvs      A vector of all ONVs of the system that is obtained after splitting an ONV basis into two subsystems.
-     *  @param environment_onvs      A vector of all ONVs of the environment that is obtained after splitting an ONV basis into two subsystems.
-     *  @param system_onv_basis     A vector containing the unique ONVs of the system.
+     *  @param system_onvs              A vector of all ONVs of the system that is obtained after splitting an ONV basis into two subsystems.
+     *  @param environment_onvs         A vector of all ONVs of the environment that is obtained after splitting an ONV basis into two subsystems.
+     *  @param system_onv_basis         A vector containing the unique ONVs of the system.
      *  @param environment_onv_basis    A vector containing the unique ONVs of the environment.
      *
      *  @return The orbital reduced density matrix.
      */
-    template <typename ONV>
-    GQCP::SquareMatrix<double> calculateOrbitalRDM(const std::vector<ONV>& system_onvs, const std::vector<ONV>& environment_onvs, const std::vector<ONV>& system_onv_basis, const std::vector<ONV>& environment_onv_basis) const {
+    template <typename Z = ONVBasis>
+    enable_if_t<std::is_same<Z, SpinUnresolvedONVBasis>::value | std::is_same<Z, SpinResolvedONVBasis>::value, GQCP::SquareMatrix<Scalar>> calculateOrbitalRDM(const std::vector<typename ONVBasis::ONV>& system_onvs, const std::vector<typename ONVBasis::ONV>& environment_onvs, const std::vector<typename ONVBasis::ONV>& system_onv_basis, const std::vector<typename ONVBasis::ONV>& environment_onv_basis) const {
 
         if (system_onvs.size() != environment_onvs.size()) {
             throw std::invalid_argument("LinearExpansion::calculateOrbitalRDM(std::vector<ONV>& system_onvs, std::vector<ONV>& environment_onvs, const ONV& onv_n_bra, const ONV& onv_b_ket) const: The amount of system ONVs should be exactly the same as the amount of environment ONVs.");
         }
 
         const auto dim = system_onv_basis.size();
-        GQCP::SquareMatrix<double> rho = GQCP::SquareMatrix<double>::Zero(dim);
+        GQCP::SquareMatrix<Scalar> rho = GQCP::SquareMatrix<Scalar>::Zero(dim);
 
         for (size_t r = 0; r < dim; ++r) {
             for (size_t c = 0; c < dim; ++c) {

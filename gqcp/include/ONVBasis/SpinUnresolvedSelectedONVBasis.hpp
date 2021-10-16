@@ -33,6 +33,10 @@ namespace GQCP {
  *  A spin-unresolved ONV basis with a flexible number of (spin-unresolved) ONVs.
  */
 class SpinUnresolvedSelectedONVBasis {
+public:
+    // The ONV that is naturally related to a full spin-resolved ONV basis.
+    using ONV = SpinUnresolvedONV;
+
 private:
     // The number of spinors.
     size_t M;
@@ -91,14 +95,14 @@ public:
 
     /**
      *  Expand this ONV basis with the given spin-unresolved ONV.
-     * 
+     *
      *  @param onv          The ONV that should be included in this ONV basis.
      */
     void expandWith(const SpinUnresolvedONV& onv);
 
     /**
      *  Expand this ONV basis with the given spin-unresolved ONVs.
-     * 
+     *
      *  @param onvs         The ONVs that should be included in this ONV basis.
      */
     void expandWith(const std::vector<SpinUnresolvedONV>& onvs);
@@ -110,9 +114,9 @@ public:
 
     /**
      *  Access the ONV that corresponds to the given index/address.
-     * 
+     *
      *  @param index            The address of the ONV.
-     * 
+     *
      *  @return The ONV that corresponds to the given index/address.
      */
     const SpinUnresolvedONV& onvWithIndex(const size_t index) const { return this->onvs[index]; }
@@ -124,9 +128,9 @@ public:
 
     /**
      *  Calculate the dense matrix representation of a generalized one-electron operator in this ONV basis.
-     * 
+     *
      *  @tparam Scalar          The scalar representation of a one-electron parameter: real or complex.
-     * 
+     *
      *  @param f                A generalized one-electron operator expressed in an orthonormal orbital basis.
      *
      *  @return A dense matrix represention of the one-electron operator.
@@ -148,9 +152,9 @@ public:
 
     /**
      *  Calculate the dense matrix representation of a generalized Hamiltonian in this ONV basis.
-     * 
+     *
      *  @tparam Scalar          The scalar representation of a one-electron parameter: real or complex.
-     * 
+     *
      *  @param hamiltonian      A generalized Hamiltonian expressed in an orthonormal orbital basis.
      *
      *  @return A dense matrix represention of the Hamiltonian.
@@ -176,7 +180,7 @@ public:
 
     /**
      *  Calculate the matrix representation of a generalized one-electron operator in this ONV basis and emplace it in the given container.
-     * 
+     *
      *  @tparam Matrix                      The type of matrix used to store the evaluations.
      *  @tparam Scalar                      The scalar representation of a one-electron parameter: real or complex.
      *
@@ -227,7 +231,7 @@ public:
 
     /**
      *  Calculate the matrix representation of a generalized Hamiltonian in this ONV basis and emplace it in the given container.
-     * 
+     *
      *  @tparam Matrix                      The type of matrix used to store the evaluations.
      *  @tparam Scalar                      The scalar representation of a Hamiltonian element: real or complex.
      *

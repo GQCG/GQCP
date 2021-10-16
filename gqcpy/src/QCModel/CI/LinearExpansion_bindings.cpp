@@ -139,14 +139,6 @@ void bindQCModelCILinearExpansionDensityMatrixInterface(Class& py_class) {
             },
             "Return the one-electron density matrix (1-DM) for a wave function expansion of the specified type.")
 
-        .def(
-            "calculate2DM",
-            [](const Type& linear_expansion) {
-                return linear_expansion.calculate2DM();
-            },
-            "Return the two-electron density matrix (2-DM) for a wave function expansion of the specified type.")
-
-
         /*
          * MARK: Spin resolved
          */
@@ -251,6 +243,17 @@ void bindLinearExpansions(py::module& module) {
          */
 
         .def(
+            "calculateOrbitalRDM",
+            [](const LinearExpansion<double, SpinResolvedONVBasis>& linear_expansion, const std::vector<GQCP::SpinResolvedONV>& system_onvs, const std::vector<GQCP::SpinResolvedONV>& environment_onvs, const std::vector<GQCP::SpinResolvedONV>& system_onv_basis, const std::vector<GQCP::SpinResolvedONV>& environment_onv_basis) {
+                return linear_expansion.calculateOrbitalRDM(system_onvs, environment_onvs, system_onv_basis, environment_onv_basis);
+            },
+            py::arg("system_onvs"),
+            py::arg("environment_onvs"),
+            py::arg("system_onv_basis"),
+            py::arg("environment_onv_basis"),
+            "Return the orbital reduced density matrix")
+
+        .def(
             "calculateShannonEntropy",
             [](const LinearExpansion<double, SpinResolvedONVBasis>& linear_expansion) {
                 return linear_expansion.calculateShannonEntropy();
@@ -345,6 +348,15 @@ void bindLinearExpansions(py::module& module) {
             "Return the generalized one-electron density matrix.")
 
         .def(
+            "calculateNDMElement",
+            [](const LinearExpansion<double, SpinUnresolvedONVBasis>& linear_expansion, const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices) {
+                return linear_expansion.calculateNDMElement(bra_indices, ket_indices);
+            },
+            py::arg("bra_indices"),
+            py::arg("ket_indices"),
+            "Return an element of the N-DM, as specified by the given bra and ket indices. `calculateNDMElement({0, 1}, {2, 1})` would calculate an element of the 2-NDM d^{(2)} (0, 1, 1, 2) corresponding the operator string: `a^dagger_0 a^dagger_1 a_2 a_1`.")
+
+        .def(
             "calculateOrbitalRDM",
             [](const LinearExpansion<double, SpinUnresolvedONVBasis>& linear_expansion, const std::vector<GQCP::SpinUnresolvedONV>& system_onvs, const std::vector<GQCP::SpinUnresolvedONV>& environment_onvs, const std::vector<GQCP::SpinUnresolvedONV>& system_onv_basis, const std::vector<GQCP::SpinUnresolvedONV>& environment_onv_basis) {
                 return linear_expansion.calculateOrbitalRDM(system_onvs, environment_onvs, system_onv_basis, environment_onv_basis);
@@ -353,27 +365,7 @@ void bindLinearExpansions(py::module& module) {
             py::arg("environment_onvs"),
             py::arg("system_onv_basis"),
             py::arg("environment_onv_basis"),
-            "Return the orbital reduced density matrix.")
-
-        .def(
-            "calculateOrbitalRDM",
-            [](const LinearExpansion<double, SpinResolvedONVBasis>& linear_expansion, const std::vector<GQCP::SpinResolvedONV>& system_onvs, const std::vector<GQCP::SpinResolvedONV>& environment_onvs, const std::vector<GQCP::SpinResolvedONV>& system_onv_basis, const std::vector<GQCP::SpinResolvedONV>& environment_onv_basis) {
-                return linear_expansion.calculateOrbitalRDM(system_onvs, environment_onvs, system_onv_basis, environment_onv_basis);
-            },
-            py::arg("system_onvs"),
-            py::arg("environment_onvs"),
-            py::arg("system_onv_basis"),
-            py::arg("environment_onv_basis"),
             "Return the orbital reduced density matrix")
-
-        .def(
-            "calculateNDMElement",
-            [](const LinearExpansion<double, SpinUnresolvedONVBasis>& linear_expansion, const std::vector<size_t>& bra_indices, const std::vector<size_t>& ket_indices) {
-                return linear_expansion.calculateNDMElement(bra_indices, ket_indices);
-            },
-            py::arg("bra_indices"),
-            py::arg("ket_indices"),
-            "Return an element of the N-DM, as specified by the given bra and ket indices. `calculateNDMElement({0, 1}, {2, 1})` would calculate an element of the 2-NDM d^{(2)} (0, 1, 1, 2) corresponding the operator string: `a^dagger_0 a^dagger_1 a_2 a_1`.")
 
         /*
          *  MARK: Entropy

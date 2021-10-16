@@ -32,6 +32,10 @@ namespace GQCP {
  *  A spin-resolved ONV basis with a flexible number of (spin-resolved) ONVs.
  */
 class SpinResolvedSelectedONVBasis {
+public:
+    // The ONV that is naturally related to a full spin-resolved ONV basis.
+    using ONV = SpinResolvedONV;
+
 private:
     // The number of spin-orbitals (equal for alpha and beta).
     size_t K;
@@ -86,11 +90,11 @@ public:
 
     /**
      *  Create a `SpinResolvedSelectedONVBasis` for a CI singles calculation, using the HF determinant as a reference.
-     * 
+     *
      *  @param K            The number of spin-orbitals (equal for alpha and beta).
      *  @param N_alpha      The number of alpha electrons, i.e. the number of occupied alpha spin-orbitals.
      *  @param N_beta       The number of beta electrons, i.e. the number of occupied beta spin-orbitals.
-     * 
+     *
      *  @return A CI singles-equivalent `SpinResolvedSelectedONVBasis`.
      */
     static SpinResolvedSelectedONVBasis CIS(const size_t K, const size_t N_alpha, const size_t N_beta, const bool include_triplets = false);
@@ -127,14 +131,14 @@ public:
 
     /**
      *  Expand this ONV basis with the given spin-resolved ONV.
-     * 
+     *
      *  @param onv          The ONV that should be included in this ONV basis.
      */
     void expandWith(const SpinResolvedONV& onv);
 
     /**
      *  Expand this ONV basis with the given spin-resolved ONVs.
-     * 
+     *
      *  @param onvs         The ONVs that should be included in this ONV basis.
      */
     void expandWith(const std::vector<SpinResolvedONV>& onvs);
@@ -146,9 +150,9 @@ public:
 
     /**
      *  Access the ONV that corresponds to the given index/address.
-     * 
+     *
      *  @param index            The address of the ONV.
-     * 
+     *
      *  @return The ONV that corresponds to the given index/address.
      */
     const SpinResolvedONV& onvWithIndex(const size_t index) const { return this->onvs[index]; }
@@ -357,7 +361,7 @@ public:
 
     /**
      *  Calculate the matrix representation of an unrestricted one-electron operator in this ONV basis and emplace it in the given container.
-     * 
+     *
      *  @tparam Matrix                      The type of matrix used to store the evaluations.
      *
      *  @param f                            An unrestricted one-electron operator expressed in an orthonormal spin-orbital basis.

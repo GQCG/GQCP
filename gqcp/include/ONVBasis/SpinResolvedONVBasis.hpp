@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "ONVBasis/SpinResolvedONV.hpp"
 #include "ONVBasis/SpinUnresolvedONVBasis.hpp"
 #include "Operator/SecondQuantized/MixedUSQTwoElectronOperatorComponent.hpp"
 #include "Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp"
@@ -39,6 +40,8 @@ class SpinResolvedONVBasis:
 public:
     // The type component this spin resolved object is made of.
     using ComponentType = typename SpinResolvedBase<SpinUnresolvedONVBasis, SpinResolvedONVBasis>::Of;
+    // The ONV that is naturally related to a full spin-resolved ONV basis.
+    using ONV = SpinResolvedONV;
 
 private:
     // A vector of sparse matrices containing the one-electron coupling elements for the alpha ONV basis. See also `calculateOneElectronCouplings`.
@@ -67,7 +70,7 @@ public:
 
     /**
      *  Calculate the dimension of a spin-resolved ONV basis with a given number of orbitals and electrons.
-     * 
+     *
      *  @param K            The number of alpha or beta spin-orbitals.
      *  @param N_alpha      The number of alpha electrons, i.e. the number of occupied alpha spin-orbitals.
      *  @param N_beta       The number of beta electrons, i.e. the number of occupied beta spin-orbitals.
@@ -114,10 +117,10 @@ public:
 
     /**
      *  Calculate the compound address of an ONV represented by the two given alpha- and beta-addresses.
-     * 
+     *
      *  @param I_alpha              The alpha-address.
      *  @param I_beta               The beta-address.
-     * 
+     *
      *  @return The compound address of an ONV represented by the two given alpha- and beta-addresses.
      */
     size_t compoundAddress(const size_t I_alpha, const size_t I_beta) const;
@@ -129,7 +132,7 @@ public:
 
     /**
      *  Iterate over all ONVs (implicitly, by resolving in their spin components) in this ONV basis and apply the given callback function.
-     * 
+     *
      *  @param callback             The function to be applied in every iteration. Its arguments are two pairs of spin-unresolved ONVs and their corresponding addresses, where the first two arguments are related to alpha-spin. The last two arguments are related to beta-spin.
      */
     void forEach(const std::function<void(const SpinUnresolvedONV&, const size_t, const SpinUnresolvedONV&, const size_t)>& callback) const;
