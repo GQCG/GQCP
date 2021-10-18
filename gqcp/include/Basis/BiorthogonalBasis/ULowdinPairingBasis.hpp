@@ -52,6 +52,12 @@ public:
     // The type component this spin resolved object is made of.
     using ComponentType = typename SpinResolvedBase<ULowdinPairingBasisComponent<Scalar>, Self>::Of;
 
+    // The type of matrix naturally associated with the components of a `ULowdinPairingBasis`.
+    using Matrix = MatrixX<Scalar>;
+
+    // The vectors associated with the scalar of the expansion coefficients.
+    using Vector = VectorX<Scalar>;
+
 
 public:
     /*
@@ -76,7 +82,7 @@ public:
      *  @param number_of_occupied_beta_orbitals       The total number of occupied beta orbitals in the system.
      *  @param threshold                              The threshold at which a value is verified to be zero or not. Default is 1e-8.
      */
-    ULowdinPairingBasis<Scalar>(const UTransformation<Scalar>& C_bra, const UTransformation<Scalar>& C_ket, const USQOneElectronOperator<Scalar>& S_AO, const size_t number_of_occupied_alpha_orbitals, const size_t number_of_occupied_beta_orbitals, const double threshold = 1e-8) :
+    ULowdinPairingBasis<Scalar>(const UTransformation<Scalar>& C_bra, const UTransformation<Scalar>& C_ket, const ScalarUSQOneElectronOperator<Scalar>& S_AO, const size_t number_of_occupied_alpha_orbitals, const size_t number_of_occupied_beta_orbitals, const double threshold = 1e-8) :
         ULowdinPairingBasis(ULowdinPairingBasisComponent<Scalar> {C_bra.alpha(), C_ket.alpha(), S_AO.alpha(), number_of_occupied_alpha_orbitals, threshold},
                             ULowdinPairingBasisComponent<Scalar> {C_bra.beta(), C_ket.beta(), S_AO.beta(), number_of_occupied_beta_orbitals, threshold}) {};
 
@@ -92,7 +98,7 @@ public:
      *
      * @note   Only the occupied expansion coefficients are biorthogonalized, so only these coefficients are returned.
      */
-    const SpinResolved<std::pair<Matrix, Matrix>>& biorthogonalExpansion() const { return SpinResolved<std::pair<Matrix, Matrix>> {this->alpha().biorthogonalExpansion(), this->beta().biorthogonalExpansion()}; }
+    const SpinResolved<std::pair<Matrix, Matrix>> biorthogonalExpansion() const { return SpinResolved<std::pair<Matrix, Matrix>> {this->alpha().biorthogonalExpansion(), this->beta().biorthogonalExpansion()}; }
 
 
     /**
@@ -104,7 +110,7 @@ public:
      *
      * @note   Only the occupied expansion coefficients are biorthogonalized, so only these coefficients are returned.
      */
-    const std::pair<Matrix, Matrix>& biorthogonalExpansion(const Spin sigma) const { return this->compponent(sigma).biorthogonalExpansion(); }
+    const std::pair<Matrix, Matrix>& biorthogonalExpansion(const Spin sigma) const { return this->component(sigma).biorthogonalExpansion(); }
 
 
     /**
@@ -187,7 +193,7 @@ public:
 
         // Check all overlap values and increase the count if the overlap value is zero.
         for (int i = 0; i < this->biorthogonalOverlaps(sigma).rows(); i++) {
-            if (this->biorthogonalOverlaps(sigma)[i] < this->zero_threshold) {
+            if (this->biorthogonalOverlaps(sigma)[i] < this->component(sigma).threshold()) {
                 number_of_zeros += 1;
             }
         }
@@ -255,7 +261,7 @@ public:
      *
      * @return The total overlap value.
      */
-    Scalar totalOverlap() const { return this->totalOverlap(Spin::alpha) * this->totalOverlap(Spin::Beta); }
+    Scalar totalOverlap() const { return this->totalOverlap(Spin::alpha) * this->totalOverlap(Spin::beta); }
 
 
     /**
@@ -272,7 +278,7 @@ public:
 
         // Check all overlap values and push the index to the index vector if the overlap value is zero.
         for (int i = 0; i < this->biorthogonalOverlaps(sigma).rows(); i++) {
-            if (this->biorthogonalOverlaps(sigma)[i] < this->zero_threshold) {
+            if (this->biorthogonalOverlaps(sigma)[i] < this->component(sigma).threshold()) {
                 zero_indices.push_back(i);
             }
         }

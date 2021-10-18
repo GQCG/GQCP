@@ -72,7 +72,7 @@ struct LowdinPairingBasisTraits<RLowdinPairingBasis<_Scalar>> {
     // The second-quantized representation of the overlap operator related to the `RLowdinPairingBasis`.
     using SQOverlapOperator = ScalarRSQOneElectronOperator<Scalar>;
 
-    // The second-quantized representation of the overlap operator related to the `RLowdinPairingBasis`.
+    // The type of matrix naturally associated with the `RLowdinPairingBasis`.
     using Matrix = MatrixX<Scalar>;
 
     // The type of density matrix naturally associated with the `RLowdinPairingBasis`.

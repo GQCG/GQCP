@@ -228,6 +228,13 @@ public:
      */
     const Vector& biorthogonalOverlaps() const { return this->biorthogonal_overlaps; }
 
+    /**
+     * Return the threshold used to compare values to zero associated with this biorthogonal Löwdin Pairing basis.
+     *
+     * @return The overlap values of the biorthogonal coefficients.
+     */
+    const double& threshold() const { return this->zero_threshold; }
+
 
     /*
      *  MARK: Overlap
