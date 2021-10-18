@@ -269,7 +269,7 @@ public:
     Scalar reducedOverlap() const {
 
         // Since the Eigen::vector is essentially a N x 1 matrix, we can remove the rows where the overlap value is zero.
-        // The `.removeRows()` method takes a vector and removes all the rows specified by a vector containing the indices, wwhich we can calculate with `.zeroOverlapIndices().
+        // The `.removeRows()` method takes a vector and removes all the rows specified by the indices in that vector, which we can calculate with `.zeroOverlapIndices()`.
         auto reduced_overlaps = this->biorthogonalOverlaps();
         reduced_overlaps.removeRows(this->zeroOverlapIndices());
 
