@@ -186,20 +186,8 @@ public:
      *
      * @return The number of zero overlaps in the spin sigma overlap values.
      */
-    int numberOfZeroOverlaps(const Spin sigma) const {
+    int numberOfZeroOverlaps(const Spin sigma) const { return this->component(sigma).numberOfZeroOverlaps(); }
 
-        // The count starets at zero.
-        int number_of_zeros = 0;
-
-        // Check all overlap values and increase the count if the overlap value is zero.
-        for (int i = 0; i < this->biorthogonalOverlaps(sigma).rows(); i++) {
-            if (this->biorthogonalOverlaps(sigma)[i] < this->component(sigma).threshold()) {
-                number_of_zeros += 1;
-            }
-        }
-
-        return number_of_zeros;
-    }
 
     /**
      * Determine the total number of zero overlaps in the biorthogonal overlap vectors.
@@ -215,27 +203,7 @@ public:
      *
      * @return The reduced overlap of the spin sigma component.
      */
-    Scalar reducedOverlap(const Spin sigma) const {
-
-        // In order to manipulate the vector, we transform the vector containing the biorthogonal overlaps to a std::vector.
-        std::vector<Scalar> overlaps {};
-        for (int i = 0; i < this->biorthogonalOverlaps(sigma).rows(); i++) {
-            overlaps.push_back(this->biorthogonalOverlaps(sigma)[i]);
-        }
-
-        // Loop over all zero indices and remove the values at each of these indices.
-        for (const auto& zero_index : this->zeroOverlapIndices(sigma)) {
-            overlaps.erase(overlaps.begin() + zero_index);
-        }
-
-        // Now, we still have to multiply the remaining values. To do this, we have to go back to an Eigen vector (tedious, I know).
-        Vector reduced_overlaps {overlaps.size()};
-        for (int i = 0; i < overlaps.size(); i++) {
-            reduced_overlaps[i] = overlaps[i];
-        }
-
-        return reduced_overlaps.prod();
-    }
+    Scalar reducedOverlap(const Spin sigma) const { return this->component(sigma).reducedOverlap(); }
 
 
     /**
@@ -271,20 +239,7 @@ public:
      *
      * @return The indices of the zero overlap values of the spin sigma component.
      */
-    std::vector<int> zeroOverlapIndices(const Spin sigma) const {
-
-        // Initialize the index vector.
-        std::vector<int> zero_indices {};
-
-        // Check all overlap values and push the index to the index vector if the overlap value is zero.
-        for (int i = 0; i < this->biorthogonalOverlaps(sigma).rows(); i++) {
-            if (this->biorthogonalOverlaps(sigma)[i] < this->component(sigma).threshold()) {
-                zero_indices.push_back(i);
-            }
-        }
-
-        return zero_indices;
-    }
+    std::vector<size_t> zeroOverlapIndices(const Spin sigma) const { return this->component(sigma).zeroOverlapIndices(); }
 
 
     /*
@@ -300,9 +255,7 @@ public:
      *
      * @note This implementation is based on equation 38b from the 2021 paper by Hugh Burton (https://aip.scitation.org/doi/abs/10.1063/5.0045442).
      */
-    SpinResolved1DM<Scalar> coDensity(const int k) const {
-        return SpinResolved1DM<Scalar> {SpinResolved1DMComponent<Scalar> {this->alpha().coDensity(k).matrix()}, SpinResolved1DMComponent<Scalar> {this->beta().coDensity(k).matrix()}};
-    }
+    SpinResolved1DM<Scalar> coDensity(const int k) const { return SpinResolved1DM<Scalar> {SpinResolved1DMComponent<Scalar> {this->alpha().coDensity(k).matrix()}, SpinResolved1DMComponent<Scalar> {this->beta().coDensity(k).matrix()}}; }
 
 
     /**
