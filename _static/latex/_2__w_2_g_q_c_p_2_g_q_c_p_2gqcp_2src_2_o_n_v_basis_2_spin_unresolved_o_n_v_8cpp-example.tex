@@ -210,6 +210,8 @@ The representation of a slice (i.\+e. a subset) of the ONV (read from right to l
 \DoxyCodeLine{    std::string text;  \textcolor{comment}{// The string that will contain the textual representation of this spin-\/unresolved ONV.}}
 \DoxyCodeLine{}
 \DoxyCodeLine{    boost::to\_string(intermediate\_bitset, text);}
+\DoxyCodeLine{    std::reverse(text.begin(), text.end());  \textcolor{comment}{// The bitstring is read from right to left, but we return it from left to right for easier reading.}}
+\DoxyCodeLine{}
 \DoxyCodeLine{    \textcolor{keywordflow}{return} text;}
 \DoxyCodeLine{\}}
 \DoxyCodeLine{}

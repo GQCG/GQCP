@@ -600,7 +600,7 @@
         
               <div>
                 
-  <div class="section" id="overlaps-between-r-u-ghf">
+  <div class="tex2jax_ignore mathjax_ignore section" id="overlaps-between-r-u-ghf">
 <h1>Overlaps between R/U/GHF<a class="headerlink" href="#overlaps-between-r-u-ghf" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -632,34 +632,34 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r_spinor_basis</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">RSpinOrbitalBasis</span><span class="p">(</span><span class="n">molecule</span><span class="p">,</span> <span class="s2">&quot;STO-3G&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r_spinor_basis</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">RSpinOrbitalBasis_d</span><span class="p">(</span><span class="n">molecule</span><span class="p">,</span> <span class="s2">&quot;STO-3G&quot;</span><span class="p">)</span>
 <span class="n">K</span> <span class="o">=</span> <span class="n">r_spinor_basis</span><span class="o">.</span><span class="n">numberOfSpatialOrbitals</span><span class="p">()</span>
 
-<span class="n">S</span> <span class="o">=</span> <span class="n">r_spinor_basis</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">OverlapOperator</span><span class="p">())</span><span class="o">.</span><span class="n">parameters</span><span class="p">()</span>
+<span class="n">S</span> <span class="o">=</span> <span class="n">r_spinor_basis</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">OverlapOperator</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sq_hamiltonian</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">SQHamiltonian</span><span class="o">.</span><span class="n">Molecular</span><span class="p">(</span><span class="n">r_spinor_basis</span><span class="p">,</span> <span class="n">molecule</span><span class="p">)</span>  <span class="c1"># &#39;sq&#39; for &#39;second-quantized&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sq_hamiltonian</span> <span class="o">=</span> <span class="n">r_spinor_basis</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">FQMolecularHamiltonian</span><span class="p">(</span><span class="n">molecule</span><span class="p">))</span>  <span class="c1"># &#39;sq&#39; for &#39;second-quantized&#39;</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rhf_environment</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">RHFSCFEnvironment</span><span class="o">.</span><span class="n">WithCoreGuess</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">sq_hamiltonian</span><span class="p">,</span> <span class="n">S</span><span class="p">)</span>
-<span class="n">rhf_solver</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">RHFSCFSolver</span><span class="o">.</span><span class="n">Plain</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rhf_environment</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">RHFSCFEnvironment_d</span><span class="o">.</span><span class="n">WithCoreGuess</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">sq_hamiltonian</span><span class="p">,</span> <span class="n">S</span><span class="p">)</span>
+<span class="n">rhf_solver</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">RHFSCFSolver_d</span><span class="o">.</span><span class="n">Plain</span><span class="p">()</span>
 
-<span class="n">rhf_objective</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">DiagonalRHFFockMatrixObjective</span><span class="p">(</span><span class="n">sq_hamiltonian</span><span class="p">)</span>  <span class="c1"># use the default threshold of 1.0e-08</span>
+<span class="n">rhf_objective</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">DiagonalRHFFockMatrixObjective_d</span><span class="p">(</span><span class="n">sq_hamiltonian</span><span class="p">)</span>  <span class="c1"># use the default threshold of 1.0e-08</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rhf_parameters</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">RHF</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">rhf_objective</span><span class="p">,</span> <span class="n">rhf_solver</span><span class="p">,</span> <span class="n">rhf_environment</span><span class="p">)</span><span class="o">.</span><span class="n">groundStateParameters</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rhf_parameters</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">RHF_d</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">rhf_objective</span><span class="p">,</span> <span class="n">rhf_solver</span><span class="p">,</span> <span class="n">rhf_environment</span><span class="p">)</span><span class="o">.</span><span class="n">groundStateParameters</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -674,7 +674,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u_spinor_basis</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">USpinOrbitalBasis</span><span class="o">.</span><span class="n">FromRestricted</span><span class="p">(</span><span class="n">r_spinor_basis</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u_spinor_basis</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">USpinOrbitalBasis_d</span><span class="o">.</span><span class="n">FromRestricted</span><span class="p">(</span><span class="n">r_spinor_basis</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -700,7 +700,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0000 01|01
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 1.0000 01|01
 -0.0000 01|10
 -0.0000 10|01
  0.0000 10|10
@@ -758,16 +758,16 @@
 <p>Let’s now set up the corresponding restricted and unrestricted spin-orbital bases.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r_spinor_basis</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">RSpinOrbitalBasis</span><span class="p">(</span><span class="n">molecule</span><span class="p">,</span> <span class="s2">&quot;STO-3G&quot;</span><span class="p">)</span>
-<span class="n">r_spinor_basis</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r_spinor_basis</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">RSpinOrbitalBasis_d</span><span class="p">(</span><span class="n">molecule</span><span class="p">,</span> <span class="s2">&quot;STO-3G&quot;</span><span class="p">)</span>
+<span class="n">r_spinor_basis</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">RTransformation_d</span><span class="p">(</span><span class="n">C</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u_spinor_basis</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">USpinOrbitalBasis</span><span class="p">(</span><span class="n">molecule</span><span class="p">,</span> <span class="s2">&quot;STO-3G&quot;</span><span class="p">)</span>
-<span class="n">u_spinor_basis</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">C_alpha</span><span class="p">,</span> <span class="n">C_beta</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u_spinor_basis</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">USpinOrbitalBasis_d</span><span class="p">(</span><span class="n">molecule</span><span class="p">,</span> <span class="s2">&quot;STO-3G&quot;</span><span class="p">)</span>
+<span class="n">u_spinor_basis</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">UTransformation_d</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">UTransformationComponent_d</span><span class="p">(</span><span class="n">C_alpha</span><span class="p">),</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">UTransformationComponent_d</span><span class="p">(</span><span class="n">C_beta</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
@@ -792,37 +792,37 @@
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.4987 0011|0011
  0.4987 0011|0101
--0.0000 0011|0110
+ 0.0000 0011|0110
  0.0000 0011|1001
 -0.0251 0011|1010
  0.0251 0011|1100
 -0.4987 0101|0011
  0.4987 0101|0101
--0.0000 0101|0110
+ 0.0000 0101|0110
  0.0000 0101|1001
 -0.0251 0101|1010
  0.0251 0101|1100
 -0.0000 0110|0011
  0.0000 0110|0101
--0.0000 0110|0110
+ 0.0000 0110|0110
  0.0000 0110|1001
 -0.0000 0110|1010
  0.0000 0110|1100
  0.0000 1001|0011
 -0.0000 1001|0101
- 0.0000 1001|0110
+-0.0000 1001|0110
 -0.0000 1001|1001
  0.0000 1001|1010
 -0.0000 1001|1100
  0.0251 1010|0011
 -0.0251 1010|0101
- 0.0000 1010|0110
+-0.0000 1010|0110
 -0.0000 1010|1001
  0.0013 1010|1010
 -0.0013 1010|1100
  0.0251 1100|0011
 -0.0251 1100|0101
- 0.0000 1100|0110
+-0.0000 1100|0110
 -0.0000 1100|1001
  0.0013 1100|1010
 -0.0013 1100|1100

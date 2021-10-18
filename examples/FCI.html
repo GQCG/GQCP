@@ -608,7 +608,7 @@
         
               <div>
                 
-  <div class="section" id="molecular-fci-calculations">
+  <div class="tex2jax_ignore mathjax_ignore section" id="molecular-fci-calculations">
 <h1>Molecular FCI calculations<a class="headerlink" href="#molecular-fci-calculations" title="Permalink to this headline">¶</a></h1>
 <p>In this example, we will calculate the ground state energy for H2 with an STO-3G basisset at the FCI level of theory.</p>
 <div class="section" id="setting-up-the-molecular-hamiltonian">
@@ -655,7 +655,8 @@
 <p>We will proceed by finding the canonical RHF orbitals, which correspond to an orthonormal spinor basis.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">RSQHamiltonian_d</span><span class="o">.</span><span class="n">Molecular</span><span class="p">(</span><span class="n">spin_orbital_basis</span><span class="p">,</span> <span class="n">molecule</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fq_hamiltonian</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">FQMolecularHamiltonian</span><span class="p">(</span><span class="n">molecule</span><span class="p">)</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">spin_orbital_basis</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">fq_hamiltonian</span><span class="p">)</span>
 <span class="n">S</span> <span class="o">=</span> <span class="n">spin_orbital_basis</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">OverlapOperator</span><span class="p">())</span>
 
 <span class="n">environment</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">RHFSCFEnvironment_d</span><span class="o">.</span><span class="n">WithCoreGuess</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">hamiltonian</span><span class="p">,</span> <span class="n">S</span><span class="p">)</span>
@@ -696,7 +697,7 @@
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">solver</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">EigenproblemSolver</span><span class="o">.</span><span class="n">Dense</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">solver</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">EigenproblemSolver</span><span class="o">.</span><span class="n">Dense_d</span><span class="p">()</span>
 <span class="n">environment</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">CIEnvironment</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">hamiltonian</span><span class="p">,</span> <span class="n">onv_basis</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -718,7 +719,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.8515616052384543
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.8515616052384547
 </pre></div>
 </div>
 </div>
@@ -730,7 +731,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-9.93627296e-01  6.50856049e-17  8.12839959e-17  1.12715560e-01]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-9.93627296e-01 -1.96580806e-16 -1.28531973e-16  1.12715560e-01]
 </pre></div>
 </div>
 </div>
@@ -744,7 +745,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.1372759430763961
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.1372759430763966
 </pre></div>
 </div>
 </div>
@@ -780,7 +781,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.8515616052384543
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.8515616052384547
 </pre></div>
 </div>
 </div>
@@ -792,7 +793,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-9.93627296e-01  9.77146018e-17  1.42130330e-16  1.12715560e-01]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-9.93627296e-01 -1.24364039e-16 -1.42130330e-16  1.12715560e-01]
 </pre></div>
 </div>
 </div>
@@ -813,7 +814,7 @@
 <p>Now that we have an orthonormal unrestricted spin-orbital basis, we may quantize the molecular Hamiltonian in it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u_hamiltonian</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">USQHamiltonian_d</span><span class="o">.</span><span class="n">Molecular</span><span class="p">(</span><span class="n">u_spin_orbital_basis</span><span class="p">,</span> <span class="n">molecule</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u_hamiltonian</span> <span class="o">=</span> <span class="n">u_spin_orbital_basis</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">fq_hamiltonian</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -821,7 +822,7 @@
 <p>We can now reuse the full spin-resolved ONV basis, and proceed to initialize an environment and solver.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">solver</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">EigenproblemSolver</span><span class="o">.</span><span class="n">Dense</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">solver</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">EigenproblemSolver</span><span class="o">.</span><span class="n">Dense_d</span><span class="p">()</span>
 <span class="n">environment</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">CIEnvironment</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">u_hamiltonian</span><span class="p">,</span> <span class="n">onv_basis</span><span class="p">)</span>
 
 <span class="n">qc_structure</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">CI</span><span class="p">(</span><span class="n">onv_basis</span><span class="p">)</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">solver</span><span class="p">,</span> <span class="n">environment</span><span class="p">)</span>

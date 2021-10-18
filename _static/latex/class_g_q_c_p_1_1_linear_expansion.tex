@@ -11,7 +11,7 @@ Collaboration diagram for GQCP\+::Linear\+Expansion$<$ \+\_\+\+Scalar, \+\_\+\+O
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=247pt]{class_g_q_c_p_1_1_linear_expansion__coll__graph}
+\includegraphics[width=248pt]{class_g_q_c_p_1_1_linear_expansion__coll__graph}
 \end{center}
 \end{figure}
 \doxysubsection*{Public Types}
@@ -69,6 +69,8 @@ const \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_a42c9141e026bdfdb3fd13
 {\footnotesize template$<$typename Z  = ONVBasis$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, Spin\+Unresolved\+Selected\+ONVBasis $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_g1_d_m}{G1\+DM}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_ab6283d757673aa83a7609e87a8b01ce9}{Scalar}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_a4f2112174b9ecd83b68ea3eb77394a7c}{calculate1\+DM}} () const
 \item 
 {\footnotesize template$<$typename Z  = ONVBasis$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, Spin\+Unresolved\+Selected\+ONVBasis $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_g2_d_m}{G2\+DM}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_ab6283d757673aa83a7609e87a8b01ce9}{Scalar}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_aba66ead5fd15d70424318070d3076adb}{calculate2\+DM}} () const
+\item 
+{\footnotesize template$<$typename Z  = ONVBasis$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, Spin\+Unresolved\+ONVBasis $>$\+::value$\vert$std\+::is\+\_\+same$<$ Z, Spin\+Resolved\+ONVBasis $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{GQCP\+::\+Square\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_ab6283d757673aa83a7609e87a8b01ce9}{Scalar}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_ae5a2a2f99f2c336fab54dde5f7b02cc3}{calculate\+Orbital\+RDM}} (const std\+::vector$<$ typename ONVBasis\+::\+ONV $>$ \&system\+\_\+onvs, const std\+::vector$<$ typename ONVBasis\+::\+ONV $>$ \&environment\+\_\+onvs, const std\+::vector$<$ typename ONVBasis\+::\+ONV $>$ \&system\+\_\+onv\+\_\+basis, const std\+::vector$<$ typename ONVBasis\+::\+ONV $>$ \&environment\+\_\+onv\+\_\+basis) const
 \item 
 {\footnotesize template$<$typename Z  = Scalar$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, double $>$\+::value, double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_ac5d36496b690457a45bd56b8289a29ab}{calculate\+Shannon\+Entropy}} () const
 \item 
@@ -336,6 +338,30 @@ An element of the N-\/\+DM, as specified by the given bra and ket indices. {\ttf
 \begin{DoxyNote}{Note}
 This method is only enabled for linear expansions related to spin-\/unresolved selected ONV bases. 
 \end{DoxyNote}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_linear_expansion_ae5a2a2f99f2c336fab54dde5f7b02cc3}\label{class_g_q_c_p_1_1_linear_expansion_ae5a2a2f99f2c336fab54dde5f7b02cc3}} 
+\index{GQCP::LinearExpansion$<$ \_Scalar, \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_Scalar, \_ONVBasis $>$}!calculateOrbitalRDM@{calculateOrbitalRDM}}
+\index{calculateOrbitalRDM@{calculateOrbitalRDM}!GQCP::LinearExpansion$<$ \_Scalar, \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_Scalar, \_ONVBasis $>$}}
+\doxysubsubsection{\texorpdfstring{calculateOrbitalRDM()}{calculateOrbitalRDM()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+ONVBasis $>$ \\
+template$<$typename Z  = ONVBasis$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, Spin\+Unresolved\+ONVBasis$>$\+::value $\vert$ std\+::is\+\_\+same$<$Z, Spin\+Resolved\+ONVBasis$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{GQCP\+::\+Square\+Matrix}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_ab6283d757673aa83a7609e87a8b01ce9}{Scalar}}$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{GQCP\+::\+Linear\+Expansion}}$<$ \+\_\+\+Scalar, \+\_\+\+ONVBasis $>$\+::calculate\+Orbital\+RDM (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ typename ONVBasis\+::\+ONV $>$ \&}]{system\+\_\+onvs,  }\item[{const std\+::vector$<$ typename ONVBasis\+::\+ONV $>$ \&}]{environment\+\_\+onvs,  }\item[{const std\+::vector$<$ typename ONVBasis\+::\+ONV $>$ \&}]{system\+\_\+onv\+\_\+basis,  }\item[{const std\+::vector$<$ typename ONVBasis\+::\+ONV $>$ \&}]{environment\+\_\+onv\+\_\+basis }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+MARK\+: Entropy Calculate the orbital reduced density matrix as defined in equation (3) of Rissler2005 (\href{https://doi.org/10.1016/j.chemphys.2005.10.018}{\texttt{ https\+://doi.\+org/10.\+1016/j.\+chemphys.\+2005.\+10.\+018}}).
+
+
+\begin{DoxyParams}{Parameters}
+{\em system\+\_\+onvs} & A vector of all ONVs of the system that is obtained after splitting an ONV basis into two subsystems. \\
+\hline
+{\em environment\+\_\+onvs} & A vector of all ONVs of the environment that is obtained after splitting an ONV basis into two subsystems. \\
+\hline
+{\em system\+\_\+onv\+\_\+basis} & A vector containing the unique ONVs of the system. \\
+\hline
+{\em environment\+\_\+onv\+\_\+basis} & A vector containing the unique ONVs of the environment.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The orbital reduced density matrix. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_linear_expansion_ac5d36496b690457a45bd56b8289a29ab}\label{class_g_q_c_p_1_1_linear_expansion_ac5d36496b690457a45bd56b8289a29ab}} 
 \index{GQCP::LinearExpansion$<$ \_Scalar, \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_Scalar, \_ONVBasis $>$}!calculateShannonEntropy@{calculateShannonEntropy}}
 \index{calculateShannonEntropy@{calculateShannonEntropy}!GQCP::LinearExpansion$<$ \_Scalar, \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_Scalar, \_ONVBasis $>$}}
@@ -344,7 +370,7 @@ This method is only enabled for linear expansions related to spin-\/unresolved s
 template$<$typename Z  = Scalar$>$ \\
 \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, double$>$\+::value, double$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{GQCP\+::\+Linear\+Expansion}}$<$ \+\_\+\+Scalar, \+\_\+\+ONVBasis $>$\+::calculate\+Shannon\+Entropy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-MARK\+: Entropy \begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Returns}
 The Shannon entropy (information content) of the wave function. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_linear_expansion_a3c8b320ac4cbac4ec9630d66fbf43b25}\label{class_g_q_c_p_1_1_linear_expansion_a3c8b320ac4cbac4ec9630d66fbf43b25}} 

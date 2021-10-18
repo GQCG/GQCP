@@ -598,7 +598,7 @@
         
               <div>
                 
-  <div class="section" id="hubbard-calculations">
+  <div class="tex2jax_ignore mathjax_ignore section" id="hubbard-calculations">
 <h1>Hubbard calculations<a class="headerlink" href="#hubbard-calculations" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -689,7 +689,7 @@
 <p>and then combine these arguments in the <code class="docutils literal notranslate"><span class="pre">CI</span></code> <code class="docutils literal notranslate"><span class="pre">QCMethod</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">solver</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">EigenproblemSolver</span><span class="o">.</span><span class="n">Dense</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">solver</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">EigenproblemSolver</span><span class="o">.</span><span class="n">Dense_d</span><span class="p">()</span>
 <span class="n">environment</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">CIEnvironment</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">hubbard_hamiltonian</span><span class="p">,</span> <span class="n">onv_basis</span><span class="p">)</span>
 
 <span class="n">energy</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">CI</span><span class="p">(</span><span class="n">onv_basis</span><span class="p">)</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">solver</span><span class="p">,</span> <span class="n">environment</span><span class="p">)</span><span class="o">.</span><span class="n">groundStateEnergy</span><span class="p">()</span>
@@ -698,7 +698,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-2.135871608231944
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-2.1358716082319393
 </pre></div>
 </div>
 </div>
@@ -721,7 +721,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-2.1358716082319384
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-2.1358716082319393
 </pre></div>
 </div>
 </div>

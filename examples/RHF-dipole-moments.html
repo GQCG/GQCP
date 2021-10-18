@@ -603,7 +603,7 @@
         
               <div>
                 
-  <div class="section" id="calculating-the-rhf-dipole-moment">
+  <div class="tex2jax_ignore mathjax_ignore section" id="calculating-the-rhf-dipole-moment">
 <h1>Calculating the RHF dipole moment<a class="headerlink" href="#calculating-the-rhf-dipole-moment" title="Permalink to this headline">¶</a></h1>
 <p>In this example, we will calculate the (permanent) electronic dipole moment for H2 with an STO-3G basisset at the RHF level of theory.</p>
 <div class="section" id="setting-up-the-molecular-hamiltonian">
@@ -653,7 +653,7 @@
 <p>We can use the following one-liner to calculate the molecular second-quantized Hamiltonian:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sq_hamiltonian</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">RSQHamiltonian_d</span><span class="o">.</span><span class="n">Molecular</span><span class="p">(</span><span class="n">spinor_basis</span><span class="p">,</span> <span class="n">molecule</span><span class="p">)</span>  <span class="c1"># &#39;sq&#39; for &#39;second-quantized&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sq_hamiltonian</span> <span class="o">=</span> <span class="n">spinor_basis</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">FQMolecularHamiltonian</span><span class="p">(</span><span class="n">molecule</span><span class="p">))</span>  <span class="c1"># &#39;sq&#39; for &#39;second-quantized&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -791,7 +791,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.0, 0.0, -1.4000001021623734]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.0, 0.0, -1.4000001021623736]
 </pre></div>
 </div>
 </div>
@@ -848,7 +848,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.0, 0.0, -1.4000001021623734]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.0, 0.0, -1.4000001021623738]
 </pre></div>
 </div>
 </div>

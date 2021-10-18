@@ -585,7 +585,7 @@
         
               <div>
                 
-  <div class="section" id="using-gqcp-y">
+  <div class="tex2jax_ignore mathjax_ignore section" id="using-gqcp-y">
 <h1>Using GQCP(y)<a class="headerlink" href="#using-gqcp-y" title="Permalink to this headline">¶</a></h1>
 <p>After you have installed GQCP, you can either interface directly with GQCP <a class="reference external" href="#using-gqcp-through-cpp">through C++</a> or use its <a class="reference external" href="#using-gqcp-through-python-bindings-gqcpy">Python bindings</a>.</p>
 <div class="section" id="using-gqcp-through-cpp">
@@ -601,15 +601,15 @@ H         -0.86681        <span class="m">0</span>.60144        <span class="m">
 </pre></div>
 </div>
 <p>a prototypical <code class="docutils literal notranslate"><span class="pre">Hello</span> <span class="pre">GQCP</span></code> driver <code class="docutils literal notranslate"><span class="pre">driver.cpp</span></code> is given by</p>
-<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;gqcp.hpp&gt;</span><span class="cp"></span>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;gqcp.hpp&gt;</span><span class="cp"></span>
 
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span> <span class="p">[]</span> <span class="p">)</span> <span class="p">{</span>
-    <span class="k">const</span> <span class="k">auto</span> <span class="n">water_molecule</span> <span class="o">=</span> <span class="n">GQCP</span><span class="o">::</span><span class="n">Molecule</span><span class="o">::</span><span class="n">ReadXYZ</span><span class="p">(</span><span class="s">&quot;../water.xyz&quot;</span><span class="p">);</span>  <span class="c1">// creates a neutral molecule</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Hello GQCP!&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">water_molecule</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">argv</span><span class="w"> </span><span class="p">[]</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">water_molecule</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GQCP</span><span class="o">::</span><span class="n">Molecule</span><span class="o">::</span><span class="n">ReadXYZ</span><span class="p">(</span><span class="s">&quot;../water.xyz&quot;</span><span class="p">);</span><span class="w">  </span><span class="c1">// creates a neutral molecule</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Hello GQCP!&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">water_molecule</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </div>

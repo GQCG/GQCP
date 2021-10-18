@@ -593,7 +593,7 @@
         
               <div>
                 
-  <div class="section" id="spinor-bases">
+  <div class="tex2jax_ignore mathjax_ignore section" id="spinor-bases">
 <h1>Spinor bases<a class="headerlink" href="#spinor-bases" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -621,7 +621,7 @@
 <p>The one everyone is familiar with is a spinor basis whose alpha- and beta- expansion coefficients are equal. We call this spinor basis a restricted spinor basis <code class="docutils literal notranslate"><span class="pre">RSpinOrbitalBasis</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r_spinor_basis</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">RSpinOrbitalBasis</span><span class="p">(</span><span class="n">molecule</span><span class="o">=</span><span class="n">molecule</span><span class="p">,</span> <span class="n">basisset_name</span><span class="o">=</span><span class="s2">&quot;STO-3G&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r_spinor_basis</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">RSpinOrbitalBasis_d</span><span class="p">(</span><span class="n">molecule</span><span class="o">=</span><span class="n">molecule</span><span class="p">,</span> <span class="n">basisset_name</span><span class="o">=</span><span class="s2">&quot;STO-3G&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -667,9 +667,9 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">r_spinor_basis</span><span class="o">.</span><span class="n">quantizeCoulombRepulsionOperator</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">r_spinor_basis</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CoulombRepulsionOperator</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span>
-<span class="n">g</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">RTransformation_d</span><span class="p">(</span><span class="n">T</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -687,25 +687,25 @@
 
   [[ 0.494 -0.006]
    [-0.006  0.856]]]]
-[[[[0.003 0.008]
-   [0.008 0.042]]
+[[[[1.026e+00 1.313e-01]
+   [1.313e-01 2.552e-02]]
 
-  [[0.008 0.028]
-   [0.028 0.156]]]
+  [[1.313e-01 1.918e-02]
+   [1.918e-02 3.849e-03]]]
 
 
- [[[0.008 0.028]
-   [0.028 0.156]]
+ [[[1.313e-01 1.918e-02]
+   [1.918e-02 3.849e-03]]
 
-  [[0.042 0.156]
-   [0.156 0.932]]]]
+  [[2.552e-02 3.849e-03]
+   [3.849e-03 7.831e-04]]]]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g_r</span> <span class="o">=</span> <span class="n">r_spinor_basis</span><span class="o">.</span><span class="n">quantizeCoulombRepulsionOperator</span><span class="p">()</span><span class="o">.</span><span class="n">parameters</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g_r</span> <span class="o">=</span> <span class="n">r_spinor_basis</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CoulombRepulsionOperator</span><span class="p">())</span><span class="o">.</span><span class="n">parameters</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">g_r</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -734,7 +734,7 @@
 <p>We can create them from a basisset specification in the same way as restricted spinor bases.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g_spinor_basis</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">GSpinorBasis</span><span class="p">(</span><span class="n">molecule</span><span class="p">,</span> <span class="s2">&quot;STO-3G&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g_spinor_basis</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">GSpinorBasis_d</span><span class="p">(</span><span class="n">molecule</span><span class="p">,</span> <span class="s2">&quot;STO-3G&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -767,17 +767,17 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.000e+00 8.384e-17 0.000e+00 0.000e+00]
- [1.145e-16 1.000e+00 0.000e+00 0.000e+00]
- [0.000e+00 0.000e+00 1.000e+00 8.384e-17]
- [0.000e+00 0.000e+00 1.145e-16 1.000e+00]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.00e+00 1.11e-16 0.00e+00 0.00e+00]
+ [1.11e-16 1.00e+00 0.00e+00 0.00e+00]
+ [0.00e+00 0.00e+00 1.00e+00 1.11e-16]
+ [0.00e+00 0.00e+00 1.11e-16 1.00e+00]]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g_g</span> <span class="o">=</span> <span class="n">g_spinor_basis</span><span class="o">.</span><span class="n">quantizeCoulombRepulsionOperator</span><span class="p">()</span><span class="o">.</span><span class="n">parameters</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g_g</span> <span class="o">=</span> <span class="n">g_spinor_basis</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">CoulombRepulsionOperator</span><span class="p">())</span><span class="o">.</span><span class="n">parameters</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">g_g</span><span class="p">)</span>
 </pre></div>
 </div>

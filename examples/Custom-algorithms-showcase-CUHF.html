@@ -608,7 +608,7 @@
         
               <div>
                 
-  <div class="section" id="custom-algorithms-showcase-cuhf">
+  <div class="tex2jax_ignore mathjax_ignore section" id="custom-algorithms-showcase-cuhf">
 <h1>Custom algorithms showcase - CUHF<a class="headerlink" href="#custom-algorithms-showcase-cuhf" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -667,7 +667,7 @@ Number of beta electrons: 1
 <p>Then, we will quantize the molecular Hamiltonian (in which the interactions terms are the electron’s kinetic energy, the nucleus-electron attraction and the interelectronic repulson) in that spin-orbital basis:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sq_hamiltonian</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">USQHamiltonian_d</span><span class="o">.</span><span class="n">Molecular</span><span class="p">(</span><span class="n">spinor_basis</span><span class="p">,</span> <span class="n">molecule</span><span class="p">)</span>  <span class="c1"># in AO basis</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sq_hamiltonian</span> <span class="o">=</span> <span class="n">spinor_basis</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">FQMolecularHamiltonian</span><span class="p">(</span><span class="n">molecule</span><span class="p">))</span>  <span class="c1"># in AO basis</span>
 </pre></div>
 </div>
 </div>
@@ -740,14 +740,14 @@ A convergence criterion that checks if the norm of the difference of two iterate
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>UHF electronic energy: -3.63114631
 
 UHF C_alpha:
-[[-0.331961  0.002736 -1.815423]
- [-0.371811 -1.569158  0.897479]
- [-0.371698  1.566485  0.902183]]
+[[-0.331961  0.002746 -1.815423]
+ [-0.371811 -1.569163  0.89747 ]
+ [-0.371698  1.56648   0.902192]]
 
 UHF C_beta:
-[[ 0.471022 -1.784404  0.00278 ]
- [ 0.300996  0.923323 -1.569345]
- [ 0.301463  0.928333  1.566297]]
+[[ 0.471022 -1.784404  0.002791]
+ [ 0.300995  0.923314 -1.56935 ]
+ [ 0.301463  0.928342  1.566292]]
 </pre></div>
 </div>
 </div>
@@ -805,11 +805,10 @@ UHF C_beta:
     <span class="c1"># Overwrite the most recent UHF Fock matrices with the cUHF ones</span>
     
     <span class="n">F_alpha_constrained</span> <span class="o">=</span> <span class="n">F_aa</span> <span class="o">+</span> <span class="n">Lambda_AO</span>
-    <span class="c1">#environment.replace_current_fock_matrix_alpha(F_alpha_constrained)</span>
-
     <span class="n">F_beta_constrained</span> <span class="o">=</span> <span class="n">F_bb</span> <span class="o">-</span> <span class="n">Lambda_AO</span>
-    <span class="c1">#environment.replace_current_fock_matrix_beta(F_beta_constrained)</span>
-    <span class="n">environment</span><span class="o">.</span><span class="n">replace_current_fock_matrices</span><span class="p">(</span><span class="n">F_alpha_constrained</span><span class="p">,</span> <span class="n">F_beta_constrained</span><span class="p">)</span>
+
+    <span class="n">Fock_matrices</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">ScalarUSQOneElectronOperator_d</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">ScalarUSQOneElectronOperatorComponent_d</span><span class="p">(</span><span class="n">F_alpha_constrained</span><span class="p">),</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">ScalarUSQOneElectronOperatorComponent_d</span><span class="p">(</span><span class="n">F_beta_constrained</span><span class="p">))</span>
+    <span class="n">environment</span><span class="o">.</span><span class="n">replace_current_fock_matrix</span><span class="p">(</span><span class="n">Fock_matrices</span><span class="p">)</span>
 
 
 <span class="n">constrain_step_thesis</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">FunctionalStep_UHFSCFEnvironment_d</span><span class="p">(</span><span class="n">constrain_function_thesis</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Replace the alpha- and beta- UHF Fock matrices by their constrained counterparts, as explained in the CUHF &#39;thesis&#39; algorithm.&quot;</span><span class="p">)</span>
@@ -858,12 +857,78 @@ A convergence criterion that checks if the norm of the difference of two iterate
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[4.439377e-17 5.000000e-01 1.000000e+00]
+[1.715894e-07 5.000000e-01 9.999998e-01]
+[8.026167e-05 5.000000e-01 9.999197e-01]
+[9.968217e-05 5.000000e-01 9.999003e-01]
+[9.398111e-05 5.000000e-01 9.999060e-01]
+[8.313397e-05 5.000000e-01 9.999169e-01]
+[7.068445e-05 5.000000e-01 9.999293e-01]
+[5.783872e-05 5.000000e-01 9.999422e-01]
+[4.553746e-05 5.000000e-01 9.999545e-01]
+[3.455296e-05 5.000000e-01 9.999654e-01]
+[2.536143e-05 5.000000e-01 9.999746e-01]
+[1.809853e-05 5.000000e-01 9.999819e-01]
+[1.262744e-05 5.000000e-01 9.999874e-01]
+[8.659465e-06 5.000000e-01 9.999913e-01]
+[5.863353e-06 5.000000e-01 9.999941e-01]
+[3.934205e-06 5.000000e-01 9.999961e-01]
+[2.623099e-06 5.000000e-01 9.999974e-01]
+[1.741339e-06 5.000000e-01 9.999983e-01]
+[1.152584e-06 5.000000e-01 9.999988e-01]
+[7.613817e-07 5.000000e-01 9.999992e-01]
+[5.022954e-07 5.000000e-01 9.999995e-01]
+[3.310818e-07 5.000000e-01 9.999997e-01]
+[2.181019e-07 5.000000e-01 9.999998e-01]
+[1.436207e-07 5.000000e-01 9.999999e-01]
+[9.455066e-08 5.000000e-01 9.999999e-01]
+[6.223572e-08 5.000000e-01 9.999999e-01]
+[4.096068e-08 5.000000e-01 1.000000e+00]
+[2.695648e-08 5.000000e-01 1.000000e+00]
+[1.773938e-08 5.000000e-01 1.000000e+00]
+[1.167347e-08 5.000000e-01 1.000000e+00]
+[7.681621e-09 5.000000e-01 1.000000e+00]
+[5.054749e-09 5.000000e-01 1.000000e+00]
+[3.326156e-09 5.000000e-01 1.000000e+00]
+[2.188684e-09 5.000000e-01 1.000000e+00]
+[1.440196e-09 5.000000e-01 1.000000e+00]
+[9.476747e-10 5.000000e-01 1.000000e+00]
+[6.235856e-10 5.000000e-01 1.000000e+00]
+[4.103292e-10 5.000000e-01 1.000000e+00]
+[2.700028e-10 5.000000e-01 1.000000e+00]
+[1.77666e-10 5.00000e-01 1.00000e+00]
+[1.169069e-10 5.000000e-01 1.000000e+00]
+[7.692639e-11 5.000000e-01 1.000000e+00]
+[5.061874e-11 5.000000e-01 1.000000e+00]
+[3.330782e-11 5.000000e-01 1.000000e+00]
+[2.191711e-11 5.000000e-01 1.000000e+00]
+[1.442164e-11 5.000000e-01 1.000000e+00]
+[9.489689e-12 5.000000e-01 1.000000e+00]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CUHF electronic energy (thesis): </span><span class="si">{:.8f}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cuhf_energy_thesis</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CUHF C_alpha (thesis):</span><span class="se">\n</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cuhf_parameters_thesis</span><span class="o">.</span><span class="n">expansion</span><span class="p">()</span><span class="o">.</span><span class="n">alpha</span><span class="o">.</span><span class="n">matrix</span><span class="p">()))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CUHF C_beta (thesis):</span><span class="se">\n</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cuhf_parameters_thesis</span><span class="o">.</span><span class="n">expansion</span><span class="p">()</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">matrix</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CUHF electronic energy (thesis): -3.63052195
+
+CUHF C_alpha (thesis):
+[[-3.470008e-01  9.096012e-01 -1.567860e+00]
+ [-3.815161e-01 -1.805661e+00  7.964018e-05]
+ [-3.469808e-01  9.097352e-01  1.567786e+00]]
+
+CUHF C_beta (thesis):
+[[ 4.064815e-01 -1.567828e+00  8.846784e-01]
+ [ 2.610739e-01  8.720879e-06 -1.826967e+00]
+ [ 4.064861e-01  1.567818e+00  8.846941e-01]]
 </pre></div>
 </div>
 </div>
@@ -889,10 +954,10 @@ A convergence criterion that checks if the norm of the difference of two iterate
     <span class="c1"># Apply the &#39;constraint&#39;.</span>
     <span class="n">C_b</span><span class="p">[:,</span> <span class="p">:</span><span class="n">N_beta</span><span class="p">]</span> <span class="o">=</span> <span class="n">C_a</span><span class="p">[:,</span> <span class="p">:</span><span class="n">N_beta</span><span class="p">]</span>  <span class="c1"># make sure the occupied beta spin-orbitals are the same as the lowest alpha spin-orbitals</span>
 
-
+    <span class="n">new_coefficients</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">UTransformation_d</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">UTransformationComponent_d</span><span class="p">(</span><span class="n">C_a</span><span class="p">),</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">UTransformationComponent_d</span><span class="p">(</span><span class="n">C_b</span><span class="p">))</span>
     <span class="c1"># Overwrite the current coefficient matrices with their constraint versions.</span>
     <span class="c1"># We haven&#39;t modified C_alpha, so we only have to replace the current beta coefficient matrix.</span>
-    <span class="n">environment</span><span class="o">.</span><span class="n">replace_current_coefficient_matrices</span><span class="p">(</span><span class="n">C_a</span><span class="p">,</span> <span class="n">C_b</span><span class="p">)</span>
+    <span class="n">environment</span><span class="o">.</span><span class="n">replace_current_coefficient_matrix</span><span class="p">(</span><span class="n">new_coefficients</span><span class="p">)</span>
 
 
 <span class="n">constrain_step_bultinck</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">FunctionalStep_UHFSCFEnvironment_d</span><span class="p">(</span><span class="n">constrain_function_bultinck</span><span class="p">,</span> <span class="s2">&quot;Replace the alpha- and beta- UHF coefficient matrices by their constrained counterparts, as explained in the CUHF algorithm devised by Patrick Bultinck.&quot;</span><span class="p">)</span>
@@ -906,6 +971,20 @@ A convergence criterion that checks if the norm of the difference of two iterate
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">CUHF_algorithm_bultinck</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">UHFSCFSolver_d</span><span class="o">.</span><span class="n">Plain</span><span class="p">(</span><span class="n">threshold</span> <span class="o">=</span> <span class="mf">1.0e-04</span><span class="p">,</span> <span class="n">maximum_number_of_iterations</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">CUHF_algorithm_bultinck</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">constrain_step_bultinck</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>  <span class="c1"># at the end</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">CUHF_algorithm_bultinck</span><span class="o">.</span><span class="n">description</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>An iterative algorithm (with a maximum of 2 iterations) consisting of the following steps:
+An algorithmic step consisting of 5 algorithmic steps:
+	1. Calculate the current UHF alpha and beta density matrices (in the AO basis) and place them in the environment.
+	2. Calculate the current UHF Fock matrices (expressed in the scalar/AO basis) and place them in the environment.
+	3. Solve the generalized eigenvalue problem for the most recent scalar/AO Fock matrices. Add the associated coefficient matrices and orbital energies to the environment.
+	4. Calculate the current electronic UHF energy and place it in the environment.
+	5. Replace the alpha- and beta- UHF coefficient matrices by their constrained counterparts, as explained in the CUHF algorithm devised by Patrick Bultinck.
+
+With the following convergence criterion:
+A convergence criterion that checks if the norm of the difference of two iterates (the UHF spin resolved density matrix in AO basis) is converged, with a tolerance of 1.00e-04.
 </pre></div>
 </div>
 </div>
@@ -935,6 +1014,21 @@ A convergence criterion that checks if the norm of the difference of two iterate
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CUHF electronic energy (P. Bultinck): -3.62680102
+
+CUHF C_alpha (P. Bultinck):
+[[-0.358528  0.354135 -1.775391]
+ [-0.358528 -1.714601  0.581006]
+ [-0.358528  1.360467  1.194385]]
+
+CUHF C_beta (P. Bultinck):
+[[-0.358528 -1.758272  0.365065]
+ [-0.358528  0.573311 -1.72797 ]
+ [-0.358528  1.221002  1.339733]]
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="bonus-changing-the-thesis-algorithm">
@@ -944,8 +1038,6 @@ A convergence criterion that checks if the norm of the difference of two iterate
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">constrain_function_thesis_fixed</span><span class="p">(</span><span class="n">environment</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Replace the alpha- and beta- UHF Fock matrices by their constrained counterparts, as explained in the CUHF &#39;thesis&#39; algorithm.&quot;&quot;&quot;</span>
-
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;iteration&quot;</span><span class="p">)</span>
     
     <span class="c1"># Read the relevant intermediates from the environment.</span>
     <span class="n">F</span> <span class="o">=</span> <span class="n">environment</span><span class="o">.</span><span class="n">fock_matrices</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
@@ -991,8 +1083,10 @@ A convergence criterion that checks if the norm of the difference of two iterate
     <span class="c1"># Overwrite the most recent UHF Fock matrices with the CUHF modifications.</span>
     <span class="n">F_alpha_constrained</span> <span class="o">=</span> <span class="n">F_aa</span> <span class="o">+</span> <span class="n">Lambda_AO</span>
     <span class="n">F_beta_constrained</span> <span class="o">=</span> <span class="n">F_bb</span> <span class="o">-</span> <span class="n">Lambda_AO</span>
+
+    <span class="n">new_fock_matrices</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">ScalarUSQOneElectronOperator_d</span><span class="p">(</span><span class="n">F_alpha_constrained</span><span class="p">,</span> <span class="n">F_beta_constrained</span><span class="p">)</span>
     
-    <span class="n">environment</span><span class="o">.</span><span class="n">replace_current_fock_matrices</span><span class="p">(</span><span class="n">F_alpha_constrained</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">F_beta_constrained</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span>
+    <span class="n">environment</span><span class="o">.</span><span class="n">replace_current_fock_matrix</span><span class="p">(</span><span class="n">new_fock_matrices</span><span class="p">)</span>
 
 
 <span class="n">constrain_step_thesis_fixed</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">FunctionalStep_UHFSCFEnvironment_d</span><span class="p">(</span><span class="n">constrain_function_thesis_fixed</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Replace the alpha- and beta- UHF Fock matrices by their constrained counterparts, as explained in the CUHF &#39;thesis&#39; algorithm, but with &#39;fixed&#39; transformation formulas.&quot;</span><span class="p">)</span>
@@ -1047,12 +1141,34 @@ A convergence criterion that checks if the norm of the difference of two iterate
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 0.946746 -1.508967  0.947898]
+ [-1.508967  3.405967 -1.511373]
+ [ 0.947898 -1.511373  0.949052]]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CUHF electronic energy (thesis): </span><span class="si">{:.8f}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cuhf_energy_thesis_fixed</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CUHF C_alpha (thesis):</span><span class="se">\n</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cuhf_parameters_thesis_fixed</span><span class="o">.</span><span class="n">expansion</span><span class="p">()</span><span class="o">.</span><span class="n">alpha</span><span class="o">.</span><span class="n">matrix</span><span class="p">()))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CUHF C_beta (thesis):</span><span class="se">\n</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cuhf_parameters_thesis_fixed</span><span class="o">.</span><span class="n">expansion</span><span class="p">()</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">matrix</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CUHF electronic energy (thesis): -3.63052195
+
+CUHF C_alpha (thesis):
+[[-3.470438e-01  9.090350e-01 -1.568179e+00]
+ [-3.815161e-01 -1.805661e+00  7.420704e-04]
+ [-3.469378e-01  9.103012e-01  1.567467e+00]]
+
+CUHF C_beta (thesis):
+[[ 4.064937e-01 -1.568129e+00  8.841394e-01]
+ [ 2.610740e-01  6.388414e-04 -1.826967e+00]
+ [ 4.064738e-01  1.567517e+00  8.852330e-01]]
 </pre></div>
 </div>
 </div>

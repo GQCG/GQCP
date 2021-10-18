@@ -568,7 +568,7 @@
         
               <div>
                 
-  <div class="section" id="manipulating-onvs-and-their-addresses">
+  <div class="tex2jax_ignore mathjax_ignore section" id="manipulating-onvs-and-their-addresses">
 <h1>Manipulating ONVs and their addresses<a class="headerlink" href="#manipulating-onvs-and-their-addresses" title="Permalink to this headline">¶</a></h1>
 <p>Understanding the inner workings of a low-level CI code can be daunting, mainly because bit string manipulations can be very hard to understand without any guidance. This section should help aspiring developers how GQCP deals with the manipulation of ONV’s (occupation number vectors) and their path representation in an addressing scheme.</p>
 <blockquote>
@@ -588,13 +588,13 @@
 </div>
 <!--C++-->
 <div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Set up a F(5,3) Fock space.</span>
-<span class="k">const</span> <span class="kt">size_t</span> <span class="n">M</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
-<span class="k">const</span> <span class="kt">size_t</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"></span>
 
-<span class="k">const</span> <span class="n">GQCP</span><span class="o">::</span><span class="n">SpinUnresolvedONVBasis</span> <span class="n">onv_basis</span> <span class="p">{</span><span class="n">M</span><span class="p">,</span> <span class="n">N</span><span class="p">};</span>
+<span class="k">const</span><span class="w"> </span><span class="n">GQCP</span><span class="o">::</span><span class="n">SpinUnresolvedONVBasis</span><span class="w"> </span><span class="n">onv_basis</span><span class="w"> </span><span class="p">{</span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">};</span><span class="w"></span>
 
-<span class="k">const</span> <span class="k">auto</span> <span class="n">I</span> <span class="o">=</span> <span class="n">GQCP</span><span class="o">::</span><span class="n">SpinUnresolvedONV</span><span class="o">::</span><span class="n">FromOccupiedIndices</span><span class="p">({</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">},</span> <span class="mi">5</span><span class="p">);</span>  <span class="c1">// |10110&gt;</span>
-<span class="n">GQCP</span><span class="o">::</span><span class="n">ONVPath</span> <span class="n">onv_path</span> <span class="p">{</span><span class="n">onv_basis</span><span class="p">,</span> <span class="n">I</span><span class="p">};</span>
+<span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">I</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GQCP</span><span class="o">::</span><span class="n">SpinUnresolvedONV</span><span class="o">::</span><span class="n">FromOccupiedIndices</span><span class="p">({</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">},</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span><span class="w">  </span><span class="c1">// |10110&gt;</span>
+<span class="n">GQCP</span><span class="o">::</span><span class="n">ONVPath</span><span class="w"> </span><span class="n">onv_path</span><span class="w"> </span><span class="p">{</span><span class="n">onv_basis</span><span class="p">,</span><span class="w"> </span><span class="n">I</span><span class="p">};</span><span class="w"></span>
 </pre></div>
 </div>
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -610,15 +610,15 @@
 <span class="cm">* </span>
 <span class="cm">*  @param q        the index of the orbital that should be annihilated</span>
 <span class="cm">*  @param n        the number of electrons in the ONV/path up to the orbital index q</span>
-<span class="cm">*/</span>
-<span class="kt">void</span> <span class="n">ONVPath</span><span class="o">::</span><span class="n">annihilate</span><span class="p">(</span><span class="k">const</span> <span class="kt">size_t</span> <span class="n">q</span><span class="p">,</span> <span class="k">const</span> <span class="kt">size_t</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+<span class="cm">*/</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">ONVPath::annihilate</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
-    <span class="c1">// During annihilation, we&#39;re removing an arc, so we&#39;ll have to update the current address by removing the corresponding arc weight.</span>
-    <span class="k">this</span><span class="o">-&gt;</span><span class="n">m_address</span> <span class="o">-=</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">onv_basis</span><span class="p">.</span><span class="n">arcWeight</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// During annihilation, we&#39;re removing an arc, so we&#39;ll have to update the current address by removing the corresponding arc weight.</span>
+<span class="w">    </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">m_address</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">onv_basis</span><span class="p">.</span><span class="n">arcWeight</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span><span class="w"></span>
 
-    <span class="c1">// Update the next possible creation index. Since we&#39;re always constructing paths from the top-left to the bottom-right, we&#39;re only considering creation indices p &gt; q.</span>
-    <span class="k">this</span><span class="o">-&gt;</span><span class="n">p</span> <span class="o">=</span> <span class="n">q</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">    </span><span class="c1">// Update the next possible creation index. Since we&#39;re always constructing paths from the top-left to the bottom-right, we&#39;re only considering creation indices p &gt; q.</span>
+<span class="w">    </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>There are three diagonal arcs (starting at [0, 0], [2, 1] and [3, 2]), which are the coordinates where <code class="docutils literal notranslate"><span class="pre">annihilate()</span></code> can remove an electron. Let’s say we <code class="docutils literal notranslate"><span class="pre">annihilate(0,</span> <span class="pre">0)</span></code>. The diagonal arc starting at [0, 0] will then become a vertical arc, resulting in a new, <em>open</em> path, related to the ONV <code class="docutils literal notranslate"><span class="pre">|00110&gt;</span></code></p>
@@ -633,7 +633,7 @@
 </div>
 <!--C++-->
 <div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Annihilate the electron in the orbital with index 0.</span>
-<span class="n">onv_path</span><span class="p">.</span><span class="n">annihilate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="n">onv_path</span><span class="p">.</span><span class="n">annihilate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -644,12 +644,12 @@
 <span class="cm">* </span>
 <span class="cm">*  @param p        the index of the orbital that should be created</span>
 <span class="cm">*  @param n        the number of electrons in the ONV/path up to the orbital index q, prior to the creation</span>
-<span class="cm">*/</span>
-<span class="kt">void</span> <span class="n">ONVPath</span><span class="o">::</span><span class="n">create</span><span class="p">(</span><span class="k">const</span> <span class="kt">size_t</span> <span class="n">p</span><span class="p">,</span> <span class="k">const</span> <span class="kt">size_t</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+<span class="cm">*/</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">ONVPath::create</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
-    <span class="c1">// During creation, we&#39;re adding an arc, so we&#39;ll have to update the current address by adding the corresponding arc weight.</span>
-    <span class="k">this</span><span class="o">-&gt;</span><span class="n">m_address</span> <span class="o">+=</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">onv_basis</span><span class="p">.</span><span class="n">arcWeight</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="w">    </span><span class="c1">// During creation, we&#39;re adding an arc, so we&#39;ll have to update the current address by adding the corresponding arc weight.</span>
+<span class="w">    </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">m_address</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">onv_basis</span><span class="p">.</span><span class="n">arcWeight</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>In this particular case, the path can be closed by creating at coordinate [1, 0], resulting in a new ONV: <code class="docutils literal notranslate"><span class="pre">|01110&gt;</span></code>.</p>
@@ -661,7 +661,7 @@
 </div>
 <!--C++-->
 <div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create an electron in the orbital with index 1.</span>
-<span class="n">onv_path</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="n">onv_path</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -672,16 +672,16 @@
 <span class="cm">  * </span>
 <span class="cm">  *  @param p        the index of the orbital that should be annihilated</span>
 <span class="cm">  *  @param n        the number of electrons in the ONV/path up to the orbital index p</span>
-<span class="cm">  */</span>
- <span class="kt">void</span> <span class="n">ONVPath</span><span class="o">::</span><span class="n">leftTranslateDiagonalArc</span><span class="p">(</span><span class="k">const</span> <span class="kt">size_t</span> <span class="n">p</span><span class="p">,</span> <span class="k">const</span> <span class="kt">size_t</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+<span class="cm">  */</span><span class="w"></span>
+<span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">ONVPath::leftTranslateDiagonalArc</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
-     <span class="c1">// Translating a diagonal arc can be rewritten as an annihilation, followed by a creation.</span>
-     <span class="k">this</span><span class="o">-&gt;</span><span class="n">annihilate</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
-     <span class="k">this</span><span class="o">-&gt;</span><span class="n">create</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+<span class="w">     </span><span class="c1">// Translating a diagonal arc can be rewritten as an annihilation, followed by a creation.</span>
+<span class="w">     </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">annihilate</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span><span class="w"></span>
+<span class="w">     </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">create</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
 
-     <span class="c1">// Since a left-translation describes the process of &#39;encountering an electron/occupied orbital&#39;, the sign factor should be updated according to the fermionic anti-commutation rules.</span>
-     <span class="k">this</span><span class="o">-&gt;</span><span class="n">m_sign</span> <span class="o">*=</span> <span class="mi">-1</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">     </span><span class="c1">// Since a left-translation describes the process of &#39;encountering an electron/occupied orbital&#39;, the sign factor should be updated according to the fermionic anti-commutation rules.</span>
+<span class="w">     </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">m_sign</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <blockquote>
@@ -701,7 +701,7 @@
 </div>
 <!--C++-->
 <div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Translate the diagonal arc that starts at (2, 1) to (2, 0).</span>
-<span class="n">onv_path</span><span class="p">.</span><span class="n">leftTranslateDiagonalArc</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">onv_path</span><span class="p">.</span><span class="n">leftTranslateDiagonalArc</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -714,7 +714,7 @@
 </div>
 <!--C++-->
 <div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Translate the diagonal arc that starts at (3, 2) to (3, 1).</span>
-<span class="n">onv_path</span><span class="p">.</span><span class="n">leftTranslateDiagonalArc</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">onv_path</span><span class="p">.</span><span class="n">leftTranslateDiagonalArc</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -727,7 +727,7 @@
 </div>
 <!--C++-->
 <div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Keep translating diagonal arcs to the left, until an unoccupied index is found.</span>
-<span class="n">onv_path</span><span class="p">.</span><span class="n">leftTranslateDiagonalArcUntilVerticalArc</span><span class="p">();</span>
+<span class="n">onv_path</span><span class="p">.</span><span class="n">leftTranslateDiagonalArcUntilVerticalArc</span><span class="p">();</span><span class="w"></span>
 </pre></div>
 </div>
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -742,7 +742,7 @@
 </div>
 <!--C++-->
 <div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create an electron in the orbital with index 4.</span>
-<span class="n">onv_path</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">onv_path</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <!--END_DOCUSAURUS_CODE_TABS-->

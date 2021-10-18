@@ -603,7 +603,7 @@
         
               <div>
                 
-  <div class="section" id="uhf-scf">
+  <div class="tex2jax_ignore mathjax_ignore section" id="uhf-scf">
 <h1>UHF SCF<a class="headerlink" href="#uhf-scf" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -632,7 +632,7 @@
 <span class="n">spinor_basis</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">USpinOrbitalBasis_d</span><span class="p">(</span><span class="n">molecule</span><span class="p">,</span> <span class="s2">&quot;STO-3G&quot;</span><span class="p">)</span>
 <span class="n">S</span> <span class="o">=</span> <span class="n">spinor_basis</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">OverlapOperator</span><span class="p">())</span>
 
-<span class="n">sq_hamiltonian</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">USQHamiltonian_d</span><span class="o">.</span><span class="n">Molecular</span><span class="p">(</span><span class="n">spinor_basis</span><span class="p">,</span> <span class="n">molecule</span><span class="p">)</span>  <span class="c1"># &#39;sq&#39; for &#39;second-quantized&#39;</span>
+<span class="n">sq_hamiltonian</span> <span class="o">=</span> <span class="n">spinor_basis</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">FQMolecularHamiltonian</span><span class="p">(</span><span class="n">molecule</span><span class="p">))</span>  <span class="c1"># &#39;sq&#39; for &#39;second-quantized&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -698,86 +698,491 @@ H  (-0.545307, -0.9445, 0)
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No Fock matrices in the queue.
 Alpha Fock matrix:
-[[-0.488 -0.453 -0.453]
- [-0.453 -0.381 -0.56 ]
- [-0.453 -0.56  -0.381]]
+[[-0.467 -0.42  -0.508]
+ [-0.42  -0.436 -0.539]
+ [-0.508 -0.539 -0.348]]
 
 Beta Fock matrix:
-[[-0.083 -0.444 -0.444]
- [-0.444 -0.257 -0.474]
- [-0.444 -0.474 -0.257]]
+[[-0.117 -0.435 -0.46 ]
+ [-0.435 -0.168 -0.468]
+ [-0.46  -0.468 -0.311]]
 Alpha Fock matrix:
-[[-0.515 -0.456 -0.456]
- [-0.456 -0.368 -0.555]
- [-0.456 -0.555 -0.368]]
+[[-0.488 -0.427 -0.506]
+ [-0.427 -0.446 -0.535]
+ [-0.506 -0.535 -0.316]]
 
 Beta Fock matrix:
-[[-0.049 -0.434 -0.434]
- [-0.434 -0.272 -0.489]
- [-0.434 -0.489 -0.272]]
+[[-0.09  -0.415 -0.462]
+ [-0.415 -0.154 -0.478]
+ [-0.462 -0.478 -0.346]]
 Alpha Fock matrix:
-[[-0.525 -0.457 -0.457]
- [-0.457 -0.363 -0.553]
- [-0.457 -0.553 -0.363]]
+[[-0.5   -0.434 -0.502]
+ [-0.434 -0.458 -0.531]
+ [-0.502 -0.531 -0.293]]
 
 Beta Fock matrix:
-[[-0.036 -0.429 -0.429]
- [-0.429 -0.276 -0.493]
- [-0.429 -0.493 -0.276]]
+[[-0.076 -0.403 -0.463]
+ [-0.403 -0.141 -0.48 ]
+ [-0.463 -0.48  -0.368]]
 Alpha Fock matrix:
-[[-0.528 -0.458 -0.458]
- [-0.458 -0.361 -0.552]
- [-0.458 -0.552 -0.361]]
+[[-0.506 -0.439 -0.499]
+ [-0.439 -0.467 -0.527]
+ [-0.499 -0.527 -0.277]]
 
 Beta Fock matrix:
-[[-0.031 -0.427 -0.427]
- [-0.427 -0.278 -0.495]
- [-0.427 -0.495 -0.278]]
+[[-0.068 -0.396 -0.463]
+ [-0.396 -0.13  -0.481]
+ [-0.463 -0.481 -0.383]]
 Alpha Fock matrix:
-[[-0.529 -0.458 -0.458]
- [-0.458 -0.361 -0.552]
- [-0.458 -0.552 -0.361]]
+[[-0.51  -0.443 -0.497]
+ [-0.443 -0.474 -0.524]
+ [-0.497 -0.524 -0.265]]
 
 Beta Fock matrix:
-[[-0.03  -0.426 -0.426]
- [-0.426 -0.278 -0.495]
- [-0.426 -0.495 -0.278]]
+[[-0.064 -0.391 -0.464]
+ [-0.391 -0.121 -0.481]
+ [-0.464 -0.481 -0.393]]
 Alpha Fock matrix:
-[[-0.53  -0.458 -0.458]
- [-0.458 -0.361 -0.552]
- [-0.458 -0.552 -0.361]]
+[[-0.512 -0.445 -0.497]
+ [-0.445 -0.48  -0.522]
+ [-0.497 -0.522 -0.257]]
 
 Beta Fock matrix:
-[[-0.029 -0.426 -0.426]
- [-0.426 -0.278 -0.496]
- [-0.426 -0.496 -0.278]]
+[[-0.062 -0.387 -0.465]
+ [-0.387 -0.114 -0.48 ]
+ [-0.465 -0.48  -0.4  ]]
 Alpha Fock matrix:
-[[-0.53  -0.458 -0.458]
- [-0.458 -0.361 -0.552]
- [-0.458 -0.552 -0.361]]
+[[-0.513 -0.446 -0.497]
+ [-0.446 -0.484 -0.52 ]
+ [-0.497 -0.52  -0.251]]
 
 Beta Fock matrix:
-[[-0.029 -0.426 -0.426]
- [-0.426 -0.278 -0.496]
- [-0.426 -0.496 -0.278]]
+[[-0.061 -0.384 -0.466]
+ [-0.384 -0.108 -0.479]
+ [-0.466 -0.479 -0.405]]
 Alpha Fock matrix:
-[[-0.53  -0.458 -0.458]
- [-0.458 -0.361 -0.552]
- [-0.458 -0.552 -0.361]]
+[[-0.513 -0.447 -0.497]
+ [-0.447 -0.488 -0.518]
+ [-0.497 -0.518 -0.247]]
 
 Beta Fock matrix:
-[[-0.029 -0.426 -0.426]
- [-0.426 -0.278 -0.496]
- [-0.426 -0.496 -0.278]]
+[[-0.061 -0.383 -0.467]
+ [-0.383 -0.103 -0.479]
+ [-0.467 -0.479 -0.409]]
 Alpha Fock matrix:
-[[-0.53  -0.458 -0.458]
- [-0.458 -0.361 -0.552]
- [-0.458 -0.552 -0.361]]
+[[-0.513 -0.448 -0.497]
+ [-0.448 -0.49  -0.516]
+ [-0.497 -0.516 -0.244]]
 
 Beta Fock matrix:
-[[-0.029 -0.425 -0.425]
- [-0.425 -0.278 -0.496]
- [-0.425 -0.496 -0.278]]
+[[-0.062 -0.381 -0.467]
+ [-0.381 -0.099 -0.478]
+ [-0.467 -0.478 -0.412]]
+Alpha Fock matrix:
+[[-0.513 -0.449 -0.498]
+ [-0.449 -0.493 -0.515]
+ [-0.498 -0.515 -0.242]]
+
+Beta Fock matrix:
+[[-0.062 -0.38  -0.468]
+ [-0.38  -0.096 -0.477]
+ [-0.468 -0.477 -0.414]]
+Alpha Fock matrix:
+[[-0.512 -0.449 -0.498]
+ [-0.449 -0.495 -0.514]
+ [-0.498 -0.514 -0.24 ]]
+
+Beta Fock matrix:
+[[-0.063 -0.379 -0.468]
+ [-0.379 -0.093 -0.477]
+ [-0.468 -0.477 -0.415]]
+Alpha Fock matrix:
+[[-0.512 -0.449 -0.499]
+ [-0.449 -0.496 -0.513]
+ [-0.499 -0.513 -0.239]]
+
+Beta Fock matrix:
+[[-0.064 -0.379 -0.469]
+ [-0.379 -0.09  -0.476]
+ [-0.469 -0.476 -0.416]]
+Alpha Fock matrix:
+[[-0.511 -0.449 -0.5  ]
+ [-0.449 -0.497 -0.512]
+ [-0.5   -0.512 -0.238]]
+
+Beta Fock matrix:
+[[-0.065 -0.378 -0.469]
+ [-0.378 -0.088 -0.476]
+ [-0.469 -0.476 -0.417]]
+Alpha Fock matrix:
+[[-0.511 -0.449 -0.5  ]
+ [-0.449 -0.499 -0.511]
+ [-0.5   -0.511 -0.237]]
+
+Beta Fock matrix:
+[[-0.066 -0.378 -0.47 ]
+ [-0.378 -0.086 -0.476]
+ [-0.47  -0.476 -0.418]]
+Alpha Fock matrix:
+[[-0.51  -0.449 -0.501]
+ [-0.449 -0.5   -0.51 ]
+ [-0.501 -0.51  -0.237]]
+
+Beta Fock matrix:
+[[-0.067 -0.378 -0.47 ]
+ [-0.378 -0.085 -0.475]
+ [-0.47  -0.475 -0.418]]
+Alpha Fock matrix:
+[[-0.51  -0.45  -0.501]
+ [-0.45  -0.5   -0.51 ]
+ [-0.501 -0.51  -0.236]]
+
+Beta Fock matrix:
+[[-0.068 -0.378 -0.47 ]
+ [-0.378 -0.084 -0.475]
+ [-0.47  -0.475 -0.418]]
+Alpha Fock matrix:
+[[-0.509 -0.45  -0.502]
+ [-0.45  -0.501 -0.509]
+ [-0.502 -0.509 -0.236]]
+
+Beta Fock matrix:
+[[-0.068 -0.378 -0.471]
+ [-0.378 -0.082 -0.475]
+ [-0.471 -0.475 -0.419]]
+Alpha Fock matrix:
+[[-0.509 -0.45  -0.502]
+ [-0.45  -0.502 -0.509]
+ [-0.502 -0.509 -0.236]]
+
+Beta Fock matrix:
+[[-0.069 -0.377 -0.471]
+ [-0.377 -0.081 -0.474]
+ [-0.471 -0.474 -0.419]]
+Alpha Fock matrix:
+[[-0.509 -0.45  -0.502]
+ [-0.45  -0.502 -0.508]
+ [-0.502 -0.508 -0.235]]
+
+Beta Fock matrix:
+[[-0.07  -0.377 -0.471]
+ [-0.377 -0.081 -0.474]
+ [-0.471 -0.474 -0.419]]
+Alpha Fock matrix:
+[[-0.508 -0.45  -0.503]
+ [-0.45  -0.503 -0.508]
+ [-0.503 -0.508 -0.235]]
+
+Beta Fock matrix:
+[[-0.07  -0.377 -0.471]
+ [-0.377 -0.08  -0.474]
+ [-0.471 -0.474 -0.419]]
+Alpha Fock matrix:
+[[-0.508 -0.45  -0.503]
+ [-0.45  -0.503 -0.508]
+ [-0.503 -0.508 -0.235]]
+
+Beta Fock matrix:
+[[-0.071 -0.377 -0.471]
+ [-0.377 -0.079 -0.474]
+ [-0.471 -0.474 -0.419]]
+Alpha Fock matrix:
+[[-0.508 -0.45  -0.503]
+ [-0.45  -0.503 -0.507]
+ [-0.503 -0.507 -0.235]]
+
+Beta Fock matrix:
+[[-0.071 -0.377 -0.472]
+ [-0.377 -0.079 -0.474]
+ [-0.472 -0.474 -0.419]]
+Alpha Fock matrix:
+[[-0.508 -0.45  -0.504]
+ [-0.45  -0.504 -0.507]
+ [-0.504 -0.507 -0.235]]
+
+Beta Fock matrix:
+[[-0.072 -0.377 -0.472]
+ [-0.377 -0.078 -0.474]
+ [-0.472 -0.474 -0.42 ]]
+Alpha Fock matrix:
+[[-0.507 -0.45  -0.504]
+ [-0.45  -0.504 -0.507]
+ [-0.504 -0.507 -0.235]]
+
+Beta Fock matrix:
+[[-0.072 -0.377 -0.472]
+ [-0.377 -0.078 -0.473]
+ [-0.472 -0.473 -0.42 ]]
+Alpha Fock matrix:
+[[-0.507 -0.45  -0.504]
+ [-0.45  -0.504 -0.507]
+ [-0.504 -0.507 -0.235]]
+
+Beta Fock matrix:
+[[-0.072 -0.377 -0.472]
+ [-0.377 -0.077 -0.473]
+ [-0.472 -0.473 -0.42 ]]
+Alpha Fock matrix:
+[[-0.507 -0.45  -0.504]
+ [-0.45  -0.504 -0.506]
+ [-0.504 -0.506 -0.235]]
+
+Beta Fock matrix:
+[[-0.073 -0.377 -0.472]
+ [-0.377 -0.077 -0.473]
+ [-0.472 -0.473 -0.42 ]]
+Alpha Fock matrix:
+[[-0.507 -0.45  -0.504]
+ [-0.45  -0.504 -0.506]
+ [-0.504 -0.506 -0.235]]
+
+Beta Fock matrix:
+[[-0.073 -0.377 -0.472]
+ [-0.377 -0.077 -0.473]
+ [-0.472 -0.473 -0.42 ]]
+Alpha Fock matrix:
+[[-0.507 -0.45  -0.504]
+ [-0.45  -0.505 -0.506]
+ [-0.504 -0.506 -0.235]]
+
+Beta Fock matrix:
+[[-0.073 -0.377 -0.472]
+ [-0.377 -0.077 -0.473]
+ [-0.472 -0.473 -0.42 ]]
+Alpha Fock matrix:
+[[-0.507 -0.45  -0.504]
+ [-0.45  -0.505 -0.506]
+ [-0.504 -0.506 -0.235]]
+
+Beta Fock matrix:
+[[-0.073 -0.377 -0.472]
+ [-0.377 -0.076 -0.473]
+ [-0.472 -0.473 -0.42 ]]
+Alpha Fock matrix:
+[[-0.506 -0.45  -0.505]
+ [-0.45  -0.505 -0.506]
+ [-0.505 -0.506 -0.235]]
+
+Beta Fock matrix:
+[[-0.073 -0.377 -0.472]
+ [-0.377 -0.076 -0.473]
+ [-0.472 -0.473 -0.42 ]]
+Alpha Fock matrix:
+[[-0.506 -0.45  -0.505]
+ [-0.45  -0.505 -0.506]
+ [-0.505 -0.506 -0.235]]
+
+Beta Fock matrix:
+[[-0.074 -0.377 -0.472]
+ [-0.377 -0.076 -0.473]
+ [-0.472 -0.473 -0.42 ]]
+Alpha Fock matrix:
+[[-0.506 -0.45  -0.505]
+ [-0.45  -0.505 -0.506]
+ [-0.505 -0.506 -0.235]]
+
+Beta Fock matrix:
+[[-0.074 -0.377 -0.472]
+ [-0.377 -0.076 -0.473]
+ [-0.472 -0.473 -0.42 ]]
+Alpha Fock matrix:
+[[-0.506 -0.45  -0.505]
+ [-0.45  -0.505 -0.506]
+ [-0.505 -0.506 -0.235]]
+
+Beta Fock matrix:
+[[-0.074 -0.377 -0.472]
+ [-0.377 -0.076 -0.473]
+ [-0.472 -0.473 -0.42 ]]
+Alpha Fock matrix:
+[[-0.506 -0.45  -0.505]
+ [-0.45  -0.505 -0.506]
+ [-0.505 -0.506 -0.235]]
+
+Beta Fock matrix:
+[[-0.074 -0.377 -0.472]
+ [-0.377 -0.076 -0.473]
+ [-0.472 -0.473 -0.42 ]]
+Alpha Fock matrix:
+[[-0.506 -0.45  -0.505]
+ [-0.45  -0.505 -0.506]
+ [-0.505 -0.506 -0.235]]
+
+Beta Fock matrix:
+[[-0.074 -0.377 -0.472]
+ [-0.377 -0.076 -0.473]
+ [-0.472 -0.473 -0.42 ]]
+Alpha Fock matrix:
+[[-0.506 -0.45  -0.505]
+ [-0.45  -0.505 -0.506]
+ [-0.505 -0.506 -0.235]]
+
+Beta Fock matrix:
+[[-0.074 -0.377 -0.472]
+ [-0.377 -0.075 -0.473]
+ [-0.472 -0.473 -0.42 ]]
+Alpha Fock matrix:
+[[-0.506 -0.45  -0.505]
+ [-0.45  -0.505 -0.506]
+ [-0.505 -0.506 -0.235]]
+
+Beta Fock matrix:
+[[-0.074 -0.377 -0.472]
+ [-0.377 -0.075 -0.473]
+ [-0.472 -0.473 -0.42 ]]
+Alpha Fock matrix:
+[[-0.506 -0.45  -0.505]
+ [-0.45  -0.505 -0.506]
+ [-0.505 -0.506 -0.235]]
+
+Beta Fock matrix:
+[[-0.074 -0.377 -0.472]
+ [-0.377 -0.075 -0.473]
+ [-0.472 -0.473 -0.42 ]]
+Alpha Fock matrix:
+[[-0.506 -0.45  -0.505]
+ [-0.45  -0.505 -0.506]
+ [-0.505 -0.506 -0.235]]
+
+Beta Fock matrix:
+[[-0.074 -0.377 -0.472]
+ [-0.377 -0.075 -0.473]
+ [-0.472 -0.473 -0.42 ]]
+Alpha Fock matrix:
+[[-0.506 -0.45  -0.505]
+ [-0.45  -0.505 -0.505]
+ [-0.505 -0.505 -0.235]]
+
+Beta Fock matrix:
+[[-0.074 -0.377 -0.473]
+ [-0.377 -0.075 -0.473]
+ [-0.473 -0.473 -0.42 ]]
+Alpha Fock matrix:
+[[-0.506 -0.45  -0.505]
+ [-0.45  -0.505 -0.505]
+ [-0.505 -0.505 -0.235]]
+
+Beta Fock matrix:
+[[-0.074 -0.377 -0.473]
+ [-0.377 -0.075 -0.473]
+ [-0.473 -0.473 -0.42 ]]
+Alpha Fock matrix:
+[[-0.506 -0.45  -0.505]
+ [-0.45  -0.506 -0.505]
+ [-0.505 -0.505 -0.235]]
+
+Beta Fock matrix:
+[[-0.075 -0.377 -0.473]
+ [-0.377 -0.075 -0.473]
+ [-0.473 -0.473 -0.42 ]]
+Alpha Fock matrix:
+[[-0.506 -0.45  -0.505]
+ [-0.45  -0.506 -0.505]
+ [-0.505 -0.505 -0.235]]
+
+Beta Fock matrix:
+[[-0.075 -0.377 -0.473]
+ [-0.377 -0.075 -0.473]
+ [-0.473 -0.473 -0.42 ]]
+Alpha Fock matrix:
+[[-0.506 -0.45  -0.505]
+ [-0.45  -0.506 -0.505]
+ [-0.505 -0.505 -0.235]]
+
+Beta Fock matrix:
+[[-0.075 -0.377 -0.473]
+ [-0.377 -0.075 -0.473]
+ [-0.473 -0.473 -0.42 ]]
+Alpha Fock matrix:
+[[-0.506 -0.45  -0.505]
+ [-0.45  -0.506 -0.505]
+ [-0.505 -0.505 -0.235]]
+
+Beta Fock matrix:
+[[-0.075 -0.377 -0.473]
+ [-0.377 -0.075 -0.473]
+ [-0.473 -0.473 -0.42 ]]
+Alpha Fock matrix:
+[[-0.506 -0.45  -0.505]
+ [-0.45  -0.506 -0.505]
+ [-0.505 -0.505 -0.235]]
+
+Beta Fock matrix:
+[[-0.075 -0.377 -0.473]
+ [-0.377 -0.075 -0.473]
+ [-0.473 -0.473 -0.42 ]]
+Alpha Fock matrix:
+[[-0.506 -0.45  -0.505]
+ [-0.45  -0.506 -0.505]
+ [-0.505 -0.505 -0.235]]
+
+Beta Fock matrix:
+[[-0.075 -0.377 -0.473]
+ [-0.377 -0.075 -0.473]
+ [-0.473 -0.473 -0.42 ]]
+Alpha Fock matrix:
+[[-0.506 -0.45  -0.505]
+ [-0.45  -0.506 -0.505]
+ [-0.505 -0.505 -0.235]]
+
+Beta Fock matrix:
+[[-0.075 -0.377 -0.473]
+ [-0.377 -0.075 -0.473]
+ [-0.473 -0.473 -0.42 ]]
+Alpha Fock matrix:
+[[-0.506 -0.45  -0.505]
+ [-0.45  -0.506 -0.505]
+ [-0.505 -0.505 -0.235]]
+
+Beta Fock matrix:
+[[-0.075 -0.377 -0.473]
+ [-0.377 -0.075 -0.473]
+ [-0.473 -0.473 -0.42 ]]
+Alpha Fock matrix:
+[[-0.506 -0.45  -0.505]
+ [-0.45  -0.506 -0.505]
+ [-0.505 -0.505 -0.235]]
+
+Beta Fock matrix:
+[[-0.075 -0.377 -0.473]
+ [-0.377 -0.075 -0.473]
+ [-0.473 -0.473 -0.42 ]]
+Alpha Fock matrix:
+[[-0.506 -0.45  -0.505]
+ [-0.45  -0.506 -0.505]
+ [-0.505 -0.505 -0.235]]
+
+Beta Fock matrix:
+[[-0.075 -0.377 -0.473]
+ [-0.377 -0.075 -0.473]
+ [-0.473 -0.473 -0.42 ]]
+Alpha Fock matrix:
+[[-0.506 -0.45  -0.505]
+ [-0.45  -0.506 -0.505]
+ [-0.505 -0.505 -0.235]]
+
+Beta Fock matrix:
+[[-0.075 -0.377 -0.473]
+ [-0.377 -0.075 -0.473]
+ [-0.473 -0.473 -0.42 ]]
+Alpha Fock matrix:
+[[-0.506 -0.45  -0.505]
+ [-0.45  -0.506 -0.505]
+ [-0.505 -0.505 -0.235]]
+
+Beta Fock matrix:
+[[-0.075 -0.377 -0.473]
+ [-0.377 -0.075 -0.473]
+ [-0.473 -0.473 -0.42 ]]
+Alpha Fock matrix:
+[[-0.506 -0.45  -0.505]
+ [-0.45  -0.506 -0.505]
+ [-0.505 -0.505 -0.235]]
+
+Beta Fock matrix:
+[[-0.075 -0.377 -0.473]
+ [-0.377 -0.075 -0.473]
+ [-0.473 -0.473 -0.42 ]]
 </pre></div>
 </div>
 </div>
@@ -789,7 +1194,7 @@ Beta Fock matrix:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.328057162456922
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.3358471555881106
 </pre></div>
 </div>
 </div>
@@ -808,7 +1213,7 @@ Beta Fock matrix:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-0.702 -0.091  0.38 ]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-0.706 -0.111  0.404]
 </pre></div>
 </div>
 </div>
@@ -820,7 +1225,7 @@ Beta Fock matrix:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-0.568  0.432  0.596]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-0.581  0.441  0.601]
 </pre></div>
 </div>
 </div>
@@ -832,7 +1237,7 @@ Beta Fock matrix:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>55
 </pre></div>
 </div>
 </div>
@@ -862,7 +1267,7 @@ Beta Fock matrix:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.3280571497657099
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.335847157827339
 </pre></div>
 </div>
 </div>
@@ -881,7 +1286,7 @@ Beta Fock matrix:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-0.702 -0.091  0.38 ]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-0.706 -0.111  0.404]
 </pre></div>
 </div>
 </div>
@@ -893,7 +1298,7 @@ Beta Fock matrix:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-0.568  0.432  0.596]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-0.581  0.441  0.601]
 </pre></div>
 </div>
 </div>
@@ -905,7 +1310,7 @@ Beta Fock matrix:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>136
 </pre></div>
 </div>
 </div>
@@ -919,7 +1324,7 @@ Beta Fock matrix:
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">complex_spinor_basis</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">USpinOrbitalBasis_cd</span><span class="p">(</span><span class="n">molecule</span><span class="p">,</span> <span class="s2">&quot;STO-3G&quot;</span><span class="p">)</span>
 <span class="n">complex_S</span> <span class="o">=</span> <span class="n">complex_spinor_basis</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">OverlapOperator</span><span class="p">())</span>
 
-<span class="n">complex_sq_hamiltonian</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">USQHamiltonian_cd</span><span class="o">.</span><span class="n">Molecular</span><span class="p">(</span><span class="n">complex_spinor_basis</span><span class="p">,</span> <span class="n">molecule</span><span class="p">)</span>  <span class="c1"># &#39;sq&#39; for &#39;second-quantized&#39;</span>
+<span class="n">complex_sq_hamiltonian</span> <span class="o">=</span> <span class="n">complex_spinor_basis</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">FQMolecularHamiltonian</span><span class="p">(</span><span class="n">molecule</span><span class="p">))</span>  <span class="c1"># &#39;sq&#39; for &#39;second-quantized&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -946,7 +1351,7 @@ Beta Fock matrix:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.3358471551411335
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.3358471547992559
 </pre></div>
 </div>
 </div>
@@ -966,13 +1371,13 @@ Beta Fock matrix:
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3.7",
+            kernelName: "python3",
             path: "./examples"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3.7'</script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               

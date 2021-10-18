@@ -1554,6 +1554,7 @@
     <member refid="class_g_q_c_p_1_1_linear_expansion_1ae3548e45e0d00792771c32ee090029ba" kind="function"><name>calculate2DM</name></member>
     <member refid="class_g_q_c_p_1_1_linear_expansion_1a4f2112174b9ecd83b68ea3eb77394a7c" kind="function"><name>calculate1DM</name></member>
     <member refid="class_g_q_c_p_1_1_linear_expansion_1aba66ead5fd15d70424318070d3076adb" kind="function"><name>calculate2DM</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1ae5a2a2f99f2c336fab54dde5f7b02cc3" kind="function"><name>calculateOrbitalRDM</name></member>
     <member refid="class_g_q_c_p_1_1_linear_expansion_1ac5d36496b690457a45bd56b8289a29ab" kind="function"><name>calculateShannonEntropy</name></member>
     <member refid="class_g_q_c_p_1_1_linear_expansion_1a3c8b320ac4cbac4ec9630d66fbf43b25" kind="function"><name>calculateSingleOrbitalEntropy</name></member>
     <member refid="class_g_q_c_p_1_1_linear_expansion_1ae38a8e6814c2ea1e027b651bda168168" kind="function"><name>calculateSingleOrbitalEntropy</name></member>

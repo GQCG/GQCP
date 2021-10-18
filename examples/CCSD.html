@@ -588,7 +588,7 @@
         
               <div>
                 
-  <div class="section" id="ccsd-calculations">
+  <div class="tex2jax_ignore mathjax_ignore section" id="ccsd-calculations">
 <h1>CCSD calculations<a class="headerlink" href="#ccsd-calculations" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -639,7 +639,8 @@ H  (-1.63804, 1.13655, -0)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">RSQHamiltonian_d</span><span class="o">.</span><span class="n">Molecular</span><span class="p">(</span><span class="n">spin_orbital_basis</span><span class="p">,</span> <span class="n">molecule</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fq_hamiltonian</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">FQMolecularHamiltonian</span><span class="p">(</span><span class="n">molecule</span><span class="p">)</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">spin_orbital_basis</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">fq_hamiltonian</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -671,7 +672,7 @@ H  (-1.63804, 1.13655, -0)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-74.94207992809227
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-74.9420799280923
 </pre></div>
 </div>
 </div>
@@ -694,13 +695,13 @@ H  (-1.63804, 1.13655, -0)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-9.944e-01 -2.392e-01  2.541e-16 -9.368e-02  8.797e-31  1.116e-01 -2.116e-16]
- [-2.410e-02  8.857e-01 -1.130e-15  4.796e-01 -4.496e-30 -6.696e-01  1.316e-15]
- [ 4.352e-21 -4.532e-16 -6.073e-01 -1.198e-15 -6.823e-18 -2.417e-15 -9.192e-01]
- [-3.162e-03  8.590e-02  2.529e-15 -7.474e-01  7.030e-30 -7.385e-01  1.054e-15]
- [-6.491e-34  8.228e-32 -1.191e-16 -9.744e-30 -1.000e+00  4.216e-31  1.084e-16]
- [ 4.594e-03  1.440e-01 -4.530e-01 -3.295e-01  6.937e-17  7.098e-01  7.325e-01]
- [ 4.594e-03  1.440e-01  4.530e-01 -3.295e-01 -6.937e-17  7.098e-01 -7.325e-01]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-9.944e-01 -2.392e-01  2.405e-16 -9.368e-02  4.245e-31  1.116e-01  1.180e-16]
+ [-2.410e-02  8.857e-01 -1.159e-15  4.796e-01 -2.150e-30 -6.696e-01 -7.428e-16]
+ [ 2.047e-18 -2.675e-16 -6.073e-01 -9.061e-16  1.729e-17 -8.882e-16  9.192e-01]
+ [-3.162e-03  8.590e-02  1.498e-15 -7.474e-01  2.613e-30 -7.385e-01 -4.996e-16]
+ [ 1.524e-33  1.173e-31 -6.203e-17  3.753e-30  1.000e+00 -3.628e-32 -2.313e-16]
+ [ 4.594e-03  1.440e-01 -4.530e-01 -3.295e-01 -1.272e-16  7.098e-01 -7.325e-01]
+ [ 4.594e-03  1.440e-01  4.530e-01 -3.295e-01  1.272e-16  7.098e-01  7.325e-01]]
 </pre></div>
 </div>
 </div>
@@ -713,13 +714,13 @@ H  (-1.63804, 1.13655, -0)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-3.256e+01 -5.683e-01  6.009e-16 -2.095e-01  1.990e-30  2.563e-01 -5.109e-16]
- [-5.683e-01 -7.564e+00 -3.062e-16 -5.223e-01  5.652e-30  1.220e+00 -3.060e-15]
- [ 6.112e-16 -7.801e-17 -6.018e+00  3.826e-15 -5.569e-16 -1.964e-15 -1.767e+00]
- [-2.095e-01 -5.223e-01  4.025e-15 -6.610e+00 -8.581e-30 -1.306e+00 -2.575e-15]
- [ 1.999e-30  5.606e-30 -5.569e-16 -8.587e-30 -7.347e+00  1.543e-29  6.278e-16]
- [ 2.563e-01  1.220e+00 -2.399e-15 -1.306e+00  1.537e-29 -5.291e+00 -4.069e-15]
- [-5.326e-16 -3.269e-15 -1.767e+00 -2.500e-15  6.278e-16 -3.469e-15 -5.513e+00]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-3.256e+01 -5.683e-01  5.022e-16 -2.095e-01  9.840e-31  2.563e-01  3.331e-16]
+ [-5.683e-01 -7.564e+00  1.141e-15 -5.223e-01  2.425e-30  1.220e+00  1.332e-15]
+ [ 5.251e-16  1.300e-15 -6.018e+00  1.825e-15 -9.824e-17  6.295e-16  1.767e+00]
+ [-2.095e-01 -5.223e-01  1.814e-15 -6.610e+00 -3.945e-30 -1.306e+00  2.442e-15]
+ [ 1.002e-30  2.451e-30 -9.824e-17 -3.977e-30 -7.347e+00  3.776e-30  1.368e-15]
+ [ 2.563e-01  1.220e+00  4.025e-16 -1.306e+00  3.744e-30 -5.291e+00  2.220e-16]
+ [ 3.619e-16  1.562e-15  1.767e+00  2.409e-15  1.368e-15  3.246e-16 -5.513e+00]]
 </pre></div>
 </div>
 </div>
@@ -735,34 +736,34 @@ H  (-1.63804, 1.13655, -0)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-9.944e-01 -2.392e-01  2.541e-16 -9.368e-02  8.797e-31  1.116e-01 -2.116e-16  0.000e+00  0.000e+00  0.000e+00
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-9.944e-01 -2.392e-01  2.405e-16 -9.368e-02  4.245e-31  1.116e-01  1.180e-16  0.000e+00  0.000e+00  0.000e+00
    0.000e+00  0.000e+00  0.000e+00  0.000e+00]
- [-2.410e-02  8.857e-01 -1.130e-15  4.796e-01 -4.496e-30 -6.696e-01  1.316e-15  0.000e+00  0.000e+00  0.000e+00
+ [-2.410e-02  8.857e-01 -1.159e-15  4.796e-01 -2.150e-30 -6.696e-01 -7.428e-16  0.000e+00  0.000e+00  0.000e+00
    0.000e+00  0.000e+00  0.000e+00  0.000e+00]
- [ 4.352e-21 -4.532e-16 -6.073e-01 -1.198e-15 -6.823e-18 -2.417e-15 -9.192e-01  0.000e+00  0.000e+00  0.000e+00
+ [ 2.047e-18 -2.675e-16 -6.073e-01 -9.061e-16  1.729e-17 -8.882e-16  9.192e-01  0.000e+00  0.000e+00  0.000e+00
    0.000e+00  0.000e+00  0.000e+00  0.000e+00]
- [-3.162e-03  8.590e-02  2.529e-15 -7.474e-01  7.030e-30 -7.385e-01  1.054e-15  0.000e+00  0.000e+00  0.000e+00
+ [-3.162e-03  8.590e-02  1.498e-15 -7.474e-01  2.613e-30 -7.385e-01 -4.996e-16  0.000e+00  0.000e+00  0.000e+00
    0.000e+00  0.000e+00  0.000e+00  0.000e+00]
- [-6.491e-34  8.228e-32 -1.191e-16 -9.744e-30 -1.000e+00  4.216e-31  1.084e-16  0.000e+00  0.000e+00  0.000e+00
+ [ 1.524e-33  1.173e-31 -6.203e-17  3.753e-30  1.000e+00 -3.628e-32 -2.313e-16  0.000e+00  0.000e+00  0.000e+00
    0.000e+00  0.000e+00  0.000e+00  0.000e+00]
- [ 4.594e-03  1.440e-01 -4.530e-01 -3.295e-01  6.937e-17  7.098e-01  7.325e-01  0.000e+00  0.000e+00  0.000e+00
+ [ 4.594e-03  1.440e-01 -4.530e-01 -3.295e-01 -1.272e-16  7.098e-01 -7.325e-01  0.000e+00  0.000e+00  0.000e+00
    0.000e+00  0.000e+00  0.000e+00  0.000e+00]
- [ 4.594e-03  1.440e-01  4.530e-01 -3.295e-01 -6.937e-17  7.098e-01 -7.325e-01  0.000e+00  0.000e+00  0.000e+00
+ [ 4.594e-03  1.440e-01  4.530e-01 -3.295e-01  1.272e-16  7.098e-01  7.325e-01  0.000e+00  0.000e+00  0.000e+00
    0.000e+00  0.000e+00  0.000e+00  0.000e+00]
- [ 0.000e+00  0.000e+00  0.000e+00  0.000e+00  0.000e+00  0.000e+00  0.000e+00 -9.944e-01 -2.392e-01  2.541e-16
-  -9.368e-02  8.797e-31  1.116e-01 -2.116e-16]
- [ 0.000e+00  0.000e+00  0.000e+00  0.000e+00  0.000e+00  0.000e+00  0.000e+00 -2.410e-02  8.857e-01 -1.130e-15
-   4.796e-01 -4.496e-30 -6.696e-01  1.316e-15]
- [ 0.000e+00  0.000e+00  0.000e+00  0.000e+00  0.000e+00  0.000e+00  0.000e+00  4.352e-21 -4.532e-16 -6.073e-01
-  -1.198e-15 -6.823e-18 -2.417e-15 -9.192e-01]
- [ 0.000e+00  0.000e+00  0.000e+00  0.000e+00  0.000e+00  0.000e+00  0.000e+00 -3.162e-03  8.590e-02  2.529e-15
-  -7.474e-01  7.030e-30 -7.385e-01  1.054e-15]
- [ 0.000e+00  0.000e+00  0.000e+00  0.000e+00  0.000e+00  0.000e+00  0.000e+00 -6.491e-34  8.228e-32 -1.191e-16
-  -9.744e-30 -1.000e+00  4.216e-31  1.084e-16]
+ [ 0.000e+00  0.000e+00  0.000e+00  0.000e+00  0.000e+00  0.000e+00  0.000e+00 -9.944e-01 -2.392e-01  2.405e-16
+  -9.368e-02  4.245e-31  1.116e-01  1.180e-16]
+ [ 0.000e+00  0.000e+00  0.000e+00  0.000e+00  0.000e+00  0.000e+00  0.000e+00 -2.410e-02  8.857e-01 -1.159e-15
+   4.796e-01 -2.150e-30 -6.696e-01 -7.428e-16]
+ [ 0.000e+00  0.000e+00  0.000e+00  0.000e+00  0.000e+00  0.000e+00  0.000e+00  2.047e-18 -2.675e-16 -6.073e-01
+  -9.061e-16  1.729e-17 -8.882e-16  9.192e-01]
+ [ 0.000e+00  0.000e+00  0.000e+00  0.000e+00  0.000e+00  0.000e+00  0.000e+00 -3.162e-03  8.590e-02  1.498e-15
+  -7.474e-01  2.613e-30 -7.385e-01 -4.996e-16]
+ [ 0.000e+00  0.000e+00  0.000e+00  0.000e+00  0.000e+00  0.000e+00  0.000e+00  1.524e-33  1.173e-31 -6.203e-17
+   3.753e-30  1.000e+00 -3.628e-32 -2.313e-16]
  [ 0.000e+00  0.000e+00  0.000e+00  0.000e+00  0.000e+00  0.000e+00  0.000e+00  4.594e-03  1.440e-01 -4.530e-01
-  -3.295e-01  6.937e-17  7.098e-01  7.325e-01]
+  -3.295e-01 -1.272e-16  7.098e-01 -7.325e-01]
  [ 0.000e+00  0.000e+00  0.000e+00  0.000e+00  0.000e+00  0.000e+00  0.000e+00  4.594e-03  1.440e-01  4.530e-01
-  -3.295e-01 -6.937e-17  7.098e-01 -7.325e-01]]
+  -3.295e-01  1.272e-16  7.098e-01  7.325e-01]]
 </pre></div>
 </div>
 </div>
@@ -799,15 +800,15 @@ H  (-1.63804, 1.13655, -0)
 <p>CCSD is also implemented as a <code class="docutils literal notranslate"><span class="pre">QCMethod</span></code>. This means that we’ll have to set up an environment and a particular solver.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">GSQHamiltonian_d</span><span class="o">.</span><span class="n">Molecular</span><span class="p">(</span><span class="n">spinor_basis</span><span class="p">,</span> <span class="n">molecule</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">spinor_basis</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">fq_hamiltonian</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">solver</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">CCSDSolver</span><span class="o">.</span><span class="n">Plain</span><span class="p">()</span>
-<span class="n">environment</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">CCSDEnvironment</span><span class="o">.</span><span class="n">PerturbativeCCSD</span><span class="p">(</span><span class="n">hamiltonian</span><span class="p">,</span> <span class="n">orbital_space</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">solver</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">CCSDSolver_d</span><span class="o">.</span><span class="n">Plain</span><span class="p">()</span>
+<span class="n">environment</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">CCSDEnvironment_d</span><span class="o">.</span><span class="n">PerturbativeCCSD</span><span class="p">(</span><span class="n">hamiltonian</span><span class="p">,</span> <span class="n">orbital_space</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -820,16 +821,16 @@ H  (-1.63804, 1.13655, -0)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 9.239e-15 -1.921e-18 -0.000e+00 -0.000e+00]
- [ 1.754e-13  1.266e-16 -0.000e+00 -0.000e+00]
- [ 8.802e-16 -7.514e-13 -0.000e+00 -0.000e+00]
- [-7.726e-13 -2.890e-17 -0.000e+00 -0.000e+00]
- [-1.896e-31 -3.917e-17 -0.000e+00 -0.000e+00]
- [-0.000e+00 -0.000e+00  9.238e-15 -1.921e-18]
- [-0.000e+00 -0.000e+00  1.754e-13  1.266e-16]
- [-0.000e+00 -0.000e+00  8.802e-16 -7.515e-13]
- [-0.000e+00 -0.000e+00 -7.728e-13 -2.890e-17]
- [-0.000e+00 -0.000e+00 -1.896e-31 -3.917e-17]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 2.953e-15 -1.205e-18 -0.000e+00 -0.000e+00]
+ [ 5.534e-14  8.803e-17 -0.000e+00 -0.000e+00]
+ [ 1.582e-16  2.386e-13 -0.000e+00 -0.000e+00]
+ [-2.485e-13 -5.697e-16 -0.000e+00 -0.000e+00]
+ [ 2.030e-32 -1.052e-16 -0.000e+00 -0.000e+00]
+ [-0.000e+00 -0.000e+00  2.995e-15  5.041e-18]
+ [-0.000e+00 -0.000e+00  5.578e-14  3.847e-16]
+ [-0.000e+00 -0.000e+00  9.113e-17  2.385e-13]
+ [-0.000e+00 -0.000e+00 -2.496e-13 -1.666e-16]
+ [-0.000e+00 -0.000e+00 -4.396e-33 -1.052e-16]]
 </pre></div>
 </div>
 </div>
@@ -842,7 +843,7 @@ H  (-1.63804, 1.13655, -0)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.04914963614941137
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.04914963614943018
 </pre></div>
 </div>
 </div>
@@ -850,7 +851,7 @@ H  (-1.63804, 1.13655, -0)
 <p>Let’s now proceed by actually optimizing the CCSD wave function model. This may take a while if <code class="docutils literal notranslate"><span class="pre">gqcp</span></code> is built in Debug mode!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ccsd_qc_structure</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">CCSD</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">solver</span><span class="p">,</span> <span class="n">environment</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ccsd_qc_structure</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">CCSD_d</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">solver</span><span class="p">,</span> <span class="n">environment</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -864,7 +865,7 @@ H  (-1.63804, 1.13655, -0)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.07068008793709481
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.0706800879370939
 </pre></div>
 </div>
 </div>

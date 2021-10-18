@@ -271,6 +271,8 @@ $(function() {
 <div class="line">    std::string text;  <span class="comment">// The string that will contain the textual representation of this spin-unresolved ONV.</span></div>
 <div class="line"> </div>
 <div class="line">    boost::to_string(intermediate_bitset, text);</div>
+<div class="line">    std::reverse(text.begin(), text.end());  <span class="comment">// The bitstring is read from right to left, but we return it from left to right for easier reading.</span></div>
+<div class="line"> </div>
 <div class="line">    <span class="keywordflow">return</span> text;</div>
 <div class="line">}</div>
 <div class="line"> </div>

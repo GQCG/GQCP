@@ -603,7 +603,7 @@
         
               <div>
                 
-  <div class="section" id="doci-calculations">
+  <div class="tex2jax_ignore mathjax_ignore section" id="doci-calculations">
 <h1>DOCI calculations<a class="headerlink" href="#doci-calculations" title="Permalink to this headline">¶</a></h1>
 <p>DOCI is, in essence, just another type of CI, so doing DOCI calculations is very analogous to doing FCI calculations.</p>
 <div class="cell docutils container">
@@ -619,7 +619,7 @@
 </div>
 </div>
 </div>
-<div class="section" id="preparing-the-hamiltonian-in-the-canonical-rhf-basis">
+<div class="tex2jax_ignore mathjax_ignore section" id="preparing-the-hamiltonian-in-the-canonical-rhf-basis">
 <h1>Preparing the Hamiltonian in the canonical RHF basis<a class="headerlink" href="#preparing-the-hamiltonian-in-the-canonical-rhf-basis" title="Permalink to this headline">¶</a></h1>
 <p>As always, we’ll first set up the Hamiltonian in an orthonormal spinor basis. For this example, we’ll use the canonical RHF basis</p>
 <div class="cell docutils container">
@@ -636,8 +636,8 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sq_hamiltonian</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">RSQHamiltonian_d</span><span class="o">.</span><span class="n">Molecular</span><span class="p">(</span><span class="n">spinor_basis</span><span class="p">,</span> <span class="n">molecule</span><span class="p">)</span>
-<span class="n">S</span> <span class="o">=</span> <span class="n">spinor_basis</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">OverlapOperator</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">S</span> <span class="o">=</span> <span class="n">spinor_basis</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">OverlapOperator</span><span class="p">())</span>
+<span class="n">sq_hamiltonian</span> <span class="o">=</span> <span class="n">spinor_basis</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">FQMolecularHamiltonian</span><span class="p">(</span><span class="n">molecule</span><span class="p">))</span>
 
 <span class="n">environment</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">RHFSCFEnvironment_d</span><span class="o">.</span><span class="n">WithCoreGuess</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">sq_hamiltonian</span><span class="p">,</span> <span class="n">S</span><span class="p">)</span>
 <span class="n">solver</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">RHFSCFSolver_d</span><span class="o">.</span><span class="n">Plain</span><span class="p">()</span>
@@ -657,7 +657,7 @@
 </div>
 </div>
 </div>
-<div class="section" id="dense-doci-calculations">
+<div class="tex2jax_ignore mathjax_ignore section" id="dense-doci-calculations">
 <h1>Dense DOCI calculations<a class="headerlink" href="#dense-doci-calculations" title="Permalink to this headline">¶</a></h1>
 <p>For FCI, we would create the full spin-resolved ONV basis. For DOCI, we need the full seniority-zero ONV basis.</p>
 <div class="cell docutils container">
@@ -670,24 +670,8 @@
 <p>The subsequent steps are very analogous. We create a solver and associated environment, and use the CI QCMethod to find the optimal parameters and energies.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">solver</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">EigenproblemSolver</span><span class="o">.</span><span class="n">Dense</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">solver</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">EigenproblemSolver</span><span class="o">.</span><span class="n">Dense_d</span><span class="p">()</span>
 <span class="n">environment</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">CIEnvironment</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">sq_hamiltonian</span><span class="p">,</span> <span class="n">onv_basis</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">15</span><span class="o">-</span><span class="n">d53aa326fa4e</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">solver</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">EigenproblemSolver</span><span class="o">.</span><span class="n">Dense</span><span class="p">()</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">environment</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">CIEnvironment</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">sq_hamiltonian</span><span class="p">,</span> <span class="n">onv_basis</span><span class="p">)</span>
-
-<span class="ne">TypeError</span>: Dense(): incompatible function arguments. The following argument types are supported:
-<span class="g g-Whitespace">    </span><span class="mi">1</span><span class="o">.</span> <span class="p">(</span><span class="n">hamiltonian</span><span class="p">:</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">RSQHamiltonian_d</span><span class="p">,</span> <span class="n">onv_basis</span><span class="p">:</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">SpinResolvedONVBasis</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">EigenproblemEnvironment</span>
-<span class="g g-Whitespace">    </span><span class="mi">2</span><span class="o">.</span> <span class="p">(</span><span class="n">hamiltonian</span><span class="p">:</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">USQHamiltonian_d</span><span class="p">,</span> <span class="n">onv_basis</span><span class="p">:</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">SpinResolvedONVBasis</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">EigenproblemEnvironment</span>
-<span class="g g-Whitespace">    </span><span class="mi">3</span><span class="o">.</span> <span class="p">(</span><span class="n">hamiltonian</span><span class="p">:</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">HubbardHamiltonian</span><span class="p">,</span> <span class="n">onv_basis</span><span class="p">:</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">SpinResolvedONVBasis</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">EigenproblemEnvironment</span>
-
-<span class="n">Invoked</span> <span class="k">with</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">RSQHamiltonian_d</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7f106875c7f0</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">SeniorityZeroONVBasis</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7f10394aa630</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
@@ -707,7 +691,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.8515616052384685
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.8515616052384543
 </pre></div>
 </div>
 </div>
@@ -732,13 +716,13 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.1372759430764103
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.1372759430763961
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="section" id="davidson-doci-calculations">
+<div class="tex2jax_ignore mathjax_ignore section" id="davidson-doci-calculations">
 <h1>‘Davidson’ DOCI calculations<a class="headerlink" href="#davidson-doci-calculations" title="Permalink to this headline">¶</a></h1>
 <p>Here, we’ll use a Davidson solver to find the ground state parameters. Since this is an iterative procedure, we’ll have to supply an initial guess.</p>
 <div class="cell docutils container">
@@ -772,7 +756,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.8515616052384685
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.8515616052384543
 </pre></div>
 </div>
 </div>

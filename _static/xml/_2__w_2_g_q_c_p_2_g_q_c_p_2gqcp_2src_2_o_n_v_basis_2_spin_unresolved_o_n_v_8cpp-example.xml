@@ -221,6 +221,8 @@
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>text;<sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>string<sp/>that<sp/>will<sp/>contain<sp/>the<sp/>textual<sp/>representation<sp/>of<sp/>this<sp/>spin-unresolved<sp/>ONV.</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>boost::to_string(intermediate_bitset,<sp/>text);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>std::reverse(text.begin(),<sp/>text.end());<sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>bitstring<sp/>is<sp/>read<sp/>from<sp/>right<sp/>to<sp/>left,<sp/>but<sp/>we<sp/>return<sp/>it<sp/>from<sp/>left<sp/>to<sp/>right<sp/>for<sp/>easier<sp/>reading.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>text;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>

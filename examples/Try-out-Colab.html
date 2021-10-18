@@ -212,7 +212,7 @@
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -615,7 +615,7 @@
         
               <div>
                 
-  <div class="section" id="try-out-gqcp-the-ghent-quantum-chemistry-package">
+  <div class="tex2jax_ignore mathjax_ignore section" id="try-out-gqcp-the-ghent-quantum-chemistry-package">
 <h1>Try out GQCP: the Ghent Quantum Chemistry Package<a class="headerlink" href="#try-out-gqcp-the-ghent-quantum-chemistry-package" title="Permalink to this headline">¶</a></h1>
 <p>Welcome to the try-it-out Notebook that we’ve set up to guide you through your first developer steps with GQCP.</p>
 <div class="section" id="setup">
@@ -724,7 +724,7 @@
         
         <span class="c1"># Let&#39;s start by creating the (second-quantized) molecular Hamiltonian in the basis of the AOs.</span>
         <span class="n">spin_orbital_basis</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">RSpinOrbitalBasis_d</span><span class="p">(</span><span class="n">molecule</span><span class="p">,</span> <span class="n">basis_set</span><span class="p">)</span>  <span class="c1"># Generate the spin-orbital basis for the molecule in the given basis set. The suffix &#39;_d&#39; is needed for real-valued calculations.</span>
-        <span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">RSQHamiltonian_d</span><span class="o">.</span><span class="n">Molecular</span><span class="p">(</span><span class="n">spin_orbital_basis</span><span class="p">,</span> <span class="n">molecule</span><span class="p">)</span>  <span class="c1"># Create a second-quantized molecular in the previously set up spin-orbital basis. Note that the Hamiltonian is expressed in the non-orthogonal basis of the AOs.</span>
+        <span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">spin_orbital_basis</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">FQMolecularHamiltonian</span><span class="p">(</span><span class="n">molecule</span><span class="p">))</span>  <span class="c1"># Create a second-quantized molecular in the previously set up spin-orbital basis. Note that the Hamiltonian is expressed in the non-orthogonal basis of the AOs.</span>
         
         <span class="c1"># For RHF SCF (self-consistent field), we need a solver and an objective. We&#39;ll also have to set up a calculation environment.</span>
         <span class="n">N</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">numberOfElectrons</span><span class="p">()</span>
@@ -761,7 +761,7 @@
         <span class="c1"># We&#39;ll start by setting up the molecular Hamiltonian quantized in an orthonormal spin-orbital basis. We could use the RHF MOs, but since we&#39;re doing full CI, we might as well just use the Löwdin basis (S^{-1/2}).</span>
         <span class="n">spin_orbital_basis</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">RSpinOrbitalBasis_d</span><span class="p">(</span><span class="n">molecule</span><span class="p">,</span> <span class="n">basis_set</span><span class="p">)</span>  <span class="c1"># Generate the initial spin-orbital basis for the molecule in the given basis set.</span>
         <span class="n">spin_orbital_basis</span><span class="o">.</span><span class="n">lowdinOrthonormalize</span><span class="p">()</span>
-        <span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">RSQHamiltonian_d</span><span class="o">.</span><span class="n">Molecular</span><span class="p">(</span><span class="n">spin_orbital_basis</span><span class="p">,</span> <span class="n">molecule</span><span class="p">)</span>
+        <span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">spin_orbital_basis</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">FQMolecularHamiltonian</span><span class="p">(</span><span class="n">molecule</span><span class="p">))</span>
 
         <span class="c1"># For an FCI calculation, we have to set up the complete ONV (occupation number vector) basis.</span>
         <span class="n">K</span> <span class="o">=</span> <span class="n">spin_orbital_basis</span><span class="o">.</span><span class="n">numberOfSpatialOrbitals</span><span class="p">()</span>

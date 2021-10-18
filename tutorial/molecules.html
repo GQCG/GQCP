@@ -590,7 +590,7 @@
         
               <div>
                 
-  <div class="section" id="molecules">
+  <div class="tex2jax_ignore mathjax_ignore section" id="molecules">
 <h1>Molecules<a class="headerlink" href="#molecules" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="constructing-molecules">
 <h2>Constructing molecules<a class="headerlink" href="#constructing-molecules" title="Permalink to this headline">¶</a></h2>
@@ -616,8 +616,8 @@
 </pre></div>
 </div>
 <!--C++-->
-<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="k">auto</span> <span class="n">water_molecule</span> <span class="o">=</span> <span class="n">GQCP</span><span class="o">::</span><span class="n">Molecule</span><span class="o">::</span><span class="n">ReadXYZ</span><span class="p">(</span><span class="s">&quot;data/h2o.xyz&quot;</span><span class="p">);</span>  <span class="c1">// creates a neutral molecule</span>
-<span class="k">const</span> <span class="k">auto</span> <span class="n">water_cation</span> <span class="o">=</span> <span class="n">GQCP</span><span class="o">::</span><span class="n">Molecule</span><span class="o">::</span><span class="n">ReadXYZ</span><span class="p">(</span><span class="s">&quot;data/h2o.xyz&quot;</span><span class="p">,</span> <span class="mi">-1</span><span class="p">);</span>  <span class="c1">// creates a charged ion</span>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">water_molecule</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GQCP</span><span class="o">::</span><span class="n">Molecule</span><span class="o">::</span><span class="n">ReadXYZ</span><span class="p">(</span><span class="s">&quot;data/h2o.xyz&quot;</span><span class="p">);</span><span class="w">  </span><span class="c1">// creates a neutral molecule</span>
+<span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">water_cation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GQCP</span><span class="o">::</span><span class="n">Molecule</span><span class="o">::</span><span class="n">ReadXYZ</span><span class="p">(</span><span class="s">&quot;data/h2o.xyz&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">);</span><span class="w">  </span><span class="c1">// creates a charged ion</span>
 </pre></div>
 </div>
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -632,7 +632,7 @@
 </pre></div>
 </div>
 <!--C++-->
-<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="k">auto</span> <span class="n">h3_chain</span> <span class="o">=</span> <span class="n">GQCP</span><span class="o">::</span><span class="n">Molecule</span><span class="o">::</span><span class="n">HChain</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">);</span>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">h3_chain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GQCP</span><span class="o">::</span><span class="n">Molecule</span><span class="o">::</span><span class="n">HChain</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -643,7 +643,7 @@
 </pre></div>
 </div>
 <!--C++-->
-<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="k">auto</span> <span class="n">double_h2_chain</span> <span class="o">=</span> <span class="n">GQCP</span><span class="o">::</span><span class="n">Molecule</span><span class="o">::</span><span class="n">H2Chain</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">);</span>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">double_h2_chain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GQCP</span><span class="o">::</span><span class="n">Molecule</span><span class="o">::</span><span class="n">H2Chain</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.5</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -655,7 +655,7 @@
 </pre></div>
 </div>
 <!--C++-->
-<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="k">auto</span> <span class="n">h3_ring</span> <span class="o">=</span> <span class="n">GQCP</span><span class="o">::</span><span class="n">Molecule</span><span class="o">::</span><span class="n">HRingFromRadius</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">);</span>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">h3_ring</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GQCP</span><span class="o">::</span><span class="n">Molecule</span><span class="o">::</span><span class="n">HRingFromRadius</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -666,7 +666,7 @@
 </pre></div>
 </div>
 <!--C++-->
-<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="k">auto</span> <span class="n">h4_ring</span> <span class="o">=</span> <span class="n">GQCP</span><span class="o">::</span><span class="n">Molecule</span><span class="o">::</span><span class="n">HRingFromDistance</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">);</span>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">h4_ring</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GQCP</span><span class="o">::</span><span class="n">Molecule</span><span class="o">::</span><span class="n">HRingFromDistance</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -681,7 +681,7 @@
 </pre></div>
 </div>
 <!--C++-->
-<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="n">GQCP</span><span class="o">::</span><span class="n">Nucleus</span> <span class="n">nucleus</span> <span class="p">{</span><span class="mi">7</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">};</span>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">GQCP</span><span class="o">::</span><span class="n">Nucleus</span><span class="w"> </span><span class="n">nucleus</span><span class="w"> </span><span class="p">{</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">};</span><span class="w"></span>
 </pre></div>
 </div>
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -701,15 +701,15 @@
 </div>
 <!--C++-->
 <div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Here is the explicit code.</span>
-<span class="k">const</span> <span class="n">GQCP</span><span class="o">::</span><span class="n">Nucleus</span> <span class="n">N_1</span> <span class="p">{</span><span class="mi">7</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">};</span>
-<span class="k">const</span> <span class="n">GQCP</span><span class="o">::</span><span class="n">Nucleus</span> <span class="n">N_2</span> <span class="p">{</span><span class="mi">7</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">};</span>
-<span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">GQCP</span><span class="o">::</span><span class="n">Nucleus</span><span class="o">&gt;</span> <span class="n">nuclei</span> <span class="p">{</span><span class="n">N_1</span><span class="p">,</span> <span class="n">N_2</span><span class="p">};</span>
+<span class="k">const</span><span class="w"> </span><span class="n">GQCP</span><span class="o">::</span><span class="n">Nucleus</span><span class="w"> </span><span class="n">N_1</span><span class="w"> </span><span class="p">{</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">};</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="n">GQCP</span><span class="o">::</span><span class="n">Nucleus</span><span class="w"> </span><span class="n">N_2</span><span class="w"> </span><span class="p">{</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">};</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">GQCP</span><span class="o">::</span><span class="n">Nucleus</span><span class="o">&gt;</span><span class="w"> </span><span class="n">nuclei</span><span class="w"> </span><span class="p">{</span><span class="n">N_1</span><span class="p">,</span><span class="w"> </span><span class="n">N_2</span><span class="p">};</span><span class="w"></span>
 
-<span class="k">const</span> <span class="n">GQCP</span><span class="o">::</span><span class="n">Molecule</span> <span class="n">molecule</span> <span class="p">{</span><span class="n">nuclei</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+<span class="k">const</span><span class="w"> </span><span class="n">GQCP</span><span class="o">::</span><span class="n">Molecule</span><span class="w"> </span><span class="n">molecule</span><span class="w"> </span><span class="p">{</span><span class="n">nuclei</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">};</span><span class="w"></span>
 
 
 <span class="c1">// Here&#39;s a simple one-liner.</span>
-<span class="k">const</span> <span class="n">GQCP</span><span class="o">::</span><span class="n">Molecule</span> <span class="n">molecule</span> <span class="p">{{{</span><span class="mi">7</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">},</span> <span class="p">{</span><span class="mi">7</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">}},</span> <span class="mi">0</span><span class="p">};</span>
+<span class="k">const</span><span class="w"> </span><span class="n">GQCP</span><span class="o">::</span><span class="n">Molecule</span><span class="w"> </span><span class="n">molecule</span><span class="w"> </span><span class="p">{{{</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">}},</span><span class="w"> </span><span class="mi">0</span><span class="p">};</span><span class="w"></span>
 </pre></div>
 </div>
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -724,7 +724,7 @@
 </pre></div>
 </div>
 <!--C++-->
-<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">molecule</span><span class="p">.</span><span class="n">description</span><span class="p">();</span>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">molecule</span><span class="p">.</span><span class="n">description</span><span class="p">();</span><span class="w"></span>
 </pre></div>
 </div>
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -739,8 +739,8 @@
 </pre></div>
 </div>
 <!--C++-->
-<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="k">auto</span> <span class="n">N</span> <span class="o">=</span> <span class="n">molecule</span><span class="p">.</span><span class="n">numberOfElectrons</span><span class="p">();</span>
-<span class="k">const</span> <span class="k">auto</span> <span class="n">N_P</span> <span class="o">=</span> <span class="n">molecule</span><span class="p">.</span><span class="n">numberOfElectronPairs</span><span class="p">();</span>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">molecule</span><span class="p">.</span><span class="n">numberOfElectrons</span><span class="p">();</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">N_P</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">molecule</span><span class="p">.</span><span class="n">numberOfElectronPairs</span><span class="p">();</span><span class="w"></span>
 </pre></div>
 </div>
 <!--END_DOCUSAURUS_CODE_TABS-->

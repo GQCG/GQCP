@@ -573,7 +573,7 @@
         
               <div>
                 
-  <div class="section" id="orbital-bases">
+  <div class="tex2jax_ignore mathjax_ignore section" id="orbital-bases">
 <h1>Orbital bases<a class="headerlink" href="#orbital-bases" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="creating-an-orbital-basis">
 <h2>Creating an orbital basis<a class="headerlink" href="#creating-an-orbital-basis" title="Permalink to this headline">¶</a></h2>
@@ -585,7 +585,7 @@
 </pre></div>
 </div>
 <!--C++-->
-<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="n">GQCP</span><span class="o">::</span><span class="n">RSpinOrbitalBasis</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="n">GQCP</span><span class="o">::</span><span class="n">GTOShell</span><span class="o">&gt;</span> <span class="n">spinor_basis</span> <span class="p">{</span><span class="n">molecule</span><span class="p">,</span> <span class="s">&quot;STO-3G&quot;</span><span class="p">};</span>  <span class="c1">// note that you have to specify the type of shell that underlies this spin-orbital basis</span>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">GQCP</span><span class="o">::</span><span class="n">RSpinOrbitalBasis</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span><span class="w"> </span><span class="n">GQCP</span><span class="o">::</span><span class="n">GTOShell</span><span class="o">&gt;</span><span class="w"> </span><span class="n">spinor_basis</span><span class="w"> </span><span class="p">{</span><span class="n">molecule</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;STO-3G&quot;</span><span class="p">};</span><span class="w">  </span><span class="c1">// note that you have to specify the type of shell that underlies this spin-orbital basis</span>
 </pre></div>
 </div>
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -612,11 +612,11 @@
 </pre></div>
 </div>
 <!--C++-->
-<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="k">auto</span> <span class="n">S</span> <span class="o">=</span> <span class="n">spinor_basis</span><span class="p">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">GQCP</span><span class="o">::</span><span class="n">OverlapOperator</span><span class="p">());</span>
-<span class="k">const</span> <span class="k">auto</span> <span class="n">T</span> <span class="o">=</span> <span class="n">spinor_basis</span><span class="p">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">GQCP</span><span class="o">::</span><span class="n">KineticOperator</span><span class="p">());</span>
-<span class="k">const</span> <span class="k">auto</span> <span class="n">V</span> <span class="o">=</span> <span class="n">spinor_basis</span><span class="p">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">GQCP</span><span class="o">::</span><span class="n">NuclearAttractionOperator</span><span class="p">(</span><span class="n">molecule</span><span class="p">.</span><span class="n">nuclearFramework</span><span class="p">()));</span>  <span class="c1">// the nuclear attraction operator is defined with respect to the molecule&#39;s nuclear framework</span>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spinor_basis</span><span class="p">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">GQCP</span><span class="o">::</span><span class="n">OverlapOperator</span><span class="p">());</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spinor_basis</span><span class="p">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">GQCP</span><span class="o">::</span><span class="n">KineticOperator</span><span class="p">());</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">V</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spinor_basis</span><span class="p">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">GQCP</span><span class="o">::</span><span class="n">NuclearAttractionOperator</span><span class="p">(</span><span class="n">molecule</span><span class="p">.</span><span class="n">nuclearFramework</span><span class="p">()));</span><span class="w">  </span><span class="c1">// the nuclear attraction operator is defined with respect to the molecule&#39;s nuclear framework</span>
 
-<span class="k">const</span> <span class="k">auto</span> <span class="n">g</span> <span class="o">=</span> <span class="n">spinor_basis</span><span class="p">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">GQCP</span><span class="o">::</span><span class="n">CoulombRepulsionOperator</span><span class="p">());</span>
+<span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spinor_basis</span><span class="p">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">GQCP</span><span class="o">::</span><span class="n">CoulombRepulsionOperator</span><span class="p">());</span><span class="w"></span>
 </pre></div>
 </div>
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -631,11 +631,11 @@
 </pre></div>
 </div>
 <!--C++-->
-<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="k">auto</span> <span class="n">S</span> <span class="o">=</span> <span class="n">S_op</span><span class="p">.</span><span class="n">parameters</span><span class="p">();</span>
-<span class="k">const</span> <span class="k">auto</span> <span class="n">T</span> <span class="o">=</span> <span class="n">T_op</span><span class="p">.</span><span class="n">parameters</span><span class="p">();</span>
-<span class="k">const</span> <span class="k">auto</span> <span class="n">V</span> <span class="o">=</span> <span class="n">V_op</span><span class="p">.</span><span class="n">parameters</span><span class="p">();</span>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">S_op</span><span class="p">.</span><span class="n">parameters</span><span class="p">();</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T_op</span><span class="p">.</span><span class="n">parameters</span><span class="p">();</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">V</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">V_op</span><span class="p">.</span><span class="n">parameters</span><span class="p">();</span><span class="w"></span>
 
-<span class="k">const</span> <span class="k">auto</span> <span class="n">g</span> <span class="o">=</span> <span class="n">g_op</span><span class="p">.</span><span class="n">parameters</span><span class="p">();</span>
+<span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_op</span><span class="p">.</span><span class="n">parameters</span><span class="p">();</span><span class="w"></span>
 </pre></div>
 </div>
 <!--END_DOCUSAURUS_CODE_TABS-->

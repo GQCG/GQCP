@@ -617,7 +617,7 @@
 </div>
 </div>
 </div>
-<div class="section" id="onv-path-manipulation">
+<div class="tex2jax_ignore mathjax_ignore section" id="onv-path-manipulation">
 <h1>ONV path manipulation<a class="headerlink" href="#onv-path-manipulation" title="Permalink to this headline">¶</a></h1>
 <p>An ONV, or occupation number vector, is a crucial element in Full CI calculations. In this example notebook we will show you how you can use gqcpy to create and manipulate ONV paths.</p>
 <div class="section" id="the-onv-basis">
@@ -812,17 +812,7 @@ The first step is to annihilate the electron on occupied index 0. This means we 
 <p>This gives raise to a problem. As you can see in the figure, index 2 is a occupied orbital. This means we can’t create an electron there. Luckily there is a solution for this. We can simply shift the diagonal arc to the left.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ONV_path</span><span class="o">.</span><span class="n">leftTranslate</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">22</span><span class="o">-</span><span class="n">b491d54a8332</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">ONV_path</span><span class="o">.</span><span class="n">leftTranslate</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-
-<span class="ne">AttributeError</span>: &#39;gqcpy.ONVPath_SpinUnresolved&#39; object has no attribute &#39;leftTranslate&#39;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ONV_path</span><span class="o">.</span><span class="n">leftTranslateDiagonalArc</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -836,7 +826,7 @@ The first step is to annihilate the electron on occupied index 0. This means we 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
 </pre></div>
 </div>
 </div>
@@ -848,7 +838,7 @@ The first step is to annihilate the electron on occupied index 0. This means we 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1
 </pre></div>
 </div>
 </div>
@@ -861,24 +851,14 @@ The first step is to annihilate the electron on occupied index 0. This means we 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ONV_path</span><span class="o">.</span><span class="n">leftTranslate</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">26</span><span class="o">-</span><span class="mi">0</span><span class="n">c1b0a813ec2</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">ONV_path</span><span class="o">.</span><span class="n">leftTranslate</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-
-<span class="ne">AttributeError</span>: &#39;gqcpy.ONVPath_SpinUnresolved&#39; object has no attribute &#39;leftTranslate&#39;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ONV_path</span><span class="o">.</span><span class="n">leftTranslateDiagonalArc</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -892,7 +872,7 @@ The first step is to annihilate the electron on occupied index 0. This means we 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
 </pre></div>
 </div>
 </div>
@@ -917,7 +897,7 @@ The first step is to annihilate the electron on occupied index 0. This means we 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
 </pre></div>
 </div>
 </div>
@@ -939,7 +919,7 @@ The first step is to annihilate the electron on occupied index 0. This means we 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9
 </pre></div>
 </div>
 </div>
@@ -947,6 +927,11 @@ The first step is to annihilate the electron on occupied index 0. This means we 
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ONV_path</span><span class="o">.</span><span class="n">sign</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
 </pre></div>
 </div>
 </div>
@@ -989,17 +974,7 @@ The first step is to annihilate the electron on occupied index 0. This means we 
 <p>Now, let’s automate the procedure of shifting towards the next unoccupied orbital.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_ONV_path</span><span class="o">.</span><span class="n">leftTranslateUntilVertical</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">35</span><span class="o">-</span><span class="mi">22912</span><span class="n">bfb490a</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">new_ONV_path</span><span class="o">.</span><span class="n">leftTranslateUntilVertical</span><span class="p">()</span>
-
-<span class="ne">AttributeError</span>: &#39;gqcpy.ONVPath_SpinUnresolved&#39; object has no attribute &#39;leftTranslateUntilVertical&#39;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_ONV_path</span><span class="o">.</span><span class="n">leftTranslateDiagonalArcUntilVerticalArc</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1011,7 +986,7 @@ The first step is to annihilate the electron on occupied index 0. This means we 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
 </pre></div>
 </div>
 </div>
@@ -1045,7 +1020,7 @@ The first step is to annihilate the electron on occupied index 0. This means we 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9
 </pre></div>
 </div>
 </div>
@@ -1062,14 +1037,8 @@ The first step is to annihilate the electron on occupied index 0. This means we 
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Or</span> <span class="n">visually</span><span class="p">:</span>
-<span class="o">![</span>ONVPath_00111.png<span class="o">](</span>../img/ONVPath_00111.png<span class="o">)</span>
-</pre></div>
-</div>
-</div>
-</div>
+<p>Or visually:
+<img alt="ONVPath_00111.png" src="../_images/ONVPath_00111.png" /></p>
 </div>
 </div>
 

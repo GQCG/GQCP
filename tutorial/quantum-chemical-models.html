@@ -598,7 +598,7 @@
         
               <div>
                 
-  <div class="section" id="quantum-chemical-models">
+  <div class="tex2jax_ignore mathjax_ignore section" id="quantum-chemical-models">
 <h1>Quantum chemical models<a class="headerlink" href="#quantum-chemical-models" title="Permalink to this headline">¶</a></h1>
 <p>In GQCP, a quantum chemical <a class="reference external" href="https://gqcg-res.github.io/knowdes/wave-function-models.html">(wave function) model</a> is defined to be a parametrization of a certain kind of wave function. To encapsulate the optimizable parameters related to a certain quantum chemical method, we currently provide the following models:</p>
 <ul class="simple">
@@ -626,13 +626,13 @@
 </pre></div>
 </div>
 <!--C++-->
-<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="k">auto</span> <span class="n">D</span> <span class="o">=</span> <span class="n">linear_expansion</span><span class="p">.</span><span class="n">calculate1DM</span><span class="p">();</span>
-<span class="k">const</span> <span class="k">auto</span> <span class="n">d</span> <span class="o">=</span> <span class="n">linear_expansion</span><span class="p">.</span><span class="n">calculate2DM</span><span class="p">();</span>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">linear_expansion</span><span class="p">.</span><span class="n">calculate1DM</span><span class="p">();</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">linear_expansion</span><span class="p">.</span><span class="n">calculate2DM</span><span class="p">();</span><span class="w"></span>
 </pre></div>
 </div>
 <p>If the underlying ONV basis is spin-resolved, the C++ library also offers the alpha and beta components.</p>
-<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="k">auto</span> <span class="n">D_spin_resolved</span> <span class="o">=</span> <span class="n">linear_expansion</span><span class="p">.</span><span class="n">calculateSpinResolved1DM</span><span class="p">();</span>
-<span class="k">const</span> <span class="k">auto</span> <span class="n">d_spin_resolved</span> <span class="o">=</span> <span class="n">linear_expansion</span><span class="p">.</span><span class="n">calculateSpinResolved2DM</span><span class="p">();</span>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">D_spin_resolved</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">linear_expansion</span><span class="p">.</span><span class="n">calculateSpinResolved1DM</span><span class="p">();</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">d_spin_resolved</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">linear_expansion</span><span class="p">.</span><span class="n">calculateSpinResolved2DM</span><span class="p">();</span><span class="w"></span>
 </pre></div>
 </div>
 <!--END_DOCUSAURUS_CODE_TABS-->

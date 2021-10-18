@@ -567,6 +567,29 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#molecular-setup">
+   Molecular setup
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-a-grid">
+   Create a grid
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#set-up-an-rhf-calculation">
+   Set up an RHF calculation
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -575,7 +598,7 @@
         
               <div>
                 
-  <div class="section" id="the-ipsocentric-magnetic-inducibility">
+  <div class="tex2jax_ignore mathjax_ignore section" id="the-ipsocentric-magnetic-inducibility">
 <h1>The ipsocentric magnetic inducibility<a class="headerlink" href="#the-ipsocentric-magnetic-inducibility" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -591,6 +614,8 @@
 </div>
 </div>
 </div>
+<div class="section" id="molecular-setup">
+<h2>Molecular setup<a class="headerlink" href="#molecular-setup" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">molecule</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">Molecule</span><span class="o">.</span><span class="n">HChain</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
@@ -607,6 +632,9 @@ H  (0, 0, 1)
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="create-a-grid">
+<h2>Create a grid<a class="headerlink" href="#create-a-grid" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">origin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">2.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">])</span>
@@ -618,6 +646,9 @@ H  (0, 0, 1)
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="set-up-an-rhf-calculation">
+<h2>Set up an RHF calculation<a class="headerlink" href="#set-up-an-rhf-calculation" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spin_orbital_basis</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">RSpinOrbitalBasis_d</span><span class="p">(</span><span class="n">molecule</span><span class="p">,</span> <span class="s2">&quot;STO-3G&quot;</span><span class="p">)</span>
@@ -878,6 +909,7 @@ H  (0, 0, 1)
   [ 0.000000e+00+0.j  9.056225e-04+0.j  0.000000e+00+0.j]
   [ 0.000000e+00+0.j -3.270967e-03+0.j  0.000000e+00+0.j]]]
 </pre></div>
+</div>
 </div>
 </div>
 </div>
