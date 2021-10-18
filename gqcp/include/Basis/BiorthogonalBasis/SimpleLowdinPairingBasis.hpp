@@ -262,7 +262,7 @@ public:
 
 
     /**
-     * Calculate the reduced overlap. I.e. The biorthogonal overlaps with the zero values get removed and the total remaining overlap is calculated.
+     * Calculate the reduced overlap. I.e. the biorthogonal overlaps with the zero values get removed and the total remaining overlap is calculated.
      *
      * @return The reduced overlap.
      */
@@ -294,7 +294,7 @@ public:
     std::vector<size_t> zeroOverlapIndices() const {
 
         // Initialize the index vector.
-        std::vector<int> zero_indices {};
+        std::vector<size_t> zero_indices {};
 
         // Check all overlap values and push the index to the index vector if the overlap value is zero.
         for (size_t i = 0; i < this->biorthogonalOverlaps().rows(); i++) {
