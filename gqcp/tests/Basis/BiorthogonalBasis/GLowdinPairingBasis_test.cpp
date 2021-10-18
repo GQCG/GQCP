@@ -154,7 +154,7 @@ BOOST_AUTO_TEST_CASE(overlap_metrics) {
     // Initialize an empty reference vector, since there are no zero overlap values in this case.
     std::vector<int> zero_indices_ref {};
 
-    // Check the overlap metrics calculated by the LowdinPairingBasis.
+    // Check the overlap metrics calculated by the `LowdinPairingBasis'.
     BOOST_CHECK(std::abs(0.7834843312747031 - lowdin_pairing_basis.totalOverlap()) < 1e-6);
     BOOST_CHECK(std::abs(0.7834843312747031 - lowdin_pairing_basis.reducedOverlap()) < 1e-6);
     BOOST_CHECK_EQUAL(lowdin_pairing_basis.numberOfZeroOverlaps(), 0);

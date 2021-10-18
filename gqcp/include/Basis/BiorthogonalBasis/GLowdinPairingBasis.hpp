@@ -33,7 +33,7 @@ namespace GQCP {
 
 
 /**
- *  A type used to represent a Lowdin pairing basis, generated from a set of generalized expansion coefficients.
+ *  A type used to represent a Löwdin pairing basis, generated from a set of generalized expansion coefficients.
  * 
  *  @tparam _Scalar                 The scalar type used for the expansion coefficients: real or complex.
  */
@@ -59,7 +59,7 @@ public:
  */
 
 /**
- *  A type that provides compile-time information on lowdin pairing bases that is otherwise not accessible through a public class alias.
+ *  A type that provides compile-time information on Löwdin pairing bases that is otherwise not accessible through a public class alias.
  */
 template <typename _Scalar>
 struct LowdinPairingBasisTraits<GLowdinPairingBasis<_Scalar>> {
@@ -69,7 +69,7 @@ struct LowdinPairingBasisTraits<GLowdinPairingBasis<_Scalar>> {
     // The type of transformation that is naturally related to a `GLowdinPairingBasis`.
     using Transformation = GTransformation<Scalar>;
 
-    // The second-quantized representation of the overlap operator related to the Lowdin pairing basis.
+    // The second-quantized representation of the overlap operator related to the Löwdin pairing basis.
     using SQOverlapOperator = ScalarGSQOneElectronOperator<Scalar>;
 
     // The type of matrix naturally associated with a `GLowdinPairingBasis`.

@@ -35,7 +35,7 @@ namespace GQCP {
  */
 
 /**
- *  A type that encapsulates biorthogonal Lowdin pairing basis, split in its alpha and beta components.
+ *  A type that encapsulates biorthogonal Löwdin pairing basis, split in its alpha and beta components.
  *
  *  @tparam _Scalar         The scalar type used for the expansion coefficients: real or complex.
  */
@@ -80,7 +80,7 @@ public:
      *  @param S_AO                                   The overlap operator in AO basis, constructed from the `USpinOrbitalBasis` used to calculate the non-orthogonal states.
      *  @param number_of_occupied_alpha_orbitals      The total number of occupied alpha orbitals in the system.
      *  @param number_of_occupied_beta_orbitals       The total number of occupied beta orbitals in the system.
-     *  @param threshold                              The threshold at which a value is verified to be zero or not. Default is 1e-8.
+     *  @param threshold                              The threshold at which a value is verified to be zero or not. The default is 1e-8.
      */
     ULowdinPairingBasis<Scalar>(const UTransformation<Scalar>& C_bra, const UTransformation<Scalar>& C_ket, const ScalarUSQOneElectronOperator<Scalar>& S_AO, const size_t number_of_occupied_alpha_orbitals, const size_t number_of_occupied_beta_orbitals, const double threshold = 1e-8) :
         ULowdinPairingBasis(ULowdinPairingBasisComponent<Scalar> {C_bra.alpha(), C_ket.alpha(), S_AO.alpha(), number_of_occupied_alpha_orbitals, threshold},
@@ -298,7 +298,7 @@ public:
      *
      * @return The co-density matrix at occupied orbital index k.
      *
-     * @note This implementation is based on equation 38b from the 2021 pper by Hugh Burton (https://aip.scitation.org/doi/abs/10.1063/5.0045442).
+     * @note This implementation is based on equation 38b from the 2021 paper by Hugh Burton (https://aip.scitation.org/doi/abs/10.1063/5.0045442).
      */
     SpinResolved1DM<Scalar> coDensity(const int k) const {
         return SpinResolved1DM<Scalar> {SpinResolved1DMComponent<Scalar> {this->alpha().coDensity(k).matrix()}, SpinResolved1DMComponent<Scalar> {this->beta().coDensity(k).matrix()}};
@@ -310,7 +310,7 @@ public:
      *
      * @return The sum of the co-density matrices.
      *
-     * @note This implementation is based on equation 38d from the 2021 pper by Hugh Burton (https://aip.scitation.org/doi/abs/10.1063/5.0045442).
+     * @note This implementation is based on equation 38d from the 2021 paper by Hugh Burton (https://aip.scitation.org/doi/abs/10.1063/5.0045442).
      */
     SpinResolved1DM<Scalar> coDensitySum() const { return SpinResolved1DM<Scalar> {SpinResolved1DMComponent<Scalar> {this->alpha().coDensitySum().matrix()}, SpinResolved1DMComponent<Scalar> {this->beta().coDensitySum().matrix()}}; }
 
@@ -320,7 +320,7 @@ public:
      *
      * @return The transition one-electron density matrix.
      *
-     * @note This implementation is based on equation 45 from the 2021 pper by Hugh Burton (https://aip.scitation.org/doi/abs/10.1063/5.0045442).
+     * @note This implementation is based on equation 45 from the 2021 paper by Hugh Burton (https://aip.scitation.org/doi/abs/10.1063/5.0045442).
      */
     SpinResolved1DM<Scalar> transition1DM() const { return SpinResolved1DM<Scalar> {SpinResolved1DMComponent<Scalar> {this->alpha().transition1DM().matrix()}, SpinResolved1DMComponent<Scalar> {this->beta().transition1DM().matrix()}}; }
 
@@ -331,7 +331,7 @@ public:
      *
      * @return The weighted co-density matrix.
      *
-     * @note This implementation is based on equation 38c from the 2021 pper by Hugh Burton (https://aip.scitation.org/doi/abs/10.1063/5.0045442).
+     * @note This implementation is based on equation 38c from the 2021 paper by Hugh Burton (https://aip.scitation.org/doi/abs/10.1063/5.0045442).
      */
     SpinResolved1DM<Scalar> weightedCoDensity() const { return SpinResolved1DM<Scalar> {SpinResolved1DMComponent<Scalar> {this->alpha().weightedCoDensity().matrix()}, SpinResolved1DMComponent<Scalar> {this->beta().weightedCoDensity().matrix()}}; }
 
@@ -341,7 +341,7 @@ public:
      *
      * @return The zero overlap co-density matrix.
      *
-     * @note This implementation is based on equation 38a from the 2021 pper by Hugh Burton (https://aip.scitation.org/doi/abs/10.1063/5.0045442).
+     * @note This implementation is based on equation 38a from the 2021 paper by Hugh Burton (https://aip.scitation.org/doi/abs/10.1063/5.0045442).
      */
     SpinResolved1DM<Scalar> zeroOverlapCoDensity() const { return SpinResolved1DM<Scalar> {SpinResolved1DMComponent<Scalar> {this->alpha().zeroOverlapCoDensity().matrix()}, SpinResolved1DMComponent<Scalar> {this->beta().zeroOverlapCoDensity().matrix()}}; }
 };

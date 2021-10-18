@@ -83,7 +83,7 @@ BOOST_AUTO_TEST_CASE(constructor) {
     BOOST_CHECK(lowdin_pairing_basis.biorthogonalBraExpansion().isApprox(biorthogonal_bra_reference, 1e-6));
     BOOST_CHECK(lowdin_pairing_basis.biorthogonalKetExpansion().isApprox(biorthogonal_ket_reference, 1e-6));
 
-    // Due to the dimensions of the problem, there is only one biorthogonal overla calculated. Since it is stored in a vector, we can compare it to the reference value as follows.
+    // Due to the dimensions of the problem, there is only one biorthogonal overlap calculated. Since it is stored in a vector, we can compare it to the reference value as follows.
     BOOST_CHECK(std::abs(0.591737 - lowdin_pairing_basis.biorthogonalOverlaps()[0]) < 1e-6);
 }
 
@@ -146,7 +146,7 @@ BOOST_AUTO_TEST_CASE(density_matrices) {
     const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "6-31G"};
     const auto S_res = spin_orbital_basis.overlap();
 
-    // Initialize two non-orthogonal "Restricted states".
+    // Initialize two non-orthogonal "restricted states".
     GQCP::SquareMatrix<double> C_bra {4};
     // clang-format off
     C_bra << -0.07443693,  0.12036042, -0.13557067,  0.15517005,

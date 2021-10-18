@@ -59,7 +59,7 @@ public:
  */
 
 /**
- *  A type that provides compile-time information on lowdin pairing bases that is otherwise not accessible through a public class alias.
+ *  A type that provides compile-time information on Löwdin pairing bases that is otherwise not accessible through a public class alias.
  */
 template <typename _Scalar>
 struct LowdinPairingBasisTraits<RLowdinPairingBasis<_Scalar>> {
