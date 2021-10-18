@@ -34,7 +34,7 @@ BOOST_AUTO_TEST_CASE(constructor) {
     // It was for H2, at 2.5au internuclear distance for the 6-31G basis set.
     const auto molecule = GQCP::Molecule::HChain(2, 2.5, 0);  // H2, 2.5 bohr apart.
 
-    // The general spinor basis is also needed, as we require the overlap operator in AO basis.
+    // The unrestricted spin orbital basis is also needed, as we require the overlap operator in AO basis.
     const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "6-31G"};
     const auto S = spin_orbital_basis.overlap();
 
@@ -53,7 +53,7 @@ BOOST_AUTO_TEST_CASE(constructor) {
               0.25853403,  0.14539669,  0.17176599, -0.01126146,
               0.36597032,  0.28670189,  0.847938  , -0.13501526;
     // clang-format on
-    // Transform the matrices to the correct transformation type.
+    // Transform the matrices to the correct transformation type. We convert the restricted states to unrestricted transformations.
     const auto bra_expansion = GQCP::UTransformation<double>::FromRestricted(GQCP::RTransformation<double> {C_bra});
     const auto ket_expansion = GQCP::UTransformation<double>::FromRestricted(GQCP::RTransformation<double> {C_ket});
 
@@ -94,14 +94,14 @@ BOOST_AUTO_TEST_CASE(constructor) {
 
 
 /**
- *  Test whether the overlap metrics are working correctly in the `RLowdinPairingBasis`.
+ *  Test whether the overlap metrics are working correctly in the `ULowdinPairingBasis`.
  */
 BOOST_AUTO_TEST_CASE(overlap_metrics) {
    // This test case is taken from a python prototype from @lelemmen and @johdvos.
     // It was for H2, at 2.5au internuclear distance for the 6-31G basis set.
     const auto molecule = GQCP::Molecule::HChain(2, 2.5, 0);  // H2, 2.5 bohr apart.
 
-    // The general spinor basis is also needed, as we require the overlap operator in AO basis.
+    // The unrestricted spin orbital basis is also needed, as we require the overlap operator in AO basis.
     const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "6-31G"};
     const auto S = spin_orbital_basis.overlap();
 
@@ -120,11 +120,11 @@ BOOST_AUTO_TEST_CASE(overlap_metrics) {
               0.25853403,  0.14539669,  0.17176599, -0.01126146,
               0.36597032,  0.28670189,  0.847938  , -0.13501526;
     // clang-format on
-    // Transform the matrices to the correct transformation type.
+    // Transform the matrices to the correct transformation type. We convert the restricted states to unrestricted transformations.
     const auto bra_expansion = GQCP::UTransformation<double>::FromRestricted(GQCP::RTransformation<double> {C_bra});
     const auto ket_expansion = GQCP::UTransformation<double>::FromRestricted(GQCP::RTransformation<double> {C_ket});
 
-    // We can now initialize the biorthogonal Löwdin Pairing basis of these two states. Check whether the procedure doesn't throw any exceptions.
+    // We can now initialize the biorthogonal Löwdin Pairing basis of these two states.
     const auto lowdin_pairing_basis = GQCP::ULowdinPairingBasis<double>(bra_expansion, ket_expansion, S, molecule.numberOfElectronPairs(), molecule.numberOfElectronPairs());
 
     // Initialize an empty reference vector, since there are no zero overlap values in this case.
@@ -142,14 +142,14 @@ BOOST_AUTO_TEST_CASE(overlap_metrics) {
 
 
 /**
- *  Test whether the density matrices are working correctly in the `RLowdinPairingBasis`.
+ *  Test whether the density matrices are working correctly in the `ULowdinPairingBasis`.
  */
 BOOST_AUTO_TEST_CASE(density_matrices) {
     // This test case is taken from a python prototype from @lelemmen and @johdvos.
     // It was for H2, at 2.5au internuclear distance for the 6-31G basis set.
     const auto molecule = GQCP::Molecule::HChain(2, 2.5, 0);  // H2, 2.5 bohr apart.
 
-    // The general spinor basis is also needed, as we require the overlap operator in AO basis.
+    // The unrestricted spin orbital basis is also needed, as we require the overlap operator in AO basis.
     const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "6-31G"};
     const auto S = spin_orbital_basis.overlap();
 
@@ -168,13 +168,12 @@ BOOST_AUTO_TEST_CASE(density_matrices) {
               0.25853403,  0.14539669,  0.17176599, -0.01126146,
               0.36597032,  0.28670189,  0.847938  , -0.13501526;
     // clang-format on
-    // Transform the matrices to the correct transformation type.
+    // Transform the matrices to the correct transformation type. We convert the restricted states to unrestricted transformations.
     const auto bra_expansion = GQCP::UTransformation<double>::FromRestricted(GQCP::RTransformation<double> {C_bra});
     const auto ket_expansion = GQCP::UTransformation<double>::FromRestricted(GQCP::RTransformation<double> {C_ket});
 
-    // We can now initialize the biorthogonal Löwdin Pairing basis of these two states. Check whether the procedure doesn't throw any exceptions.
+    // We can now initialize the biorthogonal Löwdin Pairing basis of these two states.
     const auto lowdin_pairing_basis = GQCP::ULowdinPairingBasis<double>(bra_expansion, ket_expansion, S, molecule.numberOfElectronPairs(), molecule.numberOfElectronPairs());
-    BOOST_CHECK_NO_THROW(GQCP::ULowdinPairingBasis<double>(bra_expansion, ket_expansion, S, molecule.numberOfElectronPairs(), molecule.numberOfElectronPairs()));
 
     // Initialize a reference co-density matrix. Data taken from the implementation of @lelemmen and @johdvos.
     GQCP::SquareMatrix<double> ref_co_density {4};

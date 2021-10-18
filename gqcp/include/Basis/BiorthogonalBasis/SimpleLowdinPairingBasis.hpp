@@ -44,7 +44,7 @@ struct LowdinPairingBasisTraits {};
  */
 
 /**
- *  A Löwdin pairing basis formed from `GTransformation`s. Two given sets of expansion coefficients are bi-orthogonalised
+ *  A Löwdin pairing basis formed from two `R/U/GTransformation`s. Two given sets of expansion coefficients are bi-orthogonalised
  *
  *  @tparam _ExpansionScalar        The scalar type used to represent the expansion coefficients of the given non-orthogonal states: real or complex.
  */
@@ -90,7 +90,7 @@ protected:
     std::pair<Transformation, Transformation> non_orthogonal_state_expansions;
 
     // The expansion coefficients of the two biorthogonalized states. The element `first`corresponds to the biorthogonal bra expansion, the element `second` corresponds to the biorthogonal ket expansion.
-    // The expansion coefficients of the occupied biorthogonal states are saved as raw matrices instead of `GTransformation`s because they are not square.
+    // The expansion coefficients of the occupied biorthogonal states are saved as raw matrices instead of the corresponding `Transformation`s because they are not square.
     std::pair<Matrix, Matrix> occupied_biorthogonal_state_expansions;
 
     // The overlap operator in AO basis, constructed from the spinor/spin-orbital used to calculate the non-orthogonal states.
@@ -105,7 +105,7 @@ public:
      */
 
     /**
-     *  Create a `GLowdinPairingBasis` from two non-orthogonal states.
+     *  Create a `SimpleLowdinPairingBasis` from two non-orthogonal states.
      *
      *  @param C_bra                            The transformation that represents the expansion coefficients of the bra non-orthogonal state.
      *  @param C_ket                            The transformation that represents the expansion coefficients of the ket non-orthogonal state.
