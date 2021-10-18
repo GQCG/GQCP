@@ -195,6 +195,8 @@ public:
      */
 
     /**
+     * Return the biorthogonalized expansion coefficients of both the bra and the ket as a pair.
+     *
      * @return The biorthogonalized expansion coefficients.
      *
      * @note   Only the occupied expansion coefficients are biorthogonalized, so only these coefficients are returned.
@@ -202,6 +204,8 @@ public:
     const std::pair<Matrix, Matrix>& biorthogonalExpansion() const { return this->occupied_biorthogonal_state_expansions; }
 
     /**
+     * Return the biorthogonalized expansion coefficients of the bra.
+     *
      * @return The biorthogonalized expansion coefficients belonging to the bra.
      *
      * @note   Only the occupied expansion coefficients are biorthogonalized, so only these coefficients are returned.
@@ -209,6 +213,8 @@ public:
     const Matrix& biorthogonalBraExpansion() const { return this->biorthogonalExpansion().first; }
 
     /**
+     * Return the biorthogonalized expansion coefficients of the ket.
+     *
      * @return The biorthogonalized expansion coefficients belonging to the ket.
      *
      * @note   Only the occupied expansion coefficients are biorthogonalized, so only these coefficients are returned.
@@ -216,9 +222,9 @@ public:
     const Matrix& biorthogonalKetExpansion() const { return this->biorthogonalExpansion().second; }
 
     /**
-     * @return The biorthogonalized expansion coefficients.
+     * Return the overlap values of the biorthogonalized expansion coefficients.
      *
-     * @note   Only the occupied expansion coefficients are biorthogonalized, so only these coefficients are returned.
+     * @return The overlap values of the biorthogonal coefficients.
      */
     const Vector& biorthogonalOverlaps() const { return this->biorthogonal_overlaps; }
 

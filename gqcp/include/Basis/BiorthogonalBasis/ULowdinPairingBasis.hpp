@@ -18,9 +18,11 @@
 #pragma once
 
 
-#include "Basis/BiorthogonalBasis/ULowdinPairingBasis.hpp"
+#include "Basis/BiorthogonalBasis/ULowdinPairingBasisComponent.hpp"
 #include "Basis/Transformations/UTransformation.hpp"
+#include "DensityMatrix/SpinResolved1DM.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
+#include "QuantumChemical/Spin.hpp"
 #include "QuantumChemical/SpinResolved.hpp"
 #include "QuantumChemical/SpinResolvedBase.hpp"
 
@@ -70,13 +72,272 @@ public:
      *  @param C_bra                                  The transformation that represents the expansion coefficients of the bra non-orthogonal state. This is a UTransformation in this case.
      *  @param C_ket                                  The transformation that represents the expansion coefficients of the ket non-orthogonal state. This is a UTransformation in this case.
      *  @param S_AO                                   The overlap operator in AO basis, constructed from the `USpinOrbitalBasis` used to calculate the non-orthogonal states.
-     *  @param number_of_occupied_alpha_orbitals      The total number of occupied orbitals in the system.
-     *  @param number_of_occupied_beta_orbitals       The total number of occupied orbitals in the system.
+     *  @param number_of_occupied_alpha_orbitals      The total number of occupied alpha orbitals in the system.
+     *  @param number_of_occupied_beta_orbitals       The total number of occupied beta orbitals in the system.
      *  @param threshold                              The threshold at which a value is verified to be zero or not. Default is 1e-8.
      */
     ULowdinPairingBasis<Scalar>(const UTransformation<Scalar>& C_bra, const UTransformation<Scalar>& C_ket, const USQOneElectronOperator<Scalar>& S_AO, const size_t number_of_occupied_alpha_orbitals, const size_t number_of_occupied_beta_orbitals, const double threshold = 1e-8) :
         ULowdinPairingBasis(ULowdinPairingBasisComponent<Scalar> {C_bra.alpha(), C_ket.alpha(), S_AO.alpha(), number_of_occupied_alpha_orbitals, threshold},
                             ULowdinPairingBasisComponent<Scalar> {C_bra.beta(), C_ket.beta(), S_AO.beta(), number_of_occupied_beta_orbitals, threshold}) {};
+
+
+    /*
+     *  MARK: Access
+     */
+
+    /**
+     * Return the biorthogonalized expansion coefficients of both the bra and the ket as a pair.
+     *
+     * @return The biorthogonalized expansion coefficients.
+     *
+     * @note   Only the occupied expansion coefficients are biorthogonalized, so only these coefficients are returned.
+     */
+    const SpinResolved<std::pair<Matrix, Matrix>>& biorthogonalExpansion() const { return SpinResolved<std::pair<Matrix, Matrix>> {this->alpha().biorthogonalExpansion(), this->beta().biorthogonalExpansion()}; }
+
+
+    /**
+     * Return the biorthogonalized expansion coefficients of both the bra and the ket as a pair.
+     *
+     * @param sigma     The spin sigma component: alpha or beta.
+     *
+     * @return The biorthogonalized expansion coefficients of the alpha or beta component.
+     *
+     * @note   Only the occupied expansion coefficients are biorthogonalized, so only these coefficients are returned.
+     */
+    const std::pair<Matrix, Matrix>& biorthogonalExpansion(const Spin sigma) const { return this->compponent(sigma).biorthogonalExpansion(); }
+
+
+    /**
+     * Return the biorthogonalized expansion coefficients of the bra.
+     *
+     * @return The biorthogonalized expansion coefficients belonging to the bra.
+     *
+     * @note   Only the occupied expansion coefficients are biorthogonalized, so only these coefficients are returned.
+     */
+    const SpinResolved<Matrix>& biorthogonalBraExpansion() const { return SpinResolved<Matrix> {this->alpha().biorthogonalExpansion().first, this->beta().biorthogonalExpansion().first}; }
+
+
+    /**
+     * Return the biorthogonalized expansion coefficients of the bra.
+     *
+     * @param sigma     The spin sigma component: alpha or beta.
+     *
+     * @return The biorthogonalized expansion coefficients belonging to the bra of the alpha or beta component.
+     *
+     * @note   Only the occupied expansion coefficients are biorthogonalized, so only these coefficients are returned.
+     */
+    const Matrix& biorthogonalBraExpansion(const Spin sigma) const { return this->biorthogonalExpansion(sigma).first; }
+
+
+    /**
+     * Return the biorthogonalized expansion coefficients of the bra.
+     *
+     * @return The biorthogonalized expansion coefficients belonging to the bra.
+     *
+     * @note   Only the occupied expansion coefficients are biorthogonalized, so only these coefficients are returned.
+     */
+    const SpinResolved<Matrix>& biorthogonalKetExpansion() const { return SpinResolved<Matrix> {this->alpha().biorthogonalExpansion().second, this->beta().biorthogonalExpansion().second}; }
+
+
+    /**
+     * Return the biorthogonalized expansion coefficients of the ket.
+     *
+     * @param sigma     The spin sigma component: alpha or beta.
+     *
+     * @return The biorthogonalized expansion coefficients belonging to the ket of the alpha or beta component.
+     *
+     * @note   Only the occupied expansion coefficients are biorthogonalized, so only these coefficients are returned.
+     */
+    const Matrix& biorthogonalKetExpansion(const Spin sigma) const { return this->biorthogonalExpansion(sigma).second; }
+
+
+    /**
+     * Return the overlap values of the biorthogonalized expansion coefficients.
+     *
+     * @return The overlaps of the biorthogonal coefficients.
+     */
+    const SpinResolved<Vector>& biorthogonalOverlaps() const { return SpinResolved<Vector> {this->alpha().biorthogonalOverlaps(), this->beta().biorthogonalOverlaps()}; }
+
+
+    /**
+     * Return the overlap values of the biorthogonalized expansion coefficients.
+     *
+     * @param sigma     The spin sigma component: alpha or beta.
+     *
+     * @return The overlaps of the biorthogonal coefficients of the alpha or beta component.
+     */
+    const Vector& biorthogonalOverlaps(const Spin sigma) const { return this->component(sigma).biorthogonalOverlaps(); }
+
+
+    /*
+     *  MARK: Overlap
+     */
+
+    /**
+     * Determine the number of zero overlaps in the biorthogonal overlap vector of a certain spin component.
+     *
+     * @param sigma     The spin sigma component: alpha or beta.
+     *
+     * @return The number of zero overlaps in the spin sigma overlap values.
+     */
+    int numberOfZeroOverlaps(const Spin sigma) const {
+
+        // The count starets at zero.
+        int number_of_zeros = 0;
+
+        // Check all overlap values and increase the count if the overlap value is zero.
+        for (int i = 0; i < this->biorthogonalOverlaps(sigma).rows(); i++) {
+            if (this->biorthogonalOverlaps(sigma)[i] < this->zero_threshold) {
+                number_of_zeros += 1;
+            }
+        }
+
+        return number_of_zeros;
+    }
+
+    /**
+     * Determine the total number of zero overlaps in the biorthogonal overlap vectors.
+     *
+     * @return The number of zero overlaps in both the spin sigma overlap vectors.
+     */
+    int numberOfZeroOverlaps() const { return this->numberOfZeroOverlaps(Spin::alpha) + this->numberOfZeroOverlaps(Spin::beta); }
+
+    /**
+     * Calculate the reduced overlap. I.e. The biorthogonal overlaps with the zero values get removed and the total remaining overlap is calculated.
+     *
+     * @param sigma     The spin sigma component: alpha or beta.
+     *
+     * @return The reduced overlap of the spin sigma component.
+     */
+    Scalar reducedOverlap(const Spin sigma) const {
+
+        // In order to manipulate the vector, we transform the vector containing the biorthogonal overlaps to a std::vector.
+        std::vector<Scalar> overlaps {};
+        for (int i = 0; i < this->biorthogonalOverlaps(sigma).rows(); i++) {
+            overlaps.push_back(this->biorthogonalOverlaps(sigma)[i]);
+        }
+
+        // Loop over all zero indices and remove the values at each of these indices.
+        for (const auto& zero_index : this->zeroOverlapIndices(sigma)) {
+            overlaps.erase(overlaps.begin() + zero_index);
+        }
+
+        // Now, we still have to multiply the remaining values. To do this, we have to go back to an Eigen vector (tedious, I know).
+        Vector reduced_overlaps {overlaps.size()};
+        for (int i = 0; i < overlaps.size(); i++) {
+            reduced_overlaps[i] = overlaps[i];
+        }
+
+        return reduced_overlaps.prod();
+    }
+
+
+    /**
+     * Calculate the total reduced overlap. I.e. The biorthogonal overlaps with the zero values get removed and the total remaining overlap is calculated.
+     *
+     * @return The total reduced overlap.
+     */
+    Scalar reducedOverlap() const { return this->reducedOverlap(Spin::alpha) * this->reducedOverlap(Spin::beta); }
+
+
+    /**
+     * Calculate and return the total overlap value of the biorthogonal coefficients of the spin sigma component.
+     *
+     * @param sigma     The spin sigma component: alpha or beta.
+     *
+     * @return The total overlap value of the spin sigma component.
+     */
+    Scalar totalOverlap(const Spin sigma) const { return this->biorthogonalOverlaps(sigma).prod(); }
+
+
+    /**
+     * Calculate and return the total overlap value of the biorthogonal coefficients.
+     *
+     * @return The total overlap value.
+     */
+    Scalar totalOverlap() const { return this->totalOverlap(Spin::alpha) * this->totalOverlap(Spin::Beta); }
+
+
+    /**
+     * Determine the indices of the zero overlap values in the biorthogonal overlap vector of the spin sigma component.
+     *
+     * @param sigma     The spin sigma component: alpha or beta.
+     *
+     * @return The indices of the zero overlap values of the spin sigma component.
+     */
+    std::vector<int> zeroOverlapIndices(const Spin sigma) const {
+
+        // Initialize the index vector.
+        std::vector<int> zero_indices {};
+
+        // Check all overlap values and push the index to the index vector if the overlap value is zero.
+        for (int i = 0; i < this->biorthogonalOverlaps(sigma).rows(); i++) {
+            if (this->biorthogonalOverlaps(sigma)[i] < this->zero_threshold) {
+                zero_indices.push_back(i);
+            }
+        }
+
+        return zero_indices;
+    }
+
+
+    /*
+     *  MARK: Density matrices
+     */
+
+    /**
+     * Calculate and return the co-density matrix for the given occupied orbital index.
+     *
+     * @param k     The occupied orbital index.
+     *
+     * @return The co-density matrix at occupied orbital index k.
+     *
+     * @note This implementation is based on equation 38b from the 2021 pper by Hugh Burton (https://aip.scitation.org/doi/abs/10.1063/5.0045442).
+     */
+    SpinResolved1DM<Scalar> coDensity(const int k) const {
+        return SpinResolved1DM<Scalar> {SpinResolved1DMComponent<Scalar> {this->alpha().coDensity(k).matrix()}, SpinResolved1DMComponent<Scalar> {this->beta().coDensity(k).matrix()}};
+    }
+
+
+    /**
+     * Calculate and return the sum of the zero overlap co-density matrix, the weighted co-density matrix and the zero overlap co-density matrix of the biorthogonalized basis of the bra with itself.
+     *
+     * @return The sum of the co-density matrices.
+     *
+     * @note This implementation is based on equation 38d from the 2021 pper by Hugh Burton (https://aip.scitation.org/doi/abs/10.1063/5.0045442).
+     */
+    SpinResolved1DM<Scalar> coDensitySum() const { return SpinResolved1DM<Scalar> {SpinResolved1DMComponent<Scalar> {this->alpha().coDensitySum().matrix()}, SpinResolved1DMComponent<Scalar> {this->beta().coDensitySum().matrix()}}; }
+
+    /**
+     * Calculate and return the transition one-electron density matrix. The contractions vary depending on the number of zero overlaps (Burton equation 46 and 47).
+     * These matrices are then summed and returned.
+     *
+     * @return The transition one-electron density matrix.
+     *
+     * @note This implementation is based on equation 45 from the 2021 pper by Hugh Burton (https://aip.scitation.org/doi/abs/10.1063/5.0045442).
+     */
+    SpinResolved1DM<Scalar> transition1DM() const { return SpinResolved1DM<Scalar> {SpinResolved1DMComponent<Scalar> {this->alpha().transition1DM().matrix()}, SpinResolved1DMComponent<Scalar> {this->beta().transition1DM().matrix()}}; }
+
+
+    /**
+     * Calculate and return the weighted co-density matrix. It calculates the co-density matrix contributions corresponding to the non-zero overlap values and divides them by that overlap value.
+     * These matrices are then summed and returned.
+     *
+     * @return The weighted co-density matrix.
+     *
+     * @note This implementation is based on equation 38c from the 2021 pper by Hugh Burton (https://aip.scitation.org/doi/abs/10.1063/5.0045442).
+     */
+    SpinResolved1DM<Scalar> weightedCoDensity() const { return SpinResolved1DM<Scalar> {SpinResolved1DMComponent<Scalar> {this->alpha().weightedCoDensity().matrix()}, SpinResolved1DMComponent<Scalar> {this->beta().weightedCoDensity().matrix()}}; }
+
+
+    /**
+     * Calculate and return the zero-overlap co-density matrix. It takes the indices of the zero overlaps and calculates the co-density matrix at each of these indices. The sum of those co-density matrices is returned.
+     *
+     * @return The zero overlap co-density matrix.
+     *
+     * @note This implementation is based on equation 38a from the 2021 pper by Hugh Burton (https://aip.scitation.org/doi/abs/10.1063/5.0045442).
+     */
+    SpinResolved1DM<Scalar> zeroOverlapCoDensity() const { return SpinResolved1DM<Scalar> {SpinResolved1DMComponent<Scalar> {this->alpha().zeroOverlapCoDensity().matrix()}, SpinResolved1DMComponent<Scalar> {this->beta().zeroOverlapCoDensity().matrix()}}; }
 };
 
 
