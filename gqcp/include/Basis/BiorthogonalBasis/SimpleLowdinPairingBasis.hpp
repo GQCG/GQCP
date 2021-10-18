@@ -268,23 +268,12 @@ public:
      */
     Scalar reducedOverlap() const {
 
-        // In order to manipulate the vector, we transform the vector containing the biorthogonal overlaps to a std::vector.
-        std::vector<Scalar> overlaps {};
-        for (int i = 0; i < this->biorthogonalOverlaps().rows(); i++) {
-            overlaps.push_back(this->biorthogonalOverlaps()[i]);
-        }
+        // Since the Eigen::vector is essentially a N x 1 matrix, we can remove the rows where the overlap value is zero.
+        // The `.removeRows()` method takes a vector and removes all the rows specified by a vector containing the indices, wwhich we can calculate with `.zeroOverlapIndices().
+        auto reduced_overlaps = this->biorthogonalOverlaps();
+        reduced_overlaps.removeRows(this->zeroOverlapIndices());
 
-        // Loop over all zero indices and remove the values at each of these indices.
-        for (const auto& zero_index : this->zeroOverlapIndices()) {
-            overlaps.erase(overlaps.begin() + zero_index);
-        }
-
-        // Now, we still have to multiply the remaining values. To do this, we have to go back to an Eigen vector (tedious, I know).
-        Vector reduced_overlaps {overlaps.size()};
-        for (int i = 0; i < overlaps.size(); i++) {
-            reduced_overlaps[i] = overlaps[i];
-        }
-        // std::cout << reduced_overlaps << std::endl;
+        // We return the product of all remaining overlap elements.
         return reduced_overlaps.prod();
     }
 
@@ -302,13 +291,13 @@ public:
      *
      * @return The indices of the zero overlap values.
      */
-    std::vector<int> zeroOverlapIndices() const {
+    std::vector<size_t> zeroOverlapIndices() const {
 
         // Initialize the index vector.
         std::vector<int> zero_indices {};
 
         // Check all overlap values and push the index to the index vector if the overlap value is zero.
-        for (int i = 0; i < this->biorthogonalOverlaps().rows(); i++) {
+        for (size_t i = 0; i < this->biorthogonalOverlaps().rows(); i++) {
             if (this->biorthogonalOverlaps()[i] < this->zero_threshold) {
                 zero_indices.push_back(i);
             }
