@@ -64,6 +64,8 @@
 #include "Basis/MullikenPartitioning/RMullikenPartitioning.hpp"
 #include "Basis/MullikenPartitioning/UMullikenPartitioning.hpp"
 #include "Basis/MullikenPartitioning/UMullikenPartitioningComponent.hpp"
+#include "Basis/NonOrthogonalBasis/GNonOrthogonalStateBasis.hpp"
+#include "Basis/NonOrthogonalBasis/SimpleNonOrthogonalStateBasis.hpp"
 #include "Basis/ScalarBasis/GTOBasisSet.hpp"
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Basis/ScalarBasis/LondonGTOShell.hpp"

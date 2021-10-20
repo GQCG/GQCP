@@ -55,7 +55,7 @@ public:
 
 
 /*
- *  MARK: SpinorBasisTraits
+ *  MARK: LowdinPairingBasisTraits
  */
 
 /**
@@ -71,9 +71,6 @@ struct LowdinPairingBasisTraits<GLowdinPairingBasis<_Scalar>> {
 
     // The second-quantized representation of the overlap operator related to the Löwdin pairing basis.
     using SQOverlapOperator = ScalarGSQOneElectronOperator<Scalar>;
-
-    // The type of matrix naturally associated with a `GLowdinPairingBasis`.
-    using Matrix = MatrixX<Scalar>;
 
     // The type of density matrix naturally associated with a `GLowdinPairingBasis`.
     using DM = G1DM<Scalar>;

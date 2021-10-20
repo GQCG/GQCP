@@ -30,11 +30,11 @@
 namespace GQCP {
 
 /*
- *  MARK: SpinorBasisTraits
+ *  MARK: LowdinPairingBasisTraits
  */
 
 /**
- *  A type that provides compile-time information on spinor bases that is otherwise not accessible through a public class alias.
+ *  A type that provides compile-time information on Löwdin pairing bases that is otherwise not accessible through a public class alias.
  */
 template <typename LowdinPairingBasis>
 struct LowdinPairingBasisTraits {};
@@ -44,7 +44,7 @@ struct LowdinPairingBasisTraits {};
  */
 
 /**
- *  A Löwdin pairing basis formed from two `R/U/GTransformation`s. Two given sets of expansion coefficients are bi-orthogonalised
+ *  A Löwdin pairing basis formed from two `R/U/GTransformation`s. Two given sets of expansion coefficients are bi-orthogonalised.
  *
  *  @tparam _ExpansionScalar        The scalar type used to represent the expansion coefficients of the given non-orthogonal states: real or complex.
  */
@@ -57,17 +57,17 @@ public:
     // The vectors associated with the scalar of the expansion coefficients.
     using Vector = VectorX<Scalar>;
 
+    // The matrices associated with the scalar of the expansion coefficients.
+    using Matrix = MatrixX<Scalar>;
+
     // The type of the derived Lowdin pairing Basis from this parent class.
     using DerivedLowdinPairingBasis = _DerivedLowdinPairingBasis;
 
     // The type of transformation that is naturally related to a `LowdinPairingBasis`. Can be R/U/GTransformation.
     using Transformation = typename LowdinPairingBasisTraits<DerivedLowdinPairingBasis>::Transformation;
 
-    // The second-quantized representation of the overlap operator related to the final spinor basis.
+    // The second-quantized representation of the overlap operator related to the final Löwdin pairing basis.
     using SQOverlapOperator = typename LowdinPairingBasisTraits<DerivedLowdinPairingBasis>::SQOverlapOperator;
-
-    // The matrices associated with the scalar of the expansion coefficients. This can be a regular matrix or a spin resolved matrix.
-    using Matrix = typename LowdinPairingBasisTraits<DerivedLowdinPairingBasis>::Matrix;
 
     // The density matrix associated with a lowdin paring basis.
     using DM = typename LowdinPairingBasisTraits<DerivedLowdinPairingBasis>::DM;
@@ -93,7 +93,7 @@ protected:
     // The expansion coefficients of the occupied biorthogonal states are saved as raw matrices instead of the corresponding `Transformation`s because they are not square.
     std::pair<Matrix, Matrix> occupied_biorthogonal_state_expansions;
 
-    // The overlap operator in AO basis, constructed from the spinor/spin-orbital used to calculate the non-orthogonal states.
+    // The overlap operator in AO basis, constructed from the spinor/spin-orbital basis used to calculate the non-orthogonal states.
     SQOverlapOperator overlap_operator_AO;
 
     // The vector containing the biorthogonal overlaps.
@@ -111,7 +111,7 @@ public:
      *  @param C_ket                            The transformation that represents the expansion coefficients of the ket non-orthogonal state.
      *  @param S_AO                             The overlap operator in AO basis, constructed from the spinor/spin-orbital used to calculate the non-orthogonal states.
      *  @param number_of_occupied_orbitals      The total number of occupied orbitals in the system.
-     *  @param threshold                        The threshold at which a value is verified to be zero or not. Default is 1e-8.
+     *  @param threshold                        The threshold at which a value is verified to be zero or not. The default is 1e-8.
      */
     SimpleLowdinPairingBasis<Scalar, DerivedLowdinPairingBasis>(const Transformation& C_bra, const Transformation& C_ket, const SQOverlapOperator& S_AO, const size_t number_of_occupied_orbitals, const double threshold = 1e-8) :
         non_orthogonal_state_expansions {std::pair<Transformation, Transformation> {C_bra, C_ket}},
@@ -149,7 +149,7 @@ public:
         // All singular values have to be positive. If this is not the case, an exception must be thrown.
         for (int i = 0; i < this->biorthogonal_overlaps.rows(); i++) {
             if (this->biorthogonal_overlaps[i] < 0) {
-                throw std::invalid_argument("GLowdinPairingBasis<Scalar>(const Transformation& C_bra, const Transformation& C_ket, const ScalarGSQOneElectronOperator<Scalar>& S_AO, const size_t number_of_electrons, const double threshold): The given parameters lead to negative singular values.");
+                throw std::invalid_argument("LowdinPairingBasis<Scalar>(const Transformation& C_bra, const Transformation& C_ket, const ScalarGSQOneElectronOperator<Scalar>& S_AO, const size_t number_of_electrons, const double threshold): The given parameters lead to negative singular values.");
             }
         }
 
@@ -185,7 +185,7 @@ public:
 
         // We now check the aforementioned condition.
         if (std::abs(overlap - X_occupied.determinant()) > 1e-12) {
-            throw std::invalid_argument("GLowdinPairingBasis<Scalar>(const Transformation& C_bra, const Transformation& C_ket, const ScalarGSQOneElectronOperator<Scalar>& S_AO, const size_t number_of_electrons, const double threshold): The given parameters lead to a wrong overlap calculation.");
+            throw std::invalid_argument("LowdinPairingBasis<Scalar>(const Transformation& C_bra, const Transformation& C_ket, const ScalarGSQOneElectronOperator<Scalar>& S_AO, const size_t number_of_electrons, const double threshold): The given parameters lead to a wrong overlap calculation.");
         }
     }
 
@@ -385,7 +385,7 @@ public:
      *
      * @return The weighted co-density matrix.
      *
-     * @note This implementation is based on equation 38c from the 2021 pper by Hugh Burton (https://aip.scitation.org/doi/abs/10.1063/5.0045442).
+     * @note This implementation is based on equation 38c from the 2021 paper by Hugh Burton (https://aip.scitation.org/doi/abs/10.1063/5.0045442).
      */
     DM weightedCoDensity() const {
 
