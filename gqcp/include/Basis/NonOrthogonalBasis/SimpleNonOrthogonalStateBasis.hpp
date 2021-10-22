@@ -22,7 +22,6 @@
 #include "Basis/Transformations/JacobiRotatable.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Mathematical/Representation/Tensor.hpp"
-#include "Molecule/Molecule.hpp"
 #include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
 #include "Utilities/CRTP.hpp"
 #include "Utilities/Eigen.hpp"
@@ -81,7 +80,7 @@ public:
     // The type of Jacobi rotation that is naturally related to the derived non orthogonal-basis.
     using JacobiRotationType = typename JacobiRotatableTraits<DerivedNonOrthogonalStateBasis>::JacobiRotationType;
 
-    // The second-quantized representation of the Hamiltonian that can be quantized by this basis.
+    // The second-quantized representation of the Hamiltonian that can be evaluated in this basis.
     using Hamiltonian = typename NOSBasisOperatorTraits<DerivedNonOrthogonalStateBasis>::Hamiltonian;
 
     // The scalar one-electron operator that can be evaluated by the non-orthogonal basis.
