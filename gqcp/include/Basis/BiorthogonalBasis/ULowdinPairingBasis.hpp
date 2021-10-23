@@ -242,6 +242,28 @@ public:
     std::vector<size_t> zeroOverlapIndices(const Spin sigma) const { return this->component(sigma).zeroOverlapIndices(); }
 
 
+    /**
+     * Determine the indices of the zero overlap values in the biorthogonal overlap vector of each spin component.
+     *
+     * @return The indices of the zero overlap values of the spin sigma component.
+     */
+    std::vector<std::pair<size_t, Spin>> zeroOverlapIndices() const {
+
+        // We merge the alpha and beta zero-index vectors, but we keep track of the spins of each one.
+        std::vector<std::pair<size_t, Spin>> pair_vector {};
+
+        for (const auto& index : this->zeroOverlapIndices(Spin::alpha)) {
+            pair_vector.push_back(std::pair<size_t, Spin> {index, Spin::alpha});
+        }
+
+        for (const auto& index : this->zeroOverlapIndices(Spin::beta)) {
+            pair_vector.push_back(std::pair<size_t, Spin> {index, Spin::beta});
+        }
+
+        return pair_vector;
+    }
+
+
     /*
      *  MARK: Density matrices
      */

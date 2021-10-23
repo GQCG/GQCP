@@ -235,6 +235,37 @@ public:
      */
 
     /**
+     * Evaluate any Hamiltonian operator in this non-orthogonal state basis.
+     *
+     * @param hamiltonian                       The Hamiltonian operator to be evaluated.
+     * @param nuclear_repulsion_operator        The nuclear repulsion operator associated with the molecule used for these calculations.
+     *
+     * @return The matrix representation of this Hamiltonian expressed in the non-orthogonal state basis.
+     *
+     * @note The given Hamiltonian must be expressed in the non-orthogonal AO basis.
+     * @note In order to express the Hamiltonian in this non-orthogonal state basis, we must take the nuclear repulsion into account as well (see equation (16) in the 2018 paper (https://doi.org/10.1063/1.4999218) by Olsen et. al. for example). This is why we also give the `nuclearRepulsionOperator` as a parameter.
+     */
+    Matrix evaluateHamiltonianOperator(const Hamiltonian& hamiltonian, const NuclearRepulsionOperator& nuclear_repulsion_operator) const {
+
+        // We first require the separate one and two electron operators from the Hamiltonian we want to evaluate.
+        const auto& h = hamiltonian.core();
+        const auto& g = hamiltonian.twoElectron();
+
+        // From the nuclear repulsion operator we need the value.
+        const auto nuc_rep = nuclear_repulsion_operator.value();
+
+        // Evaluate the operators in this basis.
+        // We also need the evaluated overlap in this basis.
+        const auto h_evaluated = this->evaluateOneElectronOperator(h);
+        const auto g_evaluated = this->evaluateTwoElectronOperator(g);
+        const auto s_evaluated = this->evaluateOverlapOperator();
+
+        // Return the Hamiltonian matrix, represented in this non-orthogonal state basis.
+        return h_evaluated + g_evaluated + (nuc_rep * s_evaluated);
+    }
+
+
+    /**
      * Evaluate any scalar one-electron operator in this non-orthogonal state basis.
      *
      * @param f_op      The scalar one-electron operator to be evaluated.
@@ -260,7 +291,7 @@ public:
             for (size_t j = 0; j < this->numberOfBasisStates(); j++) {
 
                 // The first step is to create a biorthogonal basis from the two states that are being looped over.
-                const BiorthogonalBasis lowdin_pairing_basis {this->basisState(i).matrix(), this->basisState(j).matrix(), this->overlap_operator_AO.parameters(), this->N};
+                const BiorthogonalBasis lowdin_pairing_basis {this->basisState(i), this->basisState(j), this->overlap_operator_AO, this->N};
 
                 // Check the number of zeros in the biorthogonal basis, as this influences how the matrix elements are calculated.
                 const auto number_of_zeros = lowdin_pairing_basis.numberOfZeroOverlaps();
@@ -319,7 +350,7 @@ public:
             for (size_t j = 0; j < this->numberOfBasisStates(); j++) {
 
                 // The first step is to create a biorthogonal basis from the two states that are being looped over.
-                const BiorthogonalBasis lowdin_pairing_basis {this->basisState(i).matrix(), this->basisState(j).matrix(), this->overlap_operator_AO.parameters(), this->N};
+                const BiorthogonalBasis lowdin_pairing_basis {this->basisState(i), this->basisState(j), this->overlap_operator_AO, this->N};
 
                 // Fill in the overlaps in the new matrix representation in this non-orthogonal basis.
                 evaluated_overlap(i, j) += lowdin_pairing_basis.totalOverlap();
@@ -352,7 +383,7 @@ public:
             for (size_t j = 0; j < this->numberOfBasisStates(); j++) {
 
                 // The first step is to create a biorthogonal basis from the two states that are being looped over.
-                const BiorthogonalBasis lowdin_pairing_basis {this->basisState(i).matrix(), this->basisState(j).matrix(), this->overlap_operator_AO.parameters(), this->N};
+                const BiorthogonalBasis lowdin_pairing_basis {this->basisState(i), this->basisState(j), this->overlap_operator_AO, this->N};
 
                 // Check the number of zeros in the biorthogonal basis, as this influences how the matrix elements are calculated.
                 const auto number_of_zeros = lowdin_pairing_basis.numberOfZeroOverlaps();
@@ -426,37 +457,6 @@ public:
 
         // Return the matrix representation of the evaluated operator.
         return evaluated_operator;
-    }
-
-
-    /**
-     * Evaluate any Hamiltonian operator in this non-orthogonal state basis.
-     *
-     * @param hamiltonian                       The Hamiltonian operator to be evaluated.
-     * @param nuclear_repulsion_operator        The nuclear repulsion operator associated with the molecule used for these calculations.
-     *
-     * @return The matrix representation of this Hamiltonian expressed in the non-orthogonal state basis.
-     *
-     * @note The given Hamiltonian must be expressed in the non-orthogonal AO basis.
-     * @note In order to express the Hamiltonian in this non-orthogonal state basis, we must take the nuclear repulsion into account as well (see equation (16) in the 2018 paper (https://doi.org/10.1063/1.4999218) by Olsen et. al. for example). This is why we also give the `nuclearRepulsionOperator` as a parameter.
-     */
-    Matrix evaluateHamiltonianOperator(const Hamiltonian& hamiltonian, const NuclearRepulsionOperator& nuclear_repulsion_operator) const {
-
-        // We first require the separate one and two electron operators from the Hamiltonian we want to evaluate.
-        const auto& h = hamiltonian.core();
-        const auto& g = hamiltonian.twoElectron();
-
-        // From the nuclear repulsion operator we need the value.
-        const auto nuc_rep = nuclear_repulsion_operator.value();
-
-        // Evaluate the operators in this basis.
-        // We also need the evaluated overlap in this basis.
-        const auto h_evaluated = this->evaluateOneElectronOperator(h);
-        const auto g_evaluated = this->evaluateTwoElectronOperator(g);
-        const auto s_evaluated = this->evaluateOverlapOperator();
-
-        // Return the Hamiltonian matrix, represented in this non-orthogonal state basis.
-        return h_evaluated + g_evaluated + (nuc_rep * s_evaluated);
     }
 };
 
