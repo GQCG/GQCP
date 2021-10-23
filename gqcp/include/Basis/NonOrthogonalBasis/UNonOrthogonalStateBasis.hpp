@@ -451,13 +451,7 @@ public:
                 else if (number_of_zeros == 1) {
 
                     // Determine whether the zero stems from the alpha or the beta component.
-                    auto zero_spin = Spin::alpha;
-                    auto non_zero_spin = Spin::beta;
-
-                    if (lowdin_pairing_basis.numberOfZeroOverlaps(Spin::beta) > lowdin_pairing_basis.numberOfZeroOverlaps(Spin::alpha)) {
-                        zero_spin = Spin::beta;
-                        non_zero_spin = Spin::alpha;
-                    }
+                    auto zero_spin = lowdin_pairing_basis.zeroOverlapIndices()[0].second;
 
                     // In order to calcluate the matrix element when there are no zero overlap values, we need the reduced overlap.
                     const auto reduced_overlap = lowdin_pairing_basis.reducedOverlap();
