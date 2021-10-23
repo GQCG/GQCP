@@ -470,13 +470,21 @@ public:
 
                     // Perform the contractions. We need to perform two contractions (one for the direct component, one for the exchange component).
                     // In order to perserve readability of the contractions, and keep the exact link with the theory, we split each contraction in two.
-                    Tensor<Scalar, 2> intermediate_direct_contraction_1 = g_op.alphaAlpha().parameters().template einsum<2>("utvs, tu -> vs", co_density.matrix());
-                    Tensor<Scalar, 0> direct_element_a = intermediate_direct_contraction_1.template einsum<2>("vs, sv ->", weighted_co_density.alpha().matrix());
+                    Matrix intermediate_direct_contraction_1 = g_op.alphaAlpha().parameters().template einsum<2>("utvs, tu -> vs", co_density.matrix()).asMatrix();
+                    Matrix intermediate_direct_contraction_2 = g_op.betaBeta().parameters().template einsum<2>("utvs, tu -> vs", co_density.matrix()).asMatrix();
 
-                    Tensor<Scalar, 2> intermediate_direct_contraction_2 = g_op.betaBeta().parameters().template einsum<2>("utvs, tu -> vs", co_density.matrix());
-                    Tensor<Scalar, 0> direct_element_b = intermediate_direct_contraction_2.template einsum<2>("vs, sv ->", weighted_co_density.beta().matrix());
+                    // The complete first direct contraction can the be written as follows.
+                    Matrix direct_alpha_beta = intermediate_direct_contraction_1 + intermediate_direct_contraction_2;
 
-                    auto direct_element = direct_element_a(0) + direct_element_b(0);
+                    // We return the representation to a tensor, in order to perform the final contractions.
+                    Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> tensor_map {direct_alpha_beta.data(), direct_alpha_beta.rows(), direct_alpha_beta.cols()};
+                    Tensor<Scalar, 2> direct_alpha_beta_tensor = Tensor<Scalar, 2>(tensor_map);
+
+                    // We can now calculate the alpha and beta contributions with the next set of contractions.
+                    Tensor<Scalar, 0> direct_element_a = direct_alpha_beta_tensor.template einsum<2>("vs, sv ->", weighted_co_density.alpha().matrix());
+                    Tensor<Scalar, 0> direct_element_b = direct_alpha_beta_tensor.template einsum<2>("vs, sv ->", weighted_co_density.beta().matrix());
+
+                    const auto direct_element = direct_element_a(0) + direct_element_b(0);
 
                     Tensor<Scalar, 2> intermediate_exchange_contraction = g_op.pureComponent(zero_spin).parameters().template einsum<2>("utvs, su -> tv", co_density.matrix());
                     Tensor<Scalar, 0> exchange_element = intermediate_exchange_contraction.template einsum<2>("tv, tv ->", weighted_co_density.component(zero_spin).matrix());
@@ -505,13 +513,21 @@ public:
 
                     // Perform the contractions. We need to perform two contractions (one for the direct component, one for the exchange component).
                     // In order to perserve readability of the contractions, and keep the exact link with the theory, we split each contraction in two.
-                    Tensor<Scalar, 2> intermediate_direct_contraction_1 = g_op.alphaAlpha().parameters().template einsum<2>("utvs, tu -> vs", co_density_1.alpha().matrix());
-                    Tensor<Scalar, 0> direct_element_a = intermediate_direct_contraction_1.template einsum<2>("vs, sv ->", active_co_density);
+                    Matrix intermediate_direct_contraction_1 = g_op.alphaAlpha().parameters().template einsum<2>("utvs, tu -> vs", co_density_1.alpha().matrix()).asMatrix();
+                    Matrix intermediate_direct_contraction_2 = g_op.betaBeta().parameters().template einsum<2>("utvs, tu -> vs", co_density_1.beta().matrix()).asMatrix();
 
-                    Tensor<Scalar, 2> intermediate_direct_contraction_2 = g_op.betaBeta().parameters().template einsum<2>("utvs, tu -> vs", co_density_1.beta().matrix());
-                    Tensor<Scalar, 0> direct_element_b = intermediate_direct_contraction_2.template einsum<2>("vs, sv ->", active_co_density);
+                    // The complete first direct contraction can the be written as follows.
+                    Matrix direct_alpha_beta = intermediate_direct_contraction_1 + intermediate_direct_contraction_2;
 
-                    auto direct_element = direct_element_a(0) + direct_element_b(0);
+                    // We return the representation to a tensor, in order to perform the final contractions.
+                    Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> tensor_map {direct_alpha_beta.data(), direct_alpha_beta.rows(), direct_alpha_beta.cols()};
+                    Tensor<Scalar, 2> direct_alpha_beta_tensor = Tensor<Scalar, 2>(tensor_map);
+
+                    // We can now calculate the alpha and beta contributions with the next set of contractions.
+                    Tensor<Scalar, 0> direct_element_a = direct_alpha_beta_tensor.template einsum<2>("vs, sv ->", active_co_density);
+                    Tensor<Scalar, 0> direct_element_b = direct_alpha_beta_tensor.template einsum<2>("vs, sv ->", active_co_density);
+
+                    const auto direct_element = direct_element_a(0) + direct_element_b(0);
 
                     auto exchange_element = 0.0;
                     if (lowdin_pairing_basis.zeroOverlapIndices()[0].second == Spin::alpha) {

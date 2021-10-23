@@ -200,3 +200,49 @@ BOOST_AUTO_TEST_CASE(overlap_and_hamiltonian) {
     // Check whether the calculated Hamiltonian matches the reference.
     BOOST_CHECK(ham.isApprox(hamiltonian_reference, 1e-6));
 }
+
+
+/**
+ *  Test whether or not the overlap operator is evaluated correctly over a non-orthogonal state basis.
+ */
+BOOST_AUTO_TEST_CASE(cases_with_two_zero_overlaps) {
+    // This test case is taken from a python prototype from @lelemmen and @johdvos.
+    // It was for H2, at 2.5au internuclear distance for the 6-31G basis set.
+    const auto molecule = GQCP::Molecule::HChain(2, 0.944863, 0);  // H2, 0.5 Angstrom apart.
+
+    // The restricted spin orbital basis is also needed, as we require the overlap operator in AO basis.
+    const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "6-31G"};
+    const auto S = spin_orbital_basis.overlap();
+
+    // Initialize some non-orthogonal "unrestricted states".
+    const GQCP::MatrixX<double> state_1_ab = GQCP::MatrixX<double>::Zero(4, 4);
+
+    GQCP::SquareMatrix<double> state_2_ab {4};
+    // clang-format off
+    state_2_ab <<     1.0,  0.0,  5.0,   0.0,
+                      2.0,  0.0,  6.0,   0.0,
+                      3.0,  0.0,  7.0,   0.0,
+                      4.0,  0.0,  8.0,   0.0;
+    // clang-format on
+
+    // Transform the matrices to the correct transformation type.
+    const auto state1_expansion = GQCP::UTransformation<double> {GQCP::UTransformationComponent<double> {state_1_ab}, GQCP::UTransformationComponent<double> {state_1_ab}};
+    const auto state2_expansion = GQCP::UTransformation<double> {GQCP::UTransformationComponent<double> {state_2_ab}, GQCP::UTransformationComponent<double> {state_2_ab}};
+
+    using NonOrthogonalStateBasisType = GQCP::UNonOrthogonalStateBasis<double>;
+    NonOrthogonalStateBasisType NOCIbasis {std::vector<GQCP::UTransformation<double>> {state1_expansion, state2_expansion}, S, molecule.numberOfElectronPairs(), molecule.numberOfElectronPairs()};
+
+    // evaluate the Hamiltonian in the NOCI basis.
+    const auto sq_ham = spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
+    const auto ham = NOCIbasis.evaluateHamiltonianOperator(sq_ham, GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()));
+
+    // Initialize a reference Hamiltonian. Reference data taken from the implementation of @johdvos.
+    GQCP::SquareMatrix<double> hamiltonian_reference {2};
+    // clang-format off
+    hamiltonian_reference <<  0.0,      0.0,
+                              0.0,  -5801.83057014;
+    // clang-format on
+
+    // Check whether the calculated Hamiltonian matches the reference.
+    BOOST_CHECK(ham.isApprox(hamiltonian_reference, 1e-6));
+}
