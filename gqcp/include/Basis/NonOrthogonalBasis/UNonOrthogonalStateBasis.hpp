@@ -319,13 +319,10 @@ public:
                 else if (number_of_zeros == 1) {
 
                     // Determine whether the zero stems from the alpha or the beta component.
-                    auto zero_spin = Spin::alpha;
-                    if (lowdin_pairing_basis.numberOfZeroOverlaps(Spin::beta) > lowdin_pairing_basis.numberOfZeroOverlaps(Spin::alpha)) {
-                        zero_spin = Spin::beta;
-                    }
+                    auto zero_spin = lowdin_pairing_basis.zeroOverlapIndices()[0].second;
 
-                    // In order to calcluate the matrix element when there are no zero overlap values, we need the reduced overlap.
-                    const auto reduced_overlap = lowdin_pairing_basis.reducedOverlap(zero_spin);
+                    // In order to calcluate the matrix element, we need the reduced overlap.
+                    const auto reduced_overlap = lowdin_pairing_basis.reducedOverlap();
 
                     // Next, calculate the co-density matrix of the orbital corresponding to the zero overlap value.
                     // We know there is only one zero overlap orbital, so we acces the first index of the vector.
@@ -464,8 +461,9 @@ public:
 
                     // Perform the contractions. We need to perform two contractions (one for the direct component, one for the exchange component).
                     // In order to perserve readability of the contractions, and keep the exact link with the theory, we split each contraction in two.
-                    Matrix intermediate_direct_contraction_1 = g_op.alphaAlpha().parameters().template einsum<2>("utvs, tu -> vs", co_density.matrix()).asMatrix();
-                    Matrix intermediate_direct_contraction_2 = g_op.betaBeta().parameters().template einsum<2>("utvs, tu -> vs", co_density.matrix()).asMatrix();
+                    // Since we first have to contract with the weighted co-density matrix, the contractions look a little bit different.
+                    Matrix intermediate_direct_contraction_1 = g_op.alphaAlpha().parameters().template einsum<2>("utvs, sv -> ut", weighted_co_density.alpha().matrix()).asMatrix();
+                    Matrix intermediate_direct_contraction_2 = g_op.betaBeta().parameters().template einsum<2>("utvs, sv -> ut", weighted_co_density.beta().matrix()).asMatrix();
 
                     // The complete first direct contraction can the be written as follows.
                     Matrix direct_alpha_beta = intermediate_direct_contraction_1 + intermediate_direct_contraction_2;
@@ -475,15 +473,12 @@ public:
                     Tensor<Scalar, 2> direct_alpha_beta_tensor = Tensor<Scalar, 2>(tensor_map);
 
                     // We can now calculate the alpha and beta contributions with the next set of contractions.
-                    Tensor<Scalar, 0> direct_element_a = direct_alpha_beta_tensor.template einsum<2>("vs, sv ->", weighted_co_density.alpha().matrix());
-                    Tensor<Scalar, 0> direct_element_b = direct_alpha_beta_tensor.template einsum<2>("vs, sv ->", weighted_co_density.beta().matrix());
+                    GQCP::Tensor<Scalar, 0> direct_element = direct_alpha_beta_tensor.template einsum<2>("ut, ut ->", co_density.matrix());
 
-                    const auto direct_element = direct_element_a(0) + direct_element_b(0);
+                    Tensor<Scalar, 2> intermediate_exchange_contraction = g_op.pureComponent(zero_spin).parameters().template einsum<2>("utvs, tv -> us", weighted_co_density.component(zero_spin).matrix());
+                    Tensor<Scalar, 0> exchange_element = intermediate_exchange_contraction.template einsum<2>("us, us ->", co_density.matrix());
 
-                    Tensor<Scalar, 2> intermediate_exchange_contraction = g_op.pureComponent(zero_spin).parameters().template einsum<2>("utvs, su -> tv", co_density.matrix());
-                    Tensor<Scalar, 0> exchange_element = intermediate_exchange_contraction.template einsum<2>("tv, tv ->", weighted_co_density.component(zero_spin).matrix());
-
-                    evaluated_operator(i, j) += (reduced_overlap * (direct_element - exchange_element(0)));
+                    evaluated_operator(i, j) += (reduced_overlap * (direct_element(0) - exchange_element(0)));
                 }
                 // If there are two zero overlap values, we perform the following calculation.
                 else if (number_of_zeros == 2) {
@@ -494,16 +489,12 @@ public:
                     // First we merge the alpha and beta index vectors which denote the zero overlaps.
                     // Next, calculate the co-density of the orbitals corresponding to the zero overlap values.
                     const auto zero_overlap_index_1 = lowdin_pairing_basis.zeroOverlapIndices()[0].first;
+                    const auto zero_overlap_spin_1 = lowdin_pairing_basis.zeroOverlapIndices()[0].second;
                     const auto zero_overlap_index_2 = lowdin_pairing_basis.zeroOverlapIndices()[1].first;
+                    const auto zero_overlap_spin_2 = lowdin_pairing_basis.zeroOverlapIndices()[1].second;
+
                     const auto co_density_1 = lowdin_pairing_basis.coDensity(zero_overlap_index_1);
-
-                    Matrix active_co_density = Matrix::Zero(co_density_1.alpha().matrix().dimension());
-
-                    if (lowdin_pairing_basis.zeroOverlapIndices()[0].second == Spin::alpha) {
-                        active_co_density += lowdin_pairing_basis.coDensity(zero_overlap_index_2).alpha().matrix();
-                    } else {
-                        active_co_density += lowdin_pairing_basis.coDensity(zero_overlap_index_2).beta().matrix();
-                    }
+                    const auto active_co_density = lowdin_pairing_basis.coDensity(zero_overlap_index_2).component(zero_overlap_spin_2);
 
                     // Perform the contractions. We need to perform two contractions (one for the direct component, one for the exchange component).
                     // In order to perserve readability of the contractions, and keep the exact link with the theory, we split each contraction in two.
@@ -518,23 +509,12 @@ public:
                     Tensor<Scalar, 2> direct_alpha_beta_tensor = Tensor<Scalar, 2>(tensor_map);
 
                     // We can now calculate the alpha and beta contributions with the next set of contractions.
-                    Tensor<Scalar, 0> direct_element_a = direct_alpha_beta_tensor.template einsum<2>("vs, sv ->", active_co_density);
-                    Tensor<Scalar, 0> direct_element_b = direct_alpha_beta_tensor.template einsum<2>("vs, sv ->", active_co_density);
+                    Tensor<Scalar, 0> direct_element = direct_alpha_beta_tensor.template einsum<2>("vs, sv ->", active_co_density.matrix());
 
-                    const auto direct_element = direct_element_a(0) + direct_element_b(0);
+                    Tensor<Scalar, 2> intermediate_exchange_contraction = g_op.pureComponent(zero_overlap_spin_1).parameters().template einsum<2>("utvs, su -> tv", co_density_1.component(zero_overlap_spin_1).matrix());
+                    Tensor<Scalar, 0> exchange_element = intermediate_exchange_contraction.template einsum<2>("tv, tv ->", active_co_density.matrix());
 
-                    auto exchange_element = 0.0;
-                    if (lowdin_pairing_basis.zeroOverlapIndices()[0].second == Spin::alpha) {
-                        Tensor<Scalar, 2> intermediate_exchange_contraction = g_op.pureComponent(Spin::alpha).parameters().template einsum<2>("utvs, su -> tv", co_density_1.alpha().matrix());
-                        Tensor<Scalar, 0> element = intermediate_exchange_contraction.template einsum<2>("tv, tv ->", active_co_density);
-                        exchange_element += element(0);
-                    } else {
-                        Tensor<Scalar, 2> intermediate_exchange_contraction = g_op.pureComponent(Spin::beta).parameters().template einsum<2>("utvs, su -> tv", co_density_1.beta().matrix());
-                        Tensor<Scalar, 0> element = intermediate_exchange_contraction.template einsum<2>("tv, tv ->", active_co_density);
-                        exchange_element += element(0);
-                    }
-
-                    evaluated_operator(i, j) += (reduced_overlap * (direct_element - exchange_element));
+                    evaluated_operator(i, j) += (reduced_overlap * (direct_element(0) - exchange_element(0)));
                 }
                 // If there are more than two zero overlap values, the matrix element will be zero. No further if-clause is needed.
             }

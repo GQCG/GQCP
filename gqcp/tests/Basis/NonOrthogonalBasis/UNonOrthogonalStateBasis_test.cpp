@@ -19,11 +19,14 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "Basis/BiorthogonalBasis/ULowdinPairingBasis.hpp"
 #include "Basis/NonOrthogonalBasis/UNonOrthogonalStateBasis.hpp"
 #include "Basis/SpinorBasis/USpinOrbitalBasis.hpp"
 #include "Basis/Transformations/UTransformation.hpp"
 #include "Basis/Transformations/UTransformationComponent.hpp"
+#include "Mathematical/Representation/Tensor.hpp"
 #include "Molecule/Molecule.hpp"
+#include "QuantumChemical/Spin.hpp"
 
 
 /**
