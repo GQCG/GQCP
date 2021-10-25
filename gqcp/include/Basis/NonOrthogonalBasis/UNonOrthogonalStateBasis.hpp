@@ -475,7 +475,7 @@ public:
                     // We can now calculate the next contraction of the equation.
                     GQCP::Tensor<Scalar, 0> direct_element = direct_alpha_beta_tensor.template einsum<2>("ut, ut ->", co_density.matrix());
 
-// We calculate the exchange contractions analogously.
+                    // We calculate the exchange contractions analogously.
                     Tensor<Scalar, 2> intermediate_exchange_contraction = g_op.pureComponent(zero_spin).parameters().template einsum<2>("utvs, tv -> us", weighted_co_density.component(zero_spin).matrix());
                     Tensor<Scalar, 0> exchange_element = intermediate_exchange_contraction.template einsum<2>("us, us ->", co_density.matrix());
 
@@ -512,7 +512,7 @@ public:
                     // We can now calculate the next contraction of the equation..
                     Tensor<Scalar, 0> direct_element = direct_alpha_beta_tensor.template einsum<2>("vs, sv ->", active_co_density.matrix());
 
-// We calculate the exchange contractions analogously.
+                    // We calculate the exchange contractions analogously.
                     Tensor<Scalar, 2> intermediate_exchange_contraction = g_op.pureComponent(zero_overlap_spin_1).parameters().template einsum<2>("utvs, su -> tv", co_density_1.component(zero_overlap_spin_1).matrix());
                     Tensor<Scalar, 0> exchange_element = intermediate_exchange_contraction.template einsum<2>("tv, tv ->", active_co_density.matrix());
 
