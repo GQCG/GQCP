@@ -118,7 +118,7 @@ BOOST_AUTO_TEST_CASE(overlap_and_hamiltonian) {
     // It was for H2, at 2.5au internuclear distance for the 6-31G basis set.
     const auto molecule = GQCP::Molecule::HChain(2, 0.944863, 0);  // H2, 0.5 Angstrom apart.
 
-    // The restricted spin orbital basis is also needed, as we require the overlap operator in AO basis.
+    // The unrestricted spin orbital basis is also needed, as we require the overlap operator in AO basis.
     const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "6-31G"};
     const auto S = spin_orbital_basis.overlap();
 
@@ -177,7 +177,7 @@ BOOST_AUTO_TEST_CASE(overlap_and_hamiltonian) {
     // Evaluate the overlap operator in the NOCI basis.
     const auto overlap_matrix = NOCIbasis.evaluateOverlapOperator();
 
-    // In itialize a reference overlap matrix. Reference data taken from the implementation of @johdvos.
+    // Initialize a reference overlap matrix. Reference data taken from the implementation of @johdvos.
     GQCP::SquareMatrix<double> overlap_reference {3};
     // clang-format off
     overlap_reference <<  0.05573789, 0.07821839, 0.05588782,
@@ -199,7 +199,6 @@ BOOST_AUTO_TEST_CASE(overlap_and_hamiltonian) {
                               -0.07880862, -0.1082845 ,  -0.08489053,
                               -0.0594536 , -0.08489053,  -0.06239094;
     // clang-format on
-    // std::cout << ham << std::endl;
     // Check whether the calculated Hamiltonian matches the reference.
     BOOST_CHECK(ham.isApprox(hamiltonian_reference, 1e-6));
 }

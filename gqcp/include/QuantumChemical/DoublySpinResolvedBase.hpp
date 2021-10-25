@@ -129,7 +129,7 @@ public:
     /**
      *  @param sigma     The spin sigma for which the pure component is asked.
      *
-     *  @return A read-only reference to the alpha-alpha object.
+     *  @return A read-only reference to the pure alpha-alpha or beta-beta object.
      */
     const Pure& pureComponent(const Spin& sigma) const {
 
@@ -143,7 +143,7 @@ public:
     /**
      *  @param sigma     The spin sigma for which the pure component is asked.
      *
-     *  @return A writable reference to the alpha-alpha object.
+     *  @return A writable reference to the pure alpha-alpha or beta-beta object.
      */
     Pure& pureComponent(const Spin& sigma) {
 

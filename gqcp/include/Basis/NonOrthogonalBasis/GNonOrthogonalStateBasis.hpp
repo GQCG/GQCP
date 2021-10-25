@@ -71,7 +71,7 @@ struct NonOrthogonalStateBasisTraits<GNonOrthogonalStateBasis<_Scalar>> {
     // The type of transformation that is naturally related to a `GNonOrthogonalStateBasis`.
     using Transformation = GTransformation<Scalar>;
 
-    // The Biorthogonal Löwdin pairing basis associated with the non-orthogonal state basis..
+    // The biorthogonal Löwdin pairing basis associated with the non-orthogonal state basis.
     using BiorthogonalBasis = GLowdinPairingBasis<Scalar>;
 };
 
@@ -124,7 +124,7 @@ struct JacobiRotatableTraits<GNonOrthogonalStateBasis<_Scalar>> {
 template <typename _Scalar>
 struct BasisTransformableTraits<GNonOrthogonalStateBasis<_Scalar>> {
 
-    // The type of transformation that is naturally related to a `GNonOrthogonalStateBAsis`.
+    // The type of transformation that is naturally related to a `GNonOrthogonalStateBasis`.
     using Transformation = GTransformation<_Scalar>;
 };
 

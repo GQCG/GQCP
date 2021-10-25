@@ -245,7 +245,7 @@ public:
     /**
      * Determine the indices of the zero overlap values in the biorthogonal overlap vector of each spin component.
      *
-     * @return The indices of the zero overlap values of the spin sigma component.
+     * @return The indices of the zero overlap values paired with the corresponding spin component.
      */
     std::vector<std::pair<size_t, Spin>> zeroOverlapIndices() const {
 

@@ -71,7 +71,7 @@ struct NonOrthogonalStateBasisTraits<RNonOrthogonalStateBasis<_Scalar>> {
     // The type of transformation that is naturally related to a `RNonOrthogonalStateBasis`.
     using Transformation = RTransformation<Scalar>;
 
-    // The Biorthogonal Löwdin pairing basis associated with the non-orthogonal state basis..
+    // The biorthogonal Löwdin pairing basis associated with the non-orthogonal state basis.
     using BiorthogonalBasis = RLowdinPairingBasis<Scalar>;
 };
 
@@ -124,7 +124,7 @@ struct JacobiRotatableTraits<RNonOrthogonalStateBasis<_Scalar>> {
 template <typename _Scalar>
 struct BasisTransformableTraits<RNonOrthogonalStateBasis<_Scalar>> {
 
-    // The type of transformation that is naturally related to a `RNonOrthogonalStateBAsis`.
+    // The type of transformation that is naturally related to a `RNonOrthogonalStateBasis`.
     using Transformation = RTransformation<_Scalar>;
 };
 
