@@ -115,10 +115,10 @@ public:
     /**
      *  Create a `SimpleNonOrthogonalStateBasis` from any number of non orthogonal states.
      *
-     *  @param basis_state_vector                  The vector containing the non-orthogonal basis states.
+     *  @param basis_state_vector               The vector containing the non-orthogonal basis states.
      *  @param S_AO                             The overlap operator in AO basis, constructed from the spinor/spin-orbital used to calculate the non-orthogonal states.
      *  @param number_of_occupied_orbitals      The total number of occupied orbitals in the system.
-     *  @param threshold                           The threshold at which a value is verified to be zero or not. The default is 1e-8.
+     *  @param threshold                        The threshold at which a value is verified to be zero or not. The default is 1e-8.
      */
     SimpleNonOrthogonalStateBasis<Scalar, DerivedNonOrthogonalStateBasis>(const States& basis_state_vector, const OneElectronOperator& S_AO, const size_t number_of_occupied_orbitals, const double threshold = 1e-8) :
         basis_states {basis_state_vector},
