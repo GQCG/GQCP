@@ -218,7 +218,7 @@ public:
     /**
      *  Calculate the orbital one-electron density matrix for a complex valued expansion in a restricted non-orthogonal basis.
      *
-     *  @return The generalized one-electron density matrix.
+     *  @return The orbital one-electron density matrix.
      */
     template <typename Z1 = Scalar, typename Z2 = NonOrthogonalBasis>
     enable_if_t<std::is_same<Z1, complex>::value && std::is_same<Z2, RNonOrthogonalStateBasis<complex>>::value, Orbital1DM<complex>> calculate1DM() const {
@@ -257,7 +257,7 @@ public:
     /**
      *  Calculate the spin-resolved one-electron density matrix for a real valued expansion in a unrestricted non-orthogonal basis.
      *
-     *  @return The orbital one-electron density matrix.
+     *  @return The spin-resolved one-electron density matrix.
      */
     template <typename Z1 = Scalar, typename Z2 = NonOrthogonalBasis>
     enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, UNonOrthogonalStateBasis<double>>::value, SpinResolved1DM<double>> calculate1DM() const {
@@ -296,7 +296,7 @@ public:
     /**
      *  Calculate the spin-resolved one-electron density matrix for a complex valued expansion in a unrestricted non-orthogonal basis.
      *
-     *  @return The generalized one-electron density matrix.
+     *  @return The spin-resolved one-electron density matrix.
      */
     template <typename Z1 = Scalar, typename Z2 = NonOrthogonalBasis>
     enable_if_t<std::is_same<Z1, complex>::value && std::is_same<Z2, UNonOrthogonalStateBasis<complex>>::value, SpinResolved1DM<complex>> calculate1DM() const {

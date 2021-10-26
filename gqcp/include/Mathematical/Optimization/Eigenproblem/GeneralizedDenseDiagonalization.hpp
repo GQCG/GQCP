@@ -28,7 +28,7 @@ namespace GQCP {
 
 
 /**
- *  A step that performs a dense diagonalization.
+ *  A step that performs a dense generalized diagonalization.
  *
  *  @tparam _Scalar         The scalar type of the matrix elements: real or complex.
  */
@@ -41,12 +41,12 @@ public:
 
 
 public:
-    /*
-     *  PUBLIC OVERRIDDEN METHODS
+    /**
+     *  MARK: Overridden methods
      */
 
     /**
-     *  @return a textual description of this algorithmic step
+     *  @return A textual description of this algorithmic step.
      */
     std::string description() const override {
         return "Read the matrix from the environment, diagonalize it and write the number of requested eigenpairs to it.";
@@ -56,7 +56,7 @@ public:
     /**
      *  Read the matrix from the environment, diagonalize it and write the number of requested eigenpairs to it.
      *
-     *  @param environment              the environment that this step can read from and write to
+     *  @param environment              The environment that this step can read from and write to.
      */
     void execute(GeneralizedEigenproblemEnvironment<Scalar>& environment) override {
 

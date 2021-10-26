@@ -32,10 +32,10 @@ namespace QCMethod {
 
 
 /**
- *  The configuration interaction quantum chemical method.
+ *  The non-orthogonal configuration interaction quantum chemical method.
  *
  *  @tparam _Scalar                       The scalar type of the expansion coefficients: real or complex.
- *  @tparam _NonOrthogonalBasis           The type of ONV basis.
+ *  @tparam _NonOrthogonalBasis           The type of non-orthogonal state basis.
  */
 template <typename _Scalar, typename _NonOrthogonalBasis>
 class NOCI {
@@ -85,7 +85,6 @@ public:
 
         // The NOCI method's responsibility is to try to optimize the parameters of its method, given a solver and associated environment.
         solver.perform(environment);
-
 
         // Extract the requested number of eigenpairs from the environment and place them into the NOCIExpansion wave function model.
         const auto eigenpairs = environment.eigenpairs(this->number_of_states);
