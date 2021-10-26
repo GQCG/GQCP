@@ -83,7 +83,7 @@ BOOST_AUTO_TEST_CASE(operator_evaluations) {
     const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "6-31G"};
     const auto S = spin_orbital_basis.overlap();
 
-    // Initialize two non-orthogonal "Generalised states".
+    // Initialize two non-orthogonal "restricted states".
     GQCP::SquareMatrix<double> state_1 {4};
     // clang-format off
     state_1 << -0.07443693,  0.12036042, -0.13557067,  0.15517005,

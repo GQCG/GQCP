@@ -95,7 +95,7 @@ BOOST_AUTO_TEST_CASE(operator_evaluations) {
     const GQCP::GSpinorBasis<double, GQCP::GTOShell> g_spinor_basis {molecule, "6-31G"};
     const auto S = g_spinor_basis.overlap();
 
-    // Initialize some non-orthogonal "Generalised states".
+    // Initialize some non-orthogonal "generalised states".
     GQCP::SquareMatrix<double> basis_state_1 {8};
     // clang-format off
     basis_state_1 << -0.07443693,  0.12036042, -0.13557067,  0.15517005,  0.13315100,  -0.03074946, -0.92997876, -0.93718779,

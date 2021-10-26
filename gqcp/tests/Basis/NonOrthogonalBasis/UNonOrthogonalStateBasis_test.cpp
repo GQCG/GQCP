@@ -114,7 +114,7 @@ BOOST_AUTO_TEST_CASE(constructor) {
  *  Test whether or not the overlap operator is evaluated correctly over a non-orthogonal state basis.
  */
 BOOST_AUTO_TEST_CASE(overlap_and_hamiltonian) {
-    // This test case is taken from a python prototype from @lelemmen and @johdvos.
+    // This test case is taken from a Python prototype from @lelemmen and @johdvos.
     // It was for H2, at 2.5au internuclear distance for the 6-31G basis set.
     const auto molecule = GQCP::Molecule::HChain(2, 0.944863, 0);  // H2, 0.5 Angstrom apart.
 
