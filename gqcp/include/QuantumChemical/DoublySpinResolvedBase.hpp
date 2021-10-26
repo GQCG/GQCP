@@ -27,7 +27,7 @@ namespace GQCP {
 
 /**
  *  A utility type encapsulating four objects, each for every combination of alpha and beta.
- * 
+ *
  *  @param _Pure        The type that represents a 'pure' combination of spin components, i.e. the alpha-alpha or beta-beta type.
  *  @param _Mixed       The type that represents a 'mixed' combination of spin components, i.e. the alpha-beta or beta-alpha type.
  *  @param _Derived     The type that derives from this type, given as a template argument, enabling CRTP and compile-time polymorphism.
@@ -69,7 +69,7 @@ public:
 
     /**
      *  Construct a doubly spin-resolved instance from its constituent objects.
-     * 
+     *
      *  @param aa       The alpha-alpha-object.
      *  @param ab       The alpha-beta object.
      *  @param ba       The beta-alpha object.
@@ -125,6 +125,34 @@ public:
      *  @return A writable reference to the beta-beta object.
      */
     Pure& betaBeta() { return this->bb; }
+
+    /**
+     *  @param sigma     The spin sigma for which the pure component is asked.
+     *
+     *  @return A read-only reference to the pure alpha-alpha or beta-beta object.
+     */
+    const Pure& pureComponent(const Spin& sigma) const {
+
+        if (sigma == Spin::alpha) {
+            return this->aa;
+        } else {
+            return this->bb;
+        }
+    }
+
+    /**
+     *  @param sigma     The spin sigma for which the pure component is asked.
+     *
+     *  @return A writable reference to the pure alpha-alpha or beta-beta object.
+     */
+    Pure& pureComponent(const Spin& sigma) {
+
+        if (sigma == Spin::alpha) {
+            return this->aa;
+        } else {
+            return this->bb;
+        }
+    }
 };
 
 

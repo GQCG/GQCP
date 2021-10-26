@@ -72,9 +72,6 @@ struct LowdinPairingBasisTraits<ULowdinPairingBasisComponent<_Scalar>> {
     // The second-quantized representation of the overlap operator related to the `RLowdinPairingBasis`.
     using SQOverlapOperator = ScalarUSQOneElectronOperatorComponent<Scalar>;
 
-    // The second-quantized representation of the overlap operator related to the `RLowdinPairingBasis`.
-    using Matrix = MatrixX<Scalar>;
-
     // The type of density matrix naturally associated with the `RLowdinPairingBasis`.
     using DM = SpinResolved1DMComponent<Scalar>;
 };
