@@ -188,8 +188,8 @@ BOOST_AUTO_TEST_CASE(NOCI_1DM) {
     auto environment = GQCP::NOCIEnvironment::Dense(sq_hamiltonian, NOS_basis, molecule);
     auto solver = GQCP::GeneralizedEigenproblemSolver::Dense<double>();
 
-    // We ask for three states (which is all of them in this example) to be found.
-    const auto NOCI_parameters = GQCP::QCMethod::NOCI<double, GQCP::GNonOrthogonalStateBasis<double>>(NOS_basis, 3).optimize(solver, environment).groundStateParameters();
+    // We do not specify the number of states, meaning we only request the ground state.
+    const auto NOCI_parameters = GQCP::QCMethod::NOCI<double, GQCP::GNonOrthogonalStateBasis<double>>(NOS_basis).optimize(solver, environment).groundStateParameters();
 
     // Initialize a reference 1DM. Taken from the implementation of @lelemmen.
     GQCP::SquareMatrix<double> reference_1DM {8};
@@ -259,8 +259,8 @@ BOOST_AUTO_TEST_CASE(NOCI_1DM_complex) {
     auto environment = GQCP::NOCIEnvironment::Dense(sq_hamiltonian, NOS_basis, molecule);
     auto solver = GQCP::GeneralizedEigenproblemSolver::Dense<GQCP::complex>();
 
-    // We ask for three states (which is all of them in this example) to be found.
-    const auto NOCI_parameters = GQCP::QCMethod::NOCI<GQCP::complex, GQCP::RNonOrthogonalStateBasis<GQCP::complex>>(NOS_basis, 3).optimize(solver, environment).groundStateParameters();
+    // We do not specify the number of states, meaning we only request the ground state.
+    const auto NOCI_parameters = GQCP::QCMethod::NOCI<GQCP::complex, GQCP::RNonOrthogonalStateBasis<GQCP::complex>>(NOS_basis).optimize(solver, environment).groundStateParameters();
 
     // Initialize a reference 1DM. Taken from the implementation of @lelemmen.
     GQCP::SquareMatrix<GQCP::complex> reference_1DM {4};
@@ -272,4 +272,64 @@ BOOST_AUTO_TEST_CASE(NOCI_1DM_complex) {
     // clang-format on
     // Check the calculated 1DM against the reference.
     BOOST_CHECK(reference_1DM.isApprox(NOCI_parameters.calculate1DM().matrix(), 1e-6));
+}
+
+
+/**
+ *  Test the complex unrestricted NOCI model 1DM calculation.
+ */
+BOOST_AUTO_TEST_CASE(NOCI_complex_unrestricted) {
+    // This test case is taken from a python prototype from @lelemmen and @johdvos.
+    // It was for H2, at 2.5au internuclear distance for the 6-31G basis set.
+    const auto molecule = GQCP::Molecule::HChain(2, 2.5, 0);  // H2, 2.5 bohr apart.
+
+    // The unrestricted spin orbital basis is also needed, as we require the overlap operator in AO basis.
+    const GQCP::USpinOrbitalBasis<GQCP::complex, GQCP::GTOShell> spin_orbital_basis {molecule, "6-31G"};
+    const auto S = spin_orbital_basis.overlap();
+
+    // Initialize two non-orthogonal "restricted states".
+    GQCP::SquareMatrix<GQCP::complex> state_1 {4};
+    // clang-format off
+    state_1 << -0.07443693+0.0j,  0.12036042+0.0j, -0.13557067+0.0j,  0.15517005+0.0j,
+               -0.07874922+0.0j,  0.15086478+0.0j, -0.68085546+0.0j,  0.77423311+0.0j,
+               -0.24580188+0.0j,  0.26338108+0.0j,  0.09556297+0.0j, -0.12178159+0.0j,
+               -0.38944259+0.0j,  0.4101685+0.0j ,  0.45214166+0.0j, -0.58335985+0.0j;
+    // clang-format on
+    GQCP::SquareMatrix<GQCP::complex> state_2 {4};
+    // clang-format off
+    state_2 <<  0.25851329+0.0j, -0.14539151+0.0j, -0.17177142+0.0j, -0.01126487+0.0j,
+                0.36593356+0.0j, -0.28669343+0.0j, -0.84796858+0.0j, -0.13503625+0.0j,
+                0.25853403+0.0j,  0.14539669+0.0j,  0.17176599+0.0j, -0.01126146+0.0j,
+                0.36597032+0.0j,  0.28670189+0.0j,  0.847938+0.0j  , -0.13501526+0.0j;
+    // clang-format on
+    GQCP::SquareMatrix<GQCP::complex> state_3 {4};
+    // clang-format off
+    state_3 <<  -0.265842+0.0j  ,  0.17716735+0.0j, -0.15969328+0.0j, -0.00308706+0.0j,
+                -0.36278694+0.0j,  0.36406651+0.0j, -0.80340861+0.0j, -0.13144475+0.0j,
+                -0.26584976+0.0j, -0.17716927+0.0j,  0.15969112+0.0j, -0.00308558+0.0j,
+                -0.36280035+0.0j, -0.36406982+0.0j,  0.80339638+0.0j, -0.13143372+0.0j;
+    // clang-format on
+    // Transform the matrices to the correct transformation type.
+    const auto basis_state_1 = GQCP::UTransformation<GQCP::complex>::FromRestricted(GQCP::RTransformation<GQCP::complex> {state_1});
+    const auto basis_state_2 = GQCP::UTransformation<GQCP::complex>::FromRestricted(GQCP::RTransformation<GQCP::complex> {state_2});
+    const auto basis_state_3 = GQCP::UTransformation<GQCP::complex>::FromRestricted(GQCP::RTransformation<GQCP::complex> {state_3});
+
+    // Create a vector out of these three basis states.
+    std::vector<GQCP::UTransformation<GQCP::complex>> basis_vector {basis_state_1, basis_state_2, basis_state_3};
+
+    // Create a non-orthogonal state basis, using the basis state vector, the overlap operator in AO basis and the number of occupied orbitals.
+    const auto NOS_basis = GQCP::UNonOrthogonalStateBasis<GQCP::complex> {basis_vector, S, molecule.numberOfElectronPairs(), molecule.numberOfElectronPairs()};
+
+    // To evaluate the Hamiltonian in the non-orthogonal state basis, we need the second quantized Hamiltonian in AO basis.
+    const auto sq_hamiltonian = spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
+
+    // Create a dense solver and corresponding environment and put them together in the QCMethod.
+    auto environment = GQCP::NOCIEnvironment::Dense(sq_hamiltonian, NOS_basis, molecule);
+    auto solver = GQCP::GeneralizedEigenproblemSolver::Dense<GQCP::complex>();
+
+    // We do not specify the number of states, meaning we only request the ground state.
+    const auto NOCI_parameters = GQCP::QCMethod::NOCI<GQCP::complex, GQCP::UNonOrthogonalStateBasis<GQCP::complex>>(NOS_basis).optimize(solver, environment).groundStateParameters();
+
+    // In this test case, the alpha and beta 1DM's should be equal. We check this fact, to confirm that all aspects of the complex NOCI method in an unrestricted basis work as expected.
+    BOOST_CHECK(NOCI_parameters.calculate1DM().alpha().matrix().isApprox(NOCI_parameters.calculate1DM().beta().matrix(), 1e-6));
 }

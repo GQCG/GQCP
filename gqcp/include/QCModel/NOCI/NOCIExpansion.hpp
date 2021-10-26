@@ -311,7 +311,7 @@ public:
             // Initialize the parameters that are identical for the bra and the ket.
             const auto occupied_alpha_orbitals = this->nonOrthogonalStateBasis().numberOfOccupiedOrbitals().alpha();
             const auto occupied_beta_orbitals = this->nonOrthogonalStateBasis().numberOfOccupiedOrbitals().beta();
-            const auto S = this->nonOrthogonalStateBasis().metric().parameters();
+            const auto S = this->nonOrthogonalStateBasis().metric();
 
             for (size_t j = 0; j < this->nonOrthogonalStateBasis().numberOfBasisStates(); j++) {
 
