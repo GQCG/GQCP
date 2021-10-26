@@ -3,6 +3,7 @@ add_subdirectory(CC)
 add_subdirectory(CI)
 add_subdirectory(Geminals)
 add_subdirectory(HF)
+add_subdirectory(NOCI)
 add_subdirectory(OrbitalOptimization)
 add_subdirectory(RMP2)
 

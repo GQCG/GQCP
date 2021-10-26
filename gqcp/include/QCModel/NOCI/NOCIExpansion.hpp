@@ -70,10 +70,10 @@ public:
      *  @param coefficients                    The expansion coefficients.
      *  @param state                           The total state coefficients.
      */
-    LinearExpansion(const ONVBasis& onv_basis, const VectorX<Scalar>& coefficients, const MatrixX<Scalar>& state) :
+    NOCIExpansion(const NonOrthogonalBasis& non_orthogonal_basis, const VectorX<Scalar>& coefficients, const MatrixX<Scalar>& state) :
         non_orthogonal_basis {non_orthogonal_basis},
         expansion_coefficients {coefficients},
-        state_coefficeints {state} {}
+        state_coefficients {state} {}
 };
 
 

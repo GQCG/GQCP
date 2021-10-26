@@ -20,7 +20,7 @@
 
 #include "Mathematical/Algorithm/Algorithm.hpp"
 #include "Mathematical/Algorithm/IterativeAlgorithm.hpp"
-#include "Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp"
+#include "Mathematical/Optimization/Eigenproblem/GeneralizedEigenproblemEnvironment.hpp"
 #include "QCMethod/QCStructure.hpp"
 #include "QCModel/NOCI/NOCIExpansion.hpp"
 
@@ -38,7 +38,7 @@ namespace QCMethod {
  *  @tparam _NonOrthogonalBasis           The type of ONV basis.
  */
 template <typename _Scalar, typename _NonOrthogonalBasis>
-class CI {
+class NOCI {
 public:
     // The scalar type of the expansion coefficients: real or complex.
     using Scalar = _Scalar;
@@ -61,10 +61,10 @@ public:
      */
 
     /**
-     *  @param non_orthogonal_basis                        The ONV basis with respect to which the configuration interaction is expressed.
+     *  @param non_orthogonal_basis                        The non-orthogonal basis with respect to which the configuration interaction is expressed.
      *  @param number_of_states                            The number of states that searched for (including the ground state).
      */
-    CI(const NonOrthogonalBasis& non_orthogonal_basis, const size_t number_of_states = 1) :
+    NOCI(const NonOrthogonalBasis& non_orthogonal_basis, const size_t number_of_states = 1) :
         non_orthogonal_basis {non_orthogonal_basis},
         number_of_states {number_of_states} {}
 
@@ -81,7 +81,7 @@ public:
      *  @param solver               The solver that will try to optimize the parameters.
      */
     template <typename Solver>
-    QCStructure<NOCIExpansion<Scalar, NonOrthogonalBasis>, Scalar> optimize(Solver& solver, EigenproblemEnvironment<Scalar>& environment) const {
+    QCStructure<NOCIExpansion<Scalar, NonOrthogonalBasis>, Scalar> optimize(Solver& solver, GeneralizedEigenproblemEnvironment<Scalar>& environment) const {
 
         // The NOCI method's responsibility is to try to optimize the parameters of its method, given a solver and associated environment.
         solver.perform(environment);

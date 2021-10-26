@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp"
+#include "Mathematical/Optimization/Eigenproblem/GeneralizedEigenproblemEnvironment.hpp"
 #include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
 
 
@@ -39,13 +39,14 @@ namespace NOCIEnvironment {
  *  @return An `EigenproblemEnvironment` initialized suitable for solving dense NOCI eigenvalue problems for the given Hamiltonian and non-orthogonal basis.
  */
 template <typename Hamiltonian, typename NonOrthogonalBasis>
-auto Dense(const Hamiltonian& hamiltonian, const NonOrthogonalBasis& non_orthogonal_basis, const Molecule& molecule) -> EigenproblemEnvironment<typename Hamiltonian::Scalar> {
+auto Dense(const Hamiltonian& hamiltonian, const NonOrthogonalBasis& non_orthogonal_basis, const Molecule& molecule) -> GeneralizedEigenproblemEnvironment<typename Hamiltonian::Scalar> {
 
     using Scalar = typename Hamiltonian::Scalar;  // The scalar type of a Hamiltonian element.
 
     // Determine the dense matrix representation of the Hamiltonian in the given non-orthogonal basis, and supply it to an `EigenproblemEnvironment`.
     const auto H = non_orthogonal_basis.evaluateHamiltonianOperator(hamiltonian, NuclearRepulsionOperator(molecule.nuclearFramework()));
-    return EigenproblemEnvironment<Scalar>::Dense(H);
+    const auto S = non_orthogonal_basis.evaluateOverlapOperator();
+    return GeneralizedEigenproblemEnvironment<Scalar>::Dense(H, S);
 }
 
 
