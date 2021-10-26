@@ -42,7 +42,7 @@ public:
     // The matrix whose eigenvalue problem should be solved.
     SquareMatrix<Scalar> A;
 
-    // The matrix needed to solve the generalized eigenvalue problem.
+    // The transformation matrix needed to solve the generalized eigenvalue problem.
     SquareMatrix<Scalar> S;
 
     // The eigenvalues of the matrix A.

@@ -90,9 +90,6 @@ public:
         // Extract the requested number of eigenpairs from the environment and place them into the NOCIExpansion wave function model.
         const auto eigenpairs = environment.eigenpairs(this->number_of_states);
 
-        // Extract the complete state coefficient matrix.
-        const auto coefficients = environment.eigenvectors;
-
         std::vector<NOCIExpansion<Scalar, NonOrthogonalBasis>> expansions {};
         expansions.reserve(number_of_states);
 
@@ -100,7 +97,7 @@ public:
         energies.reserve(this->number_of_states);
 
         for (const auto& eigenpair : eigenpairs) {
-            expansions.emplace_back(non_orthogonal_basis, eigenpair.eigenvector(), coefficients);
+            expansions.emplace_back(non_orthogonal_basis, eigenpair.eigenvector());
             energies.push_back(eigenpair.eigenvalue());
         }
 
