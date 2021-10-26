@@ -21,6 +21,7 @@
 #include "Mathematical/Representation/Tensor.hpp"
 #include "Utilities/CRTP.hpp"
 #include "Utilities/Eigen.hpp"
+#include "Utilities/complex.hpp"
 
 #include <Eigen/SVD>
 
@@ -146,13 +147,6 @@ public:
         // The singular values are the biorthogonal overlaps.
         this->biorthogonal_overlaps = svd.singularValues();
 
-        // All singular values have to be positive. If this is not the case, an exception must be thrown.
-        for (int i = 0; i < this->biorthogonal_overlaps.rows(); i++) {
-            if (this->biorthogonal_overlaps[i] < 0) {
-                throw std::invalid_argument("LowdinPairingBasis<Scalar>(const Transformation& C_bra, const Transformation& C_ket, const ScalarGSQOneElectronOperator<Scalar>& S_AO, const size_t number_of_electrons, const double threshold): The given parameters lead to negative singular values.");
-            }
-        }
-
         // We need a two dimensional tensor representation of the provided expansions in order to perform a contraction later on.
         Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> occ_bra_map {C_bra_occupied.data(), C_bra_occupied.rows(), C_bra_occupied.cols()};
         Tensor<Scalar, 2> C_bra_occupied_tensor = Tensor<Scalar, 2>(occ_bra_map);
@@ -245,7 +239,8 @@ public:
      *
      * @return The number of zero overlaps.
      */
-    int numberOfZeroOverlaps() const {
+    template <typename Z = Scalar>
+    enable_if_t<std::is_same<Z, double>::value, int> numberOfZeroOverlaps() const {
 
         // The count starets at zero.
         int number_of_zeros = 0;
@@ -253,6 +248,28 @@ public:
         // Check all overlap values and increase the count if the overlap value is zero.
         for (int i = 0; i < this->biorthogonalOverlaps().rows(); i++) {
             if (this->biorthogonalOverlaps()[i] < this->zero_threshold) {
+                number_of_zeros += 1;
+            }
+        }
+
+        return number_of_zeros;
+    }
+
+
+    /**
+     * Determine the number of zero overlaps in the biorthogonal overlap vector.
+     *
+     * @return The number of zero overlaps.
+     */
+    template <typename Z = Scalar>
+    enable_if_t<std::is_same<Z, complex>::value, int> numberOfZeroOverlaps() const {
+
+        // The count starets at zero.
+        int number_of_zeros = 0;
+
+        // Check all overlap values and increase the count if the overlap value is zero.
+        for (int i = 0; i < this->biorthogonalOverlaps().rows(); i++) {
+            if (this->biorthogonalOverlaps()[i].real() < this->zero_threshold) {
                 number_of_zeros += 1;
             }
         }
@@ -291,7 +308,8 @@ public:
      *
      * @return The indices of the zero overlap values.
      */
-    std::vector<size_t> zeroOverlapIndices() const {
+    template <typename Z = Scalar>
+    enable_if_t<std::is_same<Z, double>::value, std::vector<size_t>> zeroOverlapIndices() const {
 
         // Initialize the index vector.
         std::vector<size_t> zero_indices {};
@@ -299,6 +317,28 @@ public:
         // Check all overlap values and push the index to the index vector if the overlap value is zero.
         for (size_t i = 0; i < this->biorthogonalOverlaps().rows(); i++) {
             if (this->biorthogonalOverlaps()[i] < this->zero_threshold) {
+                zero_indices.push_back(i);
+            }
+        }
+
+        return zero_indices;
+    }
+
+
+    /**
+     * Determine the indices of the zero overlap values in the biorthogonal overlap vector.
+     *
+     * @return The indices of the zero overlap values.
+     */
+    template <typename Z = Scalar>
+    enable_if_t<std::is_same<Z, complex>::value, std::vector<size_t>> zeroOverlapIndices() const {
+
+        // Initialize the index vector.
+        std::vector<size_t> zero_indices {};
+
+        // Check all overlap values and push the index to the index vector if the overlap value is zero.
+        for (size_t i = 0; i < this->biorthogonalOverlaps().rows(); i++) {
+            if (this->biorthogonalOverlaps()[i].real() < this->zero_threshold) {
                 zero_indices.push_back(i);
             }
         }
@@ -387,7 +427,8 @@ public:
      *
      * @note This implementation is based on equation 38c from the 2021 paper by Hugh Burton (https://aip.scitation.org/doi/abs/10.1063/5.0045442).
      */
-    DM weightedCoDensity() const {
+    template <typename Z = Scalar>
+    enable_if_t<std::is_same<Z, double>::value, DM> weightedCoDensity() const {
 
 
         // Initialize a zero matrix with which we can sum the co-density matrices of the zero overlap indices.
@@ -396,6 +437,32 @@ public:
         // Loop over all zero indices and calculate the zero overlap co-density matrix at each of them. Add them to the total zero overlap co-density matrix.
         for (int i = 0, s = 0; x < this->biorthogonalOverlaps().rows() && s < this->biorthogonalOverlaps().rows(); i++, s++) {
             if (this->biorthogonalOverlaps()[s] > this->zero_threshold) {
+                weighted_co_density += (this->coDensity(i).matrix() / this->biorthogonalOverlaps()[s]);
+            }
+        }
+
+        return DM {weighted_co_density};
+    }
+
+
+    /**
+     * Calculate and return the weighted co-density matrix. It calculates the co-density matrix contributions corresponding to the non-zero overlap values and divides them by that overlap value.
+     * These matrices are then summed and returned.
+     *
+     * @return The weighted co-density matrix.
+     *
+     * @note This implementation is based on equation 38c from the 2021 paper by Hugh Burton (https://aip.scitation.org/doi/abs/10.1063/5.0045442).
+     */
+    template <typename Z = Scalar>
+    enable_if_t<std::is_same<Z, complex>::value, DM> weightedCoDensity() const {
+
+
+        // Initialize a zero matrix with which we can sum the co-density matrices of the zero overlap indices.
+        Matrix weighted_co_density = Matrix::Zero(this->M, this->M);
+
+        // Loop over all zero indices and calculate the zero overlap co-density matrix at each of them. Add them to the total zero overlap co-density matrix.
+        for (int i = 0, s = 0; x < this->biorthogonalOverlaps().rows() && s < this->biorthogonalOverlaps().rows(); i++, s++) {
+            if (this->biorthogonalOverlaps()[s].real() > this->zero_threshold) {
                 weighted_co_density += (this->coDensity(i).matrix() / this->biorthogonalOverlaps()[s]);
             }
         }
