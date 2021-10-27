@@ -237,6 +237,12 @@ void bindUHFSCFEnvironments(py::module& module);
 void bindUHFSCFSolvers(py::module& module);
 
 
+// QCMethod - NOCI
+void bindNOCIEnvironments(py::module& module);
+void bindNOCIFactory(py::module& module);
+void bindQCMethodNOCI(py::module& module);
+
+
 // QCMethod
 void bindQCStructures(py::module& module);
 
@@ -491,6 +497,12 @@ PYBIND11_MODULE(gqcpy, module) {
     gqcpy::bindQCMethodsUHF(module);
     gqcpy::bindUHFSCFEnvironments(module);
     gqcpy::bindUHFSCFSolvers(module);
+
+
+    // QCMethod - NOCI
+    gqcpy::bindNOCIEnvironments(module);
+    gqcpy::bindNOCIFactory(module);
+    gqcpy::bindQCMethodNOCI(module);
 
 
     // QCMethod
