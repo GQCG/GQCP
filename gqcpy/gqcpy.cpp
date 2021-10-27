@@ -276,6 +276,10 @@ void bindRHFStabilityMatrices(py::module& module);
 void bindUHFStabilityMatrices(py::module& module);
 
 
+// QCModel - NOCI
+void bindNOCIExpansions(py::module& module);
+
+
 // QuantumChemical
 void bindSpin(py::module& module);
 void bindSpinResolvedTypes(py::module& module);
@@ -536,6 +540,10 @@ PYBIND11_MODULE(gqcpy, module) {
     gqcpy::bindGHFStabilityMatrices(module);
     gqcpy::bindRHFStabilityMatrices(module);
     gqcpy::bindUHFStabilityMatrices(module);
+
+
+    // QCModel - NOCI
+    gqcpy::bindNOCIExpansions(module);
 
 
     // QuantumChemical
