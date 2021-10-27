@@ -48,6 +48,12 @@ void bindUMullikenPartitioning(py::module& module);
 void bindUMullikenPartitioningComponent(py::module& module);
 
 
+// Basis - NonOrthogonalBasis
+void bindGNonOrthogonalStateBases(py::module& module);
+void bindRNonOrthogonalStateBases(py::module& module);
+void bindUNonOrthogonalStateBases(py::module& module);
+
+
 // Basis - ScalarBasis
 void bindGTOShell(py::module& module);
 void bindScalarBasis(py::module& module);
@@ -296,6 +302,12 @@ PYBIND11_MODULE(gqcpy, module) {
     gqcpy::bindRMullikenPartitioning(module);
     gqcpy::bindUMullikenPartitioning(module);
     gqcpy::bindUMullikenPartitioningComponent(module);
+
+
+    // Basis - NonOrthogonalBasis
+    gqcpy::bindGNonOrthogonalStateBases(module);
+    gqcpy::bindRNonOrthogonalStateBases(module);
+    gqcpy::bindUNonOrthogonalStateBases(module);
 
 
     // Basis - ScalarBasis
