@@ -18,6 +18,7 @@
 #include "Basis/NonOrthogonalBasis/GNonOrthogonalStateBasis.hpp"
 #include "Basis/NonOrthogonalBasis/RNonOrthogonalStateBasis.hpp"
 #include "Basis/NonOrthogonalBasis/UNonOrthogonalStateBasis.hpp"
+#include "Molecule/Molecule.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/NOCI/NOCIEnvironment.hpp"
 #include "Utilities/complex.hpp"

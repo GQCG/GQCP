@@ -110,6 +110,8 @@ void bindWeightedGrid(py::module& module);
 // Mathematical - Optimization - Eigenproblem
 void bindEigenproblemEnvironment(py::module& module);
 void bindEigenproblemSolver(py::module& module);
+void bindGeneralizedEigenproblemEnvironment(py::module& module);
+void bindGeneralizedEigenproblemSolver(py::module& module);
 
 
 // Mathematical - Optimization - LinearEquation
@@ -376,6 +378,8 @@ PYBIND11_MODULE(gqcpy, module) {
     // Mathematical - Optimization - Eigenproblem
     gqcpy::bindEigenproblemEnvironment(module);
     gqcpy::bindEigenproblemSolver(module);
+    gqcpy::bindGeneralizedEigenproblemEnvironment(module);
+    gqcpy::bindGeneralizedEigenproblemSolver(module);
 
 
     // Mathematical - Optimization - LinearEquation
