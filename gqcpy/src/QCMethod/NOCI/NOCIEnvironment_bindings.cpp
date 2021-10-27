@@ -48,11 +48,12 @@ void bindNOCIEnvironment(py::module& submodule, const std::string& documentation
 
     submodule.def(
         "Dense",
-        [](const Hamiltonian& hamiltonian, const NonOrthogonalBasis& non_orthogonal_basis) {
-            return NOCIEnvironment::Dense(hamiltonian, non_orthogonal_basis);
+        [](const Hamiltonian& hamiltonian, const NonOrthogonalBasis& non_orthogonal_basis, const Molecule& molecule) {
+            return NOCIEnvironment::Dense(hamiltonian, non_orthogonal_basis, molecule);
         },
         py::arg("hamiltonian"),
         py::arg("non_orthogonal_basis"),
+        py::arg("molecule"),
         documentation.c_str());
 }
 
