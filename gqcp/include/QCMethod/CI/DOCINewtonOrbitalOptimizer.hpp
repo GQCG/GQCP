@@ -52,17 +52,8 @@ public:
     // The type of Eigenproblem solver.
     using EigenproblemSolver = _EigenproblemSolver;
 
-    // The type of Eigenproblem environment.
-    using EigenproblemEnvironment = EigenproblemEnvironment<double>;
-
-    // The type of eigenpairs used in this orbital optimizer.
-    using Eigenpair = Eigenpair<double, double>;
-
     // The type of ONV basis used for DOCI calculations.
     using ONVBasis = SeniorityZeroONVBasis;
-
-    // The type of linear expansion wave function model.
-    using LinearExpansion = LinearExpansion<double, ONVBasis>;
 
 
 private:
@@ -70,17 +61,17 @@ private:
     ONVBasis onv_basis;
 
     // The associated eigenproblem solver and environment.
-    EigenproblemEnvironment eigenproblem_environment;
+    EigenproblemEnvironment<double> eigenproblem_environment;
     EigenproblemSolver eigenproblem_solver;
 
     // The linear expansion representing the DOCI wave function model.
-    LinearExpansion ground_state_expansion;
+    LinearExpansion<double, ONVBasis> ground_state_expansion;
 
     // The number of requested eigenpairs.
     size_t number_of_requested_eigenpairs;
 
     // The eigenpairs containing the eigenvalues and eigenvectors of the eigenvalue problem.
-    std::vector<Eigenpair> m_eigenpairs;
+    std::vector<Eigenpair<double, double>> m_eigenpairs;
 
 
 public:
@@ -97,7 +88,7 @@ public:
      *  @param convergence_threshold            The threshold used to check for convergence.
      *  @param maximum_number_of_iterations     The maximum number of iterations that may be used to achieve convergence.
      */
-    DOCINewtonOrbitalOptimizer(const SeniorityZeroONVBasis& onv_basis, const EigenproblemSolver& eigenproblem_solver, const EigenproblemEnvironment& eigenproblem_environment, std::shared_ptr<BaseHessianModifier> hessian_modifier, const size_t number_of_requested_eigenpairs = 1, const double convergence_threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128) :
+    DOCINewtonOrbitalOptimizer(const SeniorityZeroONVBasis& onv_basis, const EigenproblemSolver& eigenproblem_solver, const EigenproblemEnvironment<double>& eigenproblem_environment, std::shared_ptr<BaseHessianModifier> hessian_modifier, const size_t number_of_requested_eigenpairs = 1, const double convergence_threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128) :
         onv_basis {onv_basis},
         eigenproblem_solver {eigenproblem_solver},
         eigenproblem_environment {eigenproblem_environment},
@@ -178,7 +169,7 @@ public:
      *
      *  @return The eigenpair that is associated to the given index.
      */
-    const Eigenpair& eigenpair(const size_t index = 0) const {
+    const Eigenpair<double, double>& eigenpair(const size_t index = 0) const {
 
         if (this->is_converged) {
             return this->m_eigenpairs[index];
@@ -190,7 +181,7 @@ public:
     /**
      *  @return All eigenpairs found by this orbital optimizer.
      */
-    const std::vector<Eigenpair>& eigenpairs() const {
+    const std::vector<Eigenpair<double, double>>& eigenpairs() const {
 
         if (this->is_converged) {
             return this->m_eigenpairs;
@@ -208,12 +199,12 @@ public:
      *
      *  @return The index-th excited state after doing the OO-DOCI calculation.
      */
-    LinearExpansion makeLinearExpansion(size_t index = 0) const {
+    LinearExpansion<double, ONVBasis> makeLinearExpansion(size_t index = 0) const {
         if (index > this->m_eigenpairs.size()) {
             throw std::logic_error("DOCINewtonOrbitalOptimizer::makeLinearExpansion(size_t): Not enough requested m_eigenpairs for the given index.");
         }
 
-        return LinearExpansion(this->onv_basis, this->m_eigenpairs[index].eigenvector());
+        return LinearExpansion<double, ONVBasis>(this->onv_basis, this->m_eigenpairs[index].eigenvector());
     }
 };
 

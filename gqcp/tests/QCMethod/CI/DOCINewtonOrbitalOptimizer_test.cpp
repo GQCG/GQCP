@@ -21,6 +21,7 @@
 
 #include "Basis/Transformations/transform.hpp"
 #include "Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp"
+#include "Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp"
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
 #include "Mathematical/Optimization/Minimization/IterativeIdentitiesHessianModifier.hpp"
 #include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
