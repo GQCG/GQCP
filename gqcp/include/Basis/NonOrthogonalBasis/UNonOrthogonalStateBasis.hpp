@@ -30,6 +30,7 @@
 #include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/USQTwoElectronOperator.hpp"
 #include "QuantumChemical/Spin.hpp"
+#include "QuantumChemical/SpinResolved.hpp"
 #include "Utilities/CRTP.hpp"
 
 
@@ -146,7 +147,6 @@ public:
      */
     const Transformation& basisState(size_t i) const { return this->basis_states[i]; }
 
-
     /**
      * Return the dimension of the basis states in the formed non-orthogonal state basis.
      *
@@ -164,11 +164,25 @@ public:
     const States& basisStates() const { return this->basis_states; }
 
     /**
+     * Return the overlap metric of the formed non-orthogonal state basis as an operator.
+     *
+     * @return The overlap metric.
+     */
+    const OneElectronOperator& metric() const { return this->overlap_operator_AO; }
+
+    /**
      * Return the number of basis states in the formed non-orthogonal state basis.
      *
      * @return The number of basis states.
      */
     const size_t numberOfBasisStates() const { return this->basis_states.size(); }
+
+    /**
+     * Return the number of basis states in the formed non-orthogonal state basis.
+     *
+     * @return The number of basis states.
+     */
+    const SpinResolved<size_t> numberOfOccupiedOrbitals() const { return SpinResolved<size_t> {this->N_a, this->N_b}; }
 
     /**
      * Return the threshold used to compare values to zero associated with this non-orthogonal state basis.
@@ -329,18 +343,14 @@ public:
                     const auto zero_overlap_index = lowdin_pairing_basis.zeroOverlapIndices(zero_spin)[0];
                     const auto co_density = lowdin_pairing_basis.coDensity(zero_overlap_index).component(zero_spin);
 
-                    auto matrix_element = 0.0;
-
                     // Perform the contraction.
                     if (zero_spin == Spin::alpha) {
-                        Tensor<Scalar, 0> element = operator_parameters_tensor_alpha.template einsum<2>("uv, vu ->", co_density.matrix());
-                        matrix_element += element(0);
+                        Tensor<Scalar, 0> matrix_element = operator_parameters_tensor_alpha.template einsum<2>("uv, vu ->", co_density.matrix());
+                        evaluated_operator(i, j) += reduced_overlap * matrix_element(0);
                     } else {
-                        Tensor<Scalar, 0> element = operator_parameters_tensor_beta.template einsum<2>("uv, vu ->", co_density.matrix());
-                        matrix_element += element(0);
+                        Tensor<Scalar, 0> matrix_element = operator_parameters_tensor_beta.template einsum<2>("uv, vu ->", co_density.matrix());
+                        evaluated_operator(i, j) += reduced_overlap * matrix_element(0);
                     }
-
-                    evaluated_operator(i, j) += reduced_overlap * matrix_element;
                 }
                 // If there are two or more zero overlap values, the matrix element will be zero. No further if-clause is needed.
             }

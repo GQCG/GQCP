@@ -148,7 +148,6 @@ public:
      */
     const Transformation& basisState(size_t i) const { return this->basis_states[i]; }
 
-
     /**
      * Return the dimension of the basis states in the formed non-orthogonal state basis.
      *
@@ -166,11 +165,25 @@ public:
     const States& basisStates() const { return this->basis_states; }
 
     /**
+     * Return the overlap metric of the formed non-orthogonal state basis as an operator.
+     *
+     * @return The overlap metric.
+     */
+    const OneElectronOperator& metric() const { return this->overlap_operator_AO; }
+
+    /**
      * Return the number of basis states in the formed non-orthogonal state basis.
      *
      * @return The number of basis states.
      */
     const size_t numberOfBasisStates() const { return this->basis_states.size(); }
+
+    /**
+     * Return the number of occupied orbitals.
+     *
+     * @return The number of occupied orbitals.
+     */
+    const size_t numberOfOccupiedOrbitals() const { return this->N; }
 
     /**
      * Return the threshold used to compare values to zero associated with this non-orthogonal state basis.
