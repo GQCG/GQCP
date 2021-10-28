@@ -1802,6 +1802,32 @@ public:
             throw std::invalid_argument("LinearExpansion::calculateOrbitalRDM(std::vector<ONV>& system_onvs, std::vector<ONV>& environment_onvs, const ONV& onv_n_bra, const ONV& onv_b_ket) const: The amount of system ONVs should be exactly the same as the amount of environment ONVs.");
         }
 
+        const auto create_onv_basis = [](const std::vector<typename ONVBasis::ONV>& onvs) {
+            std::vector<typename ONVBasis::ONV> onv_basis;
+            std::vector<size_t> unique_representations;
+
+            for (const auto& onv : onvs) {
+
+                bool unique = true;
+                const auto onv_representation = onv.unsignedRepresentation();
+
+                for (const auto& unique_representation : unique_representations) {
+                    if (onv_representation == unique_representation) {
+                        unique = false;
+                    }
+                }
+
+                if (unique) {
+                    onv_basis.push_back(onv);
+                    onv_basis_representations.push_back(onv.unsignedRepresentation());
+                }
+            }
+            return onv_basis;
+        });
+
+        const auto test_onv_basis = create_onv_basis(system_onvs);
+        std::cout << "test onv basis size: " << test_onv_basis.size() << std::endl;
+
         const auto dim = system_onv_basis.size();
         GQCP::SquareMatrix<Scalar> rho = GQCP::SquareMatrix<Scalar>::Zero(dim);
 
