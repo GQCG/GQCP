@@ -43,7 +43,7 @@ void bindDOCINewtonOrbitalOptimizerFactoryMethod(py::module& module) {
 
     module.def(
         "DOCINewtonOrbitalOptimizer",
-        [](const SeniorityZeroONVBasis& onv_basis, const EigenproblemSolver& solver, const EigenproblemEnvironment& environment, const size_t number_of_requested_eigenpairs = 1, const double convergence_threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128) {
+        [](const SeniorityZeroONVBasis& onv_basis, const EigenproblemSolver& solver, const EigenproblemEnvironment<double>& environment, const size_t number_of_requested_eigenpairs = 1, const double convergence_threshold = 1.0e-08, const size_t maximum_number_of_iterations = 128) {
             auto hessian_modifier = std::make_shared<IterativeIdentitiesHessianModifier>();
 
             return DOCINewtonOrbitalOptimizer<EigenproblemSolver>(onv_basis, solver, environment, hessian_modifier, number_of_requested_eigenpairs, convergence_threshold, maximum_number_of_iterations);
@@ -62,8 +62,8 @@ void bindDOCINewtonOrbitalOptimizerFactoryMethod(py::module& module) {
  */
 void bindDOCINewtonOrbitalOptimizerFactory(py::module& module) {
 
-    bindDOCINewtonOrbitalOptimizerFactoryMethod<IterativeAlgorithm<EigenproblemEnvironment>>(module);
-    bindDOCINewtonOrbitalOptimizerFactoryMethod<Algorithm<EigenproblemEnvironment>>(module);
+    bindDOCINewtonOrbitalOptimizerFactoryMethod<IterativeAlgorithm<EigenproblemEnvironment<double>>>(module);
+    bindDOCINewtonOrbitalOptimizerFactoryMethod<Algorithm<EigenproblemEnvironment<double>>>(module);
 }
 
 

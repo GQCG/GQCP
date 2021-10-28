@@ -64,8 +64,8 @@ void bindDOCINewtonOrbitalOptimizer(py::module& module, const std::string& suffi
  */
 void bindDOCINewtonOrbitalOptimizers(py::module& module) {
 
-    bindDOCINewtonOrbitalOptimizer<Algorithm<EigenproblemEnvironment>>(module, "Dense");
-    bindDOCINewtonOrbitalOptimizer<IterativeAlgorithm<EigenproblemEnvironment>>(module, "Iterative");
+    bindDOCINewtonOrbitalOptimizer<Algorithm<EigenproblemEnvironment<double>>>(module, "Dense");
+    bindDOCINewtonOrbitalOptimizer<IterativeAlgorithm<EigenproblemEnvironment<double>>>(module, "Iterative");
 }
 
 
