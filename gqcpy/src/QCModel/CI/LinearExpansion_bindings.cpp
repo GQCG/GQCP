@@ -245,13 +245,11 @@ void bindLinearExpansions(py::module& module) {
 
         .def(
             "calculateOrbitalRDM",
-            [](const LinearExpansion<double, SpinResolvedONVBasis>& linear_expansion, const std::vector<GQCP::SpinResolvedONV>& system_onvs, const std::vector<GQCP::SpinResolvedONV>& environment_onvs, const std::vector<GQCP::SpinResolvedONV>& system_onv_basis, const std::vector<GQCP::SpinResolvedONV>& environment_onv_basis) {
-                return linear_expansion.calculateOrbitalRDM(system_onvs, environment_onvs, system_onv_basis, environment_onv_basis);
+            [](const LinearExpansion<double, SpinResolvedONVBasis>& linear_expansion, const std::vector<GQCP::SpinResolvedONV>& system_onvs, const std::vector<GQCP::SpinResolvedONV>& environment_onvs) {
+                return linear_expansion.calculateOrbitalRDM(system_onvs, environment_onvs);
             },
             py::arg("system_onvs"),
             py::arg("environment_onvs"),
-            py::arg("system_onv_basis"),
-            py::arg("environment_onv_basis"),
             "Return the orbital reduced density matrix")
 
         .def(
@@ -359,13 +357,11 @@ void bindLinearExpansions(py::module& module) {
 
         .def(
             "calculateOrbitalRDM",
-            [](const LinearExpansion<double, SpinUnresolvedONVBasis>& linear_expansion, const std::vector<GQCP::SpinUnresolvedONV>& system_onvs, const std::vector<GQCP::SpinUnresolvedONV>& environment_onvs, const std::vector<GQCP::SpinUnresolvedONV>& system_onv_basis, const std::vector<GQCP::SpinUnresolvedONV>& environment_onv_basis) {
-                return linear_expansion.calculateOrbitalRDM(system_onvs, environment_onvs, system_onv_basis, environment_onv_basis);
+            [](const LinearExpansion<double, SpinUnresolvedONVBasis>& linear_expansion, const std::vector<GQCP::SpinUnresolvedONV>& system_onvs, const std::vector<GQCP::SpinUnresolvedONV>& environment_onvs) {
+                return linear_expansion.calculateOrbitalRDM(system_onvs, environment_onvs);
             },
             py::arg("system_onvs"),
             py::arg("environment_onvs"),
-            py::arg("system_onv_basis"),
-            py::arg("environment_onv_basis"),
             "Return the orbital reduced density matrix")
 
         /*
