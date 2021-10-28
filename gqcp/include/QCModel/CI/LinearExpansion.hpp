@@ -1796,12 +1796,38 @@ public:
      *  @return The orbital reduced density matrix.
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinUnresolvedONVBasis>::value | std::is_same<Z, SpinResolvedONVBasis>::value, GQCP::SquareMatrix<Scalar>> calculateOrbitalRDM(const std::vector<typename ONVBasis::ONV>& system_onvs, const std::vector<typename ONVBasis::ONV>& environment_onvs, const std::vector<typename ONVBasis::ONV>& system_onv_basis, const std::vector<typename ONVBasis::ONV>& environment_onv_basis) const {
+    enable_if_t<std::is_same<Z, SpinUnresolvedONVBasis>::value | std::is_same<Z, SpinResolvedONVBasis>::value, GQCP::SquareMatrix<Scalar>> calculateOrbitalRDM(const std::vector<typename ONVBasis::ONV>& system_onvs, const std::vector<typename ONVBasis::ONV>& environment_onvs) const {
 
         if (system_onvs.size() != environment_onvs.size()) {
-            throw std::invalid_argument("LinearExpansion::calculateOrbitalRDM(std::vector<ONV>& system_onvs, std::vector<ONV>& environment_onvs, const ONV& onv_n_bra, const ONV& onv_b_ket) const: The amount of system ONVs should be exactly the same as the amount of environment ONVs.");
+            throw std::invalid_argument("LinearExpansion::calculateOrbitalRDM(std::vector<ONV>& system_onvs, std::vector<ONV>& environment_onvs) const: The amount of system ONVs should be exactly the same as the amount of environment ONVs.");
         }
 
+        // Determine the dimensions of the orbital density matrix.
+        const auto unique_onvs = [](const std::vector<typename ONVBasis::ONV>& onvs) {
+            // The ONV basis containing all unique ONVs.
+            std::vector<typename ONVBasis::ONV> onv_basis;
+
+            for (const auto& onv : onvs) {
+
+                bool unique = true;
+                // If the ONV already is inside this basis, do not add it again.
+                for (const auto& unique_onv : onv_basis) {
+                    if (onv.asString() == unique_onv.asString()) {
+                        unique = false;
+                    }
+                }
+                // If it is an unique ONV, add it to the ONV basis.
+                if (unique) {
+                    onv_basis.push_back(onv);
+                }
+            }
+            return onv_basis;
+        };
+
+        const auto system_onv_basis = unique_onvs(system_onvs);
+        const auto environment_onv_basis = unique_onvs(environment_onvs);
+
+        // Calculate the orbital reduced density matrix.
         const auto dim = system_onv_basis.size();
         GQCP::SquareMatrix<Scalar> rho = GQCP::SquareMatrix<Scalar>::Zero(dim);
 

@@ -143,12 +143,8 @@ BOOST_AUTO_TEST_CASE(orbital_reduced_density_matrix) {
     std::vector<GQCP::SpinUnresolvedONV> system_onvs {{2, 1, 1}, {2, 2, 3}, {2, 1, 2}, {2, 1, 1}, {2, 0, 0}, {2, 1, 2}};
     // |10>, |00>, |10>, |01>, |11>, |01>
     std::vector<GQCP::SpinUnresolvedONV> environment_onvs {{2, 1, 1}, {2, 0, 0}, {2, 1, 1}, {2, 1, 2}, {2, 2, 3}, {2, 1, 2}};
-    // |10>, |11>, |01>, |00>
-    std::vector<GQCP::SpinUnresolvedONV> system_onv_basis {{2, 1, 1}, {2, 2, 3}, {2, 1, 2}, {2, 0, 0}};
-    // |10>, |00>, |01>, |11>
-    std::vector<GQCP::SpinUnresolvedONV> environment_onv_basis {{2, 1, 1}, {2, 0, 0}, {2, 1, 2}, {2, 2, 3}};
 
-    const auto rho = wfn.calculateOrbitalRDM(system_onvs, environment_onvs, system_onv_basis, environment_onv_basis);
+    const auto rho = wfn.calculateOrbitalRDM(system_onvs, environment_onvs);
 
     // <n| = <10|, |n'> = |10>
     BOOST_CHECK_EQUAL(rho(0, 0), wfn.coefficient(0) * wfn.coefficient(0) + wfn.coefficient(3) * wfn.coefficient(3));
