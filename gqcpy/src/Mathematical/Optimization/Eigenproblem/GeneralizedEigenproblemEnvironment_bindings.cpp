@@ -53,7 +53,7 @@ void bindGeneralizedEigenproblemEnvironmentInterface(Class& py_class) {
             [](const GeneralizedEigenproblemEnvironment<Scalar>& environment) {
                 return environment.A;
             },
-            [](EigenproblemEnvironment<Scalar>& environment, const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>& new_A) {
+            [](GeneralizedEigenproblemEnvironment<Scalar>& environment, const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>& new_A) {
                 environment.A = SquareMatrix<Scalar>(new_A);
             })
 
@@ -62,7 +62,7 @@ void bindGeneralizedEigenproblemEnvironmentInterface(Class& py_class) {
             [](const GeneralizedEigenproblemEnvironment<Scalar>& environment) {
                 return environment.eigenvalues;
             },
-            [](EigenproblemEnvironment<Scalar>& environment, const Eigen::Matrix<double, Eigen::Dynamic, 1>& new_eigenvalues) {
+            [](GeneralizedEigenproblemEnvironment<Scalar>& environment, const Eigen::Matrix<double, Eigen::Dynamic, 1>& new_eigenvalues) {
                 environment.eigenvalues = VectorX<double>(new_eigenvalues);
             })
 
@@ -71,7 +71,7 @@ void bindGeneralizedEigenproblemEnvironmentInterface(Class& py_class) {
             [](const GeneralizedEigenproblemEnvironment<Scalar>& environment) {
                 return environment.eigenvectors;
             },
-            [](EigenproblemEnvironment<Scalar>& environment, const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>& new_eigenvectors) {
+            [](GeneralizedEigenproblemEnvironment<Scalar>& environment, const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>& new_eigenvectors) {
                 environment.eigenvectors = MatrixX<Scalar>(new_eigenvectors);
             })
 
@@ -80,7 +80,7 @@ void bindGeneralizedEigenproblemEnvironmentInterface(Class& py_class) {
             [](const GeneralizedEigenproblemEnvironment<Scalar>& environment) {
                 return environment.S;
             },
-            [](EigenproblemEnvironment<Scalar>& environment, const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>& new_S) {
+            [](GeneralizedEigenproblemEnvironment<Scalar>& environment, const Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>& new_S) {
                 environment.S = SquareMatrix<Scalar>(new_S);
             });
 }
@@ -95,11 +95,11 @@ void bindGeneralizedEigenproblemEnvironment(py::module& module) {
 
     // Define the Python class for `GeneralizedEigenproblemEnvironment_d`.
     py::class_<GeneralizedEigenproblemEnvironment<double>> py_GeneralizedEigenproblemEnvironment_d {module, "GeneralizedEigenproblemEnvironment_d", "A real-valued environment used to solve eigenvalue problems for a general eigenvalue problem."};
-    bindEigenproblemEnvironmentInterface(py_GeneralizedEigenproblemEnvironment_d);
+    bindGeneralizedEigenproblemEnvironmentInterface(py_GeneralizedEigenproblemEnvironment_d);
 
     // Define the Python class for `GeneralizedEigenproblemEnvironment_cd`.
     py::class_<GeneralizedEigenproblemEnvironment<complex>> py_GeneralizedEigenproblemEnvironment_cd {module, "GeneralizedEigenproblemEnvironment_cd", "A complex-valued environment used to solve eigenvalue problems for a general eigenvalue problem."};
-    bindEigenproblemEnvironmentInterface(py_GeneralizedEigenproblemEnvironment_cd);
+    bindGeneralizedEigenproblemEnvironmentInterface(py_GeneralizedEigenproblemEnvironment_cd);
 }
 
 

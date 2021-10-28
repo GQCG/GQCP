@@ -36,7 +36,7 @@ using namespace GQCP;
 
 
 /**
- *  Bind a NOCI environment to a gqcpy submodule module.
+ *  Bind a real NOCI environment to a gqcpy submodule module.
  *
  *  @tparam Hamiltonian                       The type of the Hamiltonian.
  *  @tparam NonOrthogonalBasis                The type of the non-orthogonal basis.
@@ -45,10 +45,34 @@ using namespace GQCP;
  *  @param documentation            The documentation that should appear for the function.
  */
 template <typename Hamiltonian, typename NonOrthogonalBasis>
-void bindNOCIEnvironment(py::module& submodule, const std::string& documentation) {
+void bindRealNOCIEnvironment(py::module& submodule, const std::string& documentation) {
 
     submodule.def(
-        "Dense",
+        "Dense_d",
+        [](const Hamiltonian& hamiltonian, const NonOrthogonalBasis& non_orthogonal_basis, const Molecule& molecule) {
+            return NOCIEnvironment::Dense(hamiltonian, non_orthogonal_basis, molecule);
+        },
+        py::arg("hamiltonian"),
+        py::arg("non_orthogonal_basis"),
+        py::arg("molecule"),
+        documentation.c_str());
+}
+
+
+/**
+ *  Bind a complex NOCI environment to a gqcpy submodule module.
+ *
+ *  @tparam Hamiltonian                       The type of the Hamiltonian.
+ *  @tparam NonOrthogonalBasis                The type of the non-orthogonal basis.
+ *
+ *  @param submodule                The gqcpy.NOCIEnvironment submodule.
+ *  @param documentation            The documentation that should appear for the function.
+ */
+template <typename Hamiltonian, typename NonOrthogonalBasis>
+void bindComplexNOCIEnvironment(py::module& submodule, const std::string& documentation) {
+
+    submodule.def(
+        "Dense_cd",
         [](const Hamiltonian& hamiltonian, const NonOrthogonalBasis& non_orthogonal_basis, const Molecule& molecule) {
             return NOCIEnvironment::Dense(hamiltonian, non_orthogonal_basis, molecule);
         },
@@ -63,13 +87,13 @@ void bindNOCIEnvironments(py::module& module) {
 
     auto submodule = module.def_submodule("NOCIEnvironment");
 
-    bindNOCIEnvironment<GSQHamiltonian<double>, GNonOrthogonalStateBasis<double>>(submodule, "Return an environment suitable for real-valued solving non-orthogonal configuration interaction in a basis that consists of 'generalized' states.");
-    bindNOCIEnvironment<RSQHamiltonian<double>, RNonOrthogonalStateBasis<double>>(submodule, "Return an environment suitable for real-valued solving non-orthogonal configuration interaction in a basis that consists of 'generalized' states.");
-    bindNOCIEnvironment<USQHamiltonian<double>, UNonOrthogonalStateBasis<double>>(submodule, "Return an environment suitable for real-valued solving non-orthogonal configuration interaction in a basis that consists of 'generalized' states.");
+    bindRealNOCIEnvironment<GSQHamiltonian<double>, GNonOrthogonalStateBasis<double>>(submodule, "Return an environment suitable for real-valued solving non-orthogonal configuration interaction in a basis that consists of 'generalized' states.");
+    bindRealNOCIEnvironment<RSQHamiltonian<double>, RNonOrthogonalStateBasis<double>>(submodule, "Return an environment suitable for real-valued solving non-orthogonal configuration interaction in a basis that consists of 'generalized' states.");
+    bindRealNOCIEnvironment<USQHamiltonian<double>, UNonOrthogonalStateBasis<double>>(submodule, "Return an environment suitable for real-valued solving non-orthogonal configuration interaction in a basis that consists of 'generalized' states.");
 
-    bindNOCIEnvironment<GSQHamiltonian<complex>, GNonOrthogonalStateBasis<complex>>(submodule, "Return an environment suitable for complex-valued solving non-orthogonal configuration interaction in a basis that consists of 'generalized' states.");
-    bindNOCIEnvironment<RSQHamiltonian<complex>, RNonOrthogonalStateBasis<complex>>(submodule, "Return an environment suitable for complex-valued solving non-orthogonal configuration interaction in a basis that consists of 'generalized' states.");
-    bindNOCIEnvironment<USQHamiltonian<complex>, UNonOrthogonalStateBasis<complex>>(submodule, "Return an environment suitable for complex-valued solving non-orthogonal configuration interaction in a basis that consists of 'generalized' states.");
+    bindComplexNOCIEnvironment<GSQHamiltonian<complex>, GNonOrthogonalStateBasis<complex>>(submodule, "Return an environment suitable for complex-valued solving non-orthogonal configuration interaction in a basis that consists of 'generalized' states.");
+    bindComplexNOCIEnvironment<RSQHamiltonian<complex>, RNonOrthogonalStateBasis<complex>>(submodule, "Return an environment suitable for complex-valued solving non-orthogonal configuration interaction in a basis that consists of 'generalized' states.");
+    bindComplexNOCIEnvironment<USQHamiltonian<complex>, UNonOrthogonalStateBasis<complex>>(submodule, "Return an environment suitable for complex-valued solving non-orthogonal configuration interaction in a basis that consists of 'generalized' states.");
 }
 
 
