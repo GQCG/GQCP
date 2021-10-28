@@ -31,6 +31,7 @@
     - file: examples/AP1roG-calculations
     - file: examples/CCSD
     - file: examples/Mulliken-population
+    - file: examples/NOCI
     - file: examples/Magnetic-inducibility
     - file: examples/Integrals-over-GTOs
     - file: examples/London-integrals
