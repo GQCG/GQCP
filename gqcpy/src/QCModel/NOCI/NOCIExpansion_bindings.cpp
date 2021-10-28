@@ -23,7 +23,6 @@
 #include "gqcpy/include/utilities.hpp"
 
 #include <pybind11/eigen.h>
-#include <pybind11/functional.h>
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 
@@ -54,12 +53,8 @@ void bindQCModelNOCIExpansionInterface(Class& py_class) {
 
     py_class
 
-        /**
-         *  MARK: Constructors
-         */
-
-        .def(py::init([](const NonOrthogonalBasis& onv_basis, const Eigen::MatrixXd& coefficients) {
-                 return Type(onv_basis, coefficients);
+        .def(py::init([](const NonOrthogonalBasis& non_orthogonal_basis, const Eigen::MatrixXd& coefficients) {
+                 return Type(non_orthogonal_basis, coefficients);
              }),
              py::arg("non_orthogonal_basis"),
              py::arg("coefficients"),
@@ -88,9 +83,12 @@ void bindQCModelNOCIExpansionInterface(Class& py_class) {
          * MARK: Density Matrices
          */
 
-        .def("calculate1DM",
-             &Type::calculate1DM,
-             "Calculate the one-electron density matrix for this expansion in the associated non-orthogonal basis.");
+        .def(
+            "calculate1DM",
+            [](const Type& NOCI_expansion) {
+                return NOCI_expansion.calculate1DM();
+            },
+            "Calculate the one-electron density matrix of this NOCI expansion wave function model.");
 }
 
 

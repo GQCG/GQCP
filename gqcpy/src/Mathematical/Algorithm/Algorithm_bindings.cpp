@@ -17,6 +17,7 @@
 
 #include "Mathematical/Algorithm/Algorithm.hpp"
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp"
+#include "Mathematical/Optimization/Eigenproblem/GeneralizedEigenproblemEnvironment.hpp"
 #include "Mathematical/Optimization/LinearEquation/LinearEquationEnvironment.hpp"
 #include "Utilities/complex.hpp"
 
@@ -37,9 +38,9 @@ using namespace GQCP;
 
 /**
  *  Bind an algorithm to the given module.
- * 
+ *
  *  @tparam Environment         the type of the environment
- * 
+ *
  *  @param module               the Pybind11 module
  *  @param suffix               the suffix that the Python class should receive, i.e. "Algorithm" + suffix
  *  @param description          the Python class description
@@ -63,6 +64,9 @@ void bindAlgorithms(py::module& module) {
 
     bindAlgorithm<EigenproblemEnvironment<double>>(module, "EigenproblemEnvironment_d", "An algorithm that only performs one collection of steps using a real-valued EigenproblemEnvironment.");
     bindAlgorithm<EigenproblemEnvironment<complex>>(module, "EigenproblemEnvironment_cd", "An algorithm that only performs one collection of steps using a complex-valued EigenproblemEnvironment.");
+
+    bindAlgorithm<GeneralizedEigenproblemEnvironment<double>>(module, "GeneralizedEigenproblemEnvironment_d", "An algorithm that only performs one collection of steps using a real-valued GeneralizedEigenproblemEnvironment.");
+    bindAlgorithm<GeneralizedEigenproblemEnvironment<complex>>(module, "GeneralizedEigenproblemEnvironment_cd", "An algorithm that only performs one collection of steps using a complex-valued GeneralizedEigenproblemEnvironment.");
 
     bindAlgorithm<LinearEquationEnvironment<double>>(module, "LinearEquationEnvironment", "An algorithm that only performs one collection of steps using a LinearEquationEnvironment.");
 }

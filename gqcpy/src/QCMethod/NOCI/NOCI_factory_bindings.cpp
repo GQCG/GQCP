@@ -83,14 +83,14 @@ void bindComplexNOCIFactoryMethod(py::module& module) {
 void bindNOCIFactory(py::module& module) {
 
     // Bind real-valued CI methods.
-    bindRealNOCIFactoryMethod<double, GNonOrthogonalStateBasis<double>>(module);
-    bindRealNOCIFactoryMethod<double, RNonOrthogonalStateBasis<double>>(module);
-    bindRealNOCIFactoryMethod<double, UNonOrthogonalStateBasis<double>>(module);
+    bindRealNOCIFactoryMethod<GNonOrthogonalStateBasis<double>>(module);
+    bindRealNOCIFactoryMethod<RNonOrthogonalStateBasis<double>>(module);
+    bindRealNOCIFactoryMethod<UNonOrthogonalStateBasis<double>>(module);
 
     // Bind complex-valued CI methods.
-    bindComplexNOCIFactoryMethod<complex, GNonOrthogonalStateBasis<complex>>(module);
-    bindComplexNOCIFactoryMethod<complex, RNonOrthogonalStateBasis<complex>>(module);
-    bindComplexNOCIFactoryMethod<complex, UNonOrthogonalStateBasis<complex>>(module);
+    bindComplexNOCIFactoryMethod<GNonOrthogonalStateBasis<complex>>(module);
+    bindComplexNOCIFactoryMethod<RNonOrthogonalStateBasis<complex>>(module);
+    bindComplexNOCIFactoryMethod<UNonOrthogonalStateBasis<complex>>(module);
 }
 
 
