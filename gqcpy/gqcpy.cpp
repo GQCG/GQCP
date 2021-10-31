@@ -202,6 +202,8 @@ void bindCCSDSolver(py::module& module);
 // QCMethod - CI
 void bindCIEnvironments(py::module& module);
 void bindCIFactory(py::module& module);
+void bindDOCINewtonOrbitalOptimizers(py::module& module);
+void bindDOCINewtonOrbitalOptimizerFactory(py::module& module);
 void bindQCMethodCI(py::module& module);
 
 
@@ -452,6 +454,8 @@ PYBIND11_MODULE(gqcpy, module) {
     // QCMethod - CI
     gqcpy::bindCIEnvironments(module);
     gqcpy::bindCIFactory(module);
+    gqcpy::bindDOCINewtonOrbitalOptimizers(module);
+    gqcpy::bindDOCINewtonOrbitalOptimizerFactory(module);
     gqcpy::bindQCMethodCI(module);
 
 
