@@ -35,11 +35,15 @@ using namespace GQCP;
 
 /**
  *  Bind a factory-like method for a DOCI Newton orbital optimizer.
- * 
+ *
  *  @tparam EigenproblemSolver          the type of the eigenvalue problem solver that should be used
  */
 template <typename EigenproblemSolver>
 void bindDOCINewtonOrbitalOptimizerFactoryMethod(py::module& module) {
+
+    /**
+     * MARK: Constructor
+     */
 
     module.def(
         "DOCINewtonOrbitalOptimizer",
