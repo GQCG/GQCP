@@ -32,9 +32,9 @@ using namespace GQCP;
 
 /**
  *  Bind a templated DOCI Newton orbital optimizer.
- * 
+ *
  *  @tparam EigenproblemSolver          the type of the eigenvalue problem solver that should be used
- * 
+ *
  *  @param module                       the pybind11 module in which these bindings should appear
  *  @param suffix                       the suffix that should appear in the Python class name in the following manner: "DOCINewtonOrbitalOptimizer_suffix"
  */
@@ -45,7 +45,9 @@ void bindDOCINewtonOrbitalOptimizer(py::module& module, const std::string& suffi
                                                                ("DOCINewtonOrbitalOptimizer_" + suffix).c_str(),
                                                                "A class that performs gradient-and-Hessian-based orbital optimization for DOCI")
 
-        // PUBLIC METHODS
+        /**
+         * MARK: Optimization
+         */
 
         .def(
             "optimize",
@@ -53,19 +55,78 @@ void bindDOCINewtonOrbitalOptimizer(py::module& module, const std::string& suffi
                 optimizer.optimize(spinor_basis, sq_hamiltonian);
             },
             py::arg("spinor_basis"),
-            py::arg("sq_hamiltonian"));
+            py::arg("sq_hamiltonian"))
+
+
+        /**
+         * MARK: Eigenpair access
+         */
+
+        .def(
+            "eigenvalue",
+            [](const DOCINewtonOrbitalOptimizer<EigenproblemSolver>& optimizer, const size_t index = 0) {
+                return optimizer.eigenpair(index).eigenvalue();
+            },
+            py::arg("index") = 0,
+            "Return the eigenvalue at the given index found by the optimizer.")
+
+        .def(
+            "eigenvalues",
+            [](const DOCINewtonOrbitalOptimizer<EigenproblemSolver>& optimizer) {
+                std::vector<double> eigenvalues {};
+
+                for (size_t i = 0; i < optimizer.eigenpairs().size(); i++) {
+                    eigenvalues.push_back(optimizer.eigenpair(i).eigenvalue());
+                }
+                return eigenvalues;
+            },
+            "Return all the eigenvalues found by the optimizer.")
+
+
+        .def(
+            "eigenvector",
+            [](const DOCINewtonOrbitalOptimizer<EigenproblemSolver>& optimizer, const size_t index = 0) {
+                return optimizer.eigenpair(index).eigenvector();
+            },
+            py::arg("index") = 0,
+            "Return the eigenvector at the given index found by the optimizer.")
+
+        .def(
+            "eigenvectors",
+            [](const DOCINewtonOrbitalOptimizer<EigenproblemSolver>& optimizer) {
+                std::vector<GQCP::VectorX<double>> eigenvectors {};
+
+                for (size_t i = 0; i < optimizer.eigenpairs().size(); i++) {
+                    eigenvectors.push_back(optimizer.eigenpair(i).eigenvector());
+                }
+                return eigenvectors;
+            },
+            "Return all the eigenvectors found by the optimizer.")
+
+
+        /**
+         * MARK: Wave function model
+         */
+
+        .def(
+            "makeLinearExpansion",
+            [](const DOCINewtonOrbitalOptimizer<EigenproblemSolver>& optimizer, const size_t index = 0) {
+                return optimizer.makeLinearExpansion(index);
+            },
+            py::arg("index") = 0,
+            "Return the linear expansion wave function model of the given eigenpair found by the optimizer.");
 }
 
 
 /**
  *  Bind all kinds of DOCI Newton orbital optimizers to the given module.
- * 
+ *
  *  @param module           the module to which these optimizers should be bound: gqcpy
  */
 void bindDOCINewtonOrbitalOptimizers(py::module& module) {
 
-    bindDOCINewtonOrbitalOptimizer<Algorithm<EigenproblemEnvironment>>(module, "Dense");
-    bindDOCINewtonOrbitalOptimizer<IterativeAlgorithm<EigenproblemEnvironment>>(module, "Iterative");
+    bindDOCINewtonOrbitalOptimizer<Algorithm<EigenproblemEnvironment<double>>>(module, "Dense");
+    bindDOCINewtonOrbitalOptimizer<IterativeAlgorithm<EigenproblemEnvironment<double>>>(module, "Iterative");
 }
 
 

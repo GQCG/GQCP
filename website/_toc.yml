@@ -26,6 +26,7 @@
     - file: examples/Following-internal-GHF-instabilities
     - file: examples/ONVPath
     - file: examples/DOCI
+    - file: examples/OO-DOCI
     - file: examples/FCI
     - file: examples/Hubbard
     - file: examples/AP1roG-calculations
