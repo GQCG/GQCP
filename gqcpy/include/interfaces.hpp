@@ -1168,7 +1168,7 @@ void bindNonOrthogonalStateBasisInterface(Class& py_class) {
 
         .def("numberOfBasisStates",
              &Type::numberOfBasisStates,
-             "Return the number of basis staes in this non-orthogonal basis.")
+             "Return the number of basis states in this non-orthogonal basis.")
 
         .def("numberOfOccupiedOrbitals",
              &Type::numberOfOccupiedOrbitals,
