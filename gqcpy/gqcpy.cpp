@@ -48,6 +48,12 @@ void bindUMullikenPartitioning(py::module& module);
 void bindUMullikenPartitioningComponent(py::module& module);
 
 
+// Basis - NonOrthogonalBasis
+void bindGNonOrthogonalStateBases(py::module& module);
+void bindRNonOrthogonalStateBases(py::module& module);
+void bindUNonOrthogonalStateBases(py::module& module);
+
+
 // Basis - ScalarBasis
 void bindGTOShell(py::module& module);
 void bindScalarBasis(py::module& module);
@@ -104,6 +110,8 @@ void bindWeightedGrid(py::module& module);
 // Mathematical - Optimization - Eigenproblem
 void bindEigenproblemEnvironment(py::module& module);
 void bindEigenproblemSolver(py::module& module);
+void bindGeneralizedEigenproblemEnvironment(py::module& module);
+void bindGeneralizedEigenproblemSolver(py::module& module);
 
 
 // Mathematical - Optimization - LinearEquation
@@ -233,6 +241,12 @@ void bindUHFSCFEnvironments(py::module& module);
 void bindUHFSCFSolvers(py::module& module);
 
 
+// QCMethod - NOCI
+void bindNOCIEnvironments(py::module& module);
+void bindNOCIFactory(py::module& module);
+void bindQCMethodNOCI(py::module& module);
+
+
 // QCMethod
 void bindQCStructures(py::module& module);
 
@@ -264,6 +278,10 @@ void bindQCModelsUHF(py::module& module);
 void bindGHFStabilityMatrices(py::module& module);
 void bindRHFStabilityMatrices(py::module& module);
 void bindUHFStabilityMatrices(py::module& module);
+
+
+// QCModel - NOCI
+void bindNOCIExpansions(py::module& module);
 
 
 // QuantumChemical
@@ -298,6 +316,12 @@ PYBIND11_MODULE(gqcpy, module) {
     gqcpy::bindRMullikenPartitioning(module);
     gqcpy::bindUMullikenPartitioning(module);
     gqcpy::bindUMullikenPartitioningComponent(module);
+
+
+    // Basis - NonOrthogonalBasis
+    gqcpy::bindGNonOrthogonalStateBases(module);
+    gqcpy::bindRNonOrthogonalStateBases(module);
+    gqcpy::bindUNonOrthogonalStateBases(module);
 
 
     // Basis - ScalarBasis
@@ -356,6 +380,8 @@ PYBIND11_MODULE(gqcpy, module) {
     // Mathematical - Optimization - Eigenproblem
     gqcpy::bindEigenproblemEnvironment(module);
     gqcpy::bindEigenproblemSolver(module);
+    gqcpy::bindGeneralizedEigenproblemEnvironment(module);
+    gqcpy::bindGeneralizedEigenproblemSolver(module);
 
 
     // Mathematical - Optimization - LinearEquation
@@ -485,6 +511,12 @@ PYBIND11_MODULE(gqcpy, module) {
     gqcpy::bindUHFSCFSolvers(module);
 
 
+    // QCMethod - NOCI
+    gqcpy::bindNOCIEnvironments(module);
+    gqcpy::bindNOCIFactory(module);
+    gqcpy::bindQCMethodNOCI(module);
+
+
     // QCMethod
     gqcpy::bindQCStructures(module);
 
@@ -516,6 +548,10 @@ PYBIND11_MODULE(gqcpy, module) {
     gqcpy::bindGHFStabilityMatrices(module);
     gqcpy::bindRHFStabilityMatrices(module);
     gqcpy::bindUHFStabilityMatrices(module);
+
+
+    // QCModel - NOCI
+    gqcpy::bindNOCIExpansions(module);
 
 
     // QuantumChemical

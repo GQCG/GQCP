@@ -19,6 +19,7 @@
 
 
 #include "Mathematical/Optimization/Eigenproblem/GeneralizedEigenproblemEnvironment.hpp"
+#include "Molecule/Molecule.hpp"
 #include "Operator/FirstQuantized/NuclearRepulsionOperator.hpp"
 
 

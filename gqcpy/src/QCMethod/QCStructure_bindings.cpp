@@ -15,6 +15,9 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
+#include "Basis/NonOrthogonalBasis/GNonOrthogonalStateBasis.hpp"
+#include "Basis/NonOrthogonalBasis/RNonOrthogonalStateBasis.hpp"
+#include "Basis/NonOrthogonalBasis/UNonOrthogonalStateBasis.hpp"
 #include "ONVBasis/SeniorityZeroONVBasis.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
@@ -28,6 +31,7 @@
 #include "QCModel/HF/GHF.hpp"
 #include "QCModel/HF/RHF.hpp"
 #include "QCModel/HF/UHF.hpp"
+#include "QCModel/NOCI/NOCIExpansion.hpp"
 
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
@@ -47,9 +51,9 @@ using namespace GQCP;
 
 /**
  *  Bind a quantum chemical model to the given module.
- * 
+ *
  *  @tparam QCModel             the type of the quantum chemical model
- * 
+ *
  *  @param module               the Pybind11 module
  *  @param suffix               the suffix that the Python class should receive, i.e. "QCStructure" + suffix
  *  @param description          the Python class description
@@ -103,6 +107,13 @@ void bindQCStructures(py::module& module) {
 
     bindQCStructure<LinearExpansion<double, SpinUnresolvedSelectedONVBasis>>(module, "LinearExpansion_SpinUnresolvedSelected_d", "A quantum chemical structure for real-valued linear expansions in a spin-unresolved selected ONV basis.");
     bindQCStructure<LinearExpansion<complex, SpinUnresolvedSelectedONVBasis>, complex>(module, "LinearExpansion_SpinUnresolvedSelected_cd", "A quantum chemical structure for complex-valued linear expansions in a spin-unresolved selected ONV basis.");
+
+    bindQCStructure<NOCIExpansion<double, GNonOrthogonalStateBasis<double>>>(module, "NOCI_GNonOrthogonalState_d", "A quantum chemical structure for real-valued expansions in a generalized non-orthogonal state basis.");
+    bindQCStructure<NOCIExpansion<complex, GNonOrthogonalStateBasis<complex>>>(module, "NOCI_GNonOrthogonalState_cd", "A quantum chemical structure for complex-valued expansions in a generalized non-orthogonal state basis.");
+    bindQCStructure<NOCIExpansion<double, RNonOrthogonalStateBasis<double>>>(module, "NOCI_RNonOrthogonalState_d", "A quantum chemical structure for real-valued expansions in a restricted non-orthogonal state basis.");
+    bindQCStructure<NOCIExpansion<complex, RNonOrthogonalStateBasis<complex>>>(module, "NOCI_RNonOrthogonalState_cd", "A quantum chemical structure for complex-valued expansions in a restricted non-orthogonal state basis.");
+    bindQCStructure<NOCIExpansion<double, UNonOrthogonalStateBasis<double>>>(module, "NOCI_UNonOrthogonalState_d", "A quantum chemical structure for real-valued expansions in a unrestricted non-orthogonal state basis.");
+    bindQCStructure<NOCIExpansion<complex, UNonOrthogonalStateBasis<complex>>>(module, "NOCI_UNonOrthogonalState_cd", "A quantum chemical structure for complex-valued expansions in a unrestricted non-orthogonal state basis.");
 
     bindQCStructure<QCModel::AP1roG>(module, "AP1roG", "A quantum chemical structure for real-valued AP1roG parameters.");
     bindQCStructure<QCModel::vAP1roG>(module, "vAP1roG", "A quantum chemical structure for real-valued vAP1roG parameters.");
