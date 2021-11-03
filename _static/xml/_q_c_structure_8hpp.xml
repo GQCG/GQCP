@@ -30,15 +30,15 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="11">
+      <node id="12">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHF.hpp</label>
         <link refid="_q_c_method_2_h_f_2_r_h_f_2_r_h_f_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="13" relation="include">
         </childnode>
       </node>
-      <node id="13">
+      <node id="14">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHF.hpp</label>
         <link refid="_q_c_method_2_h_f_2_u_h_f_2_u_h_f_8hpp"/>
         <childnode refid="2" relation="include">
@@ -55,26 +55,26 @@
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="6" relation="include">
+        <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
+        <childnode refid="9" relation="include">
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
-        <childnode refid="13" relation="include">
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
         </childnode>
       </node>
-      <node id="8">
+      <node id="9">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/vAP1roG.hpp</label>
         <link refid="_q_c_method_2_geminals_2v_a_p1ro_g_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="9" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
       </node>
-      <node id="9">
+      <node id="10">
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/Geminals/AP1roGLagrangianNewtonOrbitalOptimizer.cpp</label>
         <link refid="_a_p1ro_g_lagrangian_newton_orbital_optimizer_8cpp"/>
       </node>
@@ -88,17 +88,23 @@
         <label>/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</label>
         <link refid="gqcp_8hpp"/>
       </node>
-      <node id="12">
+      <node id="13">
         <label>/__w/GQCP/GQCP/gqcp/src/Processing/Properties/RHFElectricalResponseSolver.cpp</label>
         <link refid="_r_h_f_electrical_response_solver_8cpp"/>
       </node>
-      <node id="10">
+      <node id="11">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHF.hpp</label>
         <link refid="_q_c_method_2_h_f_2_g_h_f_2_g_h_f_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="7">
+      <node id="6">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp</label>
+        <link refid="_d_o_c_i_newton_orbital_optimizer_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.cpp</label>
         <link refid="_a_p1ro_g_jacobi_orbital_optimizer_8cpp"/>
       </node>
@@ -107,6 +113,8 @@
         <link refid="_c_i_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
       </node>
       <node id="4">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSD.hpp</label>
@@ -114,12 +122,12 @@
         <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="6">
+      <node id="7">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roG.hpp</label>
         <link refid="_q_c_method_2_geminals_2_a_p1ro_g_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
+        <childnode refid="8" relation="include">
         </childnode>
       </node>
     </invincdepgraph>

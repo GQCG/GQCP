@@ -9,6 +9,7 @@
     <includes refid="_linear_expansion_8hpp" local="yes">QCModel/CI/LinearExpansion.hpp</includes>
     <includes local="no">memory</includes>
     <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
+    <includedby refid="_d_o_c_i_newton_orbital_optimizer_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp</includedby>
     <incdepgraph>
       <node id="198">
         <label>Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp</label>
@@ -2247,10 +2248,18 @@
         <label>/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</label>
         <link refid="gqcp_8hpp"/>
       </node>
+      <node id="3">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp</label>
+        <link refid="_d_o_c_i_newton_orbital_optimizer_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
       <node id="1">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp</label>
         <link refid="_c_i_8hpp"/>
         <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
         </childnode>
       </node>
     </invincdepgraph>

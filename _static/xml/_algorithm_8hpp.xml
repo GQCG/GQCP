@@ -5,6 +5,7 @@
     <includes refid="_step_collection_8hpp" local="yes">Mathematical/Algorithm/StepCollection.hpp</includes>
     <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
     <includedby refid="_eigenproblem_solver_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp</includedby>
+    <includedby refid="_generalized_eigenproblem_solver_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/GeneralizedEigenproblemSolver.hpp</includedby>
     <includedby refid="_non_linear_equation_2_newton_step_update_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NewtonStepUpdate.hpp</includedby>
     <includedby refid="_c_i_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp</includedby>
     <incdepgraph>
@@ -76,13 +77,19 @@
     </incdepgraph>
     <invincdepgraph>
       <node id="6">
+        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/GeneralizedEigenproblemSolver.hpp</label>
+        <link refid="_generalized_eigenproblem_solver_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
         <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NewtonStepUpdate.hpp</label>
         <link refid="_non_linear_equation_2_newton_step_update_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
+        <childnode refid="8" relation="include">
         </childnode>
-        <childnode refid="10" relation="include">
+        <childnode refid="11" relation="include">
         </childnode>
       </node>
       <node id="1">
@@ -94,33 +101,35 @@
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
         </childnode>
       </node>
-      <node id="7">
+      <node id="8">
         <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/NewtonStepUpdate.hpp</label>
         <link refid="_minimization_2_newton_step_update_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="8" relation="include">
+        <childnode refid="9" relation="include">
         </childnode>
       </node>
-      <node id="8">
+      <node id="9">
         <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/Minimizer.hpp</label>
         <link refid="_minimizer_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="9" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
       </node>
-      <node id="10">
+      <node id="11">
         <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NonLinearEquationSolver.hpp</label>
         <link refid="_non_linear_equation_solver_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="9" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="11" relation="include">
+        <childnode refid="12" relation="include">
         </childnode>
       </node>
       <node id="4">
@@ -139,7 +148,7 @@
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="11">
+      <node id="12">
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/Geminals/AP1roGLagrangianNewtonOrbitalOptimizer.cpp</label>
         <link refid="_a_p1ro_g_lagrangian_newton_orbital_optimizer_8cpp"/>
       </node>
@@ -153,14 +162,22 @@
         <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="9">
+      <node id="14">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp</label>
+        <link refid="_d_o_c_i_newton_orbital_optimizer_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.cpp</label>
         <link refid="_a_p1ro_g_jacobi_orbital_optimizer_8cpp"/>
       </node>
-      <node id="12">
+      <node id="13">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp</label>
         <link refid="_c_i_8hpp"/>
         <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
         </childnode>
       </node>
     </invincdepgraph>

@@ -4,6 +4,7 @@
     <compoundname>GQCP::QCMethodNewtonOrbitalOptimizer</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_newton_orbital_optimizer" prot="public" virt="non-virtual">GQCP::NewtonOrbitalOptimizer</basecompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer" prot="public" virt="non-virtual">GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer" prot="public" virt="non-virtual">GQCP::DOCINewtonOrbitalOptimizer&lt; _EigenproblemSolver &gt;</derivedcompoundref>
     <includes refid="_q_c_method_newton_orbital_optimizer_8hpp" local="no">QCMethodNewtonOrbitalOptimizer.hpp</includes>
       <sectiondef kind="protected-attrib">
       <memberdef kind="variable" id="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a3797680653af288c2ad290ca96ab30fc" prot="protected" static="no" mutable="no">
@@ -53,6 +54,7 @@
         <definition>virtual Orbital1DM&lt;double&gt; GQCP::QCMethodNewtonOrbitalOptimizer::calculate1DM</definition>
         <argsstring>() const =0</argsstring>
         <name>calculate1DM</name>
+        <reimplementedby refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a2f7573760c6a40196c7ca5306caee3e2">calculate1DM</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_1afdaf6eb8496913f79d26692f65d07317">calculate1DM</reimplementedby>
         <briefdescription>
         </briefdescription>
@@ -70,6 +72,7 @@
         <definition>virtual Orbital2DM&lt;double&gt; GQCP::QCMethodNewtonOrbitalOptimizer::calculate2DM</definition>
         <argsstring>() const =0</argsstring>
         <name>calculate2DM</name>
+        <reimplementedby refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1aeb09a05183e230000da396a9a4acb95e">calculate2DM</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_1a1931e33efbb95070899b100d8db336a2">calculate2DM</reimplementedby>
         <briefdescription>
         </briefdescription>
@@ -87,6 +90,7 @@
         <definition>virtual void GQCP::QCMethodNewtonOrbitalOptimizer::prepareDMCalculation</definition>
         <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian)=0</argsstring>
         <name>prepareDMCalculation</name>
+        <reimplementedby refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a9bcdb07e2901f5f39f335a54518aa5b1">prepareDMCalculation</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_1a5c8c974c787553a88daeaf850210229f">prepareDMCalculation</reimplementedby>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
@@ -256,6 +260,12 @@
         <label>GQCP::QCMethodNewtonOrbitalOptimizer</label>
         <link refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer"/>
         <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>GQCP::DOCINewtonOrbitalOptimizer&lt; _EigenproblemSolver &gt;</label>
+        <link refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer"/>
+        <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
       <node id="3">

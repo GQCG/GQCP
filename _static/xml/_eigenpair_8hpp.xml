@@ -5,6 +5,8 @@
     <includes refid="_matrix_8hpp" local="yes">Mathematical/Representation/Matrix.hpp</includes>
     <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
     <includedby refid="_eigenproblem_environment_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp</includedby>
+    <includedby refid="_generalized_eigenproblem_environment_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/GeneralizedEigenproblemEnvironment.hpp</includedby>
+    <includedby refid="_d_o_c_i_newton_orbital_optimizer_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp</includedby>
     <incdepgraph>
       <node id="10">
         <label>boost/algorithm/string.hpp</label>
@@ -79,6 +81,20 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
+      <node id="19">
+        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/GeneralizedEigenproblemSolver.hpp</label>
+        <link refid="_generalized_eigenproblem_solver_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/GeneralizedEigenproblemEnvironment.hpp</label>
+        <link refid="_generalized_eigenproblem_environment_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
       <node id="9">
         <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/GuessVectorUpdate.hpp</label>
         <link refid="_guess_vector_update_8hpp"/>
@@ -95,10 +111,12 @@
         <childnode refid="7" relation="include">
         </childnode>
       </node>
-      <node id="15">
+      <node id="16">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CIEnvironment.hpp</label>
         <link refid="_c_i_environment_8hpp"/>
         <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
         </childnode>
       </node>
       <node id="6">
@@ -133,6 +151,14 @@
         <childnode refid="7" relation="include">
         </childnode>
       </node>
+      <node id="18">
+        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/GeneralizedDenseDiagonalization.hpp</label>
+        <link refid="_generalized_dense_diagonalization_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
       <node id="2">
         <label>/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</label>
         <link refid="gqcp_8hpp"/>
@@ -159,6 +185,12 @@
         <childnode refid="7" relation="include">
         </childnode>
       </node>
+      <node id="15">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp</label>
+        <link refid="_d_o_c_i_newton_orbital_optimizer_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
       <node id="11">
         <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/ResidualVectorCalculation.hpp</label>
         <link refid="_residual_vector_calculation_8hpp"/>
@@ -171,6 +203,8 @@
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp</label>
         <link refid="_c_i_8hpp"/>
         <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
         </childnode>
       </node>
       <node id="3">
@@ -198,6 +232,8 @@
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
         <childnode refid="15" relation="include">
         </childnode>
       </node>
@@ -207,6 +243,10 @@
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
         </childnode>
       </node>
     </invincdepgraph>

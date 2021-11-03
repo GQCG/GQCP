@@ -261,6 +261,12 @@
         <childnode refid="5" relation="public-inheritance">
         </childnode>
       </node>
+      <node id="9">
+        <label>GQCP::DOCINewtonOrbitalOptimizer&lt; _EigenproblemSolver &gt;</label>
+        <link refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
       <node id="1">
         <label>GQCP::BaseOrbitalOptimizer</label>
         <link refid="class_g_q_c_p_1_1_base_orbital_optimizer"/>

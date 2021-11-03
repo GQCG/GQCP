@@ -156,6 +156,7 @@
         <definition>virtual ROrbitalRotationGenerators&lt;double&gt; GQCP::NewtonOrbitalOptimizer::calculateNewFullOrbitalGenerators</definition>
         <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian) const =0</argsstring>
         <name>calculateNewFullOrbitalGenerators</name>
+        <reimplementedby refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1ad676181c3f4773c51be1b2a3577981d7">calculateNewFullOrbitalGenerators</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_1a61ef08393d6a025ffaf3e12a93902511">calculateNewFullOrbitalGenerators</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_e_r_newton_localizer_1a1d304d9d97be250b0bf544dd7a1240c1">calculateNewFullOrbitalGenerators</reimplementedby>
         <param>
@@ -457,6 +458,12 @@ Produce a new rotation matrix by either<itemizedlist>
         <label>GQCP::QCMethodNewtonOrbitalOptimizer</label>
         <link refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer"/>
         <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>GQCP::DOCINewtonOrbitalOptimizer&lt; _EigenproblemSolver &gt;</label>
+        <link refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer"/>
+        <childnode refid="4" relation="public-inheritance">
         </childnode>
       </node>
       <node id="2">

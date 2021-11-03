@@ -1,0 +1,586 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::DOCINewtonOrbitalOptimizer</compoundname>
+    <basecompoundref refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer" prot="public" virt="non-virtual">GQCP::QCMethodNewtonOrbitalOptimizer</basecompoundref>
+    <includes refid="_d_o_c_i_newton_orbital_optimizer_8hpp" local="no">DOCINewtonOrbitalOptimizer.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _EigenproblemSolver</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a5c2eb4ac34fa1539192395100d29d795" prot="public" static="no">
+        <type>_EigenproblemSolver</type>
+        <definition>using GQCP::DOCINewtonOrbitalOptimizer&lt; _EigenproblemSolver &gt;::EigenproblemSolver =  _EigenproblemSolver</definition>
+        <argsstring></argsstring>
+        <name>EigenproblemSolver</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp" line="53" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a625170c255bd61dc6c90623b93d014f2" prot="public" static="no">
+        <type>SeniorityZeroONVBasis</type>
+        <definition>using GQCP::DOCINewtonOrbitalOptimizer&lt; _EigenproblemSolver &gt;::ONVBasis =  SeniorityZeroONVBasis</definition>
+        <argsstring></argsstring>
+        <name>ONVBasis</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp" line="56" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a6e97b61a4643061e81fe75dc5d686efa" prot="private" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a625170c255bd61dc6c90623b93d014f2" kindref="member">ONVBasis</ref></type>
+        <definition>ONVBasis GQCP::DOCINewtonOrbitalOptimizer&lt; _EigenproblemSolver &gt;::onv_basis</definition>
+        <argsstring></argsstring>
+        <name>onv_basis</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp" line="61" column="14" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a8b7e919fd999f290b637430bc45ff504" prot="private" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_eigenproblem_environment" kindref="compound">EigenproblemEnvironment</ref>&lt; double &gt;</type>
+        <definition>EigenproblemEnvironment&lt;double&gt; GQCP::DOCINewtonOrbitalOptimizer&lt; _EigenproblemSolver &gt;::eigenproblem_environment</definition>
+        <argsstring></argsstring>
+        <name>eigenproblem_environment</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp" line="64" column="29" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a5b596411ed4c7113dd789f642b9cc8e4" prot="private" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a5c2eb4ac34fa1539192395100d29d795" kindref="member">EigenproblemSolver</ref></type>
+        <definition>EigenproblemSolver GQCP::DOCINewtonOrbitalOptimizer&lt; _EigenproblemSolver &gt;::eigenproblem_solver</definition>
+        <argsstring></argsstring>
+        <name>eigenproblem_solver</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp" line="65" column="24" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a66e51d3dedeade38673db21260d6a897" prot="private" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_linear_expansion" kindref="compound">LinearExpansion</ref>&lt; double, <ref refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a625170c255bd61dc6c90623b93d014f2" kindref="member">ONVBasis</ref> &gt;</type>
+        <definition>LinearExpansion&lt;double, ONVBasis&gt; GQCP::DOCINewtonOrbitalOptimizer&lt; _EigenproblemSolver &gt;::ground_state_expansion</definition>
+        <argsstring></argsstring>
+        <name>ground_state_expansion</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp" line="68" column="21" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a0170e8140cf3eead36927c7fe0d11e3d" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t GQCP::DOCINewtonOrbitalOptimizer&lt; _EigenproblemSolver &gt;::number_of_requested_eigenpairs</definition>
+        <argsstring></argsstring>
+        <name>number_of_requested_eigenpairs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp" line="71" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a9e134afa7d4f497cf11e2e17171e597d" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="class_g_q_c_p_1_1_eigenpair" kindref="compound">Eigenpair</ref>&lt; double, double &gt; &gt;</type>
+        <definition>std::vector&lt;Eigenpair&lt;double, double&gt; &gt; GQCP::DOCINewtonOrbitalOptimizer&lt; _EigenproblemSolver &gt;::m_eigenpairs</definition>
+        <argsstring></argsstring>
+        <name>m_eigenpairs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp" line="74" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a9ffa47feaccab9a573a5759a79b2dc3b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::DOCINewtonOrbitalOptimizer&lt; _EigenproblemSolver &gt;::DOCINewtonOrbitalOptimizer</definition>
+        <argsstring>(const SeniorityZeroONVBasis &amp;onv_basis, const EigenproblemSolver &amp;eigenproblem_solver, const EigenproblemEnvironment&lt; double &gt; &amp;eigenproblem_environment, std::shared_ptr&lt; BaseHessianModifier &gt; hessian_modifier, const size_t number_of_requested_eigenpairs=1, const double convergence_threshold=1.0e-08, const size_t maximum_number_of_iterations=128)</argsstring>
+        <name>DOCINewtonOrbitalOptimizer</name>
+        <param>
+          <type>const SeniorityZeroONVBasis &amp;</type>
+          <declname>onv_basis</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a5c2eb4ac34fa1539192395100d29d795" kindref="member">EigenproblemSolver</ref> &amp;</type>
+          <declname>eigenproblem_solver</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_eigenproblem_environment" kindref="compound">EigenproblemEnvironment</ref>&lt; double &gt; &amp;</type>
+          <declname>eigenproblem_environment</declname>
+        </param>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="class_g_q_c_p_1_1_base_hessian_modifier" kindref="compound">BaseHessianModifier</ref> &gt;</type>
+          <declname>hessian_modifier</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>number_of_requested_eigenpairs</declname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>convergence_threshold</declname>
+          <defval>1.0e-08</defval>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>maximum_number_of_iterations</declname>
+          <defval>128</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>MARK: Constructors <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>onv_basis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Fock subspace used for DOCI calculations. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>eigenproblem_environment</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The environments that acts as the calculation context for the eigenproblem solver. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>eigenproblem_solver</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The algorithm that tries to solve the DOCI eigenvalue problem. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hessian_modifier</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The modifier functor that should be used when an indefinite Hessian is encountered. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>number_of_requested_eigenpairs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of m_eigenpairs that should be looked for. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>convergence_threshold</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The threshold used to check for convergence. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>maximum_number_of_iterations</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The maximum number of iterations that may be used to achieve convergence. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp" line="91" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp" bodystart="91" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a2f7573760c6a40196c7ca5306caee3e2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="class_g_q_c_p_1_1_orbital1_d_m" kindref="compound">Orbital1DM</ref>&lt; double &gt;</type>
+        <definition>Orbital1DM&lt;double&gt; GQCP::DOCINewtonOrbitalOptimizer&lt; _EigenproblemSolver &gt;::calculate1DM</definition>
+        <argsstring>() const override</argsstring>
+        <name>calculate1DM</name>
+        <reimplements refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a77ccb23d08d84d516aabe4194266f4be">calculate1DM</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>MARK: Overridden methods <simplesect kind="return"><para>The current 1-DM. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp" line="106" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp" bodystart="106" bodyend="108"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1aeb09a05183e230000da396a9a4acb95e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="class_g_q_c_p_1_1_orbital2_d_m" kindref="compound">Orbital2DM</ref>&lt; double &gt;</type>
+        <definition>Orbital2DM&lt;double&gt; GQCP::DOCINewtonOrbitalOptimizer&lt; _EigenproblemSolver &gt;::calculate2DM</definition>
+        <argsstring>() const override</argsstring>
+        <name>calculate2DM</name>
+        <reimplements refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a16c4c030ecb92d0b5122c05c3e8fa832">calculate2DM</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The current 2-DM. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp" line="114" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp" bodystart="114" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1ad676181c3f4773c51be1b2a3577981d7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="class_g_q_c_p_1_1_r_orbital_rotation_generators" kindref="compound">ROrbitalRotationGenerators</ref>&lt; double &gt;</type>
+        <definition>ROrbitalRotationGenerators&lt;double&gt; GQCP::DOCINewtonOrbitalOptimizer&lt; _EigenproblemSolver &gt;::calculateNewFullOrbitalGenerators</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian) const override</argsstring>
+        <name>calculateNewFullOrbitalGenerators</name>
+        <reimplements refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1af83988926d235cfc1bce813c7f621225">calculateNewFullOrbitalGenerators</reimplements>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Use gradient and Hessian information to determine a new direction for the &apos;full&apos; orbital rotation generators kappa. Note that a distinction is made between &apos;free&apos; generators, i.e. those that are calculated from the gradient and Hessian information and the &apos;full&apos; generators, which also include the redundant parameters (that can be set to zero). The &apos;full&apos; generators are used to calculate the total rotation matrix using the matrix exponential.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sq_hamiltonian</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current second quantized Hamiltonian.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The new full set orbital generators, including the redundant parameters. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp" line="126" column="32" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp" bodystart="126" bodyend="128"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a9bcdb07e2901f5f39f335a54518aa5b1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void GQCP::DOCINewtonOrbitalOptimizer&lt; _EigenproblemSolver &gt;::prepareDMCalculation</definition>
+        <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian) override</argsstring>
+        <name>prepareDMCalculation</name>
+        <reimplements refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a815d7b0854bb6b1b5a2e0ecb2ece412d">prepareDMCalculation</reimplements>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
+          <declname>sq_hamiltonian</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Prepare this object (i.e. the context for the orbital optimization algorithm) to be able to check for convergence in this Newton-based orbital optimizer.</para>
+<para>In the case of this uncoupled DOCI orbital optimizer, the DOCI eigenvalue problem is re-solved in every iteration using the current orbitals. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp" line="136" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp" bodystart="136" bodyend="160"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a1929a47b5489d9242016ab75122230fb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_g_q_c_p_1_1_eigenpair" kindref="compound">Eigenpair</ref>&lt; double, double &gt; &amp;</type>
+        <definition>const Eigenpair&lt;double, double&gt;&amp; GQCP::DOCINewtonOrbitalOptimizer&lt; _EigenproblemSolver &gt;::eigenpair</definition>
+        <argsstring>(const size_t index=0) const</argsstring>
+        <name>eigenpair</name>
+        <param>
+          <type>const size_t</type>
+          <declname>index</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>MARK: <ref refid="class_g_q_c_p_1_1_eigenpair" kindref="compound">Eigenpair</ref> access <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The index of a state.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The eigenpair that is associated to the given index. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp" line="172" column="21" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp" bodystart="172" bodyend="179"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1aa3701e4f721c2548384062da976cf8aa" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::vector&lt; <ref refid="class_g_q_c_p_1_1_eigenpair" kindref="compound">Eigenpair</ref>&lt; double, double &gt; &gt; &amp;</type>
+        <definition>const std::vector&lt;Eigenpair&lt;double, double&gt; &gt;&amp; GQCP::DOCINewtonOrbitalOptimizer&lt; _EigenproblemSolver &gt;::eigenpairs</definition>
+        <argsstring>() const</argsstring>
+        <name>eigenpairs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>All eigenpairs found by this orbital optimizer. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp" line="184" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp" bodystart="184" bodyend="191"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a743b9c9f3c00321384b30ef097715a41" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_linear_expansion" kindref="compound">LinearExpansion</ref>&lt; double, <ref refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a625170c255bd61dc6c90623b93d014f2" kindref="member">ONVBasis</ref> &gt;</type>
+        <definition>LinearExpansion&lt;double, ONVBasis&gt; GQCP::DOCINewtonOrbitalOptimizer&lt; _EigenproblemSolver &gt;::makeLinearExpansion</definition>
+        <argsstring>(size_t index=0) const</argsstring>
+        <name>makeLinearExpansion</name>
+        <param>
+          <type>size_t</type>
+          <declname>index</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>MARK: Wave function model <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The index of the index-th excited state.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The index-th excited state after doing the OO-DOCI calculation. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp" line="202" column="21" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp" bodystart="202" bodyend="208"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>MARK: DOCINewtonOrbitalOPtimizer implementation A class that performs gradient-and-Hessian-based orbital optimization for DOCI by sequentially:<itemizedlist>
+<listitem><para>solving the DOCI eigenvalue problem,</para>
+</listitem><listitem><para>solving the Newton step to find the anti-Hermitian orbital rotation parameters,</para>
+</listitem><listitem><para>rotating the underlying spatial orbital basis.</para>
+</listitem></itemizedlist>
+</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_EigenproblemSolver</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the eigenproblem solver that is used. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>GQCP::NewtonOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_newton_orbital_optimizer"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::QCMethodNewtonOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>GQCP::DOCINewtonOrbitalOptimizer&lt; _EigenproblemSolver &gt;</label>
+        <link refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>GQCP::BaseOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_base_orbital_optimizer"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>GQCP::NewtonOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_newton_orbital_optimizer"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>#gradient</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>#hessian</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::QCMethodNewtonOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>#d</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>#D</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>GQCP::DOCINewtonOrbitalOptimizer&lt; _EigenproblemSolver &gt;</label>
+        <link refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>GQCP::BaseOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_base_orbital_optimizer"/>
+      </node>
+      <node id="12">
+        <label>GQCP::JacobiRotatable&lt; _DerivedDM &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      </node>
+      <node id="15">
+        <label>GQCP::Orbital1DM&lt; double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_orbital1_d_m"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>GQCP::BasisTransformable&lt; _DerivedDM &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
+      <node id="16">
+        <label>GQCP::Simple1DM&lt; _Scalar, _DerivedDM &gt;</label>
+        <link refid="class_g_q_c_p_1_1_simple1_d_m"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>GQCP::Simple2DM&lt; _Scalar, _DerivedDM &gt;</label>
+        <link refid="class_g_q_c_p_1_1_simple2_d_m"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Eigen::Matrix&lt; double, Dynamic, Dynamic &gt;</label>
+      </node>
+      <node id="7">
+        <label>GQCP::SquareMatrix&lt; double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_square_matrix"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>GQCP::Orbital2DM&lt; double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_orbital2_d_m"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>GQCP::VectorSpaceArithmetic&lt; _DerivedDM, _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>GQCP::CRTP&lt; _Derived &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
+      </node>
+      <node id="8">
+        <label>MatrixX&lt; double  &gt;</label>
+        <link refid="class_g_q_c_p_1_1_matrix"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>GQCP::Matrix&lt; double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_matrix"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp" line="49" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp" bodystart="50" bodyend="209"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1acdc1b258aaac1e14f003163d19cee2c0" prot="public" virt="non-virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>BaseOrbitalOptimizer</name></member>
+      <member refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a2f7573760c6a40196c7ca5306caee3e2" prot="public" virt="virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>calculate1DM</name></member>
+      <member refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1aeb09a05183e230000da396a9a4acb95e" prot="public" virt="virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>calculate2DM</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a4fa16f419c9798ebd459e7f2e2267ae3" prot="public" virt="virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>calculateGradientMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1afdf8b122a17957cf67dcf4d7ad0df726" prot="public" virt="non-virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>calculateGradientVector</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a3c677c380a02d6ed3bccc718a704b8f8" prot="public" virt="non-virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>calculateHessianMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1ad390e4279a7a14fa78973fcbd4c8b197" prot="public" virt="virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>calculateHessianTensor</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1ad865f9103556c7a422b221dada86d53b" prot="public" virt="non-virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>calculateNewFreeOrbitalGenerators</name></member>
+      <member refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1ad676181c3f4773c51be1b2a3577981d7" prot="public" virt="virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>calculateNewFullOrbitalGenerators</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1ac7e61168011a697ef30a239b899e06c5" prot="public" virt="virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>calculateNewRotationMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1ab0623fc9be4cf9c68821c2ea6d012acd" prot="public" virt="virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>checkForConvergence</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a641d1bcc0494b20cec91ed4b782ab1f0" prot="protected" virt="non-virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>convergence_threshold</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a3797680653af288c2ad290ca96ab30fc" prot="protected" virt="non-virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>D</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1aa4d344b06874fe4d77e62409bf8d2fa3" prot="protected" virt="non-virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>d</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a9b786e21bc708e260f84322ed239ff40" prot="public" virt="non-virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>directionFromIndefiniteHessian</name></member>
+      <member refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a9ffa47feaccab9a573a5759a79b2dc3b" prot="public" virt="non-virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>DOCINewtonOrbitalOptimizer</name></member>
+      <member refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a1929a47b5489d9242016ab75122230fb" prot="public" virt="non-virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>eigenpair</name></member>
+      <member refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1aa3701e4f721c2548384062da976cf8aa" prot="public" virt="non-virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>eigenpairs</name></member>
+      <member refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a8b7e919fd999f290b637430bc45ff504" prot="private" virt="non-virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>eigenproblem_environment</name></member>
+      <member refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a5b596411ed4c7113dd789f642b9cc8e4" prot="private" virt="non-virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>eigenproblem_solver</name></member>
+      <member refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a5c2eb4ac34fa1539192395100d29d795" prot="public" virt="non-virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>EigenproblemSolver</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a7654786bd0428dd90feb1de31fc7fe4c" prot="protected" virt="non-virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>gradient</name></member>
+      <member refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a66e51d3dedeade38673db21260d6a897" prot="private" virt="non-virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>ground_state_expansion</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a4b4f69a479c8d9f5df94fb0a150b5e37" prot="protected" virt="non-virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>hessian</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1ad31068b230ffb38e97432624120c4318" prot="protected" virt="non-virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>hessian_modifier</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a0334372101297cb9e997d3981442439f" prot="protected" virt="non-virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>is_converged</name></member>
+      <member refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a9e134afa7d4f497cf11e2e17171e597d" prot="private" virt="non-virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>m_eigenpairs</name></member>
+      <member refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a743b9c9f3c00321384b30ef097715a41" prot="public" virt="non-virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>makeLinearExpansion</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1adce91f67cf6314d31a2b73bb54cdd815" prot="protected" virt="non-virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>maximum_number_of_iterations</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a984528ec04ca0ebd0363cf13f3a3d3fb" prot="public" virt="non-virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>NewtonOrbitalOptimizer</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a984528ec04ca0ebd0363cf13f3a3d3fb" prot="public" virt="non-virtual" ambiguityscope="GQCP::NewtonOrbitalOptimizer::"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>NewtonOrbitalOptimizer</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1ad3464e1f18027d579598c62ef854fff6" prot="public" virt="non-virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>newtonStepIsWellDefined</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a728ec120b0025ec997b6020b7ef588e3" prot="protected" virt="non-virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>number_of_iterations</name></member>
+      <member refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a0170e8140cf3eead36927c7fe0d11e3d" prot="private" virt="non-virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>number_of_requested_eigenpairs</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a053125eead499da4abf2088e75d47353" prot="public" virt="non-virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>numberOfIterations</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a68efaa117f5bc3faa31e7c0b13ad5e10" prot="public" virt="non-virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>oneDM</name></member>
+      <member refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a6e97b61a4643061e81fe75dc5d686efa" prot="private" virt="non-virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>onv_basis</name></member>
+      <member refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a625170c255bd61dc6c90623b93d014f2" prot="public" virt="non-virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>ONVBasis</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a2242ce4237417d082a387eab633f18b7" prot="public" virt="non-virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>optimize</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a8ea385584daa8b470b2a9bfde1d2712b" prot="public" virt="virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>prepareConvergenceChecking</name></member>
+      <member refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a9bcdb07e2901f5f39f335a54518aa5b1" prot="public" virt="virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>prepareDMCalculation</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a7059d13f4c52ef77baec8567a9e72eb1" prot="public" virt="virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>prepareOrbitalDerivativesCalculation</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a1866e5572df06732205a72736eeb47af" prot="public" virt="non-virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>twoDM</name></member>
+      <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a921777ec77da41074b306bab5834454c" prot="public" virt="virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>~BaseOrbitalOptimizer</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1ac524dbf48349206dcc68774489d30a6d" prot="public" virt="virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>~NewtonOrbitalOptimizer</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a4a07cc144897f0b68f775f258a747bd1" prot="public" virt="virtual"><scope>GQCP::DOCINewtonOrbitalOptimizer</scope><name>~QCMethodNewtonOrbitalOptimizer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

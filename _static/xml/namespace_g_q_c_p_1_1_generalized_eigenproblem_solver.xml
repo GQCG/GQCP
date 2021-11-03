@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="namespace_g_q_c_p_1_1_generalized_eigenproblem_solver" kind="namespace" language="C++">
+    <compoundname>GQCP::GeneralizedEigenproblemSolver</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespace_g_q_c_p_1_1_generalized_eigenproblem_solver_1a8a29038e5ba31dcdf0a375f8d2c5242c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Scalar</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="class_g_q_c_p_1_1_algorithm" kindref="compound">Algorithm</ref>&lt; <ref refid="class_g_q_c_p_1_1_generalized_eigenproblem_environment" kindref="compound">GeneralizedEigenproblemEnvironment</ref>&lt; Scalar &gt; &gt;</type>
+        <definition>Algorithm&lt;GeneralizedEigenproblemEnvironment&lt;Scalar&gt; &gt; GQCP::GeneralizedEigenproblemSolver::Dense</definition>
+        <argsstring>()</argsstring>
+        <name>Dense</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>An algorithm that can diagonalize a dense matrix.</para>
+</simplesect>
+<parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar type of matrix elements: real or complex. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/GeneralizedEigenproblemSolver.hpp" line="35" column="11" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/GeneralizedEigenproblemSolver.hpp" bodystart="35" bodyend="42"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/GeneralizedEigenproblemSolver.hpp" line="26" column="1"/>
+  </compounddef>
+</doxygen>

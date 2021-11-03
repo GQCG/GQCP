@@ -655,6 +655,24 @@
     <member refid="class_g_q_c_p_1_1_d_i_i_s_1afc4b6a0b711eafeeb3740780eb7f8a9f" kind="function"><name>accelerate</name></member>
     <member refid="class_g_q_c_p_1_1_d_i_i_s_1ada680f4053f5b2f63d4f0f3cfdec45fa" kind="function"><name>calculateDIISCoefficients</name></member>
   </compound>
+  <compound refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer" kind="class"><name>GQCP::DOCINewtonOrbitalOptimizer</name>
+    <member refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a5c2eb4ac34fa1539192395100d29d795" kind="typedef"><name>EigenproblemSolver</name></member>
+    <member refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a625170c255bd61dc6c90623b93d014f2" kind="typedef"><name>ONVBasis</name></member>
+    <member refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a6e97b61a4643061e81fe75dc5d686efa" kind="variable"><name>onv_basis</name></member>
+    <member refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a8b7e919fd999f290b637430bc45ff504" kind="variable"><name>eigenproblem_environment</name></member>
+    <member refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a5b596411ed4c7113dd789f642b9cc8e4" kind="variable"><name>eigenproblem_solver</name></member>
+    <member refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a66e51d3dedeade38673db21260d6a897" kind="variable"><name>ground_state_expansion</name></member>
+    <member refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a0170e8140cf3eead36927c7fe0d11e3d" kind="variable"><name>number_of_requested_eigenpairs</name></member>
+    <member refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a9e134afa7d4f497cf11e2e17171e597d" kind="variable"><name>m_eigenpairs</name></member>
+    <member refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a9ffa47feaccab9a573a5759a79b2dc3b" kind="function"><name>DOCINewtonOrbitalOptimizer</name></member>
+    <member refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a2f7573760c6a40196c7ca5306caee3e2" kind="function"><name>calculate1DM</name></member>
+    <member refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1aeb09a05183e230000da396a9a4acb95e" kind="function"><name>calculate2DM</name></member>
+    <member refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1ad676181c3f4773c51be1b2a3577981d7" kind="function"><name>calculateNewFullOrbitalGenerators</name></member>
+    <member refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a9bcdb07e2901f5f39f335a54518aa5b1" kind="function"><name>prepareDMCalculation</name></member>
+    <member refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a1929a47b5489d9242016ab75122230fb" kind="function"><name>eigenpair</name></member>
+    <member refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1aa3701e4f721c2548384062da976cf8aa" kind="function"><name>eigenpairs</name></member>
+    <member refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a743b9c9f3c00321384b30ef097715a41" kind="function"><name>makeLinearExpansion</name></member>
+  </compound>
   <compound refid="class_g_q_c_p_1_1_double_london_hermite_coulomb_integral" kind="class"><name>GQCP::DoubleLondonHermiteCoulombIntegral</name>
     <member refid="class_g_q_c_p_1_1_double_london_hermite_coulomb_integral_1a70a348e43e043db5e9a2b9800d4bdb4a" kind="variable"><name>p</name></member>
     <member refid="class_g_q_c_p_1_1_double_london_hermite_coulomb_integral_1a82929a19dc9e7aab213396c0bcc147f2" kind="variable"><name>q</name></member>
@@ -683,6 +701,8 @@
     <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1a8c86194235d9b1daa7784393b74737d1" kind="function"><name>betaAlpha</name></member>
     <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1ac77e62d5f651dce8c4217a6aa7f3487d" kind="function"><name>betaBeta</name></member>
     <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1a72c48ee531a89ceb97ab723b3ef6cee9" kind="function"><name>betaBeta</name></member>
+    <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1a8a01a6ef80fbad4b97822f2b0bd5f1dd" kind="function"><name>pureComponent</name></member>
+    <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1a0b7b5865e1070b4cfc54e3e5de2203a6" kind="function"><name>pureComponent</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformable" kind="class"><name>GQCP::DoublySpinResolvedBasisTransformable</name>
     <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformable_1a1be0aa8993c5cbb96da09e91aa2de3eb" kind="typedef"><name>Transformation</name></member>
@@ -933,6 +953,21 @@
     <member refid="class_g_q_c_p_1_1_geminal_coefficients_interface_1a4a009b427c91b6297bcb778e891da5a7" kind="function"><name>~GeminalCoefficientsInterface</name></member>
     <member refid="class_g_q_c_p_1_1_geminal_coefficients_interface_1a3be4021a57bdf21adab08a5a4521eb0f" kind="function"><name>overlap</name></member>
     <member refid="class_g_q_c_p_1_1_geminal_coefficients_interface_1a32797287bde862bf2559f3ac73bc56ec" kind="function"><name>toLinearExpansion</name></member>
+  </compound>
+  <compound refid="class_g_q_c_p_1_1_generalized_dense_diagonalization" kind="class"><name>GQCP::GeneralizedDenseDiagonalization</name>
+    <member refid="class_g_q_c_p_1_1_generalized_dense_diagonalization_1a0de5b998955f585d42b767afe21c199b" kind="typedef"><name>Scalar</name></member>
+    <member refid="class_g_q_c_p_1_1_generalized_dense_diagonalization_1a5724fe6dbc6af49ab48cc2b83de22fff" kind="function"><name>description</name></member>
+    <member refid="class_g_q_c_p_1_1_generalized_dense_diagonalization_1ad9ffe989853200c6a05493cb15a21e76" kind="function"><name>execute</name></member>
+  </compound>
+  <compound refid="class_g_q_c_p_1_1_generalized_eigenproblem_environment" kind="class"><name>GQCP::GeneralizedEigenproblemEnvironment</name>
+    <member refid="class_g_q_c_p_1_1_generalized_eigenproblem_environment_1aa3a91a3123f0f20cca5df92a61d8da8b" kind="typedef"><name>Scalar</name></member>
+    <member refid="class_g_q_c_p_1_1_generalized_eigenproblem_environment_1aaebb0e2c58c2b42fbf0d8e03957a6b5c" kind="variable"><name>A</name></member>
+    <member refid="class_g_q_c_p_1_1_generalized_eigenproblem_environment_1a2429ea710010d73d96e35261456371f8" kind="variable"><name>S</name></member>
+    <member refid="class_g_q_c_p_1_1_generalized_eigenproblem_environment_1ad370de0ec544a152eb6e11f45027482e" kind="variable"><name>eigenvalues</name></member>
+    <member refid="class_g_q_c_p_1_1_generalized_eigenproblem_environment_1abeb94e47a723069f48f1ac3353d849bb" kind="variable"><name>eigenvectors</name></member>
+    <member refid="class_g_q_c_p_1_1_generalized_eigenproblem_environment_1a94c5f3aee17fe3d3321b704c15835739" kind="function"><name>GeneralizedEigenproblemEnvironment</name></member>
+    <member refid="class_g_q_c_p_1_1_generalized_eigenproblem_environment_1a12d4951eb10119347f93cf7f7d4fc8f7" kind="function"><name>eigenpairs</name></member>
+    <member refid="class_g_q_c_p_1_1_generalized_eigenproblem_environment_1a950cddc02175c0c2dacfe26e265febd1" kind="function"><name>Dense</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_general_spinor_tag" kind="class"><name>GQCP::GeneralSpinorTag</name>
   </compound>
@@ -1554,7 +1589,7 @@
     <member refid="class_g_q_c_p_1_1_linear_expansion_1ae3548e45e0d00792771c32ee090029ba" kind="function"><name>calculate2DM</name></member>
     <member refid="class_g_q_c_p_1_1_linear_expansion_1a4f2112174b9ecd83b68ea3eb77394a7c" kind="function"><name>calculate1DM</name></member>
     <member refid="class_g_q_c_p_1_1_linear_expansion_1aba66ead5fd15d70424318070d3076adb" kind="function"><name>calculate2DM</name></member>
-    <member refid="class_g_q_c_p_1_1_linear_expansion_1ae5a2a2f99f2c336fab54dde5f7b02cc3" kind="function"><name>calculateOrbitalRDM</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1a81064fd72920efc4a24edd58a95b41a6" kind="function"><name>calculateOrbitalRDM</name></member>
     <member refid="class_g_q_c_p_1_1_linear_expansion_1ac5d36496b690457a45bd56b8289a29ab" kind="function"><name>calculateShannonEntropy</name></member>
     <member refid="class_g_q_c_p_1_1_linear_expansion_1a3c8b320ac4cbac4ec9630d66fbf43b25" kind="function"><name>calculateSingleOrbitalEntropy</name></member>
     <member refid="class_g_q_c_p_1_1_linear_expansion_1ae38a8e6814c2ea1e027b651bda168168" kind="function"><name>calculateSingleOrbitalEntropy</name></member>
@@ -3412,6 +3447,9 @@
     <member refid="namespace_g_q_c_p_1_1elements_1ac5dcc53a36a3732c4d8a15ffc954f002" kind="function"><name>atomicNumberToElement</name></member>
     <member refid="namespace_g_q_c_p_1_1elements_1afbbf86dc79a97b10bb2c86a02826d013" kind="function"><name>elementToAtomicNumber</name></member>
   </compound>
+  <compound refid="namespace_g_q_c_p_1_1_generalized_eigenproblem_solver" kind="namespace"><name>GQCP::GeneralizedEigenproblemSolver</name>
+    <member refid="namespace_g_q_c_p_1_1_generalized_eigenproblem_solver_1a8a29038e5ba31dcdf0a375f8d2c5242c" kind="function"><name>Dense</name></member>
+  </compound>
   <compound refid="namespace_g_q_c_p_1_1libcint" kind="namespace"><name>GQCP::libcint</name>
     <member refid="namespace_g_q_c_p_1_1libcint_1ad959f5bc849d6377202c4783dfb58ec0" kind="variable"><name>ptr_common_orig</name></member>
     <member refid="namespace_g_q_c_p_1_1libcint_1ad3b2d072e22f85dc400f47f3463d8ead" kind="variable"><name>ptr_env_start</name></member>
@@ -3705,6 +3743,12 @@
   <compound refid="_eigenproblem_environment_8hpp" kind="file"><name>EigenproblemEnvironment.hpp</name>
   </compound>
   <compound refid="_eigenproblem_solver_8hpp" kind="file"><name>EigenproblemSolver.hpp</name>
+  </compound>
+  <compound refid="_generalized_dense_diagonalization_8hpp" kind="file"><name>GeneralizedDenseDiagonalization.hpp</name>
+  </compound>
+  <compound refid="_generalized_eigenproblem_environment_8hpp" kind="file"><name>GeneralizedEigenproblemEnvironment.hpp</name>
+  </compound>
+  <compound refid="_generalized_eigenproblem_solver_8hpp" kind="file"><name>GeneralizedEigenproblemSolver.hpp</name>
   </compound>
   <compound refid="_base_hessian_modifier_8hpp" kind="file"><name>BaseHessianModifier.hpp</name>
   </compound>

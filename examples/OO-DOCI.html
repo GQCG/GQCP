@@ -1,0 +1,782 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OO-DOCI calculations</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/html/doxygen.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/html/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/html/search/search.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/html/menu.js"></script>
+    <script src="../_static/html/dynsections.js"></script>
+    <script src="../_static/html/menudata.js"></script>
+    <script src="../_static/html/jquery.js"></script>
+    <script src="../_static/html/search/all_14.js"></script>
+    <script src="../_static/html/search/enumvalues_2.js"></script>
+    <script src="../_static/html/search/enums_1.js"></script>
+    <script src="../_static/html/search/all_6.js"></script>
+    <script src="../_static/html/search/functions_2.js"></script>
+    <script src="../_static/html/search/enums_2.js"></script>
+    <script src="../_static/html/search/typedefs_f.js"></script>
+    <script src="../_static/html/search/all_11.js"></script>
+    <script src="../_static/html/search/classes_c.js"></script>
+    <script src="../_static/html/search/files_9.js"></script>
+    <script src="../_static/html/search/typedefs_1.js"></script>
+    <script src="../_static/html/search/functions_10.js"></script>
+    <script src="../_static/html/search/files_15.js"></script>
+    <script src="../_static/html/search/variables_4.js"></script>
+    <script src="../_static/html/search/typedefs_3.js"></script>
+    <script src="../_static/html/search/typedefs_a.js"></script>
+    <script src="../_static/html/search/classes_15.js"></script>
+    <script src="../_static/html/search/files_16.js"></script>
+    <script src="../_static/html/search/variables_10.js"></script>
+    <script src="../_static/html/search/all_2.js"></script>
+    <script src="../_static/html/search/searchdata.js"></script>
+    <script src="../_static/html/search/functions_3.js"></script>
+    <script src="../_static/html/search/classes_8.js"></script>
+    <script src="../_static/html/search/files_a.js"></script>
+    <script src="../_static/html/search/related_0.js"></script>
+    <script src="../_static/html/search/all_18.js"></script>
+    <script src="../_static/html/search/variables_c.js"></script>
+    <script src="../_static/html/search/search.js"></script>
+    <script src="../_static/html/search/files_1.js"></script>
+    <script src="../_static/html/search/files_12.js"></script>
+    <script src="../_static/html/search/all_1a.js"></script>
+    <script src="../_static/html/search/functions_7.js"></script>
+    <script src="../_static/html/search/related_1.js"></script>
+    <script src="../_static/html/search/classes_e.js"></script>
+    <script src="../_static/html/search/enums_0.js"></script>
+    <script src="../_static/html/search/classes_14.js"></script>
+    <script src="../_static/html/search/all_10.js"></script>
+    <script src="../_static/html/search/all_7.js"></script>
+    <script src="../_static/html/search/typedefs_10.js"></script>
+    <script src="../_static/html/search/functions_16.js"></script>
+    <script src="../_static/html/search/files_0.js"></script>
+    <script src="../_static/html/search/functions_c.js"></script>
+    <script src="../_static/html/search/all_e.js"></script>
+    <script src="../_static/html/search/all_8.js"></script>
+    <script src="../_static/html/search/files_3.js"></script>
+    <script src="../_static/html/search/variables_f.js"></script>
+    <script src="../_static/html/search/typedefs_12.js"></script>
+    <script src="../_static/html/search/variables_d.js"></script>
+    <script src="../_static/html/search/classes_0.js"></script>
+    <script src="../_static/html/search/typedefs_7.js"></script>
+    <script src="../_static/html/search/namespaces_0.js"></script>
+    <script src="../_static/html/search/typedefs_0.js"></script>
+    <script src="../_static/html/search/functions_0.js"></script>
+    <script src="../_static/html/search/classes_a.js"></script>
+    <script src="../_static/html/search/functions_a.js"></script>
+    <script src="../_static/html/search/functions_12.js"></script>
+    <script src="../_static/html/search/all_b.js"></script>
+    <script src="../_static/html/search/files_2.js"></script>
+    <script src="../_static/html/search/files_10.js"></script>
+    <script src="../_static/html/search/variables_7.js"></script>
+    <script src="../_static/html/search/all_4.js"></script>
+    <script src="../_static/html/search/functions_d.js"></script>
+    <script src="../_static/html/search/variables_12.js"></script>
+    <script src="../_static/html/search/classes_5.js"></script>
+    <script src="../_static/html/search/files_c.js"></script>
+    <script src="../_static/html/search/variables_6.js"></script>
+    <script src="../_static/html/search/all_0.js"></script>
+    <script src="../_static/html/search/files_11.js"></script>
+    <script src="../_static/html/search/variables_a.js"></script>
+    <script src="../_static/html/search/variables_3.js"></script>
+    <script src="../_static/html/search/functions_f.js"></script>
+    <script src="../_static/html/search/typedefs_8.js"></script>
+    <script src="../_static/html/search/functions_4.js"></script>
+    <script src="../_static/html/search/variables_b.js"></script>
+    <script src="../_static/html/search/classes_12.js"></script>
+    <script src="../_static/html/search/functions_1.js"></script>
+    <script src="../_static/html/search/functions_9.js"></script>
+    <script src="../_static/html/search/all_c.js"></script>
+    <script src="../_static/html/search/enumvalues_8.js"></script>
+    <script src="../_static/html/search/typedefs_c.js"></script>
+    <script src="../_static/html/search/classes_d.js"></script>
+    <script src="../_static/html/search/files_f.js"></script>
+    <script src="../_static/html/search/all_16.js"></script>
+    <script src="../_static/html/search/files_6.js"></script>
+    <script src="../_static/html/search/variables_9.js"></script>
+    <script src="../_static/html/search/typedefs_6.js"></script>
+    <script src="../_static/html/search/files_d.js"></script>
+    <script src="../_static/html/search/enumvalues_3.js"></script>
+    <script src="../_static/html/search/functions_6.js"></script>
+    <script src="../_static/html/search/files_e.js"></script>
+    <script src="../_static/html/search/classes_13.js"></script>
+    <script src="../_static/html/search/functions_e.js"></script>
+    <script src="../_static/html/search/all_1b.js"></script>
+    <script src="../_static/html/search/variables_8.js"></script>
+    <script src="../_static/html/search/typedefs_9.js"></script>
+    <script src="../_static/html/search/functions_13.js"></script>
+    <script src="../_static/html/search/classes_4.js"></script>
+    <script src="../_static/html/search/typedefs_e.js"></script>
+    <script src="../_static/html/search/files_5.js"></script>
+    <script src="../_static/html/search/functions_15.js"></script>
+    <script src="../_static/html/search/variables_5.js"></script>
+    <script src="../_static/html/search/files_14.js"></script>
+    <script src="../_static/html/search/all_3.js"></script>
+    <script src="../_static/html/search/enumvalues_9.js"></script>
+    <script src="../_static/html/search/all_1.js"></script>
+    <script src="../_static/html/search/classes_16.js"></script>
+    <script src="../_static/html/search/all_a.js"></script>
+    <script src="../_static/html/search/classes_6.js"></script>
+    <script src="../_static/html/search/classes_17.js"></script>
+    <script src="../_static/html/search/enumvalues_0.js"></script>
+    <script src="../_static/html/search/typedefs_b.js"></script>
+    <script src="../_static/html/search/files_13.js"></script>
+    <script src="../_static/html/search/typedefs_5.js"></script>
+    <script src="../_static/html/search/enumvalues_4.js"></script>
+    <script src="../_static/html/search/files_8.js"></script>
+    <script src="../_static/html/search/typedefs_11.js"></script>
+    <script src="../_static/html/search/all_d.js"></script>
+    <script src="../_static/html/search/files_4.js"></script>
+    <script src="../_static/html/search/typedefs_13.js"></script>
+    <script src="../_static/html/search/classes_b.js"></script>
+    <script src="../_static/html/search/namespaces_1.js"></script>
+    <script src="../_static/html/search/typedefs_2.js"></script>
+    <script src="../_static/html/search/functions_18.js"></script>
+    <script src="../_static/html/search/functions_b.js"></script>
+    <script src="../_static/html/search/classes_10.js"></script>
+    <script src="../_static/html/search/enumvalues_1.js"></script>
+    <script src="../_static/html/search/variables_e.js"></script>
+    <script src="../_static/html/search/typedefs_14.js"></script>
+    <script src="../_static/html/search/all_12.js"></script>
+    <script src="../_static/html/search/classes_9.js"></script>
+    <script src="../_static/html/search/variables_13.js"></script>
+    <script src="../_static/html/search/functions_5.js"></script>
+    <script src="../_static/html/search/variables_14.js"></script>
+    <script src="../_static/html/search/typedefs_4.js"></script>
+    <script src="../_static/html/search/all_5.js"></script>
+    <script src="../_static/html/search/classes_3.js"></script>
+    <script src="../_static/html/search/all_17.js"></script>
+    <script src="../_static/html/search/enumvalues_6.js"></script>
+    <script src="../_static/html/search/variables_0.js"></script>
+    <script src="../_static/html/search/variables_11.js"></script>
+    <script src="../_static/html/search/all_13.js"></script>
+    <script src="../_static/html/search/all_19.js"></script>
+    <script src="../_static/html/search/functions_14.js"></script>
+    <script src="../_static/html/search/all_9.js"></script>
+    <script src="../_static/html/search/classes_2.js"></script>
+    <script src="../_static/html/search/enumvalues_5.js"></script>
+    <script src="../_static/html/search/typedefs_d.js"></script>
+    <script src="../_static/html/search/enums_3.js"></script>
+    <script src="../_static/html/search/variables_2.js"></script>
+    <script src="../_static/html/search/all_15.js"></script>
+    <script src="../_static/html/search/files_b.js"></script>
+    <script src="../_static/html/search/files_7.js"></script>
+    <script src="../_static/html/search/classes_7.js"></script>
+    <script src="../_static/html/search/classes_f.js"></script>
+    <script src="../_static/html/search/classes_11.js"></script>
+    <script src="../_static/html/search/classes_1.js"></script>
+    <script src="../_static/html/search/enumvalues_7.js"></script>
+    <script src="../_static/html/search/functions_8.js"></script>
+    <script src="../_static/html/search/variables_1.js"></script>
+    <script src="../_static/html/search/functions_17.js"></script>
+    <script src="../_static/html/search/all_f.js"></script>
+    <script src="../_static/html/search/functions_11.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Molecular FCI calculations" href="FCI.html" />
+    <link rel="prev" title="DOCI calculations" href="DOCI.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.jpg" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../landing-page.html">
+   The Ghent Quantum Chemistry Package
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Getting started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../user-documentation/installing-gqcp.html">
+   Installing GQCP(y)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../user-documentation/using-gqcp.html">
+   Using GQCP(y)
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Tutorial
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tutorial/introduction.html">
+   Tutorial
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tutorial/molecules.html">
+   Molecules
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tutorial/orbital-bases.html">
+   Orbital bases
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tutorial/quantum-chemical-methods.html">
+   Quantum chemical methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tutorial/quantum-chemical-models.html">
+   Quantum chemical models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tutorial/use-cases.html">
+   Common use cases
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Examples
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Spinor-bases.html">
+   Spinor bases
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="RHF-dipole-moments.html">
+   Calculating the RHF dipole moment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="UHF-calculations.html">
+   UHF SCF
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Custom-algorithms-showcase-CUHF.html">
+   Custom algorithms showcase - CUHF
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="R-U-GHF-overlaps.html">
+   Overlaps between R/U/GHF
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="HF-Stability.html">
+   Checking the Hartree-Fock Stability conditions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Following-internal-GHF-instabilities.html">
+   Following internal instabilities in GHF
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ONVPath.html">
+   ONV path manipulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DOCI.html">
+   DOCI calculations
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   OO-DOCI calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FCI.html">
+   Molecular FCI calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Hubbard.html">
+   Hubbard calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="AP1roG-calculations.html">
+   AP1roG calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="CCSD.html">
+   CCSD calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Mulliken-population.html">
+   Calculating the Mulliken population
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Magnetic-inducibility.html">
+   The ipsocentric magnetic inducibility
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Integrals-over-GTOs.html">
+   Calculating integrals over GTOs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="London-integrals.html">
+   Gauge-origin independence for London kinetic integrals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Mean-field-magnetic.html">
+   Mean-field calculations in magnetic fields
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Mulliken-constrained-CI.html">
+   Mulliken constrained CI calculations
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Developer documentation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../developer-documentation/getting-started.html">
+   Getting started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../developer-documentation/style-guide.html">
+   GQCP Style Guide
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../developer-documentation/introduction.html">
+   Introduction for developers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../developer-documentation/ONV-path-manipulation.html">
+   Manipulating ONVs and their addresses
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../developer-documentation/devops.html">
+   GQCP devops
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Miscellaneous
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../miscellaneous/troubleshooting.html">
+   Troubleshooting guide
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../miscellaneous/citations.html">
+   Academic references
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../miscellaneous/api.html">
+   API
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Blog posts
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../blog/2020-11-30-RSDD.html">
+   GQCP appears in RSDD2020
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/examples/OO-DOCI.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/GQCG/GQCP/develop?urlpath=tree/examples/OO-DOCI.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   OO-DOCI calculations
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preparing-the-hamiltonian-in-the-canonical-rhf-basis">
+   Preparing the Hamiltonian in the canonical RHF basis
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dense-oo-doci-calculations">
+   Dense OO-DOCI calculations
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="oo-doci-calculations">
+<h1>OO-DOCI calculations<a class="headerlink" href="#oo-doci-calculations" title="Permalink to this headline">¶</a></h1>
+<p>DOCI is, in essence, just another type of CI, so doing DOCI calculations is very analogous to doing FCI calculations. In the OO-DOCI case, we enhance the regular DOCI method with the use of an orbital optimizer.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Force the local gqcpy to be imported</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;../../build/gqcpy/&#39;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">gqcpy</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="preparing-the-hamiltonian-in-the-canonical-rhf-basis">
+<h1>Preparing the Hamiltonian in the canonical RHF basis<a class="headerlink" href="#preparing-the-hamiltonian-in-the-canonical-rhf-basis" title="Permalink to this headline">¶</a></h1>
+<p>As always, we’ll first set up the Hamiltonian in an orthonormal spinor basis. For this example, we’ll use the canonical RHF basis</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">molecule</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">Molecule</span><span class="o">.</span><span class="n">ReadXYZ</span><span class="p">(</span><span class="s2">&quot;../../gqcp/tests/data/h2_cristina.xyz&quot;</span> <span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># Create a neutral molecule</span>
+<span class="n">N</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">numberOfElectrons</span><span class="p">()</span>
+<span class="n">N_P</span> <span class="o">=</span> <span class="n">N</span> <span class="o">//</span> <span class="mi">2</span>  <span class="c1"># number of electron pairs</span>
+
+<span class="n">spinor_basis</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">RSpinOrbitalBasis_d</span><span class="p">(</span><span class="n">molecule</span><span class="p">,</span> <span class="s2">&quot;STO-3G&quot;</span><span class="p">)</span>
+<span class="n">K</span> <span class="o">=</span> <span class="n">spinor_basis</span><span class="o">.</span><span class="n">numberOfSpatialOrbitals</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">S</span> <span class="o">=</span> <span class="n">spinor_basis</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">OverlapOperator</span><span class="p">())</span>
+<span class="n">nuc_rep</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">NuclearRepulsionOperator</span><span class="p">(</span><span class="n">molecule</span><span class="o">.</span><span class="n">nuclearFramework</span><span class="p">())</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+<span class="n">sq_hamiltonian</span> <span class="o">=</span> <span class="n">spinor_basis</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">FQMolecularHamiltonian</span><span class="p">(</span><span class="n">molecule</span><span class="p">))</span>
+
+<span class="n">environment</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">RHFSCFEnvironment_d</span><span class="o">.</span><span class="n">WithCoreGuess</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">sq_hamiltonian</span><span class="p">,</span> <span class="n">S</span><span class="p">)</span>
+<span class="n">solver</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">RHFSCFSolver_d</span><span class="o">.</span><span class="n">Plain</span><span class="p">()</span>
+<span class="n">objective</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">DiagonalRHFFockMatrixObjective_d</span><span class="p">(</span><span class="n">sq_hamiltonian</span><span class="p">)</span>  <span class="c1"># use the default threshold of 1.0e-08</span>
+<span class="n">rhf_parameters</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">RHF_d</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">solver</span><span class="p">,</span> <span class="n">environment</span><span class="p">)</span><span class="o">.</span><span class="n">groundStateParameters</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">C</span> <span class="o">=</span> <span class="n">rhf_parameters</span><span class="o">.</span><span class="n">expansion</span><span class="p">()</span>
+<span class="n">spinor_basis</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
+<span class="n">sq_hamiltonian</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="dense-oo-doci-calculations">
+<h1>Dense OO-DOCI calculations<a class="headerlink" href="#dense-oo-doci-calculations" title="Permalink to this headline">¶</a></h1>
+<p>For FCI, we would create the full spin-resolved ONV basis. For DOCI, we need the full seniority-zero ONV basis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">onv_basis</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">SeniorityZeroONVBasis</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">N_P</span><span class="p">)</span>  <span class="c1"># number of spatial orbitals, number of electron pairs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The subsequent steps are very analogous. We create a solver and associated environment, and use the CI QCMethod to find the optimal parameters and energies.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">solver</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">EigenproblemSolver</span><span class="o">.</span><span class="n">Dense_d</span><span class="p">()</span>
+<span class="n">environment</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">CIEnvironment</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">sq_hamiltonian</span><span class="p">,</span> <span class="n">onv_basis</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We now have to declare our orbital optimizer.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">DOCINewtonOrbitalOptimizer</span><span class="p">(</span><span class="n">onv_basis</span><span class="p">,</span> <span class="n">solver</span><span class="p">,</span> <span class="n">environment</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The orbital optimizer can now do the required optimization given the spinor basis and the second quantized Hamiltonian.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">optimizer</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">spinor_basis</span><span class="p">,</span> <span class="n">sq_hamiltonian</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">optimizer</span><span class="o">.</span><span class="n">eigenvalue</span><span class="p">()</span> <span class="o">+</span> <span class="n">nuc_rep</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.137263337693952
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "GQCG/GQCP",
+            ref: "develop",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./examples"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="DOCI.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">DOCI calculations</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="FCI.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Molecular FCI calculations</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By The Ghent Quantum Chemistry Group<br/>
+        
+            &copy; Copyright 2017-2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

@@ -65,11 +65,80 @@ $(function() {
 </div>
 </div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#namespaces">Namespaces</a>  </div>
   <div class="headertitle">
 <div class="title">DOCINewtonOrbitalOptimizer.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><div class="dynheader">
+<div class="textblock"><code>#include &quot;<a class="el" href="_r_orbital_rotation_generators_8hpp_source.html">Basis/Transformations/ROrbitalRotationGenerators.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_eigenpair_8hpp_source.html">Mathematical/Optimization/Eigenproblem/Eigenpair.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_eigenproblem_environment_8hpp_source.html">Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp</a>&quot;</code><br />
+<code>#include &quot;ONVBasis/SeniorityZeroONVBasis.hpp&quot;</code><br />
+<code>#include &quot;<a class="el" href="_c_i_8hpp_source.html">QCMethod/CI/CI.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_c_i_environment_8hpp_source.html">QCMethod/CI/CIEnvironment.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_q_c_method_newton_orbital_optimizer_8hpp_source.html">QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_linear_expansion_8hpp_source.html">QCModel/CI/LinearExpansion.hpp</a>&quot;</code><br />
+<code>#include &lt;memory&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for DOCINewtonOrbitalOptimizer.hpp:</div>
+<div class="dyncontent">
+<div class="center"><img src="_d_o_c_i_newton_orbital_optimizer_8hpp__incl.png" border="0" usemap="#a_2____w_2_g_q_c_p_2_g_q_c_p_2gqcp_2include_2_q_c_method_2_c_i_2_d_o_c_i_newton_orbital_optimizer_8hpp" alt=""/></div>
+<map name="a_2____w_2_g_q_c_p_2_g_q_c_p_2gqcp_2include_2_q_c_method_2_c_i_2_d_o_c_i_newton_orbital_optimizer_8hpp" id="a_2____w_2_g_q_c_p_2_g_q_c_p_2gqcp_2include_2_q_c_method_2_c_i_2_d_o_c_i_newton_orbital_optimizer_8hpp">
+<area shape="rect" title=" " alt="" coords="850,5,1094,61"/>
+<area shape="rect" href="_r_orbital_rotation_generators_8hpp.html" title=" " alt="" coords="3023,720,3257,761"/>
+<area shape="rect" href="_eigenpair_8hpp.html" title=" " alt="" coords="5,273,213,315"/>
+<area shape="rect" href="_eigenproblem_environment_8hpp.html" title=" " alt="" coords="145,184,466,225"/>
+<area shape="rect" title=" " alt="" coords="601,109,871,136"/>
+<area shape="rect" href="_c_i_8hpp.html" title=" " alt="" coords="896,109,1048,136"/>
+<area shape="rect" href="_linear_expansion_8hpp.html" title=" " alt="" coords="1676,191,1913,218"/>
+<area shape="rect" title=" " alt="" coords="1937,191,2015,218"/>
+<area shape="rect" href="_c_i_environment_8hpp.html" title=" " alt="" coords="343,109,577,136"/>
+<area shape="rect" href="_q_c_method_newton_orbital_optimizer_8hpp.html" title=" " alt="" coords="3267,363,3546,404"/>
+<area shape="rect" href="_simple_orbital_rotation_generators_8hpp.html" title=" " alt="" coords="2679,809,2950,851"/>
+<area shape="rect" href="_occupation_type_8hpp.html" title=" " alt="" coords="2719,988,2934,1029"/>
+<area shape="rect" href="_orbital_space_8hpp.html" title=" " alt="" coords="2635,899,2821,940"/>
+<area shape="rect" href="_square_matrix_8hpp.html" title=" " alt="" coords="1589,899,1803,940"/>
+<area shape="rect" title=" " alt="" coords="1374,1085,1437,1111"/>
+<area shape="rect" href="_matrix_8hpp.html" title=" " alt="" coords="669,988,883,1029"/>
+<area shape="rect" href="miscellaneous_8hpp.html" title=" " alt="" coords="1239,995,1438,1022"/>
+<area shape="rect" title=" " alt="" coords="1723,988,1914,1029"/>
+<area shape="rect" title=" " alt="" coords="1624,995,1699,1022"/>
+<area shape="rect" href="_cartesian_direction_8hpp.html" title=" " alt="" coords="1073,1077,1252,1119"/>
+<area shape="rect" href="_eigen_8hpp.html" title=" " alt="" coords="463,1085,604,1111"/>
+<area shape="rect" href="aliases_8hpp.html" title=" " alt="" coords="898,1085,1049,1111"/>
+<area shape="rect" href="type__traits_8hpp.html" title=" " alt="" coords="1387,1167,1562,1193"/>
+<area shape="rect" title=" " alt="" coords="679,1085,873,1111"/>
+<area shape="rect" title=" " alt="" coords="1277,1085,1350,1111"/>
+<area shape="rect" title=" " alt="" coords="359,1085,439,1111"/>
+<area shape="rect" href="_algorithm_8hpp.html" title=" " alt="" coords="490,184,670,225"/>
+<area shape="rect" href="_iterative_algorithm_8hpp.html" title=" " alt="" coords="694,184,874,225"/>
+<area shape="rect" href="_q_c_structure_8hpp.html" title=" " alt="" coords="1112,727,1312,754"/>
+<area shape="rect" href="_step_collection_8hpp.html" title=" " alt="" coords="339,273,519,315"/>
+<area shape="rect" title=" " alt="" coords="750,370,885,397"/>
+<area shape="rect" href="_convergence_criterion_8hpp.html" title=" " alt="" coords="595,273,789,315"/>
+<area shape="rect" title=" " alt="" coords="814,281,885,307"/>
+<area shape="rect" href="_g_t_o_shell_8hpp.html" title=" " alt="" coords="1285,638,1513,665"/>
+<area shape="rect" href="_g_spinor_basis_8hpp.html" title=" " alt="" coords="1325,363,1517,404"/>
+<area shape="rect" href="_r_spin_orbital_basis_8hpp.html" title=" " alt="" coords="1458,541,1681,583"/>
+<area shape="rect" href="_r_transformation_8hpp.html" title=" " alt="" coords="2738,631,2905,672"/>
+<area shape="rect" href="_u_spin_orbital_basis_8hpp.html" title=" " alt="" coords="1162,452,1385,493"/>
+<area shape="rect" href="_g1_d_m_8hpp.html" title=" " alt="" coords="2664,370,2851,397"/>
+<area shape="rect" href="_spin_resolved1_d_m_8hpp.html" title=" " alt="" coords="2635,452,2850,493"/>
+<area shape="rect" href="_orbital1_d_m_8hpp.html" title=" " alt="" coords="2859,549,3079,575"/>
+<area shape="rect" href="_g2_d_m_8hpp.html" title=" " alt="" coords="2715,281,2901,307"/>
+<area shape="rect" href="_spin_resolved2_d_m_8hpp.html" title=" " alt="" coords="2977,363,3191,404"/>
+<area shape="rect" href="_orbital2_d_m_8hpp.html" title=" " alt="" coords="3007,459,3227,486"/>
+<area shape="rect" title=" " alt="" coords="1265,281,1498,307"/>
+<area shape="rect" title=" " alt="" coords="1522,281,1793,307"/>
+<area shape="rect" title=" " alt="" coords="1816,273,2051,315"/>
+<area shape="rect" title=" " alt="" coords="2075,273,2323,315"/>
+<area shape="rect" title=" " alt="" coords="2347,281,2538,307"/>
+<area shape="rect" href="_newton_orbital_optimizer_8hpp.html" title=" " alt="" coords="3154,541,3377,583"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="_d_o_c_i_newton_orbital_optimizer_8hpp__dep__incl.png" border="0" usemap="#a_2____w_2_g_q_c_p_2_g_q_c_p_2gqcp_2include_2_q_c_method_2_c_i_2_d_o_c_i_newton_orbital_optimizer_8hppdep" alt=""/></div>
@@ -80,6 +149,17 @@ This graph shows which files directly or indirectly include this file:</div>
 </div>
 </div>
 <p><a href="_d_o_c_i_newton_orbital_optimizer_8hpp_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer.html">GQCP::DOCINewtonOrbitalOptimizer&lt; _EigenproblemSolver &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespace_g_q_c_p"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_g_q_c_p.html">GQCP</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

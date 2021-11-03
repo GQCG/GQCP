@@ -7,6 +7,9 @@
     <innerfile refid="_eigenpair_8hpp">Eigenpair.hpp</innerfile>
     <innerfile refid="_eigenproblem_environment_8hpp">EigenproblemEnvironment.hpp</innerfile>
     <innerfile refid="_eigenproblem_solver_8hpp">EigenproblemSolver.hpp</innerfile>
+    <innerfile refid="_generalized_dense_diagonalization_8hpp">GeneralizedDenseDiagonalization.hpp</innerfile>
+    <innerfile refid="_generalized_eigenproblem_environment_8hpp">GeneralizedEigenproblemEnvironment.hpp</innerfile>
+    <innerfile refid="_generalized_eigenproblem_solver_8hpp">GeneralizedEigenproblemSolver.hpp</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

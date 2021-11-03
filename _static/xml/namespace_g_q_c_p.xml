@@ -168,6 +168,8 @@
     <innerclass refid="class_g_q_c_p_1_1_dense_diagonalization" prot="public">GQCP::DenseDiagonalization</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_eigenpair" prot="public">GQCP::Eigenpair</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_eigenproblem_environment" prot="public">GQCP::EigenproblemEnvironment</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_generalized_dense_diagonalization" prot="public">GQCP::GeneralizedDenseDiagonalization</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_generalized_eigenproblem_environment" prot="public">GQCP::GeneralizedEigenproblemEnvironment</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_correction_vector_calculation" prot="public">GQCP::CorrectionVectorCalculation</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_guess_vector_update" prot="public">GQCP::GuessVectorUpdate</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_matrix_vector_product_calculation" prot="public">GQCP::MatrixVectorProductCalculation</innerclass>
@@ -304,6 +306,7 @@
     <innerclass refid="class_g_q_c_p_1_1_c_c_s_d_solver" prot="public">GQCP::CCSDSolver</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_t2_d_i_i_s" prot="public">GQCP::T2DIIS</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_t2_error_calculation" prot="public">GQCP::T2ErrorCalculation</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer" prot="public">GQCP::DOCINewtonOrbitalOptimizer</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer" prot="public">GQCP::AP1roGJacobiOrbitalOptimizer</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer" prot="public">GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_g_h_f_density_matrix_calculation" prot="public">GQCP::GHFDensityMatrixCalculation</innerclass>
@@ -357,6 +360,7 @@
     <innernamespace refid="namespace_g_q_c_p_1_1_c_i_environment">GQCP::CIEnvironment</innernamespace>
     <innernamespace refid="namespace_g_q_c_p_1_1_eigenproblem_solver">GQCP::EigenproblemSolver</innernamespace>
     <innernamespace refid="namespace_g_q_c_p_1_1elements">GQCP::elements</innernamespace>
+    <innernamespace refid="namespace_g_q_c_p_1_1_generalized_eigenproblem_solver">GQCP::GeneralizedEigenproblemSolver</innernamespace>
     <innernamespace refid="namespace_g_q_c_p_1_1libcint">GQCP::libcint</innernamespace>
     <innernamespace refid="namespace_g_q_c_p_1_1literals">GQCP::literals</innernamespace>
     <innernamespace refid="namespace_g_q_c_p_1_1_minimization">GQCP::Minimization</innernamespace>

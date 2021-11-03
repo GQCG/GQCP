@@ -315,6 +315,64 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/DoublySpinResolvedBase.hpp" line="127" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/DoublySpinResolvedBase.hpp" bodystart="127" bodyend="127"/>
       </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_doubly_spin_resolved_base_1a8a01a6ef80fbad4b97822f2b0bd5f1dd" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1aca1c50d6a880fe35529aec8e60bc8dd2" kindref="member">Pure</ref> &amp;</type>
+        <definition>const Pure&amp; GQCP::DoublySpinResolvedBase&lt; _Pure, _Mixed, _Derived &gt;::pureComponent</definition>
+        <argsstring>(const Spin &amp;sigma) const</argsstring>
+        <name>pureComponent</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref> &amp;</type>
+          <declname>sigma</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sigma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spin sigma for which the pure component is asked.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A read-only reference to the pure alpha-alpha or beta-beta object. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/DoublySpinResolvedBase.hpp" line="134" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/DoublySpinResolvedBase.hpp" bodystart="134" bodyend="141"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_doubly_spin_resolved_base_1a0b7b5865e1070b4cfc54e3e5de2203a6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1aca1c50d6a880fe35529aec8e60bc8dd2" kindref="member">Pure</ref> &amp;</type>
+        <definition>Pure&amp; GQCP::DoublySpinResolvedBase&lt; _Pure, _Mixed, _Derived &gt;::pureComponent</definition>
+        <argsstring>(const Spin &amp;sigma)</argsstring>
+        <name>pureComponent</name>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref> &amp;</type>
+          <declname>sigma</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sigma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The spin sigma for which the pure component is asked.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A writable reference to the pure alpha-alpha or beta-beta object. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/DoublySpinResolvedBase.hpp" line="148" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/DoublySpinResolvedBase.hpp" bodystart="148" bodyend="155"/>
+      </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
@@ -353,7 +411,7 @@
         <link refid="class_g_q_c_p_1_1_doubly_spin_resolved_base"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/DoublySpinResolvedBase.hpp" line="36" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/DoublySpinResolvedBase.hpp" bodystart="36" bodyend="128"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/DoublySpinResolvedBase.hpp" line="36" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QuantumChemical/DoublySpinResolvedBase.hpp" bodystart="36" bodyend="156"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1a87dbd6251e1252edfbac00afa0cb7e7e" prot="private" virt="non-virtual"><scope>GQCP::DoublySpinResolvedBase</scope><name>aa</name></member>
       <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1a0e2eafca97ee8706197c20fbb029d3eb" prot="private" virt="non-virtual"><scope>GQCP::DoublySpinResolvedBase</scope><name>ab</name></member>
@@ -371,6 +429,8 @@
       <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1a6cee2100ccc8d339d1305fcdbb146221" prot="public" virt="non-virtual"><scope>GQCP::DoublySpinResolvedBase</scope><name>DoublySpinResolvedBase</name></member>
       <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1a230628c5e23252fa38b8cc228430757e" prot="public" virt="non-virtual"><scope>GQCP::DoublySpinResolvedBase</scope><name>Mixed</name></member>
       <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1aca1c50d6a880fe35529aec8e60bc8dd2" prot="public" virt="non-virtual"><scope>GQCP::DoublySpinResolvedBase</scope><name>Pure</name></member>
+      <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1a8a01a6ef80fbad4b97822f2b0bd5f1dd" prot="public" virt="non-virtual"><scope>GQCP::DoublySpinResolvedBase</scope><name>pureComponent</name></member>
+      <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1a0b7b5865e1070b4cfc54e3e5de2203a6" prot="public" virt="non-virtual"><scope>GQCP::DoublySpinResolvedBase</scope><name>pureComponent</name></member>
       <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1a7a7b049ee2a2a1476aab17c58d52b661" prot="public" virt="non-virtual"><scope>GQCP::DoublySpinResolvedBase</scope><name>Self</name></member>
     </listofallmembers>
   </compounddef>

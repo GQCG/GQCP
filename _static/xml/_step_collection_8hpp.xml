@@ -75,40 +75,46 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="19">
+      <node id="21">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHF.hpp</label>
         <link refid="_q_c_method_2_h_f_2_r_h_f_2_r_h_f_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="20" relation="include">
+        <childnode refid="22" relation="include">
         </childnode>
       </node>
-      <node id="18">
+      <node id="20">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFSCFSolver.hpp</label>
         <link refid="_g_h_f_s_c_f_solver_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="16">
+      <node id="18">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDSolver.hpp</label>
         <link refid="_c_c_s_d_solver_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="15">
+      <node id="17">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCDSolver.hpp</label>
         <link refid="_c_c_d_solver_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
       </node>
       <node id="7">
+        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/GeneralizedEigenproblemSolver.hpp</label>
+        <link refid="_generalized_eigenproblem_solver_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
         <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NewtonStepUpdate.hpp</label>
         <link refid="_non_linear_equation_2_newton_step_update_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="8" relation="include">
+        <childnode refid="9" relation="include">
         </childnode>
-        <childnode refid="11" relation="include">
+        <childnode refid="12" relation="include">
         </childnode>
       </node>
       <node id="3">
@@ -120,27 +126,29 @@
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="13" relation="include">
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
         </childnode>
       </node>
-      <node id="22">
+      <node id="24">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHF.hpp</label>
         <link refid="_q_c_method_2_h_f_2_u_h_f_2_u_h_f_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="21">
+      <node id="23">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFSolver.hpp</label>
         <link refid="_r_h_f_s_c_f_solver_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="8">
+      <node id="9">
         <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/NewtonStepUpdate.hpp</label>
         <link refid="_minimization_2_newton_step_update_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="9" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
       </node>
       <node id="1">
@@ -150,37 +158,37 @@
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="14" relation="include">
+        <childnode refid="16" relation="include">
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="15" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="16" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
       </node>
-      <node id="9">
+      <node id="10">
         <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/Minimizer.hpp</label>
         <link refid="_minimizer_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="10" relation="include">
+        <childnode refid="11" relation="include">
         </childnode>
       </node>
-      <node id="23">
+      <node id="25">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFSCFSolver.hpp</label>
         <link refid="_u_h_f_s_c_f_solver_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="11">
+      <node id="12">
         <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NonLinearEquationSolver.hpp</label>
         <link refid="_non_linear_equation_solver_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="10" relation="include">
+        <childnode refid="11" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="13" relation="include">
         </childnode>
       </node>
       <node id="5">
@@ -199,7 +207,7 @@
         <childnode refid="5" relation="include">
         </childnode>
       </node>
-      <node id="12">
+      <node id="13">
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/Geminals/AP1roGLagrangianNewtonOrbitalOptimizer.cpp</label>
         <link refid="_a_p1ro_g_lagrangian_newton_orbital_optimizer_8cpp"/>
       </node>
@@ -213,54 +221,62 @@
         <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="20">
+      <node id="22">
         <label>/__w/GQCP/GQCP/gqcp/src/Processing/Properties/RHFElectricalResponseSolver.cpp</label>
         <link refid="_r_h_f_electrical_response_solver_8cpp"/>
       </node>
-      <node id="17">
+      <node id="19">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHF.hpp</label>
         <link refid="_q_c_method_2_h_f_2_g_h_f_2_g_h_f_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="10">
+      <node id="15">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp</label>
+        <link refid="_d_o_c_i_newton_orbital_optimizer_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.cpp</label>
         <link refid="_a_p1ro_g_jacobi_orbital_optimizer_8cpp"/>
       </node>
-      <node id="13">
+      <node id="14">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp</label>
         <link refid="_c_i_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
       </node>
-      <node id="14">
+      <node id="16">
         <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/IterativeAlgorithm.hpp</label>
         <link refid="_iterative_algorithm_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="9" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
+        <childnode refid="12" relation="include">
         </childnode>
         <childnode refid="17" relation="include">
         </childnode>
         <childnode refid="18" relation="include">
         </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
         <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
         </childnode>
         <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="22" relation="include">
-        </childnode>
         <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
         </childnode>
       </node>
     </invincdepgraph>

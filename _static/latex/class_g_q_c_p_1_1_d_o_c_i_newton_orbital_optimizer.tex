@@ -1,0 +1,225 @@
+\hypertarget{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer}{}\doxysection{GQCP\+::DOCINewton\+Orbital\+Optimizer$<$ \+\_\+\+Eigenproblem\+Solver $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer}\index{GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$@{GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$}}
+
+
+{\ttfamily \#include $<$DOCINewton\+Orbital\+Optimizer.\+hpp$>$}
+
+
+
+Inheritance diagram for GQCP\+::DOCINewton\+Orbital\+Optimizer$<$ \+\_\+\+Eigenproblem\+Solver $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for GQCP\+::DOCINewton\+Orbital\+Optimizer$<$ \+\_\+\+Eigenproblem\+Solver $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_a5c2eb4ac34fa1539192395100d29d795}{Eigenproblem\+Solver}} = \+\_\+\+Eigenproblem\+Solver
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_a625170c255bd61dc6c90623b93d014f2}{ONVBasis}} = Seniority\+Zero\+ONVBasis
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_a9ffa47feaccab9a573a5759a79b2dc3b}{DOCINewton\+Orbital\+Optimizer}} (const Seniority\+Zero\+ONVBasis \&onv\+\_\+basis, const \mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_a5c2eb4ac34fa1539192395100d29d795}{Eigenproblem\+Solver}} \&eigenproblem\+\_\+solver, const \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}}$<$ double $>$ \&eigenproblem\+\_\+environment, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_hessian_modifier}{Base\+Hessian\+Modifier}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_newton_orbital_optimizer_ad31068b230ffb38e97432624120c4318}{hessian\+\_\+modifier}}, const size\+\_\+t number\+\_\+of\+\_\+requested\+\_\+eigenpairs=1, const double \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_a641d1bcc0494b20cec91ed4b782ab1f0}{convergence\+\_\+threshold}}=1.\+0e-\/08, const size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_adce91f67cf6314d31a2b73bb54cdd815}{maximum\+\_\+number\+\_\+of\+\_\+iterations}}=128)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_orbital1_d_m}{Orbital1\+DM}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_a2f7573760c6a40196c7ca5306caee3e2}{calculate1\+DM}} () const override
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_orbital2_d_m}{Orbital2\+DM}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_aeb09a05183e230000da396a9a4acb95e}{calculate2\+DM}} () const override
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_r_orbital_rotation_generators}{ROrbital\+Rotation\+Generators}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_ad676181c3f4773c51be1b2a3577981d7}{calculate\+New\+Full\+Orbital\+Generators}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian) const override
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_a9bcdb07e2901f5f39f335a54518aa5b1}{prepare\+DMCalculation}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian) override
+\item 
+const \mbox{\hyperlink{class_g_q_c_p_1_1_eigenpair}{Eigenpair}}$<$ double, double $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_a1929a47b5489d9242016ab75122230fb}{eigenpair}} (const size\+\_\+t index=0) const
+\item 
+const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenpair}{Eigenpair}}$<$ double, double $>$ $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_aa3701e4f721c2548384062da976cf8aa}{eigenpairs}} () const
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{Linear\+Expansion}}$<$ double, \mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_a625170c255bd61dc6c90623b93d014f2}{ONVBasis}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_a743b9c9f3c00321384b30ef097715a41}{make\+Linear\+Expansion}} (size\+\_\+t index=0) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Eigenproblem\+Solver$>$\newline
+class GQCP\+::\+DOCINewton\+Orbital\+Optimizer$<$ \+\_\+\+Eigenproblem\+Solver $>$}
+
+MARK\+: DOCINewton\+Orbital\+OPtimizer implementation A class that performs gradient-\/and-\/\+Hessian-\/based orbital optimization for DOCI by sequentially\+:
+\begin{DoxyItemize}
+\item solving the DOCI eigenvalue problem,
+\item solving the Newton step to find the anti-\/\+Hermitian orbital rotation parameters,
+\item rotating the underlying spatial orbital basis.
+\end{DoxyItemize}
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Eigenproblem\+Solver} & The type of the eigenproblem solver that is used. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_a5c2eb4ac34fa1539192395100d29d795}\label{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_a5c2eb4ac34fa1539192395100d29d795}} 
+\index{GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$@{GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$}!EigenproblemSolver@{EigenproblemSolver}}
+\index{EigenproblemSolver@{EigenproblemSolver}!GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$@{GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$}}
+\doxysubsubsection{\texorpdfstring{EigenproblemSolver}{EigenproblemSolver}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Eigenproblem\+Solver $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer}{GQCP\+::\+DOCINewton\+Orbital\+Optimizer}}$<$ \+\_\+\+Eigenproblem\+Solver $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_a5c2eb4ac34fa1539192395100d29d795}{Eigenproblem\+Solver}} =  \+\_\+\+Eigenproblem\+Solver}
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_a625170c255bd61dc6c90623b93d014f2}\label{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_a625170c255bd61dc6c90623b93d014f2}} 
+\index{GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$@{GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$}!ONVBasis@{ONVBasis}}
+\index{ONVBasis@{ONVBasis}!GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$@{GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$}}
+\doxysubsubsection{\texorpdfstring{ONVBasis}{ONVBasis}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Eigenproblem\+Solver $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer}{GQCP\+::\+DOCINewton\+Orbital\+Optimizer}}$<$ \+\_\+\+Eigenproblem\+Solver $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_a625170c255bd61dc6c90623b93d014f2}{ONVBasis}} =  Seniority\+Zero\+ONVBasis}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_a9ffa47feaccab9a573a5759a79b2dc3b}\label{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_a9ffa47feaccab9a573a5759a79b2dc3b}} 
+\index{GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$@{GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$}!DOCINewtonOrbitalOptimizer@{DOCINewtonOrbitalOptimizer}}
+\index{DOCINewtonOrbitalOptimizer@{DOCINewtonOrbitalOptimizer}!GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$@{GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$}}
+\doxysubsubsection{\texorpdfstring{DOCINewtonOrbitalOptimizer()}{DOCINewtonOrbitalOptimizer()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Eigenproblem\+Solver $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer}{GQCP\+::\+DOCINewton\+Orbital\+Optimizer}}$<$ \+\_\+\+Eigenproblem\+Solver $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer}{DOCINewton\+Orbital\+Optimizer}} (\begin{DoxyParamCaption}\item[{const Seniority\+Zero\+ONVBasis \&}]{onv\+\_\+basis,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_a5c2eb4ac34fa1539192395100d29d795}{Eigenproblem\+Solver}} \&}]{eigenproblem\+\_\+solver,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{Eigenproblem\+Environment}}$<$ double $>$ \&}]{eigenproblem\+\_\+environment,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_hessian_modifier}{Base\+Hessian\+Modifier}} $>$}]{hessian\+\_\+modifier,  }\item[{const size\+\_\+t}]{number\+\_\+of\+\_\+requested\+\_\+eigenpairs = {\ttfamily 1},  }\item[{const double}]{convergence\+\_\+threshold = {\ttfamily 1.0e-\/08},  }\item[{const size\+\_\+t}]{maximum\+\_\+number\+\_\+of\+\_\+iterations = {\ttfamily 128} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+MARK\+: Constructors 
+\begin{DoxyParams}{Parameters}
+{\em onv\+\_\+basis} & The Fock subspace used for DOCI calculations. \\
+\hline
+{\em eigenproblem\+\_\+environment} & The environments that acts as the calculation context for the eigenproblem solver. \\
+\hline
+{\em eigenproblem\+\_\+solver} & The algorithm that tries to solve the DOCI eigenvalue problem. \\
+\hline
+{\em hessian\+\_\+modifier} & The modifier functor that should be used when an indefinite Hessian is encountered. \\
+\hline
+{\em number\+\_\+of\+\_\+requested\+\_\+eigenpairs} & The number of m\+\_\+eigenpairs that should be looked for. \\
+\hline
+{\em convergence\+\_\+threshold} & The threshold used to check for convergence. \\
+\hline
+{\em maximum\+\_\+number\+\_\+of\+\_\+iterations} & The maximum number of iterations that may be used to achieve convergence. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_a2f7573760c6a40196c7ca5306caee3e2}\label{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_a2f7573760c6a40196c7ca5306caee3e2}} 
+\index{GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$@{GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$}!calculate1DM@{calculate1DM}}
+\index{calculate1DM@{calculate1DM}!GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$@{GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$}}
+\doxysubsubsection{\texorpdfstring{calculate1DM()}{calculate1DM()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Eigenproblem\+Solver $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_orbital1_d_m}{Orbital1\+DM}}$<$double$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer}{GQCP\+::\+DOCINewton\+Orbital\+Optimizer}}$<$ \+\_\+\+Eigenproblem\+Solver $>$\+::calculate1\+DM (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+MARK\+: Overridden methods \begin{DoxyReturn}{Returns}
+The current 1-\/DM. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_a77ccb23d08d84d516aabe4194266f4be}{GQCP\+::\+QCMethod\+Newton\+Orbital\+Optimizer}}.
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_aeb09a05183e230000da396a9a4acb95e}\label{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_aeb09a05183e230000da396a9a4acb95e}} 
+\index{GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$@{GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$}!calculate2DM@{calculate2DM}}
+\index{calculate2DM@{calculate2DM}!GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$@{GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$}}
+\doxysubsubsection{\texorpdfstring{calculate2DM()}{calculate2DM()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Eigenproblem\+Solver $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_orbital2_d_m}{Orbital2\+DM}}$<$double$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer}{GQCP\+::\+DOCINewton\+Orbital\+Optimizer}}$<$ \+\_\+\+Eigenproblem\+Solver $>$\+::calculate2\+DM (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+The current 2-\/DM. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_a16c4c030ecb92d0b5122c05c3e8fa832}{GQCP\+::\+QCMethod\+Newton\+Orbital\+Optimizer}}.
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_ad676181c3f4773c51be1b2a3577981d7}\label{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_ad676181c3f4773c51be1b2a3577981d7}} 
+\index{GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$@{GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$}!calculateNewFullOrbitalGenerators@{calculateNewFullOrbitalGenerators}}
+\index{calculateNewFullOrbitalGenerators@{calculateNewFullOrbitalGenerators}!GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$@{GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$}}
+\doxysubsubsection{\texorpdfstring{calculateNewFullOrbitalGenerators()}{calculateNewFullOrbitalGenerators()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Eigenproblem\+Solver $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_r_orbital_rotation_generators}{ROrbital\+Rotation\+Generators}}$<$double$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer}{GQCP\+::\+DOCINewton\+Orbital\+Optimizer}}$<$ \+\_\+\+Eigenproblem\+Solver $>$\+::calculate\+New\+Full\+Orbital\+Generators (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&}]{sq\+\_\+hamiltonian }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Use gradient and Hessian information to determine a new direction for the \textquotesingle{}full\textquotesingle{} orbital rotation generators kappa. Note that a distinction is made between \textquotesingle{}free\textquotesingle{} generators, i.\+e. those that are calculated from the gradient and Hessian information and the \textquotesingle{}full\textquotesingle{} generators, which also include the redundant parameters (that can be set to zero). The \textquotesingle{}full\textquotesingle{} generators are used to calculate the total rotation matrix using the matrix exponential.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sq\+\_\+hamiltonian} & The current second quantized Hamiltonian.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The new full set orbital generators, including the redundant parameters. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_newton_orbital_optimizer_af83988926d235cfc1bce813c7f621225}{GQCP\+::\+Newton\+Orbital\+Optimizer}}.
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_a1929a47b5489d9242016ab75122230fb}\label{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_a1929a47b5489d9242016ab75122230fb}} 
+\index{GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$@{GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$}!eigenpair@{eigenpair}}
+\index{eigenpair@{eigenpair}!GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$@{GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$}}
+\doxysubsubsection{\texorpdfstring{eigenpair()}{eigenpair()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Eigenproblem\+Solver $>$ \\
+const \mbox{\hyperlink{class_g_q_c_p_1_1_eigenpair}{Eigenpair}}$<$double, double$>$\& \mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer}{GQCP\+::\+DOCINewton\+Orbital\+Optimizer}}$<$ \+\_\+\+Eigenproblem\+Solver $>$\+::eigenpair (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{index = {\ttfamily 0} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+MARK\+: \mbox{\hyperlink{class_g_q_c_p_1_1_eigenpair}{Eigenpair}} access 
+\begin{DoxyParams}{Parameters}
+{\em index} & The index of a state.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The eigenpair that is associated to the given index. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_aa3701e4f721c2548384062da976cf8aa}\label{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_aa3701e4f721c2548384062da976cf8aa}} 
+\index{GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$@{GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$}!eigenpairs@{eigenpairs}}
+\index{eigenpairs@{eigenpairs}!GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$@{GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$}}
+\doxysubsubsection{\texorpdfstring{eigenpairs()}{eigenpairs()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Eigenproblem\+Solver $>$ \\
+const std\+::vector$<$\mbox{\hyperlink{class_g_q_c_p_1_1_eigenpair}{Eigenpair}}$<$double, double$>$ $>$\& \mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer}{GQCP\+::\+DOCINewton\+Orbital\+Optimizer}}$<$ \+\_\+\+Eigenproblem\+Solver $>$\+::eigenpairs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+All eigenpairs found by this orbital optimizer. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_a743b9c9f3c00321384b30ef097715a41}\label{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_a743b9c9f3c00321384b30ef097715a41}} 
+\index{GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$@{GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$}!makeLinearExpansion@{makeLinearExpansion}}
+\index{makeLinearExpansion@{makeLinearExpansion}!GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$@{GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$}}
+\doxysubsubsection{\texorpdfstring{makeLinearExpansion()}{makeLinearExpansion()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Eigenproblem\+Solver $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{Linear\+Expansion}}$<$double, \mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_a625170c255bd61dc6c90623b93d014f2}{ONVBasis}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer}{GQCP\+::\+DOCINewton\+Orbital\+Optimizer}}$<$ \+\_\+\+Eigenproblem\+Solver $>$\+::make\+Linear\+Expansion (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{index = {\ttfamily 0} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+MARK\+: Wave function model 
+\begin{DoxyParams}{Parameters}
+{\em index} & The index of the index-\/th excited state.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The index-\/th excited state after doing the OO-\/\+DOCI calculation. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_a9bcdb07e2901f5f39f335a54518aa5b1}\label{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_a9bcdb07e2901f5f39f335a54518aa5b1}} 
+\index{GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$@{GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$}!prepareDMCalculation@{prepareDMCalculation}}
+\index{prepareDMCalculation@{prepareDMCalculation}!GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$@{GQCP::DOCINewtonOrbitalOptimizer$<$ \_EigenproblemSolver $>$}}
+\doxysubsubsection{\texorpdfstring{prepareDMCalculation()}{prepareDMCalculation()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Eigenproblem\+Solver $>$ \\
+void \mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer}{GQCP\+::\+DOCINewton\+Orbital\+Optimizer}}$<$ \+\_\+\+Eigenproblem\+Solver $>$\+::prepare\+DMCalculation (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&}]{sq\+\_\+hamiltonian }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Prepare this object (i.\+e. the context for the orbital optimization algorithm) to be able to check for convergence in this Newton-\/based orbital optimizer.
+
+In the case of this uncoupled DOCI orbital optimizer, the DOCI eigenvalue problem is re-\/solved in every iteration using the current orbitals. 
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_a815d7b0854bb6b1b5a2e0ecb2ece412d}{GQCP\+::\+QCMethod\+Newton\+Orbital\+Optimizer}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/include/\+QCMethod/\+CI/\mbox{\hyperlink{_d_o_c_i_newton_orbital_optimizer_8hpp}{DOCINewton\+Orbital\+Optimizer.\+hpp}}\end{DoxyCompactItemize}

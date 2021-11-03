@@ -58,6 +58,7 @@
         <reimplementedby refid="class_g_q_c_p_1_1_subspace_matrix_diagonalization_1a4874cd13941a8fdf1984df8241ee89c0">description</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_subspace_update_1a1af3f62a92fa892cb28acd7b2bbc0bb7">description</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_dense_diagonalization_1aa6b861d4f2bbc5fadf5f9890260f620a">description</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_generalized_dense_diagonalization_1a5724fe6dbc6af49ab48cc2b83de22fff">description</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_minimization_1_1_newton_step_update_1a9364e58c7624df4f6621f712a929b5f3">description</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update_1a719c5657ab1eaa89adbe008e9516c618">description</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_c_c_d_amplitudes_update_1acb24cc7c9c99832480c80b68e90d4297">description</reimplementedby>
@@ -116,6 +117,7 @@
         <reimplementedby refid="class_g_q_c_p_1_1_step_collection_1a227f70ef9375810de6e45dfbc23fc034">execute</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_minimization_1_1_newton_step_update_1a74bf63843f2f9eb8753f556b9dec2fee">execute</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update_1a78d80e98d2ec9b89724474295c1371a1">execute</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_generalized_dense_diagonalization_1ad9ffe989853200c6a05493cb15a21e76">execute</reimplementedby>
         <param>
           <type><ref refid="class_g_q_c_p_1_1_step_1a479d9d1f930d4cabb39879a6e71f4915" kindref="member">Environment</ref> &amp;</type>
           <declname>environment</declname>

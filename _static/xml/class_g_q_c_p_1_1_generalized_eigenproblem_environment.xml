@@ -1,0 +1,251 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="class_g_q_c_p_1_1_generalized_eigenproblem_environment" kind="class" language="C++" prot="public">
+    <compoundname>GQCP::GeneralizedEigenproblemEnvironment</compoundname>
+    <includes refid="_generalized_eigenproblem_environment_8hpp" local="no">GeneralizedEigenproblemEnvironment.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _Scalar</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_generalized_eigenproblem_environment_1aa3a91a3123f0f20cca5df92a61d8da8b" prot="public" static="no">
+        <type>_Scalar</type>
+        <definition>using GQCP::GeneralizedEigenproblemEnvironment&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/GeneralizedEigenproblemEnvironment.hpp" line="38" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/GeneralizedEigenproblemEnvironment.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_generalized_eigenproblem_environment_1aaebb0e2c58c2b42fbf0d8e03957a6b5c" prot="public" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_generalized_eigenproblem_environment_1aa3a91a3123f0f20cca5df92a61d8da8b" kindref="member">Scalar</ref> &gt;</type>
+        <definition>SquareMatrix&lt;Scalar&gt; GQCP::GeneralizedEigenproblemEnvironment&lt; _Scalar &gt;::A</definition>
+        <argsstring></argsstring>
+        <name>A</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/GeneralizedEigenproblemEnvironment.hpp" line="43" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/GeneralizedEigenproblemEnvironment.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_generalized_eigenproblem_environment_1a2429ea710010d73d96e35261456371f8" prot="public" static="no" mutable="no">
+        <type><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_generalized_eigenproblem_environment_1aa3a91a3123f0f20cca5df92a61d8da8b" kindref="member">Scalar</ref> &gt;</type>
+        <definition>SquareMatrix&lt;Scalar&gt; GQCP::GeneralizedEigenproblemEnvironment&lt; _Scalar &gt;::S</definition>
+        <argsstring></argsstring>
+        <name>S</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/GeneralizedEigenproblemEnvironment.hpp" line="46" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/GeneralizedEigenproblemEnvironment.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_generalized_eigenproblem_environment_1ad370de0ec544a152eb6e11f45027482e" prot="public" static="no" mutable="no">
+        <type><ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; double &gt;</type>
+        <definition>VectorX&lt;double&gt; GQCP::GeneralizedEigenproblemEnvironment&lt; _Scalar &gt;::eigenvalues</definition>
+        <argsstring></argsstring>
+        <name>eigenvalues</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/GeneralizedEigenproblemEnvironment.hpp" line="49" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/GeneralizedEigenproblemEnvironment.hpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_q_c_p_1_1_generalized_eigenproblem_environment_1abeb94e47a723069f48f1ac3353d849bb" prot="public" static="no" mutable="no">
+        <type><ref refid="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" kindref="member">MatrixX</ref>&lt; <ref refid="class_g_q_c_p_1_1_generalized_eigenproblem_environment_1aa3a91a3123f0f20cca5df92a61d8da8b" kindref="member">Scalar</ref> &gt;</type>
+        <definition>MatrixX&lt;Scalar&gt; GQCP::GeneralizedEigenproblemEnvironment&lt; _Scalar &gt;::eigenvectors</definition>
+        <argsstring></argsstring>
+        <name>eigenvectors</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/GeneralizedEigenproblemEnvironment.hpp" line="52" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/GeneralizedEigenproblemEnvironment.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_generalized_eigenproblem_environment_1a94c5f3aee17fe3d3321b704c15835739" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GQCP::GeneralizedEigenproblemEnvironment&lt; _Scalar &gt;::GeneralizedEigenproblemEnvironment</definition>
+        <argsstring>(const SquareMatrix&lt; Scalar &gt; &amp;A, const SquareMatrix&lt; Scalar &gt; &amp;S)</argsstring>
+        <name>GeneralizedEigenproblemEnvironment</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_generalized_eigenproblem_environment_1aa3a91a3123f0f20cca5df92a61d8da8b" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>A</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_generalized_eigenproblem_environment_1aa3a91a3123f0f20cca5df92a61d8da8b" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>S</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>A</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The matrix whose eigenvalue problem should be solved. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/GeneralizedEigenproblemEnvironment.hpp" line="63" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/GeneralizedEigenproblemEnvironment.hpp" bodystart="63" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_generalized_eigenproblem_environment_1a12d4951eb10119347f93cf7f7d4fc8f7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="class_g_q_c_p_1_1_eigenpair" kindref="compound">Eigenpair</ref>&lt; double, <ref refid="class_g_q_c_p_1_1_generalized_eigenproblem_environment_1aa3a91a3123f0f20cca5df92a61d8da8b" kindref="member">Scalar</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;Eigenpair&lt;double, Scalar&gt; &gt; GQCP::GeneralizedEigenproblemEnvironment&lt; _Scalar &gt;::eigenpairs</definition>
+        <argsstring>(const size_t number_of_requested_eigenpairs=1) const</argsstring>
+        <name>eigenpairs</name>
+        <param>
+          <type>const size_t</type>
+          <declname>number_of_requested_eigenpairs</declname>
+          <defval>1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>number_of_requested_eigenpairs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of eigenpairs to retrieve.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The eigenvalues and eigenvectors as a vector of eigenpairs. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/GeneralizedEigenproblemEnvironment.hpp" line="89" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/GeneralizedEigenproblemEnvironment.hpp" bodystart="89" bodyend="106"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_generalized_eigenproblem_environment_1a950cddc02175c0c2dacfe26e265febd1" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_generalized_eigenproblem_environment" kindref="compound">GeneralizedEigenproblemEnvironment</ref></type>
+        <definition>static GeneralizedEigenproblemEnvironment GQCP::GeneralizedEigenproblemEnvironment&lt; _Scalar &gt;::Dense</definition>
+        <argsstring>(const SquareMatrix&lt; Scalar &gt; &amp;A, const SquareMatrix&lt; Scalar &gt; &amp;S)</argsstring>
+        <name>Dense</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_generalized_eigenproblem_environment_1aa3a91a3123f0f20cca5df92a61d8da8b" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>A</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_generalized_eigenproblem_environment_1aa3a91a3123f0f20cca5df92a61d8da8b" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>S</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>A</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The matrix whose eigenvalue problem should be solved.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>An environment that can be used to solve the dense eigenvalue problem for the given square matrix. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/GeneralizedEigenproblemEnvironment.hpp" line="77" column="47" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/GeneralizedEigenproblemEnvironment.hpp" bodystart="77" bodyend="77"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>An environment used to solve generalized eigenvalue problems for matrices.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar type of the matrix elements: real or complex. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="7">
+        <label>Eigen::Matrix&lt; Scalar , Dynamic , Dynamic  &gt;</label>
+      </node>
+      <node id="3">
+        <label>Eigen::Matrix&lt; double, Dynamic, Dynamic &gt;</label>
+      </node>
+      <node id="1">
+        <label>GQCP::GeneralizedEigenproblemEnvironment&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_generalized_eigenproblem_environment"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>+eigenvalues</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>+A</edgelabel>
+          <edgelabel>+S</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>+eigenvectors</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>GQCP::SquareMatrix&lt; Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_square_matrix"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>MatrixX&lt; Scalar  &gt;</label>
+        <link refid="class_g_q_c_p_1_1_matrix"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>GQCP::Matrix&lt; Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_matrix"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::Matrix&lt; double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_matrix"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/GeneralizedEigenproblemEnvironment.hpp" line="35" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/GeneralizedEigenproblemEnvironment.hpp" bodystart="35" bodyend="107"/>
+    <listofallmembers>
+      <member refid="class_g_q_c_p_1_1_generalized_eigenproblem_environment_1aaebb0e2c58c2b42fbf0d8e03957a6b5c" prot="public" virt="non-virtual"><scope>GQCP::GeneralizedEigenproblemEnvironment</scope><name>A</name></member>
+      <member refid="class_g_q_c_p_1_1_generalized_eigenproblem_environment_1a950cddc02175c0c2dacfe26e265febd1" prot="public" virt="non-virtual"><scope>GQCP::GeneralizedEigenproblemEnvironment</scope><name>Dense</name></member>
+      <member refid="class_g_q_c_p_1_1_generalized_eigenproblem_environment_1a12d4951eb10119347f93cf7f7d4fc8f7" prot="public" virt="non-virtual"><scope>GQCP::GeneralizedEigenproblemEnvironment</scope><name>eigenpairs</name></member>
+      <member refid="class_g_q_c_p_1_1_generalized_eigenproblem_environment_1ad370de0ec544a152eb6e11f45027482e" prot="public" virt="non-virtual"><scope>GQCP::GeneralizedEigenproblemEnvironment</scope><name>eigenvalues</name></member>
+      <member refid="class_g_q_c_p_1_1_generalized_eigenproblem_environment_1abeb94e47a723069f48f1ac3353d849bb" prot="public" virt="non-virtual"><scope>GQCP::GeneralizedEigenproblemEnvironment</scope><name>eigenvectors</name></member>
+      <member refid="class_g_q_c_p_1_1_generalized_eigenproblem_environment_1a94c5f3aee17fe3d3321b704c15835739" prot="public" virt="non-virtual"><scope>GQCP::GeneralizedEigenproblemEnvironment</scope><name>GeneralizedEigenproblemEnvironment</name></member>
+      <member refid="class_g_q_c_p_1_1_generalized_eigenproblem_environment_1a2429ea710010d73d96e35261456371f8" prot="public" virt="non-virtual"><scope>GQCP::GeneralizedEigenproblemEnvironment</scope><name>S</name></member>
+      <member refid="class_g_q_c_p_1_1_generalized_eigenproblem_environment_1aa3a91a3123f0f20cca5df92a61d8da8b" prot="public" virt="non-virtual"><scope>GQCP::GeneralizedEigenproblemEnvironment</scope><name>Scalar</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,6 +1,7 @@
 <map id="GQCP::QCMethodNewtonOrbitalOptimizer" name="GQCP::QCMethodNewtonOrbitalOptimizer">
-<area shape="rect" id="node1" title=" " alt="" coords="5,623,289,876"/>
-<area shape="rect" id="node4" href="$class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer.html" title=" " alt="" coords="10,924,285,1163"/>
-<area shape="rect" id="node2" href="$class_g_q_c_p_1_1_newton_orbital_optimizer.html" title=" " alt="" coords="8,263,287,575"/>
-<area shape="rect" id="node3" href="$class_g_q_c_p_1_1_base_orbital_optimizer.html" title=" " alt="" coords="22,5,273,215"/>
+<area shape="rect" id="node1" title=" " alt="" coords="150,623,434,876"/>
+<area shape="rect" id="node4" href="$class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer.html" title=" " alt="" coords="5,924,280,1163"/>
+<area shape="rect" id="node5" href="$class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer.html" title=" " alt="" coords="304,946,579,1141"/>
+<area shape="rect" id="node2" href="$class_g_q_c_p_1_1_newton_orbital_optimizer.html" title=" " alt="" coords="153,263,431,575"/>
+<area shape="rect" id="node3" href="$class_g_q_c_p_1_1_base_orbital_optimizer.html" title=" " alt="" coords="167,5,417,215"/>
 </map>

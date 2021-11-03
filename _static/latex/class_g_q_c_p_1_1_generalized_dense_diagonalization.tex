@@ -1,0 +1,101 @@
+\hypertarget{class_g_q_c_p_1_1_generalized_dense_diagonalization}{}\doxysection{GQCP\+::Generalized\+Dense\+Diagonalization$<$ \+\_\+\+Scalar $>$ Class Template Reference}
+\label{class_g_q_c_p_1_1_generalized_dense_diagonalization}\index{GQCP::GeneralizedDenseDiagonalization$<$ \_Scalar $>$@{GQCP::GeneralizedDenseDiagonalization$<$ \_Scalar $>$}}
+
+
+{\ttfamily \#include $<$Generalized\+Dense\+Diagonalization.\+hpp$>$}
+
+
+
+Inheritance diagram for GQCP\+::Generalized\+Dense\+Diagonalization$<$ \+\_\+\+Scalar $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=296pt]{class_g_q_c_p_1_1_generalized_dense_diagonalization__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for GQCP\+::Generalized\+Dense\+Diagonalization$<$ \+\_\+\+Scalar $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=296pt]{class_g_q_c_p_1_1_generalized_dense_diagonalization__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_generalized_dense_diagonalization_a0de5b998955f585d42b767afe21c199b}{Scalar}} = \+\_\+\+Scalar
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_generalized_dense_diagonalization_a5724fe6dbc6af49ab48cc2b83de22fff}{description}} () const override
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_generalized_dense_diagonalization_ad9ffe989853200c6a05493cb15a21e76}{execute}} (\mbox{\hyperlink{class_g_q_c_p_1_1_generalized_eigenproblem_environment}{Generalized\+Eigenproblem\+Environment}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_generalized_dense_diagonalization_a0de5b998955f585d42b767afe21c199b}{Scalar}} $>$ \&environment) override
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Scalar$>$\newline
+class GQCP\+::\+Generalized\+Dense\+Diagonalization$<$ \+\_\+\+Scalar $>$}
+
+A step that performs a dense generalized diagonalization.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Scalar} & The scalar type of the matrix elements\+: real or complex. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_generalized_dense_diagonalization_a0de5b998955f585d42b767afe21c199b}\label{class_g_q_c_p_1_1_generalized_dense_diagonalization_a0de5b998955f585d42b767afe21c199b}} 
+\index{GQCP::GeneralizedDenseDiagonalization$<$ \_Scalar $>$@{GQCP::GeneralizedDenseDiagonalization$<$ \_Scalar $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!GQCP::GeneralizedDenseDiagonalization$<$ \_Scalar $>$@{GQCP::GeneralizedDenseDiagonalization$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+using \mbox{\hyperlink{class_g_q_c_p_1_1_generalized_dense_diagonalization}{GQCP\+::\+Generalized\+Dense\+Diagonalization}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_generalized_dense_diagonalization_a0de5b998955f585d42b767afe21c199b}{Scalar}} =  \+\_\+\+Scalar}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_generalized_dense_diagonalization_a5724fe6dbc6af49ab48cc2b83de22fff}\label{class_g_q_c_p_1_1_generalized_dense_diagonalization_a5724fe6dbc6af49ab48cc2b83de22fff}} 
+\index{GQCP::GeneralizedDenseDiagonalization$<$ \_Scalar $>$@{GQCP::GeneralizedDenseDiagonalization$<$ \_Scalar $>$}!description@{description}}
+\index{description@{description}!GQCP::GeneralizedDenseDiagonalization$<$ \_Scalar $>$@{GQCP::GeneralizedDenseDiagonalization$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{description()}{description()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_generalized_dense_diagonalization}{GQCP\+::\+Generalized\+Dense\+Diagonalization}}$<$ \+\_\+\+Scalar $>$\+::description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+MARK\+: Overridden methods \begin{DoxyReturn}{Returns}
+A textual description of this algorithmic step. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_step_af2276da3e9eef7f8d2049a8aa255b9fb}{GQCP\+::\+Step$<$ Generalized\+Eigenproblem\+Environment$<$ \+\_\+\+Scalar $>$ $>$}}.
+
+\mbox{\Hypertarget{class_g_q_c_p_1_1_generalized_dense_diagonalization_ad9ffe989853200c6a05493cb15a21e76}\label{class_g_q_c_p_1_1_generalized_dense_diagonalization_ad9ffe989853200c6a05493cb15a21e76}} 
+\index{GQCP::GeneralizedDenseDiagonalization$<$ \_Scalar $>$@{GQCP::GeneralizedDenseDiagonalization$<$ \_Scalar $>$}!execute@{execute}}
+\index{execute@{execute}!GQCP::GeneralizedDenseDiagonalization$<$ \_Scalar $>$@{GQCP::GeneralizedDenseDiagonalization$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+void \mbox{\hyperlink{class_g_q_c_p_1_1_generalized_dense_diagonalization}{GQCP\+::\+Generalized\+Dense\+Diagonalization}}$<$ \+\_\+\+Scalar $>$\+::execute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_g_q_c_p_1_1_generalized_eigenproblem_environment}{Generalized\+Eigenproblem\+Environment}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_generalized_dense_diagonalization_a0de5b998955f585d42b767afe21c199b}{Scalar}} $>$ \&}]{environment }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Read the matrix from the environment, diagonalize it and write the number of requested eigenpairs to it.
+
+
+\begin{DoxyParams}{Parameters}
+{\em environment} & The environment that this step can read from and write to. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_step_afc654a62596b3fff0801acb2d993818f}{GQCP\+::\+Step$<$ Generalized\+Eigenproblem\+Environment$<$ \+\_\+\+Scalar $>$ $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+\_\+\+\_\+w/\+GQCP/\+GQCP/gqcp/include/\+Mathematical/\+Optimization/\+Eigenproblem/\mbox{\hyperlink{_generalized_dense_diagonalization_8hpp}{Generalized\+Dense\+Diagonalization.\+hpp}}\end{DoxyCompactItemize}

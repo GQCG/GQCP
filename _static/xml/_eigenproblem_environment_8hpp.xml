@@ -17,6 +17,7 @@
     <includedby refid="_subspace_update_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceUpdate.hpp</includedby>
     <includedby refid="_c_i_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp</includedby>
     <includedby refid="_c_i_environment_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CIEnvironment.hpp</includedby>
+    <includedby refid="_d_o_c_i_newton_orbital_optimizer_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp</includedby>
     <incdepgraph>
       <node id="11">
         <label>boost/algorithm/string.hpp</label>
@@ -165,10 +166,12 @@
         <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="14">
+      <node id="15">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CIEnvironment.hpp</label>
         <link refid="_c_i_environment_8hpp"/>
         <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
         </childnode>
       </node>
       <node id="5">
@@ -229,6 +232,12 @@
         <childnode refid="6" relation="include">
         </childnode>
       </node>
+      <node id="14">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp</label>
+        <link refid="_d_o_c_i_newton_orbital_optimizer_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
       <node id="10">
         <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/ResidualVectorCalculation.hpp</label>
         <link refid="_residual_vector_calculation_8hpp"/>
@@ -241,6 +250,8 @@
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp</label>
         <link refid="_c_i_8hpp"/>
         <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
         </childnode>
       </node>
       <node id="1">
@@ -267,6 +278,8 @@
         <childnode refid="12" relation="include">
         </childnode>
         <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
