@@ -155,9 +155,9 @@ public:
         Tensor<Scalar, 2> C_ket_occupied_tensor = Tensor<Scalar, 2>(occ_ket_map);
 
         // Perform the contractions in order to biorthogonalize the occupied bra and ket expansions.
-        // The SVD results in matrices U and V_adjoint. This is why, in order to do a contraction with matrix `V` we take the conjugate of the resulting matrix.
+        // The SVD, in contrast to numpy, returns the matrices U and V. No adjoint or transpose is necessary.
         Tensor<Scalar, 2> biorthogonal_bra_occupied = C_bra_occupied_tensor.template einsum<1>("ui,ij->uj", svd.matrixU());
-        Tensor<Scalar, 2> biorthogonal_ket_occupied = C_ket_occupied_tensor.template einsum<1>("ui,ij->uj", svd.matrixV().conjugate());
+        Tensor<Scalar, 2> biorthogonal_ket_occupied = C_ket_occupied_tensor.template einsum<1>("ui,ij->uj", svd.matrixV());
 
         // We now have the biorthogonal expansion coefficients.
         this->occupied_biorthogonal_state_expansions = std::pair<Matrix, Matrix> {biorthogonal_bra_occupied.asMatrix(), biorthogonal_ket_occupied.asMatrix()};
@@ -178,7 +178,7 @@ public:
         const auto overlap = this->biorthogonal_overlaps.prod();
 
         // We now check the aforementioned condition.
-        if (std::abs(overlap - X_occupied.determinant()) > 1e-12) {
+        if (std::abs(overlap - X_occupied.determinant()) > 1e-8) {
             throw std::invalid_argument("LowdinPairingBasis<Scalar>(const Transformation& C_bra, const Transformation& C_ket, const ScalarGSQOneElectronOperator<Scalar>& S_AO, const size_t number_of_electrons, const double threshold): The given parameters lead to a wrong overlap calculation.");
         }
     }

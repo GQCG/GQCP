@@ -159,3 +159,74 @@ BOOST_AUTO_TEST_CASE(operator_evaluations) {
     // Compare the reference with the evaluated Hamiltonian.
     BOOST_CHECK(non_orthogonal_hamiltonian.isApprox(reference_hamiltonian, 1e-6));
 }
+
+
+/**
+ *  Test whether the non-orthogonal state basis evaluates the Hamiltonian correctly. All other evaluations (one- and two-electron operators) are used within the Hamiltonian functionality.
+ */
+BOOST_AUTO_TEST_CASE(operator_evaluations_complex) {
+    // This is a self implemented test case, with rotated H3 states in STO-3G.
+    const auto molecule = GQCP::Molecule::HRingFromDistance(3, 1.88973, 0);  // H3, 1 Angstrom apart.
+
+    // The general spinor basis is also needed, as we require the overlap operator in AO basis.
+    const GQCP::GSpinorBasis<GQCP::complex, GQCP::GTOShell> g_spinor_basis {molecule, "STO-3G"};
+    const auto S = g_spinor_basis.overlap();
+
+    // Initialize some non-orthogonal "generalised states".
+    GQCP::SquareMatrix<GQCP::complex> basis_state_1 {6};
+    // clang-format off
+    basis_state_1 << 0.460055771  - 5.63405828e-17j,  1.35013939  + 0.0j           ,  0.996501939    - 1.22036291e-16j,  0.535358621 - 6.55625222e-17j,  1.35013939 + 0.0j            ,  0.0 + 0.0j,
+                     0.460055767  - 5.63405822e-17j,  1.35013943  + 0.0j           , -0.996501918    + 1.22036288e-16j,  0.535358665 - 6.55625275e-17j,  1.35013943 + 0.0j            ,  0.0 + 0.0j,
+                     0.301611955  - 3.69368116e-17j,  3.07322180  + 0.0j           , -2.63772351e-08 + 3.23027965e-24j, -1.18334547  + 1.44918025e-16j,  3.07322180 + 0.0j            ,  0.0 + 0.0j,
+                    -0.0956361988 + 0.0j           , -0.280666403 - 3.43717213e-17j, -0.207152401    + 0.0j           , -0.111290123 + 0.0j           , -0.280666403 - 3.43717213e-17j,  0.0 + 0.0j,
+                    -0.0956361979 + 0.0j           , -0.280666413 - 3.43717224e-17j,  0.207152397    + 0.0j           , -0.111290132 + 0.0j           , -0.280666413 - 3.43717224e-17j,  0.0 + 0.0j,
+                    -0.0626989655 + 0.0j           , -0.638860046 - 7.82377910e-17j,  5.48328845e-09 + 0.0j           ,  0.245993356 + 0.0j           , -0.638860046 - 7.82377910e-17j,  0.0 + 0.0j;
+    // clang-format on
+    GQCP::SquareMatrix<GQCP::complex> basis_state_2 {6};
+    // clang-format off
+    basis_state_2 <<  0.230027886 - 0.398419985j,  0.799802113 + 0.0j        ,  0.498250970    - 0.862995994j   ,  0.267679311 - 0.463634166j,  0.799802113 + 0.0j        , 0.0 + 0.0j,
+                      0.230027883 - 0.398419981j,  0.799802140 + 0.0j        , -0.498250959    + 0.862995976j   ,  0.267679332 - 0.463634204j,  0.799802140 + 0.0j        , 0.0 + 0.0j,
+                      0.150805978 - 0.261203615j,  1.82053003  + 0.0j        , -1.31886175e-08 + 2.28433557e-08j, -0.591672737 + 1.02480724j ,  1.82053003  + 0.0j        , 0.0 + 0.0j,
+                     -0.161442683 + 0.0j        , -0.140333202 - 0.243064235j, -0.349692268    + 0.0j           , -0.187867944 + 0.0j        , -0.140333202 - 0.243064235j, 0.0 + 0.0j,
+                     -0.161442681 + 0.0j        , -0.140333206 - 0.243064243j,  0.349692261    + 0.0j           , -0.187867959 + 0.0j        , -0.140333206 - 0.243064243j, 0.0 + 0.0j,
+                     -0.105841609 + 0.0j        , -0.319430023 - 0.553269029j,  9.25629424e-09 + 0.0j           ,  0.415259365 + 0.0j        , -0.319430023 - 0.553269029j, 0.0 + 0.0j;
+    // clang-format on
+    GQCP::SquareMatrix<GQCP::complex> basis_state_3 {6};
+    // clang-format off
+    basis_state_3 <<  -1.02152902e-16 - 0.460055771j,  0.615580024    + 0.0j        , -2.21267879e-16 - 0.996501939j   , -1.18873494e-16 - 0.535358621j, 0.615580024    +0.0j         ,  0.0 + 0.0j,
+                      -1.02152901e-16 - 0.460055767j,  0.615580044    + 0.0j        ,  2.21267875e-16 + 0.996501918j   , -1.18873503e-16 - 0.535358665j, 0.615580044    +0.0j         ,  0.0 + 0.0j,
+                      -6.69713075e-17 - 0.301611955j,  1.40119899     + 0.0j        ,  5.85692274e-24 + 2.63772351e-08j,  2.62755478e-16 + 1.18334547j , 1.40119899     +0.0j         ,  0.0 + 0.0j,
+                      -0.209756967    + 0.0j        ,  6.23204607e-17 - 0.280666403j, -0.454343228    + 0.0j           , -0.244090407    +0.0j         , 6.23204607e-17 - 0.280666403j,  0.0 + 0.0j,
+                      -0.209756965    + 0.0j        ,  6.23204627e-17 - 0.280666413j,  0.454343219    + 0.0j           , -0.244090427    +0.0j         , 6.23204627e-17 - 0.280666413j,  0.0 + 0.0j,
+                      -0.137516390    + 0.0j        ,  1.41855426e-16 - 0.638860046j,  1.20263872e-08 + 0.0j           ,  0.539532320    +0.0j         , 1.41855426e-16 - 0.638860046j,  0.0 + 0.0j;
+    // clang-format on
+    // Transform the matrices to the correct transformation type.
+    const auto state1 = GQCP::GTransformation<GQCP::complex> {basis_state_1};
+    const auto state2 = GQCP::GTransformation<GQCP::complex> {basis_state_2};
+    const auto state3 = GQCP::GTransformation<GQCP::complex> {basis_state_3};
+
+    // Create a vector out of these three basis states.
+    std::vector<GQCP::GTransformation<GQCP::complex>> basis_vector {state1, state2, state3};
+
+    // Create a non-orthogonal state basis, using the basis state vector, the overlap operator in AO basis and the number of occupied orbitals.
+    const auto NOS_basis = GQCP::GNonOrthogonalStateBasis<GQCP::complex> {basis_vector, S, molecule.numberOfElectrons()};
+
+    // To evaluate the Hamiltonian in the non-orthogonal state basis, we need the second quantized Hamiltonian in AO basis.
+    const auto hamiltonian_AO = g_spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
+
+    // We can now evaluate this Hamiltonian operator in the non-orthogonal basis.
+    // The Hamiltonian evaluated in non-orthogonal basis requires the nuclear repuslion to be taken into account.
+    const auto non_orthogonal_hamiltonian = NOS_basis.evaluateHamiltonianOperator(hamiltonian_AO, GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()));
+
+    // Set up a reference Hamiltonian. Data taken from the implementation of @lelemmen and @johdvos.
+    // The dimension of the Hamiltonian is equal to the number of basis states used.
+    GQCP::SquareMatrix<GQCP::complex> reference_hamiltonian {3};
+    // clang-format off
+    reference_hamiltonian <<  -2.24753914 + 0.0j, -1.31305449 + 0.0j, -0.91478496 - 0.0j,
+                              -1.31305449 + 0.0j, -0.98424265 + 0.0j, -0.79501504 - 0.0j,
+                              -0.91478496 - 0.0j, -0.79501504 - 0.0j, -0.72522018 - 0.0j;
+    // clang-format on
+
+    // Compare the reference with the evaluated Hamiltonian.
+    BOOST_CHECK(non_orthogonal_hamiltonian.isApprox(reference_hamiltonian, 1e-6));
+}
