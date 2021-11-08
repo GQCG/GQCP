@@ -108,12 +108,12 @@ void bindQCStructures(py::module& module) {
     bindQCStructure<LinearExpansion<double, SpinUnresolvedSelectedONVBasis>>(module, "LinearExpansion_SpinUnresolvedSelected_d", "A quantum chemical structure for real-valued linear expansions in a spin-unresolved selected ONV basis.");
     bindQCStructure<LinearExpansion<complex, SpinUnresolvedSelectedONVBasis>, complex>(module, "LinearExpansion_SpinUnresolvedSelected_cd", "A quantum chemical structure for complex-valued linear expansions in a spin-unresolved selected ONV basis.");
 
-    bindQCStructure<NOCIExpansion<double, GNonOrthogonalStateBasis<double>>>(module, "NOCI_GNonOrthogonalState_d", "A quantum chemical structure for real-valued expansions in a generalized non-orthogonal state basis.");
-    bindQCStructure<NOCIExpansion<complex, GNonOrthogonalStateBasis<complex>>>(module, "NOCI_GNonOrthogonalState_cd", "A quantum chemical structure for complex-valued expansions in a generalized non-orthogonal state basis.");
-    bindQCStructure<NOCIExpansion<double, RNonOrthogonalStateBasis<double>>>(module, "NOCI_RNonOrthogonalState_d", "A quantum chemical structure for real-valued expansions in a restricted non-orthogonal state basis.");
-    bindQCStructure<NOCIExpansion<complex, RNonOrthogonalStateBasis<complex>>>(module, "NOCI_RNonOrthogonalState_cd", "A quantum chemical structure for complex-valued expansions in a restricted non-orthogonal state basis.");
-    bindQCStructure<NOCIExpansion<double, UNonOrthogonalStateBasis<double>>>(module, "NOCI_UNonOrthogonalState_d", "A quantum chemical structure for real-valued expansions in a unrestricted non-orthogonal state basis.");
-    bindQCStructure<NOCIExpansion<complex, UNonOrthogonalStateBasis<complex>>>(module, "NOCI_UNonOrthogonalState_cd", "A quantum chemical structure for complex-valued expansions in a unrestricted non-orthogonal state basis.");
+    bindQCStructure<NOCIExpansion<double, GNonOrthogonalStateBasis<double>>>(module, "NOCIExpansion_GNonOrthogonalState_d", "A quantum chemical structure for real-valued expansions in a generalized non-orthogonal state basis.");
+    bindQCStructure<NOCIExpansion<complex, GNonOrthogonalStateBasis<complex>>, complex>(module, "NOCIExpansion_GNonOrthogonalState_cd", "A quantum chemical structure for complex-valued expansions in a generalized non-orthogonal state basis.");
+    bindQCStructure<NOCIExpansion<double, RNonOrthogonalStateBasis<double>>>(module, "NOCIExpansion_RNonOrthogonalState_d", "A quantum chemical structure for real-valued expansions in a restricted non-orthogonal state basis.");
+    bindQCStructure<NOCIExpansion<complex, RNonOrthogonalStateBasis<complex>>, complex>(module, "NOCIExpansion_RNonOrthogonalState_cd", "A quantum chemical structure for complex-valued expansions in a restricted non-orthogonal state basis.");
+    bindQCStructure<NOCIExpansion<double, UNonOrthogonalStateBasis<double>>>(module, "NOCIExpansion_UNonOrthogonalState_d", "A quantum chemical structure for real-valued expansions in a unrestricted non-orthogonal state basis.");
+    bindQCStructure<NOCIExpansion<complex, UNonOrthogonalStateBasis<complex>>, complex>(module, "NOCIExpansion_UNonOrthogonalState_cd", "A quantum chemical structure for complex-valued expansions in a unrestricted non-orthogonal state basis.");
 
     bindQCStructure<QCModel::AP1roG>(module, "AP1roG", "A quantum chemical structure for real-valued AP1roG parameters.");
     bindQCStructure<QCModel::vAP1roG>(module, "vAP1roG", "A quantum chemical structure for real-valued vAP1roG parameters.");
