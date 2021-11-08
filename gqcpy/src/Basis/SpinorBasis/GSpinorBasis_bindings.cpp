@@ -167,6 +167,14 @@ void bindGSpinorBases(py::module& module) {
     // Define the Python class for `GSpinorBasis_d`.
     py::class_<GSpinorBasis<double, GTOShell>> py_GSpinorBasis_d {module, "GSpinorBasis_d", "A class that represents a real, (generalized) spinor basis with underlying GTO shells."};
 
+    py_GSpinorBasis_d
+        .def(
+            "quantize",
+            [](const GSpinorBasis<double, GTOShell>& spinor_basis, const ElectronicSpin_zOperator& op) {
+                return spinor_basis.quantize(op);
+            },
+            "Return the electronic spin 'z' operator expressed in this spinor basis.");
+
     bindGSpinorBasisInterface(py_GSpinorBasis_d);
     bindGTOGSpinorBasisInterface(py_GSpinorBasis_d);
 

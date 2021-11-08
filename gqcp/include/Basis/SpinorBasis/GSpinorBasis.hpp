@@ -376,6 +376,44 @@ public:
 
 
     /**
+     *  Quantize the electronic spin "z" operator in this general spinor basis.
+     *
+     *  @param fq_one_op        The (first-quantized) electronic spin "z"  operator.
+     *
+     *  @return The electronic spin "z" operator expressed in this spinor basis.
+     */
+    template <typename Z = Shell>
+    auto quantize(const ElectronicSpin_zOperator& fq_one_op) const -> enable_if_t<std::is_same<Z, GTOShell>::value, GSQOneElectronOperator<product_t<ElectronicSpin_zOperator::Scalar, ExpansionScalar>, ElectronicSpin_zOperator::Vectorizer>> {
+
+        using ResultScalar = product_t<ElectronicSpin_zOperator::Scalar, ExpansionScalar>;
+        using ResultOperator = GSQOneElectronOperator<ResultScalar, ElectronicSpin_zOperator::Vectorizer>;
+
+        const auto K_alpha = this->numberOfCoefficients(Spin::alpha);
+        const auto K_beta = this->numberOfCoefficients(Spin::beta);
+        const auto M = this->numberOfSpinors();
+
+        // The strategy to quantize the spin operator is as follows.
+        //  1. First, calculate the necessary overlap integrals over the scalar bases.
+        //  2. Then, construct the scalar basis representations of the components of the spin operator by placing the overlaps into the correct blocks.
+        //  3. Transform the components (in scalar basis) with the current coefficient matrix to yield the components in spinor basis.
+        SquareMatrix<ResultScalar> S_z = SquareMatrix<ResultScalar>::Zero(M);
+
+        // 1. Calculate the necessary overlap integrals over the scalar bases.
+        const auto S_aa = IntegralCalculator::calculateLibintIntegrals(OverlapOperator(), this->scalarBases().alpha());
+        const auto S_bb = IntegralCalculator::calculateLibintIntegrals(OverlapOperator(), this->scalarBases().beta());
+
+        // 2. Place the overlaps into the correct blocks.
+        S_z.topLeftCorner(K_alpha, K_alpha) = 0.5 * S_aa;
+        S_z.bottomRightCorner(K_beta, K_beta) = -0.5 * S_bb;
+
+        // 3. Transform using the coefficient matrix.
+        ResultOperator spin_op {{S_z}};  // 'op' for operator
+        spin_op.transform(this->expansion());
+        return spin_op;
+    }
+
+
+    /**
      *  Quantize the Coulomb operator in this general spinor basis.
      *
      *  @param coulomb_op           The first-quantized Coulomb operator.

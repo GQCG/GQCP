@@ -110,6 +110,83 @@ BOOST_AUTO_TEST_CASE(constructor) {
 
 
 /**
+ *  Test whether or not the constructor of a complex biorthonormal `GLowdinPairingBasis` works.
+ */
+BOOST_AUTO_TEST_CASE(constructor_complex) {
+    // This is a self implemented test case, with rotated H3 states in STO-3G.
+    const auto molecule = GQCP::Molecule::HRingFromDistance(3, 1.88973, 0);  // H3, 1 Angstrom apart.
+
+    // The general spinor basis is also needed, as we require the overlap operator in AO basis.
+    const GQCP::GSpinorBasis<GQCP::complex, GQCP::GTOShell> g_spinor_basis {molecule, "STO-3G"};
+    const auto S = g_spinor_basis.overlap();
+
+    // Initialize two non-orthogonal "Generalised states".
+    // Initialize some non-orthogonal "generalised states".
+    GQCP::SquareMatrix<GQCP::complex> C_bra {6};
+    // clang-format off
+    C_bra << 0.460055771  - 5.63405828e-17j,  1.35013939  + 0.0j           ,  0.996501939    - 1.22036291e-16j,  0.535358621 - 6.55625222e-17j,  1.35013939 + 0.0j            ,  0.0 + 0.0j,
+             0.460055767  - 5.63405822e-17j,  1.35013943  + 0.0j           , -0.996501918    + 1.22036288e-16j,  0.535358665 - 6.55625275e-17j,  1.35013943 + 0.0j            ,  0.0 + 0.0j,
+             0.301611955  - 3.69368116e-17j,  3.07322180  + 0.0j           , -2.63772351e-08 + 3.23027965e-24j, -1.18334547  + 1.44918025e-16j,  3.07322180 + 0.0j            ,  0.0 + 0.0j,
+            -0.0956361988 + 0.0j           , -0.280666403 - 3.43717213e-17j, -0.207152401    + 0.0j           , -0.111290123 + 0.0j           , -0.280666403 - 3.43717213e-17j,  0.0 + 0.0j,
+            -0.0956361979 + 0.0j           , -0.280666413 - 3.43717224e-17j,  0.207152397    + 0.0j           , -0.111290132 + 0.0j           , -0.280666413 - 3.43717224e-17j,  0.0 + 0.0j,
+            -0.0626989655 + 0.0j           , -0.638860046 - 7.82377910e-17j,  5.48328845e-09 + 0.0j           ,  0.245993356 + 0.0j           , -0.638860046 - 7.82377910e-17j,  0.0 + 0.0j;
+    // clang-format on
+    GQCP::SquareMatrix<GQCP::complex> C_ket {6};
+    // clang-format off
+    C_ket <<  0.230027886 - 0.398419985j,  0.799802113 + 0.0j        ,  0.498250970    - 0.862995994j   ,  0.267679311 - 0.463634166j,  0.799802113 + 0.0j        , 0.0 + 0.0j,
+              0.230027883 - 0.398419981j,  0.799802140 + 0.0j        , -0.498250959    + 0.862995976j   ,  0.267679332 - 0.463634204j,  0.799802140 + 0.0j        , 0.0 + 0.0j,
+              0.150805978 - 0.261203615j,  1.82053003  + 0.0j        , -1.31886175e-08 + 2.28433557e-08j, -0.591672737 + 1.02480724j ,  1.82053003  + 0.0j        , 0.0 + 0.0j,
+             -0.161442683 + 0.0j        , -0.140333202 - 0.243064235j, -0.349692268    + 0.0j           , -0.187867944 + 0.0j        , -0.140333202 - 0.243064235j, 0.0 + 0.0j,
+             -0.161442681 + 0.0j        , -0.140333206 - 0.243064243j,  0.349692261    + 0.0j           , -0.187867959 + 0.0j        , -0.140333206 - 0.243064243j, 0.0 + 0.0j,
+             -0.105841609 + 0.0j        , -0.319430023 - 0.553269029j,  9.25629424e-09 + 0.0j           ,  0.415259365 + 0.0j        , -0.319430023 - 0.553269029j, 0.0 + 0.0j;
+    // clang-format on
+    // Transform the matrices to the correct transformation type.
+    const auto bra_expansion = GQCP::GTransformation<GQCP::complex> {C_bra};
+    const auto ket_expansion = GQCP::GTransformation<GQCP::complex> {C_ket};
+
+    // We can now initialize the biorthogonal Löwdin Pairing basis of these two states. Check whether the procedure doesn't throw any exceptions.
+    const auto lowdin_pairing_basis = GQCP::GLowdinPairingBasis<GQCP::complex>(bra_expansion, ket_expansion, S, molecule.numberOfElectrons());
+    BOOST_CHECK_NO_THROW(GQCP::GLowdinPairingBasis<GQCP::complex>(bra_expansion, ket_expansion, S, molecule.numberOfElectrons()));
+
+    // Check whether the saved values are correct. The reference data is taken from the calculations of @lelemmen and @johdvos.
+    // Initialize the reference biorthogonal overlaps.
+    GQCP::VectorX<double> overlap_reference {3};
+    // clang-format off
+    overlap_reference <<  15.31141866,
+                           1.03839811,
+                           0.08484072;
+    // clang-format on
+
+    // Initialize a reference for the biorthogonal occupied bra expansion coefficients.
+    GQCP::MatrixX<GQCP::complex> biorthogonal_bra_reference {6, 3};
+    // clang-format off
+    biorthogonal_bra_reference <<  -0.780318723 + 1.17946932j ,  0.566535554    - 0.819788749j   , -0.102459322  + 0.154869571j ,
+                                   -0.780318747 + 1.17946935j , -0.566535535    + 0.819788722j   , -0.102459329  + 0.154869583j ,
+                                   -1.69531930  + 2.56251329j ,  0.0            + 0.0j           ,  0.170136306  - 0.257164857j ,
+                                    0.162212325 - 0.245187580j, -0.117771171    + 0.170417338j   ,  0.0212992006 - 0.0321942212j,
+                                    0.162212331 - 0.245187589j,  0.117771167    - 0.170417333j   ,  0.0212992019 - 0.0321942233j,
+                                    0.352422258 - 0.532694177j,  0.0            - 0.0j           , -0.0353678632 + 0.0534593215j;
+    // clang-format off
+
+    // Initialize a reference for the biorthogonal occupied ket expansion coefficients.
+    GQCP::MatrixX<GQCP::complex> biorthogonal_ket_reference {6, 3};
+    // clang-format off
+    biorthogonal_ket_reference <<  -0.452370436 + 0.783528578j,  0.515610447 - 0.852737940j  , -0.0905244125 + 0.156792882j,
+                                   -0.452370452 + 0.783528606j, -0.515610429 + 0.852737911j  , -0.0905244192 + 0.156792894j,
+                                   -0.910842054 + 1.57762471j ,  0.0         + 0.0j          ,  0.147280666  - 0.255097596j,
+                                    0.317491492 - 0.0j        , -0.349620681 - 0.00707551711j,  0.0635336192 - 0.0j        ,
+                                    0.317491503 + 0.0j        ,  0.349620670 + 0.00707551697j,  0.0635336239 - 0.0j        ,
+                                    0.639265034 + 0.0j        ,  0.0         + 0.0j          , -0.103367405  - 0.0j        ;
+    // clang-format off
+
+    // Check the parameters instantiated by the constructor.
+    BOOST_CHECK(lowdin_pairing_basis.biorthogonalBraExpansion().isApprox(biorthogonal_bra_reference, 1e-6));
+    BOOST_CHECK(lowdin_pairing_basis.biorthogonalKetExpansion().isApprox(biorthogonal_ket_reference, 1e-6));
+    BOOST_CHECK(lowdin_pairing_basis.biorthogonalOverlaps().isApprox(overlap_reference, 1e-6));
+}
+
+
+/**
  *  Test whether the overlap metrics are working correctly in the `GLowdinPairingBasis`.
  */
 BOOST_AUTO_TEST_CASE(overlap_metrics) {
