@@ -24,6 +24,7 @@
 #include "Utilities/complex.hpp"
 
 #include <pybind11/pybind11.h>
+#include <pybind11/stl.h>
 
 
 namespace gqcpy {
@@ -82,23 +83,23 @@ void bindQCMethodNOCIInterface(Class& py_class) {
  */
 void bindQCMethodNOCI(py::module& module) {
 
-    py::class_<QCMethod::NOCI<double, GNonOrthogonalStateBasis<double>>> py_CI_d_GNonOrthogonalStateBasis {module, "CI_d_GNonOrthogonalStateBasis", "Real-valued non-orthogonal configuration interaction in a basis that consists of 'generalized' states."};
-    bindQCMethodNOCIInterface(py_CI_d_GNonOrthogonalStateBasis);
+    py::class_<QCMethod::NOCI<double, GNonOrthogonalStateBasis<double>>> py_NOCI_d_GNonOrthogonalStateBasis {module, "NOCI_d_GNonOrthogonalStateBasis", "Real-valued non-orthogonal configuration interaction in a basis that consists of 'generalized' states."};
+    bindQCMethodNOCIInterface(py_NOCI_d_GNonOrthogonalStateBasis);
 
-    py::class_<QCMethod::NOCI<double, RNonOrthogonalStateBasis<double>>> py_CI_d_RNonOrthogonalStateBasis {module, "CI_d_RNonOrthogonalStateBasis", "Real-valued non-orthogonal configuration interaction in a basis that consists of 'restricted' states."};
-    bindQCMethodNOCIInterface(py_CI_d_RNonOrthogonalStateBasis);
+    py::class_<QCMethod::NOCI<double, RNonOrthogonalStateBasis<double>>> py_NOCI_d_RNonOrthogonalStateBasis {module, "NOCI_d_RNonOrthogonalStateBasis", "Real-valued non-orthogonal configuration interaction in a basis that consists of 'restricted' states."};
+    bindQCMethodNOCIInterface(py_NOCI_d_RNonOrthogonalStateBasis);
 
-    py::class_<QCMethod::NOCI<double, UNonOrthogonalStateBasis<double>>> py_CI_d_UNonOrthogonalStateBasis {module, "CI_d_UNonOrthogonalStateBasis", "Real-valued non-orthogonal configuration interaction in a basis that consists of 'unrestricted' states."};
-    bindQCMethodNOCIInterface(py_CI_d_UNonOrthogonalStateBasis);
+    py::class_<QCMethod::NOCI<double, UNonOrthogonalStateBasis<double>>> py_NOCI_d_UNonOrthogonalStateBasis {module, "NOCI_d_UNonOrthogonalStateBasis", "Real-valued non-orthogonal configuration interaction in a basis that consists of 'unrestricted' states."};
+    bindQCMethodNOCIInterface(py_NOCI_d_UNonOrthogonalStateBasis);
 
-    py::class_<QCMethod::NOCI<complex, GNonOrthogonalStateBasis<complex>>> py_CI_cd_GNonOrthogonalStateBasis {module, "CI_cd_GNonOrthogonalStateBasis", "Complex-valued non-orthogonal configuration interaction in a basis that consists of 'generalized' states."};
-    bindQCMethodNOCIInterface(py_CI_cd_GNonOrthogonalStateBasis);
+    py::class_<QCMethod::NOCI<complex, GNonOrthogonalStateBasis<complex>>> py_NOCI_cd_GNonOrthogonalStateBasis {module, "NOCI_cd_GNonOrthogonalStateBasis", "Complex-valued non-orthogonal configuration interaction in a basis that consists of 'generalized' states."};
+    bindQCMethodNOCIInterface(py_NOCI_cd_GNonOrthogonalStateBasis);
 
-    py::class_<QCMethod::NOCI<complex, RNonOrthogonalStateBasis<complex>>> py_CI_cd_RNonOrthogonalStateBasis {module, "CI_cd_RNonOrthogonalStateBasis", "Complex-valued non-orthogonal configuration interaction in a basis that consists of 'restricted' states."};
-    bindQCMethodNOCIInterface(py_CI_cd_RNonOrthogonalStateBasis);
+    py::class_<QCMethod::NOCI<complex, RNonOrthogonalStateBasis<complex>>> py_NOCI_cd_RNonOrthogonalStateBasis {module, "NOCI_cd_RNonOrthogonalStateBasis", "Complex-valued non-orthogonal configuration interaction in a basis that consists of 'restricted' states."};
+    bindQCMethodNOCIInterface(py_NOCI_cd_RNonOrthogonalStateBasis);
 
-    py::class_<QCMethod::NOCI<complex, UNonOrthogonalStateBasis<complex>>> py_CI_cd_UNonOrthogonalStateBasis {module, "CI_cd_UNonOrthogonalStateBasis", "Complex-valued non-orthogonal configuration interaction in a basis that consists of 'unrestricted' states."};
-    bindQCMethodNOCIInterface(py_CI_cd_UNonOrthogonalStateBasis);
+    py::class_<QCMethod::NOCI<complex, UNonOrthogonalStateBasis<complex>>> py_NOCI_cd_UNonOrthogonalStateBasis {module, "NOCI_cd_UNonOrthogonalStateBasis", "Complex-valued non-orthogonal configuration interaction in a basis that consists of 'unrestricted' states."};
+    bindQCMethodNOCIInterface(py_NOCI_cd_UNonOrthogonalStateBasis);
 }
 
 
