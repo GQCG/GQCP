@@ -36,4 +36,3 @@ Stage: build
 %labels
     Author GQCG
     Version v0.1.0
-    
