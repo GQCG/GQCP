@@ -34,7 +34,7 @@ configure_file(${CMAKE_SOURCE_DIR}/cmake/version.hpp.in gqcp/version/version.hpp
 configure_file(${CMAKE_SOURCE_DIR}/cmake/version.cpp.in gqcp/version/version.cpp)
 
 add_library(gqcp_version STATIC ${CMAKE_CURRENT_BINARY_DIR}/gqcp/version/version.cpp)
-target_compile_features(gqcp_version PUBLIC cxx_std_14)
+target_compile_features(gqcp_version PUBLIC cxx_std_17)
 target_include_directories(gqcp_version
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/gqcp/version>
