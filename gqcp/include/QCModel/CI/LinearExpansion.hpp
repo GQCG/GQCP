@@ -1839,7 +1839,7 @@ public:
                 auto N_diff = system_onv_basis[r].numberOfElectrons() - system_onv_basis[c].numberOfElectrons();
                 size_t Sz_diff = 0;
                 if (std::is_same<Z, SpinResolvedONVBasis>::value) {
-                    Sz_diff = system_onv_basis[r].numberOfElectrons(Spin::alpha) - system_onv_basis[r].numberOfElectrons(Spin::beta)) - (system_onv_basis[c].numberOfElectrons(Spin::alpha) - system_onv_basis[c].numberOfElectrons(Spin::beta));
+                    Sz_diff = (system_onv_basis[r].numberOfElectrons(Spin::alpha) - system_onv_basis[r].numberOfElectrons(Spin::beta)) - (system_onv_basis[c].numberOfElectrons(Spin::alpha) - system_onv_basis[c].numberOfElectrons(Spin::beta));
                 }
 
                 if (N_diff == 0 && Sz_diff == 0) {
