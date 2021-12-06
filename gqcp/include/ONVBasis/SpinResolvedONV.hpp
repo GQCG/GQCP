@@ -131,6 +131,11 @@ public:
     size_t numberOfElectrons(const Spin sigma) const;
 
     /**
+     *  @return The total number of electrons this spin-resolved ONV describes.
+     */
+    size_t numberOfElectrons() const;
+
+    /**
      *  @param sigma                alpha or beta
      * 
      *  @return The number of sigma-spatial orbitals/spin-orbitals that this ONV is expressed with.

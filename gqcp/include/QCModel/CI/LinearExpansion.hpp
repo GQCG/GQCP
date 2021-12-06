@@ -1796,10 +1796,10 @@ public:
      *  @return The orbital reduced density matrix.
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinUnresolvedONVBasis>::value | std::is_same<Z, SpinResolvedONVBasis>::value, GQCP::SquareMatrix<Scalar>> calculateOrbitalRDM(const std::vector<typename ONVBasis::ONV>& system_onvs, const std::vector<typename ONVBasis::ONV>& environment_onvs) const {
+    enable_if_t<std::is_same<Z, SpinUnresolvedONVBasis>::value | std::is_same<Z, SpinResolvedONVBasis>::value, GQCP::SquareMatrix<Scalar>> calculateSystemOrbitalRDM(const std::vector<typename ONVBasis::ONV>& system_onvs, const std::vector<typename ONVBasis::ONV>& environment_onvs) const {
 
         if (system_onvs.size() != environment_onvs.size()) {
-            throw std::invalid_argument("LinearExpansion::calculateOrbitalRDM(std::vector<ONV>& system_onvs, std::vector<ONV>& environment_onvs) const: The amount of system ONVs should be exactly the same as the amount of environment ONVs.");
+            throw std::invalid_argument("LinearExpansion::calculateSystemOrbitalRDM(std::vector<ONV>& system_onvs, std::vector<ONV>& environment_onvs) const: The amount of system ONVs should be exactly the same as the amount of environment ONVs.");
         }
 
         // Determine the dimensions of the orbital density matrix.
@@ -1836,24 +1836,28 @@ public:
 
                 double matrix_element = 0.0;
 
-                // \sum_j <j|<n|\Psi><\Psi|n'>|j> -> onv_n_bra = <n| and onv_n_ket = |n'>
-                for (size_t p = 0; p < system_onvs.size(); ++p) {      // Loop over |\Psi> = \sum_p |system_p>|environment_p>.
-                    for (size_t q = 0; q < system_onvs.size(); ++q) {  // Loop over <\Psi| = \sum_q <environment_q|<system_q|.
-                        // If <n|onv_system> and <onv_system'|n'> are both 1, we can calculate the overlap with the environment ONVs.
-                        if ((system_onv_basis[r] == system_onvs[p]) && (system_onvs[q] == system_onv_basis[c])) {
-                            for (size_t j = 0; j < environment_onv_basis.size(); ++j) {  // Loop over all ONVs of the environment. (\sum_j <j|...|j>)
-                                // If <j|environment_onv> and <environment_onv'|j> both are 1, the coefficients will contribute to the matrix element.
-                                if ((environment_onv_basis[j] == environment_onvs[p]) && (environment_onvs[q] == environment_onv_basis[j])) {
-                                    matrix_element += this->coefficient(p) * this->coefficient(q);
+                auto N_diff = system_onv_basis[r].numberOfElectrons() - system_onv_basis[c].numberOfElectrons();
+                auto Sz_diff = std::is_same<Z, SpinResolvedONVBasis>::value ? (system_onv_basis[r].numberOfElectrons(Spin::alpha) - system_onv_basis[r].numberOfElectrons(Spin::beta)) - (system_onv_basis[c].numberOfElectrons(Spin::alpha) - system_onv_basis[c].numberOfElectrons(Spin::beta)) : 0;
+                
+                if (N_diff == 0 && Sz_diff == 0) {
+                    // \sum_j <j|<n|\Psi><\Psi|n'>|j> -> onv_n_bra = <n| and onv_n_ket = |n'>
+                    for (size_t p = 0; p < system_onvs.size(); ++p) {      // Loop over |\Psi> = \sum_p |system_p>|environment_p>.
+                        for (size_t q = 0; q < system_onvs.size(); ++q) {  // Loop over <\Psi| = \sum_q <environment_q|<system_q|.
+                            // If <n|onv_system> and <onv_system'|n'> are both 1, we can calculate the overlap with the environment ONVs.
+                            if ((system_onv_basis[r] == system_onvs[p]) && (system_onvs[q] == system_onv_basis[c])) {
+                                for (size_t j = 0; j < environment_onv_basis.size(); ++j) {  // Loop over all ONVs of the environment. (\sum_j <j|...|j>)
+                                    // If <j|environment_onv> and <environment_onv'|j> both are 1, the coefficients will contribute to the matrix element.
+                                    if ((environment_onv_basis[j] == environment_onvs[p]) && (environment_onvs[q] == environment_onv_basis[j])) {
+                                        matrix_element += this->coefficient(p) * this->coefficient(q);
+                                    }
                                 }
                             }
                         }
                     }
+                    rho(r, c) = matrix_element;
                 }
-                rho(r, c) = matrix_element;
             }
         }
-
         return rho;
     }
 
