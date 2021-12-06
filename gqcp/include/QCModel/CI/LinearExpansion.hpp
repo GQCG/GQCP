@@ -1837,8 +1837,8 @@ public:
                 double matrix_element = 0.0;
 
                 auto N_diff = system_onv_basis[r].numberOfElectrons() - system_onv_basis[c].numberOfElectrons();
-                auto Sz_diff = std::is_same<Z, SpinResolvedONVBasis>::value ? (system_onv_basis[r].numberOfElectrons(Spin::alpha) - system_onv_basis[r].numberOfElectrons(Spin::beta)) - (system_onv_basis[c].numberOfElectrons(Spin::alpha) - system_onv_basis[c].numberOfElectrons(Spin::beta)) : 0;
-                
+                auto Sz_diff = std::is_same<Z, SpinResolvedONVBasis>::value == true ? (system_onv_basis[r].numberOfElectrons(Spin::alpha) - system_onv_basis[r].numberOfElectrons(Spin::beta)) - (system_onv_basis[c].numberOfElectrons(Spin::alpha) - system_onv_basis[c].numberOfElectrons(Spin::beta)) : 0;
+
                 if (N_diff == 0 && Sz_diff == 0) {
                     // \sum_j <j|<n|\Psi><\Psi|n'>|j> -> onv_n_bra = <n| and onv_n_ket = |n'>
                     for (size_t p = 0; p < system_onvs.size(); ++p) {      // Loop over |\Psi> = \sum_p |system_p>|environment_p>.
