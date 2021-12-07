@@ -244,9 +244,9 @@ void bindLinearExpansions(py::module& module) {
          */
 
         .def(
-            "calculateOrbitalRDM",
+            "calculateSystemOrbitalRDM",
             [](const LinearExpansion<double, SpinResolvedONVBasis>& linear_expansion, const std::vector<GQCP::SpinResolvedONV>& system_onvs, const std::vector<GQCP::SpinResolvedONV>& environment_onvs) {
-                return linear_expansion.calculateOrbitalRDM(system_onvs, environment_onvs);
+                return linear_expansion.calculateSystemOrbitalRDM(system_onvs, environment_onvs);
             },
             py::arg("system_onvs"),
             py::arg("environment_onvs"),
@@ -356,9 +356,9 @@ void bindLinearExpansions(py::module& module) {
             "Return an element of the N-DM, as specified by the given bra and ket indices. `calculateNDMElement({0, 1}, {2, 1})` would calculate an element of the 2-NDM d^{(2)} (0, 1, 1, 2) corresponding the operator string: `a^dagger_0 a^dagger_1 a_2 a_1`.")
 
         .def(
-            "calculateOrbitalRDM",
+            "calculateSystemOrbitalRDM",
             [](const LinearExpansion<double, SpinUnresolvedONVBasis>& linear_expansion, const std::vector<GQCP::SpinUnresolvedONV>& system_onvs, const std::vector<GQCP::SpinUnresolvedONV>& environment_onvs) {
-                return linear_expansion.calculateOrbitalRDM(system_onvs, environment_onvs);
+                return linear_expansion.calculateSystemOrbitalRDM(system_onvs, environment_onvs);
             },
             py::arg("system_onvs"),
             py::arg("environment_onvs"),
