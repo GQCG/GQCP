@@ -1838,7 +1838,7 @@ public:
 
                 auto N_diff = system_onv_basis[r].numberOfElectrons() - system_onv_basis[c].numberOfElectrons();
                 size_t Sz_diff = 0;
-                if constexpr (std::is_same<Z, SpinResolvedONVBasis>::value) {
+                if constexpr (std::is_same_v<Z, SpinResolvedONVBasis>) {
                     Sz_diff = (system_onv_basis[r].numberOfElectrons(Spin::alpha) - system_onv_basis[r].numberOfElectrons(Spin::beta)) - (system_onv_basis[c].numberOfElectrons(Spin::alpha) - system_onv_basis[c].numberOfElectrons(Spin::beta));
                 }
 
