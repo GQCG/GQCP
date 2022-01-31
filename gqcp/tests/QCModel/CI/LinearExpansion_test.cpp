@@ -134,8 +134,6 @@ BOOST_AUTO_TEST_CASE(single_orbital_entropy_throw) {
 
 BOOST_AUTO_TEST_CASE(tensorize_coeffients) {
 
-    // Manual example, see (https://github.com/GQCG/GQCP/pull/1000#issuecomment-944194757) for more details.
-
     const GQCP::SpinUnresolvedONVBasis onv_basis {4, 2};
     const auto wfn = GQCP::LinearExpansion<double, GQCP::SpinUnresolvedONVBasis>::Random(onv_basis);
 
@@ -154,11 +152,6 @@ BOOST_AUTO_TEST_CASE(tensorize_coeffients) {
         0, wfn.coefficient(2), wfn.coefficient(4), 0,
         0, 0, 0, wfn.coefficient(5);
     //  clang-format on
-
-    std::cout << "C tensor: " << std::endl;
-    C.asMatrix().print();
-    std::cout << "C_ref: " << std::endl;
-    C_ref.print();
 
     BOOST_CHECK(C.asMatrix().isApprox(C_ref));
 }
