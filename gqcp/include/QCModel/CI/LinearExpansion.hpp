@@ -1838,15 +1838,18 @@ public:
 
         GQCP::Tensor<Scalar, 2> C(system_onv_basis.size(), environment_onv_basis.size());  // = GQCP::Matrix<Scalar>::Zero();
         C.setZero();
+        C.asMatrix().print();
 
         for (size_t ij = 0; ij < system_onvs.size(); ++ij) {
 
             int i = onv_index(system_onvs[ij], system_onv_basis);
             int j = onv_index(environment_onvs[ij], environment_onv_basis);
-            std::cout << "i: " << i << "\tj: " << j << "\tcoefficient: " << this->coefficient(ij) << std::endl;
+            std::cout << "onv i: " << system_onvs[ij] << "\tonv j: " << environment_onvs[ij];
+            std::cout << "\ti: " << i << "\tj: " << j << "\tcoefficient: " << this->coefficient(ij) << std::endl;
 
             C(i, j) = this->coefficient(ij);
         }
+        return C;
     }
 
     /**
