@@ -30,6 +30,7 @@
 #include "DensityMatrix/SpinResolved1DM.hpp"
 #include "DensityMatrix/SpinResolved2DM.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
+#include "Mathematical/Representation/Tensor.hpp"
 #include "ONVBasis/SpinResolvedONV.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
@@ -1794,7 +1795,7 @@ public:
      *  @return The expansion coefficients in tensor form.
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinUnresolvedONVBasis>::value | std::is_same<Z, SpinResolvedONVBasis>::value, GQCP::Matrix<Scalar>> tensorizeCoefficients(const std::vector<typename ONVBasis::ONV>& system_onvs, const std::vector<typename ONVBasis::ONV>& environment_onvs) const {
+    enable_if_t<std::is_same<Z, SpinUnresolvedONVBasis>::value | std::is_same<Z, SpinResolvedONVBasis>::value, GQCP::Tensor<Scalar, 2>> tensorizeCoefficients(const std::vector<typename ONVBasis::ONV>& system_onvs, const std::vector<typename ONVBasis::ONV>& environment_onvs) const {
 
         if (system_onvs.size() != environment_onvs.size()) {
             throw std::invalid_argument("LinearExpansion::calculateSystemOrbitalRDM(std::vector<ONV>& system_onvs, std::vector<ONV>& environment_onvs) const: The amount of system ONVs should be exactly the same as the amount of environment ONVs.");
@@ -1835,7 +1836,8 @@ public:
             return -1;
         };
 
-        GQCP::Matrix<Scalar> C = GQCP::Matrix<Scalar>::Zero(system_onv_basis.size(), environment_onv_basis.size());
+        GQCP::Tensor<Scalar, 2> C {system_onv_basis.size(), environment_onv_basis.size()};// = GQCP::Matrix<Scalar>::Zero();
+        C.setZero();
 
         for (size_t ij = 0; ij < system_onvs.size(); ++ij) {
 
