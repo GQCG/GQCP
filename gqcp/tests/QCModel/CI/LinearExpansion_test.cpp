@@ -147,13 +147,14 @@ BOOST_AUTO_TEST_CASE(orbital_reduced_density_matrix) {
     // const auto rho = wfn.calculateSystemOrbitalRDM(system_onvs, environment_onvs);
     const auto C = wfn.tensorizeCoefficients(system_onvs, environment_onvs);
 
-    GQCP::MatrixX<double> C_ref {
-                        {wfn.coefficient(1), 0, wfn.coefficient(3), 0},
-                        {0, wfn.coefficient(0), 0, 0},
-                        {wfn.coefficient(2), 0, wfn.coefficient(4), 0},
-                        {0, 0, 0, wfn.coefficient(5)}
-
-    };
+    GQCP::MatrixX<double> C_ref {4, 4};
+    // clang-format off
+    C_ref << 
+        wfn.coefficient(1), 0, wfn.coefficient(3), 0,
+        0, wfn.coefficient(0), 0, 0,
+        wfn.coefficient(2), 0, wfn.coefficient(4), 0,
+        0, 0, 0, wfn.coefficient(5);
+    // clang-format on
 
     BOOST_CHECK(C.isApprox(C_ref));
 }
