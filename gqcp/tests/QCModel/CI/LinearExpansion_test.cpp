@@ -131,8 +131,6 @@ BOOST_AUTO_TEST_CASE(single_orbital_entropy_throw) {
     BOOST_CHECK_THROW(linear_expansion.calculateSingleOrbitalEntropy(4);, std::invalid_argument);  // Orbital index is larger than the amount of orbitals.
 }
 
-BOOST_AUTO_TEST_CASE(C_tensor) {
-}
 
 BOOST_AUTO_TEST_CASE(orbital_reduced_density_matrix) {
 
@@ -148,6 +146,16 @@ BOOST_AUTO_TEST_CASE(orbital_reduced_density_matrix) {
 
     // const auto rho = wfn.calculateSystemOrbitalRDM(system_onvs, environment_onvs);
     const auto C = wfn.tensorizeCoefficients(system_onvs, environment_onvs);
+
+    GQCP::MatrixX<double> C_ref {
+                        {wfn.coefficient(1), 0, wfn.coefficient(3), 0},
+                        {0, wfn.coefficient(0), 0, 0},
+                        {wfn.coefficient(2), 0, wfn.coefficient(4), 0},
+                        {0, 0, 0, wfn.coefficient(5)}
+
+    };
+
+    BOOST_CHECK(C.isApprox(C_ref));
 }
 
 
