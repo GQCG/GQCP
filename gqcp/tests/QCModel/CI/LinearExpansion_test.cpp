@@ -131,6 +131,8 @@ BOOST_AUTO_TEST_CASE(single_orbital_entropy_throw) {
     BOOST_CHECK_THROW(linear_expansion.calculateSingleOrbitalEntropy(4);, std::invalid_argument);  // Orbital index is larger than the amount of orbitals.
 }
 
+BOOST_AUTO_TEST_CASE(C_tensor) {
+}
 
 BOOST_AUTO_TEST_CASE(orbital_reduced_density_matrix) {
 
@@ -144,28 +146,8 @@ BOOST_AUTO_TEST_CASE(orbital_reduced_density_matrix) {
     // |10>, |00>, |10>, |01>, |11>, |01>
     std::vector<GQCP::SpinUnresolvedONV> environment_onvs {{2, 1, 1}, {2, 0, 0}, {2, 1, 1}, {2, 1, 2}, {2, 2, 3}, {2, 1, 2}};
 
-    const auto rho = wfn.calculateSystemOrbitalRDM(system_onvs, environment_onvs);
-
-    // <n| = <10|, |n'> = |10>
-    BOOST_CHECK_EQUAL(rho(0, 0), wfn.coefficient(0) * wfn.coefficient(0) + wfn.coefficient(3) * wfn.coefficient(3));
-    // <n| = <10|, |n'> = |11>
-    BOOST_CHECK_EQUAL(rho(0, 1), 0);
-    // <n| = <10|, |n'> = |01>
-    BOOST_CHECK_EQUAL(rho(0, 2), wfn.coefficient(0) * wfn.coefficient(2) + wfn.coefficient(3) * wfn.coefficient(5));
-    // <n| = <10|, |n'> = |00>
-    BOOST_CHECK_EQUAL(rho(0, 3), 0);
-    // <n| = <11|, |n'> = |11>
-    BOOST_CHECK_EQUAL(rho(1, 1), wfn.coefficient(1) * wfn.coefficient(1));
-    // <n| = <11|, |n'> = |01>
-    BOOST_CHECK_EQUAL(rho(1, 2), 0);
-    // <n| = <11|, |n'> = |00>
-    BOOST_CHECK_EQUAL(rho(1, 3), 0);
-    // <n| = <01|, |n'> = |01>
-    BOOST_CHECK_EQUAL(rho(2, 2), wfn.coefficient(2) * wfn.coefficient(2) + wfn.coefficient(5) * wfn.coefficient(5));
-    // <n| = <01|, |n'> = |00>
-    BOOST_CHECK_EQUAL(rho(2, 3), 0);
-    // <n| = <00|, |n'> = |00>
-    BOOST_CHECK_EQUAL(rho(3, 3), wfn.coefficient(4) * wfn.coefficient(4));
+    // const auto rho = wfn.calculateSystemOrbitalRDM(system_onvs, environment_onvs);
+    const auto C = wfn.tensorizeCoefficients(system_onvs, environment_onvs);
 }
 
 

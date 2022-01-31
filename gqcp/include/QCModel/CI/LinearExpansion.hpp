@@ -1786,12 +1786,71 @@ public:
      */
 
     /**
+     *  Construct the linear expansion in tensor form.
+     *
+     *  @param system_onvs              A vector of all ONVs of the system that is obtained after splitting an ONV basis into two subsystems.
+     *  @param environment_onvs         A vector of all ONVs of the environment that is obtained after splitting an ONV basis into two subsystems.
+     *
+     *  @return The expansion coefficients in tensor form.
+     */
+    template <typename Z = ONVBasis>
+    enable_if_t<std::is_same<Z, SpinUnresolvedONVBasis>::value | std::is_same<Z, SpinResolvedONVBasis>::value, GQCP::Matrix<Scalar>> tensorizeCoefficients(const std::vector<typename ONVBasis::ONV>& system_onvs, const std::vector<typename ONVBasis::ONV>& environment_onvs) const {
+
+        if (system_onvs.size() != environment_onvs.size()) {
+            throw std::invalid_argument("LinearExpansion::calculateSystemOrbitalRDM(std::vector<ONV>& system_onvs, std::vector<ONV>& environment_onvs) const: The amount of system ONVs should be exactly the same as the amount of environment ONVs.");
+        }
+
+        // Determine the dimensions of the orbital density matrix.
+        const auto unique_onvs = [](const std::vector<typename ONVBasis::ONV>& onvs) {
+            // The ONV basis containing all unique ONVs.
+            std::vector<typename ONVBasis::ONV> onv_basis;
+
+            for (const auto& onv : onvs) {
+
+                bool unique = true;
+                // If the ONV already is inside this basis, do not add it again.
+                for (const auto& unique_onv : onv_basis) {
+                    if (onv.asString() == unique_onv.asString()) {
+                        unique = false;
+                    }
+                }
+                // If it is an unique ONV, add it to the ONV basis.
+                if (unique) {
+                    onv_basis.push_back(onv);
+                }
+            }
+            return onv_basis;
+        };
+
+        const auto system_onv_basis = unique_onvs(system_onvs);
+        const auto environment_onv_basis = unique_onvs(environment_onvs);
+
+        const auto onv_index = [](const typename ONVBasis::ONV onv, std::vector<typename ONVBasis::ONV> onv_basis) {
+            for (int i = 0; i < onv_basis.size(); ++i) {
+
+                if (onv == onv_basis[i]) {
+                    return i;
+                }
+            }
+            return -1;
+        };
+
+        GQCP::Matrix<Scalar> C = GQCP::Matrix<Scalar>::Zero(system_onv_basis.size(), environment_onv_basis.size());
+
+        for (size_t ij = 0; ij < system_onvs.size(); ++ij) {
+
+            int i = onv_index(system_onvs[ij], system_onv_basis);
+            int j = onv_index(environment_onvs[ij], environment_onv_basis);
+
+            C(i, j) = this->coefficient(ij);
+        }
+    }
+
+    /**
      *  Calculate the orbital reduced density matrix as defined in equation (3) of Rissler2005 (https://doi.org/10.1016/j.chemphys.2005.10.018).
      *
      *  @param system_onvs              A vector of all ONVs of the system that is obtained after splitting an ONV basis into two subsystems.
      *  @param environment_onvs         A vector of all ONVs of the environment that is obtained after splitting an ONV basis into two subsystems.
-     *  @param system_onv_basis         A vector containing the unique ONVs of the system.
-     *  @param environment_onv_basis    A vector containing the unique ONVs of the environment.
      *
      *  @return The orbital reduced density matrix.
      */
