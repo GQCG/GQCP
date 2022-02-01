@@ -1801,7 +1801,7 @@ public:
             throw std::invalid_argument("LinearExpansion::calculateSystemOrbitalRDM(std::vector<ONV>& system_onvs, std::vector<ONV>& environment_onvs) const: The amount of system ONVs should be exactly the same as the amount of environment ONVs.");
         }
 
-        // Create a collection of unique ONVs to determine the dimension of the orbital RDM.
+        // Create a collection of unique ONVs to determine the dimension of the system orbital RDM.
         const auto unique_onvs = [](const std::vector<typename ONVBasis::ONV>& onvs) {
             // The ONV basis containing all unique ONVs.
             std::vector<typename ONVBasis::ONV> onv_collection;
@@ -1852,12 +1852,12 @@ public:
 
 
     /**
-     *  Calculate the orbital reduced density matrix as defined in equation (2) of Rissler2005 (https://doi.org/10.1016/j.chemphys.2005.10.018).
+     *  Calculate the system orbital reduced density matrix as defined in equation (2) of Rissler2005 (https://doi.org/10.1016/j.chemphys.2005.10.018).
      *
      *  @param system_onvs              A vector of all ONVs of the system that is obtained after splitting a collection of ONVs into two subsystems.
      *  @param environment_onvs         A vector of all ONVs of the environment that is obtained after splitting a collection of ONVs into two subsystems.
      *
-     *  @return The orbital reduced density matrix.
+     *  @return The system orbital reduced density matrix.
      */
     template <typename Z = ONVBasis>
     enable_if_t<std::is_same<Z, SpinUnresolvedONVBasis>::value | std::is_same<Z, SpinResolvedONVBasis>::value, GQCP::Tensor<Scalar, 2>> calculateSystemOrbitalRDM(const std::vector<typename ONVBasis::ONV>& system_onvs, const std::vector<typename ONVBasis::ONV>& environment_onvs) const {
