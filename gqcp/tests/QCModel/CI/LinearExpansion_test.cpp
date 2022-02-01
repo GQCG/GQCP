@@ -132,6 +132,9 @@ BOOST_AUTO_TEST_CASE(single_orbital_entropy_throw) {
 }
 
 
+/**
+ *  Check if the coefficients of the linear expansion are tensorized in the correct way.
+ */
 BOOST_AUTO_TEST_CASE(tensorize_coeffients) {
 
     const GQCP::SpinUnresolvedONVBasis onv_basis {4, 2};
@@ -157,6 +160,9 @@ BOOST_AUTO_TEST_CASE(tensorize_coeffients) {
 }
 
 
+/**
+ *  Check if the calculation of the system orbital density matrix matches the manual example (https://github.com/GQCG/GQCP/pull/1000#issuecomment-944194757).
+ */
 BOOST_AUTO_TEST_CASE(orbital_reduced_density_matrix) {
 
     // Manual example, see (https://github.com/GQCG/GQCP/pull/1000#issuecomment-944194757) for more details.
