@@ -132,6 +132,37 @@ BOOST_AUTO_TEST_CASE(single_orbital_entropy_throw) {
 }
 
 
+/**
+ *  Check if the coefficients of the linear expansion are tensorized in the correct way.
+ */
+BOOST_AUTO_TEST_CASE(tensorize_coeffients) {
+
+    const GQCP::SpinUnresolvedONVBasis onv_basis {4, 2};
+    const auto wfn = GQCP::LinearExpansion<double, GQCP::SpinUnresolvedONVBasis>::Random(onv_basis);
+
+    // |11>, |10>, |01>, |10>, |01>, |00> (read from left to right)
+    std::vector<GQCP::SpinUnresolvedONV> system_onvs {{2, 2, 3}, {2, 1, 1}, {2, 1, 2}, {2, 1, 1}, {2, 1, 2}, {2, 0, 0}};
+    // |00>, |10>, |10>, |01>, |01>, |11>
+    std::vector<GQCP::SpinUnresolvedONV> environment_onvs {{2, 0, 0}, {2, 1, 1}, {2, 1, 1}, {2, 1, 2}, {2, 1, 2}, {2, 2, 3}};
+
+    const auto C = wfn.tensorizeCoefficients(system_onvs, environment_onvs);
+
+    // clang-format off
+    GQCP::Matrix<double, 4, 4> C_ref;
+    C_ref <<
+        wfn.coefficient(0), 0, 0, 0,
+        0, wfn.coefficient(1), wfn.coefficient(3), 0,
+        0, wfn.coefficient(2), wfn.coefficient(4), 0,
+        0, 0, 0, wfn.coefficient(5);
+    //  clang-format on
+
+    BOOST_CHECK(C.asMatrix().isApprox(C_ref));
+}
+
+
+/**
+ *  Check if the calculation of the system orbital density matrix matches the manual example (https://github.com/GQCG/GQCP/pull/1000#issuecomment-944194757).
+ */
 BOOST_AUTO_TEST_CASE(orbital_reduced_density_matrix) {
 
     // Manual example, see (https://github.com/GQCG/GQCP/pull/1000#issuecomment-944194757) for more details.

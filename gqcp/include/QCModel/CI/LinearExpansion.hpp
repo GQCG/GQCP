@@ -30,6 +30,7 @@
 #include "DensityMatrix/SpinResolved1DM.hpp"
 #include "DensityMatrix/SpinResolved2DM.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
+#include "Mathematical/Representation/Tensor.hpp"
 #include "ONVBasis/SpinResolvedONV.hpp"
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
@@ -1786,82 +1787,90 @@ public:
      */
 
     /**
-     *  Calculate the orbital reduced density matrix as defined in equation (3) of Rissler2005 (https://doi.org/10.1016/j.chemphys.2005.10.018).
+     *  Construct the linear expansion in tensor form.
      *
      *  @param system_onvs              A vector of all ONVs of the system that is obtained after splitting an ONV basis into two subsystems.
      *  @param environment_onvs         A vector of all ONVs of the environment that is obtained after splitting an ONV basis into two subsystems.
-     *  @param system_onv_basis         A vector containing the unique ONVs of the system.
-     *  @param environment_onv_basis    A vector containing the unique ONVs of the environment.
      *
-     *  @return The orbital reduced density matrix.
+     *  @return The expansion coefficients in tensor form.
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinUnresolvedONVBasis>::value | std::is_same<Z, SpinResolvedONVBasis>::value, GQCP::SquareMatrix<Scalar>> calculateSystemOrbitalRDM(const std::vector<typename ONVBasis::ONV>& system_onvs, const std::vector<typename ONVBasis::ONV>& environment_onvs) const {
+    enable_if_t<std::is_same<Z, SpinUnresolvedONVBasis>::value | std::is_same<Z, SpinResolvedONVBasis>::value, GQCP::Tensor<Scalar, 2>> tensorizeCoefficients(const std::vector<typename ONVBasis::ONV>& system_onvs, const std::vector<typename ONVBasis::ONV>& environment_onvs) const {
 
         if (system_onvs.size() != environment_onvs.size()) {
             throw std::invalid_argument("LinearExpansion::calculateSystemOrbitalRDM(std::vector<ONV>& system_onvs, std::vector<ONV>& environment_onvs) const: The amount of system ONVs should be exactly the same as the amount of environment ONVs.");
         }
 
-        // Determine the dimensions of the orbital density matrix.
+        // Create a collection of unique ONVs to determine the dimension of the system orbital RDM.
         const auto unique_onvs = [](const std::vector<typename ONVBasis::ONV>& onvs) {
             // The ONV basis containing all unique ONVs.
-            std::vector<typename ONVBasis::ONV> onv_basis;
+            std::vector<typename ONVBasis::ONV> onv_collection;
 
             for (const auto& onv : onvs) {
 
                 bool unique = true;
-                // If the ONV already is inside this basis, do not add it again.
-                for (const auto& unique_onv : onv_basis) {
+                // If the ONV already is inside this collection, do not add it again.
+                for (const auto& unique_onv : onv_collection) {
                     if (onv.asString() == unique_onv.asString()) {
                         unique = false;
                     }
                 }
-                // If it is an unique ONV, add it to the ONV basis.
+                // If it is an unique ONV, add it to the ONV collection.
                 if (unique) {
-                    onv_basis.push_back(onv);
+                    onv_collection.push_back(onv);
                 }
             }
-            return onv_basis;
+            return onv_collection;
         };
 
-        const auto system_onv_basis = unique_onvs(system_onvs);
-        const auto environment_onv_basis = unique_onvs(environment_onvs);
+        const auto system_onv_collection = unique_onvs(system_onvs);
+        const auto environment_onv_collection = unique_onvs(environment_onvs);
 
-        // Calculate the orbital reduced density matrix.
-        const auto dim = system_onv_basis.size();
-        GQCP::SquareMatrix<Scalar> rho = GQCP::SquareMatrix<Scalar>::Zero(dim);
+        // Retrieve the index of a given ONV in the collection of unique ONVs.
+        const auto onv_index = [](const typename ONVBasis::ONV onv, std::vector<typename ONVBasis::ONV> onv_collection) {
+            for (int i = 0; i < onv_collection.size(); ++i) {
 
-        for (size_t r = 0; r < dim; ++r) {
-            for (size_t c = 0; c < dim; ++c) {
-
-                double matrix_element = 0.0;
-
-                auto N_diff = system_onv_basis[r].numberOfElectrons() - system_onv_basis[c].numberOfElectrons();
-                size_t Sz_diff = 0;
-                if constexpr (std::is_same_v<Z, SpinResolvedONVBasis>) {
-                    Sz_diff = (system_onv_basis[r].numberOfElectrons(Spin::alpha) - system_onv_basis[r].numberOfElectrons(Spin::beta)) - (system_onv_basis[c].numberOfElectrons(Spin::alpha) - system_onv_basis[c].numberOfElectrons(Spin::beta));
-                }
-
-                if (N_diff == 0 && Sz_diff == 0) {
-                    // \sum_j <j|<n|\Psi><\Psi|n'>|j> -> onv_n_bra = <n| and onv_n_ket = |n'>
-                    for (size_t p = 0; p < system_onvs.size(); ++p) {      // Loop over |\Psi> = \sum_p |system_p>|environment_p>.
-                        for (size_t q = 0; q < system_onvs.size(); ++q) {  // Loop over <\Psi| = \sum_q <environment_q|<system_q|.
-                            // If <n|onv_system> and <onv_system'|n'> are both 1, we can calculate the overlap with the environment ONVs.
-                            if ((system_onv_basis[r] == system_onvs[p]) && (system_onvs[q] == system_onv_basis[c])) {
-                                for (size_t j = 0; j < environment_onv_basis.size(); ++j) {  // Loop over all ONVs of the environment. (\sum_j <j|...|j>)
-                                    // If <j|environment_onv> and <environment_onv'|j> both are 1, the coefficients will contribute to the matrix element.
-                                    if ((environment_onv_basis[j] == environment_onvs[p]) && (environment_onvs[q] == environment_onv_basis[j])) {
-                                        matrix_element += this->coefficient(p) * this->coefficient(q);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    rho(r, c) = matrix_element;
+                if (onv == onv_collection[i]) {
+                    return i;
                 }
             }
+            return -1;
+        };
+
+        GQCP::Tensor<Scalar, 2> C(system_onv_collection.size(), environment_onv_collection.size());
+        C.setZero();
+
+        for (size_t ij = 0; ij < system_onvs.size(); ++ij) {
+
+            int i = onv_index(system_onvs[ij], system_onv_collection);
+            int j = onv_index(environment_onvs[ij], environment_onv_collection);
+
+            C(i, j) = this->coefficient(ij);
         }
-        return rho;
+        return C;
+    }
+
+
+    /**
+     *  Calculate the system orbital reduced density matrix as defined in equation (2) of Rissler2005 (https://doi.org/10.1016/j.chemphys.2005.10.018).
+     *
+     *  @param system_onvs              A vector of all ONVs of the system that is obtained after splitting a collection of ONVs into two subsystems.
+     *  @param environment_onvs         A vector of all ONVs of the environment that is obtained after splitting a collection of ONVs into two subsystems.
+     *
+     *  @return The system orbital reduced density matrix.
+     */
+    template <typename Z = ONVBasis>
+    enable_if_t<std::is_same<Z, SpinUnresolvedONVBasis>::value | std::is_same<Z, SpinResolvedONVBasis>::value, GQCP::Tensor<Scalar, 2>> calculateSystemOrbitalRDM(const std::vector<typename ONVBasis::ONV>& system_onvs, const std::vector<typename ONVBasis::ONV>& environment_onvs) const {
+
+        if (system_onvs.size() != environment_onvs.size()) {
+            throw std::invalid_argument("LinearExpansion::calculateSystemOrbitalRDM(std::vector<ONV>& system_onvs, std::vector<ONV>& environment_onvs) const: The amount of system ONVs should be exactly the same as the amount of environment ONVs.");
+        }
+
+        // The coefficients must be in the tensorized form to apply equation (2).
+        const auto C = this->tensorizeCoefficients(system_onvs, environment_onvs);
+
+        // Partial trace over the index of the environment ("j").
+        return C.template einsum<1>("ij,kj->ik", C);
     }
 
 
