@@ -275,6 +275,7 @@ void bindLinearExpansions(py::module& module) {
             py::arg("system_onvs"),
             py::arg("environment_onvs"),
             "Return the expansion coefficients in tensor form.");
+    );
 
     // Expose the linear expansion interface.
     bindQCModelCILinearExpansionInterface(py_LinearExpansion_SpinResolved);
