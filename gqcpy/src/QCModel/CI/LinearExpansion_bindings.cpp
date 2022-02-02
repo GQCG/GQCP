@@ -268,14 +268,13 @@ void bindLinearExpansions(py::module& module) {
             "Return the single orbital entropy of the orbital at the specified index, according to the formula of Boguslawski (https://doi.org/10.1002/qua.24832).")
 
         .def(
-            "tensorizeCoefficients";
+            "tensorizeCoefficients",
             [](const LinearExpansion<double, SpinResolvedONVBasis>& linear_expansion, const std::vector<GQCP::SpinResolvedONV>& system_onvs, const std::vector<GQCP::SpinResolvedONV>& environment_onvs) {
                 return linear_expansion.tensorizeCoefficients(system_onvs, environment_onvs).asMatrix();
             },
             py::arg("system_onvs"),
             py::arg("environment_onvs"),
             "Return the expansion coefficients in tensor form.");
-    );
 
     // Expose the linear expansion interface.
     bindQCModelCILinearExpansionInterface(py_LinearExpansion_SpinResolved);
