@@ -205,7 +205,7 @@ void bindLinearExpansions(py::module& module) {
         .def_static(
             "FromONVProjection",
             [](const SpinResolvedONV& onv, const RSpinOrbitalBasis<double, GTOShell>& r_spinor_basis, const USpinOrbitalBasis<double, GTOShell>& u_spinor_basis) {
-        return LinearExpansion<double, SpinResolvedONVBasis>::FromONVProjection(onv, r_spinor_basis, u_spinor_basis);
+                return LinearExpansion<double, SpinResolvedONVBasis>::FromONVProjection(onv, r_spinor_basis, u_spinor_basis);
             },
             py::arg("onv"),
             py::arg("r_spinor_basis"),
@@ -220,7 +220,7 @@ void bindLinearExpansions(py::module& module) {
         .def(
             "basisTransform",
             [](LinearExpansion<double, SpinResolvedONVBasis>& linear_expansion, const Eigen::MatrixXd& T) {
-        return linear_expansion.basisTransform(RTransformation<double>(T));
+                return linear_expansion.basisTransform(RTransformation<double>(T));
             },
             py::arg("T"),
             "Update the expansion coefficients of this linear expansion so that they correspond to the situation after a transformation of the underlying spinor basis with the given basis transformation.")
@@ -233,7 +233,7 @@ void bindLinearExpansions(py::module& module) {
         .def(
             "forEach",
             [](const LinearExpansion<double, SpinResolvedONVBasis>& linear_expansion, const std::function<void(const double, const SpinResolvedONV)>& callback) {
-        return linear_expansion.forEach(callback);
+                return linear_expansion.forEach(callback);
             },
             py::arg("callback"),
             "Iterate over all expansion coefficients and corresponding ONVs, and apply the given callback function.")
@@ -246,7 +246,7 @@ void bindLinearExpansions(py::module& module) {
         .def(
             "calculateSystemOrbitalRDM",
             [](const LinearExpansion<double, SpinResolvedONVBasis>& linear_expansion, const std::vector<GQCP::SpinResolvedONV>& system_onvs, const std::vector<GQCP::SpinResolvedONV>& environment_onvs) {
-        return linear_expansion.calculateSystemOrbitalRDM(system_onvs, environment_onvs).asMatrix();
+                return linear_expansion.calculateSystemOrbitalRDM(system_onvs, environment_onvs).asMatrix();
             },
             py::arg("system_onvs"),
             py::arg("environment_onvs"),
@@ -255,27 +255,26 @@ void bindLinearExpansions(py::module& module) {
         .def(
             "calculateShannonEntropy",
             [](const LinearExpansion<double, SpinResolvedONVBasis>& linear_expansion) {
-        return linear_expansion.calculateShannonEntropy();
+                return linear_expansion.calculateShannonEntropy();
             },
             "Return the Shannon entropy (information content) of the wave function.")
 
         .def(
             "calculateSingleOrbitalEntropy",
             [](const LinearExpansion<double, SpinResolvedONVBasis>& linear_expansion, const size_t orbital_index) {
-        return linear_expansion.calculateSingleOrbitalEntropy(orbital_index);
+                return linear_expansion.calculateSingleOrbitalEntropy(orbital_index);
             },
             py::arg("orbital_index"),
             "Return the single orbital entropy of the orbital at the specified index, according to the formula of Boguslawski (https://doi.org/10.1002/qua.24832).")
-            
+
         .def(
             "tensorizeCoefficients";
             [](const LinearExpansion<double, SpinResolvedONVBasis>& linear_expansion, const std::vector<GQCP::SpinResolvedONV>& system_onvs, const std::vector<GQCP::SpinResolvedONV>& environment_onvs) {
-        return linear_expansion.tensorizeCoefficients(system_onvs, environment_onvs).asMatrix();
+                return linear_expansion.tensorizeCoefficients(system_onvs, environment_onvs).asMatrix();
             },
             py::arg("system_onvs"),
             py::arg("environment_onvs"),
-            "Return the expansion coefficients in tensor form.")
-        );
+            "Return the expansion coefficients in tensor form.");
 
     // Expose the linear expansion interface.
     bindQCModelCILinearExpansionInterface(py_LinearExpansion_SpinResolved);
