@@ -222,7 +222,7 @@ public:
      * @return  The transformation that rotates the solution in the direction of steepest descent, towards a global minimum.
      */
     template <typename S = Scalar>
-    enable_if_t<std::is_same<S, double>::value, GQCP::GTransformation<double>> instabilityRotationMatrix(const size_t occupied_orbitals, const size_t virtual_orbitals) const {
+    enable_if_t<std::is_same<S, double>::value, GTransformation<double>> instabilityRotationMatrix(const size_t occupied_orbitals, const size_t virtual_orbitals) const {
 
         // Calculate the internal stability matrix for the real valued GHF wavefunction.
         const auto H = this->internal();
@@ -231,7 +231,7 @@ public:
         using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
         Eigen::SelfAdjointEigenSolver<MatrixType> eigensolver {H};
 
-        // Calculate the eigenvalues and check whether they are strictly positive or not.
+        // Calculate the lowest eigenvetor of the stability matrix..
         const auto& eigenvectors = eigensolver.eigenvectors();
         const auto& lowest_eigenvector = eigenvectors.col(0);
 
@@ -255,7 +255,64 @@ public:
         kappa.bottomLeftCorner(virtual_orbitals, occupied_orbitals) = -1 * (sub_kappa.transpose().conjugate());
         kappa.bottomRightCorner(occupied_orbitals, virtual_orbitals) = Matrix::Zero(occupied_orbitals, virtual_orbitals);
 
-        return GQCP::GTransformation<double> {(-1 * kappa).exp()};
+        return GTransformation<double> {(-1 * kappa).exp()};
+    }
+
+
+    /*
+     * Generate the rotation matrix of a complex valued GHF wavefunction that will lead to a lower lying minimum.
+     *
+     * @param occupied_orbitals       The amount of occupied orbitals in the system.
+     * @param virtual_orbitals        The amount of virtual orbitals in the system.
+     *
+     * @return  The transformation that rotates the solution in the direction of steepest descent, towards a global minimum.
+     */
+    template <typename S = Scalar>
+    enable_if_t<std::is_same<S, complex>::value, GTransformation<complex>> instabilityRotationMatrix(const size_t occupied_orbitals, const size_t virtual_orbitals) const {
+
+        // Calculate the internal stability matrix for the real valued GHF wavefunction.
+        const auto H = this->internal();
+
+        // Set up the eigensolver to diagonalize the Hessian/Stability matrix.
+        using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
+        Eigen::SelfAdjointEigenSolver<MatrixType> eigensolver {H};
+
+        // Calculate the lowest eigenvetor of the stability matrix..
+        const auto& eigenvectors = eigensolver.eigenvectors();
+        const auto& lowest_eigenvector = eigenvectors.col(0);
+
+        // In the case of a complex wavefunction, the first (occupied * virtual) values of the eigenvector corresond with kappa^R. The last (occupied * virtual) values correspond with kappa^I.
+        // This needs to be taken into account before the eigenvector is reshaped into its matrix form.
+        std::size_t const half_size = lowest_eigenvector.rows() / 2;
+        std::vector<GQCP::complex> lowest_eigenvector_complex;
+
+        for (size_t i = 0; i < lowest_eigenvector.rows() / 2; i++) {
+            const complex x {lowest_eigenvector[i].real(), lowest_eigenvector[half_size + i].real()};
+            lowest_eigenvector_complex.push_back(x);
+        }
+
+        // Reshape the complex elements to the correct matrix dimensions.
+        Matrix sub_kappa {occupied_orbitals, virtual_orbitals};
+
+        for (int r = 0; r < occupied_orbitals; r++) {
+            for (int c = 0; c < virtual_orbitals; c++) {
+
+                // The columns are looped first. Hence, the position within the row is determined by c (+c).
+                // The rows are determined by the outer loop. When you start filling a new row, you have to skip all the vector elements used for the previous row (r * cols).
+                sub_kappa(r, c) = lowest_eigenvector_complex[r * virtual_orbitals + c];
+            }
+        }
+
+        // Define a rotation matrix kappa of dimension (occupied+virtual, occupied+virtual) and fill it with the correct elements.
+        const auto N = occupied_orbitals + virtual_orbitals;
+        Matrix kappa {N, N};
+
+        kappa.topLeftCorner(virtual_orbitals, occupied_orbitals) = Matrix::Zero(virtual_orbitals, occupied_orbitals);
+        kappa.topRightCorner(occupied_orbitals, virtual_orbitals) = sub_kappa;
+        kappa.bottomLeftCorner(virtual_orbitals, occupied_orbitals) = -1 * (sub_kappa.transpose().conjugate());
+        kappa.bottomRightCorner(occupied_orbitals, virtual_orbitals) = Matrix::Zero(occupied_orbitals, virtual_orbitals);
+
+        return GTransformation<complex> {(-1 * kappa).exp()};
     }
 };
 
