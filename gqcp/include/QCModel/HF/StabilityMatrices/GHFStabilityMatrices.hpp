@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Basis/Transformations/GTransformation.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
 #include "Utilities/aliases.hpp"
 #include "Utilities/complex.hpp"
