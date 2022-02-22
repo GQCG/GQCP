@@ -3,14 +3,14 @@ name: Singularity deploy
 on:
   push:
     paths:
-      - '.github/workflows/singularity-gqcp-dev-deploy.yml'
-      - 'singularity/GQCP-dev.def'
+      - '.github/workflows/singularity-gqcp-deploy.yml'
+      - 'singularity/GQCP.def'
     branches:
       - 'develop'
   pull_request:
     paths:
-      - '.github/workflows/singularity-gqcp-dev-deploy.yml'
-      - 'singularity/GQCP-dev.def'
+      - '.github/workflows/singularity-gqcp-deploy.yml'
+      - 'singularity/GQCP.def'
 
 jobs:
   build:
@@ -51,5 +51,8 @@ jobs:
         ./mconfig -p /usr/local && \
         make -C builddir && \
         sudo make -C builddir install            
-    - name: Build Singularity image
-      run: sudo -E singularity build gqcp-dev.sif singularity/GQCP-dev.def
+    - name: Build and upload Singularity image
+      run: |
+        sudo -E singularity build gqcp.sif singularity/GQCP.def
+        echo ${{ secrets.SYLABS_TOKEN }} | singularity remote login -u ${{ secrets.SYLABS_USERNAME }} --password-stdin
+        singularity push gqcp.sif library://${{ secrets.SYLABS_USERNAME }}/gqcp/gqcp:latest
