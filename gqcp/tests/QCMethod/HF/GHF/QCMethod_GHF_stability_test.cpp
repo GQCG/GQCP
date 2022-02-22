@@ -28,7 +28,7 @@
 /**
  *  Starting from a core guess, the GHF SCF algorithm finds a solution that should be both internally and externally unstable for the given system.
  *  This test checks whether the stability checks confirm this.
- * 
+ *
  *  The system of interest is a H3-triangle, 1 bohr apart and the reference implementation was done by @xdvriend.
  */
 BOOST_AUTO_TEST_CASE(H3_stability_test_1) {
@@ -72,7 +72,7 @@ BOOST_AUTO_TEST_CASE(H3_stability_test_1) {
 /**
  *  Starting from a random guess, the GHF SCF algorithm finds a solution that should be both internally and externally stable for the given system.
  *  This test checks whether the stability checks confirm this.
- * 
+ *
  *  The system of interest is a H3-triangle, 1 bohr apart and the reference implementation was done by @xdvriend.
  */
 BOOST_AUTO_TEST_CASE(H3_stability_test_2) {
@@ -127,7 +127,7 @@ BOOST_AUTO_TEST_CASE(H3_stability_test_2) {
 /**
  *  Starting from a core guess, the GHF SCF algorithm finds a solution that should be both internally and externally stable for the given system.
  *  This test checks whether the stability checks confirm this.
- * 
+ *
  *  The system of interest is a H2-chain, 1 bohr apart and the reference implementation was done by @xdvriend.
  */
 BOOST_AUTO_TEST_CASE(H3_stability_test_3) {
@@ -165,4 +165,83 @@ BOOST_AUTO_TEST_CASE(H3_stability_test_3) {
 
     // Check that the stability properties can be printed
     stability_matrices.printStabilityDescription();
+}
+
+/**
+ *  This test checks whether the internal instability found in the real GHF calculation for H3 can be followed into a stable solution for that system.
+ *
+ *  The system of interest is a H3-triangle, 1 Angstrom apart and the reference implementation was done by @xdvriend in the "Following GHF instabilities" example on the GQCP website (https://gqcg.github.io/GQCP/examples/Following-internal-GHF-instabilities.html).
+ */
+BOOST_AUTO_TEST_CASE(H3_stability_rotation) {
+
+    // Set up a general spinor basis to obtain a spin-blocked second-quantized molecular Hamiltonian.
+    const auto molecule = GQCP::Molecule::HRingFromDistance(3, 1.889);  // H3-triangle, 1 Angstrom apart
+    const auto N = molecule.numberOfElectrons();
+
+    const GQCP::GSpinorBasis<double, GQCP::GTOShell> g_spinor_basis {molecule, "STO-3G"};
+    const auto S = g_spinor_basis.overlap();
+
+    const auto sq_hamiltonian = g_spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
+
+    // Perform a GHF SCF calculation.
+    auto environment = GQCP::GHFSCFEnvironment<double>::WithCoreGuess(N, sq_hamiltonian, S);
+    auto solver = GQCP::GHFSCFSolver<double>::Plain(1.0e-08, 3000);
+    const auto qc_structure = GQCP::QCMethod::GHF<double>().optimize(solver, environment);
+    auto ghf_parameters = qc_structure.groundStateParameters();
+
+    // We can now check the stability of the ground state parameters.
+    // For this we need a generalized Hamiltonian in the orthonormal MO basis.
+    const auto hamiltonian_generalized = sq_hamiltonian.transformed(ghf_parameters.expansion());
+
+    // Calculate the stability matrices.
+    const auto stability_matrices = ghf_parameters.calculateStabilityMatrices(hamiltonian_generalized);
+
+    const auto occ = ghf_parameters.numberOfElectrons();
+    const auto virt = ghf_parameters.numberOfSpinors() - occ;
+    const auto rotation = stability_matrices.instabilityRotationMatrix(occ, virt);
+
+    // Set up a reference rotation matrix, taken from the python example on the website.
+    GQCP::SquareMatrix<double> reference {6};
+    // clang-format off
+    reference <<  0.984538137,  0.0,        0.0,         0.0,         0.0,         0.175170363,
+                  0.0,          1.00000000, 0.0,         0.0,         0.0,         0.0,
+                  0.0,          0.0,        0.553382907, 0.0,        -0.832926982, 0.0,
+                  0.0,          0.0,        0.0,         1.00000000,  0.0,         0.0, 
+                  0.0,          0.0,        0.832926982, 0.0,         0.553382907, 0.0,
+                 -0.175170363,  0.0,        0.0,         0.0,         0.0,         0.984538137;
+    // clang-format on
+
+    // Check the calculated matrix versus the reference.
+    BOOST_CHECK(rotation.matrix().isApprox(reference, 1.0e-06));
+
+    // Transform the guess with the newly found rotation matrix.
+    const auto new_guess = ghf_parameters.expansion().transformed(rotation);
+
+    // Perform a new GHF calculation. Label `_rotated` is used to denote the variables AFTER rotation towards steepest descent.
+    GQCP::GHFSCFEnvironment<double> environment_rotated {N, sq_hamiltonian, S, new_guess};
+    auto solver_rotated = GQCP::GHFSCFSolver<double>::Plain(1.0e-08, 4000);
+    const auto qc_structure_rotated = GQCP::QCMethod::GHF<double>().optimize(solver_rotated, environment_rotated);
+    auto ghf_parameters_rotated = qc_structure_rotated.groundStateParameters();
+
+    // Check the stability of the new GHF parameters.
+    // We can now check the stability of the new ground state parameters.
+    // For this we need a generalized Hamiltonian in the orthonormal MO basis of the new parameters.
+    const auto hamiltonian_generalized_rotated = sq_hamiltonian.transformed(ghf_parameters_rotated.expansion());
+
+    // Calculate the new stability matrices.
+    const auto stability_matrices_rotated = ghf_parameters_rotated.calculateStabilityMatrices(hamiltonian_generalized_rotated);
+
+    // This method should now be internally stable.
+    const auto internal_stability = stability_matrices_rotated.isInternallyStable();
+    BOOST_CHECK(internal_stability == true);
+
+    // This wavefunction should now also be externally stable.
+    const auto external_stability = stability_matrices_rotated.isExternallyStable();
+    BOOST_CHECK(external_stability == true);
+
+    // Check that the stability properties can be printed & match the stability conditions tested previously.
+    stability_matrices.printStabilityDescription();
+
+    // Check that the electronic energy now matches that of the stable GHF solution.
+    BOOST_CHECK(qc_structure_rotated.groundStateEnergy() - (-2.9284445024360175) < 1e-8);
 }
