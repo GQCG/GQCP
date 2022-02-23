@@ -201,7 +201,7 @@ BOOST_AUTO_TEST_CASE(H3_stability_rotation) {
     const auto rotation = stability_matrices.instabilityRotationMatrix(occ, virt);
 
     // Set up a reference rotation matrix, taken from the python example on the website.
-    // Commented out due to differring results on GA (possibly due to degenerate H3 states).
+    // Commented out due to differring results on GA (possibly due to degenerate H3 states). Works locally for @xdvriend.
     // GQCP::SquareMatrix<double> reference {6};
     // // clang-format off
     // reference <<  0.984538137,  0.0,        0.0,         0.0,         0.0,         0.175170363,
