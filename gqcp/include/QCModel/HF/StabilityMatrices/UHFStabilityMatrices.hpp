@@ -387,10 +387,10 @@ public:
         Matrix Kb {occupied_beta_orbitals + virtual_beta_orbitals, occupied_beta_orbitals + virtual_beta_orbitals};
 
         if (occupied_alpha_orbitals != 0) {
-            Ka.topLeftCorner(occupied_alpha_orbitals, occupied_alpha_orbitals) = Matrix::Zero(virtual_alpha_orbitals, occupied_alpha_orbitals);
+            Ka.topLeftCorner(occupied_alpha_orbitals, occupied_alpha_orbitals) = Matrix::Zero(occupied_alpha_orbitals, occupied_alpha_orbitals);
             Ka.topRightCorner(occupied_alpha_orbitals, virtual_alpha_orbitals) = kappa_alpha;
             Ka.bottomLeftCorner(virtual_alpha_orbitals, occupied_alpha_orbitals) = -1 * (kappa_alpha.transpose().conjugate());
-            Ka.bottomRightCorner(virtual_alpha_orbitals, virtual_alpha_orbitals) = Matrix::Zero(occupied_alpha_orbitals, virtual_alpha_orbitals);
+            Ka.bottomRightCorner(virtual_alpha_orbitals, virtual_alpha_orbitals) = Matrix::Zero(virtual_alpha_orbitals, virtual_alpha_orbitals);
         } else {
             Ka = Matrix::Zero(occupied_alpha_orbitals + virtual_alpha_orbitals, occupied_alpha_orbitals + virtual_alpha_orbitals);
             for (size_t i = 0; i < Ka.rows(); i++) {
@@ -398,10 +398,10 @@ public:
             }
         }
         if (occupied_beta_orbitals != 0) {
-            Kb.topLeftCorner(occupied_beta_orbitals, occupied_beta_orbitals) = Matrix::Zero(virtual_beta_orbitals, occupied_beta_orbitals);
+            Kb.topLeftCorner(occupied_beta_orbitals, occupied_beta_orbitals) = Matrix::Zero(occupied_beta_orbitals, occupied_beta_orbitals);
             Kb.topRightCorner(occupied_beta_orbitals, virtual_beta_orbitals) = kappa_beta;
             Kb.bottomLeftCorner(virtual_beta_orbitals, occupied_beta_orbitals) = -1 * (kappa_beta.transpose().conjugate());
-            Kb.bottomRightCorner(virtual_beta_orbitals, virtual_beta_orbitals) = Matrix::Zero(occupied_beta_orbitals, virtual_beta_orbitals);
+            Kb.bottomRightCorner(virtual_beta_orbitals, virtual_beta_orbitals) = Matrix::Zero(virtual_beta_orbitals, virtual_beta_orbitals);
         } else {
             Kb = Matrix::Zero(occupied_beta_orbitals + virtual_beta_orbitals, occupied_beta_orbitals + virtual_beta_orbitals);
             for (size_t i = 0; i < Ka.rows(); i++) {
