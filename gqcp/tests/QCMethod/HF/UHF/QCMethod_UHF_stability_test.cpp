@@ -165,7 +165,7 @@ BOOST_AUTO_TEST_CASE(H4_stability_rotation) {
     auto uhf_parameters_rotated = qc_structure_rotated.groundStateParameters();
 
     // Check that the new energy corresponds with the stable solution.
-    BOOST_CHECK((qc_structure_rotated.groundStateEnergy() + nuc_rep) - -2.0066898106390494 < 1e-6);
+    BOOST_CHECK((qc_structure_rotated.groundStateEnergy() + nuc_rep) - (-2.0066898106390494) < 1e-6);
 
     // Check the stability of the new GHF parameters.
     // We can now check the stability of the new ground state parameters.
@@ -174,7 +174,7 @@ BOOST_AUTO_TEST_CASE(H4_stability_rotation) {
 
     // Calculate the new stability matrices.
     const auto stability_matrices_rotated = uhf_parameters_rotated.calculateStabilityMatrices(hamiltonian_generalized_rotated);
-    std::cout << qc_structure_rotated.groundStateEnergy() + nuc_rep << std::endl;
+
     // Check that the stability properties can be printed.
     stability_matrices_rotated.printStabilityDescription();
 }
