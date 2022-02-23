@@ -212,7 +212,7 @@ BOOST_AUTO_TEST_CASE(H3_stability_rotation) {
     // clang-format on
 
     // Check the calculated matrix versus the reference.
-    BOOST_CHECK(rotation.matrix().isApprox(reference, 1.0e-06));
+    BOOST_CHECK(rotation.matrix().isApprox(reference, 1.0e-05));
 
     // Transform the guess with the newly found rotation matrix.
     const auto new_guess = ghf_parameters.expansion().transformed(rotation);
