@@ -18,6 +18,8 @@
 #pragma once
 
 
+#include "Basis/Transformations/UTransformation.hpp"
+#include "Basis/Transformations/UTransformationComponent.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
 #include "Utilities/aliases.hpp"
 #include "Utilities/complex.hpp"
@@ -28,7 +30,7 @@ namespace GQCP {
 
 /**
  *  The unrestricted Hartree-Fock stability matrices.
- * 
+ *
  *  @tparam _Scalar             The type of scalar that is used for the elements of the stability matrices: real or complex.
  */
 template <typename _Scalar>
@@ -60,9 +62,9 @@ public:
 
     /*
      *  Construct the object containing all building blocks for the UHF stability matrices.
-     * 
+     *
      *  @note The names `Spin-conserved` and `Spin-unconserved`come from the article "Constraints and stability in Hartree-Fock theory" by Seeger, R. and Pople J.A. (https://doi.org/10.1063/1.434318).
-     * 
+     *
      *  @param spin_conserved_A          The spin-conserved A' submatrix.
      *  @param spin_conserved_B          The spin-conserved B' submatrix.
      *  @param spin_unconserved_A        The spin-unconserved A'' submatrix.
@@ -195,7 +197,7 @@ public:
 
     /**
      *  @param threshold        The threshold used to check if the matrix is positive semi-definite. If the lowest eigenvalue is more negative than the threshold, it is not positive semi-definite.
-     * 
+     *
      *  @return A boolean, telling us if the real or complex valued internal stability matrix belongs to a stable or unstable set of parameters.
      */
     const bool isInternallyStable(const double threshold = -1.0e-5) const {
@@ -210,7 +212,7 @@ public:
 
     /**
      *  @param threshold        The threshold used to check if the matrix is positive semi-definite. If the lowest eigenvalue is more negative than the threshold, it is not positive semi-definite.
-     * 
+     *
      *  @return A boolean, telling us if the real or complex valued unrestricted->generalized stability matrix belongs to a stable or unstable set of parameters.
      */
     const bool isSpinUnconservedStable(const double threshold = -1.0e-5) const {
@@ -225,7 +227,7 @@ public:
 
     /**
      *  @param threshold        The threshold used to check if the matrix is positive semi-definite. If the lowest eigenvalue is more negative than the threshold, it is not positive semi-definite.
-     * 
+     *
      *  @return A boolean, telling us if the real->complex stability matrix belongs to a stable or unstable set of parameters.
      */
     template <typename S = Scalar>
@@ -240,7 +242,7 @@ public:
 
 
     /**
-     *  @param threshold        The threshold used to check if the matrix is positive semi-definite. If the lowest eigenvalue is more negative than the threshold, it is not positive semi-definite. 
+     *  @param threshold        The threshold used to check if the matrix is positive semi-definite. If the lowest eigenvalue is more negative than the threshold, it is not positive semi-definite.
      *
      *  @return A boolean, telling us whether the real valued parameters are completely externally stable.
      */
@@ -254,7 +256,7 @@ public:
 
     /**
      *  @param threshold        The threshold used to check if the matrix is positive semi-definite. If the lowest eigenvalue is more negative than the threshold, it is not positive semi-definite.
-     * 
+     *
      *  @return A boolean, telling us if the complex valued external stability matrices belongs to a stable or unstable set of parameters.
      */
     template <typename S = Scalar>
@@ -264,12 +266,12 @@ public:
 
 
     /*
-     *  MARK: printing the stability properties of these stability matrices 
+     *  MARK: printing the stability properties of these stability matrices
      */
 
     /*
      *  Print the description of the stability properties of a real valued UHF wavefunction.
-     * 
+     *
      *  @note   This method runs the stability calculation before printing the results.
      */
     template <typename S = Scalar>
@@ -300,7 +302,7 @@ public:
 
     /*
      *  Print the description of the stability properties of a complex valued UHF wavefunction.
-     * 
+     *
      *  @note   This method runs the stability calculation before printing the results.
      */
     template <typename S = Scalar>
@@ -319,6 +321,95 @@ public:
         } else {
             std::cout << "The complex valued UHF wavefunction contains an unrestricted->generalized instability." << std::endl;
         }
+    }
+
+
+    /*
+     *  MARK: Following internal instabilities
+     */
+
+    /*
+     * Generate the rotation matrix of a real valued UHF wavefunction that will lead to a lower lying minimum.
+     *
+     * @param occupied_alpha_orbitals       The amount of occupied alpha orbitals in the system.
+     * @param occupied_beta_orbitals        The amount of occupied beta orbitals in the system.
+     * @param virtual_alpha_orbitals        The amount of virtual alpha orbitals in the system.
+     * @param virtual_beta_orbitals         The amount of virtual beta orbitals in the system.
+     *
+     * @return  The transformation that rotates the solution in the direction of steepest descent, towards a global minimum.
+     */
+    template <typename S = Scalar>
+    enable_if_t<std::is_same<S, double>::value, UTransformation<double>> instabilityRotationMatrix(const size_t occupied_alpha_orbitals, const size_t occupied_beta_orbitals, const size_t virtual_alpha_orbitals, const size_t virtual_beta_orbitals) const {
+
+        // Calculate the internal stability matrix for the real valued GHF wavefunction.
+        const auto H = this->internal();
+
+        // Set up the eigensolver to diagonalize the Hessian/Stability matrix.
+        using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
+        Eigen::SelfAdjointEigenSolver<MatrixType> eigensolver {H};
+
+        // Calculate the lowest eigenvetor of the stability matrix. Split it into its alpha and beta components.
+        const auto& eigenvectors = eigensolver.eigenvectors();
+        const auto& lowest_eigenvector = eigenvectors.col(0);
+
+        std::vector<double> lowest_eigenvector_alpha;
+        std::vector<double> lowest_eigenvector_beta;
+
+        for (size_t i = 0; i < lowest_eigenvector.rows(); i++) {
+            if (i < occupied_alpha_orbitals * virtual_alpha_orbitals) {
+                lowest_eigenvector_alpha.push_back(lowest_eigenvector[i]);
+            } else {
+                lowest_eigenvector_beta.push_back(lowest_eigenvector[i]);
+            }
+        }
+
+        // Create an alpha and a beta kappa matrix.
+        Matrix kappa_alpha {occupied_alpha_orbitals, virtual_alpha_orbitals};
+        Matrix kappa_beta {occupied_beta_orbitals, virtual_beta_orbitals};
+
+        for (int ra = 0; ra < occupied_alpha_orbitals; ra++) {
+            for (int ca = 0; ca < virtual_alpha_orbitals; ca++) {
+
+                // The columns are looped first. Hence, the position within the row is determined by c (+c).
+                // The rows are determined by the outer loop. When you start filling a new row, you have to skip all the vector elements used for the previous row (r * cols).
+                kappa_alpha(ra, ca) = lowest_eigenvector_alpha[ra * virtual_alpha_orbitals + ca];
+            }
+        }
+
+        for (int rb = 0; rb < occupied_beta_orbitals; rb++) {
+            for (int cb = 0; cb < virtual_beta_orbitals; cb++) {
+                kappa_beta(rb, cb) = lowest_eigenvector_beta[rb * virtual_beta_orbitals + cb];
+            }
+        }
+
+        // Define a rotation matrix kappa (for alpha and beta) of dimension (occupied_sigma+virtual_sigma, occupied_sigma+virtual_sigma) and fill it with the correct elements.
+        Matrix Ka {occupied_alpha_orbitals + virtual_alpha_orbitals, occupied_alpha_orbitals + virtual_alpha_orbitals};
+        Matrix Kb {occupied_beta_orbitals + virtual_beta_orbitals, occupied_beta_orbitals + virtual_beta_orbitals};
+
+        if (occupied_alpha_orbitals != 0) {
+            Ka.topLeftCorner(occupied_alpha_orbitals, occupied_alpha_orbitals) = Matrix::Zero(virtual_alpha_orbitals, occupied_alpha_orbitals);
+            Ka.topRightCorner(occupied_alpha_orbitals, virtual_alpha_orbitals) = kappa_alpha;
+            Ka.bottomLeftCorner(virtual_alpha_orbitals, occupied_alpha_orbitals) = -1 * (kappa_alpha.transpose().conjugate());
+            Ka.bottomRightCorner(virtual_alpha_orbitals, virtual_alpha_orbitals) = Matrix::Zero(occupied_alpha_orbitals, virtual_alpha_orbitals);
+        } else {
+            Ka = Matrix::Zero(occupied_alpha_orbitals + virtual_alpha_orbitals, occupied_alpha_orbitals + virtual_alpha_orbitals);
+            for (size_t i = 0; i < Ka.rows(); i++) {
+                Ka(i, i) = 1;
+            }
+        }
+        if (occupied_beta_orbitals != 0) {
+            Kb.topLeftCorner(occupied_beta_orbitals, occupied_beta_orbitals) = Matrix::Zero(virtual_beta_orbitals, occupied_beta_orbitals);
+            Kb.topRightCorner(occupied_beta_orbitals, virtual_beta_orbitals) = kappa_beta;
+            Kb.bottomLeftCorner(virtual_beta_orbitals, occupied_beta_orbitals) = -1 * (kappa_beta.transpose().conjugate());
+            Kb.bottomRightCorner(virtual_beta_orbitals, virtual_beta_orbitals) = Matrix::Zero(occupied_beta_orbitals, virtual_beta_orbitals);
+        } else {
+            Kb = Matrix::Zero(occupied_beta_orbitals + virtual_beta_orbitals, occupied_beta_orbitals + virtual_beta_orbitals);
+            for (size_t i = 0; i < Ka.rows(); i++) {
+                Kb(i, i) = 1;
+            }
+        }
+
+        return UTransformation<double> {UTransformationComponent<double> {(-1 * Ka).exp()}, UTransformationComponent<double> {(-1 * Kb).exp()}};
     }
 };
 

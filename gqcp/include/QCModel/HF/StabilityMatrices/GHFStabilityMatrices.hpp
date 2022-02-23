@@ -251,10 +251,10 @@ public:
         const auto N = occupied_orbitals + virtual_orbitals;
         Matrix kappa {N, N};
 
-        kappa.topLeftCorner(virtual_orbitals, occupied_orbitals) = Matrix::Zero(virtual_orbitals, occupied_orbitals);
+        kappa.topLeftCorner(occupied_orbitals, occupied_orbitals) = Matrix::Zero(virtual_orbitals, occupied_orbitals);
         kappa.topRightCorner(occupied_orbitals, virtual_orbitals) = sub_kappa;
         kappa.bottomLeftCorner(virtual_orbitals, occupied_orbitals) = -1 * (sub_kappa.transpose().conjugate());
-        kappa.bottomRightCorner(occupied_orbitals, virtual_orbitals) = Matrix::Zero(occupied_orbitals, virtual_orbitals);
+        kappa.bottomRightCorner(virtual_orbitals, virtual_orbitals) = Matrix::Zero(occupied_orbitals, virtual_orbitals);
 
         return GTransformation<double> {(-1 * kappa).exp()};
     }
@@ -287,7 +287,7 @@ public:
         std::size_t const half_size = lowest_eigenvector.rows() / 2;
         std::vector<GQCP::complex> lowest_eigenvector_complex;
 
-        for (size_t i = 0; i < lowest_eigenvector.rows() / 2; i++) {
+        for (size_t i = 0; i < half_size; i++) {
             const complex x {lowest_eigenvector[i].real(), lowest_eigenvector[half_size + i].real()};
             lowest_eigenvector_complex.push_back(x);
         }
@@ -308,10 +308,10 @@ public:
         const auto N = occupied_orbitals + virtual_orbitals;
         Matrix kappa {N, N};
 
-        kappa.topLeftCorner(virtual_orbitals, occupied_orbitals) = Matrix::Zero(virtual_orbitals, occupied_orbitals);
+        kappa.topLeftCorner(occupied_orbitals, occupied_orbitals) = Matrix::Zero(virtual_orbitals, occupied_orbitals);
         kappa.topRightCorner(occupied_orbitals, virtual_orbitals) = sub_kappa;
         kappa.bottomLeftCorner(virtual_orbitals, occupied_orbitals) = -1 * (sub_kappa.transpose().conjugate());
-        kappa.bottomRightCorner(occupied_orbitals, virtual_orbitals) = Matrix::Zero(occupied_orbitals, virtual_orbitals);
+        kappa.bottomRightCorner(virtual_orbitals, virtual_orbitals) = Matrix::Zero(occupied_orbitals, virtual_orbitals);
 
         return GTransformation<complex> {(-1 * kappa).exp()};
     }
