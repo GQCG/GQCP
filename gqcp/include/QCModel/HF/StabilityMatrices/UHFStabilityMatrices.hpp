@@ -411,6 +411,102 @@ public:
 
         return UTransformation<double> {UTransformationComponent<double> {(-1 * Ka).exp()}, UTransformationComponent<double> {(-1 * Kb).exp()}};
     }
+
+
+    /*
+     * Generate the rotation matrix of a real valued UHF wavefunction that will lead to a lower lying minimum.
+     *
+     * @param occupied_alpha_orbitals       The amount of occupied alpha orbitals in the system.
+     * @param occupied_beta_orbitals        The amount of occupied beta orbitals in the system.
+     * @param virtual_alpha_orbitals        The amount of virtual alpha orbitals in the system.
+     * @param virtual_beta_orbitals         The amount of virtual beta orbitals in the system.
+     *
+     * @return  The transformation that rotates the solution in the direction of steepest descent, towards a global minimum.
+     */
+    template <typename S = Scalar>
+    enable_if_t<std::is_same<S, complex>::value, UTransformation<complex>> instabilityRotationMatrix(const size_t occupied_alpha_orbitals, const size_t occupied_beta_orbitals, const size_t virtual_alpha_orbitals, const size_t virtual_beta_orbitals) const {
+
+        // Calculate the internal stability matrix for the real valued GHF wavefunction.
+        const auto H = this->internal();
+
+        // Set up the eigensolver to diagonalize the Hessian/Stability matrix.
+        using MatrixType = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
+        Eigen::SelfAdjointEigenSolver<MatrixType> eigensolver {H};
+
+        // Calculate the lowest eigenvetor of the stability matrix. Split it into its alpha and beta components.
+        const auto& eigenvectors = eigensolver.eigenvectors();
+        const auto& lowest_eigenvector = eigenvectors.col(0);
+
+        const auto dim = (occupied_alpha_orbitals * virtual_alpha_orbitals) + (occupied_beta_orbitals * virtual_beta_orbitals);
+
+        std::vector<double> lowest_eigenvector_real;
+        std::vector<double> lowest_eigenvector_imaginary;
+
+        for (size_t i = 0; i < dim; i++) {
+            lowest_eigenvector_real.push_back(lowest_eigenvector[i].real());
+            lowest_eigenvector_imaginary.push_back(lowest_eigenvector[dim + i].real());
+        }
+
+        const auto dim_alpha = occupied_alpha_orbitals * virtual_alpha_orbitals;
+
+        std::vector<complex> lowest_eigenvector_alpha;
+        std::vector<complex> lowest_eigenvector_beta;
+
+        for (size_t i = 0; i < dim_alpha; i++) {
+            const complex x_alpha {lowest_eigenvector_real[i], lowest_eigenvector_imaginary[i]};
+            const complex x_beta {lowest_eigenvector_real[dim_alpha + i], lowest_eigenvector_imaginary[dim_alpha + i]};
+            lowest_eigenvector_alpha.push_back(x_alpha);
+            lowest_eigenvector_beta.push_back(x_beta);
+        }
+
+        // Create an alpha and a beta kappa matrix.
+        Matrix kappa_alpha {occupied_alpha_orbitals, virtual_alpha_orbitals};
+        Matrix kappa_beta {occupied_beta_orbitals, virtual_beta_orbitals};
+
+        for (int ra = 0; ra < occupied_alpha_orbitals; ra++) {
+            for (int ca = 0; ca < virtual_alpha_orbitals; ca++) {
+
+                // The columns are looped first. Hence, the position within the row is determined by c (+c).
+                // The rows are determined by the outer loop. When you start filling a new row, you have to skip all the vector elements used for the previous row (r * cols).
+                kappa_alpha(ra, ca) = lowest_eigenvector_alpha[ra * virtual_alpha_orbitals + ca];
+            }
+        }
+
+        for (int rb = 0; rb < occupied_beta_orbitals; rb++) {
+            for (int cb = 0; cb < virtual_beta_orbitals; cb++) {
+                kappa_beta(rb, cb) = lowest_eigenvector_beta[rb * virtual_beta_orbitals + cb];
+            }
+        }
+
+        // Define a rotation matrix kappa (for alpha and beta) of dimension (occupied_sigma+virtual_sigma, occupied_sigma+virtual_sigma) and fill it with the correct elements.
+        Matrix Ka {occupied_alpha_orbitals + virtual_alpha_orbitals, occupied_alpha_orbitals + virtual_alpha_orbitals};
+        Matrix Kb {occupied_beta_orbitals + virtual_beta_orbitals, occupied_beta_orbitals + virtual_beta_orbitals};
+
+        if (occupied_alpha_orbitals != 0) {
+            Ka.topLeftCorner(occupied_alpha_orbitals, occupied_alpha_orbitals) = Matrix::Zero(occupied_alpha_orbitals, occupied_alpha_orbitals);
+            Ka.topRightCorner(occupied_alpha_orbitals, virtual_alpha_orbitals) = kappa_alpha;
+            Ka.bottomLeftCorner(virtual_alpha_orbitals, occupied_alpha_orbitals) = -1 * (kappa_alpha.transpose().conjugate());
+            Ka.bottomRightCorner(virtual_alpha_orbitals, virtual_alpha_orbitals) = Matrix::Zero(virtual_alpha_orbitals, virtual_alpha_orbitals);
+        } else {
+            Ka = Matrix::Zero(occupied_alpha_orbitals + virtual_alpha_orbitals, occupied_alpha_orbitals + virtual_alpha_orbitals);
+            for (size_t i = 0; i < Ka.rows(); i++) {
+                Ka(i, i) = complex(1, 0);
+            }
+        }
+        if (occupied_beta_orbitals != 0) {
+            Kb.topLeftCorner(occupied_beta_orbitals, occupied_beta_orbitals) = Matrix::Zero(occupied_beta_orbitals, occupied_beta_orbitals);
+            Kb.topRightCorner(occupied_beta_orbitals, virtual_beta_orbitals) = kappa_beta;
+            Kb.bottomLeftCorner(virtual_beta_orbitals, occupied_beta_orbitals) = -1 * (kappa_beta.transpose().conjugate());
+            Kb.bottomRightCorner(virtual_beta_orbitals, virtual_beta_orbitals) = Matrix::Zero(virtual_beta_orbitals, virtual_beta_orbitals);
+        } else {
+            Kb = Matrix::Zero(occupied_beta_orbitals + virtual_beta_orbitals, occupied_beta_orbitals + virtual_beta_orbitals);
+            for (size_t i = 0; i < Ka.rows(); i++) {
+                Kb(i, i) = complex(1, 0);
+            }
+        }
+
+        return UTransformation<complex> {UTransformationComponent<complex> {(-1 * Ka).exp()}, UTransformationComponent<complex> {(-1 * Kb).exp()}};
+    }
 };
 
 }  // namespace GQCP

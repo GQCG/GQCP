@@ -153,7 +153,6 @@ BOOST_AUTO_TEST_CASE(H4_stability_rotation) {
 
     // Calculate the stability matrices.
     const auto stability_matrices = uhf_parameters.calculateStabilityMatrices(hamiltonian_unrestricted_mo);
-    stability_matrices.printStabilityDescription();
 
     const auto rotation = stability_matrices.instabilityRotationMatrix(N_alpha, N_beta, 6, 6);
     const auto new_guess = uhf_parameters.expansion().transformed(rotation);
@@ -166,6 +165,63 @@ BOOST_AUTO_TEST_CASE(H4_stability_rotation) {
 
     // Check that the new energy corresponds with the stable solution.
     BOOST_CHECK((qc_structure_rotated.groundStateEnergy() + nuc_rep) - (-2.0066898106390494) < 1e-6);
+
+    // Check the stability of the new GHF parameters.
+    // We can now check the stability of the new ground state parameters.
+    // For this we need a generalized Hamiltonian in the orthonormal MO basis of the new parameters.
+    const auto hamiltonian_generalized_rotated = sq_hamiltonian.transformed(uhf_parameters_rotated.expansion());
+
+    // Calculate the new stability matrices.
+    const auto stability_matrices_rotated = uhf_parameters_rotated.calculateStabilityMatrices(hamiltonian_generalized_rotated);
+
+    // Check that the stability properties can be printed.
+    stability_matrices_rotated.printStabilityDescription();
+}
+
+
+/**
+ *  Starting from a core guess, the complex valued UHF SCF algorithm finds a solution that should be internally and externally unstable for the given system.
+ *  This test checks whether the instability rotation matrix can rotate the guess towards the instability and find the lowest lying solution.
+ *
+ *  The system of interest is a H4-square, 2 Angstrom apart and the reference implementation was done by @xdvriend.
+ */
+BOOST_AUTO_TEST_CASE(H4_stability_rotation_complex) {
+
+    // Set up a spin orbital basis to obtain a second-quantized molecular Hamiltonian.
+    const auto molecule = GQCP::Molecule::HRingFromDistance(4, 2 * 1.8897259886);  // H4-square, 1 bohr apart.
+    const auto N_alpha = molecule.numberOfElectronPairs();
+    const auto N_beta = molecule.numberOfElectronPairs();
+
+    const GQCP::USpinOrbitalBasis<GQCP::complex, GQCP::GTOShell> spinor_basis {molecule, "6-31G"};
+    const auto S = spinor_basis.overlap();
+
+    const auto sq_hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // In an AO basis.
+
+    // Perform a UHF SCF calculation.
+    auto environment = GQCP::UHFSCFEnvironment<GQCP::complex>::WithCoreGuess(N_alpha, N_beta, sq_hamiltonian, S);
+    auto solver = GQCP::UHFSCFSolver<GQCP::complex>::Plain(1.0e-06, 3000);
+    const auto qc_structure = GQCP::QCMethod::UHF<GQCP::complex>().optimize(solver, environment);
+    auto uhf_parameters = qc_structure.groundStateParameters();
+    auto nuc_rep = GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
+
+    // We can now check the stability of the ground state parameters.
+    // For this we need an unrestricted Hamiltonian in the orthonormal MO basis.
+    const auto hamiltonian_unrestricted_mo = sq_hamiltonian.transformed(uhf_parameters.expansion());
+
+    // Calculate the stability matrices.
+    const auto stability_matrices = uhf_parameters.calculateStabilityMatrices(hamiltonian_unrestricted_mo);
+
+    const auto rotation = stability_matrices.instabilityRotationMatrix(N_alpha, N_beta, 6, 6);
+    const auto new_guess = uhf_parameters.expansion().transformed(rotation);
+
+    // Perform a new GHF calculation. Label `_rotated` is used to denote the variables AFTER rotation towards steepest descent.
+    GQCP::UHFSCFEnvironment<GQCP::complex> environment_rotated {N_alpha, N_beta, sq_hamiltonian, S, new_guess};
+    auto solver_rotated = GQCP::UHFSCFSolver<GQCP::complex>::Plain(1.0e-06, 3000);
+    const auto qc_structure_rotated = GQCP::QCMethod::UHF<GQCP::complex>().optimize(solver_rotated, environment_rotated);
+    auto uhf_parameters_rotated = qc_structure_rotated.groundStateParameters();
+
+    // Check that the new energy corresponds with the stable solution.
+    BOOST_CHECK((qc_structure_rotated.groundStateEnergy().real() + nuc_rep) - (-2.0066898106390494) < 1e-6);
 
     // Check the stability of the new GHF parameters.
     // We can now check the stability of the new ground state parameters.

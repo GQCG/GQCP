@@ -200,6 +200,20 @@ BOOST_AUTO_TEST_CASE(H3_stability_rotation) {
     const auto virt = ghf_parameters.numberOfSpinors() - occ;
     const auto rotation = stability_matrices.instabilityRotationMatrix(occ, virt);
 
+    // Set up a reference rotation matrix, taken from the python example on the website.
+    GQCP::SquareMatrix<double> reference {6};
+    // clang-format off
+    reference <<  0.984538137,  0.0,        0.0,         0.0,         0.0,         0.175170363,
+                  0.0,          1.00000000, 0.0,         0.0,         0.0,         0.0,
+                  0.0,          0.0,        0.553382907, 0.0,        -0.832926982, 0.0,
+                  0.0,          0.0,        0.0,         1.00000000,  0.0,         0.0, 
+                  0.0,          0.0,        0.832926982, 0.0,         0.553382907, 0.0,
+                 -0.175170363,  0.0,        0.0,         0.0,         0.0,         0.984538137;
+    // clang-format on
+
+    // Check the calculated matrix versus the reference.
+    BOOST_CHECK(rotation.matrix().isApprox(reference, 1.0e-06));
+
     // Transform the guess with the newly found rotation matrix.
     const auto new_guess = ghf_parameters.expansion().transformed(rotation);
 
