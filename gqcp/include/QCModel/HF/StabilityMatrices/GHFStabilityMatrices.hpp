@@ -220,7 +220,7 @@ public:
      * @param occupied_orbitals       The amount of occupied orbitals in the system.
      * @param virtual_orbitals        The amount of virtual orbitals in the system.
      *
-     * @return  The transformation that rotates the solution in the direction of steepest descent, towards a global minimum.
+     * @return  The transformation that rotates the solution in the direction of the lowest Hessian eigenvector, towards a global minimum.
      */
     template <typename S = Scalar>
     enable_if_t<std::is_same<S, double>::value, GTransformation<double>> instabilityRotationMatrix(const size_t occupied_orbitals, const size_t virtual_orbitals) const {
@@ -266,7 +266,7 @@ public:
      * @param occupied_orbitals       The amount of occupied orbitals in the system.
      * @param virtual_orbitals        The amount of virtual orbitals in the system.
      *
-     * @return  The transformation that rotates the solution in the direction of steepest descent, towards a global minimum.
+     * @return  The transformation that rotates the solution in the direction of the lowest Hessian eigenvector, towards a global minimum.
      */
     template <typename S = Scalar>
     enable_if_t<std::is_same<S, complex>::value, GTransformation<complex>> instabilityRotationMatrix(const size_t occupied_orbitals, const size_t virtual_orbitals) const {

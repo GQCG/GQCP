@@ -336,7 +336,7 @@ public:
      * @param virtual_alpha_orbitals        The amount of virtual alpha orbitals in the system.
      * @param virtual_beta_orbitals         The amount of virtual beta orbitals in the system.
      *
-     * @return  The transformation that rotates the solution in the direction of steepest descent, towards a global minimum.
+     * @return  The transformation that rotates the solution in the direction of the lowest Hessian eigenvector, towards a global minimum.
      */
     template <typename S = Scalar>
     enable_if_t<std::is_same<S, double>::value, UTransformation<double>> instabilityRotationMatrix(const size_t occupied_alpha_orbitals, const size_t occupied_beta_orbitals, const size_t virtual_alpha_orbitals, const size_t virtual_beta_orbitals) const {
@@ -421,7 +421,7 @@ public:
      * @param virtual_alpha_orbitals        The amount of virtual alpha orbitals in the system.
      * @param virtual_beta_orbitals         The amount of virtual beta orbitals in the system.
      *
-     * @return  The transformation that rotates the solution in the direction of steepest descent, towards a global minimum.
+     * @return  The transformation that rotates the solution in the direction of the lowest Hessian eigenvector, towards a global minimum.
      */
     template <typename S = Scalar>
     enable_if_t<std::is_same<S, complex>::value, UTransformation<complex>> instabilityRotationMatrix(const size_t occupied_alpha_orbitals, const size_t occupied_beta_orbitals, const size_t virtual_alpha_orbitals, const size_t virtual_beta_orbitals) const {
