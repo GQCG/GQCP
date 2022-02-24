@@ -53,6 +53,6 @@ jobs:
         sudo make -C builddir install            
     - name: Build and upload Singularity image
       run: |
-        sudo -E singularity build gqcp.sif singularity/GQCP.def
+        sudo -E singularity build gqcp.sif singularity-def/GQCP.def
         echo ${{ secrets.SYLABS_TOKEN }} | singularity remote login -u ${{ secrets.SYLABS_USERNAME }} --password-stdin
         singularity push gqcp.sif library://${{ secrets.SYLABS_USERNAME }}/gqcp/gqcp:latest
