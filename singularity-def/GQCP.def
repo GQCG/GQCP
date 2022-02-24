@@ -11,7 +11,7 @@ Stage: build
     ./* 
 
 %post
-    ls
+    cd home && ls
     export DEBIAN_FRONTEND=noninteractive
     apt-get update 
     apt-get install -y wget build-essential clang git gdb 
