@@ -1081,7 +1081,7 @@ void bindQCModelHartreeFockComplexStabilityInterface(Class& py_class) {
 
         .def("isInternallyStable",
              &Type::isInternallyStable,
-             py::arg("threshold") = 1.0e-05,
+             py::arg("threshold") = -1.0e-05,
              "Return a boolean, telling us if the real or complex valued internal stability matrix belongs to a stable or unstable set of parameters.")
 
         .def(
@@ -1121,7 +1121,7 @@ void bindQCModelHartreeFockRealStabilityInterface(Class& py_class) {
             [](const Type& stability_matrices, const double threshold) {
                 return stability_matrices.isExternallyStable(threshold);
             },
-            py::arg("threshold") = 1.0e-05,
+            py::arg("threshold") = -1.0e-05,
             "Return a boolean, telling us if the real valued external stability matrix belongs to a stable or unstable set of parameters.");
 
     // Add the APIs from the complex interface, as every real method has those as well.

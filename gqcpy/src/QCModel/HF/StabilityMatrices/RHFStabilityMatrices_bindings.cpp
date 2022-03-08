@@ -75,7 +75,7 @@ void bindQCModelRHFStabilityInterface(Class& py_class) {
 
         .def("isTripletStable",
              &Type::isTripletStable,
-             py::arg("threshold") = 1.0e-05,
+             py::arg("threshold") = -1.0e-05,
              "Return a boolean, telling us if the restricted->unrestricted stability matrix belongs to a stable or unstable set of parameters.");
 }
 
@@ -93,7 +93,7 @@ void bindRHFStabilityMatrices(py::module& module) {
             [](const RHFStabilityMatrices<double>& stability_matrices, const double threshold) {
                 return stability_matrices.isComplexConjugateStable(threshold);
             },
-            py::arg("threshold") = 1.0e-05,
+            py::arg("threshold") = -1.0e-05,
             "Return a boolean, telling us if the real->complex stability matrix belongs to a stable or unstable set of parameters.");
 
     // Expose the `HartreeFockRealStability` interface.
@@ -113,7 +113,7 @@ void bindRHFStabilityMatrices(py::module& module) {
             [](const RHFStabilityMatrices<complex>& stability_matrices, const double threshold) {
                 return stability_matrices.isExternallyStable(threshold);
             },
-            py::arg("threshold") = 1.0e-05,
+            py::arg("threshold") = -1.0e-05,
             "Return a boolean, telling us if the complex valued external stability matrix belongs to a stable or unstable set of parameters.");
 
     // Expose the `HartreeFockComplexStability` interface.
