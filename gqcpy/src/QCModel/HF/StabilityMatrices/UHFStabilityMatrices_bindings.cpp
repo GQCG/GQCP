@@ -75,7 +75,7 @@ void bindQCModelUHFStabilityInterface(Class& py_class) {
 
         .def("isSpinUnconservedStable",
              &Type::isSpinUnconservedStable,
-             py::arg("threshold") = 1.0e-05,
+             py::arg("threshold") = -1.0e-05,
              "Return a boolean, telling us if the unrestricted->generalized stability matrix belongs to a stable or unstable set of parameters.")
 
         .def(
@@ -87,8 +87,7 @@ void bindQCModelUHFStabilityInterface(Class& py_class) {
             py::arg("N_occupied_beta"),
             py::arg("N_virtual_alpha"),
             py::arg("N_virtual_beta"),
-            "Return the transformation corresponding to the lowest-lying eigenvector of the internal instability Hessian."
-        );
+            "Return the transformation corresponding to the lowest-lying eigenvector of the internal instability Hessian.");
 }
 
 
@@ -105,7 +104,7 @@ void bindUHFStabilityMatrices(py::module& module) {
             [](const UHFStabilityMatrices<double>& stability_matrices, const double threshold) {
                 return stability_matrices.isComplexConjugateStable(threshold);
             },
-            py::arg("threshold") = 1.0e-05,
+            py::arg("threshold") = -1.0e-05,
             "Return a boolean, telling us if the real->complex stability matrix belongs to a stable or unstable set of parameters.");
 
     // Expose the `HartreeFockRealStability` interface.
@@ -125,7 +124,7 @@ void bindUHFStabilityMatrices(py::module& module) {
             [](const UHFStabilityMatrices<complex>& stability_matrices, const double threshold) {
                 return stability_matrices.isExternallyStable(threshold);
             },
-            py::arg("threshold") = 1.0e-05,
+            py::arg("threshold") = -1.0e-05,
             "Return a boolean, telling us if the complex valued external stability matrix belongs to a stable or unstable set of parameters.");
 
     // Expose the `HartreeFockComplexStability` interface.
