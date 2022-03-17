@@ -391,6 +391,7 @@ public:
             Ka.topRightCorner(occupied_alpha_orbitals, virtual_alpha_orbitals) = kappa_alpha;
             Ka.bottomLeftCorner(virtual_alpha_orbitals, occupied_alpha_orbitals) = -1 * (kappa_alpha.transpose().conjugate());
             Ka.bottomRightCorner(virtual_alpha_orbitals, virtual_alpha_orbitals) = Matrix::Zero(virtual_alpha_orbitals, virtual_alpha_orbitals);
+            Ka = (-1 * Ka).exp();
         } else {
             Ka = Matrix::Zero(occupied_alpha_orbitals + virtual_alpha_orbitals, occupied_alpha_orbitals + virtual_alpha_orbitals);
             for (size_t i = 0; i < Ka.rows(); i++) {
@@ -402,6 +403,7 @@ public:
             Kb.topRightCorner(occupied_beta_orbitals, virtual_beta_orbitals) = kappa_beta;
             Kb.bottomLeftCorner(virtual_beta_orbitals, occupied_beta_orbitals) = -1 * (kappa_beta.transpose().conjugate());
             Kb.bottomRightCorner(virtual_beta_orbitals, virtual_beta_orbitals) = Matrix::Zero(virtual_beta_orbitals, virtual_beta_orbitals);
+            Kb = (-1 * Kb).exp();
         } else {
             Kb = Matrix::Zero(occupied_beta_orbitals + virtual_beta_orbitals, occupied_beta_orbitals + virtual_beta_orbitals);
             for (size_t i = 0; i < Ka.rows(); i++) {
@@ -409,7 +411,7 @@ public:
             }
         }
 
-        return UTransformation<double> {UTransformationComponent<double> {(-1 * Ka).exp()}, UTransformationComponent<double> {(-1 * Kb).exp()}};
+        return UTransformation<double> {UTransformationComponent<double> {Ka}, UTransformationComponent<double> {Kb}};
     }
 
 
@@ -487,6 +489,7 @@ public:
             Ka.topRightCorner(occupied_alpha_orbitals, virtual_alpha_orbitals) = kappa_alpha;
             Ka.bottomLeftCorner(virtual_alpha_orbitals, occupied_alpha_orbitals) = -1 * (kappa_alpha.transpose().conjugate());
             Ka.bottomRightCorner(virtual_alpha_orbitals, virtual_alpha_orbitals) = Matrix::Zero(virtual_alpha_orbitals, virtual_alpha_orbitals);
+            Ka = (-1 * Ka).exp();
         } else {
             Ka = Matrix::Zero(occupied_alpha_orbitals + virtual_alpha_orbitals, occupied_alpha_orbitals + virtual_alpha_orbitals);
             for (size_t i = 0; i < Ka.rows(); i++) {
@@ -498,6 +501,7 @@ public:
             Kb.topRightCorner(occupied_beta_orbitals, virtual_beta_orbitals) = kappa_beta;
             Kb.bottomLeftCorner(virtual_beta_orbitals, occupied_beta_orbitals) = -1 * (kappa_beta.transpose().conjugate());
             Kb.bottomRightCorner(virtual_beta_orbitals, virtual_beta_orbitals) = Matrix::Zero(virtual_beta_orbitals, virtual_beta_orbitals);
+            Kb = (-1 * Kb).exp();
         } else {
             Kb = Matrix::Zero(occupied_beta_orbitals + virtual_beta_orbitals, occupied_beta_orbitals + virtual_beta_orbitals);
             for (size_t i = 0; i < Ka.rows(); i++) {
@@ -505,7 +509,7 @@ public:
             }
         }
 
-        return UTransformation<complex> {UTransformationComponent<complex> {(-1 * Ka).exp()}, UTransformationComponent<complex> {(-1 * Kb).exp()}};
+        return UTransformation<complex> {UTransformationComponent<complex> {Ka}, UTransformationComponent<complex> {Kb}};
     }
 };
 
