@@ -60,7 +60,15 @@ void bindSpinResolvedONVBasis(py::module& module) {
             "forEach",
             &SpinResolvedONVBasis::forEach,
             py::arg("callback"),
-            "Iterate over all ONVs, and apply the given callback function.");
+            "Iterate over all ONVs, and apply the given callback function.")
+
+        .def(
+            "evaluateOperatorDense",
+            [](const SpinResolvedONVBasis onv_basis, const RSQHamiltonian<double>& hamiltonian) {
+                return onv_basis.evaluateOperatorDense(hamiltonian);
+            },
+            "Calculate the dense matrix representation of a restricted Hamiltonian in this ONV basis.",
+            py::arg("hamiltonian"));
 
 
     // Expose the `SpinResolvedBase` interface to the Python class.
