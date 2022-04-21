@@ -23,7 +23,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="57" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="57" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="58" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="58" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_linear_expansion_1a42c9141e026bdfdb3fd13ae91f59d74f" prot="public" static="no">
         <type>_ONVBasis</type>
@@ -36,7 +36,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="60" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="60" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="61" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="61" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-attrib">
@@ -51,7 +51,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="65" column="14" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="65" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="66" column="14" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="66" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_g_q_c_p_1_1_linear_expansion_1aca2691547f747fd79d5e27379ba6903a" prot="private" static="no" mutable="no">
         <type><ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; <ref refid="class_g_q_c_p_1_1_linear_expansion_1ab6283d757673aa83a7609e87a8b01ce9" kindref="member">Scalar</ref> &gt;</type>
@@ -64,7 +64,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="68" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="68" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="69" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="69" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -106,7 +106,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="82" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="82" bodyend="84"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="83" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="83" bodyend="85"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a6902d1a87c3ea5c120819b7ff5c4a594" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -119,7 +119,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="90" column="5"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="91" column="5"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a60c63293906daaea5dcce4aea644c74d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_linear_expansion_1ab6283d757673aa83a7609e87a8b01ce9" kindref="member">Scalar</ref></type>
@@ -149,7 +149,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="383" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="383" bodyend="383"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="384" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="384" bodyend="384"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a8cfae67734c46f6ed1bed2235444c158" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; <ref refid="class_g_q_c_p_1_1_linear_expansion_1ab6283d757673aa83a7609e87a8b01ce9" kindref="member">Scalar</ref> &gt; &amp;</type>
@@ -165,7 +165,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="388" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="388" bodyend="388"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="389" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="389" bodyend="389"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1af99f45f0ff40fd21d773aa4c591fd4f5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_linear_expansion_1a42c9141e026bdfdb3fd13ae91f59d74f" kindref="member">ONVBasis</ref> &amp;</type>
@@ -181,7 +181,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="393" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="393" bodyend="393"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="394" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="394" bodyend="394"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a5b75a7df26c9dae8da6262395690088f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -224,7 +224,7 @@
         <inbodydescription>
 <para>The transformation of the expansion coefficients is adapted from Helgaker2000, chapter 11.9. For every orbital, a set of correction coefficients will be calculated (Delta C in Helgaker), to update the current coefficients.</para>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="409" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="409" bodyend="577"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="410" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="410" bodyend="578"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a520a6768167ffe6816d16ba020203924" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -247,7 +247,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="590" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="590" bodyend="650"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="591" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="591" bodyend="651"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a68260d54ae9ed4e953c544c9fe6d9f35" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -297,7 +297,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="664" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="664" bodyend="738"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="665" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="665" bodyend="739"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a681b9ee10933b17c0b3802630c69886f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -347,7 +347,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="752" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="752" bodyend="825"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="753" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="753" bodyend="826"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a26173a1862769598b24351d3458f45b6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -374,7 +374,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="838" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="838" bodyend="949"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="839" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="839" bodyend="950"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a9cedef33ec080b51617740a3684ef777" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -401,7 +401,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="958" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="958" bodyend="1162"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="959" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="959" bodyend="1163"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a9c97256da0f7d643c385ffdc42758731" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -428,7 +428,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1171" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1171" bodyend="1171"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1172" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1172" bodyend="1172"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a0bb9e25c8522c72b53de3cc218b86312" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -455,7 +455,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1180" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1180" bodyend="1180"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1181" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1181" bodyend="1181"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a1253d917657e0280beda087214b49f6a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -482,7 +482,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1193" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1193" bodyend="1218"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1194" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1194" bodyend="1219"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a62221808d5ac5ebce97705e6e5c18420" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -509,7 +509,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1227" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1227" bodyend="1227"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1228" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1228" bodyend="1228"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a355dea63151bc35974fcb4a733a3a020" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -536,7 +536,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1235" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1235" bodyend="1235"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1236" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1236" bodyend="1236"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a73df44f6170ab3ac8989714d26406bfe" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -563,7 +563,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1244" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1244" bodyend="1301"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1245" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1245" bodyend="1302"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a67589ca63e3416c18a743755da18c737" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -590,7 +590,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1314" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1314" bodyend="1385"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1315" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1315" bodyend="1386"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1ab703ef7bbf3af427842525656ea90018" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -617,7 +617,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1394" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1394" bodyend="1617"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1395" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1395" bodyend="1618"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a68715529f7cd2e9632658808447a2396" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -644,7 +644,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1626" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1626" bodyend="1626"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1627" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1627" bodyend="1627"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1ae3548e45e0d00792771c32ee090029ba" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -671,7 +671,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1635" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1635" bodyend="1635"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1636" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1636" bodyend="1636"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a4f2112174b9ecd83b68ea3eb77394a7c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -694,7 +694,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1644" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1644" bodyend="1683"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1645" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1645" bodyend="1684"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1aba66ead5fd15d70424318070d3076adb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -717,19 +717,19 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1692" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1692" bodyend="1781"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1693" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1693" bodyend="1782"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a81064fd72920efc4a24edd58a95b41a6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1add4f99d37106e94f8593102bfd52166a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z</type>
             <defval><ref refid="class_g_q_c_p_1_1_linear_expansion_1a42c9141e026bdfdb3fd13ae91f59d74f" kindref="member">ONVBasis</ref></defval>
           </param>
         </templateparamlist>
-        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, SpinUnresolvedONVBasis &gt;::value|std::is_same&lt; Z, SpinResolvedONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">GQCP::SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_linear_expansion_1ab6283d757673aa83a7609e87a8b01ce9" kindref="member">Scalar</ref> &gt; &gt;</type>
-        <definition>enable_if_t&lt;std::is_same&lt;Z, SpinUnresolvedONVBasis&gt;::value | std::is_same&lt;Z, SpinResolvedONVBasis&gt;::value, GQCP::SquareMatrix&lt;Scalar&gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculateOrbitalRDM</definition>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, SpinUnresolvedONVBasis &gt;::value|std::is_same&lt; Z, SpinResolvedONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">GQCP::Tensor</ref>&lt; <ref refid="class_g_q_c_p_1_1_linear_expansion_1ab6283d757673aa83a7609e87a8b01ce9" kindref="member">Scalar</ref>, 2 &gt; &gt;</type>
+        <definition>enable_if_t&lt;std::is_same&lt;Z, SpinUnresolvedONVBasis&gt;::value | std::is_same&lt;Z, SpinResolvedONVBasis&gt;::value, GQCP::Tensor&lt;Scalar, 2&gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::tensorizeCoefficients</definition>
         <argsstring>(const std::vector&lt; typename ONVBasis::ONV &gt; &amp;system_onvs, const std::vector&lt; typename ONVBasis::ONV &gt; &amp;environment_onvs) const</argsstring>
-        <name>calculateOrbitalRDM</name>
+        <name>tensorizeCoefficients</name>
         <param>
           <type>const std::vector&lt; typename ONVBasis::ONV &gt; &amp;</type>
           <declname>system_onvs</declname>
@@ -741,7 +741,7 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>MARK: Entropy Calculate the orbital reduced density matrix as defined in equation (3) of Rissler2005 (<ulink url="https://doi.org/10.1016/j.chemphys.2005.10.018">https://doi.org/10.1016/j.chemphys.2005.10.018</ulink>).</para>
+<para>MARK: Entropy Construct the linear expansion in tensor form.</para>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>system_onvs</parametername>
@@ -755,33 +755,65 @@
 <parametername>environment_onvs</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>A vector of all ONVs of the environment that is obtained after splitting an ONV basis into two subsystems. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>system_onv_basis</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>A vector containing the unique ONVs of the system. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>environment_onv_basis</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>A vector containing the unique ONVs of the environment.</para>
+<para>A vector of all ONVs of the environment that is obtained after splitting an ONV basis into two subsystems.</para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>The orbital reduced density matrix. </para>
+<simplesect kind="return"><para>The expansion coefficients in tensor form. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1799" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1799" bodyend="1858"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1798" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1798" bodyend="1851"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a363a67ac168a23f0fc986e29c43fdd6f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_linear_expansion_1a42c9141e026bdfdb3fd13ae91f59d74f" kindref="member">ONVBasis</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, SpinUnresolvedONVBasis &gt;::value|std::is_same&lt; Z, SpinResolvedONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">GQCP::Tensor</ref>&lt; <ref refid="class_g_q_c_p_1_1_linear_expansion_1ab6283d757673aa83a7609e87a8b01ce9" kindref="member">Scalar</ref>, 2 &gt; &gt;</type>
+        <definition>enable_if_t&lt;std::is_same&lt;Z, SpinUnresolvedONVBasis&gt;::value | std::is_same&lt;Z, SpinResolvedONVBasis&gt;::value, GQCP::Tensor&lt;Scalar, 2&gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculateSystemOrbitalRDM</definition>
+        <argsstring>(const std::vector&lt; typename ONVBasis::ONV &gt; &amp;system_onvs, const std::vector&lt; typename ONVBasis::ONV &gt; &amp;environment_onvs) const</argsstring>
+        <name>calculateSystemOrbitalRDM</name>
+        <param>
+          <type>const std::vector&lt; typename ONVBasis::ONV &gt; &amp;</type>
+          <declname>system_onvs</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; typename ONVBasis::ONV &gt; &amp;</type>
+          <declname>environment_onvs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the system orbital reduced density matrix as defined in equation (2) of Rissler2005 (<ulink url="https://doi.org/10.1016/j.chemphys.2005.10.018">https://doi.org/10.1016/j.chemphys.2005.10.018</ulink>).</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>system_onvs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector of all ONVs of the system that is obtained after splitting a collection of ONVs into two subsystems. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>environment_onvs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector of all ONVs of the environment that is obtained after splitting a collection of ONVs into two subsystems.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The system orbital reduced density matrix. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1863" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1863" bodyend="1874"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1ac5d36496b690457a45bd56b8289a29ab" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -803,7 +835,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1865" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1865" bodyend="1876"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1881" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1881" bodyend="1892"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a3c8b320ac4cbac4ec9630d66fbf43b25" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -845,7 +877,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1889" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1889" bodyend="1925"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1905" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1905" bodyend="1941"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1ae38a8e6814c2ea1e027b651bda168168" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -887,7 +919,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1938" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1938" bodyend="1970"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1954" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1954" bodyend="1986"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1adef9943597c3292868341ed108c18ac7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -921,7 +953,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1983" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1983" bodyend="1995"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1999" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1999" bodyend="2011"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1aee095ee9919d57753f68396b99da4370" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -963,7 +995,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="2008" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="2008" bodyend="2015"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="2024" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="2024" bodyend="2031"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
@@ -995,7 +1027,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="104" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="104" bodyend="110"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="105" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="105" bodyend="111"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a73053c804e2222efb302aff74ad45801" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_linear_expansion" kindref="compound">LinearExpansion</ref>&lt; <ref refid="class_g_q_c_p_1_1_linear_expansion_1ab6283d757673aa83a7609e87a8b01ce9" kindref="member">Scalar</ref>, <ref refid="class_g_q_c_p_1_1_linear_expansion_1a42c9141e026bdfdb3fd13ae91f59d74f" kindref="member">ONVBasis</ref> &gt;</type>
@@ -1025,7 +1057,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="120" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="120" bodyend="125"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="121" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="121" bodyend="126"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a4cf29388d529c35b62a093b52f5d7a24" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_linear_expansion" kindref="compound">LinearExpansion</ref>&lt; <ref refid="class_g_q_c_p_1_1_linear_expansion_1ab6283d757673aa83a7609e87a8b01ce9" kindref="member">Scalar</ref>, <ref refid="class_g_q_c_p_1_1_linear_expansion_1a42c9141e026bdfdb3fd13ae91f59d74f" kindref="member">ONVBasis</ref> &gt;</type>
@@ -1067,7 +1099,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="136" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="136" bodyend="141"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="137" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="137" bodyend="142"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a4243e84f3b71c655cbbe3784f4665904" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_linear_expansion" kindref="compound">LinearExpansion</ref>&lt; <ref refid="class_g_q_c_p_1_1_linear_expansion_1ab6283d757673aa83a7609e87a8b01ce9" kindref="member">Scalar</ref>, <ref refid="class_g_q_c_p_1_1_linear_expansion_1a42c9141e026bdfdb3fd13ae91f59d74f" kindref="member">ONVBasis</ref> &gt;</type>
@@ -1097,7 +1129,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="151" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="151" bodyend="157"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="152" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="152" bodyend="158"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1ab81ea18db61745ee5f364d7a0bd4478d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -1137,7 +1169,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="168" column="26" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="168" bodyend="271"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="169" column="26" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="169" bodyend="272"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a431d89c7f251e498024392ad02e12c30" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -1201,7 +1233,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="284" column="26" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="284" bodyend="324"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="285" column="26" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="285" bodyend="325"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a2cb9dfcdab0b36f17e1e0e448397c975" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -1265,7 +1297,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="337" column="26" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="337" bodyend="369"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="338" column="26" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="338" bodyend="370"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -1297,7 +1329,7 @@
         <link refid="class_g_q_c_p_1_1_linear_expansion"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="54" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="54" bodyend="2016"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="55" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="55" bodyend="2032"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_linear_expansion_1a5b75a7df26c9dae8da6262395690088f" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>basisTransform</name></member>
       <member refid="class_g_q_c_p_1_1_linear_expansion_1a520a6768167ffe6816d16ba020203924" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculate1DM</name></member>
@@ -1311,7 +1343,6 @@
       <member refid="class_g_q_c_p_1_1_linear_expansion_1aba66ead5fd15d70424318070d3076adb" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculate2DM</name></member>
       <member refid="class_g_q_c_p_1_1_linear_expansion_1a68260d54ae9ed4e953c544c9fe6d9f35" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateNDMElement</name></member>
       <member refid="class_g_q_c_p_1_1_linear_expansion_1a681b9ee10933b17c0b3802630c69886f" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateNDMElement</name></member>
-      <member refid="class_g_q_c_p_1_1_linear_expansion_1a81064fd72920efc4a24edd58a95b41a6" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateOrbitalRDM</name></member>
       <member refid="class_g_q_c_p_1_1_linear_expansion_1ac5d36496b690457a45bd56b8289a29ab" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateShannonEntropy</name></member>
       <member refid="class_g_q_c_p_1_1_linear_expansion_1a3c8b320ac4cbac4ec9630d66fbf43b25" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateSingleOrbitalEntropy</name></member>
       <member refid="class_g_q_c_p_1_1_linear_expansion_1ae38a8e6814c2ea1e027b651bda168168" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateSingleOrbitalEntropy</name></member>
@@ -1321,6 +1352,7 @@
       <member refid="class_g_q_c_p_1_1_linear_expansion_1a9cedef33ec080b51617740a3684ef777" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateSpinResolved2DM</name></member>
       <member refid="class_g_q_c_p_1_1_linear_expansion_1a73df44f6170ab3ac8989714d26406bfe" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateSpinResolved2DM</name></member>
       <member refid="class_g_q_c_p_1_1_linear_expansion_1ab703ef7bbf3af427842525656ea90018" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateSpinResolved2DM</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a363a67ac168a23f0fc986e29c43fdd6f" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateSystemOrbitalRDM</name></member>
       <member refid="class_g_q_c_p_1_1_linear_expansion_1a60c63293906daaea5dcce4aea644c74d" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>coefficient</name></member>
       <member refid="class_g_q_c_p_1_1_linear_expansion_1a8cfae67734c46f6ed1bed2235444c158" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>coefficients</name></member>
       <member refid="class_g_q_c_p_1_1_linear_expansion_1a57e038e1975f19c5e6933d36c7c8b504" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>Constant</name></member>
@@ -1339,6 +1371,7 @@
       <member refid="class_g_q_c_p_1_1_linear_expansion_1a42c9141e026bdfdb3fd13ae91f59d74f" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>ONVBasis</name></member>
       <member refid="class_g_q_c_p_1_1_linear_expansion_1a4243e84f3b71c655cbbe3784f4665904" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>Random</name></member>
       <member refid="class_g_q_c_p_1_1_linear_expansion_1ab6283d757673aa83a7609e87a8b01ce9" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>Scalar</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1add4f99d37106e94f8593102bfd52166a" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>tensorizeCoefficients</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>
