@@ -374,6 +374,18 @@ void bindLinearExpansions(py::module& module) {
             "Return the orbital reduced density matrix")
 
         /*
+         * MARK: Iteration
+         */
+
+        .def(
+            "forEach",
+            [](const LinearExpansion<double, SpinUnresolvedONVBasis>& linear_expansion, const std::function<void(const double, const SpinUnresolvedONV)>& callback) {
+                return linear_expansion.forEach(callback);
+            },
+            py::arg("callback"),
+            "Iterate over all expansion coefficients and corresponding ONVs, and apply the given callback function.")
+
+        /*
          *  MARK: Entropy
          */
 
