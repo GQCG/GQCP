@@ -2023,7 +2023,7 @@ public:
         const auto& onv_basis = this->onv_basis;
         const auto& coefficients = this->m_coefficients;
         onv_basis.forEach([&onv_basis, &callback, &coefficients](const SpinUnresolvedONV& onv, const size_t I) {
-            const auto address = onv_basis.compoundAddress(I);
+            const auto address = onv_basis.addressOf(I);
             const auto coefficient = coefficients(address);
 
             callback(coefficient, onv);
