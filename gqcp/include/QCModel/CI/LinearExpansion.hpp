@@ -2011,6 +2011,26 @@ public:
     }
 
 
+    /**
+     *  Iterate over all expansion coefficients and corresponding ONVs, and apply the given callback function.
+     *
+     *  @param callback                 The function to be applied in every iteration. Its arguments are an expansion coefficient and the corresponding ONV.
+     */
+    template <typename Z = ONVBasis>
+    enable_if_t<std::is_same<Z, SpinUnresolvedONVBasis>::value, void> forEach(const std::function<void(const Scalar, const SpinUnresolvedONV)>& callback) const {
+
+        // Iterate over all ONVs in this ONV basis, and look up the corresponding coefficient.
+        const auto& onv_basis = this->onv_basis;
+        const auto& coefficients = this->m_coefficients;
+        onv_basis.forEach([&onv_basis, &callback, &coefficients](const SpinUnresolvedONV& onv, const size_t I) {
+            const auto address = onv_basis.addressOf(I);
+            const auto coefficient = coefficients(address);
+
+            callback(coefficient, onv);
+        });
+    }
+
+
     /*
      *  MARK: Comparing
      */
