@@ -955,6 +955,40 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1999" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1999" bodyend="2011"/>
       </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a0a630f96bd6104c473983d16842cfe8d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_linear_expansion_1a42c9141e026bdfdb3fd13ae91f59d74f" kindref="member">ONVBasis</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, SpinUnresolvedONVBasis &gt;::value, void &gt;</type>
+        <definition>enable_if_t&lt;std::is_same&lt;Z, SpinUnresolvedONVBasis&gt;::value, void&gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::forEach</definition>
+        <argsstring>(const std::function&lt; void(const Scalar, const SpinUnresolvedONV)&gt; &amp;callback) const</argsstring>
+        <name>forEach</name>
+        <param>
+          <type>const std::function&lt; void(const <ref refid="class_g_q_c_p_1_1_linear_expansion_1ab6283d757673aa83a7609e87a8b01ce9" kindref="member">Scalar</ref>, const SpinUnresolvedONV)&gt; &amp;</type>
+          <declname>callback</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Iterate over all expansion coefficients and corresponding ONVs, and apply the given callback function.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>callback</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The function to be applied in every iteration. Its arguments are an expansion coefficient and the corresponding ONV. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="2020" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="2020" bodyend="2031"/>
+      </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1aee095ee9919d57753f68396b99da4370" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
         <definition>bool GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::isApprox</definition>
@@ -995,7 +1029,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="2024" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="2024" bodyend="2031"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="2044" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="2044" bodyend="2051"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
@@ -1329,7 +1363,7 @@
         <link refid="class_g_q_c_p_1_1_linear_expansion"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="55" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="55" bodyend="2032"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="55" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="55" bodyend="2052"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_linear_expansion_1a5b75a7df26c9dae8da6262395690088f" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>basisTransform</name></member>
       <member refid="class_g_q_c_p_1_1_linear_expansion_1a520a6768167ffe6816d16ba020203924" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculate1DM</name></member>
@@ -1357,6 +1391,7 @@
       <member refid="class_g_q_c_p_1_1_linear_expansion_1a8cfae67734c46f6ed1bed2235444c158" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>coefficients</name></member>
       <member refid="class_g_q_c_p_1_1_linear_expansion_1a57e038e1975f19c5e6933d36c7c8b504" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>Constant</name></member>
       <member refid="class_g_q_c_p_1_1_linear_expansion_1adef9943597c3292868341ed108c18ac7" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>forEach</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a0a630f96bd6104c473983d16842cfe8d" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>forEach</name></member>
       <member refid="class_g_q_c_p_1_1_linear_expansion_1ab81ea18db61745ee5f364d7a0bd4478d" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>FromGAMESSUS</name></member>
       <member refid="class_g_q_c_p_1_1_linear_expansion_1a431d89c7f251e498024392ad02e12c30" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>FromONVProjection</name></member>
       <member refid="class_g_q_c_p_1_1_linear_expansion_1a2cb9dfcdab0b36f17e1e0e448397c975" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>FromONVProjection</name></member>

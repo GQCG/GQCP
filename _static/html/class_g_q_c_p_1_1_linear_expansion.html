@@ -176,6 +176,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:adef9943597c3292868341ed108c18ac7"><td class="memTemplParams" colspan="2">template&lt;typename Z  = ONVBasis&gt; </td></tr>
 <tr class="memitem:adef9943597c3292868341ed108c18ac7"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespace_g_q_c_p.html#a006e5cafd5827d2685c9e0bb7e01cfa2">enable_if_t</a>&lt; std::is_same&lt; Z, SpinResolvedONVBasis &gt;::value, void &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_linear_expansion.html#adef9943597c3292868341ed108c18ac7">forEach</a> (const std::function&lt; void(const <a class="el" href="class_g_q_c_p_1_1_linear_expansion.html#ab6283d757673aa83a7609e87a8b01ce9">Scalar</a>, const SpinResolvedONV)&gt; &amp;callback) const</td></tr>
 <tr class="separator:adef9943597c3292868341ed108c18ac7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a630f96bd6104c473983d16842cfe8d"><td class="memTemplParams" colspan="2">template&lt;typename Z  = ONVBasis&gt; </td></tr>
+<tr class="memitem:a0a630f96bd6104c473983d16842cfe8d"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespace_g_q_c_p.html#a006e5cafd5827d2685c9e0bb7e01cfa2">enable_if_t</a>&lt; std::is_same&lt; Z, SpinUnresolvedONVBasis &gt;::value, void &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_linear_expansion.html#a0a630f96bd6104c473983d16842cfe8d">forEach</a> (const std::function&lt; void(const <a class="el" href="class_g_q_c_p_1_1_linear_expansion.html#ab6283d757673aa83a7609e87a8b01ce9">Scalar</a>, const SpinUnresolvedONV)&gt; &amp;callback) const</td></tr>
+<tr class="separator:a0a630f96bd6104c473983d16842cfe8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee095ee9919d57753f68396b99da4370"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_linear_expansion.html#aee095ee9919d57753f68396b99da4370">isApprox</a> (const <a class="el" href="class_g_q_c_p_1_1_linear_expansion.html">LinearExpansion</a>&lt; <a class="el" href="class_g_q_c_p_1_1_linear_expansion.html#ab6283d757673aa83a7609e87a8b01ce9">Scalar</a>, <a class="el" href="class_g_q_c_p_1_1_linear_expansion.html#a42c9141e026bdfdb3fd13ae91f59d74f">ONVBasis</a> &gt; &amp;other, double tolerance=1.0e-12) const</td></tr>
 <tr class="separator:aee095ee9919d57753f68396b99da4370"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -1181,7 +1184,7 @@ template&lt;typename _Scalar , typename _ONVBasis &gt; </div>
 </div>
 </div>
 <a id="adef9943597c3292868341ed108c18ac7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adef9943597c3292868341ed108c18ac7">&#9670;&nbsp;</a></span>forEach()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#adef9943597c3292868341ed108c18ac7">&#9670;&nbsp;</a></span>forEach() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1197,6 +1200,43 @@ template&lt;typename Z  = ONVBasis&gt; </div>
           <td class="memname"><a class="el" href="namespace_g_q_c_p.html#a006e5cafd5827d2685c9e0bb7e01cfa2">enable_if_t</a>&lt;std::is_same&lt;Z, SpinResolvedONVBasis&gt;::value, void&gt; <a class="el" href="class_g_q_c_p_1_1_linear_expansion.html">GQCP::LinearExpansion</a>&lt; _Scalar, _ONVBasis &gt;::forEach </td>
           <td>(</td>
           <td class="paramtype">const std::function&lt; void(const <a class="el" href="class_g_q_c_p_1_1_linear_expansion.html#ab6283d757673aa83a7609e87a8b01ce9">Scalar</a>, const SpinResolvedONV)&gt; &amp;&#160;</td>
+          <td class="paramname"><em>callback</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Iterate over all expansion coefficients and corresponding ONVs, and apply the given callback function.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">callback</td><td>The function to be applied in every iteration. Its arguments are an expansion coefficient and the corresponding ONV. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0a630f96bd6104c473983d16842cfe8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a630f96bd6104c473983d16842cfe8d">&#9670;&nbsp;</a></span>forEach() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename _Scalar , typename _ONVBasis &gt; </div>
+<div class="memtemplate">
+template&lt;typename Z  = ONVBasis&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_g_q_c_p.html#a006e5cafd5827d2685c9e0bb7e01cfa2">enable_if_t</a>&lt;std::is_same&lt;Z, SpinUnresolvedONVBasis&gt;::value, void&gt; <a class="el" href="class_g_q_c_p_1_1_linear_expansion.html">GQCP::LinearExpansion</a>&lt; _Scalar, _ONVBasis &gt;::forEach </td>
+          <td>(</td>
+          <td class="paramtype">const std::function&lt; void(const <a class="el" href="class_g_q_c_p_1_1_linear_expansion.html#ab6283d757673aa83a7609e87a8b01ce9">Scalar</a>, const SpinUnresolvedONV)&gt; &amp;&#160;</td>
           <td class="paramname"><em>callback</em></td><td>)</td>
           <td> const</td>
         </tr>

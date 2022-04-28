@@ -82,6 +82,8 @@ const \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_a42c9141e026bdfdb3fd13
 \item 
 {\footnotesize template$<$typename Z  = ONVBasis$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, Spin\+Resolved\+ONVBasis $>$\+::value, void $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_adef9943597c3292868341ed108c18ac7}{for\+Each}} (const std\+::function$<$ void(const \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_ab6283d757673aa83a7609e87a8b01ce9}{Scalar}}, const Spin\+Resolved\+ONV)$>$ \&callback) const
 \item 
+{\footnotesize template$<$typename Z  = ONVBasis$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, Spin\+Unresolved\+ONVBasis $>$\+::value, void $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_a0a630f96bd6104c473983d16842cfe8d}{for\+Each}} (const std\+::function$<$ void(const \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_ab6283d757673aa83a7609e87a8b01ce9}{Scalar}}, const Spin\+Unresolved\+ONV)$>$ \&callback) const
+\item 
 bool \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_aee095ee9919d57753f68396b99da4370}{is\+Approx}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{Linear\+Expansion}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_ab6283d757673aa83a7609e87a8b01ce9}{Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_a42c9141e026bdfdb3fd13ae91f59d74f}{ONVBasis}} $>$ \&other, double tolerance=1.\+0e-\/12) const
 \end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
@@ -538,10 +540,25 @@ A constant \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{Linear\+Expansio
 \mbox{\Hypertarget{class_g_q_c_p_1_1_linear_expansion_adef9943597c3292868341ed108c18ac7}\label{class_g_q_c_p_1_1_linear_expansion_adef9943597c3292868341ed108c18ac7}} 
 \index{GQCP::LinearExpansion$<$ \_Scalar, \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_Scalar, \_ONVBasis $>$}!forEach@{forEach}}
 \index{forEach@{forEach}!GQCP::LinearExpansion$<$ \_Scalar, \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_Scalar, \_ONVBasis $>$}}
-\doxysubsubsection{\texorpdfstring{forEach()}{forEach()}}
+\doxysubsubsection{\texorpdfstring{forEach()}{forEach()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+ONVBasis $>$ \\
 template$<$typename Z  = ONVBasis$>$ \\
 \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, Spin\+Resolved\+ONVBasis$>$\+::value, void$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{GQCP\+::\+Linear\+Expansion}}$<$ \+\_\+\+Scalar, \+\_\+\+ONVBasis $>$\+::for\+Each (\begin{DoxyParamCaption}\item[{const std\+::function$<$ void(const \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_ab6283d757673aa83a7609e87a8b01ce9}{Scalar}}, const Spin\+Resolved\+ONV)$>$ \&}]{callback }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Iterate over all expansion coefficients and corresponding ONVs, and apply the given callback function.
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & The function to be applied in every iteration. Its arguments are an expansion coefficient and the corresponding ONV. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_linear_expansion_a0a630f96bd6104c473983d16842cfe8d}\label{class_g_q_c_p_1_1_linear_expansion_a0a630f96bd6104c473983d16842cfe8d}} 
+\index{GQCP::LinearExpansion$<$ \_Scalar, \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_Scalar, \_ONVBasis $>$}!forEach@{forEach}}
+\index{forEach@{forEach}!GQCP::LinearExpansion$<$ \_Scalar, \_ONVBasis $>$@{GQCP::LinearExpansion$<$ \_Scalar, \_ONVBasis $>$}}
+\doxysubsubsection{\texorpdfstring{forEach()}{forEach()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+ONVBasis $>$ \\
+template$<$typename Z  = ONVBasis$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, Spin\+Unresolved\+ONVBasis$>$\+::value, void$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{GQCP\+::\+Linear\+Expansion}}$<$ \+\_\+\+Scalar, \+\_\+\+ONVBasis $>$\+::for\+Each (\begin{DoxyParamCaption}\item[{const std\+::function$<$ void(const \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_ab6283d757673aa83a7609e87a8b01ce9}{Scalar}}, const Spin\+Unresolved\+ONV)$>$ \&}]{callback }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 Iterate over all expansion coefficients and corresponding ONVs, and apply the given callback function.
 

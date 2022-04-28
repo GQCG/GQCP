@@ -1596,6 +1596,7 @@
     <member refid="class_g_q_c_p_1_1_linear_expansion_1a3c8b320ac4cbac4ec9630d66fbf43b25" kind="function"><name>calculateSingleOrbitalEntropy</name></member>
     <member refid="class_g_q_c_p_1_1_linear_expansion_1ae38a8e6814c2ea1e027b651bda168168" kind="function"><name>calculateSingleOrbitalEntropy</name></member>
     <member refid="class_g_q_c_p_1_1_linear_expansion_1adef9943597c3292868341ed108c18ac7" kind="function"><name>forEach</name></member>
+    <member refid="class_g_q_c_p_1_1_linear_expansion_1a0a630f96bd6104c473983d16842cfe8d" kind="function"><name>forEach</name></member>
     <member refid="class_g_q_c_p_1_1_linear_expansion_1aee095ee9919d57753f68396b99da4370" kind="function"><name>isApprox</name></member>
     <member refid="class_g_q_c_p_1_1_linear_expansion_1a57e038e1975f19c5e6933d36c7c8b504" kind="function"><name>Constant</name></member>
     <member refid="class_g_q_c_p_1_1_linear_expansion_1a73053c804e2222efb302aff74ad45801" kind="function"><name>HartreeFock</name></member>
