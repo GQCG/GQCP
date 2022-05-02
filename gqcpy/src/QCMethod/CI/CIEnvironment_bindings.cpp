@@ -36,7 +36,7 @@ using namespace GQCP;
 
 
 /**
- *  Bind a CI environment to a gqcpy submodule module.
+ *  Bind the full CI environment to a gqcpy submodule module.
  *
  *  @tparam Hamiltonian             the type of the Hamiltonian
  *  @tparam ONVBasis                the type of the ONV basis
@@ -68,6 +68,15 @@ void bindFullCIEnvironment(py::module& submodule, const std::string& documentati
 }
 
 
+/**
+ *  Bind the Dense only CI environment to a gqcpy submodule module.
+ *
+ *  @tparam Hamiltonian             the type of the Hamiltonian
+ *  @tparam ONVBasis                the type of the ONV basis
+ *
+ *  @param submodule                the gqcpy.CIEnvironment submodule
+ *  @param documentation            the documentation that should appear for the function
+ */
 template <typename Hamiltonian, typename ONVBasis>
 void bindDenseOnlyCIEnvironment(py::module& submodule, const std::string& documentation) {
 
