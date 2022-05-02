@@ -401,7 +401,7 @@ void bindLinearExpansions(py::module& module) {
 
 
     // Define the python class related to a linear expansion of a spin unresolved selected ONV basis and expose the necessary interfaces.
-    py::class_<LinearExpansion<double, SpinUnresolvedSelectedONVBasis>> py_LinearExpansion_SpinUnresolvedSelected_d {module, "LinearExpansion_SpinResolvedSelected_d", "The real-valued linear expansion (configuration interaction) wave function model in a spin-unresolved selected ONV basis."};
+    py::class_<LinearExpansion<double, SpinUnresolvedSelectedONVBasis>> py_LinearExpansion_SpinUnresolvedSelected_d {module, "LinearExpansion_SpinUnresolvedSelected_d", "The real-valued linear expansion (configuration interaction) wave function model in a spin-unresolved selected ONV basis."};
 
     bindQCModelCILinearExpansionInterface(py_LinearExpansion_SpinUnresolvedSelected_d);
 
