@@ -36,7 +36,7 @@ using namespace GQCP;
 
 
 /**
- *  Bind a CI environment to a gqcpy submodule module.
+ *  Bind the full CI environment to a gqcpy submodule module.
  *
  *  @tparam Hamiltonian             the type of the Hamiltonian
  *  @tparam ONVBasis                the type of the ONV basis
@@ -45,7 +45,7 @@ using namespace GQCP;
  *  @param documentation            the documentation that should appear for the function
  */
 template <typename Hamiltonian, typename ONVBasis>
-void bindCIEnvironment(py::module& submodule, const std::string& documentation) {
+void bindFullCIEnvironment(py::module& submodule, const std::string& documentation) {
 
     submodule.def(
         "Dense",
@@ -68,28 +68,45 @@ void bindCIEnvironment(py::module& submodule, const std::string& documentation) 
 }
 
 
-void bindCIEnvironments(py::module& module) {
+/**
+ *  Bind the Dense only CI environment to a gqcpy submodule module.
+ *
+ *  @tparam Hamiltonian             the type of the Hamiltonian
+ *  @tparam ONVBasis                the type of the ONV basis
+ *
+ *  @param submodule                the gqcpy.CIEnvironment submodule
+ *  @param documentation            the documentation that should appear for the function
+ */
+template <typename Hamiltonian, typename ONVBasis>
+void bindDenseOnlyCIEnvironment(py::module& submodule, const std::string& documentation) {
 
-    auto submodule = module.def_submodule("CIEnvironment");
-
-    bindCIEnvironment<RSQHamiltonian<double>, SpinResolvedONVBasis>(submodule, "Return an environment suitable for solving spin-resolved FCI eigenvalue problems.");
-    bindCIEnvironment<USQHamiltonian<double>, SpinResolvedONVBasis>(submodule, "Return an environment suitable for solving spin-resolved FCI eigenvalue problems.");
-    bindCIEnvironment<HubbardHamiltonian<double>, SpinResolvedONVBasis>(submodule, "Return an environment suitable for solving Hubbard problems.");
-
-    bindCIEnvironment<RSQHamiltonian<double>, SpinResolvedSelectedONVBasis>(submodule, "Return an environment suitable for solving spin-resolved selected eigenvalue problems.");
-    bindCIEnvironment<USQHamiltonian<double>, SpinResolvedSelectedONVBasis>(submodule, "Return an environment suitable for solving spin-resolved selected eigenvalue problems.");
-
-    bindCIEnvironment<RSQHamiltonian<double>, SeniorityZeroONVBasis>(submodule, "Return an environment suitable for solving seniority zero eigenvalue problems.");
-
-    // We haven't implemented matrix-vector products for `SpinUnresolvedSelectedONVBasis`, so we can't use the `Iterative` APIs.
     submodule.def(
         "Dense",
-        [](const GSQHamiltonian<double>& hamiltonian, const SpinUnresolvedSelectedONVBasis& onv_basis) {
+        [](const Hamiltonian& hamiltonian, const ONVBasis& onv_basis) {
             return CIEnvironment::Dense(hamiltonian, onv_basis);
         },
         py::arg("hamiltonian"),
         py::arg("onv_basis"),
-        "Return an environment suitable for solving spin-unresolved selected eigenvalue problems.");
+        documentation.c_str());
+}
+
+
+void bindCIEnvironments(py::module& module) {
+
+    auto submodule = module.def_submodule("CIEnvironment");
+
+    bindFullCIEnvironment<RSQHamiltonian<double>, SpinResolvedONVBasis>(submodule, "Return an environment suitable for solving spin-resolved FCI eigenvalue problems.");
+    bindFullCIEnvironment<USQHamiltonian<double>, SpinResolvedONVBasis>(submodule, "Return an environment suitable for solving spin-resolved FCI eigenvalue problems.");
+    bindFullCIEnvironment<HubbardHamiltonian<double>, SpinResolvedONVBasis>(submodule, "Return an environment suitable for solving Hubbard problems.");
+
+    bindFullCIEnvironment<RSQHamiltonian<double>, SpinResolvedSelectedONVBasis>(submodule, "Return an environment suitable for solving spin-resolved selected eigenvalue problems.");
+    bindFullCIEnvironment<USQHamiltonian<double>, SpinResolvedSelectedONVBasis>(submodule, "Return an environment suitable for solving spin-resolved selected eigenvalue problems.");
+
+    bindFullCIEnvironment<RSQHamiltonian<double>, SeniorityZeroONVBasis>(submodule, "Return an environment suitable for solving seniority zero eigenvalue problems.");
+
+    // We haven't implemented matrix-vector products for `SpinUnresolved(Selected)ONVBasis`, so we can't use the `Iterative` APIs.
+    bindDenseOnlyCIEnvironment<GSQHamiltonian<double>, SpinUnresolvedONVBasis>(submodule, "Return an environment suitable for solving spin-unresolved eigenvalue problems.");
+    bindDenseOnlyCIEnvironment<GSQHamiltonian<double>, SpinUnresolvedSelectedONVBasis>(submodule, "Return an environment suitable for solving spin-unresolved selected eigenvalue problems.");
 
     submodule.def(
         "Dense_cd",

@@ -70,6 +70,7 @@ void bindCIFactory(py::module& module) {
     bindCIFactoryMethod<double, SpinResolvedONVBasis>(module);
     bindCIFactoryMethod<double, SpinResolvedSelectedONVBasis>(module);
 
+    bindCIFactoryMethod<double, SpinUnresolvedONVBasis>(module);
     bindCIFactoryMethod<double, SpinUnresolvedSelectedONVBasis>(module);
 
 
