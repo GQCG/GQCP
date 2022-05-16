@@ -53,3 +53,4 @@ jobs:
         sudo make -C builddir install            
     - name: Build Singularity image
       run: sudo -E singularity build gqcp-dev.sif singularity/GQCP-dev.def
+
