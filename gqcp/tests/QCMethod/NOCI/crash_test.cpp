@@ -43,30 +43,32 @@ BOOST_AUTO_TEST_CASE(NOCI_unrestricted_crash_test) {
     const auto S = spin_orbital_basis.overlap();
 
     // Initialize two non-orthogonal "restricted states".
-    GQCP::SquareMatrix<double> state_1 {3};
+    GQCP::SquareMatrix<double> state_1_a {3};
+    GQCP::SquareMatrix<double> state_1_b {3};
     // clang-format off
-    state_1 << 6.39638709e-01, -8.01711730e-01,  1.89534772e-01,
-               0.00000000e+00,  9.20000000e-09, -1.04297785e+00,
-               6.39638715e-01,  8.01711722e-01,  1.89534786e-01;
+    state_1_a << 3.01612395e-01, -7.27196084e-15,  1.18334666e+00,
+               4.60055205e-01, -9.96503166e-01, -5.35359699e-01,
+               4.60055205e-01,  9.96503166e-01, -5.35359699e-01;
 
-    // state_1 << 6.35275776e-01, -8.10534685e-01,  2.02400684e-01,
-    //            0.00000000e+00,  3.61000000e-08, -1.04952743e+00,
-    //            6.35275781e-01,  8.10534667e-01,  2.02400739e-01;
+    state_1_b << 6.38858962e-01, -1.04073944e+00, -2.27595721e-15,
+                 2.80666711e-01,  6.47678158e-01, -9.96503166e-01,
+                 2.80666711e-01,  6.47678158e-01,  9.96503166e-01;
     // clang-format on
-    GQCP::SquareMatrix<double> state_2 {3};
+    GQCP::SquareMatrix<double> state_2_a {3};
+    GQCP::SquareMatrix<double> state_2_b {3};
     // clang-format off
-    state_2 <<  1.80000000e-09,  6.67128998e-01, -8.01711735e-01,
-                1.00000000e+00, -2.96315367e-01,  6.30000000e-09,
-                -1.80000000e-09,  6.67129020e-01,  8.01711717e-01;
+    state_2_a <<  0.30161239,  0.63885896,  1.18334666,
+                  0.46005521,  0.28066671, -0.5353597,
+                  0.46005521,  0.28066671, -0.5353597;
 
-    // state_2 << 5.00000000e-10,  6.66739309e-01, -8.10534711e-01,
-    //            1.00000000e+00, -3.18602911e-01,  1.75000000e-08,
-    //            -5.00000000e-10,  6.66739394e-01,  8.10534641e-01;
+    state_2_b << -7.27196084e-15, -1.04073944e+00, -2.27595721e-15,
+                 -9.96503166e-01,  6.47678158e-01, -9.96503166e-01,
+                  9.96503166e-01,  6.47678158e-01,  9.96503166e-01;
     // clang-format on
 
     // Transform the matrices to the correct transformation type.
-    const auto basis_state_1 = GQCP::UTransformation<double> {GQCP::UTransformationComponent<double> {state_1}, GQCP::UTransformationComponent<double> {state_2}};
-    const auto basis_state_2 = GQCP::UTransformation<double> {GQCP::UTransformationComponent<double> {state_2}, GQCP::UTransformationComponent<double> {state_1}};
+    const auto basis_state_1 = GQCP::UTransformation<double> {GQCP::UTransformationComponent<double> {state_1_a}, GQCP::UTransformationComponent<double> {state_1_b}};
+    const auto basis_state_2 = GQCP::UTransformation<double> {GQCP::UTransformationComponent<double> {state_2_a}, GQCP::UTransformationComponent<double> {state_1_b}};
 
     const auto lowdin_pairing_basis = GQCP::ULowdinPairingBasis<double>(basis_state_1, basis_state_2, S, 2, 1);
     // std::cout << lowdin_pairing_basis.numberOfZeroOverlaps() << std::endl;
