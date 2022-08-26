@@ -68,7 +68,7 @@ BOOST_AUTO_TEST_CASE(NOCI_unrestricted_crash_test) {
 
     // Transform the matrices to the correct transformation type.
     const auto basis_state_1 = GQCP::UTransformation<double> {GQCP::UTransformationComponent<double> {state_1_a}, GQCP::UTransformationComponent<double> {state_1_b}};
-    const auto basis_state_2 = GQCP::UTransformation<double> {GQCP::UTransformationComponent<double> {state_2_a}, GQCP::UTransformationComponent<double> {state_1_b}};
+    const auto basis_state_2 = GQCP::UTransformation<double> {GQCP::UTransformationComponent<double> {state_2_a}, GQCP::UTransformationComponent<double> {state_2_b}};
 
     const auto lowdin_pairing_basis = GQCP::ULowdinPairingBasis<double>(basis_state_1, basis_state_2, S, 2, 1);
     // std::cout << lowdin_pairing_basis.numberOfZeroOverlaps() << std::endl;
