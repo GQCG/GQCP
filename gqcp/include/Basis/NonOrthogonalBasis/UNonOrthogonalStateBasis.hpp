@@ -341,7 +341,7 @@ public:
                     // Next, calculate the co-density matrix of the orbital corresponding to the zero overlap value.
                     // We know there is only one zero overlap orbital, so we acces the first index of the vector.
                     const auto zero_overlap_index = lowdin_pairing_basis.zeroOverlapIndices(zero_spin)[0];
-                    const auto co_density = lowdin_pairing_basis.coDensity(zero_overlap_index).component(zero_spin);
+                    const auto co_density = lowdin_pairing_basis.coDensityComponent(zero_overlap_index, zero_spin);
 
                     // Perform the contraction.
                     if (zero_spin == Spin::alpha) {
@@ -466,7 +466,7 @@ public:
                     // Next, calculate the weighted co-density matrix and the co-density of the orbital corresponding to the zero overlap value.
                     // We know there is only one zero overlap orbital, so we acces the first index of the vector.
                     const auto zero_overlap_index = lowdin_pairing_basis.zeroOverlapIndices(zero_spin)[0];
-                    const auto co_density = lowdin_pairing_basis.coDensity(zero_overlap_index).component(zero_spin);
+                    const auto co_density = lowdin_pairing_basis.coDensityComponent(zero_overlap_index, zero_spin);
                     const auto weighted_co_density = lowdin_pairing_basis.weightedCoDensity();
 
                     // Perform the contractions. We need to perform two contractions (one for the direct component, one for the exchange component).
@@ -505,7 +505,7 @@ public:
                     const auto zero_overlap_spin_2 = lowdin_pairing_basis.zeroOverlapIndices()[1].second;
 
                     const auto co_density_1 = lowdin_pairing_basis.coDensity(zero_overlap_index_1);
-                    const auto active_co_density = lowdin_pairing_basis.coDensity(zero_overlap_index_2).component(zero_overlap_spin_2);
+                    const auto active_co_density = lowdin_pairing_basis.coDensityComponent(zero_overlap_index_2, zero_overlap_spin_2);
 
                     // Perform the contractions. We need to perform two contractions (one for the direct component, one for the exchange component).
                     // In order to perserve readability of the contractions, and keep the exact link with the theory, we split each contraction in two.
