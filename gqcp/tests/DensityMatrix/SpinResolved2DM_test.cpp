@@ -189,5 +189,5 @@ BOOST_AUTO_TEST_CASE(two_electron_operator_expectation_value_different_orbital_b
     const double exp_val_random = g_random.calculateExpectationValue(d_random);
 
     BOOST_CHECK(std::abs(exp_val_AO - exp_val_MO) < 1.0e-12);
-    BOOST_CHECK(std::abs(exp_val_AO - exp_val_random) < 1.0e-12);
+    BOOST_CHECK(std::abs(exp_val_AO - exp_val_random) < 1.0e-8);
 }
