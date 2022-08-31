@@ -122,6 +122,7 @@ BOOST_AUTO_TEST_CASE(constructor_complex) {
 
     // Initialize two non-orthogonal "Generalised states".
     GQCP::SquareMatrix<GQCP::complex> C_bra {6};
+    using namespace std::complex_literals;
     // clang-format off
     C_bra << 0.460055771  - 5.63405828e-17j,  1.35013939  + 0.0j           ,  0.996501939    - 1.22036291e-16j,  0.535358621 - 6.55625222e-17j,  1.35013939 + 0.0j            ,  0.0 + 0.0j,
              0.460055767  - 5.63405822e-17j,  1.35013943  + 0.0j           , -0.996501918    + 1.22036288e-16j,  0.535358665 - 6.55625275e-17j,  1.35013943 + 0.0j            ,  0.0 + 0.0j,
