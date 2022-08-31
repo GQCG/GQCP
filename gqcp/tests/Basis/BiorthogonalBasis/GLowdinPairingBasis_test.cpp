@@ -150,11 +150,11 @@ BOOST_AUTO_TEST_CASE(constructor_complex) {
 
     // Check whether the saved values are correct. The reference data is taken from the calculations of @lelemmen and @johdvos.
     // Initialize the reference biorthogonal overlaps.
-    GQCP::VectorX<double> overlap_reference {3};
+    GQCP::VectorX<GQCP::complex> overlap_reference {3};
     // clang-format off
-    overlap_reference <<  15.31141866,
-                           1.03839811,
-                           0.08484072;
+    overlap_reference <<  15.31141866 + 0.0j,
+                           1.03839811 + 0.0j,
+                           0.08484072 + 0.0j;
     // clang-format on
 
     // Initialize a reference for the biorthogonal occupied bra expansion coefficients.
