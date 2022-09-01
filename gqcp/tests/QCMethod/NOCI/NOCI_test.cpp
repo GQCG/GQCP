@@ -221,25 +221,26 @@ BOOST_AUTO_TEST_CASE(NOCI_1DM_complex) {
 
     // Initialize two non-orthogonal "restricted states".
     GQCP::SquareMatrix<GQCP::complex> state_1 {4};
+    using namespace std::complex_literals;
     // clang-format off
-    state_1 << -0.07443693+0.0j,  0.12036042+0.0j, -0.13557067+0.0j,  0.15517005+0.0j,
-               -0.07874922+0.0j,  0.15086478+0.0j, -0.68085546+0.0j,  0.77423311+0.0j,
-               -0.24580188+0.0j,  0.26338108+0.0j,  0.09556297+0.0j, -0.12178159+0.0j,
-               -0.38944259+0.0j,  0.4101685+0.0j ,  0.45214166+0.0j, -0.58335985+0.0j;
+    state_1 << -0.07443693+0.0i,  0.12036042+0.0i, -0.13557067+0.0i,  0.15517005+0.0i,
+               -0.07874922+0.0i,  0.15086478+0.0i, -0.68085546+0.0i,  0.77423311+0.0i,
+               -0.24580188+0.0i,  0.26338108+0.0i,  0.09556297+0.0i, -0.12178159+0.0i,
+               -0.38944259+0.0i,  0.4101685+0.0i ,  0.45214166+0.0i, -0.58335985+0.0i;
     // clang-format on
     GQCP::SquareMatrix<GQCP::complex> state_2 {4};
     // clang-format off
-    state_2 <<  0.25851329+0.0j, -0.14539151+0.0j, -0.17177142+0.0j, -0.01126487+0.0j,
-                0.36593356+0.0j, -0.28669343+0.0j, -0.84796858+0.0j, -0.13503625+0.0j,
-                0.25853403+0.0j,  0.14539669+0.0j,  0.17176599+0.0j, -0.01126146+0.0j,
-                0.36597032+0.0j,  0.28670189+0.0j,  0.847938+0.0j  , -0.13501526+0.0j;
+    state_2 <<  0.25851329+0.0i, -0.14539151+0.0i, -0.17177142+0.0i, -0.01126487+0.0i,
+                0.36593356+0.0i, -0.28669343+0.0i, -0.84796858+0.0i, -0.13503625+0.0i,
+                0.25853403+0.0i,  0.14539669+0.0i,  0.17176599+0.0i, -0.01126146+0.0i,
+                0.36597032+0.0i,  0.28670189+0.0i,  0.847938+0.0i  , -0.13501526+0.0i;
     // clang-format on
     GQCP::SquareMatrix<GQCP::complex> state_3 {4};
     // clang-format off
-    state_3 <<  -0.265842+0.0j  ,  0.17716735+0.0j, -0.15969328+0.0j, -0.00308706+0.0j,
-                -0.36278694+0.0j,  0.36406651+0.0j, -0.80340861+0.0j, -0.13144475+0.0j,
-                -0.26584976+0.0j, -0.17716927+0.0j,  0.15969112+0.0j, -0.00308558+0.0j,
-                -0.36280035+0.0j, -0.36406982+0.0j,  0.80339638+0.0j, -0.13143372+0.0j;
+    state_3 <<  -0.265842+0.0i  ,  0.17716735+0.0i, -0.15969328+0.0i, -0.00308706+0.0i,
+                -0.36278694+0.0i,  0.36406651+0.0i, -0.80340861+0.0i, -0.13144475+0.0i,
+                -0.26584976+0.0i, -0.17716927+0.0i,  0.15969112+0.0i, -0.00308558+0.0i,
+                -0.36280035+0.0i, -0.36406982+0.0i,  0.80339638+0.0i, -0.13143372+0.0i;
     // clang-format on
     // Transform the matrices to the correct transformation type.
     const auto basis_state_1 = GQCP::RTransformation<GQCP::complex> {state_1};
@@ -265,10 +266,10 @@ BOOST_AUTO_TEST_CASE(NOCI_1DM_complex) {
     // Initialize a reference 1DM. Taken from the implementation of @lelemmen.
     GQCP::SquareMatrix<GQCP::complex> reference_1DM {4};
     // clang-format off
-    reference_1DM <<  0.11206947+0.j, 0.10900517+0.j, 0.11206934+0.j, 0.10900534+0.j,
-                      0.10900517+0.j, 0.10602466+0.j, 0.10900505+0.j, 0.10602483+0.j,
-                      0.11206934+0.j, 0.10900505+0.j, 0.11206922+0.j, 0.10900522+0.j,
-                      0.10900534+0.j, 0.10602483+0.j, 0.10900522+0.j, 0.106025  +0.j;
+    reference_1DM <<  0.11206947+0.0i, 0.10900517+0.0i, 0.11206934+0.0i, 0.10900534+0.0i,
+                      0.10900517+0.0i, 0.10602466+0.0i, 0.10900505+0.0i, 0.10602483+0.0i,
+                      0.11206934+0.0i, 0.10900505+0.0i, 0.11206922+0.0i, 0.10900522+0.0i,
+                      0.10900534+0.0i, 0.10602483+0.0i, 0.10900522+0.0i, 0.106025  +0.0i;
     // clang-format on
     // Check the calculated 1DM against the reference.
     BOOST_CHECK(reference_1DM.isApprox(NOCI_parameters.calculate1DM().matrix(), 1e-6));
@@ -289,25 +290,26 @@ BOOST_AUTO_TEST_CASE(NOCI_complex_unrestricted) {
 
     // Initialize two non-orthogonal "restricted states".
     GQCP::SquareMatrix<GQCP::complex> state_1 {4};
+    using namespace std::complex_literals;
     // clang-format off
-    state_1 << -0.07443693+0.0j,  0.12036042+0.0j, -0.13557067+0.0j,  0.15517005+0.0j,
-               -0.07874922+0.0j,  0.15086478+0.0j, -0.68085546+0.0j,  0.77423311+0.0j,
-               -0.24580188+0.0j,  0.26338108+0.0j,  0.09556297+0.0j, -0.12178159+0.0j,
-               -0.38944259+0.0j,  0.4101685+0.0j ,  0.45214166+0.0j, -0.58335985+0.0j;
+    state_1 << -0.07443693+0.0i,  0.12036042+0.0i, -0.13557067+0.0i,  0.15517005+0.0i,
+               -0.07874922+0.0i,  0.15086478+0.0i, -0.68085546+0.0i,  0.77423311+0.0i,
+               -0.24580188+0.0i,  0.26338108+0.0i,  0.09556297+0.0i, -0.12178159+0.0i,
+               -0.38944259+0.0i,  0.4101685+0.0i ,  0.45214166+0.0i, -0.58335985+0.0i;
     // clang-format on
     GQCP::SquareMatrix<GQCP::complex> state_2 {4};
     // clang-format off
-    state_2 <<  0.25851329+0.0j, -0.14539151+0.0j, -0.17177142+0.0j, -0.01126487+0.0j,
-                0.36593356+0.0j, -0.28669343+0.0j, -0.84796858+0.0j, -0.13503625+0.0j,
-                0.25853403+0.0j,  0.14539669+0.0j,  0.17176599+0.0j, -0.01126146+0.0j,
-                0.36597032+0.0j,  0.28670189+0.0j,  0.847938+0.0j  , -0.13501526+0.0j;
+    state_2 <<  0.25851329+0.0i, -0.14539151+0.0i, -0.17177142+0.0i, -0.01126487+0.0i,
+                0.36593356+0.0i, -0.28669343+0.0i, -0.84796858+0.0i, -0.13503625+0.0i,
+                0.25853403+0.0i,  0.14539669+0.0i,  0.17176599+0.0i, -0.01126146+0.0i,
+                0.36597032+0.0i,  0.28670189+0.0i,  0.847938+0.0i  , -0.13501526+0.0i;
     // clang-format on
     GQCP::SquareMatrix<GQCP::complex> state_3 {4};
     // clang-format off
-    state_3 <<  -0.265842+0.0j  ,  0.17716735+0.0j, -0.15969328+0.0j, -0.00308706+0.0j,
-                -0.36278694+0.0j,  0.36406651+0.0j, -0.80340861+0.0j, -0.13144475+0.0j,
-                -0.26584976+0.0j, -0.17716927+0.0j,  0.15969112+0.0j, -0.00308558+0.0j,
-                -0.36280035+0.0j, -0.36406982+0.0j,  0.80339638+0.0j, -0.13143372+0.0j;
+    state_3 <<  -0.265842+0.0i  ,  0.17716735+0.0i, -0.15969328+0.0i, -0.00308706+0.0i,
+                -0.36278694+0.0i,  0.36406651+0.0i, -0.80340861+0.0i, -0.13144475+0.0i,
+                -0.26584976+0.0i, -0.17716927+0.0i,  0.15969112+0.0i, -0.00308558+0.0i,
+                -0.36280035+0.0i, -0.36406982+0.0i,  0.80339638+0.0i, -0.13143372+0.0i;
     // clang-format on
     // Transform the matrices to the correct transformation type.
     const auto basis_state_1 = GQCP::UTransformation<GQCP::complex>::FromRestricted(GQCP::RTransformation<GQCP::complex> {state_1});
@@ -347,31 +349,32 @@ BOOST_AUTO_TEST_CASE(NOCI_complex_generalized) {
 
     // Initialize some non-orthogonal "generalised states".
     GQCP::SquareMatrix<GQCP::complex> basis_state_1 {6};
+    using namespace std::complex_literals;
     // clang-format off
-    basis_state_1 << 0.460055771  - 5.63405828e-17j,  1.35013939  + 0.0j           ,  0.996501939    - 1.22036291e-16j,  0.535358621 - 6.55625222e-17j,  1.35013939 + 0.0j            ,  0.0 + 0.0j,
-                     0.460055767  - 5.63405822e-17j,  1.35013943  + 0.0j           , -0.996501918    + 1.22036288e-16j,  0.535358665 - 6.55625275e-17j,  1.35013943 + 0.0j            ,  0.0 + 0.0j,
-                     0.301611955  - 3.69368116e-17j,  3.07322180  + 0.0j           , -2.63772351e-08 + 3.23027965e-24j, -1.18334547  + 1.44918025e-16j,  3.07322180 + 0.0j            ,  0.0 + 0.0j,
-                    -0.0956361988 + 0.0j           , -0.280666403 - 3.43717213e-17j, -0.207152401    + 0.0j           , -0.111290123 + 0.0j           , -0.280666403 - 3.43717213e-17j,  0.0 + 0.0j,
-                    -0.0956361979 + 0.0j           , -0.280666413 - 3.43717224e-17j,  0.207152397    + 0.0j           , -0.111290132 + 0.0j           , -0.280666413 - 3.43717224e-17j,  0.0 + 0.0j,
-                    -0.0626989655 + 0.0j           , -0.638860046 - 7.82377910e-17j,  5.48328845e-09 + 0.0j           ,  0.245993356 + 0.0j           , -0.638860046 - 7.82377910e-17j,  0.0 + 0.0j;
+    basis_state_1 << 0.460055771  - 5.63405828e-17i,  1.35013939  + 0.0i           ,  0.996501939    - 1.22036291e-16i,  0.535358621 - 6.55625222e-17i,  1.35013939 + 0.0i            ,  0.0 + 0.0i,
+                     0.460055767  - 5.63405822e-17i,  1.35013943  + 0.0i           , -0.996501918    + 1.22036288e-16i,  0.535358665 - 6.55625275e-17i,  1.35013943 + 0.0i            ,  0.0 + 0.0i,
+                     0.301611955  - 3.69368116e-17i,  3.07322180  + 0.0i           , -2.63772351e-08 + 3.23027965e-24i, -1.18334547  + 1.44918025e-16i,  3.07322180 + 0.0i            ,  0.0 + 0.0i,
+                    -0.0956361988 + 0.0i           , -0.280666403 - 3.43717213e-17i, -0.207152401    + 0.0i           , -0.111290123 + 0.0i           , -0.280666403 - 3.43717213e-17i,  0.0 + 0.0i,
+                    -0.0956361979 + 0.0i           , -0.280666413 - 3.43717224e-17i,  0.207152397    + 0.0i           , -0.111290132 + 0.0i           , -0.280666413 - 3.43717224e-17i,  0.0 + 0.0i,
+                    -0.0626989655 + 0.0i           , -0.638860046 - 7.82377910e-17i,  5.48328845e-09 + 0.0i           ,  0.245993356 + 0.0i           , -0.638860046 - 7.82377910e-17i,  0.0 + 0.0i;
     // clang-format on
     GQCP::SquareMatrix<GQCP::complex> basis_state_2 {6};
     // clang-format off
-    basis_state_2 <<  0.230027886 - 0.398419985j,  0.799802113 + 0.0j        ,  0.498250970    - 0.862995994j   ,  0.267679311 - 0.463634166j,  0.799802113 + 0.0j        , 0.0 + 0.0j,
-                      0.230027883 - 0.398419981j,  0.799802140 + 0.0j        , -0.498250959    + 0.862995976j   ,  0.267679332 - 0.463634204j,  0.799802140 + 0.0j        , 0.0 + 0.0j,
-                      0.150805978 - 0.261203615j,  1.82053003  + 0.0j        , -1.31886175e-08 + 2.28433557e-08j, -0.591672737 + 1.02480724j ,  1.82053003  + 0.0j        , 0.0 + 0.0j,
-                     -0.161442683 + 0.0j        , -0.140333202 - 0.243064235j, -0.349692268    + 0.0j           , -0.187867944 + 0.0j        , -0.140333202 - 0.243064235j, 0.0 + 0.0j,
-                     -0.161442681 + 0.0j        , -0.140333206 - 0.243064243j,  0.349692261    + 0.0j           , -0.187867959 + 0.0j        , -0.140333206 - 0.243064243j, 0.0 + 0.0j,
-                     -0.105841609 + 0.0j        , -0.319430023 - 0.553269029j,  9.25629424e-09 + 0.0j           ,  0.415259365 + 0.0j        , -0.319430023 - 0.553269029j, 0.0 + 0.0j;
+    basis_state_2 <<  0.230027886 - 0.398419985i,  0.799802113 + 0.0i        ,  0.498250970    - 0.862995994i   ,  0.267679311 - 0.463634166i,  0.799802113 + 0.0i        , 0.0 + 0.0i,
+                      0.230027883 - 0.398419981i,  0.799802140 + 0.0i        , -0.498250959    + 0.862995976i   ,  0.267679332 - 0.463634204i,  0.799802140 + 0.0i        , 0.0 + 0.0i,
+                      0.150805978 - 0.261203615i,  1.82053003  + 0.0i        , -1.31886175e-08 + 2.28433557e-08i, -0.591672737 + 1.02480724i ,  1.82053003  + 0.0i        , 0.0 + 0.0i,
+                     -0.161442683 + 0.0i        , -0.140333202 - 0.243064235i, -0.349692268    + 0.0i           , -0.187867944 + 0.0i        , -0.140333202 - 0.243064235i, 0.0 + 0.0i,
+                     -0.161442681 + 0.0i        , -0.140333206 - 0.243064243i,  0.349692261    + 0.0i           , -0.187867959 + 0.0i        , -0.140333206 - 0.243064243i, 0.0 + 0.0i,
+                     -0.105841609 + 0.0i        , -0.319430023 - 0.553269029i,  9.25629424e-09 + 0.0i           ,  0.415259365 + 0.0i        , -0.319430023 - 0.553269029i, 0.0 + 0.0i;
     // clang-format on
     GQCP::SquareMatrix<GQCP::complex> basis_state_3 {6};
     // clang-format off
-    basis_state_3 <<  -1.02152902e-16 - 0.460055771j,  0.615580024    + 0.0j        , -2.21267879e-16 - 0.996501939j   , -1.18873494e-16 - 0.535358621j, 0.615580024    +0.0j         ,  0.0 + 0.0j,
-                      -1.02152901e-16 - 0.460055767j,  0.615580044    + 0.0j        ,  2.21267875e-16 + 0.996501918j   , -1.18873503e-16 - 0.535358665j, 0.615580044    +0.0j         ,  0.0 + 0.0j,
-                      -6.69713075e-17 - 0.301611955j,  1.40119899     + 0.0j        ,  5.85692274e-24 + 2.63772351e-08j,  2.62755478e-16 + 1.18334547j , 1.40119899     +0.0j         ,  0.0 + 0.0j,
-                      -0.209756967    + 0.0j        ,  6.23204607e-17 - 0.280666403j, -0.454343228    + 0.0j           , -0.244090407    +0.0j         , 6.23204607e-17 - 0.280666403j,  0.0 + 0.0j,
-                      -0.209756965    + 0.0j        ,  6.23204627e-17 - 0.280666413j,  0.454343219    + 0.0j           , -0.244090427    +0.0j         , 6.23204627e-17 - 0.280666413j,  0.0 + 0.0j,
-                      -0.137516390    + 0.0j        ,  1.41855426e-16 - 0.638860046j,  1.20263872e-08 + 0.0j           ,  0.539532320    +0.0j         , 1.41855426e-16 - 0.638860046j,  0.0 + 0.0j;
+    basis_state_3 <<  -1.02152902e-16 - 0.460055771i,  0.615580024    + 0.0i        , -2.21267879e-16 - 0.996501939i   , -1.18873494e-16 - 0.535358621i, 0.615580024    +0.0i         ,  0.0 + 0.0i,
+                      -1.02152901e-16 - 0.460055767i,  0.615580044    + 0.0i        ,  2.21267875e-16 + 0.996501918i   , -1.18873503e-16 - 0.535358665i, 0.615580044    +0.0i         ,  0.0 + 0.0i,
+                      -6.69713075e-17 - 0.301611955i,  1.40119899     + 0.0i        ,  5.85692274e-24 + 2.63772351e-08i,  2.62755478e-16 + 1.18334547i , 1.40119899     +0.0i         ,  0.0 + 0.0i,
+                      -0.209756967    + 0.0i        ,  6.23204607e-17 - 0.280666403i, -0.454343228    + 0.0i           , -0.244090407    +0.0i         , 6.23204607e-17 - 0.280666403i,  0.0 + 0.0i,
+                      -0.209756965    + 0.0i        ,  6.23204627e-17 - 0.280666413i,  0.454343219    + 0.0i           , -0.244090427    +0.0i         , 6.23204627e-17 - 0.280666413i,  0.0 + 0.0i,
+                      -0.137516390    + 0.0i        ,  1.41855426e-16 - 0.638860046i,  1.20263872e-08 + 0.0i           ,  0.539532320    +0.0i         , 1.41855426e-16 - 0.638860046i,  0.0 + 0.0i;
     // clang-format on
     // Transform the matrices to the correct transformation type.
     const auto state1 = GQCP::GTransformation<GQCP::complex> {basis_state_1};
@@ -399,4 +402,120 @@ BOOST_AUTO_TEST_CASE(NOCI_complex_generalized) {
 
     // Check the result with the reference.
     BOOST_CHECK(std::abs(reference - qc_structure.groundStateEnergy()) < 1e-6);
+}
+
+/**
+ *  Test the UNOCI in the case where two zero overlap values are present.
+ */
+BOOST_AUTO_TEST_CASE(NOCI_unrestricted_two_zero) {
+    // This test case is taken from a python prototype from @lelemmen and @johdvos.
+    // It was for H3, at 1Å internuclear distance for the STO-3G basis set.
+    const auto molecule = GQCP::Molecule::HRingFromDistance(3, 1.8897259886);  // H3, 1Å apart.
+
+    // The unrestricted spin orbital basis is also needed, as we require the overlap operator in AO basis.
+    const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
+    const auto S = spin_orbital_basis.overlap();
+
+    // Initialize two non-orthogonal "unrestricted states".
+    GQCP::SquareMatrix<double> state_1_a {3};
+    GQCP::SquareMatrix<double> state_1_b {3};
+    // clang-format off
+    state_1_a << 0.301612395,  0.0        ,  1.18334666 ,
+                 0.460055205, -0.996503166, -0.535359699,
+                 0.460055205,  0.996503166, -0.535359699;
+
+    state_1_b << 0.638858962, -1.04073944 ,  0.0        ,
+                 0.280666711,  0.647678158, -0.996503166,
+                 0.280666711,  0.647678158,  0.996503166;
+    // clang-format on
+    GQCP::SquareMatrix<double> state_2_a {3};
+    GQCP::SquareMatrix<double> state_2_b {3};
+    // clang-format off
+    state_2_a <<  0.30161239,  0.63885896,  1.18334666,
+                  0.46005521,  0.28066671, -0.5353597 ,
+                  0.46005521,  0.28066671, -0.5353597 ;
+
+    state_2_b <<  0.0        , -1.04073944 ,  0.0        ,
+                 -0.996503166,  0.647678158, -0.996503166,
+                  0.996503166,  0.647678158,  0.996503166;
+    // clang-format on
+
+    // Transform the matrices to the correct transformation type.
+    const auto basis_state_1 = GQCP::UTransformation<double> {GQCP::UTransformationComponent<double> {state_1_a}, GQCP::UTransformationComponent<double> {state_1_b}};
+    const auto basis_state_2 = GQCP::UTransformation<double> {GQCP::UTransformationComponent<double> {state_2_a}, GQCP::UTransformationComponent<double> {state_2_b}};
+
+    // Create a vector out of these three basis states.
+    std::vector<GQCP::UTransformation<double>> basis_vector {basis_state_1, basis_state_2};
+
+    // Create a non-orthogonal state basis, using the basis state vector, the overlap operator in AO basis and the number of occupied orbitals for alpha and beta.
+    const auto NOS_basis = GQCP::UNonOrthogonalStateBasis<double> {basis_vector, S, 2, 1};
+
+    // To evaluate the Hamiltonian in the non-orthogonal state basis, we need the second quantized Hamiltonian in AO basis.
+    const auto sq_hamiltonian = spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
+
+    // Create a dense solver and corresponding environment and put them together in the QCMethod.
+    auto environment = GQCP::NOCIEnvironment::Dense(sq_hamiltonian, NOS_basis, molecule);
+    auto solver = GQCP::GeneralizedEigenproblemSolver::Dense<double>();
+
+    // We do not specify the number of states, meaning we only request the ground state.
+    const auto NOCI_model = GQCP::QCMethod::NOCI<double, GQCP::UNonOrthogonalStateBasis<double>>(NOS_basis).optimize(solver, environment);
+
+    // In this test case, the alpha and beta 1DM's should be equal. We check this fact, to confirm that all aspects of the complex NOCI method in an unrestricted basis work as expected.
+    const auto reference_energy = -1.36209;
+
+    // Check the energy versus the reference.
+    BOOST_CHECK(std::abs(reference_energy - NOCI_model.groundStateEnergy()) < 1e-6);
+}
+
+/**
+ *  Test the UNOCI in the case where one zero overlap value is present.
+ */
+BOOST_AUTO_TEST_CASE(NOCI_unrestricted_one_zero) {
+    // This test case is taken from a python prototype from @lelemmen and @johdvos.
+    // It was for H3, at 1.6Å internuclear distance for the STO-3G basis set.
+    const auto molecule = GQCP::Molecule::HRingFromDistance(3, 3.023561581760001);  // H3, 1.6Å apart.
+
+    // The unrestricted spin orbital basis is also needed, as we require the overlap operator in AO basis.
+    const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
+    const auto S = spin_orbital_basis.overlap();
+
+    // Initialize two non-orthogonal "unrestricted states".
+    GQCP::SquareMatrix<double> state_1 {3};
+    // clang-format off
+    state_1 << 0.639638709, -0.801711730,  0.189534772,
+               0.0        ,  0.0        , -1.04297785 ,
+               0.639638715,  0.801711722,  0.189534786;
+    // clang-format on
+    GQCP::SquareMatrix<double> state_2 {3};
+    // clang-format off
+    state_2 <<  0.0,  0.667128998, -0.801711735,
+                1.0, -0.296315367,  0.0        ,
+                0.0,  0.667129020,  0.801711717;
+    // clang-format on
+
+    // Transform the matrices to the correct transformation type.
+    const auto basis_state_1 = GQCP::UTransformation<double> {GQCP::UTransformationComponent<double> {state_1}, GQCP::UTransformationComponent<double> {state_2}};
+    const auto basis_state_2 = GQCP::UTransformation<double> {GQCP::UTransformationComponent<double> {state_2}, GQCP::UTransformationComponent<double> {state_1}};
+
+    // Create a vector out of these three basis states.
+    std::vector<GQCP::UTransformation<double>> basis_vector {basis_state_1, basis_state_2};
+
+    // Create a non-orthogonal state basis, using the basis state vector, the overlap operator in AO basis and the number of occupied orbitals for alpha and beta.
+    const auto NOS_basis = GQCP::UNonOrthogonalStateBasis<double> {basis_vector, S, 2, 1};
+
+    // To evaluate the Hamiltonian in the non-orthogonal state basis, we need the second quantized Hamiltonian in AO basis.
+    const auto sq_hamiltonian = spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
+
+    // Create a dense solver and corresponding environment and put them together in the QCMethod.
+    auto environment = GQCP::NOCIEnvironment::Dense(sq_hamiltonian, NOS_basis, molecule);
+    auto solver = GQCP::GeneralizedEigenproblemSolver::Dense<double>();
+
+    // We do not specify the number of states, meaning we only request the ground state.
+    const auto NOCI_model = GQCP::QCMethod::NOCI<double, GQCP::UNonOrthogonalStateBasis<double>>(NOS_basis).optimize(solver, environment);
+
+    // In this test case, the alpha and beta 1DM's should be equal. We check this fact, to confirm that all aspects of the complex NOCI method in an unrestricted basis work as expected.
+    const auto reference_energy = -1.37371;
+
+    // Check the energy versus the reference.
+    BOOST_CHECK(std::abs(reference_energy - NOCI_model.groundStateEnergy()) < 1e-6);
 }

@@ -3,8 +3,11 @@
     "cmake.configureSettings": {
         "CMAKE_PREFIX_PATH": "/usr/local/miniconda3",
         "BUILD_TESTS": "TRUE",
+        "BUILD_BENCHMARKS": "TRUE",
         "BUILD_PYTHON_BINDINGS": "TRUE",
         "CMAKE_INSTALL_PREFIX": "/usr/local/miniconda3",
+        "PYTHON_EXECUTABLE": "/usr/local/miniconda3/bin/python3",
+        "PYTHON_LIBRARY": "usr/local/miniconda3/lib/libpython3.8m.a"
     },
     "editor.formatOnSave": true
 }

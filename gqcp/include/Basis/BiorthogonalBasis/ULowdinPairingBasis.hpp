@@ -260,6 +260,9 @@ public:
             pair_vector.push_back(std::pair<size_t, Spin> {index, Spin::beta});
         }
 
+        // Sort the vector based on the indices. The first zero does not necessarily correspond with the alpha component.
+        sort(pair_vector.begin(), pair_vector.end());
+
         return pair_vector;
     }
 
@@ -277,7 +280,20 @@ public:
      *
      * @note This implementation is based on equation 38b from the 2021 paper by Hugh Burton (https://aip.scitation.org/doi/abs/10.1063/5.0045442).
      */
-    SpinResolved1DM<Scalar> coDensity(const int k) const { return SpinResolved1DM<Scalar> {SpinResolved1DMComponent<Scalar> {this->alpha().coDensity(k).matrix()}, SpinResolved1DMComponent<Scalar> {this->beta().coDensity(k).matrix()}}; }
+    SpinResolved1DM<Scalar> coDensity(const int k) const { return SpinResolved1DM<Scalar> {this->alpha().coDensity(k), this->beta().coDensity(k)}; }
+
+
+    /**
+     * Calculate and return the spin sigma co-density matrix for the given occupied orbital index.
+     *
+     * @param k         The occupied orbital index.
+     * @param sigma     The spin sigma component.
+     *
+     * @return The co-density matrix at occupied orbital index k.
+     *
+     * @note This implementation is based on equation 38b from the 2021 paper by Hugh Burton (https://aip.scitation.org/doi/abs/10.1063/5.0045442).
+     */
+    SpinResolved1DMComponent<Scalar> coDensityComponent(const int k, const Spin sigma) const { return SpinResolved1DMComponent<Scalar> {this->component(sigma).coDensity(k)}; }
 
 
     /**
@@ -287,7 +303,7 @@ public:
      *
      * @note This implementation is based on equation 38d from the 2021 paper by Hugh Burton (https://aip.scitation.org/doi/abs/10.1063/5.0045442).
      */
-    SpinResolved1DM<Scalar> coDensitySum() const { return SpinResolved1DM<Scalar> {SpinResolved1DMComponent<Scalar> {this->alpha().coDensitySum().matrix()}, SpinResolved1DMComponent<Scalar> {this->beta().coDensitySum().matrix()}}; }
+    SpinResolved1DM<Scalar> coDensitySum() const { return SpinResolved1DM<Scalar> {this->alpha().coDensitySum(), this->beta().coDensitySum()}; }
 
     /**
      * Calculate and return the transition one-electron density matrix. The contractions vary depending on the number of zero overlaps (Burton equation 46 and 47).
@@ -297,7 +313,7 @@ public:
      *
      * @note This implementation is based on equation 45 from the 2021 paper by Hugh Burton (https://aip.scitation.org/doi/abs/10.1063/5.0045442).
      */
-    SpinResolved1DM<Scalar> transition1DM() const { return SpinResolved1DM<Scalar> {SpinResolved1DMComponent<Scalar> {this->alpha().transition1DM().matrix()}, SpinResolved1DMComponent<Scalar> {this->beta().transition1DM().matrix()}}; }
+    SpinResolved1DM<Scalar> transition1DM() const { return SpinResolved1DM<Scalar> {this->alpha().transition1DM(), this->beta().transition1DM()}; }
 
 
     /**
@@ -308,7 +324,7 @@ public:
      *
      * @note This implementation is based on equation 38c from the 2021 paper by Hugh Burton (https://aip.scitation.org/doi/abs/10.1063/5.0045442).
      */
-    SpinResolved1DM<Scalar> weightedCoDensity() const { return SpinResolved1DM<Scalar> {SpinResolved1DMComponent<Scalar> {this->alpha().weightedCoDensity().matrix()}, SpinResolved1DMComponent<Scalar> {this->beta().weightedCoDensity().matrix()}}; }
+    SpinResolved1DM<Scalar> weightedCoDensity() const { return SpinResolved1DM<Scalar> {this->alpha().weightedCoDensity(), this->beta().weightedCoDensity()}; }
 
 
     /**
@@ -318,7 +334,7 @@ public:
      *
      * @note This implementation is based on equation 38a from the 2021 paper by Hugh Burton (https://aip.scitation.org/doi/abs/10.1063/5.0045442).
      */
-    SpinResolved1DM<Scalar> zeroOverlapCoDensity() const { return SpinResolved1DM<Scalar> {SpinResolved1DMComponent<Scalar> {this->alpha().zeroOverlapCoDensity().matrix()}, SpinResolved1DMComponent<Scalar> {this->beta().zeroOverlapCoDensity().matrix()}}; }
+    SpinResolved1DM<Scalar> zeroOverlapCoDensity() const { return SpinResolved1DM<Scalar> {this->alpha().zeroOverlapCoDensity(), this->beta().zeroOverlapCoDensity().matrix()}; }
 };
 
 
