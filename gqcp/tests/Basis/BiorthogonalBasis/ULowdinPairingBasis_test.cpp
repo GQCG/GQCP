@@ -225,3 +225,146 @@ BOOST_AUTO_TEST_CASE(density_matrices) {
     BOOST_CHECK(lowdin_pairing_basis.coDensitySum().alpha().matrix().isApprox(ref_weighted_co_density, 1e-6));
     BOOST_CHECK(lowdin_pairing_basis.coDensitySum().beta().matrix().isApprox(ref_weighted_co_density, 1e-6));
 }
+
+
+/**
+ *  Test whether the `ULowdinPairingBasis` works correctly when there are zero overlaps present.
+ */
+BOOST_AUTO_TEST_CASE(one_zero_overlap) {
+    // This test case is taken from a python prototype from H. Burton (https://github.com/hgaburton/libgnme).
+    // It was for H3, at 1.6Å internuclear distance for the STO-3G basis set.
+    const auto molecule = GQCP::Molecule::HRingFromDistance(3, 3.023561581760001);  // H3, 1.6Å apart.
+
+    // The unrestricted spin orbital basis is also needed, as we require the overlap operator in AO basis.
+    const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
+    const auto S = spin_orbital_basis.overlap();
+
+    // Initialize two non - orthogonal "unrestricted states".
+    GQCP::SquareMatrix<double> state_1 {3};
+    // clang-format off
+    state_1 << 0.639638709, -0.801711730,  0.189534772,
+               0.0        ,  0.0        , -1.04297785 ,
+               0.639638715,  0.801711722,  0.189534786;
+    // clang-format on
+    GQCP::SquareMatrix<double> state_2 {3};
+    // clang-format off
+    state_2 <<  0.0,  0.667128998, -0.801711735,
+                1.0, -0.296315367,  0.0        ,
+                0.0,  0.667129020,  0.801711717;
+    // clang-format on
+
+    // Transform the matrices to the correct transformation type. We convert the restricted states to unrestricted transformations.
+    const auto bra_expansion = GQCP::UTransformation<double> {GQCP::UTransformationComponent<double> {state_1}, GQCP::UTransformationComponent<double> {state_2}};
+    const auto ket_expansion = GQCP::UTransformation<double> {GQCP::UTransformationComponent<double> {state_2}, GQCP::UTransformationComponent<double> {state_1}};
+
+    const auto lowdin_pairing_basis = GQCP::ULowdinPairingBasis<double>(bra_expansion, ket_expansion, S, molecule.numberOfElectronPairs() + 1, molecule.numberOfElectronPairs());
+
+    // Initialize a reference for the biorthogonal occupied bra expansion coefficients.
+    // Reference code results in two completely positive sets of expansion coefficients. However, as both phases change, this has no effect on the resulting calculations (as shown by  all subsequent tests).
+    GQCP::MatrixX<double> biorthogonal_bra_reference_alpha {3, 2};
+    // clang-format off
+    biorthogonal_bra_reference_alpha <<  -0.639639,    0.801712,
+                                          0.0     ,    0.0     ,
+                                         -0.639639,   -0.801712;
+    // clang-format off
+    GQCP::MatrixX<double> biorthogonal_bra_reference_beta {3, 1};
+    // clang-format off
+    biorthogonal_bra_reference_beta <<  0.0   ,
+                                        1.0000,
+                                        0.0   ;
+    // clang-format off
+
+    // Initialize a reference for the biorthogonal occupied ket expansion coefficients.
+    GQCP::MatrixX<double> biorthogonal_ket_reference_alpha {3, 2};
+    // clang-format off
+    biorthogonal_ket_reference_alpha <<  -0.639639   ,   -0.189535,
+                                          0.0        ,    1.04298 ,
+                                         -0.639639   ,   -0.189535;  
+    // clang-format off
+    GQCP::MatrixX<double> biorthogonal_ket_reference_beta {3, 1};
+    // clang-format off
+    biorthogonal_ket_reference_beta <<  0.639639,
+                                        0.0     ,
+                                        0.639639;
+    // clang-format off
+
+    // Note that the reference data showed the alpha bra and ket to have a different phase. 
+    // However, since BOTH have a different phase, this should yield the same matrix element evaluations (see UNonOrthogonalStateBasis_test.cpp).
+
+    // Check the parameters instantiated by the constructor.
+    BOOST_CHECK(lowdin_pairing_basis.biorthogonalBraExpansion(GQCP::Spin::alpha).isApprox(biorthogonal_bra_reference_alpha, 1e-5));
+    BOOST_CHECK(lowdin_pairing_basis.biorthogonalKetExpansion(GQCP::Spin::alpha).isApprox(biorthogonal_ket_reference_alpha, 1e-5));
+    BOOST_CHECK(lowdin_pairing_basis.biorthogonalBraExpansion(GQCP::Spin::beta).isApprox(biorthogonal_bra_reference_beta, 1e-5));
+    BOOST_CHECK(lowdin_pairing_basis.biorthogonalKetExpansion(GQCP::Spin::beta).isApprox(biorthogonal_ket_reference_beta, 1e-5));
+
+    // Initialize the reference biorthogonal overlaps for the alpha and beta coefficients and check the calculated values with this reference.
+    GQCP::VectorX<double> overlap_reference_alpha {2};
+    // clang-format off
+    overlap_reference_alpha <<  1.0000    ,
+                                3.8981e-09;
+    // clang-format on
+    const double overlap_reference_beta = 0.284105;
+
+    // Check the biorthogonal overlaps.
+    BOOST_CHECK(lowdin_pairing_basis.biorthogonalOverlaps(GQCP::Spin::alpha).isApprox(overlap_reference_alpha, 1e-6));
+    BOOST_CHECK(std::abs(overlap_reference_beta - lowdin_pairing_basis.biorthogonalOverlaps(GQCP::Spin::beta)[0]) < 1e-6);
+
+    // Check the reduced overlaps.
+    BOOST_CHECK(std::abs(1.0000 - lowdin_pairing_basis.reducedOverlap(GQCP::Spin::alpha)) < 1e-6);
+    BOOST_CHECK(std::abs(overlap_reference_beta - lowdin_pairing_basis.reducedOverlap(GQCP::Spin::beta)) < 1e-6);
+
+    // Check the number of zero overlaps.
+    BOOST_CHECK_EQUAL(lowdin_pairing_basis.numberOfZeroOverlaps(), 1);
+
+    // Initialize an reference vectors for the zero indices and check the zero overlap indices with this reference.
+    std::vector<int> zero_indices_ref_alpha {1};
+    std::vector<int> zero_indices_ref_beta {};
+
+    const auto alpha_overlap_indices = lowdin_pairing_basis.zeroOverlapIndices(GQCP::Spin::alpha);
+    const auto beta_overlap_indices = lowdin_pairing_basis.zeroOverlapIndices(GQCP::Spin::beta);
+
+    BOOST_CHECK_EQUAL_COLLECTIONS(zero_indices_ref_alpha.begin(), zero_indices_ref_alpha.end(), alpha_overlap_indices.begin(), alpha_overlap_indices.end());
+    BOOST_CHECK_EQUAL_COLLECTIONS(zero_indices_ref_beta.begin(), zero_indices_ref_beta.end(), beta_overlap_indices.begin(), beta_overlap_indices.end());
+
+    // Initialize a reference co-density matrix. Data taken from the implementation of H. Burton (https://github.com/hgaburton/libgnme).
+    GQCP::SquareMatrix<double> ref_alpha_co_density {3};
+    // clang-format off
+    ref_alpha_co_density <<  -0.1520,        0.0,   0.1520,
+                              0.8362,        0.0,  -0.8362,
+                             -0.1520,        0.0,   0.1520;
+    // clang-format on
+
+    // Initialize a zero matrix as reference for the zero overlap co-density matrix for the beta coefficients..
+    const GQCP::MatrixX<double> zero_overlap_beta_co_dens_ref = GQCP::MatrixX<double>::Zero(4, 4);
+
+    // Initialize a reference weighted co-density matrix. Data taken from the implementation of H. Burton (https://github.com/hgaburton/libgnme).
+    // The beta wieghted co density is equal to the regular beta co density.
+    GQCP::SquareMatrix<double> ref_weighted_alpha_co_density {3};
+    // clang-format off
+    ref_weighted_alpha_co_density << 0.2572,        0.0,   0.5611,
+                                     0.8362,        0.0,  -0.83620,
+                                     0.2572,        0.0,   0.5611;
+    // clang-format on
+
+    GQCP::SquareMatrix<double> ref_weighted_beta_co_density {3};
+    // clang-format off
+    ref_weighted_beta_co_density <<  0.0,   2.2514,        0.0,
+                                     0.0,   0.0   ,        0.0,
+                                     0.0,   2.2514,        0.0;
+    // clang-format on
+
+    // Compare the calculated and reference co-density matrices.
+    const auto zero_index = lowdin_pairing_basis.zeroOverlapIndices(GQCP::Spin::alpha)[0];
+    BOOST_CHECK(lowdin_pairing_basis.coDensityComponent(zero_index, GQCP::Spin::alpha).matrix().isApprox(ref_alpha_co_density, 1e-4));
+
+    BOOST_CHECK(lowdin_pairing_basis.zeroOverlapCoDensity().alpha().matrix().isApprox(ref_alpha_co_density, 1e-4));
+    BOOST_CHECK(lowdin_pairing_basis.zeroOverlapCoDensity().beta().matrix().isApprox(zero_overlap_beta_co_dens_ref, 1e-6));
+
+    BOOST_CHECK(lowdin_pairing_basis.weightedCoDensity().alpha().matrix().isApprox(ref_weighted_alpha_co_density, 1e-4));
+    BOOST_CHECK(lowdin_pairing_basis.weightedCoDensity().beta().matrix().isApprox(ref_weighted_beta_co_density, 1e-4));
+
+    // The transition one DM in this case will be equal to thetranspose of the respective co_density matrices. Data taken from the implementation of H. Burton (https://github.com/hgaburton/libgnme).
+
+    BOOST_CHECK(lowdin_pairing_basis.transition1DM().alpha().matrix().isApprox(ref_alpha_co_density.transpose(), 1e-4));
+    BOOST_CHECK(lowdin_pairing_basis.transition1DM().beta().matrix().isApprox((ref_weighted_beta_co_density.transpose() / 3.5198), 1e-6));
+}

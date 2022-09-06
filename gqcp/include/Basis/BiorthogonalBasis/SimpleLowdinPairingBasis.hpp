@@ -167,11 +167,17 @@ public:
         // The SVD, in contrast to numpy, returns the matrices U and V. No adjoint or transpose is necessary.
         Matrix biorthogonal_bra_occupied = C_bra_occupied_tensor.template einsum<1>("ui,ij->uj", svd.matrixU()).asMatrix();
         Matrix biorthogonal_ket_occupied = C_ket_occupied_tensor.template einsum<1>("ui,ij->uj", svd.matrixV()).asMatrix();
-
+        // std::cout << "-----biorth-bra-no-phase-----" << std::endl;
+        // std::cout << biorthogonal_bra_occupied << std::endl;
+        // std::cout << "-----biorth-ket-no-phase-----" << std::endl;
+        // std::cout << biorthogonal_ket_occupied << std::endl;
         // Correct the biorthogonal expansions for the phase factor.
         biorthogonal_bra_occupied.col(0) = biorthogonal_bra_occupied.col(0) * svd.matrixU().transpose().determinant();
         biorthogonal_ket_occupied.col(0) = biorthogonal_ket_occupied.col(0) * svd.matrixV().transpose().determinant();
-
+        // std::cout << "-----det(U.T)-----" << std::endl;
+        // std::cout << svd.matrixU().transpose().determinant() << std::endl;
+        // std::cout << "-----det(V.T)-----" << std::endl;
+        // std::cout << svd.matrixV().transpose().determinant() << std::endl;
         // We now have the biorthogonal expansion coefficients.
         this->occupied_biorthogonal_state_expansions = std::pair<Matrix, Matrix> {biorthogonal_bra_occupied, biorthogonal_ket_occupied};
 
@@ -455,6 +461,8 @@ public:
         for (int i = 0, s = 0; x < this->biorthogonalOverlaps().rows() && s < this->biorthogonalOverlaps().rows(); i++, s++) {
             if (std::abs(this->biorthogonalOverlaps()[s]) > this->zero_threshold) {
                 weighted_co_density += (this->coDensity(i).matrix() / this->biorthogonalOverlaps()[s]);
+            } else {
+                weighted_co_density += this->coDensity(i).matrix();
             }
         }
 
@@ -481,6 +489,8 @@ public:
         for (int i = 0, s = 0; x < this->biorthogonalOverlaps().rows() && s < this->biorthogonalOverlaps().rows(); i++, s++) {
             if (std::abs(this->biorthogonalOverlaps()[s].real()) > this->zero_threshold) {
                 weighted_co_density += (this->coDensity(i).matrix() / this->biorthogonalOverlaps()[s]);
+            } else {
+                weighted_co_density += this->coDensity(i).matrix();
             }
         }
 
@@ -493,7 +503,7 @@ public:
      *
      * @return The zero overlap co-density matrix.
      *
-     * @note This implementation is based on equation 38a from the 2021 pper by Hugh Burton (https://aip.scitation.org/doi/abs/10.1063/5.0045442).
+     * @note This implementation is based on equation 38a from the 2021 paper by Hugh Burton (https://aip.scitation.org/doi/abs/10.1063/5.0045442).
      */
     DM zeroOverlapCoDensity() const {
 
