@@ -9,5 +9,8 @@
         "PYTHON_EXECUTABLE": "/usr/local/miniconda3/bin/python3",
         "PYTHON_LIBRARY": "usr/local/miniconda3/lib/libpython3.8m.a"
     },
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "files.associations": {
+        "ostream": "cpp"
+    }
 }

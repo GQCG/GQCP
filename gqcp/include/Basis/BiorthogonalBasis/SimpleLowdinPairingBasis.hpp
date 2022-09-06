@@ -136,16 +136,20 @@ public:
                 C_ket_occupied(i, j) = C_ket.matrix()(i, j);
             }
         }
+        // std::cout << "-----bra-----" << std::endl;
+        // std::cout << C_bra_occupied << std::endl;
+        // std::cout << "-----ket-----" << std::endl;
+        // std::cout << C_ket_occupied << std::endl;
 
         // Now that we have the occupied expansions of the bra and the ket, we calculate their overlap.
         const auto occupied_orbital_overlap = C_bra_occupied.transpose().conjugate() * S_AO.parameters() * C_ket_occupied;
 
+        // std::cout << "-----S-bra-ket-----" << std::endl;
+        // std::cout << occupied_orbital_overlap << std::endl;
+
         // Perform a singular value decomposition (SVD) on the occupied orbital overlap, in order to gain the biorthogonal overlaps.
         // We require the full matrices from the SVD, not the so-called `thin` matrices.
         Eigen::JacobiSVD<Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>> svd(occupied_orbital_overlap, Eigen::ComputeFullU | Eigen::ComputeFullV);
-
-        // The singular values are the biorthogonal overlaps.
-        this->biorthogonal_overlaps = svd.singularValues();
 
         // We need a two dimensional tensor representation of the provided expansions in order to perform a contraction later on.
         Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> occ_bra_map {C_bra_occupied.data(), C_bra_occupied.rows(), C_bra_occupied.cols()};
@@ -154,13 +158,22 @@ public:
         Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> occ_ket_map {C_ket_occupied.data(), C_ket_occupied.rows(), C_ket_occupied.cols()};
         Tensor<Scalar, 2> C_ket_occupied_tensor = Tensor<Scalar, 2>(occ_ket_map);
 
+        // std::cout << "-----U-----" << std::endl;
+        // std::cout << svd.matrixU() << std::endl;
+        // std::cout << "-----V-----" << std::endl;
+        // std::cout << svd.matrixV() << std::endl;
+
         // Perform the contractions in order to biorthogonalize the occupied bra and ket expansions.
         // The SVD, in contrast to numpy, returns the matrices U and V. No adjoint or transpose is necessary.
-        Tensor<Scalar, 2> biorthogonal_bra_occupied = C_bra_occupied_tensor.template einsum<1>("ui,ij->uj", svd.matrixU());
-        Tensor<Scalar, 2> biorthogonal_ket_occupied = C_ket_occupied_tensor.template einsum<1>("ui,ij->uj", svd.matrixV());
+        Matrix biorthogonal_bra_occupied = C_bra_occupied_tensor.template einsum<1>("ui,ij->uj", svd.matrixU()).asMatrix();
+        Matrix biorthogonal_ket_occupied = C_ket_occupied_tensor.template einsum<1>("ui,ij->uj", svd.matrixV()).asMatrix();
+
+        // Correct the biorthogonal expansions for the phase factor.
+        biorthogonal_bra_occupied.col(0) = biorthogonal_bra_occupied.col(0) * svd.matrixU().transpose().determinant();
+        biorthogonal_ket_occupied.col(0) = biorthogonal_ket_occupied.col(0) * svd.matrixV().transpose().determinant();
 
         // We now have the biorthogonal expansion coefficients.
-        this->occupied_biorthogonal_state_expansions = std::pair<Matrix, Matrix> {biorthogonal_bra_occupied.asMatrix(), biorthogonal_ket_occupied.asMatrix()};
+        this->occupied_biorthogonal_state_expansions = std::pair<Matrix, Matrix> {biorthogonal_bra_occupied, biorthogonal_ket_occupied};
 
         // We will perform another check to see whether the biorthogonalization procedure was correct.
         // The overlap between the biorthogonal states should be the same when calculated by multiplying the biorthogonal overlaps as when taking the determinant of the overlap matrix X of the occupied orbitals only.
@@ -173,6 +186,10 @@ public:
                 X_occupied(i, j) = X(i, j);
             }
         }
+
+        // The singular values are the biorthogonal overlaps.
+        const auto new_overlaps = X.diagonal();
+        this->biorthogonal_overlaps = new_overlaps;
 
         // Determine the procduct of the biorthogonal overlaps.
         const auto overlap = this->biorthogonal_overlaps.prod();
@@ -247,7 +264,7 @@ public:
 
         // Check all overlap values and increase the count if the overlap value is zero.
         for (int i = 0; i < this->biorthogonalOverlaps().rows(); i++) {
-            if (this->biorthogonalOverlaps()[i] < this->zero_threshold) {
+            if (std::abs(this->biorthogonalOverlaps()[i]) < this->zero_threshold) {
                 number_of_zeros += 1;
             }
         }
@@ -269,7 +286,7 @@ public:
 
         // Check all overlap values and increase the count if the overlap value is zero.
         for (int i = 0; i < this->biorthogonalOverlaps().rows(); i++) {
-            if (this->biorthogonalOverlaps()[i].real() < this->zero_threshold) {
+            if (std::abs(this->biorthogonalOverlaps()[i].real()) < this->zero_threshold) {
                 number_of_zeros += 1;
             }
         }
@@ -316,7 +333,7 @@ public:
 
         // Check all overlap values and push the index to the index vector if the overlap value is zero.
         for (size_t i = 0; i < this->biorthogonalOverlaps().rows(); i++) {
-            if (this->biorthogonalOverlaps()[i] < this->zero_threshold) {
+            if (std::abs(this->biorthogonalOverlaps()[i]) < this->zero_threshold) {
                 zero_indices.push_back(i);
             }
         }
@@ -338,7 +355,7 @@ public:
 
         // Check all overlap values and push the index to the index vector if the overlap value is zero.
         for (size_t i = 0; i < this->biorthogonalOverlaps().rows(); i++) {
-            if (this->biorthogonalOverlaps()[i].real() < this->zero_threshold) {
+            if (std::abs(this->biorthogonalOverlaps()[i].real()) < this->zero_threshold) {
                 zero_indices.push_back(i);
             }
         }
@@ -436,7 +453,7 @@ public:
 
         // Loop over all zero indices and calculate the zero overlap co-density matrix at each of them. Add them to the total zero overlap co-density matrix.
         for (int i = 0, s = 0; x < this->biorthogonalOverlaps().rows() && s < this->biorthogonalOverlaps().rows(); i++, s++) {
-            if (this->biorthogonalOverlaps()[s] > this->zero_threshold) {
+            if (std::abs(this->biorthogonalOverlaps()[s]) > this->zero_threshold) {
                 weighted_co_density += (this->coDensity(i).matrix() / this->biorthogonalOverlaps()[s]);
             }
         }
@@ -462,7 +479,7 @@ public:
 
         // Loop over all zero indices and calculate the zero overlap co-density matrix at each of them. Add them to the total zero overlap co-density matrix.
         for (int i = 0, s = 0; x < this->biorthogonalOverlaps().rows() && s < this->biorthogonalOverlaps().rows(); i++, s++) {
-            if (this->biorthogonalOverlaps()[s].real() > this->zero_threshold) {
+            if (std::abs(this->biorthogonalOverlaps()[s].real()) > this->zero_threshold) {
                 weighted_co_density += (this->coDensity(i).matrix() / this->biorthogonalOverlaps()[s]);
             }
         }
