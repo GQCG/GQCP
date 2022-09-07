@@ -29,7 +29,7 @@
  *  Test whether or not the constructor of a biorthonormal `RLowdinPairingBasis` works.
  */
 BOOST_AUTO_TEST_CASE(constructor) {
-    // This test case is taken from a python prototype from @lelemmen and @johdvos.
+    // Reference data taken from the implementation of H. Burton (https://github.com/hgaburton/libgnme).
     // It was for H2, at 2.5au internuclear distance for the 6-31G basis set.
     const auto molecule = GQCP::Molecule::HChain(2, 2.5, 0);  // H2, 2.5 bohr apart.
 
@@ -92,7 +92,7 @@ BOOST_AUTO_TEST_CASE(constructor) {
  *  Test whether the overlap metrics are working correctly in the `RLowdinPairingBasis`.
  */
 BOOST_AUTO_TEST_CASE(overlap_metrics) {
-    // This test case is taken from a python prototype from @lelemmen and @johdvos.
+    // Reference data taken from the implementation of H. Burton (https://github.com/hgaburton/libgnme).
     // It was for H2, at 2.5au internuclear distance for the 6-31G basis set.
     const auto molecule = GQCP::Molecule::HChain(2, 2.5, 0);  // H2, 2.5 bohr apart.
 
@@ -138,7 +138,6 @@ BOOST_AUTO_TEST_CASE(overlap_metrics) {
  *  Test whether the density matrices are working correctly in the `RLowdinPairingBasis`.
  */
 BOOST_AUTO_TEST_CASE(density_matrices) {
-    // This test case is taken from a python prototype from @lelemmen and @johdvos.
     // It was for H2, at 2.5au internuclear distance for the 6-31G basis set.
     const auto molecule = GQCP::Molecule::HChain(2, 2.5, 0);  // H2, 2.5 bohr apart.
 
@@ -168,7 +167,7 @@ BOOST_AUTO_TEST_CASE(density_matrices) {
     // We can now initialize the biorthogonal Löwdin Pairing basis of these two states.
     const auto lowdin_pairing_basis = GQCP::RLowdinPairingBasis<double>(bra_expansion, ket_expansion, S_res, molecule.numberOfElectronPairs());
 
-    // Initialize a reference co-density matrix. Data taken from the implementation of @lelemmen and @johdvos.
+    // Initialize a reference co-density matrix. Data taken from the implementation of H. Burton (https://github.com/hgaburton/libgnme).
     GQCP::SquareMatrix<double> ref_co_density {4};
     // clang-format off
     ref_co_density <<  -0.01924294, -0.02035772, -0.06354305, -0.10067609,
@@ -180,7 +179,7 @@ BOOST_AUTO_TEST_CASE(density_matrices) {
     // Initialize a zero matrix as reference for the zero overlap co-density matrix.
     const GQCP::MatrixX<double> zero_overlap_co_dens_ref = GQCP::MatrixX<double>::Zero(4, 4);
 
-    // Initialize a reference weighted co-density matrix. Data taken from the implementation of @lelemmen and @johdvos.
+    // Initialize a reference weighted co-density matrix. Data taken from the implementation of H. Burton (https://github.com/hgaburton/libgnme).
     GQCP::SquareMatrix<double> ref_weighted_co_density {4};
     // clang-format off
     ref_weighted_co_density << 0.03251942, 0.03440334, 0.10738399, 0.17013661,
@@ -189,7 +188,7 @@ BOOST_AUTO_TEST_CASE(density_matrices) {
                                0.04603687, 0.04870388, 0.15202063, 0.24085783;
     // clang-format on
 
-    // Initialize a reference weighted co-density matrix. Data taken from the implementation of @lelemmen and @johdvos.
+    // Initialize a reference weighted co-density matrix. Data taken from the implementation of H. Burton (https://github.com/hgaburton/libgnme).
     GQCP::SquareMatrix<double> ref_transition_1DM {4};
     // clang-format off
     ref_transition_1DM << -0.01924294, -0.02723897, -0.01924448, -0.02724171,
