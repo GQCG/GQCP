@@ -136,16 +136,9 @@ public:
                 C_ket_occupied(i, j) = C_ket.matrix()(i, j);
             }
         }
-        // std::cout << "-----bra-----" << std::endl;
-        // std::cout << C_bra_occupied << std::endl;
-        // std::cout << "-----ket-----" << std::endl;
-        // std::cout << C_ket_occupied << std::endl;
 
         // Now that we have the occupied expansions of the bra and the ket, we calculate their overlap.
         const auto occupied_orbital_overlap = C_bra_occupied.transpose().conjugate() * S_AO.parameters() * C_ket_occupied;
-
-        // std::cout << "-----S-bra-ket-----" << std::endl;
-        // std::cout << occupied_orbital_overlap << std::endl;
 
         // Perform a singular value decomposition (SVD) on the occupied orbital overlap, in order to gain the biorthogonal overlaps.
         // We require the full matrices from the SVD, not the so-called `thin` matrices.
@@ -158,26 +151,14 @@ public:
         Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> occ_ket_map {C_ket_occupied.data(), C_ket_occupied.rows(), C_ket_occupied.cols()};
         Tensor<Scalar, 2> C_ket_occupied_tensor = Tensor<Scalar, 2>(occ_ket_map);
 
-        // std::cout << "-----U-----" << std::endl;
-        // std::cout << svd.matrixU() << std::endl;
-        // std::cout << "-----V-----" << std::endl;
-        // std::cout << svd.matrixV() << std::endl;
-
         // Perform the contractions in order to biorthogonalize the occupied bra and ket expansions.
         // The SVD, in contrast to numpy, returns the matrices U and V. No adjoint or transpose is necessary.
         Matrix biorthogonal_bra_occupied = C_bra_occupied_tensor.template einsum<1>("ui,ij->uj", svd.matrixU()).asMatrix();
         Matrix biorthogonal_ket_occupied = C_ket_occupied_tensor.template einsum<1>("ui,ij->uj", svd.matrixV()).asMatrix();
-        // std::cout << "-----biorth-bra-no-phase-----" << std::endl;
-        // std::cout << biorthogonal_bra_occupied << std::endl;
-        // std::cout << "-----biorth-ket-no-phase-----" << std::endl;
-        // std::cout << biorthogonal_ket_occupied << std::endl;
-        // Correct the biorthogonal expansions for the phase factor.
-        biorthogonal_bra_occupied.col(0) = biorthogonal_bra_occupied.col(0) * svd.matrixU().transpose().determinant();
-        biorthogonal_ket_occupied.col(0) = biorthogonal_ket_occupied.col(0) * svd.matrixV().transpose().determinant();
-        // std::cout << "-----det(U.T)-----" << std::endl;
-        // std::cout << svd.matrixU().transpose().determinant() << std::endl;
-        // std::cout << "-----det(V.T)-----" << std::endl;
-        // std::cout << svd.matrixV().transpose().determinant() << std::endl;
+
+        biorthogonal_bra_occupied.col(0) = biorthogonal_bra_occupied.col(0) * svd.matrixU().conjugate().transpose().determinant();
+        biorthogonal_ket_occupied.col(0) = biorthogonal_ket_occupied.col(0) * svd.matrixV().conjugate().transpose().determinant();
+
         // We now have the biorthogonal expansion coefficients.
         this->occupied_biorthogonal_state_expansions = std::pair<Matrix, Matrix> {biorthogonal_bra_occupied, biorthogonal_ket_occupied};
 
