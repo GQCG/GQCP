@@ -335,7 +335,7 @@ BOOST_AUTO_TEST_CASE(one_zero_overlap) {
     // clang-format on
 
     // Initialize a zero matrix as reference for the zero overlap co-density matrix for the beta coefficients..
-    const GQCP::MatrixX<double> zero_overlap_beta_co_dens_ref = GQCP::MatrixX<double>::Zero(4, 4);
+    const GQCP::MatrixX<double> zero_overlap_beta_co_dens_ref = GQCP::MatrixX<double>::Zero(3, 3);
 
     // Initialize a reference weighted co-density matrix. Data taken from the implementation of H. Burton (https://github.com/hgaburton/libgnme).
     // The beta wieghted co density is equal to the regular beta co density.
@@ -363,8 +363,7 @@ BOOST_AUTO_TEST_CASE(one_zero_overlap) {
     BOOST_CHECK(lowdin_pairing_basis.weightedCoDensity().alpha().matrix().isApprox(ref_weighted_alpha_co_density, 1e-4));
     BOOST_CHECK(lowdin_pairing_basis.weightedCoDensity().beta().matrix().isApprox(ref_weighted_beta_co_density, 1e-4));
 
-    // The transition one DM in this case will be equal to thetranspose of the respective co_density matrices. Data taken from the implementation of H. Burton (https://github.com/hgaburton/libgnme).
-
+    // The transition one DM in this case will be equal to the transpose of the respective co_density matrices. Data taken from the implementation of H. Burton (https://github.com/hgaburton/libgnme).
     BOOST_CHECK(lowdin_pairing_basis.transition1DM().alpha().matrix().isApprox(ref_alpha_co_density.transpose(), 1e-4));
     BOOST_CHECK(lowdin_pairing_basis.transition1DM().beta().matrix().isApprox((ref_weighted_beta_co_density.transpose() / 3.5198), 1e-6));
 }
