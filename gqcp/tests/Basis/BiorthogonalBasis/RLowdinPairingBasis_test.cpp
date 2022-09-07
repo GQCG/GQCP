@@ -73,10 +73,10 @@ BOOST_AUTO_TEST_CASE(constructor) {
     // Initialize a reference for the biorthogonal occupied ket expansion coefficients.
     GQCP::MatrixX<double> biorthogonal_ket_reference {4, 1};
     // clang-format off
-    biorthogonal_ket_reference <<  -0.25851329,
-                                   -0.36593356,
-                                   -0.25853403,
-                                   -0.36597032;
+    biorthogonal_ket_reference <<  0.25851329,
+                                   0.36593356,
+                                   0.25853403,
+                                   0.36597032;
     // clang-format off
 
     // Check the parameters instantiated by the constructor.
@@ -84,7 +84,7 @@ BOOST_AUTO_TEST_CASE(constructor) {
     BOOST_CHECK(lowdin_pairing_basis.biorthogonalKetExpansion().isApprox(biorthogonal_ket_reference, 1e-6));
 
     // Due to the dimensions of the problem, there is only one biorthogonal overlap calculated. Since it is stored in a vector, we can compare it to the reference value as follows.
-    BOOST_CHECK(std::abs(0.591737 - lowdin_pairing_basis.biorthogonalOverlaps()[0]) < 1e-6);
+    BOOST_CHECK(std::abs(-0.591737 - lowdin_pairing_basis.biorthogonalOverlaps()[0]) < 1e-6);
 }
 
 
@@ -127,8 +127,8 @@ BOOST_AUTO_TEST_CASE(overlap_metrics) {
     std::vector<int> zero_indices_ref {};
 
     // Check the overlap metrics calculated by the LowdinPairingBasis.
-    BOOST_CHECK(std::abs(0.591737 - lowdin_pairing_basis.totalOverlap()) < 1e-6);
-    BOOST_CHECK(std::abs(0.591737 - lowdin_pairing_basis.reducedOverlap()) < 1e-6);
+    BOOST_CHECK(std::abs(-0.591737 - lowdin_pairing_basis.totalOverlap()) < 1e-6);
+    BOOST_CHECK(std::abs(-0.591737 - lowdin_pairing_basis.reducedOverlap()) < 1e-6);
     BOOST_CHECK_EQUAL(lowdin_pairing_basis.numberOfZeroOverlaps(), 0);
     BOOST_CHECK_EQUAL_COLLECTIONS(zero_indices_ref.begin(), zero_indices_ref.end(), lowdin_pairing_basis.zeroOverlapIndices().begin(), lowdin_pairing_basis.zeroOverlapIndices().end());
 }
@@ -171,10 +171,10 @@ BOOST_AUTO_TEST_CASE(density_matrices) {
     // Initialize a reference co-density matrix. Data taken from the implementation of @lelemmen and @johdvos.
     GQCP::SquareMatrix<double> ref_co_density {4};
     // clang-format off
-    ref_co_density <<  0.01924294, 0.02035772, 0.06354305, 0.10067609,
-                       0.02723897, 0.02881698, 0.08994716, 0.14251011,
-                       0.01924448, 0.02035935, 0.06354815, 0.10068416,
-                       0.02724171, 0.02881988, 0.08995619, 0.14252443;
+    ref_co_density <<  -0.01924294, -0.02035772, -0.06354305, -0.10067609,
+                       -0.02723897, -0.02881698, -0.08994716, -0.14251011,
+                       -0.01924448, -0.02035935, -0.06354815, -0.10068416,
+                       -0.02724171, -0.02881988, -0.08995619, -0.14252443;
     // clang-format on
 
     // Initialize a zero matrix as reference for the zero overlap co-density matrix.
@@ -192,10 +192,10 @@ BOOST_AUTO_TEST_CASE(density_matrices) {
     // Initialize a reference weighted co-density matrix. Data taken from the implementation of @lelemmen and @johdvos.
     GQCP::SquareMatrix<double> ref_transition_1DM {4};
     // clang-format off
-    ref_transition_1DM << 0.01924294, 0.02723897, 0.01924448, 0.02724171,
-                          0.02035772, 0.02881698, 0.02035935, 0.02881988,
-                          0.06354305, 0.08994716, 0.06354815, 0.08995619,
-                          0.10067609, 0.14251011, 0.10068416, 0.14252443;
+    ref_transition_1DM << -0.01924294, -0.02723897, -0.01924448, -0.02724171,
+                          -0.02035772, -0.02881698, -0.02035935, -0.02881988,
+                          -0.06354305, -0.08994716, -0.06354815, -0.08995619,
+                          -0.10067609, -0.14251011, -0.10068416, -0.14252443;
     // clang-format on
 
     // Compare the calculated and reference co-density matrices.
