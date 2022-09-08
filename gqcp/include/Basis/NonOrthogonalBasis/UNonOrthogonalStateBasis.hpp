@@ -462,11 +462,12 @@ public:
 
                     // In order to calcluate the matrix element when there are no zero overlap values, we need the reduced overlap.
                     const auto reduced_overlap = lowdin_pairing_basis.reducedOverlap();
-
+                   
                     // Next, calculate the weighted co-density matrix and the co-density of the orbital corresponding to the zero overlap value.
                     // We know there is only one zero overlap orbital, so we acces the first index of the vector.
                     const auto zero_overlap_index = lowdin_pairing_basis.zeroOverlapIndices(zero_spin)[0];
                     const auto co_density = lowdin_pairing_basis.coDensityComponent(zero_overlap_index, zero_spin);
+                    
                     const auto weighted_co_density = lowdin_pairing_basis.weightedCoDensity();
 
                     // Perform the contractions. We need to perform two contractions (one for the direct component, one for the exchange component).
@@ -483,11 +484,11 @@ public:
                     Tensor<Scalar, 2> direct_alpha_beta_tensor = Tensor<Scalar, 2>(tensor_map);
 
                     // We can now calculate the next contraction of the equation.
-                    GQCP::Tensor<Scalar, 0> direct_element = direct_alpha_beta_tensor.template einsum<2>("ut, ut ->", co_density.matrix());
+                    GQCP::Tensor<Scalar, 0> direct_element = direct_alpha_beta_tensor.template einsum<2>("ut, tu ->", co_density.matrix());
 
                     // We calculate the exchange contractions analogously.
                     Tensor<Scalar, 2> intermediate_exchange_contraction = g_op.pureComponent(zero_spin).parameters().template einsum<2>("utvs, tv -> us", weighted_co_density.component(zero_spin).matrix());
-                    Tensor<Scalar, 0> exchange_element = intermediate_exchange_contraction.template einsum<2>("us, us ->", co_density.matrix());
+                    Tensor<Scalar, 0> exchange_element = intermediate_exchange_contraction.template einsum<2>("us, su ->", co_density.matrix());
 
                     evaluated_operator(i, j) += (reduced_overlap * (direct_element(0) - exchange_element(0)));
                 }
