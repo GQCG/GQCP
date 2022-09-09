@@ -546,7 +546,7 @@ public:
 template <typename _Scalar>
 struct JacobiRotatableTraits<UNonOrthogonalStateBasis<_Scalar>> {
 
-    // The type of Jacobi rotation that is naturally related to a `RNonOrthogonalStateBasis`.
+    // The type of Jacobi rotation that is naturally related to a `UNonOrthogonalStateBasis`.
     using JacobiRotationType = JacobiRotation;
 };
 
@@ -561,7 +561,7 @@ struct JacobiRotatableTraits<UNonOrthogonalStateBasis<_Scalar>> {
 template <typename _Scalar>
 struct BasisTransformableTraits<UNonOrthogonalStateBasis<_Scalar>> {
 
-    // The type of transformation that is naturally related to a `RNonOrthogonalStateBAsis`.
+    // The type of transformation that is naturally related to a `UNonOrthogonalStateBAsis`.
     using Transformation = UTransformation<_Scalar>;
 };
 
