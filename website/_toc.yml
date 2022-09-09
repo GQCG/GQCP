@@ -32,6 +32,7 @@
     - file: examples/AP1roG-calculations
     - file: examples/CCSD
     - file: examples/Mulliken-population
+    - file: examples/Biorthogonalization
     - file: examples/NOCI
     - file: examples/Magnetic-inducibility
     - file: examples/Integrals-over-GTOs

@@ -31,6 +31,12 @@ namespace py = pybind11;
 namespace gqcpy {
 
 
+// Basis - NonOrthogonalBasis
+void bindGLowdinPairingBases(py::module& module);
+void bindRLowdinPairingBases(py::module& module);
+void bindULowdinPairingBases(py::module& module);
+
+
 // Basis - Integrals
 void bindFunctionalOneElectronPrimitiveIntegralEngine(py::module& module);
 void bindFunctionalOneElectronIntegralEngine(py::module& module);
@@ -300,6 +306,12 @@ void bindVersion(py::module& module);
  *  The actual Python binding into the gqcpy Python module.
  */
 PYBIND11_MODULE(gqcpy, module) {
+
+    // Basis - BiOrthogonalBasis
+    gqcpy::bindGLowdinPairingBases(module);
+    gqcpy::bindRLowdinPairingBases(module);
+    gqcpy::bindULowdinPairingBases(module);
+
 
     // Basis - Integrals
     gqcpy::bindFunctionalOneElectronPrimitiveIntegralEngine(module);
