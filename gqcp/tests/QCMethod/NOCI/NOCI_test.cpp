@@ -406,7 +406,7 @@ BOOST_AUTO_TEST_CASE(NOCI_unrestricted_two_zero) {
     const auto NOCI_model = GQCP::QCMethod::NOCI<double, GQCP::UNonOrthogonalStateBasis<double>>(NOS_basis).optimize(solver, environment);
 
     // Initialize the reference energy from a non-related diagonalization of the constructed Hamiltonian.
-    tialize the reference energy from a non - related diagonalization of the constructed Hamiltonian.const auto reference_energy = -1.34344577;
+    const auto reference_energy = -1.34344577;
 
     // Check the energy versus the reference.
     BOOST_CHECK(std::abs(reference_energy - NOCI_model.groundStateEnergy()) < 1e-6);
