@@ -33,7 +33,6 @@
  *  Test the NOCI QC Method.
  */
 BOOST_AUTO_TEST_CASE(NOCI) {
-    // This test case is taken from a python prototype from @lelemmen and @johdvos.
     // It was for H2, at 2.5au internuclear distance for the 6-31G basis set.
     const auto molecule = GQCP::Molecule::HChain(2, 2.5, 0);  // H2, 2.5 bohr apart.
 
@@ -96,31 +95,30 @@ BOOST_AUTO_TEST_CASE(NOCI) {
     // We ask for three states (which is all of them in this example) to be found.
     const auto qc_structure = GQCP::QCMethod::NOCI<double, GQCP::GNonOrthogonalStateBasis<double>>(NOS_basis, 3).optimize(solver, environment);
 
-    // Set up the reference energies from the implementation of @lelemmen and @johdvos.
     // Since we use three states as our basis, we will gain th ground state energy and two excited states.
     std::vector<double> reference_energies {-1.04749865, -0.92999724, -0.90565568};
 
     // Compare the reference energies with the calculated energies.
-    BOOST_CHECK(std::abs(reference_energies[0] - qc_structure.groundStateEnergy()) < 1e-6);
-    BOOST_CHECK(std::abs(reference_energies[1] - qc_structure.energy(1)) < 1e-6);
-    BOOST_CHECK(std::abs(reference_energies[2] - qc_structure.energy(2)) < 1e-6);
+    BOOST_CHECK(std::abs(reference_energies[0] - qc_structure.groundStateEnergy()) < 1e-5);
+    BOOST_CHECK(std::abs(reference_energies[1] - qc_structure.energy(1)) < 1e-5);
+    BOOST_CHECK(std::abs(reference_energies[2] - qc_structure.energy(2)) < 1e-5);
 
     // We will also check the expansion coefficients for each of the calculated states.
     // First, we initialize a reference for each state.
-    std::vector<double> reference_coefficients_1 {-0.558291243, -0.497012876, -0.00357357222};
-    std::vector<double> reference_coefficients_2 {-1.51195970, 1.55598945, -0.0248551293};
-    std::vector<double> reference_coefficients_3 {1.06431638, -11.2265247, 10.4622250};
+    std::vector<double> reference_coefficients_1 {-0.55829124, 0.49701288, 0.00357357};
+    std::vector<double> reference_coefficients_2 {1.5119597, 1.55598945, -0.02485513};
+    std::vector<double> reference_coefficients_3 {-1.06431638, -11.22652471, 10.462225};
 
     // Compare the calculated coefficients to the reference.
-    BOOST_CHECK(std::abs(reference_coefficients_1[0] - qc_structure.groundStateParameters().coefficient(0)) < 1e-6);
-    BOOST_CHECK(std::abs(reference_coefficients_1[1] - qc_structure.groundStateParameters().coefficient(1)) < 1e-6);
-    BOOST_CHECK(std::abs(reference_coefficients_1[2] - qc_structure.groundStateParameters().coefficient(2)) < 1e-6);
-    BOOST_CHECK(std::abs(reference_coefficients_2[0] - qc_structure.parameters(1).coefficient(0)) < 1e-6);
-    BOOST_CHECK(std::abs(reference_coefficients_2[1] - qc_structure.parameters(1).coefficient(1)) < 1e-6);
-    BOOST_CHECK(std::abs(reference_coefficients_2[2] - qc_structure.parameters(1).coefficient(2)) < 1e-6);
-    BOOST_CHECK(std::abs(reference_coefficients_3[0] - qc_structure.parameters(2).coefficient(0)) < 1e-6);
-    BOOST_CHECK(std::abs(reference_coefficients_3[1] - qc_structure.parameters(2).coefficient(1)) < 1e-6);
-    BOOST_CHECK(std::abs(reference_coefficients_3[2] - qc_structure.parameters(2).coefficient(2)) < 1e-6);
+    BOOST_CHECK(std::abs(reference_coefficients_1[0] - qc_structure.groundStateParameters().coefficient(0)) < 1e-5);
+    BOOST_CHECK(std::abs(reference_coefficients_1[1] - qc_structure.groundStateParameters().coefficient(1)) < 1e-5);
+    BOOST_CHECK(std::abs(reference_coefficients_1[2] - qc_structure.groundStateParameters().coefficient(2)) < 1e-5);
+    BOOST_CHECK(std::abs(reference_coefficients_2[0] - qc_structure.parameters(1).coefficient(0)) < 1e-5);
+    BOOST_CHECK(std::abs(reference_coefficients_2[1] - qc_structure.parameters(1).coefficient(1)) < 1e-5);
+    BOOST_CHECK(std::abs(reference_coefficients_2[2] - qc_structure.parameters(1).coefficient(2)) < 1e-5);
+    BOOST_CHECK(std::abs(reference_coefficients_3[0] - qc_structure.parameters(2).coefficient(0)) < 1e-5);
+    BOOST_CHECK(std::abs(reference_coefficients_3[1] - qc_structure.parameters(2).coefficient(1)) < 1e-5);
+    BOOST_CHECK(std::abs(reference_coefficients_3[2] - qc_structure.parameters(2).coefficient(2)) < 1e-5);
 }
 
 
@@ -128,7 +126,6 @@ BOOST_AUTO_TEST_CASE(NOCI) {
  *  Test the NOCI model 1DM calculation.
  */
 BOOST_AUTO_TEST_CASE(NOCI_1DM) {
-    // This test case is taken from a python prototype from @lelemmen and @johdvos.
     // It was for H2, at 2.5au internuclear distance for the 6-31G basis set.
     const auto molecule = GQCP::Molecule::HChain(2, 2.5, 0);  // H2, 2.5 bohr apart.
 
@@ -191,7 +188,7 @@ BOOST_AUTO_TEST_CASE(NOCI_1DM) {
     // We do not specify the number of states, meaning we only request the ground state.
     const auto NOCI_parameters = GQCP::QCMethod::NOCI<double, GQCP::GNonOrthogonalStateBasis<double>>(NOS_basis).optimize(solver, environment).groundStateParameters();
 
-    // Initialize a reference 1DM. Taken from the implementation of @lelemmen.
+    // Initialize a reference 1DM.
     GQCP::SquareMatrix<double> reference_1DM {8};
     // clang-format off
     reference_1DM <<  0.04286838,  0.05940042,  0.05857023,  0.08654403,  0.0287501 ,  0.04463992,  0.004545  ,  0.0040954 ,
@@ -208,85 +205,19 @@ BOOST_AUTO_TEST_CASE(NOCI_1DM) {
 }
 
 /**
- *  Test the complex NOCI model 1DM calculation.
+ *  Test the complex NOCI model 1DM calculation, restricted vs. unrestricted.
  */
 BOOST_AUTO_TEST_CASE(NOCI_1DM_complex) {
-    // This test case is taken from a python prototype from @lelemmen and @johdvos.
     // It was for H2, at 2.5au internuclear distance for the 6-31G basis set.
     const auto molecule = GQCP::Molecule::HChain(2, 2.5, 0);  // H2, 2.5 bohr apart.
 
     // The restricted spin orbital basis is also needed, as we require the overlap operator in AO basis.
-    const GQCP::RSpinOrbitalBasis<GQCP::complex, GQCP::GTOShell> spin_orbital_basis {molecule, "6-31G"};
-    const auto S = spin_orbital_basis.overlap();
-
-    // Initialize two non-orthogonal "restricted states".
-    GQCP::SquareMatrix<GQCP::complex> state_1 {4};
-    using namespace std::complex_literals;
-    // clang-format off
-    state_1 << -0.07443693+0.0i,  0.12036042+0.0i, -0.13557067+0.0i,  0.15517005+0.0i,
-               -0.07874922+0.0i,  0.15086478+0.0i, -0.68085546+0.0i,  0.77423311+0.0i,
-               -0.24580188+0.0i,  0.26338108+0.0i,  0.09556297+0.0i, -0.12178159+0.0i,
-               -0.38944259+0.0i,  0.4101685+0.0i ,  0.45214166+0.0i, -0.58335985+0.0i;
-    // clang-format on
-    GQCP::SquareMatrix<GQCP::complex> state_2 {4};
-    // clang-format off
-    state_2 <<  0.25851329+0.0i, -0.14539151+0.0i, -0.17177142+0.0i, -0.01126487+0.0i,
-                0.36593356+0.0i, -0.28669343+0.0i, -0.84796858+0.0i, -0.13503625+0.0i,
-                0.25853403+0.0i,  0.14539669+0.0i,  0.17176599+0.0i, -0.01126146+0.0i,
-                0.36597032+0.0i,  0.28670189+0.0i,  0.847938+0.0i  , -0.13501526+0.0i;
-    // clang-format on
-    GQCP::SquareMatrix<GQCP::complex> state_3 {4};
-    // clang-format off
-    state_3 <<  -0.265842+0.0i  ,  0.17716735+0.0i, -0.15969328+0.0i, -0.00308706+0.0i,
-                -0.36278694+0.0i,  0.36406651+0.0i, -0.80340861+0.0i, -0.13144475+0.0i,
-                -0.26584976+0.0i, -0.17716927+0.0i,  0.15969112+0.0i, -0.00308558+0.0i,
-                -0.36280035+0.0i, -0.36406982+0.0i,  0.80339638+0.0i, -0.13143372+0.0i;
-    // clang-format on
-    // Transform the matrices to the correct transformation type.
-    const auto basis_state_1 = GQCP::RTransformation<GQCP::complex> {state_1};
-    const auto basis_state_2 = GQCP::RTransformation<GQCP::complex> {state_2};
-    const auto basis_state_3 = GQCP::RTransformation<GQCP::complex> {state_3};
-
-    // Create a vector out of these three basis states.
-    std::vector<GQCP::RTransformation<GQCP::complex>> basis_vector {basis_state_1, basis_state_2, basis_state_3};
-
-    // Create a non-orthogonal state basis, using the basis state vector, the overlap operator in AO basis and the number of occupied orbitals.
-    const auto NOS_basis = GQCP::RNonOrthogonalStateBasis<GQCP::complex> {basis_vector, S, molecule.numberOfElectronPairs()};
-
-    // To evaluate the Hamiltonian in the non-orthogonal state basis, we need the second quantized Hamiltonian in AO basis.
-    const auto sq_hamiltonian = spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
-
-    // Create a dense solver and corresponding environment and put them together in the QCMethod.
-    auto environment = GQCP::NOCIEnvironment::Dense(sq_hamiltonian, NOS_basis, molecule);
-    auto solver = GQCP::GeneralizedEigenproblemSolver::Dense<GQCP::complex>();
-
-    // We do not specify the number of states, meaning we only request the ground state.
-    const auto NOCI_parameters = GQCP::QCMethod::NOCI<GQCP::complex, GQCP::RNonOrthogonalStateBasis<GQCP::complex>>(NOS_basis).optimize(solver, environment).groundStateParameters();
-
-    // Initialize a reference 1DM. Taken from the implementation of @lelemmen.
-    GQCP::SquareMatrix<GQCP::complex> reference_1DM {4};
-    // clang-format off
-    reference_1DM <<  0.11206947+0.0i, 0.10900517+0.0i, 0.11206934+0.0i, 0.10900534+0.0i,
-                      0.10900517+0.0i, 0.10602466+0.0i, 0.10900505+0.0i, 0.10602483+0.0i,
-                      0.11206934+0.0i, 0.10900505+0.0i, 0.11206922+0.0i, 0.10900522+0.0i,
-                      0.10900534+0.0i, 0.10602483+0.0i, 0.10900522+0.0i, 0.106025  +0.0i;
-    // clang-format on
-    // Check the calculated 1DM against the reference.
-    BOOST_CHECK(reference_1DM.isApprox(NOCI_parameters.calculate1DM().matrix(), 1e-6));
-}
-
-
-/**
- *  Test the complex unrestricted NOCI model 1DM calculation.
- */
-BOOST_AUTO_TEST_CASE(NOCI_complex_unrestricted) {
-    // This test case is taken from a python prototype from @lelemmen and @johdvos.
-    // It was for H2, at 2.5au internuclear distance for the 6-31G basis set.
-    const auto molecule = GQCP::Molecule::HChain(2, 2.5, 0);  // H2, 2.5 bohr apart.
+    const GQCP::RSpinOrbitalBasis<GQCP::complex, GQCP::GTOShell> r_spin_orbital_basis {molecule, "6-31G"};
+    const auto r_S = r_spin_orbital_basis.overlap();
 
     // The unrestricted spin orbital basis is also needed, as we require the overlap operator in AO basis.
-    const GQCP::USpinOrbitalBasis<GQCP::complex, GQCP::GTOShell> spin_orbital_basis {molecule, "6-31G"};
-    const auto S = spin_orbital_basis.overlap();
+    const GQCP::USpinOrbitalBasis<GQCP::complex, GQCP::GTOShell> u_spin_orbital_basis {molecule, "6-31G"};
+    const auto u_S = u_spin_orbital_basis.overlap();
 
     // Initialize two non-orthogonal "restricted states".
     GQCP::SquareMatrix<GQCP::complex> state_1 {4};
@@ -312,29 +243,44 @@ BOOST_AUTO_TEST_CASE(NOCI_complex_unrestricted) {
                 -0.36280035+0.0i, -0.36406982+0.0i,  0.80339638+0.0i, -0.13143372+0.0i;
     // clang-format on
     // Transform the matrices to the correct transformation type.
-    const auto basis_state_1 = GQCP::UTransformation<GQCP::complex>::FromRestricted(GQCP::RTransformation<GQCP::complex> {state_1});
-    const auto basis_state_2 = GQCP::UTransformation<GQCP::complex>::FromRestricted(GQCP::RTransformation<GQCP::complex> {state_2});
-    const auto basis_state_3 = GQCP::UTransformation<GQCP::complex>::FromRestricted(GQCP::RTransformation<GQCP::complex> {state_3});
+    const auto r_basis_state_1 = GQCP::RTransformation<GQCP::complex> {state_1};
+    const auto r_basis_state_2 = GQCP::RTransformation<GQCP::complex> {state_2};
+    const auto r_basis_state_3 = GQCP::RTransformation<GQCP::complex> {state_3};
+
+    const auto u_basis_state_1 = GQCP::UTransformation<GQCP::complex>::FromRestricted(r_basis_state_1);
+    const auto u_basis_state_2 = GQCP::UTransformation<GQCP::complex>::FromRestricted(r_basis_state_2);
+    const auto u_basis_state_3 = GQCP::UTransformation<GQCP::complex>::FromRestricted(r_basis_state_3);
 
     // Create a vector out of these three basis states.
-    std::vector<GQCP::UTransformation<GQCP::complex>> basis_vector {basis_state_1, basis_state_2, basis_state_3};
+    std::vector<GQCP::RTransformation<GQCP::complex>> r_basis_vector {r_basis_state_1, r_basis_state_2, r_basis_state_3};
+    std::vector<GQCP::UTransformation<GQCP::complex>> u_basis_vector {u_basis_state_1, u_basis_state_2, u_basis_state_3};
 
     // Create a non-orthogonal state basis, using the basis state vector, the overlap operator in AO basis and the number of occupied orbitals.
-    const auto NOS_basis = GQCP::UNonOrthogonalStateBasis<GQCP::complex> {basis_vector, S, molecule.numberOfElectronPairs(), molecule.numberOfElectronPairs()};
+    const auto RNOS_basis = GQCP::RNonOrthogonalStateBasis<GQCP::complex> {r_basis_vector, r_S, molecule.numberOfElectronPairs()};
+    const auto UNOS_basis = GQCP::UNonOrthogonalStateBasis<GQCP::complex> {u_basis_vector, u_S, molecule.numberOfElectronPairs(), molecule.numberOfElectronPairs()};
 
     // To evaluate the Hamiltonian in the non-orthogonal state basis, we need the second quantized Hamiltonian in AO basis.
-    const auto sq_hamiltonian = spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
+    const auto rsq_hamiltonian = r_spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
+    const auto usq_hamiltonian = u_spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
 
     // Create a dense solver and corresponding environment and put them together in the QCMethod.
-    auto environment = GQCP::NOCIEnvironment::Dense(sq_hamiltonian, NOS_basis, molecule);
+    auto r_environment = GQCP::NOCIEnvironment::Dense(rsq_hamiltonian, RNOS_basis, molecule);
+    auto u_environment = GQCP::NOCIEnvironment::Dense(usq_hamiltonian, UNOS_basis, molecule);
     auto solver = GQCP::GeneralizedEigenproblemSolver::Dense<GQCP::complex>();
 
     // We do not specify the number of states, meaning we only request the ground state.
-    const auto NOCI_parameters = GQCP::QCMethod::NOCI<GQCP::complex, GQCP::UNonOrthogonalStateBasis<GQCP::complex>>(NOS_basis).optimize(solver, environment).groundStateParameters();
+    const auto RNOCI_parameters = GQCP::QCMethod::NOCI<GQCP::complex, GQCP::RNonOrthogonalStateBasis<GQCP::complex>>(RNOS_basis).optimize(solver, r_environment).groundStateParameters();
+    const auto UNOCI_parameters = GQCP::QCMethod::NOCI<GQCP::complex, GQCP::UNonOrthogonalStateBasis<GQCP::complex>>(UNOS_basis).optimize(solver, u_environment).groundStateParameters();
 
-    // In this test case, the alpha and beta 1DM's should be equal. We check this fact, to confirm that all aspects of the complex NOCI method in an unrestricted basis work as expected.
-    BOOST_CHECK(NOCI_parameters.calculate1DM().alpha().matrix().isApprox(NOCI_parameters.calculate1DM().beta().matrix(), 1e-6));
+    const auto orbitalRDM = RNOCI_parameters.calculate1DM().matrix();
+    const auto resolvedRDM_a = UNOCI_parameters.calculate1DM().alpha().matrix();
+    const auto resolvedRDM_b = UNOCI_parameters.calculate1DM().beta().matrix();
+
+    // The restricted 1DM should equal the alpha/beta 1DM of the unrestricted case.
+    BOOST_CHECK(orbitalRDM.isApprox(resolvedRDM_a, 1e-6));
+    BOOST_CHECK(orbitalRDM.isApprox(resolvedRDM_b, 1e-6));
 }
+
 
 /**
  *  Test the NOCI QC Method.
@@ -397,7 +343,7 @@ BOOST_AUTO_TEST_CASE(NOCI_complex_generalized) {
     // We ask for three states (which is all of them in this example) to be found.
     const auto qc_structure = GQCP::QCMethod::NOCI<GQCP::complex, GQCP::GNonOrthogonalStateBasis<GQCP::complex>>(NOS_basis).optimize(solver, environment);
 
-    // Initialize a reference energy.
+    // Initialize the reference energy from a non-related diagonalization of the constructed Hamiltonian.
     const double reference = -0.97341735;
 
     // Check the result with the reference.
@@ -408,7 +354,6 @@ BOOST_AUTO_TEST_CASE(NOCI_complex_generalized) {
  *  Test the UNOCI in the case where two zero overlap values are present.
  */
 BOOST_AUTO_TEST_CASE(NOCI_unrestricted_two_zero) {
-    // This test case is taken from a python prototype from @lelemmen and @johdvos.
     // It was for H3, at 1Å internuclear distance for the STO-3G basis set.
     const auto molecule = GQCP::Molecule::HRingFromDistance(3, 1.8897259886);  // H3, 1Å apart.
 
@@ -460,8 +405,8 @@ BOOST_AUTO_TEST_CASE(NOCI_unrestricted_two_zero) {
     // We do not specify the number of states, meaning we only request the ground state.
     const auto NOCI_model = GQCP::QCMethod::NOCI<double, GQCP::UNonOrthogonalStateBasis<double>>(NOS_basis).optimize(solver, environment);
 
-    // In this test case, the alpha and beta 1DM's should be equal. We check this fact, to confirm that all aspects of the complex NOCI method in an unrestricted basis work as expected.
-    const auto reference_energy = -1.36209;
+    // Initialize the reference energy from a non-related diagonalization of the constructed Hamiltonian.
+    tialize the reference energy from a non - related diagonalization of the constructed Hamiltonian.const auto reference_energy = -1.34344577;
 
     // Check the energy versus the reference.
     BOOST_CHECK(std::abs(reference_energy - NOCI_model.groundStateEnergy()) < 1e-6);
@@ -471,7 +416,6 @@ BOOST_AUTO_TEST_CASE(NOCI_unrestricted_two_zero) {
  *  Test the UNOCI in the case where one zero overlap value is present.
  */
 BOOST_AUTO_TEST_CASE(NOCI_unrestricted_one_zero) {
-    // This test case is taken from a python prototype from @lelemmen and @johdvos.
     // It was for H3, at 1.6Å internuclear distance for the STO-3G basis set.
     const auto molecule = GQCP::Molecule::HRingFromDistance(3, 3.023561581760001);  // H3, 1.6Å apart.
 
@@ -513,7 +457,7 @@ BOOST_AUTO_TEST_CASE(NOCI_unrestricted_one_zero) {
     // We do not specify the number of states, meaning we only request the ground state.
     const auto NOCI_model = GQCP::QCMethod::NOCI<double, GQCP::UNonOrthogonalStateBasis<double>>(NOS_basis).optimize(solver, environment);
 
-    // In this test case, the alpha and beta 1DM's should be equal. We check this fact, to confirm that all aspects of the complex NOCI method in an unrestricted basis work as expected.
+    // Initialize the reference energy from a non-related diagonalization of the constructed Hamiltonian.
     const auto reference_energy = -1.37371;
 
     // Check the energy versus the reference.
