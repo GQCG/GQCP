@@ -310,7 +310,7 @@ public:
                     const auto weighted_co_density = lowdin_pairing_basis.weightedCoDensity();
 
                     // Perform the contraction.
-                    Tensor<Scalar, 0> matrix_element = reduced_overlap * operator_parameters_tensor.template einsum<2>("uv, vu ->", weighted_co_density.matrix());
+                    Tensor<Scalar, 0> matrix_element = std::pow(reduced_overlap, 2) * operator_parameters_tensor.template einsum<2>("uv, vu ->", weighted_co_density.matrix());
                     evaluated_operator(i, j) += 2.0 * matrix_element(0);
                 }
                 // In the restricted case, if there is a zero overlap value present, this zero ebbs on in both the alpha and beta channel, thus resulting in two zeros in total.
@@ -344,7 +344,7 @@ public:
                 const BiorthogonalBasis lowdin_pairing_basis {this->basisState(i), this->basisState(j), this->overlap_operator_AO, this->N};
 
                 // Fill in the overlaps in the new matrix representation in this non-orthogonal basis.
-                evaluated_overlap(i, j) += lowdin_pairing_basis.totalOverlap();
+                evaluated_overlap(i, j) += std::pow(lowdin_pairing_basis.totalOverlap(), 2);
             }
         }
 
@@ -395,7 +395,7 @@ public:
                     Tensor<Scalar, 2> intermediate_contraction_2 = g_op.parameters().template einsum<2>("utvs, su -> tv", weighted_co_density.matrix());
                     Tensor<Scalar, 0> exchange_element = intermediate_contraction_2.template einsum<2>("tv, tv ->", weighted_co_density.matrix());
 
-                    evaluated_operator(i, j) += reduced_overlap * (direct_element(0) - exchange_element(0));
+                    evaluated_operator(i, j) += std::pow(reduced_overlap, 2) * (2.0 * direct_element(0) - exchange_element(0));
                 }
                 // In the restricted case, if there is a zero overlap value present, this zero ebbs on in both the alpha and beta channel, thus resulting in two zeros in total.
                 // If there are two zero overlap values, we perform the following calculation.
@@ -406,15 +406,15 @@ public:
 
                     // Next, calculate the co-density of the orbitals corresponding to the zero overlap values.
                     // We know there are only two zero overlap orbitals, so we acces the first and second index of the vector.
-                    const auto zero_overlap_index_1 = lowdin_pairing_basis.zeroOverlapIndices()[0];
-                    const auto co_density_1 = lowdin_pairing_basis.coDensity(zero_overlap_index_1);
+                    const auto zero_overlap_index = lowdin_pairing_basis.zeroOverlapIndices()[0];
+                    const auto co_density = lowdin_pairing_basis.coDensity(zero_overlap_index);
 
                     // Perform the contractions. We need to perform two contractions (one for the direct component, one for the exchange component).
                     // In order to perserve readability of the contractions, and keep the exact link with the theory, we split each contraction in two.
-                    Tensor<Scalar, 2> intermediate_contraction_1 = g_op.parameters().template einsum<2>("utvs, tu -> vs", co_density_1.matrix());
-                    Tensor<Scalar, 0> direct_element = intermediate_contraction_1.template einsum<2>("vs, sv ->", co_density_1.matrix());
+                    Tensor<Scalar, 2> intermediate_contraction = g_op.parameters().template einsum<2>("utvs, tu -> vs", co_density.matrix());
+                    Tensor<Scalar, 0> direct_element = intermediate_contraction.template einsum<2>("vs, sv ->", co_density.matrix());
 
-                    evaluated_operator(i, j) += reduced_overlap * direct_element(0);
+                    evaluated_operator(i, j) += std::pow(reduced_overlap, 2) * direct_element(0);
                 }
                 // If there are more than two zero overlap values, the matrix element will be zero. No further if-clause is needed.
             }

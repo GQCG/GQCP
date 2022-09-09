@@ -29,7 +29,6 @@
  *  Test whether or not the constructor of a non-orthogonal state basis throws when this is expected.
  */
 BOOST_AUTO_TEST_CASE(constructor) {
-    // This test case is taken from a python prototype from @lelemmen and @johdvos.
     // It was for H2, at 2.5au internuclear distance for the 6-31G basis set.
     const auto molecule = GQCP::Molecule::HChain(2, 2.5, 0);  // H2, 2.5 bohr apart.
 
@@ -72,10 +71,10 @@ BOOST_AUTO_TEST_CASE(constructor) {
 
 
 /**
- *  Test whether the non-orthogonal state basis evaluates the Hamiltonian correctly. All other evaluations (one- and two-electron operators) are used within the Hamiltonian functionality.
+ *  Test whether the non-orthogonal state basis evaluates matrix elements correctly.
  */
 BOOST_AUTO_TEST_CASE(operator_evaluations) {
-    // This test case is taken from a python prototype from @lelemmen and @johdvos.
+    // Reference data taken from the implementation of H. Burton (https://github.com/hgaburton/libgnme).
     // It was for H2, at 2.5au internuclear distance for the 6-31G basis set.
     const auto molecule = GQCP::Molecule::HChain(2, 2.5, 0);  // H2, 2.5 bohr apart.
 
@@ -119,19 +118,31 @@ BOOST_AUTO_TEST_CASE(operator_evaluations) {
     // To evaluate the Hamiltonian in the non-orthogonal state basis, we need the second quantized Hamiltonian in AO basis.
     const auto hamiltonian_AO = spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));
 
-    // We can now evaluate this Hamiltonian operator in the non-orthogonal basis.
-    // The Hamiltonian evaluated in non-orthogonal basis requires the nuclear repuslion to be taken into account.
-    const auto non_orthogonal_hamiltonian = NOS_basis.evaluateHamiltonianOperator(hamiltonian_AO, GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()));
-
-    // Set up a reference Hamiltonian. Data taken from the implementation of @lelemmen and @johdvos.
-    // The dimension of the Hamiltonian is equal to the number of basis states used.
-    GQCP::SquareMatrix<double> reference_hamiltonian {3};
+    // Initialize the reference overlap matrix.
+    GQCP::SquareMatrix<double> reference_overlap {3};
     // clang-format off
-    reference_hamiltonian <<  -0.22799722, -0.33706571, -0.33885917,
-                              -0.33706571, -0.53329832, -0.53611542,
-                              -0.33885917, -0.53611542, -0.53892183;
+    reference_overlap <<   0.181724, 0.350152,  0.35311,
+                           0.350152, 0.874972, 0.882449,
+                           0.35311 , 0.882449, 0.890075;
     // clang-format on
 
-    // Compare the reference with the evaluated Hamiltonian.
-    BOOST_CHECK(non_orthogonal_hamiltonian.isApprox(reference_hamiltonian, 1e-6));
+    // Initialize the reference core hamiltonian.
+    GQCP::SquareMatrix<double> reference_core_hamiltonian {3};
+    // clang-format off
+    reference_core_hamiltonian << -0.339766,  -0.67903,  -0.685209,
+                                  -0.67903 ,  -1.69767,  -1.7132  ,
+                                  -0.685209,   -1.7132,  -1.72894 ;
+    // clang-format on
+
+    // Initialize the reference two electron contribution.
+    GQCP::SquareMatrix<double> reference_two_electron {3};
+    // clang-format off
+    reference_two_electron << 0.103774, 0.185861, 0.188009,
+                              0.185861, 0.446029, 0.451139,
+                              0.188009, 0.451139, 0.456353;
+    // clang-format on
+    
+    BOOST_CHECK(NOS_basis.evaluateOverlapOperator().isApprox(reference_overlap, 1e-6));
+    BOOST_CHECK(NOS_basis.evaluateOneElectronOperator(hamiltonian_AO.core()).isApprox(reference_core_hamiltonian, 1e-5));
+    BOOST_CHECK(NOS_basis.evaluateTwoElectronOperator(hamiltonian_AO.twoElectron()).isApprox(reference_two_electron, 1e-5));
 }
