@@ -29,7 +29,7 @@
  *  Test whether or not the constructor of a biorthonormal `GLowdinPairingBasis` works.
  */
 BOOST_AUTO_TEST_CASE(constructor) {
-    // This test case is taken from a python prototype from @lelemmen and @johdvos.
+    // Reference data taken from the implementation of H. Burton (https://github.com/hgaburton/libgnme).
     // It was for H2, at 2.5au internuclear distance for the 6-31G basis set.
     const auto molecule = GQCP::Molecule::HChain(2, 2.5, 0);  // H2, 2.5 bohr apart.
 
@@ -68,25 +68,25 @@ BOOST_AUTO_TEST_CASE(constructor) {
     const auto lowdin_pairing_basis = GQCP::GLowdinPairingBasis<double>(bra_expansion, ket_expansion, S, molecule.numberOfElectrons());
     BOOST_CHECK_NO_THROW(GQCP::GLowdinPairingBasis<double>(bra_expansion, ket_expansion, S, molecule.numberOfElectrons()));
 
-    // Check whether the saved values are correct. The reference data is taken from the calculations of @lelemmen and @johdvos.
+    // Check whether the saved values are correct. Data taken from the implementation of H. Burton (https://github.com/hgaburton/libgnme).
     // Initialize the reference biorthogonal overlaps.
     GQCP::VectorX<double> overlap_reference {2};
     // clang-format off
-    overlap_reference <<  0.92270529,
-                          0.84911655;
+    overlap_reference <<  -0.92270529,
+                           0.84911655;
     // clang-format on
 
     // Initialize a reference for the biorthogonal occupied bra expansion coefficients.
     GQCP::MatrixX<double> biorthogonal_bra_reference {8, 2};
     // clang-format off
-    biorthogonal_bra_reference <<  0.14038635, -0.01786507,
-                                   0.16993508, -0.00914819,
-                                   0.34156389, -0.11455247,
-                                   0.53468019, -0.18444736,
-                                  -0.11455247, -0.34156389,
-                                  -0.18444736, -0.53468019,
-                                  -0.01786507, -0.14038635,
-                                  -0.00914819, -0.16993508;
+    biorthogonal_bra_reference << -0.14038635, -0.01786507,
+                                  -0.16993508, -0.00914819,
+                                  -0.34156389, -0.11455247,
+                                  -0.53468019, -0.18444736,
+                                   0.11455247, -0.34156389,
+                                   0.18444736, -0.53468019,
+                                   0.01786507, -0.14038635,
+                                   0.00914819, -0.16993508;
     // clang-format off
 
     // Initialize a reference for the biorthogonal occupied ket expansion coefficients.
@@ -148,41 +148,65 @@ BOOST_AUTO_TEST_CASE(constructor_complex) {
     const auto lowdin_pairing_basis = GQCP::GLowdinPairingBasis<GQCP::complex>(bra_expansion, ket_expansion, S, molecule.numberOfElectrons());
     BOOST_CHECK_NO_THROW(GQCP::GLowdinPairingBasis<GQCP::complex>(bra_expansion, ket_expansion, S, molecule.numberOfElectrons()));
 
-    // Check whether the saved values are correct. The reference data is taken from the calculations of @lelemmen and @johdvos.
+    // Check whether the saved values are correct. Data taken from the implementation of H. Burton (https://github.com/hgaburton/libgnme).
     // Initialize the reference biorthogonal overlaps.
     GQCP::VectorX<GQCP::complex> overlap_reference {3};
     // clang-format off
-    overlap_reference <<  15.31141866 + 0.0i,
-                           1.03839811 + 0.0i,
-                           0.08484072 + 0.0i;
+    overlap_reference <<  -5.12012    - 14.43i,
+                           1.03839811 +  0.0i,
+                           0.08484072 +  0.0i;
     // clang-format on
 
     // Initialize a reference for the biorthogonal occupied bra expansion coefficients.
     GQCP::MatrixX<GQCP::complex> biorthogonal_bra_reference {6, 3};
     // clang-format off
-    biorthogonal_bra_reference <<  -0.780318723 + 1.17946932i ,  0.566535554    - 0.819788749i   , -0.102459322  + 0.154869571i ,
-                                   -0.780318747 + 1.17946935i , -0.566535535    + 0.819788722i   , -0.102459329  + 0.154869583i ,
-                                   -1.69531930  + 2.56251329i ,  0.0            + 0.0i           ,  0.170136306  - 0.257164857i ,
-                                    0.162212325 - 0.245187580i, -0.117771171    + 0.170417338i   ,  0.0212992006 - 0.0321942212i,
-                                    0.162212331 - 0.245187589i,  0.117771167    - 0.170417333i   ,  0.0212992019 - 0.0321942233i,
-                                    0.352422258 - 0.532694177i,  0.0            - 0.0i           , -0.0353678632 + 0.0534593215i;
+    biorthogonal_bra_reference <<   0.52668  - 1.3125i  ,     0.566536  - 0.819789i ,    -0.102459  + 0.15487i  ,
+                                    0.52668  - 1.3125i  ,    -0.566536  + 0.819789i ,    -0.102459  + 0.15487i  ,
+                                    1.14426  - 2.85153i ,    -1.250e-08 + 1.796e-08i,     0.170136  - 0.257165i ,
+                                   -0.109486 + 0.272842i,    -0.117771  + 0.170417i ,     0.0212992 - 0.0321942i,
+                                   -0.109486 + 0.272842i,     0.117771  - 0.170417i ,     0.0212992 - 0.0321942i,
+                                   -0.237869 + 0.592776i,     2.598e-09 - 3.733e-09i,    -0.0353679 + 0.0534593i;
     // clang-format off
 
     // Initialize a reference for the biorthogonal occupied ket expansion coefficients.
     GQCP::MatrixX<GQCP::complex> biorthogonal_ket_reference {6, 3};
     // clang-format off
-    biorthogonal_ket_reference <<  -0.452370436 + 0.783528578i,  0.515610447 - 0.852737940i  , -0.0905244125 + 0.156792882i,
-                                   -0.452370452 + 0.783528606i, -0.515610429 + 0.852737911i  , -0.0905244192 + 0.156792894i,
-                                   -0.910842054 + 1.57762471i ,  0.0         + 0.0i          ,  0.147280666  - 0.255097596i,
-                                    0.317491492 - 0.0i        , -0.349620681 - 0.00707551711i,  0.0635336192 - 0.0i        ,
-                                    0.317491503 + 0.0i        ,  0.349620670 + 0.00707551697i,  0.0635336239 - 0.0i        ,
-                                    0.639265034 + 0.0i        ,  0.0         + 0.0i          , -0.103367405  - 0.0i        ;
+    biorthogonal_ket_reference <<  -0.904556 + 0.0183061i,     0.51561   - 0.852738i  ,    -0.0905244 + 0.156793i,
+                                   -0.904556 + 0.0183061i,    -0.51561   + 0.852738i  ,    -0.0905244 + 0.156793i,
+                                   -1.82131  + 0.0368591i,    -1.170e-08 + 1.918e-08i ,     0.147281  - 0.255098i,
+                                    0.164277 + 0.271687i ,    -0.349621  - 0.00707552i,     0.0635336 - 1.920e-11i,
+                                    0.164277 + 0.271687i ,     0.349621  + 0.00707552i,     0.0635336 - 2.188e-12i,
+                                    0.330769 + 0.547039i ,     7.883e-09 + 1.917e-10i ,    -0.103367  - 9.170e-11i;
     // clang-format off
 
     // Check the parameters instantiated by the constructor.
-    BOOST_CHECK(lowdin_pairing_basis.biorthogonalBraExpansion().isApprox(biorthogonal_bra_reference, 1e-6));
-    BOOST_CHECK(lowdin_pairing_basis.biorthogonalKetExpansion().isApprox(biorthogonal_ket_reference, 1e-6));
-    BOOST_CHECK(lowdin_pairing_basis.biorthogonalOverlaps().isApprox(overlap_reference, 1e-6));
+    BOOST_CHECK(lowdin_pairing_basis.biorthogonalBraExpansion().isApprox(biorthogonal_bra_reference, 1e-5));
+    BOOST_CHECK(lowdin_pairing_basis.biorthogonalKetExpansion().isApprox(biorthogonal_ket_reference, 1e-5));
+    BOOST_CHECK(lowdin_pairing_basis.biorthogonalOverlaps().isApprox(overlap_reference, 1e-4));
+
+    // Check the codensity of the first orbital.
+    // Initialize a reference for the regular and weighted co density matrices..
+    GQCP::MatrixX<GQCP::complex> reference_co_density {6, 6};
+    // clang-format off
+    reference_co_density <<  -5.004e-01 - 1.178e+00i,    -5.004e-01 - 1.178e+00i,    -1.087e+00 - 2.558e+00i,    1.040e-01 + 2.448e-01i,    1.040e-01 + 2.448e-01i,    2.260e-01 + 5.318e-01i,
+                             -5.004e-01 - 1.178e+00i,    -5.004e-01 - 1.178e+00i,    -1.087e+00 - 2.558e+00i,    1.040e-01 + 2.448e-01i,    1.040e-01 + 2.448e-01i,    2.260e-01 + 5.318e-01i,
+                             -1.008e+00 - 2.371e+00i,    -1.008e+00 - 2.371e+00i,    -2.189e+00 - 5.151e+00i,    2.095e-01 + 4.929e-01i,    2.095e-01 + 4.929e-01i,    4.551e-01 + 1.071e+00i,
+                             -2.701e-01 + 3.587e-01i,    -2.701e-01 + 3.587e-01i,    -5.868e-01 + 7.793e-01i,    5.614e-02 - 7.457e-02i,    5.614e-02 - 7.457e-02i,    1.220e-01 - 1.620e-01i,
+                             -2.701e-01 + 3.587e-01i,    -2.701e-01 + 3.587e-01i,    -5.868e-01 + 7.793e-01i,    5.614e-02 - 7.457e-02i,    5.614e-02 - 7.457e-02i,    1.220e-01 - 1.620e-01i,
+                             -5.438e-01 + 7.222e-01i,    -5.438e-01 + 7.222e-01i,    -1.181e+00 + 1.569e+00i,    1.130e-01 - 1.501e-01i,    1.130e-01 - 1.501e-01i,    2.456e-01 - 3.262e-01i;
+    // clang-format off
+    GQCP::MatrixX<GQCP::complex> reference_weighted_co_density {6, 6};
+    // clang-format off
+    reference_weighted_co_density <<   1.433e+00 - 8.737e-02i,    -4.756e-01 + 2.899e-02i,    -4.756e-01 + 2.899e-02i,    -2.980e-01 + 1.816e-02i,     9.886e-02 - 6.026e-03i,     9.886e-02 - 6.026e-03i,
+                                      -4.756e-01 + 2.899e-02i,     1.433e+00 - 8.737e-02i,    -4.756e-01 + 2.899e-02i,     9.886e-02 - 6.026e-03i,    -2.980e-01 + 1.816e-02i,     9.886e-02 - 6.026e-03i,
+                                      -4.756e-01 + 2.899e-02i,    -4.756e-01 + 2.899e-02i,     1.433e+00 - 8.737e-02i,     9.886e-02 - 6.026e-03i,     9.886e-02 - 6.026e-03i,    -2.980e-01 + 1.816e-02i,
+                                      -2.781e-01 - 4.203e-01i,     9.225e-02 + 1.394e-01i,     9.225e-02 + 1.394e-01i,     5.781e-02 + 8.737e-02i,    -1.918e-02 - 2.899e-02i,    -1.918e-02 - 2.899e-02i,
+                                       9.225e-02 + 1.394e-01i,    -2.781e-01 - 4.203e-01i,     9.225e-02 + 1.394e-01i,    -1.918e-02 - 2.899e-02i,     5.781e-02 + 8.737e-02i,    -1.918e-02 - 2.899e-02i,
+                                       9.225e-02 + 1.394e-01i,     9.225e-02 + 1.394e-01i,    -2.781e-01 - 4.203e-01i,    -1.918e-02 - 2.899e-02i,    -1.918e-02 - 2.899e-02i,     5.781e-02 + 8.737e-02i;
+    // clang-format off
+
+    BOOST_CHECK(lowdin_pairing_basis.coDensity(0).matrix().isApprox(reference_co_density, 1e-3));
+    BOOST_CHECK(lowdin_pairing_basis.weightedCoDensity().matrix().isApprox(reference_weighted_co_density, 1e-3));
 }
 
 
@@ -190,15 +214,15 @@ BOOST_AUTO_TEST_CASE(constructor_complex) {
  *  Test whether the overlap metrics are working correctly in the `GLowdinPairingBasis`.
  */
 BOOST_AUTO_TEST_CASE(overlap_metrics) {
-    // This test case is taken from a python prototype from @lelemmen and @johdvos.
-    // It was for H2, at 2.5au internuclear distance for the 6-31G basis set.
-    const auto molecule = GQCP::Molecule::HChain(2, 2.5, 0);  // H2, 2.5 bohr apart.
+  // Reference data taken from the implementation of H. Burton (https://github.com/hgaburton/libgnme).
+  // It was for H2, at 2.5au internuclear distance for the 6-31G basis set.
+  const auto molecule = GQCP::Molecule::HChain(2, 2.5, 0);  // H2, 2.5 bohr apart.
 
-    // The general spinor basis is also needed, as we require the overlap operator in AO basis.
-    const GQCP::GSpinorBasis<double, GQCP::GTOShell> g_spinor_basis {molecule, "6-31G"};
-    const auto S = g_spinor_basis.overlap();
+  // The general spinor basis is also needed, as we require the overlap operator in AO basis.
+  const GQCP::GSpinorBasis<double, GQCP::GTOShell> g_spinor_basis {molecule, "6-31G"};
+  const auto S = g_spinor_basis.overlap();
 
-    // Initialize two non-orthogonal "Generalised states".
+  // Initialize two non-orthogonal "Generalised states".
     GQCP::SquareMatrix<double> C_bra {8};
     // clang-format off
     C_bra << -0.07443693,  0.12036042, -0.13557067,  0.15517005,  0.13315100,  -0.03074946, -0.92997876, -0.93718779,
@@ -232,8 +256,8 @@ BOOST_AUTO_TEST_CASE(overlap_metrics) {
     std::vector<int> zero_indices_ref {};
 
     // Check the overlap metrics calculated by the `LowdinPairingBasis'.
-    BOOST_CHECK(std::abs(0.7834843312747031 - lowdin_pairing_basis.totalOverlap()) < 1e-6);
-    BOOST_CHECK(std::abs(0.7834843312747031 - lowdin_pairing_basis.reducedOverlap()) < 1e-6);
+    BOOST_CHECK(std::abs(-0.7834843312747031 - lowdin_pairing_basis.totalOverlap()) < 1e-6);
+    BOOST_CHECK(std::abs(-0.7834843312747031 - lowdin_pairing_basis.reducedOverlap()) < 1e-6);
     BOOST_CHECK_EQUAL(lowdin_pairing_basis.numberOfZeroOverlaps(), 0);
     BOOST_CHECK_EQUAL_COLLECTIONS(zero_indices_ref.begin(), zero_indices_ref.end(), lowdin_pairing_basis.zeroOverlapIndices().begin(), lowdin_pairing_basis.zeroOverlapIndices().end());
 }
@@ -243,7 +267,7 @@ BOOST_AUTO_TEST_CASE(overlap_metrics) {
  *  Test whether the density matrices are working correctly in the `GLowdinPairingBasis`.
  */
 BOOST_AUTO_TEST_CASE(density_matrices) {
-    // This test case is taken from a python prototype from @lelemmen and @johdvos.
+    // Reference data taken from the implementation of H. Burton (https://github.com/hgaburton/libgnme).
     // It was for H2, at 2.5au internuclear distance for the 6-31G basis set.
     const auto molecule = GQCP::Molecule::HChain(2, 2.5, 0);  // H2, 2.5 bohr apart.
 
@@ -263,6 +287,7 @@ BOOST_AUTO_TEST_CASE(density_matrices) {
              -0.12036042, -0.07443693,  0.15517005,  0.13557067,  0.03074946,   0.13315101,  0.93718779, -0.92997876,
              -0.15086478, -0.07874922,  0.77423311,  0.68085546, -0.25266303,   0.08712373, -0.89108911,  0.84807900;
     // clang-format on
+
     GQCP::SquareMatrix<double> C_ket {8};
     // clang-format off
     C_ket <<  0.25851329, -0.14539151, -0.17177142, -0.01126487,  0.81289875, -0.77260907,  0.50167389, -0.44422385,
@@ -274,6 +299,7 @@ BOOST_AUTO_TEST_CASE(density_matrices) {
              -0.10075937, -0.23872464,  0.0482368 , -0.17686313, -0.42104909, -0.4826058 , -0.79588057, -0.82460595,
              -0.16560552, -0.35003836,  0.19503259, -0.9018579 ,  0.55619574,  0.39048771,  0.56690551,  0.94451894;
     // clang-format on
+
     // Transform the matrices to the correct transformation type.
     const auto bra_expansion = GQCP::GTransformation<double> {C_bra};
     const auto ket_expansion = GQCP::GTransformation<double> {C_ket};
@@ -281,23 +307,23 @@ BOOST_AUTO_TEST_CASE(density_matrices) {
     // We can now initialize the biorthogonal Löwdin Pairing basis of these two states. Check whether the procedure doesn't throw any exceptions.
     const auto lowdin_pairing_basis = GQCP::GLowdinPairingBasis<double>(bra_expansion, ket_expansion, S, molecule.numberOfElectrons());
 
-    // Initialize a reference co-density matrix. Data taken from the implementation of @lelemmen and @johdvos.
+    // Initialize a reference co-density matrix.
     GQCP::SquareMatrix<double> ref_co_density {8};
     // clang-format off
-    ref_co_density <<  2.62250750e-02,  3.17449693e-02,  6.38063371e-02,  9.98817070e-02, -2.13991402e-02, -3.44559565e-02, -3.33731112e-03, -1.70894095e-03,
-                       3.29407612e-02,  3.98741835e-02,  8.01457883e-02,  1.25459296e-01, -2.68790067e-02, -4.32793970e-02, -4.19192580e-03, -2.14656452e-03,
-                       4.12607161e-02,  4.99453355e-02,  1.00388470e-01,  1.57146958e-01, -3.36679246e-02, -5.42106148e-02, -5.25069411e-03, -2.68872929e-03,
-                       6.25884885e-02,  7.57622103e-02,  1.52279534e-01,  2.38376633e-01, -5.10709632e-02, -8.22322238e-02, -7.96479167e-03, -4.07854051e-03,
-                       8.09805133e-04,  9.80254169e-04,  1.97027842e-03,  3.08425120e-03, -6.60784900e-04, -1.06396685e-03, -1.03052963e-04, -5.27704553e-05,
-                       3.51837883e-03,  4.25893264e-03,  8.56031357e-03,  1.34002165e-02, -2.87092722e-03, -4.62264103e-03, -4.47736557e-04, -2.29273001e-04,
-                      -2.54926060e-02, -3.08583291e-02, -6.20242195e-02, -9.70920007e-02,  2.08014600e-02,  3.34935981e-02,  3.24409968e-03,  1.66121005e-03,
-                      -3.97109961e-02, -4.80694279e-02, -9.66179583e-02, -1.51244642e-01,  3.24033839e-02,  5.21745068e-02,  5.05348217e-03,  2.58774273e-03;
+    ref_co_density <<  -2.62250750e-02,  -3.17449693e-02,  -6.38063371e-02,  -9.98817070e-02,  2.13991402e-02,   3.44559565e-02,   3.33731112e-03,   1.70894095e-03,
+                       -3.29407612e-02,  -3.98741835e-02,  -8.01457883e-02,  -1.25459296e-01,  2.68790067e-02,   4.32793970e-02,   4.19192580e-03,   2.14656452e-03,
+                       -4.12607161e-02,  -4.99453355e-02,  -1.00388470e-01,  -1.57146958e-01,  3.36679246e-02,   5.42106148e-02,   5.25069411e-03,   2.68872929e-03,
+                       -6.25884885e-02,  -7.57622103e-02,  -1.52279534e-01,  -2.38376633e-01,  5.10709632e-02,   8.22322238e-02,   7.96479167e-03,   4.07854051e-03,
+                       -8.09805133e-04,  -9.80254169e-04,  -1.97027842e-03,  -3.08425120e-03,  6.60784900e-04,   1.06396685e-03,   1.03052963e-04,   5.27704553e-05,
+                       -3.51837883e-03,  -4.25893264e-03,  -8.56031357e-03,  -1.34002165e-02,  2.87092722e-03,   4.62264103e-03,   4.47736557e-04,   2.29273001e-04,
+                        2.54926060e-02,   3.08583291e-02,   6.20242195e-02,   9.70920007e-02, -2.08014600e-02,  -3.34935981e-02,  -3.24409968e-03,  -1.66121005e-03,
+                        3.97109961e-02,   4.80694279e-02,   9.66179583e-02,   1.51244642e-01, -3.24033839e-02,  -5.21745068e-02,  -5.05348217e-03,  -2.58774273e-03;
     // clang-format on
 
     // Initialize a zero matrix as reference for the zero overlap co-density matrix.
     const GQCP::MatrixX<double> zero_overlap_co_dens_ref = GQCP::MatrixX<double>::Zero(8, 8);
 
-    // Initialize a reference weighted co-density matrix. Data taken from the implementation of @lelemmen and @johdvos.
+    // Initialize a reference weighted co-density matrix.
     GQCP::SquareMatrix<double> ref_weighted_co_density {8};
     // clang-format off
     ref_weighted_co_density << 0.03326887,  0.03688621,  0.10023033,  0.15829074,  0.06947715,  0.10772049,  0.03447101,  0.04425258,
@@ -310,17 +336,17 @@ BOOST_AUTO_TEST_CASE(density_matrices) {
                               -0.03747352, -0.049247  , -0.06903443, -0.10646852,  0.14149733,  0.22307043,  0.04919991,  0.05573053;
     // clang-format on
 
-    // Initialize a reference weighted co-density matrix. Data taken from the implementation of @lelemmen and @johdvos.
+    // Initialize a reference weighted co-density matrix.
     GQCP::SquareMatrix<double> ref_transition_1DM {8};
     // clang-format off
-    ref_transition_1DM << 0.02606564,  0.03458568,  0.03437621,  0.05097253,  0.00495829,  0.00935809, -0.01859919, -0.02935992,
-                          0.02889977,  0.03724525,  0.04207199,  0.06321853,  0.00301924,  0.00687852, -0.02464203, -0.03858425,
-                          0.07852889,  0.11046995,  0.08101631,  0.11537352,  0.02905695,  0.04811741, -0.0331281 , -0.05408739,
-                          0.12401831,  0.17482728,  0.12663285,  0.17998079,  0.04671134,  0.07715115, -0.05098369, -0.08341642,
-                          0.05443426,  0.10365189, -0.04118638, -0.08489929,  0.08109033,  0.11936184,  0.07591887,  0.11086094,
-                          0.08439732,  0.16123372, -0.0657525 , -0.13484172,  0.12691275,  0.18673852,  0.11963325,  0.17477219,
-                          0.0270075 ,  0.04842324, -0.00963652, -0.02383398,  0.03347209,  0.04968073,  0.02669845,  0.03854736,
-                          0.03467121,  0.06110139, -0.008551  , -0.02412722,  0.04057846,  0.06040313,  0.03039413,  0.04366399;
+    ref_transition_1DM << -0.02606564,  -0.03458568,  -0.03437621,  -0.05097253,  -0.00495829,  -0.00935809,   0.01859919,   0.02935992,
+                          -0.02889977,  -0.03724525,  -0.04207199,  -0.06321853,  -0.00301924,  -0.00687852,   0.02464203,   0.03858425,
+                          -0.07852889,  -0.11046995,  -0.08101631,  -0.11537352,  -0.02905695,  -0.04811741,   0.0331281 ,   0.05408739,
+                          -0.12401831,  -0.17482728,  -0.12663285,  -0.17998079,  -0.04671134,  -0.07715115,   0.05098369,   0.08341642,
+                          -0.05443426,  -0.10365189,   0.04118638,   0.08489929,  -0.08109033,  -0.11936184,  -0.07591887,  -0.11086094,
+                          -0.08439732,  -0.16123372,   0.0657525 ,   0.13484172,  -0.12691275,  -0.18673852,  -0.11963325,  -0.17477219,
+                          -0.0270075 ,  -0.04842324,   0.00963652,   0.02383398,  -0.03347209,  -0.04968073,  -0.02669845,  -0.03854736,
+                          -0.03467121,  -0.06110139,   0.008551  ,   0.02412722,  -0.04057846,  -0.06040313,  -0.03039413,  -0.04366399;
     // clang-format on
 
     // Compare the calculated and reference co-density matrices.

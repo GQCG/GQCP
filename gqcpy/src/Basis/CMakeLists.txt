@@ -1,3 +1,4 @@
+add_subdirectory(BiorthogonalBasis)
 add_subdirectory(Integrals)
 add_subdirectory(MullikenPartitioning)
 add_subdirectory(NonOrthogonalBasis)

@@ -421,7 +421,6 @@ public:
                 // Use the correct formula, depending on how many zero overlaps there are.
                 // If there are zero overlap values, we perform the following calculation.
                 if (number_of_zeros == 0) {
-
                     // In order to calcluate the matrix element when there are no zero overlap values, we need the reduced overlap and the weighted co-density matrix from the biorthogonal basis.
                     const auto reduced_overlap = lowdin_pairing_basis.reducedOverlap();
                     const auto weighted_co_density = lowdin_pairing_basis.weightedCoDensity();
@@ -456,7 +455,6 @@ public:
                 }
                 // If there is one zero overlap value, we perform the following calculation.
                 else if (number_of_zeros == 1) {
-
                     // Determine whether the zero stems from the alpha or the beta component.
                     const auto zero_spin = lowdin_pairing_basis.zeroOverlapIndices()[0].second;
 
@@ -483,11 +481,11 @@ public:
                     Tensor<Scalar, 2> direct_alpha_beta_tensor = Tensor<Scalar, 2>(tensor_map);
 
                     // We can now calculate the next contraction of the equation.
-                    GQCP::Tensor<Scalar, 0> direct_element = direct_alpha_beta_tensor.template einsum<2>("ut, ut ->", co_density.matrix());
+                    GQCP::Tensor<Scalar, 0> direct_element = direct_alpha_beta_tensor.template einsum<2>("ut, tu ->", co_density.matrix());
 
                     // We calculate the exchange contractions analogously.
                     Tensor<Scalar, 2> intermediate_exchange_contraction = g_op.pureComponent(zero_spin).parameters().template einsum<2>("utvs, tv -> us", weighted_co_density.component(zero_spin).matrix());
-                    Tensor<Scalar, 0> exchange_element = intermediate_exchange_contraction.template einsum<2>("us, us ->", co_density.matrix());
+                    Tensor<Scalar, 0> exchange_element = intermediate_exchange_contraction.template einsum<2>("us, su ->", co_density.matrix());
 
                     evaluated_operator(i, j) += (reduced_overlap * (direct_element(0) - exchange_element(0)));
                 }
@@ -509,24 +507,24 @@ public:
 
                     // Perform the contractions. We need to perform two contractions (one for the direct component, one for the exchange component).
                     // In order to perserve readability of the contractions, and keep the exact link with the theory, we split each contraction in two.
-                    Matrix intermediate_direct_contraction_1 = g_op.alphaAlpha().parameters().template einsum<2>("utvs, tu -> vs", co_density_1.alpha().matrix()).asMatrix();
-                    Matrix intermediate_direct_contraction_2 = g_op.betaBeta().parameters().template einsum<2>("utvs, tu -> vs", co_density_1.beta().matrix()).asMatrix();
+                    Tensor<Scalar, 2> direct_contraction = g_op.pureComponent(zero_overlap_spin_1).parameters().template einsum<2>("utvs, tu -> vs", co_density_1.component(zero_overlap_spin_1).matrix());
 
-                    // The complete first direct contraction can the be written as follows.
-                    Matrix direct_alpha_beta = intermediate_direct_contraction_1 + intermediate_direct_contraction_2;
-
-                    // We return the representation to a tensor, in order to perform the final contractions.
-                    Eigen::TensorMap<Eigen::Tensor<const Scalar, 2>> tensor_map {direct_alpha_beta.data(), direct_alpha_beta.rows(), direct_alpha_beta.cols()};
-                    Tensor<Scalar, 2> direct_alpha_beta_tensor = Tensor<Scalar, 2>(tensor_map);
-
-                    // We can now calculate the next contraction of the equation..
-                    Tensor<Scalar, 0> direct_element = direct_alpha_beta_tensor.template einsum<2>("vs, sv ->", active_co_density.matrix());
+                    // We can now calculate the next contraction of the equation.
+                    Tensor<Scalar, 0> direct_element = direct_contraction.template einsum<2>("vs, sv ->", active_co_density.matrix());
 
                     // We calculate the exchange contractions analogously.
-                    Tensor<Scalar, 2> intermediate_exchange_contraction = g_op.pureComponent(zero_overlap_spin_1).parameters().template einsum<2>("utvs, su -> tv", co_density_1.component(zero_overlap_spin_1).matrix());
-                    Tensor<Scalar, 0> exchange_element = intermediate_exchange_contraction.template einsum<2>("tv, tv ->", active_co_density.matrix());
+                    Scalar exchange_element;
 
-                    evaluated_operator(i, j) += (reduced_overlap * (direct_element(0) - exchange_element(0)));
+                    if (zero_overlap_spin_1 == zero_overlap_spin_2) {
+                        Tensor<Scalar, 2> intermediate_exchange_contraction = g_op.pureComponent(zero_overlap_spin_1).parameters().template einsum<2>("utvs, su -> tv", co_density_1.component(zero_overlap_spin_1).matrix());
+                        Tensor<Scalar, 0> exchange_element_tensor = intermediate_exchange_contraction.template einsum<2>("tv, tv ->", active_co_density.matrix());
+                        exchange_element = exchange_element_tensor(0);
+
+                        // Calculate the evaluated operator element.
+                        evaluated_operator(i, j) += (reduced_overlap * (direct_element(0) - exchange_element));
+                    } else {
+                        evaluated_operator(i, j) += (reduced_overlap * direct_element(0));
+                    }
                 }
                 // If there are more than two zero overlap values, the matrix element will be zero. No further if-clause is needed.
             }
@@ -548,7 +546,7 @@ public:
 template <typename _Scalar>
 struct JacobiRotatableTraits<UNonOrthogonalStateBasis<_Scalar>> {
 
-    // The type of Jacobi rotation that is naturally related to a `RNonOrthogonalStateBasis`.
+    // The type of Jacobi rotation that is naturally related to a `UNonOrthogonalStateBasis`.
     using JacobiRotationType = JacobiRotation;
 };
 
@@ -563,7 +561,7 @@ struct JacobiRotatableTraits<UNonOrthogonalStateBasis<_Scalar>> {
 template <typename _Scalar>
 struct BasisTransformableTraits<UNonOrthogonalStateBasis<_Scalar>> {
 
-    // The type of transformation that is naturally related to a `RNonOrthogonalStateBAsis`.
+    // The type of transformation that is naturally related to a `UNonOrthogonalStateBAsis`.
     using Transformation = UTransformation<_Scalar>;
 };
 
