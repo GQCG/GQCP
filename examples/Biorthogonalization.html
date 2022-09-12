@@ -1,0 +1,792 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Setup the basis and the overlap</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Non Orthogonal Configuration Interaction" href="NOCI.html" />
+    <link rel="prev" title="Calculating the Mulliken population" href="Mulliken-population.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.jpg" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../landing-page.html">
+                    The Ghent Quantum Chemistry Package
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Getting started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../user-documentation/installing-gqcp.html">
+   Installing GQCP(y)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../user-documentation/using-gqcp.html">
+   Using GQCP(y)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Tutorial
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tutorial/introduction.html">
+   Tutorial
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tutorial/molecules.html">
+   Molecules
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tutorial/orbital-bases.html">
+   Orbital bases
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tutorial/quantum-chemical-methods.html">
+   Quantum chemical methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tutorial/quantum-chemical-models.html">
+   Quantum chemical models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tutorial/use-cases.html">
+   Common use cases
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Examples
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Spinor-bases.html">
+   Spinor bases
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="RHF-dipole-moments.html">
+   Calculating the RHF dipole moment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="UHF-calculations.html">
+   UHF SCF
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Custom-algorithms-showcase-CUHF.html">
+   Custom algorithms showcase - CUHF
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="R-U-GHF-overlaps.html">
+   Overlaps between R/U/GHF
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="HF-Stability.html">
+   Checking the Hartree-Fock Stability conditions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Following-internal-GHF-instabilities.html">
+   Following internal instabilities in GHF
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ONVPath.html">
+   ONV path manipulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DOCI.html">
+   DOCI calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="OO-DOCI.html">
+   OO-DOCI calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FCI.html">
+   Molecular FCI calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Hubbard.html">
+   Hubbard calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="AP1roG-calculations.html">
+   AP1roG calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="CCSD.html">
+   CCSD calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Mulliken-population.html">
+   Calculating the Mulliken population
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Setup the basis and the overlap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="NOCI.html">
+   Non Orthogonal Configuration Interaction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Magnetic-inducibility.html">
+   The ipsocentric magnetic inducibility
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Integrals-over-GTOs.html">
+   Calculating integrals over GTOs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="London-integrals.html">
+   Gauge-origin independence for London kinetic integrals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Mean-field-magnetic.html">
+   Mean-field calculations in magnetic fields
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Mulliken-constrained-CI.html">
+   Mulliken constrained CI calculations
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Developer documentation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../developer-documentation/getting-started.html">
+   Getting started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../developer-documentation/style-guide.html">
+   GQCP Style Guide
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../developer-documentation/introduction.html">
+   Introduction for developers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../developer-documentation/ONV-path-manipulation.html">
+   Manipulating ONVs and their addresses
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../developer-documentation/devops.html">
+   GQCP devops
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Miscellaneous
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../miscellaneous/troubleshooting.html">
+   Troubleshooting guide
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../miscellaneous/citations.html">
+   Academic references
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../miscellaneous/api.html">
+   API
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Blog posts
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../blog/2020-11-30-RSDD.html">
+   GQCP appears in RSDD2020
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/GQCG/GQCP/develop?urlpath=tree/examples/Biorthogonalization.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/examples/Biorthogonalization.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Setup the basis and the overlap
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#define-two-non-orthogonal-states">
+   Define two non-orthogonal states
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-the-biorthogonal-space-of-the-two-non-orthogonal-determinants">
+   Create the biorthogonal space of the two non-orthogonal determinants
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Setup the basis and the overlap</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Setup the basis and the overlap
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#define-two-non-orthogonal-states">
+   Define two non-orthogonal states
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-the-biorthogonal-space-of-the-two-non-orthogonal-determinants">
+   Create the biorthogonal space of the two non-orthogonal determinants
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Force the local gqcpy to be imported</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;../../build/gqcpy/&#39;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">gqcpy</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="setup-the-basis-and-the-overlap">
+<h1>Setup the basis and the overlap<a class="headerlink" href="#setup-the-basis-and-the-overlap" title="Permalink to this headline">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">molecule</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">Molecule</span><span class="o">.</span><span class="n">HChain</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  
+<span class="n">N</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">numberOfElectrons</span><span class="p">()</span>
+
+<span class="n">spinor_basis</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">GSpinorBasis_d</span><span class="p">(</span><span class="n">molecule</span><span class="p">,</span> <span class="s2">&quot;6-31G&quot;</span><span class="p">)</span>
+<span class="n">S</span> <span class="o">=</span> <span class="n">spinor_basis</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">OverlapOperator</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="define-two-non-orthogonal-states">
+<h1>Define two non-orthogonal states<a class="headerlink" href="#define-two-non-orthogonal-states" title="Permalink to this headline">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">state_1</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">GTransformation_d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mf">0.07443693</span><span class="p">,</span>  <span class="mf">0.12036042</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.13557067</span><span class="p">,</span>  <span class="mf">0.15517005</span><span class="p">,</span>  <span class="mf">0.133151</span><span class="p">,</span>   <span class="o">-</span><span class="mf">0.03074946</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.92997876</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.93718779</span><span class="p">],</span>
+                                            <span class="p">[</span><span class="o">-</span><span class="mf">0.07874922</span><span class="p">,</span>  <span class="mf">0.15086478</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.68085546</span><span class="p">,</span>  <span class="mf">0.77423311</span><span class="p">,</span>  <span class="mf">0.08712373</span><span class="p">,</span>  <span class="mf">0.25266303</span><span class="p">,</span>  <span class="mf">0.848079</span>  <span class="p">,</span>  <span class="mf">0.89108911</span><span class="p">],</span>
+                                            <span class="p">[</span><span class="o">-</span><span class="mf">0.24580188</span><span class="p">,</span>  <span class="mf">0.26338108</span><span class="p">,</span>  <span class="mf">0.09556297</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.12178159</span><span class="p">,</span>  <span class="mf">0.91319299</span><span class="p">,</span>  <span class="mf">0.90475733</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.03994767</span><span class="p">,</span>  <span class="mf">0.12839983</span><span class="p">],</span>
+                                            <span class="p">[</span><span class="o">-</span><span class="mf">0.38944259</span><span class="p">,</span>  <span class="mf">0.4101685</span> <span class="p">,</span>  <span class="mf">0.45214166</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.58335985</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.90125958</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.93270816</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.16410814</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.32074956</span><span class="p">],</span>
+                                            <span class="p">[</span><span class="o">-</span><span class="mf">0.26338108</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.24580188</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.12178159</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.09556297</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.90475733</span><span class="p">,</span>  <span class="mf">0.91319299</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.12839983</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.03994767</span><span class="p">],</span>
+                                            <span class="p">[</span><span class="o">-</span><span class="mf">0.4101685</span> <span class="p">,</span> <span class="o">-</span><span class="mf">0.38944259</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.58335985</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.45214166</span><span class="p">,</span>  <span class="mf">0.93270817</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.90125958</span><span class="p">,</span>  <span class="mf">0.32074956</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.16410814</span><span class="p">],</span>
+                                            <span class="p">[</span><span class="o">-</span><span class="mf">0.12036042</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.07443693</span><span class="p">,</span>  <span class="mf">0.15517005</span><span class="p">,</span>  <span class="mf">0.13557067</span><span class="p">,</span>  <span class="mf">0.03074946</span><span class="p">,</span>  <span class="mf">0.13315101</span><span class="p">,</span>  <span class="mf">0.93718779</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.92997876</span><span class="p">],</span>
+                                            <span class="p">[</span><span class="o">-</span><span class="mf">0.15086478</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.07874922</span><span class="p">,</span>  <span class="mf">0.77423311</span><span class="p">,</span>  <span class="mf">0.68085546</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.25266303</span><span class="p">,</span>  <span class="mf">0.08712373</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.89108911</span><span class="p">,</span>  <span class="mf">0.848079</span>  <span class="p">]]))</span>
+
+<span class="n">state_2</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">GTransformation_d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mf">0.25851329</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.14539151</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.17177142</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.01126487</span><span class="p">,</span>  <span class="mf">0.81289875</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.77260907</span><span class="p">,</span>  <span class="mf">0.50167389</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.44422385</span><span class="p">],</span>
+                                            <span class="p">[</span> <span class="mf">0.36593356</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.28669343</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.84796858</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.13503625</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.62437698</span><span class="p">,</span>  <span class="mf">0.96771154</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.55231929</span><span class="p">,</span>  <span class="mf">0.30317456</span><span class="p">],</span>
+                                            <span class="p">[</span> <span class="mf">0.25853403</span><span class="p">,</span>  <span class="mf">0.14539669</span><span class="p">,</span>  <span class="mf">0.17176599</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.01126146</span><span class="p">,</span>  <span class="mf">0.81450567</span><span class="p">,</span>  <span class="mf">0.7709918</span> <span class="p">,</span> <span class="o">-</span><span class="mf">0.501289</span>  <span class="p">,</span> <span class="o">-</span><span class="mf">0.44451308</span><span class="p">],</span>
+                                            <span class="p">[</span> <span class="mf">0.36597032</span><span class="p">,</span>  <span class="mf">0.28670189</span><span class="p">,</span>  <span class="mf">0.847938</span>  <span class="p">,</span> <span class="o">-</span><span class="mf">0.13501526</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.62639487</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.96647128</span><span class="p">,</span>  <span class="mf">0.5520554</span> <span class="p">,</span>  <span class="mf">0.30349133</span><span class="p">],</span>
+                                            <span class="p">[</span> <span class="mf">0.10076798</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.23874662</span><span class="p">,</span>  <span class="mf">0.04823423</span><span class="p">,</span>  <span class="mf">0.17685836</span><span class="p">,</span>  <span class="mf">0.42013282</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.48352714</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.79642816</span><span class="p">,</span>  <span class="mf">0.8239984</span> <span class="p">],</span>
+                                            <span class="p">[</span> <span class="mf">0.16561668</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.35007843</span><span class="p">,</span>  <span class="mf">0.19502141</span><span class="p">,</span>  <span class="mf">0.90182842</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.55545195</span><span class="p">,</span>  <span class="mf">0.39170258</span><span class="p">,</span>  <span class="mf">0.56753639</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.94408827</span><span class="p">],</span>
+                                            <span class="p">[</span><span class="o">-</span><span class="mf">0.10075937</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.23872464</span><span class="p">,</span>  <span class="mf">0.0482368</span> <span class="p">,</span> <span class="o">-</span><span class="mf">0.17686313</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.42104909</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4826058</span> <span class="p">,</span> <span class="o">-</span><span class="mf">0.79588057</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.82460595</span><span class="p">],</span>
+                                            <span class="p">[</span><span class="o">-</span><span class="mf">0.16560552</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.35003836</span><span class="p">,</span>  <span class="mf">0.19503259</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.9018579</span> <span class="p">,</span>  <span class="mf">0.55619574</span><span class="p">,</span>  <span class="mf">0.39048771</span><span class="p">,</span>  <span class="mf">0.56690551</span><span class="p">,</span>  <span class="mf">0.94451894</span><span class="p">]]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="create-the-biorthogonal-space-of-the-two-non-orthogonal-determinants">
+<h1>Create the biorthogonal space of the two non-orthogonal determinants<a class="headerlink" href="#create-the-biorthogonal-space-of-the-two-non-orthogonal-determinants" title="Permalink to this headline">#</a></h1>
+<p>We can define a Löwdin pairing basis using two non-orthogonal states, the overlap in AO basis and the number of occupied orbitals.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lp_basis</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">GLowdinPairingBasis_d</span><span class="p">(</span><span class="n">state_1</span><span class="p">,</span> <span class="n">state_2</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">biorth_bra_expansion</span> <span class="o">=</span> <span class="n">lp_basis</span><span class="o">.</span><span class="n">biorthogonalBraExpansion</span><span class="p">()</span>
+<span class="n">biorth_ket_expansion</span> <span class="o">=</span> <span class="n">lp_basis</span><span class="o">.</span><span class="n">biorthogonalKetExpansion</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Biorthogonal Bra&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;----------------&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">biorth_bra_expansion</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Biorthogonal Ket&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;----------------&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">biorth_ket_expansion</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Biorthogonal Bra
+----------------
+[[-0.14038635 -0.01786507]
+ [-0.16993508 -0.00914819]
+ [-0.34156389 -0.11455247]
+ [-0.53468019 -0.18444736]
+ [ 0.11455247 -0.34156389]
+ [ 0.18444736 -0.53468019]
+ [ 0.01786507 -0.14038635]
+ [ 0.00914819 -0.16993508]]
+
+Biorthogonal Ket
+----------------
+[[ 0.18680645 -0.23037179]
+ [ 0.23464362 -0.40130146]
+ [ 0.29390833  0.03997422]
+ [ 0.44583031  0.13178613]
+ [ 0.0057684  -0.25907694]
+ [ 0.02506212 -0.38646563]
+ [-0.18158893 -0.18484417]
+ [-0.28286936 -0.26445598]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Furthermore, the biorthogonal basis is capable of calculating the different co-density and weighted co-density matrices needed for a NOCI calculation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">W</span> <span class="o">=</span> <span class="n">lp_basis</span><span class="o">.</span><span class="n">weightedCoDensity</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">W</span><span class="o">.</span><span class="n">matrix</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 0.03326887  0.03688621  0.10023033  0.15829074  0.06947715  0.10772049  0.03447101  0.04425258]
+ [ 0.04414342  0.04753796  0.14099828  0.22314075  0.13229605  0.20579061  0.06180499  0.07798674]
+ [ 0.04387607  0.05369857  0.10340514  0.1616278  -0.05256822 -0.08392318 -0.01229957 -0.01091407]
+ [ 0.06505878  0.08068895  0.14725696  0.22971843 -0.10836118 -0.17210519 -0.0304205  -0.03079477]
+ [ 0.00632852  0.00385361  0.03708684  0.05962     0.10349962  0.16198506  0.04272209  0.0517923 ]
+ [ 0.0119442   0.0087794   0.06141465  0.09847184  0.15234745  0.23834366  0.06340999  0.07709552]
+ [-0.02373907 -0.03145185 -0.04228304 -0.06507302  0.09689903  0.15269387  0.03407656  0.03879353]
+ [-0.03747352 -0.049247   -0.06903443 -0.10646852  0.14149733  0.22307043  0.04919991  0.05573053]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The biorthogonal basis can also be created for restricted and unrestricted states.</p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "GQCG/GQCP",
+            ref: "develop",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./examples"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="Mulliken-population.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Calculating the Mulliken population</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="NOCI.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Non Orthogonal Configuration Interaction</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By The Ghent Quantum Chemistry Group<br/>
+  
+      &copy; Copyright 2017-2021.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
