@@ -100,6 +100,11 @@ void bindSpinUnresolvedONV(py::module& module) {
             "Calculate the overlap <on|of>: the projection of between this spin-unresolved ONV ('of') and another spin-unresolved ONV ('on'), expressed in different general orthonormal spinor bases.")
 
         .def(
+            "countNumberOfDifferences",
+            &SpinUnresolvedONV::countNumberOfDifferences,
+            py::arg("other ONV"))
+
+        .def(
             "numberOfElectrons",
             &SpinUnresolvedONV::numberOfElectrons,
             "Return the number of electrons that this ONV contains.")
