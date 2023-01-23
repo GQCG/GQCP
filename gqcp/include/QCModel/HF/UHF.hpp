@@ -309,6 +309,25 @@ public:
 
 
     /**
+     *  Calculate the UHF 2-DM expressed in the underlying scalar basis.
+     *
+     *  @param C            The transformation between the UHF MOs and the atomic spin-orbitals.
+     *  @param N_a          The number of alpha electrons, i.e. the number of occupied alpha spin-orbitals.
+     *  @param N_b          The number of beta electrons, i.e. the number of occupied beta spin-orbitals.
+     *
+     *  @return The UHF 2-DM expressed in the underlying scalar basis.
+     */
+    static SpinResolved2DM<Scalar> calculateScalarBasis2DM(const UTransformation<Scalar>& C, const size_t N_a, const size_t N_b) {
+
+        // Calculate the 2-DM in the spin-orbital basis, and transform to the underlying scalar basis.
+        const auto K = C.alpha().numberOfOrbitals();  // Assume K_alpha and K_beta are equal.
+        const auto d_orthonormal = UHF<Scalar>::calculateOrthonormalBasis2DM(K, N_a, N_b);
+
+        return d_orthonormal.transformed(C.inverse());
+    }
+
+
+    /**
      *  Calculate the UHF direct (Coulomb) operator.
      *
      *  @param P                    The UHF alpha density matrix expressed in the underlying scalar orbital basis.
@@ -450,6 +469,22 @@ public:
         const auto N_b = this->numberOfElectrons().beta();
 
         return UHF<Scalar>::calculateScalarBasis1DM(C, N_a, N_b);
+    }
+
+
+    /**
+     *  @return The spin resolved UHF 2-DM expressed in the underlying scalar basis for these UHF model parameters.
+     */
+    SpinResolved2DM<Scalar> calculateScalarBasis2DM() const {
+
+        const auto C_a = this->expansion().component(Spin::alpha);
+        const auto C_b = this->expansion().component(Spin::beta);
+        const UTransformation<Scalar> C {C_a, C_b};
+
+        const auto N_a = this->numberOfElectrons().alpha();
+        const auto N_b = this->numberOfElectrons().beta();
+
+        return UHF<Scalar>::calculateScalarBasis2DM(C, N_a, N_b);
     }
 
 

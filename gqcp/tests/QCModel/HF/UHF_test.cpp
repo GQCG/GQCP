@@ -130,3 +130,31 @@ BOOST_AUTO_TEST_CASE(UHF_DMs) {
 
     BOOST_CHECK(std::abs(uhf_energy - expectation_value) < 1.0e-12);
 }
+
+
+/**
+ *  Check if the UHF energy is equal to the expectation value of the Hamiltonian through its density matrices.
+ */
+BOOST_AUTO_TEST_CASE(UHF_DMs_scalar_basis) {
+
+    // Perform a UHF calculation.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+    const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> u_spin_orbital_basis {molecule, "STO-3G"};
+    auto hamiltonian = u_spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // In an AO basis.
+
+    const auto N_a = molecule.numberOfElectronPairs();  // The number of alpha electrons.
+    const auto N_b = molecule.numberOfElectronPairs();  // The number of beta electrons.
+    auto uhf_environment = GQCP::UHFSCFEnvironment<double>::WithCoreGuess(N_a, N_b, hamiltonian, u_spin_orbital_basis.overlap());
+    auto plain_uhf_scf_solver = GQCP::UHFSCFSolver<double>::Plain();
+
+    const auto uhf_qc_structure = GQCP::QCMethod::UHF<double>().optimize(plain_uhf_scf_solver, uhf_environment);
+    const auto uhf_parameters = uhf_qc_structure.groundStateParameters();
+    const auto uhf_energy = uhf_qc_structure.groundStateEnergy();
+
+    // Determine the UHF energy through the expectation value of the Hamiltonian, and check the result.
+    const auto D_MO = uhf_parameters.calculateScalarBasis1DM();
+    const auto d_MO = uhf_parameters.calculateScalarBasis2DM();
+    const double expectation_value = hamiltonian.calculateExpectationValue(D_MO, d_MO);
+
+    BOOST_CHECK(std::abs(uhf_energy - expectation_value) < 1.0e-12);
+}
