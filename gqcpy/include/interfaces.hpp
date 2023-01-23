@@ -1027,6 +1027,13 @@ void bindQCModelHartreeFockInterface(Class& py_class) {
             "Return the HF 1-DM in the scalar/AO basis related to these optimal parameters.")
 
         .def(
+            "calculateScalarBasis2DM",
+            [](const Type& parameters) {
+                return parameters.calculateScalarBasis2DM();
+            },
+            "Return the HF 2-DM in the scalar/AO basis related to these optimal parameters.")
+
+        .def(
             "calculateStabilityMatrices",
             &Type::calculateStabilityMatrices,
             py::arg("hamiltonian"),
