@@ -51,3 +51,28 @@ BOOST_AUTO_TEST_CASE(GHF_DMs) {
 
     BOOST_CHECK(std::abs(ghf_energy - expectation_value) < 1.0e-12);
 }
+
+/**
+ *  Check if the GHF energy is equal to the expectation value of the Hamiltonian through its density matrices.
+ */
+BOOST_AUTO_TEST_CASE(GHF_DMs_scalar_basis) {
+
+    // Perform a GHF calculation.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+    const GQCP::GSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+    auto hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // In an AO basis.
+
+    auto ghf_environment = GQCP::GHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), hamiltonian, spinor_basis.overlap().parameters());
+    auto plain_ghf_scf_solver = GQCP::GHFSCFSolver<double>::Plain();
+
+    const auto ghf_qc_structure = GQCP::QCMethod::GHF<double>().optimize(plain_ghf_scf_solver, ghf_environment);
+    const auto ghf_parameters = ghf_qc_structure.groundStateParameters();
+    const auto ghf_energy = ghf_qc_structure.groundStateEnergy();
+
+    // Determine the ghf energy through the expectation value of the Hamiltonian, and check the result.
+    const auto D_MO = ghf_parameters.calculateScalarBasis1DM();
+    const auto d_MO = ghf_parameters.calculateScalarBasis2DM();
+    const double expectation_value = hamiltonian.calculateExpectationValue(D_MO, d_MO);
+
+    BOOST_CHECK(std::abs(ghf_energy - expectation_value) < 1.0e-12);
+}
