@@ -714,6 +714,32 @@ public:
 
 
     /**
+     *  @param C    The coefficient matrix that expresses every spatial orbital (as a column) in its underlying scalar basis.
+     *  @param N    The number of electrons.
+     *
+     *  @return The RHF 2-DM expressed in the underlying scalar basis.
+     */
+    static Orbital2DM<Scalar> calculateScalarBasis2DM(const RTransformation<Scalar>& C, const size_t N) {
+
+        const size_t K = C.numberOfOrbitals();
+        const auto d_orthonormal = RHF<Scalar>::calculateOrthonormalBasis2DM(K, N);
+
+        // Transform the 1-DM in an orthonormal basis to the underlying scalar basis.
+        return d_orthonormal.transformed(C.inverse());
+    }
+
+
+    /**
+     *  @return The RHF 1-DM in the scalar/AO basis related to these optimal RHF parameters.
+     */
+    Orbital2DM<Scalar> calculateScalarBasis2DM() const {
+
+        const auto N = 2 * this->numberOfElectronPairs();
+        return RHF<Scalar>::calculateScalarBasis2DM(this->expansion(), N);
+    }
+
+
+    /**
      *  Calculate the RHF Fock operator F = H_core + G, in which G is a contraction of the density matrix and the two-electron integrals.
      *
      *  @param D                    The RHF density matrix in a scalar basis.

@@ -132,6 +132,33 @@ BOOST_AUTO_TEST_CASE(RHF_DMs) {
 
 
 /**
+ *  Check if the RHF energy is equal to the expectation value of the Hamiltonian through its density matrices.
+ */
+BOOST_AUTO_TEST_CASE(RHF_DMs_scalar_basis) {
+
+    // Perform an RHF calculation.
+    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+    const GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> spin_orbital_basis {molecule, "STO-3G"};
+    auto hamiltonian = spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // In an AO basis.
+
+    auto rhf_environment = GQCP::RHFSCFEnvironment<double>::WithCoreGuess(molecule.numberOfElectrons(), hamiltonian, spin_orbital_basis.overlap());
+    auto plain_rhf_scf_solver = GQCP::RHFSCFSolver<double>::Plain();
+    const GQCP::DiagonalRHFFockMatrixObjective<double> objective {hamiltonian};
+
+    const auto rhf_qc_structure = GQCP::QCMethod::RHF<double>().optimize(objective, plain_rhf_scf_solver, rhf_environment);
+    const auto rhf_parameters = rhf_qc_structure.groundStateParameters();
+    const auto rhf_energy = rhf_qc_structure.groundStateEnergy();
+
+    // Determine the RHF energy through the expectation value of the Hamiltonian, and check the result.
+    const auto D_MO = rhf_parameters.calculateScalarBasis1DM();
+    const auto d_MO = rhf_parameters.calculateScalarBasis2DM();
+    const double expectation_value = hamiltonian.calculateExpectationValue(D_MO, d_MO);
+
+    BOOST_CHECK(std::abs(rhf_energy - expectation_value) < 1.0e-12);
+}
+
+
+/**
  *  Check the calculation of the ipsocentric current density and the intermediates for its calculation. The test system is H2, 1 au apart in an STO-3G basis set.
  *
  *  The reference implementation is a GAMESS-SYSMO combination. Calculations were performed by Remco Havenith.

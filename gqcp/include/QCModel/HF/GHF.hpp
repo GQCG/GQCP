@@ -34,7 +34,7 @@ namespace QCModel {
 
 /**
  *  The generalized Hartree-Fock wave function model.
- * 
+ *
  *  @tparam _Scalar             The type of scalar that is used for the expansion of the spinors in their underlying scalar basis.
  */
 template <typename _Scalar>
@@ -59,7 +59,7 @@ public:
 
     /**
      *  The standard member-wise constructor.
-     * 
+     *
      *  @param N                    The number of electrons.
      *  @param C                    The transformation that expresses the GHF MOs in terms of the atomic spinors.
      *  @param orbital_energies     The GHF MO energies.
@@ -85,7 +85,7 @@ public:
      *  @param F                The Fock operator expressed in the scalar bases.
      *  @param D                The GHF density matrix in the same scalar bases.
      *  @param S                The (spin-blocked) overlap operator of the scalar bases.
-     * 
+     *
      *  @return The GHF error matrix.
      */
     static SquareMatrix<Scalar> calculateError(const ScalarGSQOneElectronOperator<Scalar>& F, const G1DM<Scalar>& P, const ScalarGSQOneElectronOperator<Scalar>& S) {
@@ -138,13 +138,29 @@ public:
 
 
     /**
+     *  @param C            The coefficient matrix that expresses every spinor orbital (as a column) in the underlying scalar bases.
+     *  @param N            The number of electrons.
+     *
+     *  @return The GHF 2-DM expressed in the underlying scalar basis.
+     */
+    static G2DM<Scalar> calculateScalarBasis2DM(const GTransformation<Scalar>& C, const size_t N) {
+
+        const size_t M = C.dimension();
+        const auto P_orthonormal = GHF<Scalar>::calculateOrthonormalBasis2DM(M, N);
+
+        // Transform the 2-DM in an orthonormal basis to the underlying scalar basis.
+        return G2DM<Scalar>(P_orthonormal.transformed(C.inverse()));
+    }
+
+
+    /**
      *  Calculate the GHF direct (Coulomb) operator.
-     * 
+     *
      *  @param P                    The GHF density matrix expressed in the underlying scalar orbital basis.
      *  @param sq_hamiltonian       The Hamiltonian expressed in the scalar (AO) basis, resulting from a quantization using a GSpinorBasis.
-     * 
+     *
      *  @return The GHF direct (Coulomb) operator.
-     * 
+     *
      *  @note The scalar bases for the alpha- and beta-components must be the same.
      */
     static ScalarGSQOneElectronOperator<Scalar> calculateScalarBasisDirectMatrix(const G1DM<Scalar>& P, const GSQHamiltonian<Scalar>& sq_hamiltonian) {
@@ -172,10 +188,10 @@ public:
 
     /**
      *  Calculate the GHF exchange operator.
-     * 
+     *
      *  @param P                     The GHF density matrix expressed in the underlying scalar orbital bases.
      *  @param sq_hamiltonian        The Hamiltonian expressed in the scalar (AO) basis, resulting from a quantization using a GSpinorBasis.
-     * 
+     *
      *  @return The GHF direct (Coulomb) operator for spin sigma.
      */
     static ScalarGSQOneElectronOperator<Scalar> calculateScalarBasisExchangeMatrix(const G1DM<Scalar>& P, const GSQHamiltonian<Scalar>& sq_hamiltonian) {
@@ -230,7 +246,7 @@ public:
 
     /**
      *  Calculate the GHF 1-DM expressed in an orthonormal spinor basis.
-     * 
+     *
      *  @param M            The number of spinors.
      *  @param N            The number of electrons.
      *
@@ -254,7 +270,7 @@ public:
 
     /**
      *  Calculate the GHF 2-DM expressed in an orthonormal spinor basis.
-     * 
+     *
      *  @param M            The number of spinors.
      *  @param N            The number of electrons.
      *
@@ -292,7 +308,7 @@ public:
     /**
      *  @param M            The number of spinors.
      *  @param N            The number of electrons.
-     * 
+     *
      *  @return The implicit (i.e. with ascending and contiguous orbital indices) occupied-virtual orbital space that corresponds to these GHF model parameters.
      */
     static OrbitalSpace orbitalSpace(const size_t M, const size_t N) {
@@ -308,7 +324,7 @@ public:
     /**
      *  @param spin_op                      The electronic spin operator.
      *  @param S                            The (spin-blocked) overlap matrix of the underlying AO bases.
-     * 
+     *
      *  @return The expectation value of the electronic spin operator.
      */
     Vector<complex, 3> calculateExpectationValueOf(const ElectronicSpinOperator& spin_op, const ScalarGSQOneElectronOperator<Scalar>& S) const {
@@ -354,7 +370,7 @@ public:
     /**
      *  @param spin_op                      The electronic spin squared operator.
      *  @param S                            The (spin-blocked) overlap matrix of the underlying AO bases.
-     * 
+     *
      *  @return The expectation value of the electronic spin squared operator.
      */
     complex calculateExpectationValueOf(const ElectronicSpinSquaredOperator& spin_op, const ScalarGSQOneElectronOperator<Scalar>& S) const {
@@ -403,8 +419,8 @@ public:
 
 
     /**
-     *  @return A matrix containing all the possible excitation energies of the wavefunction model. 
-     * 
+     *  @return A matrix containing all the possible excitation energies of the wavefunction model.
+     *
      *  @note       The rows are determined by the number of virtual orbitals, the columns by the number of occupied orbitals.
      */
     GQCP::MatrixX<Scalar> excitationEnergies() const {
@@ -455,12 +471,12 @@ public:
 
     /**
      *  Construct the partial stability matrix `A` from the GHF stability conditions.
-     * 
+     *
      *  @note The formula for the `A` matrix is as follows:
      *      A_IAJB = \delta_IJ * F_BA - \delta_BA * F_IJ + (AI||JB).
-     * 
+     *
      *  @param gsq_hamiltonian      The second quantized Hamiltonian, expressed in the orthonormal, 'generalized' spinor basis of the GHF MOs, which contains the necessary two-electron operators.
-     * 
+     *
      *  @return The partial stability matrix A.
      */
     GQCP::MatrixX<Scalar> calculatePartialStabilityMatrixA(const GSQHamiltonian<Scalar>& gsq_hamiltonian) const {
@@ -516,7 +532,7 @@ public:
      *      B_IAJB = (AI||BJ).
      *
      *  @param gsq_hamiltonian      The second quantized Hamiltonian, expressed in the orthonormal, 'generalized' spinor basis of the GHF MOs, which contains the necessary two-electron operators.
-     * 
+     *
      *  @return The partial stability matrix B.
      */
     GQCP::MatrixX<Scalar> calculatePartialStabilityMatrixB(const GSQHamiltonian<Scalar>& gsq_hamiltonian) const {
@@ -565,8 +581,18 @@ public:
 
 
     /**
+     *  @return The GHF 2-DM in the scalar/AO basis related to these optimal GHF parameters.
+     */
+    G2DM<Scalar> calculateScalarBasis2DM() const {
+
+        const auto N = this->numberOfElectrons();
+        return GHF<Scalar>::calculateScalarBasis2DM(this->expansion(), N);
+    }
+
+
+    /**
      *  Calculate the GHF stability matrices and return them.
-     * 
+     *
      *  @param gsq_hamiltonian      The second quantized Hamiltonian, expressed in the orthonormal, 'generalized' spinor basis of the GHF MOs, which contains the necessary two-electron operators.
      *
      *  @return The GHF stability matrices.
@@ -618,7 +644,7 @@ public:
 
     /**
      *  @param i                The index of the orbital.
-     * 
+     *
      *  @return The i-th orbital energy.
      */
     Scalar orbitalEnergy(const size_t i) const { return this->orbital_energies(i); }
