@@ -229,8 +229,12 @@ void bindDoublySpinResolvedBaseInterface(Class& py_class) {
 
     // The C++ type corresponding to the Python class.
     using Type = typename Class::type;
+    using PureComponentType = typename Type::PureComponentType;
+    using MixedComponentType = typename Type::MixedComponentType;
 
     py_class
+        .def(py::init<const PureComponentType&, const MixedComponentType&, const MixedComponentType&, const PureComponentType&>())
+
         .def(
             "alphaAlpha",
             [](const Type& spin_resolved_object) {

@@ -49,6 +49,10 @@ public:
     // The type of 'this'.
     using Self = SpinResolved2DM<Scalar>;
 
+    // The type components this spin resolved object is made of.
+    using PureComponentType = typename DoublySpinResolvedBase<PureSpinResolved2DMComponent<_Scalar>, MixedSpinResolved2DMComponent<_Scalar>, SpinResolved2DM<_Scalar>>::Pure;
+    using MixedComponentType = typename DoublySpinResolvedBase<PureSpinResolved2DMComponent<_Scalar>, MixedSpinResolved2DMComponent<_Scalar>, SpinResolved2DM<_Scalar>>::Mixed;
+
 
 public:
     /*
@@ -66,7 +70,7 @@ public:
     /**
      *  @param sigma            Alpha or beta.
      *  @param tau              Alpha or beta.
-     * 
+     *
      *  @return The number of orbitals (spinors or spin-orbitals, depending on the context) that are related to the sigma-tau part of the spin-resolved 2-DM.
      */
     size_t numberOfOrbitals(const Spin sigma, const Spin tau) const {
