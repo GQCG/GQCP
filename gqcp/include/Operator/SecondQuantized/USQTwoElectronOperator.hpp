@@ -37,7 +37,7 @@ namespace GQCP {
 
 /**
  *  A class that represents an 'unrestricted second-quantized two-electron operator' suitable for the projection of the non-relativistic Hamiltonian onto an unrestricted spinor basis. It holds the tensor representation of its parameters for both spin components and both mixed spin components, which are (usually) integrals over first-quantized operators.
- * 
+ *
  *  @tparam _Scalar             The scalar type used for a single parameter: real or complex.
  *  @tparam _Vectorizer         The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of two-electron operators. This distinction is carried over from `USQOneElectronOperator`.
  */
@@ -66,6 +66,10 @@ public:
     // The spinor tag corresponding to a `USQTwoElectronOperator`.
     using SpinorTag = UnrestrictedSpinOrbitalTag;
 
+    // The type components this spin resolved object is made of.
+    using PureComponentType = typename DoublySpinResolvedBase<PureUSQTwoElectronOperatorComponent<Scalar, Vectorizer>, MixedUSQTwoElectronOperatorComponent<Scalar, Vectorizer>, USQTwoElectronOperator<Scalar, Vectorizer>>::Pure;
+    using MixedComponentType = typename DoublySpinResolvedBase<PureUSQTwoElectronOperatorComponent<Scalar, Vectorizer>, MixedUSQTwoElectronOperatorComponent<Scalar, Vectorizer>, USQTwoElectronOperator<Scalar, Vectorizer>>::Mixed;
+
 
 public:
     /*
@@ -78,13 +82,13 @@ public:
 
     /**
      *  Create an `USQTwoElectronOperator` from all the matrix representations of its components.
-     * 
+     *
      *  @param gs_aa                All the matrix representations of the components of the alpha-alpha-part of the unrestricted two-electron operator.
      *  @param gs_ab                All the matrix representations of the components of the alpha-beta-part of the unrestricted two-electron operator.
      *  @param gs_ba                All the matrix representations of the components of the beta-alpha-part of the unrestricted two-electron operator.
      *  @param gs_bb                All the matrix representations of the components of the beta-beta-part of the unrestricted two-electron operator.
      *  @param vectorizer           The type of the vectorizer that relates a one-dimensional storage of matrix representations to the tensor structure of the second-quantized operator. Equal for all the different spin-components.
-     * 
+     *
      *  @tparam N                   The number of components for the different spin components of the unrestricted two-electron operator.
      */
     template <size_t N>
@@ -119,12 +123,12 @@ public:
 
     /**
      *  A constructor for `ScalarUSQTwoElectronOperator`s that doesn't require the argument to be an array of just one element.
-     * 
+     *
      *  @param g_aa           The tensor representation of the alpha-alpha integrals of the scalar second-quantized operator.
      *  @param g_ab           The tensor representation of the alpha-beta integrals of the scalar second-quantized operator.
      *  @param g_ba           The tensor representation of the beta-alpha integrals of the scalar second-quantized operator.
      *  @param g_bb           The tensor representation of the beta-beta integrals of the scalar second-quantized operator.
-     * 
+     *
      *  @note This constructor is only available for `ScalarUSQTwoElectronOperators` (for the std::enable_if, see https://stackoverflow.com/a/17842695/7930415)
      */
     template <typename Z = Vectorizer>
@@ -146,7 +150,7 @@ public:
 
     /**
      *  Construct an unrestricted two-electron operator with parameters that are zero. The dimensions different spin components are equal.
-     * 
+     *
      *  @param dim        The dimension of the axes of the the matrix representation of the different spin components. Equal for all spin components.
      */
     static USQTwoElectronOperator<Scalar, Vectorizer> Zero(const size_t dim) {
@@ -160,7 +164,7 @@ public:
 
     /**
      *  Construct an `USQTwoElectronOperator` from an `RSQTwoElectronOperator.
-     * 
+     *
      *  @param g_restricted             The restricted two-electron operator that should be converted.
      */
     static USQTwoElectronOperator<Scalar, Vectorizer> FromRestricted(const RSQTwoElectronOperator<Scalar, Vectorizer>& g_restricted) {
@@ -175,7 +179,7 @@ public:
 
     /**
      *  Calculate the expectation value of this two-electron operator.
-     * 
+     *
      *  @param d                    The spin-resolved 2-DM (that represents the wave function).
      *
      *  @return the expectation values of all the components of the two-electron operator, with the given 2-DMs: this includes the prefactor 1/2
@@ -206,7 +210,7 @@ public:
     /**
      *  @param sigma            Alpha or beta.
      *  @param tau              Alpha or beta.
-     * 
+     *
      *  @return The number of orbitals (spinors or spin-orbitals, depending on the context) that are related to the sigma-tau part of the unrestricted two-electron operator.
      */
     size_t numberOfOrbitals(const Spin sigma, const Spin tau) const {
@@ -225,7 +229,7 @@ public:
 
     /*
      *  @return The number of orbital related to the alpha-alpha part of the unrestricted two-electron operator.
-     * 
+     *
      *  @note It is advised to only use this API when it is known that all spin-components of the two-electron operator are equal.
      */
     size_t numberOfOrbitals() const { return this->alphaAlpha().numberOfOrbitals(); }
@@ -308,7 +312,7 @@ using TensorUSQTwoElectronOperator = USQTwoElectronOperator<Scalar, TensorVector
 
 /**
  *  A type that provides compile-time information (traits) on `USQTwoElectronOperator` that is otherwise not accessible through a public class alias.
- * 
+ *
  *  @tparam Scalar          The scalar type used for a single parameter: real or complex.
  *  @tparam Vectorizer      The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of two-electron operators. This distinction is carried over from `USQOneElectronOperator`.
  */
