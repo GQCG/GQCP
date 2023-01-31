@@ -259,7 +259,7 @@ public:
                 for (const auto& k : orbital_space.alpha().indices(OccupationType::k_occupied)) {
                     for (const auto& l : orbital_space.alpha().indices(OccupationType::k_occupied)) {
                         if ((i == j) && (k == l)) {
-                            d_aabb(i, j, k, l) += 1.0;
+                            d_bbaa(i, j, k, l) += 1.0;
                         }
                     }
                 }
@@ -273,11 +273,11 @@ public:
                 for (const auto& k : orbital_space.beta().indices(OccupationType::k_occupied)) {
                     for (const auto& l : orbital_space.beta().indices(OccupationType::k_occupied)) {
                         if ((i == j) && (k == l)) {
-                            d_aaaa(i, j, k, l) += 1.0;
+                            d_bbbb(i, j, k, l) += 1.0;
                         }
 
                         if ((i == l) && (j == k)) {
-                            d_aaaa(i, j, k, l) -= 1.0;
+                            d_bbbb(i, j, k, l) -= 1.0;
                         }
                     }
                 }
