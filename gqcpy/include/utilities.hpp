@@ -51,28 +51,4 @@ py::array_t<T> asNumpyArray(const Eigen::Tensor<T, 4>& tensor) {
 }
 
 
-/**
- *  Convert a NumPy array to a rank-four Eigen::Tensor.
- *
- *  @param array            The NumPy array that should be converted to the Eigen::Tensor.
- *
- *  @return The corresponding Eigen::Tensor.
- */
-template <typename T>
-Eigen::Tensor<T, 4> asEigenTensor(const py::array_t<T>& array) {
-
-    // Extract the data and the shape from the array. This is done through an intermediate buffer.
-    auto buffer_info = array.request();
-
-    auto data = static_cast<T*>(buffer_info.ptr);
-    auto shape = buffer_info.shape;
-
-
-    // Convert the data in the array to an Eigen::Tensor.
-    Eigen::TensorMap<Eigen::Tensor<T, 4>> A {data, shape[0], shape[1], shape[2], shape[3]};
-
-    return A;
-}
-
-
 }  // namespace gqcpy
