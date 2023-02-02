@@ -36,7 +36,8 @@
 #include "QuantumChemical/SpinResolvedBase.hpp"
 #include "gqcpy/include/utilities.hpp"
 
-#include <pybind11/eigen.h>
+#include <pybind11/eigen/matrix.h>
+#include <pybind11/eigen/tensor.h>
 #include <pybind11/functional.h>
 #include <pybind11/iostream.h>
 #include <pybind11/operators.h>
@@ -789,10 +790,10 @@ void bindScalarSQTwoElectronOperatorParameterInterface(Class& py_class) {
          *  MARK: Constructors
          */
 
-        .def(py::init<>([](const py::array_t<Scalar>& array) {
-                 return Type(SquareRankFourTensor<Scalar>(gqcpy::asEigenTensor(array)));
+        .def(py::init<>([](const Eigen::Tensor<Scalar, 4>& array) {
+                 return Type(SquareRankFourTensor<Scalar>(array));
              }),
-             py::arg("g"))
+             py::arg("array"))
 
 
         /*
