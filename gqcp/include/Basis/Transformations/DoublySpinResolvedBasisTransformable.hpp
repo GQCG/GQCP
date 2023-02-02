@@ -27,7 +27,7 @@ namespace GQCP {
 
 /**
  *  An interface that implements conformance to `BasisTransformable` for doubly spin-resolved types.
- * 
+ *
  *  @tparam Type            The spin-resolved type that should conform to `BasisTransformable`.
  */
 template <typename Type>
@@ -46,9 +46,9 @@ public:
 
     /**
      *  Apply the basis transformation and return the result.
-     * 
+     *
      *  @param T            The basis transformation.
-     * 
+     *
      *  @return The basis-transformed spin-resolved object.
      */
     Type transformed(const Transformation& T) const override {
