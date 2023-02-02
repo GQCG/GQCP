@@ -33,9 +33,9 @@ using namespace GQCP;
 
 /**
  *  Convert a rank-four Eigen::Tensor to a NumPy array.
- * 
+ *
  *  @param tensor       The `Eigen::Tensor` that should be converted to the NumPy array.
- * 
+ *
  *  @return The corresponding NumPy array.
  */
 template <typename T>
@@ -53,9 +53,9 @@ py::array_t<T> asNumpyArray(const Eigen::Tensor<T, 4>& tensor) {
 
 /**
  *  Convert a NumPy array to a rank-four Eigen::Tensor.
- * 
+ *
  *  @param array            The NumPy array that should be converted to the Eigen::Tensor.
- * 
+ *
  *  @return The corresponding Eigen::Tensor.
  */
 template <typename T>
