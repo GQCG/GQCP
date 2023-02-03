@@ -22,7 +22,7 @@ sources = [{
 dependencies = [
     ('Python', '3.7.4', '', ('GCCcore', '8.3.0')),
     ('SciPy-bundle', '2019.10', versionsuffix),
-    ('pybind11', '2.4.3', versionsuffix),
+    ('pybind11', '2.10.3', versionsuffix),
     ('Eigen', '3.3.7', '', True),
     ('spectra', '0.8.1', '', ('intel', '2019b')),
     ('Boost', '1.69.0', '', ('intel', '2019b')),
