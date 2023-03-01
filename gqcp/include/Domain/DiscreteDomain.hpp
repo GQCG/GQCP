@@ -18,59 +18,59 @@
 #pragma once
 
 
+#include "Domain/SimpleDomain.hpp"
 #include "Utilities/CRTP.hpp"
+
+#include <boost/dynamic_bitset.hpp>
 
 
 namespace GQCP {
+
+
+/**
+ *  A type specifically designed to act as a parent class for `DiscreteDomain` and `ContinuousDomain` in order to share common functionality.
+ */
+class DiscreteDomain:
+    public SimpleDomain<DiscreteDomain> {
+private:
+    // The representation of the discrete domain as a bitstring.
+    boost::dynamic_bitset<> domain;
+    // A set of indices that correspond to the elements included in the discrete domain.
+    VectorX<size_t> m_indices;
+
+public:
+    /**
+     *  @return the domain representation as a bitstring.
+     */
+    const boost::dynamic_bitset<>& asBitstring() const { return this->domain; }
+
+    /**
+     *  @param element        the element in the domain
+     *
+     *  @return whether the Domain contains `element'.
+     */
+    bool inDomain(const size_t& element) const { return this->domain[element]; }
+
+    /**
+     *  @param other        the other CartesianGTO
+     *
+     *  @return if this DerivedDomain is equal to the other DerivedDomain.
+     */
+    virtual bool operator==(const DiscreteDomain& other) const { return boost::operator==(this->domain, other.asBitstring()); }
+};
+
 
 /*
  *  MARK: DomainTraits
  */
 
 /**
- *  A type that provides compile-time information on the type of elements in a Domain that is otherwise not accessible through a public class alias.
+ *  A type that provides compile-time information on `DiscreteDomain` that is otherwise not accessible through a public class alias.
  */
-template <typename DerivedDomain>
-struct DomainTraits {};
+struct DomainTraits<DiscreteDomain> {
 
-/**
- *  A type specifically designed to act as a parent class for `DiscreteDomain` and `ContinuousDomain` in order to share common functionality.
- *
- *  @tparam _DerivedDomain              The type of the domain that derives from this class, enabling CRTP and compile-time polymorphism.
- */
-template <typename _DerivedDomain>
-class SimpleDomain:
-    public CRTP<_DerivedDomain> {
-public:
-    // The type of domain that derives from this class, enabling CRTP and compile-time polymorphism..
-    using DerivedDomain = _DerivedDomain;
-    // The type of elements that are present in the domain: discrete or continuous.
-    using ElementType = typename DomainTraits<DerivedDomain>::ElementType;
-
-
-public:
-    /**
-     *  @param element        the element in the domain
-     *
-     *  @return whether the Domain contains `element'.
-     */
-    bool inDomain(const ElementType& element) const = 0;
-
-    /**
-     *  @param other        the other domain
-     *
-     *  @return if this DerivedDomain is equal to the other DerivedDomain.
-     */
-    virtual bool operator==(const DerivedDomain& other) const = 0;
-
-    /**
-     *  @param other        the other domain
-     *
-     *  @return if this DerivedDomain is not equal to the other DerivedDomain.
-     */
-    bool operator!=(DerivedDomain& other) {
-        return !this->operator==(other);
-    }
+    // The type of elements that are present in the domain.
+    using ElementType = size_t;
 };
 
 
