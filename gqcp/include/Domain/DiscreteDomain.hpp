@@ -39,6 +39,16 @@ private:
     VectorX<size_t> m_indices;
 
 public:
+    DiscreteDomain(const std::vector<size_t>& indices, const size_t M) :
+        m_indices {indices} {
+        // Generate the corresponding unsigned representation associated with the indices of the domain.
+        size_t unsigned_representation = 0;
+        for (const auto& index : indices) {
+            unsigned_representation += std::pow(2, index);
+        }
+        this->domain = boost::dynamic_bitset<> { M, unsigned_representation }
+    }
+
     /**
      *  @return the domain representation as a bitstring.
      */
@@ -49,7 +59,7 @@ public:
      *
      *  @return whether the Domain contains `element'.
      */
-    bool inDomain(const size_t& element) const { return this->domain[element]; }
+    bool inDomain(const size_t element) const { return this->domain[element]; }
 
     /**
      *  @param other        the other CartesianGTO
