@@ -114,6 +114,7 @@
 #include "DensityMatrix/SpinResolved1DM.hpp"
 #include "DensityMatrix/SpinResolved1DMComponent.hpp"
 #include "DensityMatrix/SpinResolved2DM.hpp"
+#include "Domain/SimpleDomain.hpp"
 #include "Mathematical/Algorithm/Algorithm.hpp"
 #include "Mathematical/Algorithm/CompoundConvergenceCriterion.hpp"
 #include "Mathematical/Algorithm/ConvergenceCriterion.hpp"
