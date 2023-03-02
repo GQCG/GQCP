@@ -19,6 +19,7 @@
 
 
 #include "Domain/SimpleDomain.hpp"
+#include "Mathematical/Representation/Matrix.hpp"
 #include "Utilities/CRTP.hpp"
 
 #include <boost/dynamic_bitset.hpp>
@@ -28,7 +29,7 @@ namespace GQCP {
 
 
 /**
- *  A type specifically designed to act as a parent class for `DiscreteDomain` and `ContinuousDomain` in order to share common functionality.
+ *
  */
 class DiscreteDomain:
     public SimpleDomain<DiscreteDomain> {
@@ -39,7 +40,11 @@ private:
     VectorX<size_t> m_indices;
 
 public:
-    DiscreteDomain(const std::vector<size_t>& indices, const size_t M) :
+    /*
+     *  MARK: Constructors
+     */
+
+    DiscreteDomain(const VectorX<size_t>& indices, const size_t M) :
         m_indices {indices} {
         // Generate the corresponding unsigned representation associated with the indices of the domain.
         size_t unsigned_representation = 0;
@@ -50,23 +55,40 @@ public:
     }
 
     /**
-     *  @return the domain representation as a bitstring.
+     *  @return The domain representation as a bitstring.
      */
     const boost::dynamic_bitset<>& asBitstring() const { return this->domain; }
 
     /**
-     *  @param element        the element in the domain
+     *  @param element        The element in the domain.
      *
      *  @return whether the Domain contains `element'.
      */
     bool inDomain(const size_t element) const { return this->domain[element]; }
 
     /**
-     *  @param other        the other CartesianGTO
+     *  @param other        The other CartesianGTO.
      *
-     *  @return if this DerivedDomain is equal to the other DerivedDomain.
+     *  @return if this discrete domain is equal to the other discrete domain.
      */
-    virtual bool operator==(const DiscreteDomain& other) const { return boost::operator==(this->domain, other.asBitstring()); }
+    bool operator==(const DiscreteDomain& other) const { return boost::operator==(this->domain, other.asBitstring()); }
+
+    /**
+     *  @param i            The domain index.
+     *
+     *  @return     The i-th element with values 0 or 1 depending on whether the i-th element is in the domain.
+     */
+    bool operator[](const size_t i) const { return this->domain[i]; }
+
+    /**
+     *  @return     The dimension of this discrete domain, i.e. the maximum number of elements that the discrete domain can contain.
+     */
+    size_t dimension() const { return this->domain.size(); }
+
+    /**
+     *  @return The unsigned representation of this domain.
+     */
+    size_t unsignedRepresentation() const { return this->domain.to_ulong(); }
 };
 
 

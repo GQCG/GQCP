@@ -68,7 +68,7 @@ public:
      *
      *  @return if this DerivedDomain is not equal to the other DerivedDomain.
      */
-    bool operator!=(DerivedDomain& other) {
+    bool operator!=(DerivedDomain& other) const {
         return !this->operator==(other);
     }
 };
