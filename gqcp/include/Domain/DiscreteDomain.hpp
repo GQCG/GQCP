@@ -55,16 +55,40 @@ public:
     }
 
     /**
+     *  Add an element to the domain at position i.
+     *
+     *  @param i        The index in the domain bitstring.
+     */
+    void addElement(const size_t i) {
+        if (i < 0) {
+            throw std::invalid_argument("DiscreteDomain::addElement(const size_t): Domain-index is smaller than zero. Please provide a valid index.");
+        }
+        if (i >= this->dimension()) {
+            throw std::invalid_argument("DiscreteDomain::addElement(const size_t): Domain-index is larger than the domain size. Provide a valid index.");
+        }
+        if (this->domain[i] == 1) {  // Check whether the element at index i is already present in the domain.
+            throw std::invalid_argument("DiscreteDomain::addElement(const size_t): You cannot add an element at index i to the discrete domain if the element is already present.");
+        }
+
+        this->domain.set(i, true);
+    }
+
+    /**
      *  @return The domain representation as a bitstring.
      */
     const boost::dynamic_bitset<>& asBitstring() const { return this->domain; }
 
     /**
-     *  @param element        The element in the domain.
-     *
-     *  @return whether the Domain contains `element'.
+     *  @return     The dimension of this discrete domain, i.e. the maximum number of elements that the discrete domain can contain.
      */
-    bool inDomain(const size_t element) const { return this->domain[element]; }
+    size_t dimension() const { return this->domain.size(); }
+
+    /**
+     *  @param i        The index in the domain bitstring.
+     *
+     *  @return whether the Domain contains an element at index i.
+     */
+    bool inDomain(const size_t i) const { return this->domain[i]; }
 
     /**
      *  @param other        The other CartesianGTO.
@@ -81,9 +105,23 @@ public:
     bool operator[](const size_t i) const { return this->domain[i]; }
 
     /**
-     *  @return     The dimension of this discrete domain, i.e. the maximum number of elements that the discrete domain can contain.
+     *  Remove an element from the domain at position i.
+     *
+     *  @param i        The index in the domain bitstring.
      */
-    size_t dimension() const { return this->domain.size(); }
+    void removeElement(const size_t i) {
+        if (i < 0) {
+            throw std::invalid_argument("DiscreteDomain::removeElement(const size_t): Domain-index is smaller than zero. Please provide a valid index.");
+        }
+        if (i >= this->dimension()) {
+            throw std::invalid_argument("DiscreteDomain::removeElement(const size_t): Domain-index is larger than the domain size. Provide a valid index.");
+        }
+        if (this->domain[i] == 0) {  // Check whether the element at index i is actually present in the domain.
+            throw std::invalid_argument("DiscreteDomain::removeElement(const size_t): You cannot remove an element at index i from the discrete domain if there is no element at that index.");
+        }
+
+        this->domain.set(i, false);
+    }
 
     /**
      *  @return The unsigned representation of this domain.
