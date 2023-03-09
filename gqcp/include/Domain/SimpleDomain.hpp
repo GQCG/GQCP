@@ -18,20 +18,12 @@
 #pragma once
 
 
+#include "Domain/DomainTraits.hpp"
 #include "Utilities/CRTP.hpp"
 
 
 namespace GQCP {
 
-/*
- *  MARK: DomainTraits
- */
-
-/**
- *  A type that provides compile-time information on the type of elements in a Domain that is otherwise not accessible through a public class alias.
- */
-template <typename DerivedDomain>
-struct DomainTraits {};
 
 /**
  *  A type specifically designed to act as a parent class for `DiscreteDomain` and `ContinuousDomain` in order to share common functionality.
@@ -49,12 +41,18 @@ public:
 
 
 public:
+    /*
+     *  MARK: Constructors
+     */
+
+    SimpleDomain() {}
+
     /**
      *  @param element        the element in the domain
      *
      *  @return whether the Domain contains `element'.
      */
-    bool inDomain(const ElementType& element) const = 0;
+    virtual bool inDomain(const ElementType& element) const = 0;
 
     /**
      *  @param other        the other domain

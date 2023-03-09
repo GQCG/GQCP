@@ -1,4 +1,5 @@
 add_subdirectory(Basis)
+add_subdirectory(Domain)
 add_subdirectory(ONVBasis)
 add_subdirectory(Mathematical)
 add_subdirectory(Molecule)

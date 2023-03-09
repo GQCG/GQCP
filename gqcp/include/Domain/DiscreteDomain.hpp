@@ -18,9 +18,11 @@
 #pragma once
 
 
+#include "Domain/DomainTraits.hpp"
 #include "Domain/SimpleDomain.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
 #include "Utilities/CRTP.hpp"
+#include "Utilities/type_traits.hpp"
 
 #include <boost/dynamic_bitset.hpp>
 
@@ -44,39 +46,24 @@ public:
      *  MARK: Constructors
      */
 
-    DiscreteDomain(const VectorX<size_t>& indices, const size_t M) :
-        m_indices {indices} {
-        // Generate the corresponding unsigned representation associated with the indices of the domain.
-        size_t unsigned_representation = 0;
-        for (const auto& index : indices) {
-            unsigned_representation += std::pow(2, index);
-        }
-        this->domain = boost::dynamic_bitset<> { M, unsigned_representation }
-    }
+    DiscreteDomain(const VectorX<size_t>& indices, const size_t M);
 
     /**
      *  Add an element to the domain at position i.
      *
      *  @param i        The index in the domain bitstring.
      */
-    void addElement(const size_t i) {
-        if (i < 0) {
-            throw std::invalid_argument("DiscreteDomain::addElement(const size_t): Domain-index is smaller than zero. Please provide a valid index.");
-        }
-        if (i >= this->dimension()) {
-            throw std::invalid_argument("DiscreteDomain::addElement(const size_t): Domain-index is larger than the domain size. Provide a valid index.");
-        }
-        if (this->domain[i] == 1) {  // Check whether the element at index i is already present in the domain.
-            throw std::invalid_argument("DiscreteDomain::addElement(const size_t): You cannot add an element at index i to the discrete domain if the element is already present.");
-        }
-
-        this->domain.set(i, true);
-    }
+    void addElement(const size_t i);
 
     /**
      *  @return The domain representation as a bitstring.
      */
-    const boost::dynamic_bitset<>& asBitstring() const { return this->domain; }
+    const boost::dynamic_bitset<> asBitstring() const { return this->domain; }
+
+    /**
+     *  @return The domain string as a bitstring.
+     */
+    std::string asString() const;
 
     /**
      *  @return     The dimension of this discrete domain, i.e. the maximum number of elements that the discrete domain can contain.
@@ -88,14 +75,14 @@ public:
      *
      *  @return whether the Domain contains an element at index i.
      */
-    bool inDomain(const size_t i) const { return this->domain[i]; }
+    bool inDomain(const size_t& i) const { return this->domain[i]; }
 
     /**
      *  @param other        The other CartesianGTO.
      *
      *  @return if this discrete domain is equal to the other discrete domain.
      */
-    bool operator==(const DiscreteDomain& other) const { return boost::operator==(this->domain, other.asBitstring()); }
+    bool operator==(const DiscreteDomain& other) const;
 
     /**
      *  @param i            The domain index.
@@ -109,38 +96,12 @@ public:
      *
      *  @param i        The index in the domain bitstring.
      */
-    void removeElement(const size_t i) {
-        if (i < 0) {
-            throw std::invalid_argument("DiscreteDomain::removeElement(const size_t): Domain-index is smaller than zero. Please provide a valid index.");
-        }
-        if (i >= this->dimension()) {
-            throw std::invalid_argument("DiscreteDomain::removeElement(const size_t): Domain-index is larger than the domain size. Provide a valid index.");
-        }
-        if (this->domain[i] == 0) {  // Check whether the element at index i is actually present in the domain.
-            throw std::invalid_argument("DiscreteDomain::removeElement(const size_t): You cannot remove an element at index i from the discrete domain if there is no element at that index.");
-        }
-
-        this->domain.set(i, false);
-    }
+    void removeElement(const size_t i);
 
     /**
      *  @return The unsigned representation of this domain.
      */
     size_t unsignedRepresentation() const { return this->domain.to_ulong(); }
-};
-
-
-/*
- *  MARK: DomainTraits
- */
-
-/**
- *  A type that provides compile-time information on `DiscreteDomain` that is otherwise not accessible through a public class alias.
- */
-struct DomainTraits<DiscreteDomain> {
-
-    // The type of elements that are present in the domain.
-    using ElementType = size_t;
 };
 
 

@@ -2,6 +2,7 @@ set(test_target_sources)
 
 add_subdirectory(Basis)
 add_subdirectory(DensityMatrix)
+add_subdirectory(Domain)
 add_subdirectory(Mathematical)
 add_subdirectory(Molecule)
 add_subdirectory(ONVBasis)
