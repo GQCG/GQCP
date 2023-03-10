@@ -24,15 +24,66 @@
 
 
 /**
- *  Test if the expectation value of a one-electron operator in different orbital bases is the same.
+ *  Test if the bitstring representation of the domain is returned correctly.
  */
 BOOST_AUTO_TEST_CASE(bitstring_representation) {
-
     // Construct a discrete domain "" of size 8 where the indices 0, 2, 4 and 6 are occupied.
     // Note that the bitstring representation of the domain should be read from right to left.
     GQCP::VectorX<size_t> element_indices {0};
     element_indices << 0, 2, 4, 6;
-    const size_t M = 8;
-    const GQCP::DiscreteDomain discrete_domain {element_indices, M};
-    std::cout << discrete_domain.asBitstring();
+    const GQCP::DiscreteDomain discrete_domain {element_indices, 8};
+    BOOST_CHECK_EQUAL(discrete_domain.asString(), std::string("01010101"));
+}
+
+
+/**
+ *  Test if the `addElement' functionality correctly adds an element to the discrete domain.
+ */
+BOOST_AUTO_TEST_CASE(add_element) {
+    GQCP::VectorX<size_t> element_indices {0};
+    GQCP::DiscreteDomain discrete_domain {element_indices, 8};
+
+    // Add domain element at index 0.
+    discrete_domain.addElement(0);
+    element_indices << 0;
+    BOOST_CHECK_EQUAL(discrete_domain(0), 1);
+    BOOST_CHECK_EQUAL(discrete_domain.asString(), std::string("00000001"));
+    BOOST_CHECK(discrete_domain.domainIndices().isApprox(element_indices, 1e-06));
+
+    // Add domain element at index 3.
+    discrete_domain.addElement(3);
+    element_indices << 3;
+    BOOST_CHECK_EQUAL(discrete_domain(3), 1);
+    BOOST_CHECK_EQUAL(discrete_domain.asString(), std::string("00001001"));
+    BOOST_CHECK(discrete_domain.domainIndices().isApprox(element_indices, 1e-06));
+
+    // Check whether the number of domain elements is now 2.
+    BOOST_CHECK_EQUAL(discrete_domain.numberOfElements(), 2);
+}
+
+
+/**
+ *  Test if the `removeElement' functionality correctly removes an element from the discrete domain.
+ */
+BOOST_AUTO_TEST_CASE(remove_element) {
+    GQCP::VectorX<size_t> element_indices {0};
+    element_indices << 0, 5;
+    GQCP::DiscreteDomain discrete_domain {element_indices, 8};
+
+    // Add domain element at index 0.
+    discrete_domain.removeElement(0);
+    element_indices << 0;
+    BOOST_CHECK_EQUAL(discrete_domain(0), 0);
+    BOOST_CHECK_EQUAL(discrete_domain.asString(), std::string("00100000"));
+    BOOST_CHECK(discrete_domain.domainIndices().isApprox(element_indices, 1e-06));
+
+    // Add domain element at index 3.
+    discrete_domain.addElement(3);
+    element_indices << 3;
+    BOOST_CHECK_EQUAL(discrete_domain(3), 1);
+    BOOST_CHECK_EQUAL(discrete_domain.asString(), std::string("00000000"));
+    BOOST_CHECK(discrete_domain.domainIndices().isApprox(element_indices, 1e-06));
+
+    // Check whether the number of domain elements is now 2.
+    BOOST_CHECK_EQUAL(discrete_domain.numberOfElements(), 0);
 }

@@ -70,7 +70,7 @@ std::string DiscreteDomain::asString() const {
 
     std::string s;
     for (size_t i = 0; i < K; ++i) {
-        s += std::to_string(this->operator[](i));
+        s += std::to_string(this->operator()(i));
     }
     return s;
 }

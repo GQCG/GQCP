@@ -70,12 +70,20 @@ public:
      */
     size_t dimension() const { return this->domain.size(); }
 
+
+    const VectorX<size_t> domainIndices() const { return this->m_indices; }
+
     /**
      *  @param i        The index in the domain bitstring.
      *
      *  @return whether the Domain contains an element at index i.
      */
     bool inDomain(const size_t& i) const { return this->domain[i]; }
+
+    /**
+     *  @return     The number of elements the domain contains.
+     */
+    size_t numberOfElements() const { return this->m_indices.size(); }
 
     /**
      *  @param other        The other CartesianGTO.
@@ -89,7 +97,7 @@ public:
      *
      *  @return     The i-th element with values 0 or 1 depending on whether the i-th element is in the domain.
      */
-    bool operator[](const size_t i) const { return this->domain[i]; }
+    bool operator()(const size_t i) const { return this->domain[i]; }
 
     /**
      *  Remove an element from the domain at position i.
