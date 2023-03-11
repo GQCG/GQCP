@@ -33,6 +33,10 @@ BOOST_AUTO_TEST_CASE(bitstring_representation) {
     element_indices << 0, 2, 4, 6;
     const GQCP::DiscreteDomain discrete_domain {element_indices, 8};
     BOOST_CHECK_EQUAL(discrete_domain.asString(), std::string("01010101"));
+
+    // The same as above, but with passing an unsigned integer to the constructor.
+    discrete_domain = GQCP::DiscreteDomain(85, 8);
+    BOOST_CHECK_EQUAL(discrete_domain.asString(), std::string("01010101"));
 }
 
 
@@ -86,4 +90,21 @@ BOOST_AUTO_TEST_CASE(remove_element) {
 
     // Check whether the number of domain elements is now 2.
     BOOST_CHECK_EQUAL(discrete_domain.numberOfElements(), 0);
+}
+
+
+/**
+ *  Test whether the discrete domain assigns the correct unsigned representation associated with the given domain indices and bitstring.
+ */
+BOOST_AUTO_TEST_CASE(unsigned_representation) {
+
+    // Discrete domain with bitstring representation "01001010".
+    GQCP::VectorX<size_t> element_indices {0};
+    element_indices << 1, 3, 6;
+    GQCP::DiscreteDomain discrete_domain {element_indices, 8};
+    BOOST_CHECK_EQUAL(discrete_domain.unsignedRepresentation(), 74);
+
+    element_indices << 0, 2, 4, 5, 7;
+    GQCP::DiscreteDomain discrete_domain2 {element_indices, 8};
+    BOOST_CHECK_EQUAL(discrete_domain2.unsignedRepresentation(), 255);
 }

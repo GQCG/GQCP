@@ -39,14 +39,30 @@ private:
     // The representation of the discrete domain as a bitstring.
     boost::dynamic_bitset<> domain;
     // A set of indices that correspond to the elements included in the discrete domain.
-    VectorX<size_t> m_indices;
+    VectorX<size_t> domain_indices;
 
 public:
     /*
      *  MARK: Constructors
      */
 
-    DiscreteDomain(const VectorX<size_t>& indices, const size_t M);
+    /**
+     *  Create a discrete domain from a set of domain indices.
+     *
+     *  @param domain_indices             The indices that the domain contains.
+     *  @param M                            The dimension of the discrete domain, i.e. the maximum number of elements that the discrete domain can contain.
+     *
+     *  @return A spin-unresolved ONV from a set of occupied indices.
+     */
+    DiscreteDomain(const VectorX<size_t>& domain_indices, const size_t M);
+
+    /**
+     *  Create a discrete domain from an unsigned representation.
+     *
+     *  @param unsigned_representation          The representation of this discrete domain as an unsigned integer.
+     *  @param M                                The dimension of the discrete domain, i.e. the maximum number of elements that the discrete domain can contain.
+     */
+    DiscreteDomain(const size_t unsigned_representation, const size_t M);
 
     /**
      *  Add an element to the domain at position i.
@@ -58,7 +74,7 @@ public:
     /**
      *  @return The domain representation as a bitstring.
      */
-    const boost::dynamic_bitset<> asBitstring() const { return this->domain; }
+    const boost::dynamic_bitset<>& asBitstring() const { return this->domain; }
 
     /**
      *  @return The domain string as a bitstring.
@@ -71,7 +87,7 @@ public:
     size_t dimension() const { return this->domain.size(); }
 
 
-    const VectorX<size_t> domainIndices() const { return this->m_indices; }
+    const VectorX<size_t>& domainIndices() const { return this->domain_indices; }
 
     /**
      *  @param i        The index in the domain bitstring.
@@ -83,7 +99,7 @@ public:
     /**
      *  @return     The number of elements the domain contains.
      */
-    size_t numberOfElements() const { return this->m_indices.size(); }
+    size_t numberOfElements() const { return this->domain_indices.size(); }
 
     /**
      *  @param other        The other CartesianGTO.

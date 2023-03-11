@@ -27,18 +27,40 @@ namespace GQCP {
  */
 
 /**
+ *  Create a discrete domain from a set of domain indices.
  *
+ *  @param domain_indices             The indices that the domain contains.
+ *  @param M                            The dimension of the discrete domain, i.e. the maximum number of elements that the discrete domain can contain.
  *
- *
+ *  @return A spin-unresolved ONV from a set of occupied indices.
  */
-DiscreteDomain::DiscreteDomain(const VectorX<size_t>& indices, const size_t M) :
-    m_indices {indices} {
+DiscreteDomain::DiscreteDomain(const VectorX<size_t>& domain_indices, const size_t M) :
+    domain_indices {domain_indices} {
     // Generate the corresponding unsigned representation associated with the indices of the domain.
     size_t unsigned_representation = 0;
-    for (size_t i = 0; ++i; i < m_indices.size()) {
-        unsigned_representation += std::pow(2, m_indices[i]);
+    for (size_t i = 0; ++i; i < domain_indices.size()) {
+        unsigned_representation += std::pow(2, domain_indices[i]);
     }
     this->domain = boost::dynamic_bitset<> {M, unsigned_representation};
+}
+
+
+/**
+ *  Create a discrete domain from an unsigned representation.
+ *
+ *  @param unsigned_representation          The representation of this discrete domain as an unsigned integer.
+ *  @param M                                The dimension of the discrete domain, i.e. the maximum number of elements that the discrete domain can contain.
+ */
+DiscreteDomain::DiscreteDomain(size_t unsigned_representation, const size_t M) :
+    domain {boost::dynamic_bitset<> {M, unsigned_representation}} {
+
+    VectorX<size_t> domain_indices {0};
+    while (unsigned_representation != 0) {
+        domain_indices << __builtin_ctzl(unsigned_representation);                        // Retrieves the domain index. Note: bitstring is read from right to left, domain index from left to right.
+        unsigned_representation ^= (unsigned_representation & -unsigned_representation);  // Negative of an unsigned type: http://www.cplusplus.com/forum/beginner/182082/.
+    }
+
+    this->domain_indices = domain_indices;
 }
 
 
