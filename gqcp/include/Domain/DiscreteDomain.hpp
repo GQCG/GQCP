@@ -118,7 +118,7 @@ public:
     bool operator()(const size_t i) const { return this->domain[i]; }
 
     /**
-     *  @param rhs            The discrete domain that will be assigned to `this'.
+     *  @param rhs            The discrete domain that will be assigned to `this`.
      *
      *  @return     A discrete domain with the class variables provided by `rhs'.
      */
@@ -138,7 +138,7 @@ public:
      *
      *  @param other            The other discrete domain.
      *
-     *  @return     The number of domain elements that are equal between `this' and the other discrete domain.
+     *  @return     The number of domain elements that are equal between `this` and the other discrete domain.
      */
     size_t overlapWith(const DiscreteDomain& other) const;
 

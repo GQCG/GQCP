@@ -111,7 +111,7 @@ bool DiscreteDomain::operator==(const DiscreteDomain& rhs) const {
 
 
 /**
- *  @param rhs            The discrete domain that will be assigned to `this'.
+ *  @param rhs            The discrete domain that will be assigned to `this`.
  *
  *  @return     A discrete domain with the class variables provided by `rhs'.
  */
@@ -139,7 +139,7 @@ std::ostream& operator<<(std::ostream& os, const DiscreteDomain& domain) {
  *
  *  @param other            The other discrete domain.
  *
- *  @return     The number of domain elements that are equal between `this' and the other discrete domain.
+ *  @return     The number of domain elements that are equal between `this` and the other discrete domain.
  */
 size_t DiscreteDomain::overlapWith(const DiscreteDomain& other) const {
 
