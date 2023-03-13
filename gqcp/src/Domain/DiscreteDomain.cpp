@@ -37,8 +37,6 @@ namespace GQCP {
 DiscreteDomain::DiscreteDomain(const std::vector<size_t>& indices, const size_t M) :
     domain_indices {indices} {
 
-    std::cout << "Vector with size: " << indices.size() << std::endl;
-
     // Generate the corresponding unsigned representation associated with the indices of the domain.
     size_t unsigned_representation = 0;
     for (size_t i = 0; i < domain_indices.size(); i++) {
@@ -57,7 +55,7 @@ DiscreteDomain::DiscreteDomain(const std::vector<size_t>& indices, const size_t 
 DiscreteDomain::DiscreteDomain(size_t unsigned_representation, const size_t M) :
     domain {boost::dynamic_bitset<> {M, unsigned_representation}} {
 
-    std::vector<size_t> domain_indices {0};
+    std::vector<size_t> domain_indices {};
     while (unsigned_representation != 0) {
         domain_indices.push_back(__builtin_ctzl(unsigned_representation));                // Retrieves the domain index. Note: bitstring is read from right to left, domain index from left to right.
         unsigned_representation ^= (unsigned_representation & -unsigned_representation);  // Negative of an unsigned type: http://www.cplusplus.com/forum/beginner/182082/.
@@ -84,6 +82,8 @@ void DiscreteDomain::addElement(const size_t i) {
     }
 
     this->domain.set(i, true);
+    this->domain_indices.push_back(i);
+    sort(this->domain_indices.begin(), this->domain_indices.end());
 }
 
 
@@ -105,8 +105,21 @@ std::string DiscreteDomain::asString() const {
  *
  *  @return if this discrete domain is equal to the other discrete domain.
  */
-bool DiscreteDomain::operator==(const DiscreteDomain& other) const {
-    return boost::operator==(this->domain, other.asBitstring());
+bool DiscreteDomain::operator==(const DiscreteDomain& rhs) const {
+    return boost::operator==(this->domain, rhs.asBitstring());
+}
+
+
+/**
+ *  @param rhs            The discrete domain that will be assigned to `this'.
+ *
+ *  @return     A discrete domain with the class variables provided by `rhs'.
+ */
+DiscreteDomain& DiscreteDomain::operator=(const DiscreteDomain& rhs) {
+    this->domain = rhs.asBitstring();
+    this->domain_indices = rhs.domainIndices();
+
+    return (*this);
 }
 
 
@@ -127,6 +140,7 @@ void DiscreteDomain::removeElement(const size_t i) {
     }
 
     this->domain.set(i, false);
+    this->domain_indices.erase(std::remove(this->domain_indices.begin(), this->domain_indices.end(), i), this->domain_indices.end());
 }
 
 

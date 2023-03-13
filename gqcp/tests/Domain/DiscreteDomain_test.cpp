@@ -52,7 +52,6 @@ BOOST_AUTO_TEST_CASE(add_element) {
     std::vector<size_t> element_indices {0};
     BOOST_CHECK_EQUAL(discrete_domain(0), 1);
     BOOST_CHECK_EQUAL(discrete_domain.asString(), std::string("10000000"));
-    std::cout << "Number of indices: " << discrete_domain.domainIndices().size() << std::endl;
     BOOST_CHECK_EQUAL_COLLECTIONS(discrete_domain.domainIndices().begin(), discrete_domain.domainIndices().end(), element_indices.begin(), element_indices.end());
 
     // Add domain element at index 3.
@@ -99,11 +98,11 @@ BOOST_AUTO_TEST_CASE(remove_element) {
 BOOST_AUTO_TEST_CASE(unsigned_representation) {
 
     // Discrete domain with bitstring representation "01001010".
-    std::vector<size_t> element_indices {1, 3, 6};
-    GQCP::DiscreteDomain discrete_domain {element_indices, 8};
+    const std::vector<size_t> element_indices1 {1, 3, 6};
+    GQCP::DiscreteDomain discrete_domain {element_indices1, 8};
     BOOST_CHECK_EQUAL(discrete_domain.unsignedRepresentation(), 74);
 
-    // GQCP::VectorX<size_t> element_indices_ref2 {3};
-    // GQCP::DiscreteDomain discrete_domain2 {element_indices_ref2, 8};
-    // BOOST_CHECK_EQUAL(discrete_domain2.unsignedRepresentation(), 255);
+    const std::vector<size_t> element_indices2 {0, 1, 2, 3, 4, 5, 6, 7};
+    discrete_domain = GQCP::DiscreteDomain {element_indices2, 8};
+    BOOST_CHECK_EQUAL(discrete_domain.unsignedRepresentation(), 255);
 }

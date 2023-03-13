@@ -26,6 +26,8 @@
 
 #include <boost/dynamic_bitset.hpp>
 
+#include <algorithm>
+
 
 namespace GQCP {
 
@@ -102,11 +104,11 @@ public:
     size_t numberOfElements() const { return this->domain_indices.size(); }
 
     /**
-     *  @param other        The other CartesianGTO.
+     *  @param rhs        The other CartesianGTO.
      *
-     *  @return if this discrete domain is equal to the other discrete domain.
+     *  @return     If this discrete domain is equal to the other discrete domain.
      */
-    bool operator==(const DiscreteDomain& other) const;
+    bool operator==(const DiscreteDomain& rhs) const;
 
     /**
      *  @param i            The domain index.
@@ -114,6 +116,13 @@ public:
      *  @return     The i-th element with values 0 or 1 depending on whether the i-th element is in the domain.
      */
     bool operator()(const size_t i) const { return this->domain[i]; }
+
+    /**
+     *  @param rhs            The discrete domain that will be assigned to `this'.
+     *
+     *  @return     A discrete domain with the class variables provided by `rhs'.
+     */
+    DiscreteDomain& operator=(const DiscreteDomain& rhs);
 
     /**
      *  Remove an element from the domain at position i.
