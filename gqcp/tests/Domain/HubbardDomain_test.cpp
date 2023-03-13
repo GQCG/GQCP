@@ -46,7 +46,7 @@ BOOST_AUTO_TEST_CASE(overlap_with_spinunresolved_onv) {
     // Create an empty Hubbard domain with bitstring representation 00000000 (read right to left).
     const GQCP::HubbardDomain empty_domain {0, 8};
     // Create a spin-unresolved ONV with bitstring representation 11111111 (read right to left).
-    GQCP::SpinUnresolvedONV full_onv {8, 3, 255};
+    GQCP::SpinUnresolvedONV full_onv {8, 8, 255};
     // There cannot be an overlap when the domain is empty.
     BOOST_CHECK_EQUAL(empty_domain.overlapWith(full_onv), 0);
 }
@@ -61,6 +61,6 @@ BOOST_AUTO_TEST_CASE(overlap_with_spinresolved_onv) {
     // Create a spin-resolved ONV where the alpha and beta part have bitstring representation 00101101 and 00010010 respectively (read right to left).
     const GQCP::SpinResolvedONV onv {GQCP::SpinUnresolvedONV {8, 4, 45}, GQCP::SpinUnresolvedONV {8, 2, 18}};
     // The number of overlapping bits should be 2 and 1 for both the alpha and beta part of the ONV respectively.
-    BOOST_CHECK_EQUAL(domain.overlapWith(onv).alpha, 2);
-    BOOST_CHECK_EQUAL(domain.overlapWith(onv).beta, 1);
+    BOOST_CHECK_EQUAL(domain.overlapWith(onv).alpha(), 2);
+    BOOST_CHECK_EQUAL(domain.overlapWith(onv).beta(), 1);
 }

@@ -34,6 +34,8 @@ namespace GQCP {
 class HubbardDomain:
     public DiscreteDomain {
 public:
+    using DiscreteDomain::DiscreteDomain;
+
     /**
      * Calculate the overlap between the Hubbard domain and a spin-unresolved ONV since both can be represented as a bitstring.
      *
