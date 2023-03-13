@@ -126,6 +126,8 @@ public:
 
 
     /**
+     * Calculate the overlap between two discrete domains, i.e. the number of matching domain elements.
+     *
      *  @param other            The other discrete domain.
      *
      *  @return     The number of domain elements that are equal between `this' and the other discrete domain.
