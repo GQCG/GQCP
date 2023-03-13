@@ -29,16 +29,19 @@ namespace GQCP {
 /**
  *  Create a discrete domain from a set of domain indices.
  *
- *  @param domain_indices             The indices that the domain contains.
+ *  @param indices                      The indices that the domain contains.
  *  @param M                            The dimension of the discrete domain, i.e. the maximum number of elements that the discrete domain can contain.
  *
  *  @return A spin-unresolved ONV from a set of occupied indices.
  */
-DiscreteDomain::DiscreteDomain(const VectorX<size_t>& domain_indices, const size_t M) :
-    domain_indices {domain_indices} {
+DiscreteDomain::DiscreteDomain(const std::vector<size_t>& indices, const size_t M) :
+    domain_indices {indices} {
+
+    std::cout << "Vector with size: " << indices.size() << std::endl;
+
     // Generate the corresponding unsigned representation associated with the indices of the domain.
     size_t unsigned_representation = 0;
-    for (size_t i = 0; ++i; i < domain_indices.size()) {
+    for (size_t i = 0; i < domain_indices.size(); i++) {
         unsigned_representation += std::pow(2, domain_indices[i]);
     }
     this->domain = boost::dynamic_bitset<> {M, unsigned_representation};
@@ -54,9 +57,9 @@ DiscreteDomain::DiscreteDomain(const VectorX<size_t>& domain_indices, const size
 DiscreteDomain::DiscreteDomain(size_t unsigned_representation, const size_t M) :
     domain {boost::dynamic_bitset<> {M, unsigned_representation}} {
 
-    VectorX<size_t> domain_indices {0};
+    std::vector<size_t> domain_indices {0};
     while (unsigned_representation != 0) {
-        domain_indices << __builtin_ctzl(unsigned_representation);                        // Retrieves the domain index. Note: bitstring is read from right to left, domain index from left to right.
+        domain_indices.push_back(__builtin_ctzl(unsigned_representation));                // Retrieves the domain index. Note: bitstring is read from right to left, domain index from left to right.
         unsigned_representation ^= (unsigned_representation & -unsigned_representation);  // Negative of an unsigned type: http://www.cplusplus.com/forum/beginner/182082/.
     }
 
@@ -88,13 +91,12 @@ void DiscreteDomain::addElement(const size_t i) {
  *  @return The domain string as a bitstring.
  */
 std::string DiscreteDomain::asString() const {
-    const auto K = this->dimension();
+    std::string text;  // The string that will contain the textual representation of this discrete domain.
 
-    std::string s;
-    for (size_t i = 0; i < K; ++i) {
-        s += std::to_string(this->operator()(i));
-    }
-    return s;
+    boost::to_string(this->domain, text);
+    std::reverse(text.begin(), text.end());  // The bitstring is read from right to left, but we return it from left to right for easier reading.
+
+    return text;
 }
 
 

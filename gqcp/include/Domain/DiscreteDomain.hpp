@@ -39,7 +39,7 @@ private:
     // The representation of the discrete domain as a bitstring.
     boost::dynamic_bitset<> domain;
     // A set of indices that correspond to the elements included in the discrete domain.
-    VectorX<size_t> domain_indices;
+    std::vector<size_t> domain_indices;
 
 public:
     /*
@@ -54,7 +54,7 @@ public:
      *
      *  @return A spin-unresolved ONV from a set of occupied indices.
      */
-    DiscreteDomain(const VectorX<size_t>& domain_indices, const size_t M);
+    DiscreteDomain(const std::vector<size_t>& domain_indices, const size_t M);
 
     /**
      *  Create a discrete domain from an unsigned representation.
@@ -87,7 +87,7 @@ public:
     size_t dimension() const { return this->domain.size(); }
 
 
-    const VectorX<size_t>& domainIndices() const { return this->domain_indices; }
+    const std::vector<size_t>& domainIndices() const { return this->domain_indices; }
 
     /**
      *  @param i        The index in the domain bitstring.
