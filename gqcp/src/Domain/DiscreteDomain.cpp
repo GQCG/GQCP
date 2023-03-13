@@ -124,6 +124,20 @@ DiscreteDomain& DiscreteDomain::operator=(const DiscreteDomain& rhs) {
 
 
 /**
+ *  @param other            The other discrete domain.
+ *
+ *  @return     The number of domain elements that are equal between `this' and the other discrete domain.
+ */
+size_t DiscreteDomain::overlapWith(const DiscreteDomain& other) const {
+
+    boost::dynamic_bitset<> overlap;
+    overlap = this->domain & other.asBitstring();
+
+    return overlap.count();
+}
+
+
+/**
  *  Remove an element from the domain at position i.
  *
  *  @param i        The index in the domain bitstring.

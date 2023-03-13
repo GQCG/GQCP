@@ -92,6 +92,17 @@ BOOST_AUTO_TEST_CASE(remove_element) {
 }
 
 
+BOOST_AUTO_TEST_CASE(overlap_between_discrete_domains) {
+
+    // 11 = 00001011
+    const GQCP::DiscreteDomain domain {11, 8};
+    // 42 = 00101010
+    const GQCP::DiscreteDomain other_domain {42, 8};
+
+    BOOST_CHECK_EQUAL(domain.overlapWith(other_domain), 2);
+}
+
+
 /**
  *  Test whether the discrete domain assigns the correct unsigned representation associated with the given domain indices and bitstring.
  */

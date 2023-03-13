@@ -124,6 +124,14 @@ public:
      */
     DiscreteDomain& operator=(const DiscreteDomain& rhs);
 
+
+    /**
+     *  @param other            The other discrete domain.
+     *
+     *  @return     The number of domain elements that are equal between `this' and the other discrete domain.
+     */
+    size_t overlapWith(const DiscreteDomain& other) const;
+
     /**
      *  Remove an element from the domain at position i.
      *
