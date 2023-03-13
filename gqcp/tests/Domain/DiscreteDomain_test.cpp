@@ -50,14 +50,14 @@ BOOST_AUTO_TEST_CASE(add_element) {
     // Add domain element at index 0.
     discrete_domain.addElement(0);
     std::vector<size_t> element_indices {0};
-    BOOST_CHECK_EQUAL(discrete_domain(0), 1);
+    BOOST_CHECK_EQUAL(discrete_domain.inDomain(0), true);
     BOOST_CHECK_EQUAL(discrete_domain.asString(), std::string("10000000"));
     BOOST_CHECK_EQUAL_COLLECTIONS(discrete_domain.domainIndices().begin(), discrete_domain.domainIndices().end(), element_indices.begin(), element_indices.end());
 
     // Add domain element at index 3.
     discrete_domain.addElement(3);
     element_indices.push_back(3);
-    BOOST_CHECK_EQUAL(discrete_domain(3), 1);
+    BOOST_CHECK_EQUAL(discrete_domain.inDomain(3), true);
     BOOST_CHECK_EQUAL(discrete_domain.asString(), std::string("10010000"));
     BOOST_CHECK_EQUAL_COLLECTIONS(discrete_domain.domainIndices().begin(), discrete_domain.domainIndices().end(), element_indices.begin(), element_indices.end());
 
@@ -76,14 +76,14 @@ BOOST_AUTO_TEST_CASE(remove_element) {
     // Remove domain element at index 5.
     discrete_domain.removeElement(5);
     element_indices.pop_back();
-    BOOST_CHECK_EQUAL(discrete_domain(5), 0);
+    BOOST_CHECK_EQUAL(discrete_domain.inDomain(5), false);
     BOOST_CHECK_EQUAL(discrete_domain.asString(), std::string("10000000"));
     BOOST_CHECK_EQUAL_COLLECTIONS(discrete_domain.domainIndices().begin(), discrete_domain.domainIndices().end(), element_indices.begin(), element_indices.end());
 
     // Remove domain element at index 0.
     discrete_domain.removeElement(0);
     element_indices.pop_back();
-    BOOST_CHECK_EQUAL(discrete_domain(0), 0);
+    BOOST_CHECK_EQUAL(discrete_domain.inDomain(0), false);
     BOOST_CHECK_EQUAL(discrete_domain.asString(), std::string("00000000"));
     BOOST_CHECK_EQUAL_COLLECTIONS(discrete_domain.domainIndices().begin(), discrete_domain.domainIndices().end(), element_indices.begin(), element_indices.end());
 

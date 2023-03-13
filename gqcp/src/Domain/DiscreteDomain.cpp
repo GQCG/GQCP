@@ -144,9 +144,4 @@ void DiscreteDomain::removeElement(const size_t i) {
 }
 
 
-/*
- *  MARK: DomainTraits
- */
-
-
 }  // namespace GQCP
