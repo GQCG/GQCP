@@ -15,8 +15,6 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#pragma once
-
 
 #include "Domain/HubbardDomain.hpp"
 
