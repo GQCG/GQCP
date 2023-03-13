@@ -37,7 +37,7 @@ namespace GQCP {
  */
 class DiscreteDomain:
     public SimpleDomain<DiscreteDomain> {
-private:
+protected:
     // The representation of the discrete domain as a bitstring.
     boost::dynamic_bitset<> domain;
     // A set of indices that correspond to the elements included in the discrete domain.
@@ -123,6 +123,14 @@ public:
      *  @return     A discrete domain with the class variables provided by `rhs'.
      */
     DiscreteDomain& operator=(const DiscreteDomain& rhs);
+
+    /**
+     *  @param os       The output stream which the discrete domain should be concatenated to.
+     *  @param domain      The discrete domain that should be concatenated to the output stream.
+     *
+     *  @return The updated output stream.
+     */
+    friend std::ostream& operator<<(std::ostream& os, const DiscreteDomain& domain);
 
 
     /**

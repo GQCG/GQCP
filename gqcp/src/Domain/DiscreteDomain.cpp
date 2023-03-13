@@ -124,6 +124,17 @@ DiscreteDomain& DiscreteDomain::operator=(const DiscreteDomain& rhs) {
 
 
 /**
+ *  @param os       The output stream which the discrete domain should be concatenated to.
+ *  @param domain      The discrete domain that should be concatenated to the output stream.
+ *
+ *  @return The updated output stream.
+ */
+std::ostream& operator<<(std::ostream& os, const DiscreteDomain& domain) {
+    return os << domain.asString();
+}
+
+
+/**
  * Calculate the overlap between two discrete domains, i.e. the number of matching domain elements.
  *
  *  @param other            The other discrete domain.
