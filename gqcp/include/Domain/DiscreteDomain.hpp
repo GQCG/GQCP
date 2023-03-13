@@ -33,7 +33,7 @@ namespace GQCP {
 
 
 /**
- *
+ * A domain represented by a bitstring that specifies whether the element at index `i' is present in the domain or not.
  */
 class DiscreteDomain:
     public SimpleDomain<DiscreteDomain> {
