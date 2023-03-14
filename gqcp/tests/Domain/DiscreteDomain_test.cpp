@@ -35,8 +35,8 @@ BOOST_AUTO_TEST_CASE(bitstring_representation) {
     BOOST_CHECK_EQUAL(discrete_domain_from_indices.asString(), std::string("10101010"));
 
     // The same as above, but with passing an unsigned integer to the constructor.
-    // GQCP::DiscreteDomain discrete_domain_from_unsigned_int(85, 8);
-    // BOOST_CHECK_EQUAL(discrete_domain_from_unsigned_int.asString(), std::string("10101010"));
+    GQCP::DiscreteDomain discrete_domain_from_unsigned_int(85, 8);
+    BOOST_CHECK_EQUAL(discrete_domain_from_unsigned_int.asString(), std::string("10101010"));
 }
 
 
