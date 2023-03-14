@@ -92,6 +92,9 @@ BOOST_AUTO_TEST_CASE(remove_element) {
 }
 
 
+/**
+ *  Test whether the overlap between two discrete domain is calculated correctly.
+ */
 BOOST_AUTO_TEST_CASE(overlap_between_discrete_domains) {
 
     // 11 = 00001011
