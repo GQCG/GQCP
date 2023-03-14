@@ -51,14 +51,14 @@ public:
     /**
      *  @param other        the other domain
      *
-     *  @return if this DerivedDomain is equal to the other DerivedDomain.
+     *  @return whether this DerivedDomain is equal to the other DerivedDomain.
      */
     virtual bool operator==(const DerivedDomain& other) const = 0;
 
     /**
      *  @param other        the other domain
      *
-     *  @return if this DerivedDomain is not equal to the other DerivedDomain.
+     *  @return whether this DerivedDomain is not equal to the other DerivedDomain.
      */
     bool operator!=(DerivedDomain& other) const {
         return !this->operator==(other);

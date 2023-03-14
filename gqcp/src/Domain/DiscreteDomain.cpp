@@ -124,7 +124,7 @@ DiscreteDomain& DiscreteDomain::operator=(const DiscreteDomain& rhs) {
 
 
 /**
- *  @param os       The output stream which the discrete domain should be concatenated to.
+ *  @param os          The output stream which the discrete domain should be concatenated to.
  *  @param domain      The discrete domain that should be concatenated to the output stream.
  *
  *  @return The updated output stream.

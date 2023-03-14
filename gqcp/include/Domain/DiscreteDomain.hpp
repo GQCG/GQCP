@@ -51,7 +51,7 @@ public:
     /**
      *  Create a discrete domain from a set of domain indices.
      *
-     *  @param domain_indices             The indices that the domain contains.
+     *  @param domain_indices               The indices that the domain contains.
      *  @param M                            The dimension of the discrete domain, i.e. the maximum number of elements that the discrete domain can contain.
      *
      *  @return A spin-unresolved ONV from a set of occupied indices.
@@ -106,7 +106,7 @@ public:
     /**
      *  @param rhs        The other CartesianGTO.
      *
-     *  @return     If this discrete domain is equal to the other discrete domain.
+     *  @return whether this discrete domain is equal to the other discrete domain.
      */
     bool operator==(const DiscreteDomain& rhs) const;
 
