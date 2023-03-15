@@ -29,9 +29,9 @@ namespace GQCP {
 
 /**
  *  A second-quantized one-electron operator whose parameters are described by a single matrix.
- * 
+ *
  *  This class is used as a base class for `RSQOneElectronOperator`, `GSQOneElectronOperator`, and `USQOneElectronOperatorComponent`, since they both admit parameter representations using a single matrix, as opposed to the full `USQOneElectronOperator`, which uses separate alpha- and beta- matrices. The word 'simple' is used here as an antonym for 'compound'.
- * 
+ *
  *  @tparam _Scalar                 The scalar type used for a single parameter/matrix element: real or complex.
  *  @tparam _Vectorizer             The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
  *  @tparam _DerivedOperator        The type of the operator that derives from this class, enabling CRTP and compile-time polymorphism.
@@ -88,7 +88,7 @@ public:
 
     /**
      *  Calculate the expectation value of this one-electron operator.
-     * 
+     *
      *  @param D                The 1-DM (that represents the wave function).
      *
      *  @return The expectation value of all components of the one-electron operator.
@@ -120,12 +120,12 @@ public:
 
     /**
      *  Calculate the Fockian matrix for (each of the components of) this one-electron operator.
-     * 
+     *
      *  @param DM           The 1-DM (or the response 1-DM for made-variational wave function models).
      *  @param dm           The 2-DM (or the response 2-DM for made-variational wave function models).
      *
      *  @return The Fockian matrix.
-     * 
+     *
      *  @note This method is only enabled in the real case.
      */
     template <typename Z = Scalar>
@@ -166,12 +166,12 @@ public:
 
     /**
      *  Calculate the super-Fockian matrix for (each of the components of) this one-electron operator.
-     * 
+     *
      *  @param DM           The 1-DM (or the response 1-DM for made-variational wave function models).
      *  @param dm           The 2-DM (or the response 2-DM for made-variational wave function models).
      *
      *  @return The super-Fockian matrix.
-     * 
+     *
      *  @note This method is only enabled in the real case.
      */
     template <typename Z = Scalar>
@@ -227,9 +227,9 @@ public:
 
     /**
      *  Apply the basis transformation and return the resulting one-electron integrals.
-     * 
+     *
      *  @param T            The basis transformation.
-     * 
+     *
      *  @return The basis-transformed one-electron integrals.
      */
     DerivedOperator transformed(const Transformation& T) const override {
@@ -261,9 +261,9 @@ public:
 
     /**
      *  Apply the Jacobi rotation and return the result.
-     * 
+     *
      *  @param jacobi_rotation          The Jacobi rotation.
-     * 
+     *
      *  @return The jacobi-transformed object.
      */
     DerivedOperator rotated(const JacobiRotation& jacobi_rotation) const override {
@@ -293,9 +293,9 @@ public:
 
     /**
      *  Apply a one-index transformation and return the result.
-     * 
+     *
      *  @param T            The basis transformation.
-     * 
+     *
      *  @return The one-index-transformed one-electron operator.
      */
     DerivedOperator oneIndexTransformed(const Transformation& T) const {
@@ -315,17 +315,17 @@ public:
 
 
     /*
-     *  MARK: Mulliken partitioning
+     *  MARK: Mulliken Domain
      */
 
     /**
      *  Partition this one-electron operator according to the supplied Mulliken partitioning scheme.
-     * 
-     *  @param mulliken_partitioning                An encapsulation of the Mulliken partitioning scheme.
-     * 
+     *
+     *  @param mulliken_projection_matrix                The projection matrix related to a Mulliken domain.
+     *
      *  @return A one-electron operator whose integrals/parameters/matrix elements correspond to the Mulliken-partitioning of this one-electron operator.
      */
-    DerivedOperator partitioned(const MullikenPartitioning& mulliken_partitioning) const { return 0.5 * this->oneIndexTransformed(mulliken_partitioning.projectionMatrix()); }
+    DerivedOperator partitioned(const Transformation& mulliken_projection_matrix) const { return 0.5 * this->oneIndexTransformed(mulliken_projection_matrix); }
 };
 
 

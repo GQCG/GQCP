@@ -66,6 +66,11 @@ public:
      */
     DiscreteDomain(const size_t unsigned_representation, const size_t M);
 
+
+    /**
+     *  MARK: General information
+     */
+
     /**
      *  Add an element to the domain at position i.
      *

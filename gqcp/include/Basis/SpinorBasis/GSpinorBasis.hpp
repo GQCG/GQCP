@@ -18,7 +18,6 @@
 #pragma once
 
 
-#include "Basis/MullikenPartitioning/GMullikenPartitioning.hpp"
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Basis/ScalarBasis/LondonGTOShell.hpp"
 #include "Basis/ScalarBasis/ScalarBasis.hpp"
@@ -26,6 +25,7 @@
 #include "Basis/SpinorBasis/SimpleSpinorBasis.hpp"
 #include "Basis/SpinorBasis/USpinOrbitalBasis.hpp"
 #include "Basis/Transformations/GTransformation.hpp"
+#include "Domain/GMullikenDomain.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Operator/FirstQuantized/CoulombRepulsionOperator.hpp"
 #include "Operator/FirstQuantized/DiamagneticOperator.hpp"
@@ -261,7 +261,7 @@ public:
     /**
      *  @param sigma        Alpha or beta.
      *
-    *  @return The number of coefficients that are used for the expansion of the requested spin-component of a spinor.
+     *  @return The number of coefficients that are used for the expansion of the requested spin-component of a spinor.
      */
     size_t numberOfCoefficients(const Spin& sigma) const { return this->scalarBases().component(sigma).numberOfBasisFunctions(); }
 
@@ -838,40 +838,40 @@ public:
 
 
     /**
-     *  MARK: Mulliken partitioning
+     *  MARK: Mulliken domain
      */
 
     /**
      *  Partition this set of generalized spinors according to the Mulliken partitioning scheme.
      *
-     *  @param selector             A function that returns true for basis functions that should be included the Mulliken partitioning.
+     *  @param selector             A function that returns true for basis functions that should be included the Mulliken domain.
      *
-     *  @return A `GMullikenPartitioning` for the AOs selected by the supplied selector function.
+     *  @return A `GMullikenDomain` for the AOs selected by the supplied selector function.
      *
      *  @note The underlying scalar bases are assumed to be equal.
      */
-    GMullikenPartitioning<ExpansionScalar> mullikenPartitioning(const std::function<bool(const BasisFunction&)>& selector) const {
+    GMullikenDomain<ExpansionScalar> mullikenDomain(const std::function<bool(const BasisFunction&)>& selector) const {
 
         // Assume the underlying scalar bases are equal, and proceed to work with the one for the alpha component.
         const auto ao_indices = this->scalarBases().alpha().basisFunctionIndices(selector);
-        return GMullikenPartitioning<ExpansionScalar> {ao_indices, this->expansion()};
+        return GMullikenDomain<ExpansionScalar> {ao_indices, ao_indices.size()};
     }
 
 
     /**
      *  Partition this set of generalized spinors according to the Mulliken partitioning scheme.
      *
-     *  @param selector             A function that returns true for shells that should be included the Mulliken partitioning.
+     *  @param selector             A function that returns true for shells that should be included the Mulliken domain.
      *
-     *  @return A `GMullikenPartitioning` for the AOs selected by the supplied selector function.
+     *  @return A `GMullikenDomain` for the AOs selected by the supplied selector function.
      *
      *  @note The underlying scalar bases are assumed to be equal.
      */
-    GMullikenPartitioning<ExpansionScalar> mullikenPartitioning(const std::function<bool(const Shell&)>& selector) const {
+    GMullikenDomain<ExpansionScalar> mullikenDomain(const std::function<bool(const Shell&)>& selector) const {
 
         // Assume the underlying scalar bases are equal, and proceed to work with the one for the alpha component.
         const auto ao_indices = this->scalarBases().alpha().basisFunctionIndices(selector);
-        return GMullikenPartitioning<ExpansionScalar> {ao_indices, this->expansion()};
+        return GMullikenDomain<ExpansionScalar> {ao_indices, ao_indices.size()};
     }
 };
 
