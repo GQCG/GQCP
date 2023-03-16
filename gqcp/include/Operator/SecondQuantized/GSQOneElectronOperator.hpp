@@ -21,7 +21,7 @@
 #include "Basis/Transformations/GTransformation.hpp"
 #include "DensityMatrix/G1DM.hpp"
 #include "DensityMatrix/G2DM.hpp"
-#include "Domain/GMullikenDomain.hpp"
+#include "Domain/MullikenDomain/GMullikenDomain.hpp"
 #include "Mathematical/Representation/DenseVectorizer.hpp"
 #include "Operator/SecondQuantized/SimpleSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperatorComponent.hpp"

@@ -47,13 +47,6 @@ void bindMcMurchieDavidsonCoefficient(py::module& module);
 void bindIntegralEngine(py::module& module);
 
 
-// Basis - MullikenPartitioning
-void bindGMullikenPartitioning(py::module& module);
-void bindRMullikenPartitioning(py::module& module);
-void bindUMullikenPartitioning(py::module& module);
-void bindUMullikenPartitioningComponent(py::module& module);
-
-
 // Basis - NonOrthogonalBasis
 void bindGNonOrthogonalStateBases(py::module& module);
 void bindRNonOrthogonalStateBases(py::module& module);
@@ -93,6 +86,13 @@ void bindSpinDensity1DM(py::module& module);
 void bindSpinResolved1DM(py::module& module);
 void bindSpinResolved1DMComponent(py::module& module);
 void bindSpinResolved2DM(py::module& module);
+
+
+// Domain - MullikenDomain
+void bindGMullikenDomain(py::module& module);
+void bindRMullikenDomain(py::module& module);
+void bindUMullikenDomain(py::module& module);
+void bindUMullikenDomainComponent(py::module& module);
 
 
 // Mathematical - Algorithm
@@ -323,13 +323,6 @@ PYBIND11_MODULE(gqcpy, module) {
     gqcpy::bindIntegralEngine(module);
 
 
-    // Basis - MullikenPartitioning
-    gqcpy::bindGMullikenPartitioning(module);
-    gqcpy::bindRMullikenPartitioning(module);
-    gqcpy::bindUMullikenPartitioning(module);
-    gqcpy::bindUMullikenPartitioningComponent(module);
-
-
     // Basis - NonOrthogonalBasis
     gqcpy::bindGNonOrthogonalStateBases(module);
     gqcpy::bindRNonOrthogonalStateBases(module);
@@ -369,6 +362,13 @@ PYBIND11_MODULE(gqcpy, module) {
     gqcpy::bindSpinResolved1DM(module);
     gqcpy::bindSpinResolved1DMComponent(module);
     gqcpy::bindSpinResolved2DM(module);
+
+
+    // Basis - MullikenDomain
+    gqcpy::bindGMullikenDomain(module);
+    gqcpy::bindRMullikenDomain(module);
+    gqcpy::bindUMullikenDomain(module);
+    gqcpy::bindUMullikenDomainComponent(module);
 
 
     // Mathematical - Algorithm

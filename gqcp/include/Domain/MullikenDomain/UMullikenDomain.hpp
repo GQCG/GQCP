@@ -19,7 +19,7 @@
 
 
 #include "Basis/Transformations/UTransformation.hpp"
-#include "Domain/UMullikenDomainComponent.hpp"
+#include "Domain/MullikenDomain/UMullikenDomainComponent.hpp"
 #include "QuantumChemical/SpinResolved.hpp"
 #include "QuantumChemical/SpinResolvedBase.hpp"
 

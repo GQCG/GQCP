@@ -21,7 +21,7 @@
 #include "Basis/Transformations/UTransformationComponent.hpp"
 #include "DensityMatrix/PureSpinResolved2DMComponent.hpp"
 #include "DensityMatrix/SpinResolved1DMComponent.hpp"
-#include "Domain/UMullikenDomainComponent.hpp"
+#include "Domain/MullikenDomain/UMullikenDomainComponent.hpp"
 #include "Mathematical/Representation/DenseVectorizer.hpp"
 #include "Operator/SecondQuantized/SimpleSQOneElectronOperator.hpp"
 

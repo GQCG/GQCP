@@ -25,7 +25,7 @@
 #include "Basis/SpinorBasis/Spinor.hpp"
 #include "Basis/Transformations/JacobiRotation.hpp"
 #include "Basis/Transformations/RTransformation.hpp"
-#include "Domain/RMullikenDomain.hpp"
+#include "Domain/MullikenDomain/RMullikenDomain.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Operator/FirstQuantized/AngularMomentumOperator.hpp"
 #include "Operator/FirstQuantized/CoulombRepulsionOperator.hpp"

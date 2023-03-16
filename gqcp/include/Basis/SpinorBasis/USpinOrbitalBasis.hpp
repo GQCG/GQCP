@@ -24,7 +24,7 @@
 #include "Basis/Transformations/SpinResolvedBasisTransformable.hpp"
 #include "Basis/Transformations/SpinResolvedJacobiRotatable.hpp"
 #include "Basis/Transformations/UTransformation.hpp"
-#include "Domain/UMullikenDomain.hpp"
+#include "Domain/MullikenDomain/UMullikenDomain.hpp"
 #include "Mathematical/Functions/CartesianDirection.hpp"
 #include "Operator/FirstQuantized/CoulombRepulsionOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicDipoleOperator.hpp"

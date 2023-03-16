@@ -23,7 +23,7 @@
 #include "Basis/Transformations/UTransformation.hpp"
 #include "DensityMatrix/SpinResolved1DM.hpp"
 #include "DensityMatrix/SpinResolved2DM.hpp"
-#include "Domain/UMullikenDomain.hpp"
+#include "Domain/MullikenDomain/UMullikenDomain.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperatorComponent.hpp"

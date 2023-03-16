@@ -25,7 +25,7 @@
 #include "Basis/SpinorBasis/SimpleSpinorBasis.hpp"
 #include "Basis/SpinorBasis/USpinOrbitalBasis.hpp"
 #include "Basis/Transformations/GTransformation.hpp"
-#include "Domain/GMullikenDomain.hpp"
+#include "Domain/MullikenDomain/GMullikenDomain.hpp"
 #include "Molecule/Molecule.hpp"
 #include "Operator/FirstQuantized/CoulombRepulsionOperator.hpp"
 #include "Operator/FirstQuantized/DiamagneticOperator.hpp"
