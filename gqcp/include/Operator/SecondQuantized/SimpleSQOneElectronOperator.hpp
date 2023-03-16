@@ -69,8 +69,8 @@ public:
     // The type of the two-particle density matrix that is naturally associated to the derived one-electron operator.
     using Derived2DM = typename OperatorTraits<DerivedOperator>::TwoDM;
 
-    // The type used to encapsulate the Mulliken partitioning scheme.
-    using MullikenPartitioning = typename OperatorTraits<DerivedOperator>::MullikenPartitioning;
+    // The type used to encapsulate the Mulliken domain.
+    using MullikenDomain = typename OperatorTraits<DerivedOperator>::MullikenDomain;
 
 
 public:

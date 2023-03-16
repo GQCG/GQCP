@@ -18,10 +18,10 @@
 #pragma once
 
 
-#include "Basis/MullikenPartitioning/RMullikenPartitioning.hpp"
 #include "Basis/Transformations/RTransformation.hpp"
 #include "DensityMatrix/Orbital1DM.hpp"
 #include "DensityMatrix/Orbital2DM.hpp"
+#include "Domain/RMullikenDomain.hpp"
 #include "Mathematical/Representation/DenseVectorizer.hpp"
 #include "Operator/SecondQuantized/SimpleSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperatorComponent.hpp"
@@ -132,8 +132,8 @@ struct OperatorTraits<RSQOneElectronOperator<Scalar, Vectorizer>> {
     // The type of the two-particle density matrix that is naturally associated an `RSQOneElectronOperator`.
     using TwoDM = Orbital2DM<Scalar>;
 
-    // The type used to encapsulate the Mulliken partitioning scheme.
-    using MullikenPartitioning = RMullikenPartitioning<Scalar>;
+    // The type used to encapsulate the Mulliken domain.
+    using MullikenDomain = RMullikenDomain<Scalar>;
 };
 
 

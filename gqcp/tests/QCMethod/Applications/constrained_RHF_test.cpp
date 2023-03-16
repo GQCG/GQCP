@@ -31,7 +31,7 @@
 
 /**
  *  Check constrained RHF Mulliken populations, based on the reference article: "Self-consistent methods constrained to a fixed number of particles in a given fragment and its relation to the electronegativity equalization method", by Andrés Cedillo, Dimitri Van Neck, Patrick Bultinck. (DOI: 10.1007/s00214-012-1227-6).
- * 
+ *
  *  We still use a lenient threshold because we are not certain of exact the geometry in the paper.
  */
 BOOST_AUTO_TEST_CASE(constrained_CO_test) {
@@ -74,9 +74,9 @@ BOOST_AUTO_TEST_CASE(constrained_CO_test) {
     const auto K = hamiltonian.numberOfOrbitals();
 
 
-    // Prepare the Mulliken partitioning on 'C'.
+    // Prepare the Mulliken domain.
     using Shell = GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell>::Shell;
-    const auto mulliken_partitioning = spin_orbital_basis.mullikenPartitioning(
+    const auto mulliken_domain = spin_orbital_basis.mullikenDomain(
         [](const Shell& shell) {
             return shell.nucleus().element() == "C";
         });
@@ -87,7 +87,8 @@ BOOST_AUTO_TEST_CASE(constrained_CO_test) {
     for (double lambda = -1.0; lambda < 1.01; lambda += 0.1) {
 
         // Do the constrained RHF calculation by adding (-lambda * Mulliken) to the molecular Hamiltonian.
-        auto mulliken_op = S.partitioned(mulliken_partitioning);
+        const auto P = mulliken_domain.projectionMatrix(spin_orbital_basis.expansion());
+        auto mulliken_op = S.partitioned(P);
         const auto constrained_hamiltonian = hamiltonian - lambda * mulliken_op;  // In the AO basis.
 
         // Create a DIIS RHF SCF solver and solve the SCF equations.
@@ -170,9 +171,9 @@ BOOST_AUTO_TEST_CASE(constrained_CO_test_random_AO_basis) {
     const auto hamiltonian = spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // In the AO basis.
 
 
-    // Prepare the Mulliken partitioning on 'C'.
+    // Prepare the Mulliken domain.
     using Shell = GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell>::Shell;
-    const auto mulliken_partitioning = spin_orbital_basis.mullikenPartitioning(
+    const auto mulliken_domain = spin_orbital_basis.mullikenDomain(
         [](const Shell& shell) {
             return shell.nucleus().element() == "C";
         });
@@ -183,7 +184,8 @@ BOOST_AUTO_TEST_CASE(constrained_CO_test_random_AO_basis) {
     for (double lambda = -1.0; lambda < 1.01; lambda += 0.1) {
 
         // Do the constrained RHF calculation by adding (-lambda * Mulliken) to the molecular Hamiltonian.
-        auto mulliken_op = S.partitioned(mulliken_partitioning);
+        const auto P = mulliken_domain.projectionMatrix(spin_orbital_basis.expansion());
+        auto mulliken_op = S.partitioned(P);
         const auto constrained_hamiltonian = hamiltonian - lambda * mulliken_op;  // In the AO basis.
 
         // Create a DIIS RHF SCF solver and solve the SCF equations.
