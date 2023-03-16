@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/Transformations/GTransformation.hpp"
+#include "Basis/Transformations/RTransformation.hpp"
 #include "Domain/DiscreteDomain.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "QuantumChemical/SpinResolved.hpp"
@@ -32,7 +32,7 @@ namespace GQCP {
  * The sites {`i'} that are present in the domain are represented by a set bit at the corresponding indices `i'.
  */
 template <typename _Scalar>
-class GMullikenDomain:
+class RMullikenDomain:
     public DiscreteDomain {
 public:
     using DiscreteDomain::DiscreteDomain;
@@ -45,24 +45,9 @@ public:
      */
 
     /**
-     * @param C     The transformation that relates the atomic spinors to the set of current generalized spinors.
-     *
      *  @return The partition matrix 'P_A' related to this Mulliken domain.
      */
-    SquareMatrix<Scalar> partitionMatrix(const GTransformation<Scalar>& C) const {
-
-        const auto M = C.numberOfOrbitals();
-        const auto K = M / 2;
-
-        // Set up the top-left (alpha) and bottom-right (beta) blocks of the total partition matrix.
-        SquareMatrix<Scalar> P = SquareMatrix<Scalar>::Zero(M);
-
-        auto P_component = SquareMatrix<Scalar>::PartitionMatrix(this->domain_indices, K);
-        P.topLeftCorner(K, K) = P_component;
-        P.bottomRightCorner(K, K) = P_component;
-
-        return P;
-    }
+    SquareMatrix<Scalar> partitionMatrix(const RTransformation<Scalar>& C) const { return SquareMatrix<Scalar>::PartitionMatrix(this->domainIndices(), C.numberOfOrbitals()); }
 
 
     /**
@@ -70,8 +55,8 @@ public:
      *
      *  @return The Mulliken projection, defined as C^{-1} P_A C, where C is the transformation matrix and P_A is the partition matrix.
      *
-     *  @note We are aware that this formula is duplicate code (see `RMullikenDomain`), but it isn't worth (yet) to refactor this common functionality into a base class.
+     *  @note We are aware that this formula is duplicate code (see `GMullikenDomain`), but it isn't worth (yet) to refactor this common functionality into a base class.
      */
-    GTransformation<Scalar> projectionMatrix(const GTransformation<Scalar>& C) const { return GTransformation<Scalar> {C.inverse().matrix() * this->partitionMatrix(C) * C.matrix()}; }
+    RTransformation<Scalar> projectionMatrix(const RTransformation<Scalar>& C) const { return RTransformation<Scalar> {C.inverse().matrix() * this->partitionMatrix(C) * C.matrix()}; }
 };
 }  // namespace GQCP

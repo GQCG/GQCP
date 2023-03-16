@@ -19,13 +19,13 @@
 
 
 #include "Basis/Integrals/IntegralCalculator.hpp"
-#include "Basis/MullikenPartitioning/RMullikenPartitioning.hpp"
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Basis/SpinorBasis/CurrentDensityMatrixElement.hpp"
 #include "Basis/SpinorBasis/SimpleSpinOrbitalBasis.hpp"
 #include "Basis/SpinorBasis/Spinor.hpp"
 #include "Basis/Transformations/JacobiRotation.hpp"
 #include "Basis/Transformations/RTransformation.hpp"
+#include "Domain/RMullikenDomain.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Operator/FirstQuantized/AngularMomentumOperator.hpp"
 #include "Operator/FirstQuantized/CoulombRepulsionOperator.hpp"
@@ -53,7 +53,7 @@ namespace GQCP {
 
 /**
  *  A restricted spin-orbital basis, i.e. a spin-orbital basis where the alpha- and beta-spinors are equal.
- * 
+ *
  *  @tparam _ExpansionScalar        The scalar type used to represent an expansion coefficient of the spin-orbitals in the underlying scalar orbitals: real or complex.
  *  @tparam _Shell                  The type of shell the underlying scalar basis contains.
  */
@@ -133,11 +133,11 @@ public:
 
     /**
      *  Quantize a first-quantized one-electron operator in this restricted spin-orbital basis.
-     * 
+     *
      *  @param fq_one_op                            The first-quantized one-electron operator.
-     * 
+     *
      *  @tparam FQOneElectronOperator               The type of the first-quantized one-electron operator.
-     * 
+     *
      *  @return The second-quantized operator corresponding to the given first-quantized operator, i.e. expressed in/projected onto this spin-orbital basis.
      */
     template <typename FQOneElectronOperator, typename Z = Shell>
@@ -156,9 +156,9 @@ public:
 
     /**
      *  Quantize the Coulomb operator in this restricted spin-orbital basis.
-     * 
+     *
      *  @param fq_op                The first-quantized Coulomb operator.
-     * 
+     *
      *  @return The second-quantized operator corresponding to the Coulomb operator.
      */
     template <typename Z = Shell>
@@ -192,9 +192,9 @@ public:
 
     /**
      *  Quantize the angular momentum operator in this restricted spin-orbital basis.
-     * 
+     *
      *  @param fq_one_op                            The first-quantized angular momentum operator.
-     * 
+     *
      *  @return The second-quantized angular momentum operator, i.e. expressed in/projected onto this spin-orbital basis.
      */
     template <typename Z = Shell>
@@ -219,9 +219,9 @@ public:
 
     /**
      *  Quantize the linear momentum operator in this restricted spin-orbital basis.
-     * 
+     *
      *  @param fq_one_op                            The first-quantized linear momentum operator.
-     * 
+     *
      *  @return The second-quantized linear momentum operator, i.e. expressed in/projected onto this spin-orbital basis.
      */
     template <typename Z = Shell>
@@ -246,9 +246,9 @@ public:
 
     /**
      *  Quantize the (one-electron) electronic density operator.
-     * 
+     *
      *  @param fq_density_op                    The first-quantized density operator.
-     * 
+     *
      *  @return The second-quantized density operator.
      */
     ScalarEvaluableRSQOneElectronOperator<DensityDistribution> quantize(const ElectronicDensityOperator& fq_density_op) const {
@@ -270,9 +270,9 @@ public:
 
     /**
      *  Quantize the (one-electron) current density operator.
-     * 
+     *
      *  @param fq_current_density_op            The first-quantized current density operator.
-     * 
+     *
      *  @return The second-quantized current density operator.
      */
     VectorEvaluableRSQOneElectronOperator<CurrentDensityMatrixElement<ExpansionScalar, CartesianGTO>> quantize(const CurrentDensityOperator& fq_current_density_op) const {
@@ -307,9 +307,9 @@ public:
 
     /**
      *  Quantize a spin-independent one-electron operator in this general spinor basis. Spin-independent one-electron operators are those whose two-component matrix operator form contains the same scalar operator in the top-left and bottom-right corner.
-     * 
+     *
      *  @param fq_one_op            A spin-independent first-quantized operator.
-     * 
+     *
      *  @return The second-quantized representation of the given operator.
      */
     template <typename FQOneElectronOperator, typename Z = Shell>
@@ -351,9 +351,9 @@ public:
 
     /**
      *  Quantize the orbital Zeeman operator in this restricted spin-orbital basis.
-     * 
+     *
      *  @param op               The (first-quantized) orbital Zeeman operator.
-     * 
+     *
      *  @return The orbital Zeeman operator expressed in this restricted spin-orbital basis.
      */
     template <typename Z = Shell>
@@ -368,9 +368,9 @@ public:
 
     /**
      *  Quantize the diamagnetic operator in this restricted spin-orbital basis.
-     * 
+     *
      *  @param op               The (first-quantized) diamagnetic operator.
-     * 
+     *
      *  @return The diamagnetic operator expressed in this restricted spin-orbital basis.
      */
     template <typename Z = Shell>
@@ -410,9 +410,9 @@ public:
 
     /**
      *  Quantize the Coulomb operator in this restricted spin-orbital basis.
-     * 
+     *
      *  @param fq_op                The first-quantized Coulomb operator.
-     * 
+     *
      *  @return The second-quantized operator corresponding to the Coulomb operator.
      */
     template <typename Z = Shell>
@@ -445,9 +445,9 @@ public:
 
     /**
      *  Quantize the molecular magnetic Hamiltonian.
-     * 
+     *
      *  @param fq_hamiltonian           The molecular magnetic Hamiltonian.
-     * 
+     *
      *  @return The second-quantized molecular magnetic Hamiltonian.
      */
     template <typename Z = Shell>
@@ -471,9 +471,9 @@ public:
 
     /**
      *  Quantize the molecular Hamiltonian.
-     * 
+     *
      *  @param fq_hamiltonian           The molecular Hamiltonian.
-     * 
+     *
      *  @return The second-quantized molecular Hamiltonian.
      */
     RSQHamiltonian<ExpansionScalar> quantize(const FQMolecularHamiltonian& fq_hamiltonian) const {
@@ -588,34 +588,34 @@ public:
 
 
     /*
-     *  MARK: Mulliken partitioning
+     *  MARK: Mulliken domain
      */
 
     /**
      *  Partition this set of restricted spin-orbitals according to the Mulliken partitioning scheme.
-     * 
-     *  @param selector             A function that returns true for basis functions that should be included the Mulliken partitioning.
-     * 
-     *  @return A `RMullikenPartitioning` for the AOs selected by the supplied selector function.
+     *
+     *  @param selector             A function that returns true for basis functions that should be included the Mulliken domain.
+     *
+     *  @return A `RMullikenDomain` for the AOs selected by the supplied selector function.
      */
-    RMullikenPartitioning<ExpansionScalar> mullikenPartitioning(const std::function<bool(const BasisFunction&)>& selector) const {
+    RMullikenDomain<ExpansionScalar> mullikenDomain(const std::function<bool(const BasisFunction&)>& selector) const {
 
         const auto ao_indices = this->scalarBasis().basisFunctionIndices(selector);
-        return RMullikenPartitioning<ExpansionScalar> {ao_indices, this->expansion()};
+        return RMullikenDomain<ExpansionScalar> {ao_indices, ao_indices.size()};
     }
 
 
     /**
      *  Partition this set of restricted spin-orbitals according to the Mulliken partitioning scheme.
-     * 
-     *  @param selector             A function that returns true for shells that should be included the Mulliken partitioning.
-     * 
-     *  @return A `RMullikenPartitioning` for the AOs selected by the supplied selector function.
+     *
+     *  @param selector             A function that returns true for shells that should be included the Mulliken domain.
+     *
+     *  @return A `RMullikenDomain` for the AOs selected by the supplied selector function.
      */
-    RMullikenPartitioning<ExpansionScalar> mullikenPartitioning(const std::function<bool(const Shell&)>& selector) const {
+    RMullikenDomain<ExpansionScalar> mullikenDomain(const std::function<bool(const Shell&)>& selector) const {
 
         const auto ao_indices = this->scalarBasis().basisFunctionIndices(selector);
-        return RMullikenPartitioning<ExpansionScalar> {ao_indices, this->expansion()};
+        return RMullikenDomain<ExpansionScalar> {ao_indices, ao_indices.size()};
     }
 };
 

@@ -117,6 +117,7 @@
 #include "Domain/DiscreteDomain.hpp"
 #include "Domain/GMullikenDomain.hpp"
 #include "Domain/HubbardDomain.hpp"
+#include "Domain/RMullikenDomain.hpp"
 #include "Domain/SimpleDomain.hpp"
 #include "Mathematical/Algorithm/Algorithm.hpp"
 #include "Mathematical/Algorithm/CompoundConvergenceCriterion.hpp"
