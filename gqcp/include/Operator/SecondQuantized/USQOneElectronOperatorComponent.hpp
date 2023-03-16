@@ -18,10 +18,10 @@
 #pragma once
 
 
-#include "Basis/MullikenPartitioning/UMullikenPartitioningComponent.hpp"
 #include "Basis/Transformations/UTransformationComponent.hpp"
 #include "DensityMatrix/PureSpinResolved2DMComponent.hpp"
 #include "DensityMatrix/SpinResolved1DMComponent.hpp"
+#include "Domain/UMullikenDomainComponent.hpp"
 #include "Mathematical/Representation/DenseVectorizer.hpp"
 #include "Operator/SecondQuantized/SimpleSQOneElectronOperator.hpp"
 
@@ -31,7 +31,7 @@ namespace GQCP {
 
 /**
  *  One of the spin components of an unrestricted one-electron operator, i.e. either the alpha or beta part.
- * 
+ *
  *  @tparam _Scalar         The scalar type used for a single parameter: real or complex.
  *  @tparam _Vectorizer     The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
  */
@@ -83,7 +83,7 @@ using TensorUSQOneElectronOperatorComponent = USQOneElectronOperatorComponent<Sc
 
 /**
  *  A type that provides compile-time information (traits) on `USQOneElectronOperatorComponent` that is otherwise not accessible through a public class alias.
- * 
+ *
  *  @tparam Scalar          The scalar type used for a single parameter: real or complex.
  *  @tparam Vectorizer      The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
  */
@@ -102,8 +102,8 @@ struct OperatorTraits<USQOneElectronOperatorComponent<Scalar, Vectorizer>> {
     // The type of the two-particle density matrix that is naturally associated a component of an unrestricted one-electron operator.
     using TwoDM = PureSpinResolved2DMComponent<Scalar>;
 
-    // The type used to encapsulate the Mulliken partitioning scheme.
-    using MullikenPartitioning = UMullikenPartitioningComponent<Scalar>;
+    // The type used to encapsulate the Mulliken domain.
+    using MullikenDomain = UMullikenDomainComponent<Scalar>;
 };
 
 

@@ -119,6 +119,8 @@
 #include "Domain/HubbardDomain.hpp"
 #include "Domain/RMullikenDomain.hpp"
 #include "Domain/SimpleDomain.hpp"
+#include "Domain/UMullikenDomain.hpp"
+#include "Domain/UMullikenDomainComponent.hpp"
 #include "Mathematical/Algorithm/Algorithm.hpp"
 #include "Mathematical/Algorithm/CompoundConvergenceCriterion.hpp"
 #include "Mathematical/Algorithm/ConvergenceCriterion.hpp"

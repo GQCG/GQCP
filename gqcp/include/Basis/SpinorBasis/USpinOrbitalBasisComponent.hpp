@@ -18,12 +18,12 @@
 #pragma once
 
 
-#include "Basis/MullikenPartitioning/UMullikenPartitioningComponent.hpp"
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Basis/ScalarBasis/LondonGTOShell.hpp"
 #include "Basis/SpinorBasis/SimpleSpinOrbitalBasis.hpp"
 #include "Basis/Transformations/JacobiRotation.hpp"
 #include "Basis/Transformations/UTransformationComponent.hpp"
+#include "Domain/UMullikenDomainComponent.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperatorComponent.hpp"
 #include "Utilities/type_traits.hpp"
 
@@ -201,38 +201,38 @@ public:
 
 
     /**
-     *  MARK: Mulliken partitioning
+     *  MARK: Mulliken domain
      */
 
     /**
      *  Partition this set of spin-orbitals related to one of the components of an unrestricted spin-orbital basis according to the Mulliken partitioning scheme.
      * 
-     *  @param selector             A function that returns true for basis functions that should be included the Mulliken partitioning.
+     *  @param selector             A function that returns true for basis functions that should be included the Mulliken domain.
      * 
-     *  @return A `UMullikenPartitioningComponent` for the AOs selected by the supplied selector function.
+     *  @return A `UMullikenDomainComponent` for the AOs selected by the supplied selector function.
      */
-    UMullikenPartitioningComponent<ExpansionScalar> mullikenPartitioning(const std::function<bool(const BasisFunction&)>& selector) const {
+    UMullikenDomainComponent<ExpansionScalar> mullikenDomain(const std::function<bool(const BasisFunction&)>& selector) const {
 
         // FIXME: Try to move this API to SimpleSpinOrbitalBasis.
 
         const auto ao_indices = this->scalarBasis().basisFunctionIndices(selector);
-        return UMullikenPartitioningComponent<ExpansionScalar> {ao_indices, this->expansion()};
+        return UMullikenDomainComponent<ExpansionScalar> {ao_indices, ao_indices.size()};
     }
 
 
     /**
      *  Partition this set of spin-orbitals related to one of the components of an unrestricted spin-orbital basis according to the Mulliken partitioning scheme.
      * 
-     *  @param selector             A function that returns true for shells that should be included the Mulliken partitioning.
+     *  @param selector             A function that returns true for shells that should be included the Mulliken domain.
      * 
-     *  @return A `UMullikenPartitioningComponent` for the AOs selected by the supplied selector function.
+     *  @return A `UMullikenDomainComponent` for the AOs selected by the supplied selector function.
      */
-    UMullikenPartitioningComponent<ExpansionScalar> mullikenPartitioning(const std::function<bool(const Shell&)>& selector) const {
+    UMullikenDomainComponent<ExpansionScalar> mullikenDomain(const std::function<bool(const Shell&)>& selector) const {
 
         // FIXME: Try to move this API to SimpleSpinOrbitalBasis.
 
         const auto ao_indices = this->scalarBasis().basisFunctionIndices(selector);
-        return UMullikenPartitioningComponent<ExpansionScalar> {ao_indices, this->expansion()};
+        return UMullikenDomainComponent<ExpansionScalar> {ao_indices, ao_indices.size()};
     }
 };
 

@@ -18,12 +18,12 @@
 #pragma once
 
 
-#include "Basis/MullikenPartitioning/UMullikenPartitioning.hpp"
 #include "Basis/Transformations/SpinResolvedBasisTransformable.hpp"
 #include "Basis/Transformations/SpinResolvedJacobiRotatable.hpp"
 #include "Basis/Transformations/UTransformation.hpp"
 #include "DensityMatrix/SpinResolved1DM.hpp"
 #include "DensityMatrix/SpinResolved2DM.hpp"
+#include "Domain/UMullikenDomain.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperatorComponent.hpp"
@@ -76,11 +76,11 @@ public:
 
     /**
      *  Create an `USQOneElectronOperator` from all the matrix representations of its components.
-     * 
+     *
      *  @param fs_a                 All the matrix representations of the components of the alpha-part of the unrestricted one-electron operator.
      *  @param fs_b                 All the matrix representations of the components of the beta-part of the unrestricted one-electron operator.
      *  @param vectorizer           The type of the vectorizer that relates a one-dimensional storage of matrix representations to the tensor structure of the second-quantized operator. Equal for alpha and beta.
-     * 
+     *
      *  @tparam N                   The number of components for the alpha- and beta-part of the unrestricted one-electron operator.
      */
     template <size_t N>
@@ -145,7 +145,7 @@ public:
 
     /**
      *  Construct an `USQOneElectronOperator` from an `RSQOneElectronOperator`.
-     * 
+     *
      *  @param f_restricted             The restricted one-electron operator that should be converted.
      */
     static USQOneElectronOperator<Scalar, Vectorizer> FromRestricted(const RSQOneElectronOperator<Scalar, Vectorizer>& f_restricted) {
@@ -160,9 +160,9 @@ public:
 
     /**
      *  Access a component of this operator.
-     * 
+     *
      *  @param indices      A set of coordinates that accesses this operator.
-     * 
+     *
      *  @return The component of this operator that corresponds to the given coordinate indices.
      */
     template <typename... Indices>
@@ -178,7 +178,7 @@ public:
 
     /**
      *  Calculate the expectation value of this one-electron operator.
-     * 
+     *
      *  @param D                The 1-DM (that represents the wave function).
      *
      *  @return The expectation value of all components of the one-electron operator.
@@ -205,7 +205,7 @@ public:
 
     /*
      *  @return The number of orbital related to the alpha part of the unrestricted one-electron operator.
-     * 
+     *
      *  @note It is advised to only use this API when it is known that all spin-components of the one-electron operator are equal.
      */
     size_t numberOfOrbitals() const { return this->alpha().numberOfOrbitals(); }
@@ -274,9 +274,9 @@ public:
 
     /**
      *  Apply a one-index transformation and return the result.
-     * 
+     *
      *  @param T            The basis transformation.
-     * 
+     *
      *  @return The one-index-transformed one-electron operator.
      */
     Self oneIndexTransformed(const UTransformation<Scalar>& T) const {
@@ -287,17 +287,17 @@ public:
 
 
     /*
-     *  MARK: Mulliken partitioning
+     *  MARK: Mulliken domain
      */
 
     /**
      *  Partition this one-electron operator according to the supplied Mulliken partitioning scheme.
-     * 
-     *  @param mulliken_partitioning                An encapsulation of the Mulliken partitioning scheme.
-     * 
+     *
+     *  @param mulliken_projection_matrix               A projection matrix encapsulating the Mulliken domain.
+     *
      *  @return A one-electron operator whose integrals/parameters/matrix elements correspond to the Mulliken-partitioning of this one-electron operator.
      */
-    Self partitioned(const UMullikenPartitioning<Scalar>& mulliken_partitioning) const { return 0.5 * this->oneIndexTransformed(mulliken_partitioning.projectionMatrix()); }
+    Self partitioned(const UTransformation<Scalar>& mulliken_projection_matrix) const { return 0.5 * this->oneIndexTransformed(mulliken_projection_matrix); }
 };
 
 
@@ -328,7 +328,7 @@ using TensorUSQOneElectronOperator = USQOneElectronOperator<Scalar, TensorVector
 
 /**
  *  A type that provides compile-time information (traits) on `USQOneElectronOperator` that is otherwise not accessible through a public class alias.
- * 
+ *
  *  @tparam Scalar          The scalar type used for a single parameter: real or complex.
  *  @tparam Vectorizer      The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
  */

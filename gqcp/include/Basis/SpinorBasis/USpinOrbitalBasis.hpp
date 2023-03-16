@@ -18,13 +18,13 @@
 #pragma once
 
 
-#include "Basis/MullikenPartitioning/UMullikenPartitioning.hpp"
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
 #include "Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp"
 #include "Basis/Transformations/SpinResolvedBasisTransformable.hpp"
 #include "Basis/Transformations/SpinResolvedJacobiRotatable.hpp"
 #include "Basis/Transformations/UTransformation.hpp"
+#include "Domain/UMullikenDomain.hpp"
 #include "Mathematical/Functions/CartesianDirection.hpp"
 #include "Operator/FirstQuantized/CoulombRepulsionOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicDipoleOperator.hpp"
@@ -535,32 +535,32 @@ public:
 
 
     /**
-     *  MARK: Mulliken partitioning
+     *  MARK: Mulliken domain
      */
 
     /**
      *  Partition this set of unrestricted spin-orbitals according to the Mulliken partitioning scheme.
      *
-     *  @param selector             A function that returns true for basis functions that should be included the Mulliken partitioning.
+     *  @param selector             A function that returns true for basis functions that should be included the Mulliken Domain.
      *
-     *  @return A `UMullikenPartitioning` for the AOs selected by the supplied selector function.
+     *  @return A `UMullikenDomain` for the AOs selected by the supplied selector function.
      */
-    UMullikenPartitioning<ExpansionScalar> mullikenPartitioning(const std::function<bool(const BasisFunction&)>& selector) const {
+    UMullikenDomain<ExpansionScalar> mullikenDomain(const std::function<bool(const BasisFunction&)>& selector) const {
 
-        return UMullikenPartitioning<ExpansionScalar> {this->alpha().mullikenPartitioning(selector), this->beta().mullikenPartitioning(selector)};
+        return UMullikenDomain<ExpansionScalar> {this->alpha().mullikenDomain(selector), this->beta().mullikenDomain(selector)};
     }
 
 
     /**
      *  Partition this set of unrestricted spin-orbitals according to the Mulliken partitioning scheme.
      *
-     *  @param selector             A function that returns true for shells that should be included the Mulliken partitioning.
+     *  @param selector             A function that returns true for shells that should be included the Mulliken Domain.
      *
-     *  @return A `UMullikenPartitioning` for the AOs selected by the supplied selector function.
+     *  @return A `UMullikenDomain` for the AOs selected by the supplied selector function.
      */
-    UMullikenPartitioning<ExpansionScalar> mullikenPartitioning(const std::function<bool(const Shell&)>& selector) const {
+    UMullikenDomain<ExpansionScalar> mullikenDomain(const std::function<bool(const Shell&)>& selector) const {
 
-        return UMullikenPartitioning<ExpansionScalar> {this->alpha().mullikenPartitioning(selector), this->beta().mullikenPartitioning(selector)};
+        return UMullikenDomain<ExpansionScalar> {this->alpha().mullikenDomain(selector), this->beta().mullikenDomain(selector)};
     }
 
 

@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "Basis/Transformations/RTransformation.hpp"
+#include "Basis/Transformations/UTransformationComponent.hpp"
 #include "Domain/DiscreteDomain.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
 #include "QuantumChemical/SpinResolved.hpp"
@@ -32,7 +32,7 @@ namespace GQCP {
  * The sites {`i'} that are present in the domain are represented by a set bit at the corresponding indices `i'.
  */
 template <typename _Scalar>
-class RMullikenDomain:
+class UMullikenDomainComponent:
     public DiscreteDomain {
 public:
     using DiscreteDomain::DiscreteDomain;
@@ -47,16 +47,16 @@ public:
     /**
      *  @return The partition matrix 'P_A' related to this Mulliken domain.
      */
-    SquareMatrix<Scalar> partitionMatrix(const RTransformation<Scalar>& C) const { return SquareMatrix<Scalar>::PartitionMatrix(this->domainIndices(), C.numberOfOrbitals()); }
+    SquareMatrix<Scalar> partitionMatrix(const UTransformationComponent<Scalar>& C) const { return SquareMatrix<Scalar>::PartitionMatrix(this->domainIndices(), C.numberOfOrbitals()); }
 
 
     /**
-     * @param C         The transformation that relates the atomic spinors to the set of current spatial orbitals.
+     * @param C         The transformation that relates the atomic spinors to the set of current spin orbitals.
      *
      *  @return The Mulliken projection, defined as C^{-1} P_A C, where C is the transformation matrix and P_A is the partition matrix.
      *
      *  @note We are aware that this formula is duplicate code (see `GMullikenDomain`), but it isn't worth (yet) to refactor this common functionality into a base class.
      */
-    RTransformation<Scalar> projectionMatrix(const RTransformation<Scalar>& C) const { return RTransformation<Scalar> {C.inverse().matrix() * this->partitionMatrix(C) * C.matrix()}; }
+    UTransformationComponent<Scalar> projectionMatrix(const UTransformationComponent<Scalar>& C) const { return UTransformationComponent<Scalar> {C.inverse().matrix() * this->partitionMatrix(C) * C.matrix()}; }
 };
 }  // namespace GQCP
