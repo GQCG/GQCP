@@ -90,9 +90,9 @@ std\+::vector$<$ \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b9
 \item 
 std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_spinor}{Spinor}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a80cd4ad6ae5cbc165404fc7cb09e3ffe}{Expansion\+Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_af80a4fe5fd969824042cc98025acb72e}{Basis\+Function}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a4f93ecf321ddc5e10f81f3344a3449a9}{spin\+Orbitals}} () const
 \item 
-\mbox{\hyperlink{class_g_q_c_p_1_1_r_mulliken_partitioning}{RMulliken\+Partitioning}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a80cd4ad6ae5cbc165404fc7cb09e3ffe}{Expansion\+Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a03892758a8559dcfb2a36ad05f62f1cc}{mulliken\+Partitioning}} (const std\+::function$<$ bool(const \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_af80a4fe5fd969824042cc98025acb72e}{Basis\+Function}} \&)$>$ \&selector) const
+\mbox{\hyperlink{class_g_q_c_p_1_1_r_mulliken_domain}{RMulliken\+Domain}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a80cd4ad6ae5cbc165404fc7cb09e3ffe}{Expansion\+Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a951e5827840aa22662b718566f81dcbf}{mulliken\+Domain}} (const std\+::function$<$ bool(const \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_af80a4fe5fd969824042cc98025acb72e}{Basis\+Function}} \&)$>$ \&selector) const
 \item 
-\mbox{\hyperlink{class_g_q_c_p_1_1_r_mulliken_partitioning}{RMulliken\+Partitioning}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a80cd4ad6ae5cbc165404fc7cb09e3ffe}{Expansion\+Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_ac769e0f84752591775771245c338fef2}{mulliken\+Partitioning}} (const std\+::function$<$ bool(const \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a5cc5b25be3944ebe7140b30a14dedbce}{Shell}} \&)$>$ \&selector) const
+\mbox{\hyperlink{class_g_q_c_p_1_1_r_mulliken_domain}{RMulliken\+Domain}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a80cd4ad6ae5cbc165404fc7cb09e3ffe}{Expansion\+Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a97a243f5e8bbda18006e3a71dbd6292a}{mulliken\+Domain}} (const std\+::function$<$ bool(const \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a5cc5b25be3944ebe7140b30a14dedbce}{Shell}} \&)$>$ \&selector) const
 \end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
@@ -200,39 +200,39 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis}{GQCP\+::\+RSpin\+
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_r_spin_orbital_basis_a03892758a8559dcfb2a36ad05f62f1cc}\label{class_g_q_c_p_1_1_r_spin_orbital_basis_a03892758a8559dcfb2a36ad05f62f1cc}} 
-\index{GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$}!mullikenPartitioning@{mullikenPartitioning}}
-\index{mullikenPartitioning@{mullikenPartitioning}!GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$}}
-\doxysubsubsection{\texorpdfstring{mullikenPartitioning()}{mullikenPartitioning()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_r_spin_orbital_basis_a951e5827840aa22662b718566f81dcbf}\label{class_g_q_c_p_1_1_r_spin_orbital_basis_a951e5827840aa22662b718566f81dcbf}} 
+\index{GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$}!mullikenDomain@{mullikenDomain}}
+\index{mullikenDomain@{mullikenDomain}!GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{mullikenDomain()}{mullikenDomain()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
-\mbox{\hyperlink{class_g_q_c_p_1_1_r_mulliken_partitioning}{RMulliken\+Partitioning}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a80cd4ad6ae5cbc165404fc7cb09e3ffe}{Expansion\+Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis}{GQCP\+::\+RSpin\+Orbital\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::mulliken\+Partitioning (\begin{DoxyParamCaption}\item[{const std\+::function$<$ bool(const \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_af80a4fe5fd969824042cc98025acb72e}{Basis\+Function}} \&)$>$ \&}]{selector }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{class_g_q_c_p_1_1_r_mulliken_domain}{RMulliken\+Domain}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a80cd4ad6ae5cbc165404fc7cb09e3ffe}{Expansion\+Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis}{GQCP\+::\+RSpin\+Orbital\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::mulliken\+Domain (\begin{DoxyParamCaption}\item[{const std\+::function$<$ bool(const \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_af80a4fe5fd969824042cc98025acb72e}{Basis\+Function}} \&)$>$ \&}]{selector }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 Partition this set of restricted spin-\/orbitals according to the Mulliken partitioning scheme.
 
 
 \begin{DoxyParams}{Parameters}
-{\em selector} & A function that returns true for basis functions that should be included the Mulliken partitioning.\\
+{\em selector} & A function that returns true for basis functions that should be included the Mulliken domain.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-A {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_r_mulliken_partitioning}{RMulliken\+Partitioning}}} for the AOs selected by the supplied selector function. 
+A {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_r_mulliken_domain}{RMulliken\+Domain}}} for the AOs selected by the supplied selector function. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_r_spin_orbital_basis_ac769e0f84752591775771245c338fef2}\label{class_g_q_c_p_1_1_r_spin_orbital_basis_ac769e0f84752591775771245c338fef2}} 
-\index{GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$}!mullikenPartitioning@{mullikenPartitioning}}
-\index{mullikenPartitioning@{mullikenPartitioning}!GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$}}
-\doxysubsubsection{\texorpdfstring{mullikenPartitioning()}{mullikenPartitioning()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_r_spin_orbital_basis_a97a243f5e8bbda18006e3a71dbd6292a}\label{class_g_q_c_p_1_1_r_spin_orbital_basis_a97a243f5e8bbda18006e3a71dbd6292a}} 
+\index{GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$}!mullikenDomain@{mullikenDomain}}
+\index{mullikenDomain@{mullikenDomain}!GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{mullikenDomain()}{mullikenDomain()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
-\mbox{\hyperlink{class_g_q_c_p_1_1_r_mulliken_partitioning}{RMulliken\+Partitioning}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a80cd4ad6ae5cbc165404fc7cb09e3ffe}{Expansion\+Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis}{GQCP\+::\+RSpin\+Orbital\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::mulliken\+Partitioning (\begin{DoxyParamCaption}\item[{const std\+::function$<$ bool(const \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a5cc5b25be3944ebe7140b30a14dedbce}{Shell}} \&)$>$ \&}]{selector }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{class_g_q_c_p_1_1_r_mulliken_domain}{RMulliken\+Domain}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a80cd4ad6ae5cbc165404fc7cb09e3ffe}{Expansion\+Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis}{GQCP\+::\+RSpin\+Orbital\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::mulliken\+Domain (\begin{DoxyParamCaption}\item[{const std\+::function$<$ bool(const \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a5cc5b25be3944ebe7140b30a14dedbce}{Shell}} \&)$>$ \&}]{selector }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 Partition this set of restricted spin-\/orbitals according to the Mulliken partitioning scheme.
 
 
 \begin{DoxyParams}{Parameters}
-{\em selector} & A function that returns true for shells that should be included the Mulliken partitioning.\\
+{\em selector} & A function that returns true for shells that should be included the Mulliken domain.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-A {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_r_mulliken_partitioning}{RMulliken\+Partitioning}}} for the AOs selected by the supplied selector function. 
+A {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_r_mulliken_domain}{RMulliken\+Domain}}} for the AOs selected by the supplied selector function. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_r_spin_orbital_basis_acc337f6e3f3dddd0be78dacc69d3599c}\label{class_g_q_c_p_1_1_r_spin_orbital_basis_acc337f6e3f3dddd0be78dacc69d3599c}} 
 \index{GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$}!numberOfSpatialOrbitals@{numberOfSpatialOrbitals}}

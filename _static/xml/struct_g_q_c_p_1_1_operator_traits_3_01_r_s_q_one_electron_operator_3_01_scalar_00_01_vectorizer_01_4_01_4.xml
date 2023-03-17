@@ -64,11 +64,11 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/RSQOneElectronOperator.hpp" line="133" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/RSQOneElectronOperator.hpp" bodystart="133" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="struct_g_q_c_p_1_1_operator_traits_3_01_r_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4_1aff77a38bcda8ec55af98325f058d8e42" prot="public" static="no">
-        <type><ref refid="class_g_q_c_p_1_1_r_mulliken_partitioning" kindref="compound">RMullikenPartitioning</ref>&lt; Scalar &gt;</type>
-        <definition>using GQCP::OperatorTraits&lt; RSQOneElectronOperator&lt; Scalar, Vectorizer &gt; &gt;::MullikenPartitioning =  RMullikenPartitioning&lt;Scalar&gt;</definition>
+      <memberdef kind="typedef" id="struct_g_q_c_p_1_1_operator_traits_3_01_r_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4_1a3ab146deb936d9c200c1a02cb893c56c" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_r_mulliken_domain" kindref="compound">RMullikenDomain</ref>&lt; Scalar &gt;</type>
+        <definition>using GQCP::OperatorTraits&lt; RSQOneElectronOperator&lt; Scalar, Vectorizer &gt; &gt;::MullikenDomain =  RMullikenDomain&lt;Scalar&gt;</definition>
         <argsstring></argsstring>
-        <name>MullikenPartitioning</name>
+        <name>MullikenDomain</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -109,7 +109,7 @@
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/RSQOneElectronOperator.hpp" line="121" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/RSQOneElectronOperator.hpp" bodystart="121" bodyend="137"/>
     <listofallmembers>
-      <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_r_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4_1aff77a38bcda8ec55af98325f058d8e42" prot="public" virt="non-virtual"><scope>GQCP::OperatorTraits&lt; RSQOneElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</scope><name>MullikenPartitioning</name></member>
+      <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_r_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4_1a3ab146deb936d9c200c1a02cb893c56c" prot="public" virt="non-virtual"><scope>GQCP::OperatorTraits&lt; RSQOneElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</scope><name>MullikenDomain</name></member>
       <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_r_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4_1a2264755f5255f7202bb104dade470b38" prot="public" virt="non-virtual"><scope>GQCP::OperatorTraits&lt; RSQOneElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</scope><name>OneDM</name></member>
       <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_r_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4_1aa4652f5999befcd99d34790586291e9c" prot="public" virt="non-virtual"><scope>GQCP::OperatorTraits&lt; RSQOneElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</scope><name>ScalarOperator</name></member>
       <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_r_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4_1a59c2f0dc7fa17a990f03dc9c7cc91a0a" prot="public" virt="non-virtual"><scope>GQCP::OperatorTraits&lt; RSQOneElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</scope><name>Transformation</name></member>

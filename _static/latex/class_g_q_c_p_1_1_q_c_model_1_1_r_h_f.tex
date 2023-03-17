@@ -56,6 +56,8 @@ RHFStability\+Matrices$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f
 \item 
 \mbox{\hyperlink{class_g_q_c_p_1_1_orbital1_d_m}{Orbital1\+DM}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a0ab5458cac7f9a10dacfa483de63a4b4}{calculate\+Scalar\+Basis1\+DM}} () const
 \item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_orbital2_d_m}{Orbital2\+DM}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a2d963d84b14d257696ca0c81ea23430a}{calculate\+Scalar\+Basis2\+DM}} () const
+\item 
 size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a38587786222db0bef4a25002a438461b}{homo\+Index}} () const
 \item 
 size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a589da15230f06ea419e431056730597d}{lumo\+Index}} () const
@@ -94,6 +96,8 @@ static \mbox{\hyperlink{class_g_q_c_p_1_1_orbital1_d_m}{Orbital1\+DM}}$<$ \mbox{
 static \mbox{\hyperlink{class_g_q_c_p_1_1_orbital2_d_m}{Orbital2\+DM}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a64d5b4d64cea2c88cd9208e8c2ab24cd}{calculate\+Orthonormal\+Basis2\+DM}} (const size\+\_\+t K, const size\+\_\+t N)
 \item 
 static \mbox{\hyperlink{class_g_q_c_p_1_1_orbital1_d_m}{Orbital1\+DM}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a84eb07d7a5e372777ce0e5236d2ec427}{calculate\+Scalar\+Basis1\+DM}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{RTransformation}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \&C, const size\+\_\+t N)
+\item 
+static \mbox{\hyperlink{class_g_q_c_p_1_1_orbital2_d_m}{Orbital2\+DM}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a33d551f997011451c4147505aab539fb}{calculate\+Scalar\+Basis2\+DM}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{RTransformation}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \&C, const size\+\_\+t N)
 \item 
 static \mbox{\hyperlink{namespace_g_q_c_p_ac74434aa85c700f6f803449fc115242c}{Scalar\+RSQOne\+Electron\+Operator}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_ad75543a8ad881961c9d40ad9d9fdb24a}{calculate\+Scalar\+Basis\+Fock\+Matrix}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_orbital1_d_m}{Orbital1\+DM}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \&D, const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \&sq\+\_\+hamiltonian)
 \item 
@@ -431,6 +435,33 @@ static \mbox{\hyperlink{class_g_q_c_p_1_1_orbital1_d_m}{Orbital1\+DM}}$<$\mbox{\
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 The \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{RHF}} 1-\/DM expressed in the underlying scalar basis. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a2d963d84b14d257696ca0c81ea23430a}\label{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a2d963d84b14d257696ca0c81ea23430a}} 
+\index{GQCP::QCModel::RHF$<$ \_Scalar $>$@{GQCP::QCModel::RHF$<$ \_Scalar $>$}!calculateScalarBasis2DM@{calculateScalarBasis2DM}}
+\index{calculateScalarBasis2DM@{calculateScalarBasis2DM}!GQCP::QCModel::RHF$<$ \_Scalar $>$@{GQCP::QCModel::RHF$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{calculateScalarBasis2DM()}{calculateScalarBasis2DM()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_orbital2_d_m}{Orbital2\+DM}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{GQCP\+::\+QCModel\+::\+RHF}}$<$ \+\_\+\+Scalar $>$\+::calculate\+Scalar\+Basis2\+DM (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{RHF}} 1-\/DM in the scalar/\+AO basis related to these optimal \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{RHF}} parameters. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a33d551f997011451c4147505aab539fb}\label{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a33d551f997011451c4147505aab539fb}} 
+\index{GQCP::QCModel::RHF$<$ \_Scalar $>$@{GQCP::QCModel::RHF$<$ \_Scalar $>$}!calculateScalarBasis2DM@{calculateScalarBasis2DM}}
+\index{calculateScalarBasis2DM@{calculateScalarBasis2DM}!GQCP::QCModel::RHF$<$ \_Scalar $>$@{GQCP::QCModel::RHF$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{calculateScalarBasis2DM()}{calculateScalarBasis2DM()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+static \mbox{\hyperlink{class_g_q_c_p_1_1_orbital2_d_m}{Orbital2\+DM}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{GQCP\+::\+QCModel\+::\+RHF}}$<$ \+\_\+\+Scalar $>$\+::calculate\+Scalar\+Basis2\+DM (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{RTransformation}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}} $>$ \&}]{C,  }\item[{const size\+\_\+t}]{N }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em C} & The coefficient matrix that expresses every spatial orbital (as a column) in its underlying scalar basis. \\
+\hline
+{\em N} & The number of electrons.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{RHF}} 2-\/DM expressed in the underlying scalar basis. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_ad75543a8ad881961c9d40ad9d9fdb24a}\label{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_ad75543a8ad881961c9d40ad9d9fdb24a}} 
 \index{GQCP::QCModel::RHF$<$ \_Scalar $>$@{GQCP::QCModel::RHF$<$ \_Scalar $>$}!calculateScalarBasisFockMatrix@{calculateScalarBasisFockMatrix}}

@@ -170,7 +170,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="314" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="314" bodyend="351"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="330" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="330" bodyend="367"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a61630e87c2acd59a26d451d89c899cb7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="namespace_g_q_c_p_1a1ffc21109e62d09d3485c62e03677dfd" kindref="member">complex</ref></type>
@@ -211,7 +211,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="360" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="360" bodyend="402"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="376" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="376" bodyend="418"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a92d639f5a65e3f777c452eb464231d38" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" kindref="member">GQCP::MatrixX</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a2f9ac97a05c0e312a20d79ef30eb86e4" kindref="member">Scalar</ref> &gt;</type>
@@ -229,7 +229,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="410" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="410" bodyend="431"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="426" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="426" bodyend="447"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a414a85b05e97c2bd453cba49cbf79ecd" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_g1_d_m" kindref="compound">G1DM</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a2f9ac97a05c0e312a20d79ef30eb86e4" kindref="member">Scalar</ref> &gt;</type>
@@ -245,7 +245,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="437" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="437" bodyend="442"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="453" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="453" bodyend="458"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a5a08f0a8a07d38d8eee3f6b7d929dc82" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_g2_d_m" kindref="compound">G2DM</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a2f9ac97a05c0e312a20d79ef30eb86e4" kindref="member">Scalar</ref> &gt;</type>
@@ -261,7 +261,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="448" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="448" bodyend="453"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="464" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="464" bodyend="469"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a5caef4e970d0ede4e796fdddcfebc419" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" kindref="member">GQCP::MatrixX</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a2f9ac97a05c0e312a20d79ef30eb86e4" kindref="member">Scalar</ref> &gt;</type>
@@ -293,7 +293,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="466" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="466" bodyend="509"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="482" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="482" bodyend="525"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1ad68ba71ec17facb8b5b26c1d65c65b35" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" kindref="member">GQCP::MatrixX</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a2f9ac97a05c0e312a20d79ef30eb86e4" kindref="member">Scalar</ref> &gt;</type>
@@ -325,7 +325,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="522" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="522" bodyend="554"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="538" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="538" bodyend="570"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a220b3cd32800534b13f7a9b96babe3e1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_g1_d_m" kindref="compound">G1DM</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a2f9ac97a05c0e312a20d79ef30eb86e4" kindref="member">Scalar</ref> &gt;</type>
@@ -341,7 +341,23 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="560" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="560" bodyend="564"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="576" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="576" bodyend="580"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a8b04729994eacfd0d159fb58f93e783b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_g2_d_m" kindref="compound">G2DM</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a2f9ac97a05c0e312a20d79ef30eb86e4" kindref="member">Scalar</ref> &gt;</type>
+        <definition>G2DM&lt;Scalar&gt; GQCP::QCModel::GHF&lt; _Scalar &gt;::calculateScalarBasis2DM</definition>
+        <argsstring>() const</argsstring>
+        <name>calculateScalarBasis2DM</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f" kindref="compound">GHF</ref> 2-DM in the scalar/AO basis related to these optimal <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f" kindref="compound">GHF</ref> parameters. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="586" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="586" bodyend="590"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a98bfae7d488a4f9628c83dd28fcc5fea" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>GHFStabilityMatrices&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a2f9ac97a05c0e312a20d79ef30eb86e4" kindref="member">Scalar</ref> &gt;</type>
@@ -371,7 +387,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="574" column="26" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="574" bodyend="576"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="600" column="26" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="600" bodyend="602"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1afaf9ed101f8a284a6c1e816f38472f3b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">GTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a2f9ac97a05c0e312a20d79ef30eb86e4" kindref="member">Scalar</ref> &gt; &amp;</type>
@@ -387,7 +403,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="582" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="582" bodyend="582"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="608" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="608" bodyend="608"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a265a9cca0a499257569bd551aa7c2964" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>size_t</type>
@@ -403,7 +419,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="587" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="587" bodyend="587"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="613" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="613" bodyend="613"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a074e5504a996d24f8037390cc0005711" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>size_t</type>
@@ -419,7 +435,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="592" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="592" bodyend="592"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="618" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="618" bodyend="618"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a74b8dd98b0d95a490cc93cfd31d55cb3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>std::vector&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a2f9ac97a05c0e312a20d79ef30eb86e4" kindref="member">Scalar</ref> &gt;</type>
@@ -435,7 +451,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="597" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="597" bodyend="611"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="623" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="623" bodyend="637"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1afddc99bc0229cd6edadf543e47de1ce1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a2f9ac97a05c0e312a20d79ef30eb86e4" kindref="member">Scalar</ref> &gt; &amp;</type>
@@ -451,7 +467,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="617" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="617" bodyend="617"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="643" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="643" bodyend="643"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a31ac81cd613daccdfec917d3506aed04" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a2f9ac97a05c0e312a20d79ef30eb86e4" kindref="member">Scalar</ref></type>
@@ -480,7 +496,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="624" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="624" bodyend="624"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="650" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="650" bodyend="650"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a15ffcb7dc80f9405e87df0d5b7712c1e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref></type>
@@ -496,7 +512,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="629" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="629" bodyend="629"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="655" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="655" bodyend="655"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a791e086366d30eac524d123e695173d1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>std::vector&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a2f9ac97a05c0e312a20d79ef30eb86e4" kindref="member">Scalar</ref> &gt;</type>
@@ -512,7 +528,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="634" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="634" bodyend="648"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="660" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="660" bodyend="674"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
@@ -663,6 +679,47 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="130" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="130" bodyend="137"/>
       </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1aee36a6b2a56f2ece4a37c3227e0a4759" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_g2_d_m" kindref="compound">G2DM</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a2f9ac97a05c0e312a20d79ef30eb86e4" kindref="member">Scalar</ref> &gt;</type>
+        <definition>static G2DM&lt;Scalar&gt; GQCP::QCModel::GHF&lt; _Scalar &gt;::calculateScalarBasis2DM</definition>
+        <argsstring>(const GTransformation&lt; Scalar &gt; &amp;C, const size_t N)</argsstring>
+        <name>calculateScalarBasis2DM</name>
+        <param>
+          <type>const <ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">GTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a2f9ac97a05c0e312a20d79ef30eb86e4" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>C</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>N</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>C</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The coefficient matrix that expresses every spinor orbital (as a column) in the underlying scalar bases. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of electrons.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f" kindref="compound">GHF</ref> 2-DM expressed in the underlying scalar basis. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="146" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="146" bodyend="153"/>
+      </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1aef5200acafc8904a67df2bc21c620e06" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="namespace_g_q_c_p_1ae61b369ffb274e21947436ff6efb78fa" kindref="member">ScalarGSQOneElectronOperator</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a2f9ac97a05c0e312a20d79ef30eb86e4" kindref="member">Scalar</ref> &gt;</type>
         <definition>static ScalarGSQOneElectronOperator&lt;Scalar&gt; GQCP::QCModel::GHF&lt; _Scalar &gt;::calculateScalarBasisDirectMatrix</definition>
@@ -705,7 +762,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="150" column="41" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="150" bodyend="170"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="166" column="41" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="166" bodyend="186"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a14e62520a137ea7382be831cd17c2923" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="namespace_g_q_c_p_1ae61b369ffb274e21947436ff6efb78fa" kindref="member">ScalarGSQOneElectronOperator</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a2f9ac97a05c0e312a20d79ef30eb86e4" kindref="member">Scalar</ref> &gt;</type>
@@ -747,7 +804,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="181" column="41" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="181" bodyend="210"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="197" column="41" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="197" bodyend="226"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1ad853c9a44e776b6fe37dd1f1800192df" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="namespace_g_q_c_p_1ae61b369ffb274e21947436ff6efb78fa" kindref="member">ScalarGSQOneElectronOperator</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a2f9ac97a05c0e312a20d79ef30eb86e4" kindref="member">Scalar</ref> &gt;</type>
@@ -789,7 +846,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="221" column="41" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="221" bodyend="228"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="237" column="41" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="237" bodyend="244"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1ac8119e103346c515aa40ca452549c3e7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_g1_d_m" kindref="compound">G1DM</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a2f9ac97a05c0e312a20d79ef30eb86e4" kindref="member">Scalar</ref> &gt;</type>
@@ -831,7 +888,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="239" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="239" bodyend="252"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="255" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="255" bodyend="268"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1abd266bd7d619f58b22bc83501a3eb67f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_g2_d_m" kindref="compound">G2DM</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a2f9ac97a05c0e312a20d79ef30eb86e4" kindref="member">Scalar</ref> &gt;</type>
@@ -873,7 +930,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="263" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="263" bodyend="289"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="279" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="279" bodyend="305"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1ab573bb588f853d9ca556080990ae414a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref></type>
@@ -914,7 +971,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="298" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="298" bodyend="301"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="314" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="314" bodyend="317"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -938,7 +995,7 @@
         <link refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="41" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="41" bodyend="649"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" line="41" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/GHF.hpp" bodystart="41" bodyend="675"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a9da8300d6e5d0c8979dbedc0a3cbce56" prot="private" virt="non-virtual"><scope>GQCP::QCModel::GHF</scope><name>C</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a7b0757202a3dc3cfe0f444d52d83c4b1" prot="public" virt="non-virtual"><scope>GQCP::QCModel::GHF</scope><name>calculateElectronicEnergy</name></member>
@@ -953,6 +1010,8 @@
       <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1ad68ba71ec17facb8b5b26c1d65c65b35" prot="public" virt="non-virtual"><scope>GQCP::QCModel::GHF</scope><name>calculatePartialStabilityMatrixB</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a86c8caefafaf95457a8cd24a8b0d9930" prot="public" virt="non-virtual"><scope>GQCP::QCModel::GHF</scope><name>calculateScalarBasis1DM</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a220b3cd32800534b13f7a9b96babe3e1" prot="public" virt="non-virtual"><scope>GQCP::QCModel::GHF</scope><name>calculateScalarBasis1DM</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1aee36a6b2a56f2ece4a37c3227e0a4759" prot="public" virt="non-virtual"><scope>GQCP::QCModel::GHF</scope><name>calculateScalarBasis2DM</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a8b04729994eacfd0d159fb58f93e783b" prot="public" virt="non-virtual"><scope>GQCP::QCModel::GHF</scope><name>calculateScalarBasis2DM</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1aef5200acafc8904a67df2bc21c620e06" prot="public" virt="non-virtual"><scope>GQCP::QCModel::GHF</scope><name>calculateScalarBasisDirectMatrix</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a14e62520a137ea7382be831cd17c2923" prot="public" virt="non-virtual"><scope>GQCP::QCModel::GHF</scope><name>calculateScalarBasisExchangeMatrix</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1ad853c9a44e776b6fe37dd1f1800192df" prot="public" virt="non-virtual"><scope>GQCP::QCModel::GHF</scope><name>calculateScalarBasisFockMatrix</name></member>

@@ -406,14 +406,14 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQOneElectronOperator.hpp" line="282" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQOneElectronOperator.hpp" bodystart="282" bodyend="286"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_u_s_q_one_electron_operator_1aaead67708fd73092f4f8f0e72e7c43eb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_u_s_q_one_electron_operator_1a49c08ab79e4003fdb49f17d8831e8ea4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator_1a58f2f9f06e307b05658d62a90a082885" kindref="member">Self</ref></type>
         <definition>Self GQCP::USQOneElectronOperator&lt; _Scalar, _Vectorizer &gt;::partitioned</definition>
-        <argsstring>(const UMullikenPartitioning&lt; Scalar &gt; &amp;mulliken_partitioning) const</argsstring>
+        <argsstring>(const UTransformation&lt; Scalar &gt; &amp;mulliken_projection_matrix) const</argsstring>
         <name>partitioned</name>
         <param>
-          <type>const <ref refid="class_g_q_c_p_1_1_u_mulliken_partitioning" kindref="compound">UMullikenPartitioning</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator_1a1e2a60e663998657605d3a14df95a40c" kindref="member">Scalar</ref> &gt; &amp;</type>
-          <declname>mulliken_partitioning</declname>
+          <type>const <ref refid="class_g_q_c_p_1_1_u_transformation" kindref="compound">UTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator_1a1e2a60e663998657605d3a14df95a40c" kindref="member">Scalar</ref> &gt; &amp;</type>
+          <declname>mulliken_projection_matrix</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -421,10 +421,10 @@
 <para>Partition this one-electron operator according to the supplied Mulliken partitioning scheme.</para>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername>mulliken_partitioning</parametername>
+<parametername>mulliken_projection_matrix</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>An encapsulation of the Mulliken partitioning scheme.</para>
+<para>A projection matrix encapsulating the Mulliken domain.</para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -641,7 +641,7 @@
       <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a241d8217aa2b2f34384a4439a968d555" prot="public" virt="pure-virtual" ambiguityscope="VectorSpaceArithmetic&lt; USQOneElectronOperator&lt; _Scalar, _Vectorizer &gt;, _Scalar &gt;::"><scope>GQCP::USQOneElectronOperator</scope><name>operator+=</name></member>
       <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a6b0d86c96ce2b6aaed10dc6d70a493bc" prot="public" virt="non-virtual"><scope>GQCP::USQOneElectronOperator</scope><name>operator-</name></member>
       <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a63a0cb54302a2d2f1d54af66e7527c4f" prot="public" virt="non-virtual"><scope>GQCP::USQOneElectronOperator</scope><name>operator-=</name></member>
-      <member refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator_1aaead67708fd73092f4f8f0e72e7c43eb" prot="public" virt="non-virtual"><scope>GQCP::USQOneElectronOperator</scope><name>partitioned</name></member>
+      <member refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator_1a49c08ab79e4003fdb49f17d8831e8ea4" prot="public" virt="non-virtual"><scope>GQCP::USQOneElectronOperator</scope><name>partitioned</name></member>
       <member refid="class_g_q_c_p_1_1_basis_transformable_1a2e107bd3cf4d603c003c8cb9357d0094" prot="public" virt="non-virtual" ambiguityscope="SpinResolvedBasisTransformable&lt; USQOneElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt;::"><scope>GQCP::USQOneElectronOperator</scope><name>rotate</name></member>
       <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a11657b774fe75246bef1f7849f9aad72" prot="public" virt="non-virtual" ambiguityscope="SpinResolvedJacobiRotatable&lt; USQOneElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt;::"><scope>GQCP::USQOneElectronOperator</scope><name>rotate</name></member>
       <member refid="class_g_q_c_p_1_1_basis_transformable_1ae0af50867dbd06193b64c2bcdd6b51ba" prot="public" virt="virtual" ambiguityscope="SpinResolvedBasisTransformable&lt; USQOneElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt;::"><scope>GQCP::USQOneElectronOperator</scope><name>rotated</name></member>

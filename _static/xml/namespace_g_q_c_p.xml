@@ -39,10 +39,6 @@
     <innerclass refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine" prot="public">GQCP::PrimitiveLinearMomentumIntegralEngine</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine" prot="public">GQCP::PrimitiveNuclearAttractionIntegralEngine</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine" prot="public">GQCP::PrimitiveOverlapIntegralEngine</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_g_mulliken_partitioning" prot="public">GQCP::GMullikenPartitioning</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_r_mulliken_partitioning" prot="public">GQCP::RMullikenPartitioning</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_u_mulliken_partitioning" prot="public">GQCP::UMullikenPartitioning</innerclass>
-    <innerclass refid="class_g_q_c_p_1_1_u_mulliken_partitioning_component" prot="public">GQCP::UMullikenPartitioningComponent</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_g_t_o_basis_set" prot="public">GQCP::GTOBasisSet</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_g_t_o_shell" prot="public">GQCP::GTOShell</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_london_g_t_o_shell" prot="public">GQCP::LondonGTOShell</innerclass>
@@ -143,6 +139,10 @@
     <innerclass refid="class_g_q_c_p_1_1_spin_resolved2_d_m" prot="public">GQCP::SpinResolved2DM</innerclass>
     <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_spin_resolved2_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; SpinResolved2DM&lt; Scalar &gt; &gt;</innerclass>
     <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_spin_resolved2_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; SpinResolved2DM&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_g_mulliken_domain" prot="public">GQCP::GMullikenDomain</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_r_mulliken_domain" prot="public">GQCP::RMullikenDomain</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_u_mulliken_domain" prot="public">GQCP::UMullikenDomain</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_u_mulliken_domain_component" prot="public">GQCP::UMullikenDomainComponent</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_algorithm" prot="public">GQCP::Algorithm</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_compound_convergence_criterion" prot="public">GQCP::CompoundConvergenceCriterion</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_convergence_criterion" prot="public">GQCP::ConvergenceCriterion</innerclass>
@@ -2056,7 +2056,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="294" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="294" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="298" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="298" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespace_g_q_c_p_1aa3aa234c019dcb885a1194c9ebd326a2" prot="public" static="no">
         <templateparamlist>
@@ -2074,7 +2074,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="298" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="298" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="302" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="302" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespace_g_q_c_p_1a1747382d67cc4d689a22084d7724bcb8" prot="public" static="no">
         <templateparamlist>
@@ -2092,7 +2092,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="302" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="302" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="306" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="306" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespace_g_q_c_p_1a08a64042d8fbe49b115f079671c8b9d0" prot="public" static="no">
         <templateparamlist>
@@ -2115,7 +2115,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="306" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="306" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="310" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="310" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespace_g_q_c_p_1a7f6dc73e9642604cae80dd2e813b91f5" prot="public" static="no">
         <type><ref refid="class_g_q_c_p_1_1_restricted_spinor_tag" kindref="compound">RestrictedSpinorTag</ref></type>

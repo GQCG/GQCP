@@ -96,9 +96,9 @@ size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad71c2691865d2ba1e
 \item 
 const \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved}{Spin\+Resolved}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a43378faf70d64f2caa796282bac433e8}{Shell}} $>$ $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a29e97fd11c496f40147b63fcbf42a623}{scalar\+Bases}} () const
 \item 
-\mbox{\hyperlink{class_g_q_c_p_1_1_g_mulliken_partitioning}{GMulliken\+Partitioning}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_adf4e812f8804c98d441cea5ad8985dca}{mulliken\+Partitioning}} (const std\+::function$<$ bool(const \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a30600aed0df6ba06f37e8d0f267da733}{Basis\+Function}} \&)$>$ \&selector) const
+\mbox{\hyperlink{class_g_q_c_p_1_1_g_mulliken_domain}{GMulliken\+Domain}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a4bdca30291db3577474ffd187dfe322a}{mulliken\+Domain}} (const std\+::function$<$ bool(const \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a30600aed0df6ba06f37e8d0f267da733}{Basis\+Function}} \&)$>$ \&selector) const
 \item 
-\mbox{\hyperlink{class_g_q_c_p_1_1_g_mulliken_partitioning}{GMulliken\+Partitioning}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a67766903b77d04018df2eb22c050e68a}{mulliken\+Partitioning}} (const std\+::function$<$ bool(const \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a43378faf70d64f2caa796282bac433e8}{Shell}} \&)$>$ \&selector) const
+\mbox{\hyperlink{class_g_q_c_p_1_1_g_mulliken_domain}{GMulliken\+Domain}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_af9fcda4830eaaaef03c69880a30586e9}{mulliken\+Domain}} (const std\+::function$<$ bool(const \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a43378faf70d64f2caa796282bac433e8}{Shell}} \&)$>$ \&selector) const
 \end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
@@ -394,42 +394,42 @@ The generalized spinor basis corresponding to the unrestricted spin-\/orbital ba
 \begin{DoxyNote}{Note}
 We assume that the unrestricted spin-\/orbital basis has equal underlying scalar bases for the alpha-\/ and beta-\/spin-\/orbitals. 
 \end{DoxyNote}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_adf4e812f8804c98d441cea5ad8985dca}\label{class_g_q_c_p_1_1_g_spinor_basis_adf4e812f8804c98d441cea5ad8985dca}} 
-\index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!mullikenPartitioning@{mullikenPartitioning}}
-\index{mullikenPartitioning@{mullikenPartitioning}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
-\doxysubsubsection{\texorpdfstring{mullikenPartitioning()}{mullikenPartitioning()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_a4bdca30291db3577474ffd187dfe322a}\label{class_g_q_c_p_1_1_g_spinor_basis_a4bdca30291db3577474ffd187dfe322a}} 
+\index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!mullikenDomain@{mullikenDomain}}
+\index{mullikenDomain@{mullikenDomain}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{mullikenDomain()}{mullikenDomain()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
-\mbox{\hyperlink{class_g_q_c_p_1_1_g_mulliken_partitioning}{GMulliken\+Partitioning}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{GQCP\+::\+GSpinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::mulliken\+Partitioning (\begin{DoxyParamCaption}\item[{const std\+::function$<$ bool(const \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a30600aed0df6ba06f37e8d0f267da733}{Basis\+Function}} \&)$>$ \&}]{selector }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{class_g_q_c_p_1_1_g_mulliken_domain}{GMulliken\+Domain}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{GQCP\+::\+GSpinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::mulliken\+Domain (\begin{DoxyParamCaption}\item[{const std\+::function$<$ bool(const \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a30600aed0df6ba06f37e8d0f267da733}{Basis\+Function}} \&)$>$ \&}]{selector }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-MARK\+: Mulliken partitioning Partition this set of generalized spinors according to the Mulliken partitioning scheme.
+MARK\+: Mulliken domain Partition this set of generalized spinors according to the Mulliken partitioning scheme.
 
 
 \begin{DoxyParams}{Parameters}
-{\em selector} & A function that returns true for basis functions that should be included the Mulliken partitioning.\\
+{\em selector} & A function that returns true for basis functions that should be included the Mulliken domain.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-A {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_g_mulliken_partitioning}{GMulliken\+Partitioning}}} for the AOs selected by the supplied selector function.
+A {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_g_mulliken_domain}{GMulliken\+Domain}}} for the AOs selected by the supplied selector function.
 \end{DoxyReturn}
 \begin{DoxyNote}{Note}
 The underlying scalar bases are assumed to be equal. 
 \end{DoxyNote}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_a67766903b77d04018df2eb22c050e68a}\label{class_g_q_c_p_1_1_g_spinor_basis_a67766903b77d04018df2eb22c050e68a}} 
-\index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!mullikenPartitioning@{mullikenPartitioning}}
-\index{mullikenPartitioning@{mullikenPartitioning}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
-\doxysubsubsection{\texorpdfstring{mullikenPartitioning()}{mullikenPartitioning()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_af9fcda4830eaaaef03c69880a30586e9}\label{class_g_q_c_p_1_1_g_spinor_basis_af9fcda4830eaaaef03c69880a30586e9}} 
+\index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!mullikenDomain@{mullikenDomain}}
+\index{mullikenDomain@{mullikenDomain}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{mullikenDomain()}{mullikenDomain()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
-\mbox{\hyperlink{class_g_q_c_p_1_1_g_mulliken_partitioning}{GMulliken\+Partitioning}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{GQCP\+::\+GSpinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::mulliken\+Partitioning (\begin{DoxyParamCaption}\item[{const std\+::function$<$ bool(const \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a43378faf70d64f2caa796282bac433e8}{Shell}} \&)$>$ \&}]{selector }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{class_g_q_c_p_1_1_g_mulliken_domain}{GMulliken\+Domain}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{GQCP\+::\+GSpinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::mulliken\+Domain (\begin{DoxyParamCaption}\item[{const std\+::function$<$ bool(const \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a43378faf70d64f2caa796282bac433e8}{Shell}} \&)$>$ \&}]{selector }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 Partition this set of generalized spinors according to the Mulliken partitioning scheme.
 
 
 \begin{DoxyParams}{Parameters}
-{\em selector} & A function that returns true for shells that should be included the Mulliken partitioning.\\
+{\em selector} & A function that returns true for shells that should be included the Mulliken domain.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-A {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_g_mulliken_partitioning}{GMulliken\+Partitioning}}} for the AOs selected by the supplied selector function.
+A {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_g_mulliken_domain}{GMulliken\+Domain}}} for the AOs selected by the supplied selector function.
 \end{DoxyReturn}
 \begin{DoxyNote}{Note}
 The underlying scalar bases are assumed to be equal. 

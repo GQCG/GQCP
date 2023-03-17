@@ -6,7 +6,6 @@
     <basecompoundref refid="class_g_q_c_p_1_1_jacobi_rotatable" prot="public" virt="non-virtual">GQCP::JacobiRotatable&lt; _DerivedTransformation &gt;</basecompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_g_transformation" prot="public" virt="non-virtual">GQCP::GTransformation&lt; Scalar &gt;</derivedcompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_r_transformation" prot="public" virt="non-virtual">GQCP::RTransformation&lt; Scalar &gt;</derivedcompoundref>
-    <derivedcompoundref refid="class_g_q_c_p_1_1_u_transformation_component" prot="public" virt="non-virtual">GQCP::UTransformationComponent&lt; Scalar &gt;</derivedcompoundref>
     <includes refid="_simple_transformation_8hpp" local="no">SimpleTransformation.hpp</includes>
     <templateparamlist>
       <param>
@@ -536,12 +535,6 @@
       <node id="3">
         <label>GQCP::JacobiRotatable&lt; _DerivedTransformation &gt;</label>
         <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
-      </node>
-      <node id="6">
-        <label>GQCP::UTransformationComponent&lt; Scalar &gt;</label>
-        <link refid="class_g_q_c_p_1_1_u_transformation_component"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>

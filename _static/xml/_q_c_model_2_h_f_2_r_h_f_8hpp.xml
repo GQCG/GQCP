@@ -35,7 +35,7 @@
       <node id="65">
         <label>unsupported/Eigen/CXX11/TensorSymmetry</label>
       </node>
-      <node id="78">
+      <node id="82">
         <label>Operator/SecondQuantized/SQOperatorStorage.hpp</label>
         <link refid="_s_q_operator_storage_8hpp"/>
         <childnode refid="17" relation="include">
@@ -45,24 +45,24 @@
         <childnode refid="41" relation="include">
         </childnode>
       </node>
-      <node id="87">
+      <node id="91">
         <label>Operator/SecondQuantized/GSQOneElectronOperator.hpp</label>
         <link refid="_g_s_q_one_electron_operator_8hpp"/>
-        <childnode refid="88" relation="include">
-        </childnode>
-        <childnode refid="89" relation="include">
+        <childnode refid="92" relation="include">
         </childnode>
         <childnode refid="99" relation="include">
         </childnode>
         <childnode refid="102" relation="include">
         </childnode>
+        <childnode refid="108" relation="include">
+        </childnode>
         <childnode refid="70" relation="include">
         </childnode>
-        <childnode refid="77" relation="include">
+        <childnode refid="81" relation="include">
         </childnode>
-        <childnode refid="79" relation="include">
+        <childnode refid="83" relation="include">
         </childnode>
-        <childnode refid="85" relation="include">
+        <childnode refid="89" relation="include">
         </childnode>
       </node>
       <node id="23">
@@ -74,12 +74,12 @@
       <node id="28">
         <label>functional</label>
       </node>
-      <node id="93">
+      <node id="96">
         <label>Basis/Transformations/SpinResolvedJacobiRotatable.hpp</label>
         <link refid="_spin_resolved_jacobi_rotatable_8hpp"/>
         <childnode refid="52" relation="include">
         </childnode>
-        <childnode refid="94" relation="include">
+        <childnode refid="97" relation="include">
         </childnode>
       </node>
       <node id="22">
@@ -91,13 +91,13 @@
       <node id="47">
         <label>iterator</label>
       </node>
-      <node id="119">
+      <node id="120">
         <label>QCModel/HF/StabilityMatrices/RHFStabilityMatrices.hpp</label>
       </node>
-      <node id="98">
+      <node id="78">
         <label>QuantumChemical/SpinResolved.hpp</label>
         <link refid="_spin_resolved_8hpp"/>
-        <childnode refid="95" relation="include">
+        <childnode refid="79" relation="include">
         </childnode>
       </node>
       <node id="71">
@@ -152,38 +152,38 @@
       <node id="100">
         <label>DensityMatrix/SpinResolved1DM.hpp</label>
         <link refid="_spin_resolved1_d_m_8hpp"/>
-        <childnode refid="92" relation="include">
+        <childnode refid="95" relation="include">
         </childnode>
-        <childnode refid="93" relation="include">
+        <childnode refid="96" relation="include">
         </childnode>
-        <childnode refid="91" relation="include">
+        <childnode refid="94" relation="include">
         </childnode>
         <childnode refid="57" relation="include">
         </childnode>
         <childnode refid="101" relation="include">
         </childnode>
-        <childnode refid="84" relation="include">
+        <childnode refid="87" relation="include">
         </childnode>
         <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="98" relation="include">
+        <childnode refid="78" relation="include">
         </childnode>
       </node>
       <node id="102">
         <label>DensityMatrix/G2DM.hpp</label>
         <link refid="_g2_d_m_8hpp"/>
-        <childnode refid="89" relation="include">
+        <childnode refid="92" relation="include">
         </childnode>
         <childnode refid="58" relation="include">
         </childnode>
         <childnode refid="99" relation="include">
         </childnode>
-        <childnode refid="75" relation="include">
+        <childnode refid="74" relation="include">
         </childnode>
         <childnode refid="103" relation="include">
         </childnode>
       </node>
-      <node id="92">
+      <node id="95">
         <label>Basis/Transformations/SpinResolvedBasisTransformable.hpp</label>
         <link refid="_spin_resolved_basis_transformable_8hpp"/>
         <childnode refid="50" relation="include">
@@ -201,14 +201,14 @@
         <childnode refid="21" relation="include">
         </childnode>
       </node>
-      <node id="111">
+      <node id="112">
         <label>Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp</label>
         <link refid="_hubbard_hamiltonian_8hpp"/>
-        <childnode refid="112" relation="include">
+        <childnode refid="113" relation="include">
         </childnode>
         <childnode refid="72" relation="include">
         </childnode>
-        <childnode refid="114" relation="include">
+        <childnode refid="115" relation="include">
         </childnode>
       </node>
       <node id="46">
@@ -244,21 +244,21 @@
         <childnode refid="9" relation="include">
         </childnode>
       </node>
-      <node id="109">
+      <node id="110">
         <label>Operator/SecondQuantized/PureUSQTwoElectronOperatorComponent.hpp</label>
         <link refid="_pure_u_s_q_two_electron_operator_component_8hpp"/>
-        <childnode refid="81" relation="include">
+        <childnode refid="84" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="111" relation="include">
         </childnode>
         <childnode refid="83" relation="include">
         </childnode>
-        <childnode refid="84" relation="include">
-        </childnode>
-        <childnode refid="110" relation="include">
-        </childnode>
-        <childnode refid="79" relation="include">
-        </childnode>
       </node>
-      <node id="85">
+      <node id="89">
         <label>QuantumChemical/spinor_tags.hpp</label>
         <link refid="spinor__tags_8hpp"/>
       </node>
@@ -288,17 +288,7 @@
         <childnode refid="9" relation="include">
         </childnode>
       </node>
-      <node id="73">
-        <label>Basis/MullikenPartitioning/RMullikenPartitioning.hpp</label>
-        <link refid="_r_mulliken_partitioning_8hpp"/>
-        <childnode refid="42" relation="include">
-        </childnode>
-        <childnode refid="45" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="113">
+      <node id="114">
         <label>Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.hpp</label>
         <link refid="_adjacency_matrix_8hpp"/>
         <childnode refid="45" relation="include">
@@ -314,18 +304,18 @@
         <childnode refid="37" relation="include">
         </childnode>
       </node>
-      <node id="110">
+      <node id="111">
         <label>Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp</label>
         <link refid="_simple_s_q_two_electron_operator_8hpp"/>
         <childnode refid="50" relation="include">
         </childnode>
         <childnode refid="52" relation="include">
         </childnode>
-        <childnode refid="76" relation="include">
+        <childnode refid="75" relation="include">
         </childnode>
         <childnode refid="69" relation="include">
         </childnode>
-        <childnode refid="78" relation="include">
+        <childnode refid="82" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
@@ -333,16 +323,16 @@
       <node id="8">
         <label>string</label>
       </node>
-      <node id="118">
+      <node id="119">
         <label>Operator/SecondQuantized/USQTwoElectronOperator.hpp</label>
         <link refid="_u_s_q_two_electron_operator_8hpp"/>
         <childnode refid="104" relation="include">
         </childnode>
         <childnode refid="105" relation="include">
         </childnode>
-        <childnode refid="94" relation="include">
+        <childnode refid="97" relation="include">
         </childnode>
-        <childnode refid="91" relation="include">
+        <childnode refid="94" relation="include">
         </childnode>
         <childnode refid="100" relation="include">
         </childnode>
@@ -350,73 +340,73 @@
         </childnode>
         <childnode refid="17" relation="include">
         </childnode>
+        <childnode refid="116" relation="include">
+        </childnode>
+        <childnode refid="110" relation="include">
+        </childnode>
         <childnode refid="115" relation="include">
-        </childnode>
-        <childnode refid="109" relation="include">
-        </childnode>
-        <childnode refid="114" relation="include">
         </childnode>
         <childnode refid="107" relation="include">
         </childnode>
-        <childnode refid="85" relation="include">
+        <childnode refid="89" relation="include">
         </childnode>
       </node>
       <node id="56">
         <label>unsupported/Eigen/MatrixFunctions</label>
       </node>
-      <node id="97">
+      <node id="98">
         <label>Basis/Transformations/UOrbitalRotationGenerators.hpp</label>
         <link refid="_u_orbital_rotation_generators_8hpp"/>
-        <childnode refid="82" relation="include">
+        <childnode refid="85" relation="include">
         </childnode>
         <childnode refid="45" relation="include">
         </childnode>
-        <childnode refid="98" relation="include">
+        <childnode refid="78" relation="include">
         </childnode>
-        <childnode refid="95" relation="include">
+        <childnode refid="79" relation="include">
         </childnode>
         <childnode refid="31" relation="include">
         </childnode>
       </node>
-      <node id="114">
+      <node id="115">
         <label>Operator/SecondQuantized/RSQTwoElectronOperator.hpp</label>
         <link refid="_r_s_q_two_electron_operator_8hpp"/>
         <childnode refid="42" relation="include">
         </childnode>
         <childnode refid="57" relation="include">
         </childnode>
-        <childnode refid="74" relation="include">
+        <childnode refid="73" relation="include">
         </childnode>
         <childnode refid="70" relation="include">
         </childnode>
-        <childnode refid="115" relation="include">
-        </childnode>
-        <childnode refid="109" relation="include">
-        </childnode>
-        <childnode refid="72" relation="include">
+        <childnode refid="116" relation="include">
         </childnode>
         <childnode refid="110" relation="include">
         </childnode>
-        <childnode refid="85" relation="include">
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="111" relation="include">
+        </childnode>
+        <childnode refid="89" relation="include">
         </childnode>
       </node>
       <node id="36">
         <label>map</label>
       </node>
-      <node id="79">
+      <node id="83">
         <label>Operator/SecondQuantized/USQOneElectronOperatorComponent.hpp</label>
         <link refid="_u_s_q_one_electron_operator_component_8hpp"/>
-        <childnode refid="80" relation="include">
-        </childnode>
-        <childnode refid="81" relation="include">
-        </childnode>
-        <childnode refid="83" relation="include">
-        </childnode>
         <childnode refid="84" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
         </childnode>
         <childnode refid="70" relation="include">
         </childnode>
-        <childnode refid="77" relation="include">
+        <childnode refid="81" relation="include">
         </childnode>
       </node>
       <node id="60">
@@ -439,21 +429,21 @@
         <childnode refid="14" relation="include">
         </childnode>
       </node>
-      <node id="81">
+      <node id="84">
         <label>Basis/Transformations/UTransformationComponent.hpp</label>
         <link refid="_u_transformation_component_8hpp"/>
         <childnode refid="49" relation="include">
         </childnode>
-        <childnode refid="82" relation="include">
+        <childnode refid="85" relation="include">
         </childnode>
       </node>
       <node id="40">
         <label>unsupported/Eigen/CXX11/Tensor</label>
       </node>
-      <node id="84">
+      <node id="87">
         <label>DensityMatrix/SpinResolved1DMComponent.hpp</label>
         <link refid="_spin_resolved1_d_m_component_8hpp"/>
-        <childnode refid="81" relation="include">
+        <childnode refid="84" relation="include">
         </childnode>
         <childnode refid="59" relation="include">
         </childnode>
@@ -474,10 +464,10 @@
         <childnode refid="25" relation="include">
         </childnode>
       </node>
-      <node id="95">
+      <node id="79">
         <label>QuantumChemical/SpinResolvedBase.hpp</label>
         <link refid="_spin_resolved_base_8hpp"/>
-        <childnode refid="96" relation="include">
+        <childnode refid="80" relation="include">
         </childnode>
         <childnode refid="51" relation="include">
         </childnode>
@@ -498,7 +488,7 @@
         <childnode refid="41" relation="include">
         </childnode>
       </node>
-      <node id="76">
+      <node id="75">
         <label>Mathematical/Representation/SquareRankFourTensor.hpp</label>
         <link refid="_square_rank_four_tensor_8hpp"/>
         <childnode refid="45" relation="include">
@@ -508,7 +498,7 @@
         <childnode refid="25" relation="include">
         </childnode>
       </node>
-      <node id="75">
+      <node id="74">
         <label>DensityMatrix/Simple2DM.hpp</label>
         <link refid="_simple2_d_m_8hpp"/>
         <childnode refid="50" relation="include">
@@ -519,7 +509,7 @@
         </childnode>
         <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="76" relation="include">
+        <childnode refid="75" relation="include">
         </childnode>
       </node>
       <node id="48">
@@ -553,11 +543,11 @@
         </childnode>
         <childnode refid="72" relation="include">
         </childnode>
-        <childnode refid="86" relation="include">
+        <childnode refid="90" relation="include">
         </childnode>
-        <childnode refid="119" relation="include">
+        <childnode refid="120" relation="include">
         </childnode>
-        <childnode refid="96" relation="include">
+        <childnode refid="80" relation="include">
         </childnode>
         <childnode refid="31" relation="include">
         </childnode>
@@ -571,7 +561,7 @@
       <node id="54">
         <label>ostream</label>
       </node>
-      <node id="90">
+      <node id="93">
         <label>Basis/Transformations/GOrbitalRotationGenerators.hpp</label>
         <link refid="_g_orbital_rotation_generators_8hpp"/>
         <childnode refid="44" relation="include">
@@ -603,10 +593,10 @@
         <childnode refid="8" relation="include">
         </childnode>
       </node>
-      <node id="108">
+      <node id="109">
         <label>Operator/SecondQuantized/GSQTwoElectronOperator.hpp</label>
         <link refid="_g_s_q_two_electron_operator_8hpp"/>
-        <childnode refid="89" relation="include">
+        <childnode refid="92" relation="include">
         </childnode>
         <childnode refid="53" relation="include">
         </childnode>
@@ -616,13 +606,13 @@
         </childnode>
         <childnode refid="70" relation="include">
         </childnode>
-        <childnode refid="87" relation="include">
-        </childnode>
-        <childnode refid="109" relation="include">
+        <childnode refid="91" relation="include">
         </childnode>
         <childnode refid="110" relation="include">
         </childnode>
-        <childnode refid="85" relation="include">
+        <childnode refid="111" relation="include">
+        </childnode>
+        <childnode refid="89" relation="include">
         </childnode>
       </node>
       <node id="49">
@@ -639,16 +629,6 @@
         <childnode refid="56" relation="include">
         </childnode>
       </node>
-      <node id="80">
-        <label>Basis/MullikenPartitioning/UMullikenPartitioningComponent.hpp</label>
-        <link refid="_u_mulliken_partitioning_component_8hpp"/>
-        <childnode refid="81" relation="include">
-        </childnode>
-        <childnode refid="45" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
       <node id="103">
         <label>DensityMatrix/SpinResolved2DM.hpp</label>
         <link refid="_spin_resolved2_d_m_8hpp"/>
@@ -656,19 +636,19 @@
         </childnode>
         <childnode refid="105" relation="include">
         </childnode>
-        <childnode refid="94" relation="include">
+        <childnode refid="97" relation="include">
         </childnode>
-        <childnode refid="91" relation="include">
+        <childnode refid="94" relation="include">
         </childnode>
         <childnode refid="106" relation="include">
         </childnode>
-        <childnode refid="74" relation="include">
+        <childnode refid="73" relation="include">
         </childnode>
-        <childnode refid="83" relation="include">
+        <childnode refid="86" relation="include">
         </childnode>
         <childnode refid="107" relation="include">
         </childnode>
-        <childnode refid="96" relation="include">
+        <childnode refid="80" relation="include">
         </childnode>
       </node>
       <node id="11">
@@ -684,7 +664,7 @@
       <node id="99">
         <label>DensityMatrix/G1DM.hpp</label>
         <link refid="_g1_d_m_8hpp"/>
-        <childnode refid="89" relation="include">
+        <childnode refid="92" relation="include">
         </childnode>
         <childnode refid="58" relation="include">
         </childnode>
@@ -744,22 +724,34 @@
         <childnode refid="49" relation="include">
         </childnode>
       </node>
+      <node id="88">
+        <label>Domain/MullikenDomain/UMullikenDomainComponent.hpp</label>
+        <link refid="_u_mulliken_domain_component_8hpp"/>
+        <childnode refid="84" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+      </node>
+      <node id="76">
+        <label>Domain/MullikenDomain/RMullikenDomain.hpp</label>
+        <link refid="_r_mulliken_domain_8hpp"/>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+      </node>
       <node id="50">
         <label>Basis/Transformations/BasisTransformable.hpp</label>
         <link refid="_basis_transformable_8hpp"/>
         <childnode refid="51" relation="include">
-        </childnode>
-      </node>
-      <node id="88">
-        <label>Basis/MullikenPartitioning/GMullikenPartitioning.hpp</label>
-        <link refid="_g_mulliken_partitioning_8hpp"/>
-        <childnode refid="89" relation="include">
-        </childnode>
-        <childnode refid="45" relation="include">
-        </childnode>
-        <childnode refid="98" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
         </childnode>
       </node>
       <node id="21">
@@ -782,12 +774,12 @@
         <childnode refid="9" relation="include">
         </childnode>
       </node>
-      <node id="94">
+      <node id="97">
         <label>Basis/Transformations/UJacobiRotation.hpp</label>
         <link refid="_u_jacobi_rotation_8hpp"/>
         <childnode refid="53" relation="include">
         </childnode>
-        <childnode refid="95" relation="include">
+        <childnode refid="79" relation="include">
         </childnode>
       </node>
       <node id="70">
@@ -808,20 +800,32 @@
         <childnode refid="14" relation="include">
         </childnode>
       </node>
-      <node id="89">
+      <node id="92">
         <label>Basis/Transformations/GTransformation.hpp</label>
         <link refid="_g_transformation_8hpp"/>
-        <childnode refid="90" relation="include">
+        <childnode refid="93" relation="include">
         </childnode>
         <childnode refid="49" relation="include">
         </childnode>
-        <childnode refid="91" relation="include">
+        <childnode refid="94" relation="include">
         </childnode>
-        <childnode refid="98" relation="include">
+        <childnode refid="78" relation="include">
         </childnode>
       </node>
       <node id="9">
         <label>vector</label>
+      </node>
+      <node id="108">
+        <label>Domain/MullikenDomain/GMullikenDomain.hpp</label>
+        <link refid="_g_mulliken_domain_8hpp"/>
+        <childnode refid="92" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
       </node>
       <node id="12">
         <label>Utilities/aliases.hpp</label>
@@ -831,42 +835,42 @@
         <childnode refid="15" relation="include">
         </childnode>
       </node>
-      <node id="96">
+      <node id="80">
         <label>QuantumChemical/Spin.hpp</label>
         <link refid="_spin_8hpp"/>
       </node>
-      <node id="83">
+      <node id="86">
         <label>DensityMatrix/PureSpinResolved2DMComponent.hpp</label>
         <link refid="_pure_spin_resolved2_d_m_component_8hpp"/>
-        <childnode refid="81" relation="include">
-        </childnode>
-        <childnode refid="75" relation="include">
-        </childnode>
         <childnode refid="84" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
         </childnode>
       </node>
       <node id="6">
         <label>array</label>
       </node>
-      <node id="91">
+      <node id="94">
         <label>Basis/Transformations/UTransformation.hpp</label>
         <link refid="_u_transformation_8hpp"/>
         <childnode refid="42" relation="include">
         </childnode>
-        <childnode refid="92" relation="include">
-        </childnode>
-        <childnode refid="93" relation="include">
-        </childnode>
-        <childnode refid="97" relation="include">
-        </childnode>
-        <childnode refid="81" relation="include">
-        </childnode>
         <childnode refid="95" relation="include">
+        </childnode>
+        <childnode refid="96" relation="include">
+        </childnode>
+        <childnode refid="98" relation="include">
+        </childnode>
+        <childnode refid="84" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
         </childnode>
         <childnode refid="31" relation="include">
         </childnode>
       </node>
-      <node id="74">
+      <node id="73">
         <label>DensityMatrix/Orbital2DM.hpp</label>
         <link refid="_orbital2_d_m_8hpp"/>
         <childnode refid="42" relation="include">
@@ -875,8 +879,11 @@
         </childnode>
         <childnode refid="57" relation="include">
         </childnode>
-        <childnode refid="75" relation="include">
+        <childnode refid="74" relation="include">
         </childnode>
+      </node>
+      <node id="77">
+        <label>Domain/DiscreteDomain.hpp</label>
       </node>
       <node id="53">
         <label>Basis/Transformations/JacobiRotation.hpp</label>
@@ -910,12 +917,12 @@
         <childnode refid="65" relation="include">
         </childnode>
       </node>
-      <node id="112">
+      <node id="113">
         <label>Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp</label>
         <link refid="_hopping_matrix_8hpp"/>
         <childnode refid="45" relation="include">
         </childnode>
-        <childnode refid="113" relation="include">
+        <childnode refid="114" relation="include">
         </childnode>
       </node>
       <node id="15">
@@ -947,7 +954,7 @@
       <node id="7">
         <label>cstddef</label>
       </node>
-      <node id="77">
+      <node id="81">
         <label>Operator/SecondQuantized/SimpleSQOneElectronOperator.hpp</label>
         <link refid="_simple_s_q_one_electron_operator_8hpp"/>
         <childnode refid="50" relation="include">
@@ -956,7 +963,7 @@
         </childnode>
         <childnode refid="45" relation="include">
         </childnode>
-        <childnode refid="78" relation="include">
+        <childnode refid="82" relation="include">
         </childnode>
       </node>
       <node id="104">
@@ -964,7 +971,7 @@
         <link refid="_doubly_spin_resolved_basis_transformable_8hpp"/>
         <childnode refid="50" relation="include">
         </childnode>
-        <childnode refid="96" relation="include">
+        <childnode refid="80" relation="include">
         </childnode>
       </node>
       <node id="31">
@@ -973,6 +980,18 @@
         <childnode refid="13" relation="include">
         </childnode>
         <childnode refid="32" relation="include">
+        </childnode>
+      </node>
+      <node id="118">
+        <label>Domain/MullikenDomain/UMullikenDomain.hpp</label>
+        <link refid="_u_mulliken_domain_8hpp"/>
+        <childnode refid="94" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
         </childnode>
       </node>
       <node id="4">
@@ -1001,62 +1020,62 @@
         <childnode refid="68" relation="include">
         </childnode>
       </node>
-      <node id="116">
+      <node id="117">
         <label>Operator/SecondQuantized/USQOneElectronOperator.hpp</label>
         <link refid="_u_s_q_one_electron_operator_8hpp"/>
-        <childnode refid="117" relation="include">
+        <childnode refid="95" relation="include">
         </childnode>
-        <childnode refid="92" relation="include">
+        <childnode refid="96" relation="include">
         </childnode>
-        <childnode refid="93" relation="include">
-        </childnode>
-        <childnode refid="91" relation="include">
+        <childnode refid="94" relation="include">
         </childnode>
         <childnode refid="100" relation="include">
         </childnode>
         <childnode refid="103" relation="include">
         </childnode>
+        <childnode refid="118" relation="include">
+        </childnode>
         <childnode refid="45" relation="include">
         </childnode>
         <childnode refid="72" relation="include">
         </childnode>
+        <childnode refid="83" relation="include">
+        </childnode>
         <childnode refid="79" relation="include">
         </childnode>
-        <childnode refid="95" relation="include">
-        </childnode>
-        <childnode refid="85" relation="include">
+        <childnode refid="89" relation="include">
         </childnode>
       </node>
       <node id="72">
         <label>Operator/SecondQuantized/RSQOneElectronOperator.hpp</label>
         <link refid="_r_s_q_one_electron_operator_8hpp"/>
-        <childnode refid="73" relation="include">
-        </childnode>
         <childnode refid="42" relation="include">
         </childnode>
         <childnode refid="57" relation="include">
         </childnode>
-        <childnode refid="74" relation="include">
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="76" relation="include">
         </childnode>
         <childnode refid="70" relation="include">
         </childnode>
-        <childnode refid="77" relation="include">
+        <childnode refid="81" relation="include">
         </childnode>
-        <childnode refid="79" relation="include">
+        <childnode refid="83" relation="include">
         </childnode>
-        <childnode refid="85" relation="include">
+        <childnode refid="89" relation="include">
         </childnode>
       </node>
       <node id="106">
         <label>DensityMatrix/MixedSpinResolved2DMComponent.hpp</label>
         <link refid="_mixed_spin_resolved2_d_m_component_8hpp"/>
-        <childnode refid="81" relation="include">
+        <childnode refid="84" relation="include">
         </childnode>
         <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="76" relation="include">
+        <childnode refid="75" relation="include">
         </childnode>
-        <childnode refid="96" relation="include">
+        <childnode refid="80" relation="include">
         </childnode>
       </node>
       <node id="14">
@@ -1073,7 +1092,7 @@
         <link refid="_doubly_spin_resolved_jacobi_rotatable_8hpp"/>
         <childnode refid="52" relation="include">
         </childnode>
-        <childnode refid="94" relation="include">
+        <childnode refid="97" relation="include">
         </childnode>
       </node>
       <node id="59">
@@ -1092,20 +1111,20 @@
         <childnode refid="45" relation="include">
         </childnode>
       </node>
-      <node id="115">
+      <node id="116">
         <label>Operator/SecondQuantized/MixedUSQTwoElectronOperatorComponent.hpp</label>
         <link refid="_mixed_u_s_q_two_electron_operator_component_8hpp"/>
-        <childnode refid="81" relation="include">
+        <childnode refid="84" relation="include">
         </childnode>
         <childnode refid="106" relation="include">
         </childnode>
-        <childnode refid="84" relation="include">
+        <childnode refid="87" relation="include">
         </childnode>
-        <childnode refid="76" relation="include">
+        <childnode refid="75" relation="include">
         </childnode>
-        <childnode refid="78" relation="include">
+        <childnode refid="82" relation="include">
         </childnode>
-        <childnode refid="96" relation="include">
+        <childnode refid="80" relation="include">
         </childnode>
       </node>
       <node id="5">
@@ -1138,18 +1157,6 @@
         <childnode refid="25" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
-        </childnode>
-      </node>
-      <node id="117">
-        <label>Basis/MullikenPartitioning/UMullikenPartitioning.hpp</label>
-        <link refid="_u_mulliken_partitioning_8hpp"/>
-        <childnode refid="80" relation="include">
-        </childnode>
-        <childnode refid="91" relation="include">
-        </childnode>
-        <childnode refid="98" relation="include">
-        </childnode>
-        <childnode refid="95" relation="include">
         </childnode>
       </node>
       <node id="43">
@@ -1186,13 +1193,13 @@
         <childnode refid="18" relation="include">
         </childnode>
       </node>
-      <node id="82">
+      <node id="85">
         <label>Basis/Transformations/UOrbitalRotationGeneratorsComponent.hpp</label>
         <link refid="_u_orbital_rotation_generators_component_8hpp"/>
         <childnode refid="44" relation="include">
         </childnode>
       </node>
-      <node id="86">
+      <node id="90">
         <label>Operator/SecondQuantized/SQHamiltonian.hpp</label>
         <link refid="_s_q_hamiltonian_8hpp"/>
         <childnode refid="33" relation="include">
@@ -1201,21 +1208,21 @@
         </childnode>
         <childnode refid="52" relation="include">
         </childnode>
-        <childnode refid="87" relation="include">
+        <childnode refid="91" relation="include">
         </childnode>
-        <childnode refid="108" relation="include">
+        <childnode refid="109" relation="include">
         </childnode>
-        <childnode refid="111" relation="include">
+        <childnode refid="112" relation="include">
         </childnode>
         <childnode refid="72" relation="include">
         </childnode>
-        <childnode refid="114" relation="include">
+        <childnode refid="115" relation="include">
         </childnode>
-        <childnode refid="116" relation="include">
+        <childnode refid="117" relation="include">
         </childnode>
-        <childnode refid="118" relation="include">
+        <childnode refid="119" relation="include">
         </childnode>
-        <childnode refid="85" relation="include">
+        <childnode refid="89" relation="include">
         </childnode>
         <childnode refid="13" relation="include">
         </childnode>
@@ -2008,231 +2015,248 @@
 <codeline lineno="713"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="714"><highlight class="normal"></highlight></codeline>
 <codeline lineno="715"><highlight class="normal"></highlight></codeline>
-<codeline lineno="724" refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1ad75543a8ad881961c9d40ad9d9fdb24a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_r_s_q_one_electron_operator" kindref="compound">ScalarRSQOneElectronOperator&lt;Scalar&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1ad75543a8ad881961c9d40ad9d9fdb24a" kindref="member">calculateScalarBasisFockMatrix</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_orbital1_d_m" kindref="compound">Orbital1DM&lt;Scalar&gt;</ref>&amp;<sp/>D,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian" kindref="compound">RSQHamiltonian&lt;Scalar&gt;</ref>&amp;<sp/>sq_hamiltonian)<sp/>{</highlight></codeline>
-<codeline lineno="725"><highlight class="normal"></highlight></codeline>
-<codeline lineno="726"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Get<sp/>the<sp/>two-electron<sp/>parameters.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="727"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>g<sp/>=<sp/>sq_hamiltonian.<ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a7a542abe14c404fc287b64da5e6dc1d9" kindref="member">twoElectron</ref>().parameters();</highlight></codeline>
-<codeline lineno="728"><highlight class="normal"></highlight></codeline>
-<codeline lineno="729"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>To<sp/>calculate<sp/>G,<sp/>we<sp/>must<sp/>perform<sp/>two<sp/>double<sp/>contractions:</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="730"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/>1.<sp/>(mu<sp/>nu|rho<sp/>lambda)<sp/>P(lambda<sp/>rho),</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="731"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">Tensor&lt;Scalar, 2&gt;</ref><sp/>direct_contraction<sp/>=<sp/>g.template<sp/>einsum&lt;2&gt;(</highlight><highlight class="stringliteral">&quot;ijkl,kl-&gt;ij&quot;</highlight><highlight class="normal">,<sp/>D.<ref refid="class_g_q_c_p_1_1_simple1_d_m_1a4a9790b2d1ceb12a2fc3d62002923151" kindref="member">matrix</ref>());</highlight></codeline>
-<codeline lineno="732"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/>2.<sp/>-0.5<sp/>(mu<sp/>lambda|rho<sp/>nu)<sp/>P(lambda<sp/>rho).</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="733"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">Tensor&lt;Scalar, 2&gt;</ref><sp/>exchange_contraction<sp/>=<sp/>-0.5<sp/>*<sp/>g.template<sp/>einsum&lt;2&gt;(</highlight><highlight class="stringliteral">&quot;ijkl,kj-&gt;il&quot;</highlight><highlight class="normal">,<sp/>D.<ref refid="class_g_q_c_p_1_1_simple1_d_m_1a4a9790b2d1ceb12a2fc3d62002923151" kindref="member">matrix</ref>());</highlight></codeline>
-<codeline lineno="734"><highlight class="normal"></highlight></codeline>
-<codeline lineno="735"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>previous<sp/>contractions<sp/>are<sp/>Tensor&lt;Scalar,<sp/>2&gt;<sp/>instances.<sp/>In<sp/>order<sp/>to<sp/>calculate<sp/>the<sp/>total<sp/>G<sp/>matrix,<sp/>we<sp/>will<sp/>convert<sp/>them<sp/>back<sp/>into<sp/>GQCP::Matrix&lt;Scalar&gt;.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="736"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>G1<sp/>=<sp/>direct_contraction.<ref refid="class_g_q_c_p_1_1_tensor_1a0b8ef475882c562f666abfbe3701bcf4" kindref="member">asMatrix</ref>();</highlight></codeline>
-<codeline lineno="737"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>G2<sp/>=<sp/>exchange_contraction.<ref refid="class_g_q_c_p_1_1_tensor_1a0b8ef475882c562f666abfbe3701bcf4" kindref="member">asMatrix</ref>();</highlight></codeline>
-<codeline lineno="738"><highlight class="normal"></highlight></codeline>
-<codeline lineno="739"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_r_s_q_one_electron_operator" kindref="compound">ScalarRSQOneElectronOperator&lt;Scalar&gt;</ref><sp/>{sq_hamiltonian.<ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a572840d48ec7a3a022cd1d433f3ad972" kindref="member">core</ref>().parameters()<sp/>+<sp/>G1<sp/>+<sp/>G2};</highlight></codeline>
-<codeline lineno="740"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="722" refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a33d551f997011451c4147505aab539fb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_orbital2_d_m" kindref="compound">Orbital2DM&lt;Scalar&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a33d551f997011451c4147505aab539fb" kindref="member">calculateScalarBasis2DM</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_r_transformation" kindref="compound">RTransformation&lt;Scalar&gt;</ref>&amp;<sp/>C,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>N)<sp/>{</highlight></codeline>
+<codeline lineno="723"><highlight class="normal"></highlight></codeline>
+<codeline lineno="724"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>K<sp/>=<sp/>C.<ref refid="class_g_q_c_p_1_1_simple_transformation_1a2bf93e827850f7ccebcd64af4999abb4" kindref="member">numberOfOrbitals</ref>();</highlight></codeline>
+<codeline lineno="725"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>d_orthonormal<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a5267a344a0fea282ccfa8e2c85c43a9e" kindref="member">RHF&lt;Scalar&gt;::calculateOrthonormalBasis2DM</ref>(K,<sp/>N);</highlight></codeline>
+<codeline lineno="726"><highlight class="normal"></highlight></codeline>
+<codeline lineno="727"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Transform<sp/>the<sp/>1-DM<sp/>in<sp/>an<sp/>orthonormal<sp/>basis<sp/>to<sp/>the<sp/>underlying<sp/>scalar<sp/>basis.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="728"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>d_orthonormal.transformed(C.<ref refid="class_g_q_c_p_1_1_simple_transformation_1a5f36fc890460cc7c7a64eee376261c54" kindref="member">inverse</ref>());</highlight></codeline>
+<codeline lineno="729"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="730"><highlight class="normal"></highlight></codeline>
+<codeline lineno="731"><highlight class="normal"></highlight></codeline>
+<codeline lineno="735" refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a2d963d84b14d257696ca0c81ea23430a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_orbital2_d_m" kindref="compound">Orbital2DM&lt;Scalar&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a2d963d84b14d257696ca0c81ea23430a" kindref="member">calculateScalarBasis2DM</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="736"><highlight class="normal"></highlight></codeline>
+<codeline lineno="737"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>N<sp/>=<sp/>2<sp/>*<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a95a8eb19e2eaa1f4d590341a4ea2d5c1" kindref="member">numberOfElectronPairs</ref>();</highlight></codeline>
+<codeline lineno="738"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a2d963d84b14d257696ca0c81ea23430a" kindref="member">RHF&lt;Scalar&gt;::calculateScalarBasis2DM</ref>(this-&gt;<ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a217635937b947b7a9b0c4454e1e539be" kindref="member">expansion</ref>(),<sp/>N);</highlight></codeline>
+<codeline lineno="739"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="740"><highlight class="normal"></highlight></codeline>
 <codeline lineno="741"><highlight class="normal"></highlight></codeline>
-<codeline lineno="742"><highlight class="normal"></highlight></codeline>
-<codeline lineno="743"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="744"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>Orbital<sp/>indices</highlight></codeline>
-<codeline lineno="745"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="746"><highlight class="normal"></highlight></codeline>
-<codeline lineno="747"><highlight class="normal"></highlight></codeline>
-<codeline lineno="753" refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adf6f1eeae05228ba3eff7d929b15ef1b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adf6f1eeae05228ba3eff7d929b15ef1b" kindref="member">homoIndex</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>N)<sp/>{</highlight></codeline>
+<codeline lineno="750" refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1ad75543a8ad881961c9d40ad9d9fdb24a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_r_s_q_one_electron_operator" kindref="compound">ScalarRSQOneElectronOperator&lt;Scalar&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1ad75543a8ad881961c9d40ad9d9fdb24a" kindref="member">calculateScalarBasisFockMatrix</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_orbital1_d_m" kindref="compound">Orbital1DM&lt;Scalar&gt;</ref>&amp;<sp/>D,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_s_q_hamiltonian" kindref="compound">RSQHamiltonian&lt;Scalar&gt;</ref>&amp;<sp/>sq_hamiltonian)<sp/>{</highlight></codeline>
+<codeline lineno="751"><highlight class="normal"></highlight></codeline>
+<codeline lineno="752"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Get<sp/>the<sp/>two-electron<sp/>parameters.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="753"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>g<sp/>=<sp/>sq_hamiltonian.<ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a7a542abe14c404fc287b64da5e6dc1d9" kindref="member">twoElectron</ref>().parameters();</highlight></codeline>
 <codeline lineno="754"><highlight class="normal"></highlight></codeline>
-<codeline lineno="755"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(N<sp/>%<sp/>2<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
-<codeline lineno="756"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(</highlight><highlight class="stringliteral">&quot;QCModel::RHF::homoIndex(const<sp/>size_t):<sp/>Can&apos;t<sp/>calculate<sp/>the<sp/>RHF<sp/>HOMO<sp/>index<sp/>for<sp/>an<sp/>odd<sp/>number<sp/>of<sp/>electrons<sp/>N.&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="757"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="758"><highlight class="normal"></highlight></codeline>
-<codeline lineno="759"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>N<sp/>/<sp/>2<sp/>-<sp/>1;<sp/><sp/></highlight><highlight class="comment">//<sp/>We<sp/>need<sp/>to<sp/>subtract<sp/>1<sp/>because<sp/>computer<sp/>indices<sp/>start<sp/>at<sp/>0.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="760"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="761"><highlight class="normal"></highlight></codeline>
-<codeline lineno="762"><highlight class="normal"></highlight></codeline>
-<codeline lineno="768" refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a38587786222db0bef4a25002a438461b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a38587786222db0bef4a25002a438461b" kindref="member">homoIndex</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a38587786222db0bef4a25002a438461b" kindref="member">RHF&lt;Scalar&gt;::homoIndex</ref>(this-&gt;<ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a25d36506d48fd81a791814c1688a105a" kindref="member">numberOfElectrons</ref>());<sp/>}</highlight></codeline>
-<codeline lineno="769"><highlight class="normal"></highlight></codeline>
-<codeline lineno="770"><highlight class="normal"></highlight></codeline>
-<codeline lineno="777" refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a81c4ee2f8b91cc790a292c4b14846aae" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a81c4ee2f8b91cc790a292c4b14846aae" kindref="member">lumoIndex</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>K,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>N)<sp/>{</highlight></codeline>
-<codeline lineno="778"><highlight class="normal"></highlight></codeline>
-<codeline lineno="779"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(N<sp/>&gt;=<sp/>2<sp/>*<sp/>K)<sp/>{</highlight></codeline>
-<codeline lineno="780"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(</highlight><highlight class="stringliteral">&quot;QCModel::RHF::lumoIndex(const<sp/>size_t,<sp/>constsize_t):<sp/>There<sp/>is<sp/>no<sp/>LUMO<sp/>for<sp/>the<sp/>given<sp/>number<sp/>of<sp/>electrons<sp/>N<sp/>and<sp/>spatial<sp/>orbitals<sp/>K&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="781"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="782"><highlight class="normal"></highlight></codeline>
-<codeline lineno="783"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a38587786222db0bef4a25002a438461b" kindref="member">RHF&lt;Scalar&gt;::homoIndex</ref>(N)<sp/>+<sp/>1;</highlight></codeline>
-<codeline lineno="784"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="785"><highlight class="normal"></highlight></codeline>
-<codeline lineno="786"><highlight class="normal"></highlight></codeline>
-<codeline lineno="793" refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a589da15230f06ea419e431056730597d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a589da15230f06ea419e431056730597d" kindref="member">lumoIndex</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a589da15230f06ea419e431056730597d" kindref="member">RHF&lt;Scalar&gt;::lumoIndex</ref>(this-&gt;<ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a8427492486742da6035bfd6525c3ce22" kindref="member">numberOfSpatialOrbitals</ref>(),<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a25d36506d48fd81a791814c1688a105a" kindref="member">numberOfElectrons</ref>());<sp/>}</highlight></codeline>
-<codeline lineno="794"><highlight class="normal"></highlight></codeline>
+<codeline lineno="755"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>To<sp/>calculate<sp/>G,<sp/>we<sp/>must<sp/>perform<sp/>two<sp/>double<sp/>contractions:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="756"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/>1.<sp/>(mu<sp/>nu|rho<sp/>lambda)<sp/>P(lambda<sp/>rho),</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="757"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">Tensor&lt;Scalar, 2&gt;</ref><sp/>direct_contraction<sp/>=<sp/>g.template<sp/>einsum&lt;2&gt;(</highlight><highlight class="stringliteral">&quot;ijkl,kl-&gt;ij&quot;</highlight><highlight class="normal">,<sp/>D.<ref refid="class_g_q_c_p_1_1_simple1_d_m_1a4a9790b2d1ceb12a2fc3d62002923151" kindref="member">matrix</ref>());</highlight></codeline>
+<codeline lineno="758"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/>2.<sp/>-0.5<sp/>(mu<sp/>lambda|rho<sp/>nu)<sp/>P(lambda<sp/>rho).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="759"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">Tensor&lt;Scalar, 2&gt;</ref><sp/>exchange_contraction<sp/>=<sp/>-0.5<sp/>*<sp/>g.template<sp/>einsum&lt;2&gt;(</highlight><highlight class="stringliteral">&quot;ijkl,kj-&gt;il&quot;</highlight><highlight class="normal">,<sp/>D.<ref refid="class_g_q_c_p_1_1_simple1_d_m_1a4a9790b2d1ceb12a2fc3d62002923151" kindref="member">matrix</ref>());</highlight></codeline>
+<codeline lineno="760"><highlight class="normal"></highlight></codeline>
+<codeline lineno="761"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>previous<sp/>contractions<sp/>are<sp/>Tensor&lt;Scalar,<sp/>2&gt;<sp/>instances.<sp/>In<sp/>order<sp/>to<sp/>calculate<sp/>the<sp/>total<sp/>G<sp/>matrix,<sp/>we<sp/>will<sp/>convert<sp/>them<sp/>back<sp/>into<sp/>GQCP::Matrix&lt;Scalar&gt;.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="762"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>G1<sp/>=<sp/>direct_contraction.<ref refid="class_g_q_c_p_1_1_tensor_1a0b8ef475882c562f666abfbe3701bcf4" kindref="member">asMatrix</ref>();</highlight></codeline>
+<codeline lineno="763"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>G2<sp/>=<sp/>exchange_contraction.<ref refid="class_g_q_c_p_1_1_tensor_1a0b8ef475882c562f666abfbe3701bcf4" kindref="member">asMatrix</ref>();</highlight></codeline>
+<codeline lineno="764"><highlight class="normal"></highlight></codeline>
+<codeline lineno="765"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_r_s_q_one_electron_operator" kindref="compound">ScalarRSQOneElectronOperator&lt;Scalar&gt;</ref><sp/>{sq_hamiltonian.<ref refid="class_g_q_c_p_1_1_s_q_hamiltonian_1a572840d48ec7a3a022cd1d433f3ad972" kindref="member">core</ref>().parameters()<sp/>+<sp/>G1<sp/>+<sp/>G2};</highlight></codeline>
+<codeline lineno="766"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="767"><highlight class="normal"></highlight></codeline>
+<codeline lineno="768"><highlight class="normal"></highlight></codeline>
+<codeline lineno="769"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="770"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>Orbital<sp/>indices</highlight></codeline>
+<codeline lineno="771"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="772"><highlight class="normal"></highlight></codeline>
+<codeline lineno="773"><highlight class="normal"></highlight></codeline>
+<codeline lineno="779" refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adf6f1eeae05228ba3eff7d929b15ef1b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adf6f1eeae05228ba3eff7d929b15ef1b" kindref="member">homoIndex</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>N)<sp/>{</highlight></codeline>
+<codeline lineno="780"><highlight class="normal"></highlight></codeline>
+<codeline lineno="781"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(N<sp/>%<sp/>2<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="782"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(</highlight><highlight class="stringliteral">&quot;QCModel::RHF::homoIndex(const<sp/>size_t):<sp/>Can&apos;t<sp/>calculate<sp/>the<sp/>RHF<sp/>HOMO<sp/>index<sp/>for<sp/>an<sp/>odd<sp/>number<sp/>of<sp/>electrons<sp/>N.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="783"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="784"><highlight class="normal"></highlight></codeline>
+<codeline lineno="785"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>N<sp/>/<sp/>2<sp/>-<sp/>1;<sp/><sp/></highlight><highlight class="comment">//<sp/>We<sp/>need<sp/>to<sp/>subtract<sp/>1<sp/>because<sp/>computer<sp/>indices<sp/>start<sp/>at<sp/>0.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="786"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="787"><highlight class="normal"></highlight></codeline>
+<codeline lineno="788"><highlight class="normal"></highlight></codeline>
+<codeline lineno="794" refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a38587786222db0bef4a25002a438461b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a38587786222db0bef4a25002a438461b" kindref="member">homoIndex</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a38587786222db0bef4a25002a438461b" kindref="member">RHF&lt;Scalar&gt;::homoIndex</ref>(this-&gt;<ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a25d36506d48fd81a791814c1688a105a" kindref="member">numberOfElectrons</ref>());<sp/>}</highlight></codeline>
 <codeline lineno="795"><highlight class="normal"></highlight></codeline>
-<codeline lineno="802" refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a5ff28a68b31046759b783da1725872e7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a5ff28a68b31046759b783da1725872e7" kindref="member">orbitalSpace</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>K,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>N_P)<sp/>{</highlight></codeline>
-<codeline lineno="803"><highlight class="normal"></highlight></codeline>
-<codeline lineno="804"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_orbital_space_1a22c967bc1d33a75341c86b1ca52b0532" kindref="member">OrbitalSpace::Implicit</ref>({{<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a" kindref="member">OccupationType::k_occupied</ref>,<sp/>N_P},<sp/>{<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e" kindref="member">OccupationType::k_virtual</ref>,<sp/>K<sp/>-<sp/>N_P}});</highlight></codeline>
-<codeline lineno="805"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="806"><highlight class="normal"></highlight></codeline>
-<codeline lineno="807"><highlight class="normal"></highlight></codeline>
-<codeline lineno="811" refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1aeef840b524f4f1475542c2347d981d43" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1aeef840b524f4f1475542c2347d981d43" kindref="member">orbitalSpace</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1aeef840b524f4f1475542c2347d981d43" kindref="member">RHF&lt;Scalar&gt;::orbitalSpace</ref>(this-&gt;<ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a8427492486742da6035bfd6525c3ce22" kindref="member">numberOfSpatialOrbitals</ref>(),<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a95a8eb19e2eaa1f4d590341a4ea2d5c1" kindref="member">numberOfElectronPairs</ref>());<sp/>}</highlight></codeline>
+<codeline lineno="796"><highlight class="normal"></highlight></codeline>
+<codeline lineno="803" refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a81c4ee2f8b91cc790a292c4b14846aae" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a81c4ee2f8b91cc790a292c4b14846aae" kindref="member">lumoIndex</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>K,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>N)<sp/>{</highlight></codeline>
+<codeline lineno="804"><highlight class="normal"></highlight></codeline>
+<codeline lineno="805"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(N<sp/>&gt;=<sp/>2<sp/>*<sp/>K)<sp/>{</highlight></codeline>
+<codeline lineno="806"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(</highlight><highlight class="stringliteral">&quot;QCModel::RHF::lumoIndex(const<sp/>size_t,<sp/>constsize_t):<sp/>There<sp/>is<sp/>no<sp/>LUMO<sp/>for<sp/>the<sp/>given<sp/>number<sp/>of<sp/>electrons<sp/>N<sp/>and<sp/>spatial<sp/>orbitals<sp/>K&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="807"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="808"><highlight class="normal"></highlight></codeline>
+<codeline lineno="809"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a38587786222db0bef4a25002a438461b" kindref="member">RHF&lt;Scalar&gt;::homoIndex</ref>(N)<sp/>+<sp/>1;</highlight></codeline>
+<codeline lineno="810"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="811"><highlight class="normal"></highlight></codeline>
 <codeline lineno="812"><highlight class="normal"></highlight></codeline>
-<codeline lineno="813"><highlight class="normal"></highlight></codeline>
-<codeline lineno="814"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="815"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>General<sp/>information</highlight></codeline>
-<codeline lineno="816"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="817"><highlight class="normal"></highlight></codeline>
-<codeline lineno="821" refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a217635937b947b7a9b0c4454e1e539be" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_r_transformation" kindref="compound">RTransformation&lt;Scalar&gt;</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a217635937b947b7a9b0c4454e1e539be" kindref="member">expansion</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;C;<sp/>}</highlight></codeline>
-<codeline lineno="822"><highlight class="normal"></highlight></codeline>
-<codeline lineno="826" refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a95a8eb19e2eaa1f4d590341a4ea2d5c1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a95a8eb19e2eaa1f4d590341a4ea2d5c1" kindref="member">numberOfElectronPairs</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;N_P;<sp/>}</highlight></codeline>
-<codeline lineno="827"><highlight class="normal"></highlight></codeline>
-<codeline lineno="831" refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a25d36506d48fd81a791814c1688a105a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a25d36506d48fd81a791814c1688a105a" kindref="member">numberOfElectrons</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>2<sp/>*<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a95a8eb19e2eaa1f4d590341a4ea2d5c1" kindref="member">numberOfElectronPairs</ref>();<sp/>}</highlight></codeline>
+<codeline lineno="819" refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a589da15230f06ea419e431056730597d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a589da15230f06ea419e431056730597d" kindref="member">lumoIndex</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a589da15230f06ea419e431056730597d" kindref="member">RHF&lt;Scalar&gt;::lumoIndex</ref>(this-&gt;<ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a8427492486742da6035bfd6525c3ce22" kindref="member">numberOfSpatialOrbitals</ref>(),<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a25d36506d48fd81a791814c1688a105a" kindref="member">numberOfElectrons</ref>());<sp/>}</highlight></codeline>
+<codeline lineno="820"><highlight class="normal"></highlight></codeline>
+<codeline lineno="821"><highlight class="normal"></highlight></codeline>
+<codeline lineno="828" refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a5ff28a68b31046759b783da1725872e7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a5ff28a68b31046759b783da1725872e7" kindref="member">orbitalSpace</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>K,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>N_P)<sp/>{</highlight></codeline>
+<codeline lineno="829"><highlight class="normal"></highlight></codeline>
+<codeline lineno="830"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_orbital_space_1a22c967bc1d33a75341c86b1ca52b0532" kindref="member">OrbitalSpace::Implicit</ref>({{<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a" kindref="member">OccupationType::k_occupied</ref>,<sp/>N_P},<sp/>{<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e" kindref="member">OccupationType::k_virtual</ref>,<sp/>K<sp/>-<sp/>N_P}});</highlight></codeline>
+<codeline lineno="831"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="832"><highlight class="normal"></highlight></codeline>
-<codeline lineno="838" refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a99ec917c56a86b39b21e64a5296dfec3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a99ec917c56a86b39b21e64a5296dfec3" kindref="member">numberOfElectrons</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref><sp/>sigma)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a95a8eb19e2eaa1f4d590341a4ea2d5c1" kindref="member">numberOfElectronPairs</ref>();<sp/>}</highlight></codeline>
+<codeline lineno="833"><highlight class="normal"></highlight></codeline>
+<codeline lineno="837" refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1aeef840b524f4f1475542c2347d981d43" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1aeef840b524f4f1475542c2347d981d43" kindref="member">orbitalSpace</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1aeef840b524f4f1475542c2347d981d43" kindref="member">RHF&lt;Scalar&gt;::orbitalSpace</ref>(this-&gt;<ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a8427492486742da6035bfd6525c3ce22" kindref="member">numberOfSpatialOrbitals</ref>(),<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a95a8eb19e2eaa1f4d590341a4ea2d5c1" kindref="member">numberOfElectronPairs</ref>());<sp/>}</highlight></codeline>
+<codeline lineno="838"><highlight class="normal"></highlight></codeline>
 <codeline lineno="839"><highlight class="normal"></highlight></codeline>
-<codeline lineno="843" refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a8427492486742da6035bfd6525c3ce22" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a8427492486742da6035bfd6525c3ce22" kindref="member">numberOfSpatialOrbitals</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a217635937b947b7a9b0c4454e1e539be" kindref="member">expansion</ref>().<ref refid="class_g_q_c_p_1_1_simple_transformation_1a2bf93e827850f7ccebcd64af4999abb4" kindref="member">numberOfOrbitals</ref>();<sp/>}</highlight></codeline>
-<codeline lineno="844"><highlight class="normal"></highlight></codeline>
-<codeline lineno="845"><highlight class="normal"></highlight></codeline>
-<codeline lineno="846"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="847"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>Response<sp/>forces</highlight></codeline>
-<codeline lineno="848"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="849"><highlight class="normal"></highlight></codeline>
-<codeline lineno="857"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Z<sp/>=<sp/>Scalar&gt;</highlight></codeline>
-<codeline lineno="858" refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a4428d799512389194d1cffe13e2f38a8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t&lt;std::is_same&lt;Z, double&gt;::value</ref>,<sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix&lt;complex, Dynamic, 3&gt;</ref>&gt;<sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a4428d799512389194d1cffe13e2f38a8" kindref="member">calculateMagneticFieldResponseForce</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_r_s_q_one_electron_operator" kindref="compound">VectorRSQOneElectronOperator&lt;complex&gt;</ref>&amp;<sp/>L_op)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="859"><highlight class="normal"></highlight></codeline>
-<codeline lineno="860"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Prepare<sp/>some<sp/>variables.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="861"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>orbital_space<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1aeef840b524f4f1475542c2347d981d43" kindref="member">orbitalSpace</ref>();</highlight></codeline>
-<codeline lineno="862"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>L<sp/>=<sp/>L_op.<ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a885a541ab3a7bbeb94eb1271ffe3bf02" kindref="member">allParameters</ref>();</highlight></codeline>
-<codeline lineno="863"><highlight class="normal"></highlight></codeline>
-<codeline lineno="864"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Every<sp/>column<sp/>of<sp/>the<sp/>matrix<sp/>`F_kappa_B`<sp/>contains<sp/>the<sp/>response<sp/>force<sp/>along<sp/>the<sp/>given<sp/>component:<sp/>x,<sp/>y,<sp/>z.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="865"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>dim<sp/>=<sp/>orbital_space.numberOfExcitations(<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a" kindref="member">OccupationType::k_occupied</ref>,<sp/><ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e" kindref="member">OccupationType::k_virtual</ref>);</highlight></codeline>
-<codeline lineno="866"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix&lt;complex, Dynamic, 3&gt;</ref><sp/>F_kappa_B<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix&lt;complex, Dynamic, 3&gt;::Zero</ref>(dim,<sp/>3);</highlight></codeline>
-<codeline lineno="867"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>m<sp/>=<sp/>0;<sp/>m<sp/>&lt;<sp/>3;<sp/>m++)<sp/>{<sp/><sp/></highlight><highlight class="comment">//<sp/>`m`<sp/>labels<sp/>a<sp/>Cartesian<sp/>direction.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="868"><highlight class="normal"></highlight></codeline>
-<codeline lineno="869"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Initialize<sp/>a<sp/>virtual-occupied<sp/>object<sp/>for<sp/>every<sp/>component.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="870"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>F_kappa_B_m<sp/>=<sp/>orbital_space.template<sp/>initializeRepresentableObjectFor&lt;complex&gt;(<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e" kindref="member">OccupationType::k_virtual</ref>,<sp/><ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a" kindref="member">OccupationType::k_occupied</ref>);</highlight></codeline>
+<codeline lineno="840"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="841"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>General<sp/>information</highlight></codeline>
+<codeline lineno="842"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="843"><highlight class="normal"></highlight></codeline>
+<codeline lineno="847" refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a217635937b947b7a9b0c4454e1e539be" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_r_transformation" kindref="compound">RTransformation&lt;Scalar&gt;</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a217635937b947b7a9b0c4454e1e539be" kindref="member">expansion</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;C;<sp/>}</highlight></codeline>
+<codeline lineno="848"><highlight class="normal"></highlight></codeline>
+<codeline lineno="852" refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a95a8eb19e2eaa1f4d590341a4ea2d5c1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a95a8eb19e2eaa1f4d590341a4ea2d5c1" kindref="member">numberOfElectronPairs</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;N_P;<sp/>}</highlight></codeline>
+<codeline lineno="853"><highlight class="normal"></highlight></codeline>
+<codeline lineno="857" refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a25d36506d48fd81a791814c1688a105a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a25d36506d48fd81a791814c1688a105a" kindref="member">numberOfElectrons</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>2<sp/>*<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a95a8eb19e2eaa1f4d590341a4ea2d5c1" kindref="member">numberOfElectronPairs</ref>();<sp/>}</highlight></codeline>
+<codeline lineno="858"><highlight class="normal"></highlight></codeline>
+<codeline lineno="864" refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a99ec917c56a86b39b21e64a5296dfec3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a99ec917c56a86b39b21e64a5296dfec3" kindref="member">numberOfElectrons</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref><sp/>sigma)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a95a8eb19e2eaa1f4d590341a4ea2d5c1" kindref="member">numberOfElectronPairs</ref>();<sp/>}</highlight></codeline>
+<codeline lineno="865"><highlight class="normal"></highlight></codeline>
+<codeline lineno="869" refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a8427492486742da6035bfd6525c3ce22" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a8427492486742da6035bfd6525c3ce22" kindref="member">numberOfSpatialOrbitals</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a217635937b947b7a9b0c4454e1e539be" kindref="member">expansion</ref>().<ref refid="class_g_q_c_p_1_1_simple_transformation_1a2bf93e827850f7ccebcd64af4999abb4" kindref="member">numberOfOrbitals</ref>();<sp/>}</highlight></codeline>
+<codeline lineno="870"><highlight class="normal"></highlight></codeline>
 <codeline lineno="871"><highlight class="normal"></highlight></codeline>
-<codeline lineno="872"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>a<sp/>:<sp/>orbital_space.indices(<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e" kindref="member">OccupationType::k_virtual</ref>))<sp/>{</highlight></codeline>
-<codeline lineno="873"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>i<sp/>:<sp/>orbital_space.indices(<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a" kindref="member">OccupationType::k_occupied</ref>))<sp/>{</highlight></codeline>
-<codeline lineno="874"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>F_kappa_B_m(a,<sp/>i)<sp/>=<sp/>-2.0<sp/>*<sp/>L[m](i,<sp/>a);</highlight></codeline>
-<codeline lineno="875"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="876"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="877"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>F_kappa_B.col(m)<sp/>=<sp/>F_kappa_B_m.asVector();</highlight></codeline>
-<codeline lineno="878"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="879"><highlight class="normal"></highlight></codeline>
-<codeline lineno="880"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>F_kappa_B;</highlight></codeline>
-<codeline lineno="881"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="882"><highlight class="normal"></highlight></codeline>
-<codeline lineno="883"><highlight class="normal"></highlight></codeline>
-<codeline lineno="891"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Z<sp/>=<sp/>Scalar&gt;</highlight></codeline>
-<codeline lineno="892" refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a758ea83ccc7a8f3d6aab46b7f96aaa5b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t&lt;std::is_same&lt;Z, double&gt;::value</ref>,<sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix&lt;complex, Dynamic, 6&gt;</ref>&gt;<sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a758ea83ccc7a8f3d6aab46b7f96aaa5b" kindref="member">calculateGaugeOriginTranslationResponseForce</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_r_s_q_one_electron_operator" kindref="compound">VectorRSQOneElectronOperator&lt;complex&gt;</ref>&amp;<sp/>p_op)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="893"><highlight class="normal"></highlight></codeline>
-<codeline lineno="894"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Prepare<sp/>some<sp/>variables.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="895"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_levi_civita_tensor" kindref="compound">LeviCivitaTensor&lt;double&gt;</ref><sp/>epsilon<sp/>{};</highlight></codeline>
-<codeline lineno="896"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>p<sp/>=<sp/>p_op.<ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a885a541ab3a7bbeb94eb1271ffe3bf02" kindref="member">allParameters</ref>();</highlight></codeline>
-<codeline lineno="897"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>orbital_space<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1aeef840b524f4f1475542c2347d981d43" kindref="member">orbitalSpace</ref>();</highlight></codeline>
-<codeline lineno="898"><highlight class="normal"></highlight></codeline>
-<codeline lineno="899"><highlight class="normal"></highlight></codeline>
-<codeline lineno="900"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Every<sp/>column<sp/>of<sp/>the<sp/>matrix<sp/>`F_kappa_G_mn`<sp/>contains<sp/>the<sp/>response<sp/>force<sp/>along<sp/>the<sp/>given<sp/>component:<sp/>xy,<sp/>xz,<sp/>yx,<sp/>yz,<sp/>zx,<sp/>zy.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="901"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>dim<sp/>=<sp/>orbital_space.numberOfExcitations(<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a" kindref="member">OccupationType::k_occupied</ref>,<sp/><ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e" kindref="member">OccupationType::k_virtual</ref>);</highlight></codeline>
-<codeline lineno="902"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix&lt;complex, Dynamic, 6&gt;</ref><sp/>F_kappa_G<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix&lt;complex, Dynamic, 6&gt;::Zero</ref>(dim,<sp/>6);</highlight></codeline>
-<codeline lineno="903"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>column_index<sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="904"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>m<sp/>=<sp/>0;<sp/>m<sp/>&lt;<sp/>3;<sp/>m++)<sp/>{<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>`m`<sp/>labels<sp/>a<sp/>Cartesian<sp/>direction.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="905"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>n<sp/>=<sp/>0;<sp/>n<sp/>&lt;<sp/>3;<sp/>n++)<sp/>{<sp/><sp/></highlight><highlight class="comment">//<sp/>`n`<sp/>labels<sp/>another<sp/>Cartesian<sp/>direction.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="906"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(m<sp/>==<sp/>n)<sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Skip<sp/>the<sp/>diagonal<sp/>components:<sp/>xx,<sp/>yy,<sp/>zz.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="907"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="908"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="872"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="873"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>Response<sp/>forces</highlight></codeline>
+<codeline lineno="874"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="875"><highlight class="normal"></highlight></codeline>
+<codeline lineno="883"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Z<sp/>=<sp/>Scalar&gt;</highlight></codeline>
+<codeline lineno="884" refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a4428d799512389194d1cffe13e2f38a8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t&lt;std::is_same&lt;Z, double&gt;::value</ref>,<sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix&lt;complex, Dynamic, 3&gt;</ref>&gt;<sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a4428d799512389194d1cffe13e2f38a8" kindref="member">calculateMagneticFieldResponseForce</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_r_s_q_one_electron_operator" kindref="compound">VectorRSQOneElectronOperator&lt;complex&gt;</ref>&amp;<sp/>L_op)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="885"><highlight class="normal"></highlight></codeline>
+<codeline lineno="886"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Prepare<sp/>some<sp/>variables.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="887"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>orbital_space<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1aeef840b524f4f1475542c2347d981d43" kindref="member">orbitalSpace</ref>();</highlight></codeline>
+<codeline lineno="888"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>L<sp/>=<sp/>L_op.<ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a885a541ab3a7bbeb94eb1271ffe3bf02" kindref="member">allParameters</ref>();</highlight></codeline>
+<codeline lineno="889"><highlight class="normal"></highlight></codeline>
+<codeline lineno="890"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Every<sp/>column<sp/>of<sp/>the<sp/>matrix<sp/>`F_kappa_B`<sp/>contains<sp/>the<sp/>response<sp/>force<sp/>along<sp/>the<sp/>given<sp/>component:<sp/>x,<sp/>y,<sp/>z.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="891"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>dim<sp/>=<sp/>orbital_space.numberOfExcitations(<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a" kindref="member">OccupationType::k_occupied</ref>,<sp/><ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e" kindref="member">OccupationType::k_virtual</ref>);</highlight></codeline>
+<codeline lineno="892"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix&lt;complex, Dynamic, 3&gt;</ref><sp/>F_kappa_B<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix&lt;complex, Dynamic, 3&gt;::Zero</ref>(dim,<sp/>3);</highlight></codeline>
+<codeline lineno="893"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>m<sp/>=<sp/>0;<sp/>m<sp/>&lt;<sp/>3;<sp/>m++)<sp/>{<sp/><sp/></highlight><highlight class="comment">//<sp/>`m`<sp/>labels<sp/>a<sp/>Cartesian<sp/>direction.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="894"><highlight class="normal"></highlight></codeline>
+<codeline lineno="895"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Initialize<sp/>a<sp/>virtual-occupied<sp/>object<sp/>for<sp/>every<sp/>component.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="896"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>F_kappa_B_m<sp/>=<sp/>orbital_space.template<sp/>initializeRepresentableObjectFor&lt;complex&gt;(<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e" kindref="member">OccupationType::k_virtual</ref>,<sp/><ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a" kindref="member">OccupationType::k_occupied</ref>);</highlight></codeline>
+<codeline lineno="897"><highlight class="normal"></highlight></codeline>
+<codeline lineno="898"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>a<sp/>:<sp/>orbital_space.indices(<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e" kindref="member">OccupationType::k_virtual</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="899"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>i<sp/>:<sp/>orbital_space.indices(<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a" kindref="member">OccupationType::k_occupied</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="900"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>F_kappa_B_m(a,<sp/>i)<sp/>=<sp/>-2.0<sp/>*<sp/>L[m](i,<sp/>a);</highlight></codeline>
+<codeline lineno="901"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="902"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="903"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>F_kappa_B.col(m)<sp/>=<sp/>F_kappa_B_m.asVector();</highlight></codeline>
+<codeline lineno="904"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="905"><highlight class="normal"></highlight></codeline>
+<codeline lineno="906"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>F_kappa_B;</highlight></codeline>
+<codeline lineno="907"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="908"><highlight class="normal"></highlight></codeline>
 <codeline lineno="909"><highlight class="normal"></highlight></codeline>
-<codeline lineno="910"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Initialize<sp/>a<sp/>virtual-occupied<sp/>object<sp/>for<sp/>every<sp/>component.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="911"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>F_kappa_G_mn<sp/>=<sp/>orbital_space.template<sp/>initializeRepresentableObjectFor&lt;complex&gt;(<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e" kindref="member">OccupationType::k_virtual</ref>,<sp/><ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a" kindref="member">OccupationType::k_occupied</ref>);</highlight></codeline>
-<codeline lineno="912"><highlight class="normal"></highlight></codeline>
-<codeline lineno="913"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>a<sp/>:<sp/>orbital_space.indices(<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e" kindref="member">GQCP::OccupationType::k_virtual</ref>))<sp/>{</highlight></codeline>
-<codeline lineno="914"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>i<sp/>:<sp/>orbital_space.indices(<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a" kindref="member">GQCP::OccupationType::k_occupied</ref>))<sp/>{</highlight></codeline>
-<codeline lineno="915"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>f<sp/>=<sp/>epsilon.nonZeroIndex(m,<sp/>n);</highlight></codeline>
-<codeline lineno="916"><highlight class="normal"></highlight></codeline>
-<codeline lineno="917"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>F_kappa_G_mn(a,<sp/>i)<sp/>=<sp/>2.0<sp/>*<sp/>epsilon(m,<sp/>n,<sp/>f)<sp/>*<sp/>p[f](i,<sp/>a);</highlight></codeline>
-<codeline lineno="918"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="919"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="920"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>F_kappa_G.col(column_index)<sp/>=<sp/>F_kappa_G_mn.asVector();</highlight></codeline>
-<codeline lineno="921"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>column_index++;</highlight></codeline>
-<codeline lineno="922"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="923"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="917"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Z<sp/>=<sp/>Scalar&gt;</highlight></codeline>
+<codeline lineno="918" refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a758ea83ccc7a8f3d6aab46b7f96aaa5b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t&lt;std::is_same&lt;Z, double&gt;::value</ref>,<sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix&lt;complex, Dynamic, 6&gt;</ref>&gt;<sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a758ea83ccc7a8f3d6aab46b7f96aaa5b" kindref="member">calculateGaugeOriginTranslationResponseForce</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_r_s_q_one_electron_operator" kindref="compound">VectorRSQOneElectronOperator&lt;complex&gt;</ref>&amp;<sp/>p_op)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="919"><highlight class="normal"></highlight></codeline>
+<codeline lineno="920"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Prepare<sp/>some<sp/>variables.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="921"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_levi_civita_tensor" kindref="compound">LeviCivitaTensor&lt;double&gt;</ref><sp/>epsilon<sp/>{};</highlight></codeline>
+<codeline lineno="922"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>p<sp/>=<sp/>p_op.<ref refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a885a541ab3a7bbeb94eb1271ffe3bf02" kindref="member">allParameters</ref>();</highlight></codeline>
+<codeline lineno="923"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>orbital_space<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1aeef840b524f4f1475542c2347d981d43" kindref="member">orbitalSpace</ref>();</highlight></codeline>
 <codeline lineno="924"><highlight class="normal"></highlight></codeline>
-<codeline lineno="925"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>F_kappa_G;</highlight></codeline>
-<codeline lineno="926"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="927"><highlight class="normal"></highlight></codeline>
-<codeline lineno="928"><highlight class="normal"></highlight></codeline>
-<codeline lineno="929"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="930"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>Response<sp/>properties</highlight></codeline>
-<codeline lineno="931"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="932"><highlight class="normal"></highlight></codeline>
-<codeline lineno="944" refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a5bb95a374a0915a0bb4bb5a04f21b1a1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix&lt;complex, 3, 3&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a5bb95a374a0915a0bb4bb5a04f21b1a1" kindref="member">calculateIpsocentricMagneticInducibility</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Vector&lt;double, 3&gt;</ref>&amp;<sp/>r,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref>&amp;<sp/>orbital_space,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix&lt;complex, Dynamic, 3&gt;</ref>&amp;<sp/>x_B,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix&lt;complex, Dynamic, 6&gt;</ref>&amp;<sp/>x_G,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_evaluable_r_s_q_one_electron_operator" kindref="compound">VectorEvaluableRSQOneElectronOperator</ref>&lt;<ref refid="class_g_q_c_p_1_1_current_density_matrix_element" kindref="compound">CurrentDensityMatrixElement&lt;complex, CartesianGTO&gt;</ref>&gt;&amp;<sp/>j_op)<sp/>{</highlight></codeline>
-<codeline lineno="945"><highlight class="normal"></highlight></codeline>
-<codeline lineno="946"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_g_q_c_p_1_1literals" kindref="compound">GQCP::literals</ref>;</highlight></codeline>
-<codeline lineno="947"><highlight class="normal"></highlight></codeline>
-<codeline lineno="948"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Prepare<sp/>some<sp/>variables.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="949"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>j<sp/>=<sp/>j_op.allParameters();</highlight></codeline>
-<codeline lineno="950"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix&lt;complex, 3, 3&gt;</ref><sp/>J<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix&lt;complex, 3, 3&gt;::Zero</ref>();</highlight></codeline>
-<codeline lineno="951"><highlight class="normal"></highlight></codeline>
-<codeline lineno="952"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Loop<sp/>over<sp/>both<sp/>components<sp/>of<sp/>the<sp/>magnetic<sp/>inducibility.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="953"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>u<sp/>=<sp/>0;<sp/>u<sp/>&lt;<sp/>3;<sp/>u++)<sp/>{<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>`u`<sp/>loops<sp/>over<sp/>the<sp/>component<sp/>of<sp/>the<sp/>induced<sp/>current.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="954"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>m<sp/>=<sp/>0;<sp/>m<sp/>&lt;<sp/>3;<sp/>m++)<sp/>{<sp/><sp/></highlight><highlight class="comment">//<sp/>`m`<sp/>loops<sp/>over<sp/>the<sp/>component<sp/>of<sp/>the<sp/>applied<sp/>external<sp/>magnetic<sp/>field.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="955"><highlight class="normal"></highlight></codeline>
-<codeline lineno="956"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Initialize<sp/>a<sp/>more<sp/>useful<sp/>matrix<sp/>representation<sp/>of<sp/>the<sp/>linear<sp/>response<sp/>coefficients<sp/>related<sp/>to<sp/>the<sp/>magnetic<sp/>field<sp/>perturbation.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="957"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>x_m_matrix<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_matrix_1a6153bff8107862438160220961ed89ce" kindref="member">MatrixX&lt;complex&gt;::FromColumnMajorVector</ref>(x_B.col(m),<sp/>orbital_space.<ref refid="class_g_q_c_p_1_1_orbital_space_1a6749db783d556c8d21e52e2a72ea329f" kindref="member">numberOfOrbitals</ref>(<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e" kindref="member">OccupationType::k_virtual</ref>),<sp/>orbital_space.<ref refid="class_g_q_c_p_1_1_orbital_space_1a6749db783d556c8d21e52e2a72ea329f" kindref="member">numberOfOrbitals</ref>(<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a" kindref="member">OccupationType::k_occupied</ref>));</highlight></codeline>
-<codeline lineno="958"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>x_m<sp/>=<sp/>orbital_space.<ref refid="class_g_q_c_p_1_1_orbital_space_1acb89ad14bcf5209d3a865bd3f4fa459d" kindref="member">createRepresentableObjectFor</ref>&lt;<ref refid="namespace_g_q_c_p_1a1ffc21109e62d09d3485c62e03677dfd" kindref="member">complex</ref>&gt;(<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e" kindref="member">OccupationType::k_virtual</ref>,<sp/><ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a" kindref="member">OccupationType::k_occupied</ref>,<sp/>x_m_matrix);</highlight></codeline>
-<codeline lineno="959"><highlight class="normal"></highlight></codeline>
-<codeline lineno="960"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>a<sp/>:<sp/>orbital_space.<ref refid="class_g_q_c_p_1_1_orbital_space_1ade818f11cda64633a2d021d2aa7b8239" kindref="member">indices</ref>(<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e" kindref="member">OccupationType::k_virtual</ref>))<sp/>{</highlight></codeline>
-<codeline lineno="961"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>i<sp/>:<sp/>orbital_space.<ref refid="class_g_q_c_p_1_1_orbital_space_1ade818f11cda64633a2d021d2aa7b8239" kindref="member">indices</ref>(<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a" kindref="member">OccupationType::k_occupied</ref>))<sp/>{</highlight></codeline>
-<codeline lineno="962"><highlight class="normal"></highlight></codeline>
-<codeline lineno="963"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Determine<sp/>the<sp/>left<sp/>factor,<sp/>i.e.<sp/>the<sp/>contribution<sp/>from<sp/>the<sp/>field-free<sp/>current<sp/>density<sp/>matrix<sp/>elements.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="964"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1a1ffc21109e62d09d3485c62e03677dfd" kindref="member">complex</ref><sp/>left_value<sp/>=<sp/>2.0_ii<sp/>*<sp/>j[u](i,<sp/>a)(r);</highlight></codeline>
-<codeline lineno="965"><highlight class="normal"></highlight></codeline>
-<codeline lineno="966"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Determine<sp/>the<sp/>right<sp/>factor,<sp/>i.e.<sp/>the<sp/>contribution<sp/>from<sp/>the<sp/>linear<sp/>response<sp/>coefficients.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="967"><highlight class="normal"></highlight></codeline>
-<codeline lineno="968"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>1.<sp/>The<sp/>linear<sp/>response<sp/>coefficient<sp/>related<sp/>to<sp/>the<sp/>magnetic<sp/>field<sp/>perturbation.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="969"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1a1ffc21109e62d09d3485c62e03677dfd" kindref="member">complex</ref><sp/>right_value<sp/>=<sp/>-1.0_ii<sp/>*<sp/>x_m(a,<sp/>i);</highlight></codeline>
-<codeline lineno="970"><highlight class="normal"></highlight></codeline>
-<codeline lineno="971"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>2.<sp/>The<sp/>linear<sp/>response<sp/>coefficient<sp/>related<sp/>to<sp/>the<sp/>gauge<sp/>origin<sp/>translation<sp/>perturbation.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="972"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>n<sp/>=<sp/>0;<sp/>n<sp/>&lt;<sp/>3;<sp/>n++)<sp/>{</highlight></codeline>
+<codeline lineno="925"><highlight class="normal"></highlight></codeline>
+<codeline lineno="926"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Every<sp/>column<sp/>of<sp/>the<sp/>matrix<sp/>`F_kappa_G_mn`<sp/>contains<sp/>the<sp/>response<sp/>force<sp/>along<sp/>the<sp/>given<sp/>component:<sp/>xy,<sp/>xz,<sp/>yx,<sp/>yz,<sp/>zx,<sp/>zy.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="927"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>dim<sp/>=<sp/>orbital_space.numberOfExcitations(<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a" kindref="member">OccupationType::k_occupied</ref>,<sp/><ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e" kindref="member">OccupationType::k_virtual</ref>);</highlight></codeline>
+<codeline lineno="928"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix&lt;complex, Dynamic, 6&gt;</ref><sp/>F_kappa_G<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix&lt;complex, Dynamic, 6&gt;::Zero</ref>(dim,<sp/>6);</highlight></codeline>
+<codeline lineno="929"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>column_index<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="930"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>m<sp/>=<sp/>0;<sp/>m<sp/>&lt;<sp/>3;<sp/>m++)<sp/>{<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>`m`<sp/>labels<sp/>a<sp/>Cartesian<sp/>direction.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="931"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>n<sp/>=<sp/>0;<sp/>n<sp/>&lt;<sp/>3;<sp/>n++)<sp/>{<sp/><sp/></highlight><highlight class="comment">//<sp/>`n`<sp/>labels<sp/>another<sp/>Cartesian<sp/>direction.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="932"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(m<sp/>==<sp/>n)<sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Skip<sp/>the<sp/>diagonal<sp/>components:<sp/>xx,<sp/>yy,<sp/>zz.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="933"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="934"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="935"><highlight class="normal"></highlight></codeline>
+<codeline lineno="936"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Initialize<sp/>a<sp/>virtual-occupied<sp/>object<sp/>for<sp/>every<sp/>component.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="937"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>F_kappa_G_mn<sp/>=<sp/>orbital_space.template<sp/>initializeRepresentableObjectFor&lt;complex&gt;(<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e" kindref="member">OccupationType::k_virtual</ref>,<sp/><ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a" kindref="member">OccupationType::k_occupied</ref>);</highlight></codeline>
+<codeline lineno="938"><highlight class="normal"></highlight></codeline>
+<codeline lineno="939"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>a<sp/>:<sp/>orbital_space.indices(<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e" kindref="member">GQCP::OccupationType::k_virtual</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="940"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>i<sp/>:<sp/>orbital_space.indices(<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a" kindref="member">GQCP::OccupationType::k_occupied</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="941"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>f<sp/>=<sp/>epsilon.nonZeroIndex(m,<sp/>n);</highlight></codeline>
+<codeline lineno="942"><highlight class="normal"></highlight></codeline>
+<codeline lineno="943"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>F_kappa_G_mn(a,<sp/>i)<sp/>=<sp/>2.0<sp/>*<sp/>epsilon(m,<sp/>n,<sp/>f)<sp/>*<sp/>p[f](i,<sp/>a);</highlight></codeline>
+<codeline lineno="944"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="945"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="946"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>F_kappa_G.col(column_index)<sp/>=<sp/>F_kappa_G_mn.asVector();</highlight></codeline>
+<codeline lineno="947"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>column_index++;</highlight></codeline>
+<codeline lineno="948"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="949"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="950"><highlight class="normal"></highlight></codeline>
+<codeline lineno="951"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>F_kappa_G;</highlight></codeline>
+<codeline lineno="952"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="953"><highlight class="normal"></highlight></codeline>
+<codeline lineno="954"><highlight class="normal"></highlight></codeline>
+<codeline lineno="955"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="956"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>Response<sp/>properties</highlight></codeline>
+<codeline lineno="957"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="958"><highlight class="normal"></highlight></codeline>
+<codeline lineno="970" refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a5bb95a374a0915a0bb4bb5a04f21b1a1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix&lt;complex, 3, 3&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a5bb95a374a0915a0bb4bb5a04f21b1a1" kindref="member">calculateIpsocentricMagneticInducibility</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Vector&lt;double, 3&gt;</ref>&amp;<sp/>r,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref>&amp;<sp/>orbital_space,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix&lt;complex, Dynamic, 3&gt;</ref>&amp;<sp/>x_B,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix&lt;complex, Dynamic, 6&gt;</ref>&amp;<sp/>x_G,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_evaluable_r_s_q_one_electron_operator" kindref="compound">VectorEvaluableRSQOneElectronOperator</ref>&lt;<ref refid="class_g_q_c_p_1_1_current_density_matrix_element" kindref="compound">CurrentDensityMatrixElement&lt;complex, CartesianGTO&gt;</ref>&gt;&amp;<sp/>j_op)<sp/>{</highlight></codeline>
+<codeline lineno="971"><highlight class="normal"></highlight></codeline>
+<codeline lineno="972"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_g_q_c_p_1_1literals" kindref="compound">GQCP::literals</ref>;</highlight></codeline>
 <codeline lineno="973"><highlight class="normal"></highlight></codeline>
-<codeline lineno="974"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>&apos;m&apos;<sp/>cannot<sp/>be<sp/>equal<sp/>to<sp/>&apos;n&apos;:<sp/>there<sp/>is<sp/>no<sp/>such<sp/>linear<sp/>response.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="975"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(n<sp/>==<sp/>m)<sp/>{</highlight></codeline>
-<codeline lineno="976"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="977"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="978"><highlight class="normal"></highlight></codeline>
-<codeline lineno="979"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Determine<sp/>the<sp/>compound<sp/>index<sp/>&apos;mn&apos;<sp/>of<sp/>the<sp/>dyadic<sp/>Cartesian<sp/>direction<sp/>in<sp/>the<sp/>6-column<sp/>matrix<sp/>representation.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="980"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>row_major_index<sp/>=<sp/>3<sp/>*<sp/>m<sp/>+<sp/>n;</highlight></codeline>
-<codeline lineno="981"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>mn<sp/>=<sp/>row_major_index<sp/>&lt;<sp/>4<sp/>?<sp/>row_major_index<sp/>-<sp/>1<sp/>:<sp/>row_major_index<sp/>-<sp/>2;</highlight></codeline>
-<codeline lineno="982"><highlight class="normal"></highlight></codeline>
-<codeline lineno="983"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Initialize<sp/>a<sp/>more<sp/>useful<sp/>matrix<sp/>representation<sp/>of<sp/>the<sp/>linear<sp/>response<sp/>coefficients<sp/>related<sp/>to<sp/>the<sp/>gauge<sp/>origin<sp/>translation<sp/>perturbation.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="984"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>epsilon_mn_matrix<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_matrix_1a6153bff8107862438160220961ed89ce" kindref="member">MatrixX&lt;complex&gt;::FromColumnMajorVector</ref>(x_G.col(mn),<sp/>orbital_space.<ref refid="class_g_q_c_p_1_1_orbital_space_1a6749db783d556c8d21e52e2a72ea329f" kindref="member">numberOfOrbitals</ref>(<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e" kindref="member">OccupationType::k_virtual</ref>),<sp/>orbital_space.<ref refid="class_g_q_c_p_1_1_orbital_space_1a6749db783d556c8d21e52e2a72ea329f" kindref="member">numberOfOrbitals</ref>(<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a" kindref="member">OccupationType::k_occupied</ref>));</highlight></codeline>
-<codeline lineno="985"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>epsilon_mn<sp/>=<sp/>orbital_space.<ref refid="class_g_q_c_p_1_1_orbital_space_1acb89ad14bcf5209d3a865bd3f4fa459d" kindref="member">createRepresentableObjectFor</ref>&lt;<ref refid="namespace_g_q_c_p_1a1ffc21109e62d09d3485c62e03677dfd" kindref="member">complex</ref>&gt;(<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e" kindref="member">OccupationType::k_virtual</ref>,<sp/><ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a" kindref="member">OccupationType::k_occupied</ref>,<sp/>epsilon_mn_matrix);</highlight></codeline>
-<codeline lineno="986"><highlight class="normal"></highlight></codeline>
-<codeline lineno="987"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Use<sp/>the<sp/>ipsocentric<sp/>CSGT<sp/>step,<sp/>i.e.<sp/>d<sp/>=<sp/>r<sp/>-<sp/>G_0<sp/>with<sp/>G_0<sp/>the<sp/>gauge<sp/>origin<sp/>(i.e.<sp/>the<sp/>origin).</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="988"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>right_value<sp/>+=<sp/>-1.0_ii<sp/>*<sp/>epsilon_mn(a,<sp/>i)<sp/>*<sp/>r(n);</highlight></codeline>
-<codeline lineno="989"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="990"><highlight class="normal"></highlight></codeline>
-<codeline lineno="991"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>J(u,<sp/>m)<sp/>+=<sp/>2_ii<sp/>*<sp/>left_value<sp/>*<sp/>right_value;</highlight></codeline>
-<codeline lineno="992"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>assert(J(u,<sp/>m).imag()<sp/>&lt;<sp/>1.0e-12);<sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>magnetic<sp/>inducibility<sp/>should<sp/>be<sp/>a<sp/>real-valued<sp/>quantity.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="993"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="994"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="995"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="996"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="997"><highlight class="normal"></highlight></codeline>
-<codeline lineno="998"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>J;</highlight></codeline>
-<codeline lineno="999"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1000"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1001"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1013" refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a45f6920a8c410891cb91c35d20ceb0b7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;Matrix&lt;complex, 3, 3&gt;</ref>&gt;<sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a45f6920a8c410891cb91c35d20ceb0b7" kindref="member">calculateIpsocentricMagneticInducibility</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_cubic_grid" kindref="compound">CubicGrid</ref>&amp;<sp/>grid,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref>&amp;<sp/>orbital_space,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix&lt;complex, Dynamic, 3&gt;</ref>&amp;<sp/>x_B,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix&lt;complex, Dynamic, 6&gt;</ref>&amp;<sp/>x_G,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_evaluable_r_s_q_one_electron_operator" kindref="compound">VectorEvaluableRSQOneElectronOperator</ref>&lt;<ref refid="class_g_q_c_p_1_1_current_density_matrix_element" kindref="compound">CurrentDensityMatrixElement&lt;complex, CartesianGTO&gt;</ref>&gt;&amp;<sp/>j_op)<sp/>{</highlight></codeline>
-<codeline lineno="1014"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1015"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_g_q_c_p_1_1literals" kindref="compound">GQCP::literals</ref>;</highlight></codeline>
+<codeline lineno="974"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Prepare<sp/>some<sp/>variables.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="975"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>j<sp/>=<sp/>j_op.allParameters();</highlight></codeline>
+<codeline lineno="976"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix&lt;complex, 3, 3&gt;</ref><sp/>J<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix&lt;complex, 3, 3&gt;::Zero</ref>();</highlight></codeline>
+<codeline lineno="977"><highlight class="normal"></highlight></codeline>
+<codeline lineno="978"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Loop<sp/>over<sp/>both<sp/>components<sp/>of<sp/>the<sp/>magnetic<sp/>inducibility.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="979"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>u<sp/>=<sp/>0;<sp/>u<sp/>&lt;<sp/>3;<sp/>u++)<sp/>{<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>`u`<sp/>loops<sp/>over<sp/>the<sp/>component<sp/>of<sp/>the<sp/>induced<sp/>current.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="980"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>m<sp/>=<sp/>0;<sp/>m<sp/>&lt;<sp/>3;<sp/>m++)<sp/>{<sp/><sp/></highlight><highlight class="comment">//<sp/>`m`<sp/>loops<sp/>over<sp/>the<sp/>component<sp/>of<sp/>the<sp/>applied<sp/>external<sp/>magnetic<sp/>field.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="981"><highlight class="normal"></highlight></codeline>
+<codeline lineno="982"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Initialize<sp/>a<sp/>more<sp/>useful<sp/>matrix<sp/>representation<sp/>of<sp/>the<sp/>linear<sp/>response<sp/>coefficients<sp/>related<sp/>to<sp/>the<sp/>magnetic<sp/>field<sp/>perturbation.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="983"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>x_m_matrix<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_matrix_1a6153bff8107862438160220961ed89ce" kindref="member">MatrixX&lt;complex&gt;::FromColumnMajorVector</ref>(x_B.col(m),<sp/>orbital_space.<ref refid="class_g_q_c_p_1_1_orbital_space_1a6749db783d556c8d21e52e2a72ea329f" kindref="member">numberOfOrbitals</ref>(<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e" kindref="member">OccupationType::k_virtual</ref>),<sp/>orbital_space.<ref refid="class_g_q_c_p_1_1_orbital_space_1a6749db783d556c8d21e52e2a72ea329f" kindref="member">numberOfOrbitals</ref>(<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a" kindref="member">OccupationType::k_occupied</ref>));</highlight></codeline>
+<codeline lineno="984"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>x_m<sp/>=<sp/>orbital_space.<ref refid="class_g_q_c_p_1_1_orbital_space_1acb89ad14bcf5209d3a865bd3f4fa459d" kindref="member">createRepresentableObjectFor</ref>&lt;<ref refid="namespace_g_q_c_p_1a1ffc21109e62d09d3485c62e03677dfd" kindref="member">complex</ref>&gt;(<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e" kindref="member">OccupationType::k_virtual</ref>,<sp/><ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a" kindref="member">OccupationType::k_occupied</ref>,<sp/>x_m_matrix);</highlight></codeline>
+<codeline lineno="985"><highlight class="normal"></highlight></codeline>
+<codeline lineno="986"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>a<sp/>:<sp/>orbital_space.<ref refid="class_g_q_c_p_1_1_orbital_space_1ade818f11cda64633a2d021d2aa7b8239" kindref="member">indices</ref>(<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e" kindref="member">OccupationType::k_virtual</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="987"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>i<sp/>:<sp/>orbital_space.<ref refid="class_g_q_c_p_1_1_orbital_space_1ade818f11cda64633a2d021d2aa7b8239" kindref="member">indices</ref>(<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a" kindref="member">OccupationType::k_occupied</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="988"><highlight class="normal"></highlight></codeline>
+<codeline lineno="989"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Determine<sp/>the<sp/>left<sp/>factor,<sp/>i.e.<sp/>the<sp/>contribution<sp/>from<sp/>the<sp/>field-free<sp/>current<sp/>density<sp/>matrix<sp/>elements.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="990"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1a1ffc21109e62d09d3485c62e03677dfd" kindref="member">complex</ref><sp/>left_value<sp/>=<sp/>2.0_ii<sp/>*<sp/>j[u](i,<sp/>a)(r);</highlight></codeline>
+<codeline lineno="991"><highlight class="normal"></highlight></codeline>
+<codeline lineno="992"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Determine<sp/>the<sp/>right<sp/>factor,<sp/>i.e.<sp/>the<sp/>contribution<sp/>from<sp/>the<sp/>linear<sp/>response<sp/>coefficients.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="993"><highlight class="normal"></highlight></codeline>
+<codeline lineno="994"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>1.<sp/>The<sp/>linear<sp/>response<sp/>coefficient<sp/>related<sp/>to<sp/>the<sp/>magnetic<sp/>field<sp/>perturbation.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="995"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1a1ffc21109e62d09d3485c62e03677dfd" kindref="member">complex</ref><sp/>right_value<sp/>=<sp/>-1.0_ii<sp/>*<sp/>x_m(a,<sp/>i);</highlight></codeline>
+<codeline lineno="996"><highlight class="normal"></highlight></codeline>
+<codeline lineno="997"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>2.<sp/>The<sp/>linear<sp/>response<sp/>coefficient<sp/>related<sp/>to<sp/>the<sp/>gauge<sp/>origin<sp/>translation<sp/>perturbation.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="998"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>n<sp/>=<sp/>0;<sp/>n<sp/>&lt;<sp/>3;<sp/>n++)<sp/>{</highlight></codeline>
+<codeline lineno="999"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1000"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>&apos;m&apos;<sp/>cannot<sp/>be<sp/>equal<sp/>to<sp/>&apos;n&apos;:<sp/>there<sp/>is<sp/>no<sp/>such<sp/>linear<sp/>response.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1001"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(n<sp/>==<sp/>m)<sp/>{</highlight></codeline>
+<codeline lineno="1002"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="1003"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1004"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1005"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Determine<sp/>the<sp/>compound<sp/>index<sp/>&apos;mn&apos;<sp/>of<sp/>the<sp/>dyadic<sp/>Cartesian<sp/>direction<sp/>in<sp/>the<sp/>6-column<sp/>matrix<sp/>representation.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1006"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>row_major_index<sp/>=<sp/>3<sp/>*<sp/>m<sp/>+<sp/>n;</highlight></codeline>
+<codeline lineno="1007"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>mn<sp/>=<sp/>row_major_index<sp/>&lt;<sp/>4<sp/>?<sp/>row_major_index<sp/>-<sp/>1<sp/>:<sp/>row_major_index<sp/>-<sp/>2;</highlight></codeline>
+<codeline lineno="1008"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1009"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Initialize<sp/>a<sp/>more<sp/>useful<sp/>matrix<sp/>representation<sp/>of<sp/>the<sp/>linear<sp/>response<sp/>coefficients<sp/>related<sp/>to<sp/>the<sp/>gauge<sp/>origin<sp/>translation<sp/>perturbation.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1010"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>epsilon_mn_matrix<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_matrix_1a6153bff8107862438160220961ed89ce" kindref="member">MatrixX&lt;complex&gt;::FromColumnMajorVector</ref>(x_G.col(mn),<sp/>orbital_space.<ref refid="class_g_q_c_p_1_1_orbital_space_1a6749db783d556c8d21e52e2a72ea329f" kindref="member">numberOfOrbitals</ref>(<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e" kindref="member">OccupationType::k_virtual</ref>),<sp/>orbital_space.<ref refid="class_g_q_c_p_1_1_orbital_space_1a6749db783d556c8d21e52e2a72ea329f" kindref="member">numberOfOrbitals</ref>(<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a" kindref="member">OccupationType::k_occupied</ref>));</highlight></codeline>
+<codeline lineno="1011"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>epsilon_mn<sp/>=<sp/>orbital_space.<ref refid="class_g_q_c_p_1_1_orbital_space_1acb89ad14bcf5209d3a865bd3f4fa459d" kindref="member">createRepresentableObjectFor</ref>&lt;<ref refid="namespace_g_q_c_p_1a1ffc21109e62d09d3485c62e03677dfd" kindref="member">complex</ref>&gt;(<ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e" kindref="member">OccupationType::k_virtual</ref>,<sp/><ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a" kindref="member">OccupationType::k_occupied</ref>,<sp/>epsilon_mn_matrix);</highlight></codeline>
+<codeline lineno="1012"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1013"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Use<sp/>the<sp/>ipsocentric<sp/>CSGT<sp/>step,<sp/>i.e.<sp/>d<sp/>=<sp/>r<sp/>-<sp/>G_0<sp/>with<sp/>G_0<sp/>the<sp/>gauge<sp/>origin<sp/>(i.e.<sp/>the<sp/>origin).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1014"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>right_value<sp/>+=<sp/>-1.0_ii<sp/>*<sp/>epsilon_mn(a,<sp/>i)<sp/>*<sp/>r(n);</highlight></codeline>
+<codeline lineno="1015"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="1016"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1017"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Evaluate<sp/>the<sp/>value<sp/>of<sp/>the<sp/>magnetic<sp/>inducibility<sp/>for<sp/>every<sp/>point<sp/>of<sp/>the<sp/>grid.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1018"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;Matrix&lt;complex,<sp/>3,<sp/>3&gt;&gt;<sp/>J_field_values;</highlight></codeline>
-<codeline lineno="1019"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>J_field_values.reserve(grid.<ref refid="class_g_q_c_p_1_1_cubic_grid_1a068787c38bbf15233da1646dfef0783d" kindref="member">numberOfPoints</ref>());</highlight></codeline>
-<codeline lineno="1020"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1021"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>grid.<ref refid="class_g_q_c_p_1_1_cubic_grid_1ace375c620c4f97646710110da215a589" kindref="member">forEach</ref>([&amp;orbital_space,<sp/>&amp;x_B,<sp/>&amp;x_G,<sp/>&amp;J_field_values,<sp/>&amp;j_op](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Vector&lt;double, 3&gt;</ref>&amp;<sp/>r)<sp/>{</highlight></codeline>
-<codeline lineno="1022"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>J<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a5bb95a374a0915a0bb4bb5a04f21b1a1" kindref="member">RHF&lt;complex&gt;::calculateIpsocentricMagneticInducibility</ref>(r,<sp/>orbital_space,<sp/>x_B,<sp/>x_G,<sp/>j_op);</highlight></codeline>
-<codeline lineno="1023"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>J_field_values.push_back(J);</highlight></codeline>
-<codeline lineno="1024"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>});</highlight></codeline>
-<codeline lineno="1025"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1026"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;Matrix&lt;complex, 3, 3&gt;</ref>&gt;<sp/>{J_field_values};</highlight></codeline>
-<codeline lineno="1027"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="1028"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="1029"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1030"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1031"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QCModel</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="1032"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1017"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>J(u,<sp/>m)<sp/>+=<sp/>2_ii<sp/>*<sp/>left_value<sp/>*<sp/>right_value;</highlight></codeline>
+<codeline lineno="1018"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>assert(J(u,<sp/>m).imag()<sp/>&lt;<sp/>1.0e-12);<sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>magnetic<sp/>inducibility<sp/>should<sp/>be<sp/>a<sp/>real-valued<sp/>quantity.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1019"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1020"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1021"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1022"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1023"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1024"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>J;</highlight></codeline>
+<codeline lineno="1025"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1026"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1027"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1039" refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a45f6920a8c410891cb91c35d20ceb0b7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;Matrix&lt;complex, 3, 3&gt;</ref>&gt;<sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a45f6920a8c410891cb91c35d20ceb0b7" kindref="member">calculateIpsocentricMagneticInducibility</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_cubic_grid" kindref="compound">CubicGrid</ref>&amp;<sp/>grid,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref>&amp;<sp/>orbital_space,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix&lt;complex, Dynamic, 3&gt;</ref>&amp;<sp/>x_B,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix&lt;complex, Dynamic, 6&gt;</ref>&amp;<sp/>x_G,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_evaluable_r_s_q_one_electron_operator" kindref="compound">VectorEvaluableRSQOneElectronOperator</ref>&lt;<ref refid="class_g_q_c_p_1_1_current_density_matrix_element" kindref="compound">CurrentDensityMatrixElement&lt;complex, CartesianGTO&gt;</ref>&gt;&amp;<sp/>j_op)<sp/>{</highlight></codeline>
+<codeline lineno="1040"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1041"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_g_q_c_p_1_1literals" kindref="compound">GQCP::literals</ref>;</highlight></codeline>
+<codeline lineno="1042"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1043"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Evaluate<sp/>the<sp/>value<sp/>of<sp/>the<sp/>magnetic<sp/>inducibility<sp/>for<sp/>every<sp/>point<sp/>of<sp/>the<sp/>grid.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1044"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;Matrix&lt;complex,<sp/>3,<sp/>3&gt;&gt;<sp/>J_field_values;</highlight></codeline>
+<codeline lineno="1045"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>J_field_values.reserve(grid.<ref refid="class_g_q_c_p_1_1_cubic_grid_1a068787c38bbf15233da1646dfef0783d" kindref="member">numberOfPoints</ref>());</highlight></codeline>
+<codeline lineno="1046"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1047"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>grid.<ref refid="class_g_q_c_p_1_1_cubic_grid_1ace375c620c4f97646710110da215a589" kindref="member">forEach</ref>([&amp;orbital_space,<sp/>&amp;x_B,<sp/>&amp;x_G,<sp/>&amp;J_field_values,<sp/>&amp;j_op](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Vector&lt;double, 3&gt;</ref>&amp;<sp/>r)<sp/>{</highlight></codeline>
+<codeline lineno="1048"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>J<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a5bb95a374a0915a0bb4bb5a04f21b1a1" kindref="member">RHF&lt;complex&gt;::calculateIpsocentricMagneticInducibility</ref>(r,<sp/>orbital_space,<sp/>x_B,<sp/>x_G,<sp/>j_op);</highlight></codeline>
+<codeline lineno="1049"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>J_field_values.push_back(J);</highlight></codeline>
+<codeline lineno="1050"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>});</highlight></codeline>
+<codeline lineno="1051"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1052"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;Matrix&lt;complex, 3, 3&gt;</ref>&gt;<sp/>{J_field_values};</highlight></codeline>
+<codeline lineno="1053"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="1054"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="1055"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1056"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1057"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>QCModel</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1058"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp"/>
   </compounddef>

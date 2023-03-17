@@ -137,11 +137,11 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQOneElectronOperator.hpp" line="70" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQOneElectronOperator.hpp" bodystart="70" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1afcb21b0fa27c292d97432fca3d5053d2" prot="public" static="no">
-        <type>typename <ref refid="struct_g_q_c_p_1_1_operator_traits" kindref="compound">OperatorTraits</ref>&lt; <ref refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1a7488da057249f35bf3f7172fff40865b" kindref="member">DerivedOperator</ref> &gt;::<ref refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1afcb21b0fa27c292d97432fca3d5053d2" kindref="member">MullikenPartitioning</ref></type>
-        <definition>using GQCP::SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt;::MullikenPartitioning =  typename OperatorTraits&lt;DerivedOperator&gt;::MullikenPartitioning</definition>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1a7fe7af4681a565b25df8d7731b114c48" prot="public" static="no">
+        <type>typename <ref refid="struct_g_q_c_p_1_1_operator_traits" kindref="compound">OperatorTraits</ref>&lt; <ref refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1a7488da057249f35bf3f7172fff40865b" kindref="member">DerivedOperator</ref> &gt;::<ref refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1a7fe7af4681a565b25df8d7731b114c48" kindref="member">MullikenDomain</ref></type>
+        <definition>using GQCP::SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt;::MullikenDomain =  typename OperatorTraits&lt;DerivedOperator&gt;::MullikenDomain</definition>
         <argsstring></argsstring>
-        <name>MullikenPartitioning</name>
+        <name>MullikenDomain</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -372,14 +372,14 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQOneElectronOperator.hpp" line="301" column="21" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQOneElectronOperator.hpp" bodystart="301" bodyend="314"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1a9e0f7547e55b563f6fc4074a0b8d1779" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1a86049c29b56492f6be4e95aa47c6efec" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1a7488da057249f35bf3f7172fff40865b" kindref="member">DerivedOperator</ref></type>
         <definition>DerivedOperator GQCP::SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt;::partitioned</definition>
-        <argsstring>(const MullikenPartitioning &amp;mulliken_partitioning) const</argsstring>
+        <argsstring>(const Transformation &amp;mulliken_projection_matrix) const</argsstring>
         <name>partitioned</name>
         <param>
-          <type>const <ref refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1afcb21b0fa27c292d97432fca3d5053d2" kindref="member">MullikenPartitioning</ref> &amp;</type>
-          <declname>mulliken_partitioning</declname>
+          <type>const <ref refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1a22bb1d9a25abec93b329d3563e1da508" kindref="member">Transformation</ref> &amp;</type>
+          <declname>mulliken_projection_matrix</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -387,10 +387,10 @@
 <para>Partition this one-electron operator according to the supplied Mulliken partitioning scheme.</para>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername>mulliken_partitioning</parametername>
+<parametername>mulliken_projection_matrix</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>An encapsulation of the Mulliken partitioning scheme.</para>
+<para>The projection matrix related to a Mulliken domain.</para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -556,7 +556,7 @@
       <member refid="class_g_q_c_p_1_1_s_q_operator_storage_1a6ee4af5c3c3b6b4801fdd3bb1af52526" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQOneElectronOperator</scope><name>FinalOperator</name></member>
       <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a107861c91912a3808817f5845823204f" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQOneElectronOperator</scope><name>JacobiRotationType</name></member>
       <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1af5fc9cb1cbffc6552e48c4a1d92d209a" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQOneElectronOperator</scope><name>MatrixRepresentation</name></member>
-      <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1afcb21b0fa27c292d97432fca3d5053d2" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQOneElectronOperator</scope><name>MullikenPartitioning</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1a7fe7af4681a565b25df8d7731b114c48" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQOneElectronOperator</scope><name>MullikenDomain</name></member>
       <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1aec5499c60c1ccf1c3a2bbb4ede557181" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQOneElectronOperator</scope><name>numberOfComponents</name></member>
       <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a3db8d8010d4b40797ca252c8dc4ca1a1" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQOneElectronOperator</scope><name>numberOfOrbitals</name></member>
       <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1a860bef15613c7755de4338798f99a612" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQOneElectronOperator</scope><name>oneIndexTransformed</name></member>
@@ -569,7 +569,7 @@
       <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a63a0cb54302a2d2f1d54af66e7527c4f" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQOneElectronOperator</scope><name>operator-=</name></member>
       <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1acf0dbab8452402ce9ec2d50868b6ecaf" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQOneElectronOperator</scope><name>parameters</name></member>
       <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1aa0e555ece4f4d592420ded0008dd0088" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQOneElectronOperator</scope><name>parameters</name></member>
-      <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1a9e0f7547e55b563f6fc4074a0b8d1779" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQOneElectronOperator</scope><name>partitioned</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1a86049c29b56492f6be4e95aa47c6efec" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQOneElectronOperator</scope><name>partitioned</name></member>
       <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a20d4ea79e0de1d7914f869c4b25bc9f2" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQOneElectronOperator</scope><name>Random</name></member>
       <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1af1db5f1ea2aa28068a0ed1be0805aa7e" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQOneElectronOperator</scope><name>Random</name></member>
       <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a028a522ca2f945d763e5ba1f6f029f44" prot="public" virt="non-virtual"><scope>GQCP::SimpleSQOneElectronOperator</scope><name>Random</name></member>

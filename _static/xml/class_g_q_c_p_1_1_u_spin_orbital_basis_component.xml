@@ -235,11 +235,11 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp" line="169" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp" bodystart="169" bodyend="200"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_u_spin_orbital_basis_component_1aac847d885bbbf1022ecfd180db378dee" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="class_g_q_c_p_1_1_u_mulliken_partitioning_component" kindref="compound">UMullikenPartitioningComponent</ref>&lt; <ref refid="class_g_q_c_p_1_1_simple_spinor_basis_1acccd2faf9d3407fcf35fc71ee4629ceb" kindref="member">ExpansionScalar</ref> &gt;</type>
-        <definition>UMullikenPartitioningComponent&lt;ExpansionScalar&gt; GQCP::USpinOrbitalBasisComponent&lt; _ExpansionScalar, _Shell &gt;::mullikenPartitioning</definition>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_u_spin_orbital_basis_component_1a6b17e0c30be846596a3359437cbda772" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_u_mulliken_domain_component" kindref="compound">UMullikenDomainComponent</ref>&lt; <ref refid="class_g_q_c_p_1_1_simple_spinor_basis_1acccd2faf9d3407fcf35fc71ee4629ceb" kindref="member">ExpansionScalar</ref> &gt;</type>
+        <definition>UMullikenDomainComponent&lt;ExpansionScalar&gt; GQCP::USpinOrbitalBasisComponent&lt; _ExpansionScalar, _Shell &gt;::mullikenDomain</definition>
         <argsstring>(const std::function&lt; bool(const BasisFunction &amp;)&gt; &amp;selector) const</argsstring>
-        <name>mullikenPartitioning</name>
+        <name>mullikenDomain</name>
         <param>
           <type>const std::function&lt; bool(const <ref refid="class_g_q_c_p_1_1_u_spin_orbital_basis_component_1a18d47fd373ffc69e051330c4cea4932c" kindref="member">BasisFunction</ref> &amp;)&gt; &amp;</type>
           <declname>selector</declname>
@@ -247,29 +247,29 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>MARK: Mulliken partitioning Partition this set of spin-orbitals related to one of the components of an unrestricted spin-orbital basis according to the Mulliken partitioning scheme.</para>
+<para>MARK: Mulliken domain Partition this set of spin-orbitals related to one of the components of an unrestricted spin-orbital basis according to the Mulliken partitioning scheme.</para>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>selector</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>A function that returns true for basis functions that should be included the Mulliken partitioning.</para>
+<para>A function that returns true for basis functions that should be included the Mulliken domain.</para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>A <computeroutput><ref refid="class_g_q_c_p_1_1_u_mulliken_partitioning_component" kindref="compound">UMullikenPartitioningComponent</ref></computeroutput> for the AOs selected by the supplied selector function. </para>
+<simplesect kind="return"><para>A <computeroutput><ref refid="class_g_q_c_p_1_1_u_mulliken_domain_component" kindref="compound">UMullikenDomainComponent</ref></computeroutput> for the AOs selected by the supplied selector function. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp" line="214" column="36" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp" bodystart="214" bodyend="220"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp" line="214" column="30" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp" bodystart="214" bodyend="220"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_u_spin_orbital_basis_component_1afe68e72762a5b22ab6319679a62e506f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="class_g_q_c_p_1_1_u_mulliken_partitioning_component" kindref="compound">UMullikenPartitioningComponent</ref>&lt; <ref refid="class_g_q_c_p_1_1_simple_spinor_basis_1acccd2faf9d3407fcf35fc71ee4629ceb" kindref="member">ExpansionScalar</ref> &gt;</type>
-        <definition>UMullikenPartitioningComponent&lt;ExpansionScalar&gt; GQCP::USpinOrbitalBasisComponent&lt; _ExpansionScalar, _Shell &gt;::mullikenPartitioning</definition>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_u_spin_orbital_basis_component_1ac3a4100389845c13a35f11a8b28eb8c2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_u_mulliken_domain_component" kindref="compound">UMullikenDomainComponent</ref>&lt; <ref refid="class_g_q_c_p_1_1_simple_spinor_basis_1acccd2faf9d3407fcf35fc71ee4629ceb" kindref="member">ExpansionScalar</ref> &gt;</type>
+        <definition>UMullikenDomainComponent&lt;ExpansionScalar&gt; GQCP::USpinOrbitalBasisComponent&lt; _ExpansionScalar, _Shell &gt;::mullikenDomain</definition>
         <argsstring>(const std::function&lt; bool(const Shell &amp;)&gt; &amp;selector) const</argsstring>
-        <name>mullikenPartitioning</name>
+        <name>mullikenDomain</name>
         <param>
           <type>const std::function&lt; bool(const <ref refid="class_g_q_c_p_1_1_u_spin_orbital_basis_component_1a58bc52d98579ab9fd20a3d91fe378d0a" kindref="member">Shell</ref> &amp;)&gt; &amp;</type>
           <declname>selector</declname>
@@ -283,17 +283,17 @@
 <parametername>selector</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>A function that returns true for shells that should be included the Mulliken partitioning.</para>
+<para>A function that returns true for shells that should be included the Mulliken domain.</para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>A <computeroutput><ref refid="class_g_q_c_p_1_1_u_mulliken_partitioning_component" kindref="compound">UMullikenPartitioningComponent</ref></computeroutput> for the AOs selected by the supplied selector function. </para>
+<simplesect kind="return"><para>A <computeroutput><ref refid="class_g_q_c_p_1_1_u_mulliken_domain_component" kindref="compound">UMullikenDomainComponent</ref></computeroutput> for the AOs selected by the supplied selector function. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp" line="230" column="36" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp" bodystart="230" bodyend="236"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp" line="230" column="30" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp" bodystart="230" bodyend="236"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -414,8 +414,8 @@
       <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1aa137ad5da7e46d3f6bfb30e1c8a4a71f" prot="public" virt="non-virtual"><scope>GQCP::USpinOrbitalBasisComponent</scope><name>JacobiRotationType</name></member>
       <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1a7dcbcf5803cb8c3b4b65cb49ce3f5f69" prot="public" virt="non-virtual"><scope>GQCP::USpinOrbitalBasisComponent</scope><name>lowdinOrthonormalization</name></member>
       <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1a53160b32246fe945f0fb7aa46d15c4e9" prot="public" virt="non-virtual"><scope>GQCP::USpinOrbitalBasisComponent</scope><name>lowdinOrthonormalize</name></member>
-      <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_component_1aac847d885bbbf1022ecfd180db378dee" prot="public" virt="non-virtual"><scope>GQCP::USpinOrbitalBasisComponent</scope><name>mullikenPartitioning</name></member>
-      <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_component_1afe68e72762a5b22ab6319679a62e506f" prot="public" virt="non-virtual"><scope>GQCP::USpinOrbitalBasisComponent</scope><name>mullikenPartitioning</name></member>
+      <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_component_1a6b17e0c30be846596a3359437cbda772" prot="public" virt="non-virtual"><scope>GQCP::USpinOrbitalBasisComponent</scope><name>mullikenDomain</name></member>
+      <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_component_1ac3a4100389845c13a35f11a8b28eb8c2" prot="public" virt="non-virtual"><scope>GQCP::USpinOrbitalBasisComponent</scope><name>mullikenDomain</name></member>
       <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1a42b2813a11f43e74c7fa60ee90a5ae0e" prot="public" virt="non-virtual"><scope>GQCP::USpinOrbitalBasisComponent</scope><name>overlap</name></member>
       <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_component_1a1315d68af1b9070e681c9db115aa5f05" prot="public" virt="non-virtual"><scope>GQCP::USpinOrbitalBasisComponent</scope><name>Primitive</name></member>
       <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_component_1a1f60a52617ba297c7dbc41882b01e838" prot="public" virt="non-virtual"><scope>GQCP::USpinOrbitalBasisComponent</scope><name>quantize</name></member>

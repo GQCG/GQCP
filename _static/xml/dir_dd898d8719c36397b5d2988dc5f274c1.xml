@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_dd898d8719c36397b5d2988dc5f274c1" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/include/Domain/MullikenDomain</compoundname>
+    <innerfile refid="_g_mulliken_domain_8hpp">GMullikenDomain.hpp</innerfile>
+    <innerfile refid="_r_mulliken_domain_8hpp">RMullikenDomain.hpp</innerfile>
+    <innerfile refid="_u_mulliken_domain_8hpp">UMullikenDomain.hpp</innerfile>
+    <innerfile refid="_u_mulliken_domain_component_8hpp">UMullikenDomainComponent.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Domain/MullikenDomain/"/>
+  </compounddef>
+</doxygen>

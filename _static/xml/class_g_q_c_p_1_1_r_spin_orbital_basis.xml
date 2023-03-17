@@ -696,11 +696,11 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" line="569" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" bodystart="569" bodyend="587"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_r_spin_orbital_basis_1a03892758a8559dcfb2a36ad05f62f1cc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="class_g_q_c_p_1_1_r_mulliken_partitioning" kindref="compound">RMullikenPartitioning</ref>&lt; <ref refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a80cd4ad6ae5cbc165404fc7cb09e3ffe" kindref="member">ExpansionScalar</ref> &gt;</type>
-        <definition>RMullikenPartitioning&lt;ExpansionScalar&gt; GQCP::RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt;::mullikenPartitioning</definition>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_r_spin_orbital_basis_1a951e5827840aa22662b718566f81dcbf" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_r_mulliken_domain" kindref="compound">RMullikenDomain</ref>&lt; <ref refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a80cd4ad6ae5cbc165404fc7cb09e3ffe" kindref="member">ExpansionScalar</ref> &gt;</type>
+        <definition>RMullikenDomain&lt;ExpansionScalar&gt; GQCP::RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt;::mullikenDomain</definition>
         <argsstring>(const std::function&lt; bool(const BasisFunction &amp;)&gt; &amp;selector) const</argsstring>
-        <name>mullikenPartitioning</name>
+        <name>mullikenDomain</name>
         <param>
           <type>const std::function&lt; bool(const <ref refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1af80a4fe5fd969824042cc98025acb72e" kindref="member">BasisFunction</ref> &amp;)&gt; &amp;</type>
           <declname>selector</declname>
@@ -714,23 +714,23 @@
 <parametername>selector</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>A function that returns true for basis functions that should be included the Mulliken partitioning.</para>
+<para>A function that returns true for basis functions that should be included the Mulliken domain.</para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>A <computeroutput><ref refid="class_g_q_c_p_1_1_r_mulliken_partitioning" kindref="compound">RMullikenPartitioning</ref></computeroutput> for the AOs selected by the supplied selector function. </para>
+<simplesect kind="return"><para>A <computeroutput><ref refid="class_g_q_c_p_1_1_r_mulliken_domain" kindref="compound">RMullikenDomain</ref></computeroutput> for the AOs selected by the supplied selector function. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" line="601" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" bodystart="601" bodyend="605"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" line="601" column="21" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" bodystart="601" bodyend="605"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_r_spin_orbital_basis_1ac769e0f84752591775771245c338fef2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="class_g_q_c_p_1_1_r_mulliken_partitioning" kindref="compound">RMullikenPartitioning</ref>&lt; <ref refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a80cd4ad6ae5cbc165404fc7cb09e3ffe" kindref="member">ExpansionScalar</ref> &gt;</type>
-        <definition>RMullikenPartitioning&lt;ExpansionScalar&gt; GQCP::RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt;::mullikenPartitioning</definition>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_r_spin_orbital_basis_1a97a243f5e8bbda18006e3a71dbd6292a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_r_mulliken_domain" kindref="compound">RMullikenDomain</ref>&lt; <ref refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a80cd4ad6ae5cbc165404fc7cb09e3ffe" kindref="member">ExpansionScalar</ref> &gt;</type>
+        <definition>RMullikenDomain&lt;ExpansionScalar&gt; GQCP::RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt;::mullikenDomain</definition>
         <argsstring>(const std::function&lt; bool(const Shell &amp;)&gt; &amp;selector) const</argsstring>
-        <name>mullikenPartitioning</name>
+        <name>mullikenDomain</name>
         <param>
           <type>const std::function&lt; bool(const <ref refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a5cc5b25be3944ebe7140b30a14dedbce" kindref="member">Shell</ref> &amp;)&gt; &amp;</type>
           <declname>selector</declname>
@@ -744,17 +744,17 @@
 <parametername>selector</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>A function that returns true for shells that should be included the Mulliken partitioning.</para>
+<para>A function that returns true for shells that should be included the Mulliken domain.</para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>A <computeroutput><ref refid="class_g_q_c_p_1_1_r_mulliken_partitioning" kindref="compound">RMullikenPartitioning</ref></computeroutput> for the AOs selected by the supplied selector function. </para>
+<simplesect kind="return"><para>A <computeroutput><ref refid="class_g_q_c_p_1_1_r_mulliken_domain" kindref="compound">RMullikenDomain</ref></computeroutput> for the AOs selected by the supplied selector function. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" line="615" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" bodystart="615" bodyend="619"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" line="615" column="21" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" bodystart="615" bodyend="619"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -878,8 +878,8 @@
       <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1aa137ad5da7e46d3f6bfb30e1c8a4a71f" prot="public" virt="non-virtual"><scope>GQCP::RSpinOrbitalBasis</scope><name>JacobiRotationType</name></member>
       <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1a7dcbcf5803cb8c3b4b65cb49ce3f5f69" prot="public" virt="non-virtual"><scope>GQCP::RSpinOrbitalBasis</scope><name>lowdinOrthonormalization</name></member>
       <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1a53160b32246fe945f0fb7aa46d15c4e9" prot="public" virt="non-virtual"><scope>GQCP::RSpinOrbitalBasis</scope><name>lowdinOrthonormalize</name></member>
-      <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a03892758a8559dcfb2a36ad05f62f1cc" prot="public" virt="non-virtual"><scope>GQCP::RSpinOrbitalBasis</scope><name>mullikenPartitioning</name></member>
-      <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1ac769e0f84752591775771245c338fef2" prot="public" virt="non-virtual"><scope>GQCP::RSpinOrbitalBasis</scope><name>mullikenPartitioning</name></member>
+      <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a951e5827840aa22662b718566f81dcbf" prot="public" virt="non-virtual"><scope>GQCP::RSpinOrbitalBasis</scope><name>mullikenDomain</name></member>
+      <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a97a243f5e8bbda18006e3a71dbd6292a" prot="public" virt="non-virtual"><scope>GQCP::RSpinOrbitalBasis</scope><name>mullikenDomain</name></member>
       <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1acc337f6e3f3dddd0be78dacc69d3599c" prot="public" virt="non-virtual"><scope>GQCP::RSpinOrbitalBasis</scope><name>numberOfSpatialOrbitals</name></member>
       <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a89c30d78567b003c9020c6b31520eaa8" prot="public" virt="non-virtual"><scope>GQCP::RSpinOrbitalBasis</scope><name>numberOfSpinOrbitals</name></member>
       <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a5bcee2b4b1b0e35dadde44a46984e029" prot="public" virt="non-virtual"><scope>GQCP::RSpinOrbitalBasis</scope><name>numberOfSpinors</name></member>

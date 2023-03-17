@@ -228,7 +228,7 @@
       <member refid="class_g_q_c_p_1_1_g_s_q_one_electron_operator_1a03c6e36fce8838f941b3ffdb167c2a4d" prot="public" virt="non-virtual"><scope>GQCP::GSQOneElectronOperator</scope><name>FromUnrestrictedComponent</name></member>
       <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a107861c91912a3808817f5845823204f" prot="public" virt="non-virtual"><scope>GQCP::GSQOneElectronOperator</scope><name>JacobiRotationType</name></member>
       <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1af5fc9cb1cbffc6552e48c4a1d92d209a" prot="public" virt="non-virtual"><scope>GQCP::GSQOneElectronOperator</scope><name>MatrixRepresentation</name></member>
-      <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1afcb21b0fa27c292d97432fca3d5053d2" prot="public" virt="non-virtual"><scope>GQCP::GSQOneElectronOperator</scope><name>MullikenPartitioning</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1a7fe7af4681a565b25df8d7731b114c48" prot="public" virt="non-virtual"><scope>GQCP::GSQOneElectronOperator</scope><name>MullikenDomain</name></member>
       <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1aec5499c60c1ccf1c3a2bbb4ede557181" prot="public" virt="non-virtual"><scope>GQCP::GSQOneElectronOperator</scope><name>numberOfComponents</name></member>
       <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a3db8d8010d4b40797ca252c8dc4ca1a1" prot="public" virt="non-virtual"><scope>GQCP::GSQOneElectronOperator</scope><name>numberOfOrbitals</name></member>
       <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1a860bef15613c7755de4338798f99a612" prot="public" virt="non-virtual"><scope>GQCP::GSQOneElectronOperator</scope><name>oneIndexTransformed</name></member>
@@ -241,7 +241,7 @@
       <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a63a0cb54302a2d2f1d54af66e7527c4f" prot="public" virt="non-virtual"><scope>GQCP::GSQOneElectronOperator</scope><name>operator-=</name></member>
       <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1acf0dbab8452402ce9ec2d50868b6ecaf" prot="public" virt="non-virtual"><scope>GQCP::GSQOneElectronOperator</scope><name>parameters</name></member>
       <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1aa0e555ece4f4d592420ded0008dd0088" prot="public" virt="non-virtual"><scope>GQCP::GSQOneElectronOperator</scope><name>parameters</name></member>
-      <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1a9e0f7547e55b563f6fc4074a0b8d1779" prot="public" virt="non-virtual"><scope>GQCP::GSQOneElectronOperator</scope><name>partitioned</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1a86049c29b56492f6be4e95aa47c6efec" prot="public" virt="non-virtual"><scope>GQCP::GSQOneElectronOperator</scope><name>partitioned</name></member>
       <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a20d4ea79e0de1d7914f869c4b25bc9f2" prot="public" virt="non-virtual"><scope>GQCP::GSQOneElectronOperator</scope><name>Random</name></member>
       <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1af1db5f1ea2aa28068a0ed1be0805aa7e" prot="public" virt="non-virtual"><scope>GQCP::GSQOneElectronOperator</scope><name>Random</name></member>
       <member refid="class_g_q_c_p_1_1_s_q_operator_storage_base_1a028a522ca2f945d763e5ba1f6f029f44" prot="public" virt="non-virtual"><scope>GQCP::GSQOneElectronOperator</scope><name>Random</name></member>

@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_e059414b3c41586f4e1d813552003cde" kind="dir">
+    <compoundname>/__w/GQCP/GQCP/gqcp/include/Domain</compoundname>
+    <innerdir refid="dir_dd898d8719c36397b5d2988dc5f274c1">/__w/GQCP/GQCP/gqcp/include/Domain/MullikenDomain</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Domain/"/>
+  </compounddef>
+</doxygen>

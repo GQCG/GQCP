@@ -12,6 +12,14 @@
     <includedby refid="_q_c_model_2_h_f_2_u_h_f_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp</includedby>
     <includedby refid="_spin_resolved_base_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp</includedby>
     <invincdepgraph>
+      <node id="131">
+        <label>/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasisComponent.hpp</label>
+        <link refid="_u_spin_orbital_basis_component_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+      </node>
       <node id="85">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFFockMatrixCalculation.hpp</label>
         <link refid="_r_h_f_fock_matrix_calculation_8hpp"/>
@@ -118,16 +126,16 @@
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.cpp</label>
         <link refid="_e_r_newton_localizer_8cpp"/>
       </node>
-      <node id="119">
+      <node id="118">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SpinResolvedJacobiRotatable.hpp</label>
         <link refid="_spin_resolved_jacobi_rotatable_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="37" relation="include">
         </childnode>
-        <childnode refid="120" relation="include">
+        <childnode refid="119" relation="include">
         </childnode>
-        <childnode refid="124" relation="include">
+        <childnode refid="123" relation="include">
         </childnode>
         <childnode refid="106" relation="include">
         </childnode>
@@ -137,15 +145,19 @@
         <link refid="_spin_resolved_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="122" relation="include">
-        </childnode>
-        <childnode refid="114" relation="include">
-        </childnode>
-        <childnode refid="121" relation="include">
+        <childnode refid="120" relation="include">
         </childnode>
         <childnode refid="125" relation="include">
         </childnode>
+        <childnode refid="123" relation="include">
+        </childnode>
+        <childnode refid="122" relation="include">
+        </childnode>
+        <childnode refid="127" relation="include">
+        </childnode>
         <childnode refid="124" relation="include">
+        </childnode>
+        <childnode refid="130" relation="include">
         </childnode>
       </node>
       <node id="30">
@@ -164,7 +176,7 @@
         <childnode refid="16" relation="include">
         </childnode>
       </node>
-      <node id="116">
+      <node id="115">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SpinResolvedOrbitalSpace.hpp</label>
         <link refid="_spin_resolved_orbital_space_8hpp"/>
         <childnode refid="2" relation="include">
@@ -180,12 +192,12 @@
         <childnode refid="91" relation="include">
         </childnode>
       </node>
-      <node id="124">
+      <node id="123">
         <label>/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved1DM.hpp</label>
         <link refid="_spin_resolved1_d_m_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="123" relation="include">
+        <childnode refid="121" relation="include">
         </childnode>
         <childnode refid="106" relation="include">
         </childnode>
@@ -248,6 +260,28 @@
         <childnode refid="8" relation="include">
         </childnode>
       </node>
+      <node id="134">
+        <label>/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/PureUSQTwoElectronOperatorComponent.hpp</label>
+        <link refid="_pure_u_s_q_two_electron_operator_component_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="111" relation="include">
+        </childnode>
+        <childnode refid="108" relation="include">
+        </childnode>
+      </node>
+      <node id="129">
+        <label>/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp</label>
+        <link refid="_evaluable_r_s_q_one_electron_operator_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="103" relation="include">
+        </childnode>
+      </node>
       <node id="44">
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/JacobiOrbitalOptimizer.cpp</label>
         <link refid="_jacobi_orbital_optimizer_8cpp"/>
@@ -267,7 +301,7 @@
         <link refid="_u_orbital_rotation_generators_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="120" relation="include">
+        <childnode refid="119" relation="include">
         </childnode>
       </node>
       <node id="111">
@@ -282,6 +316,24 @@
         <childnode refid="108" relation="include">
         </childnode>
         <childnode refid="112" relation="include">
+        </childnode>
+      </node>
+      <node id="132">
+        <label>/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQOneElectronOperatorComponent.hpp</label>
+        <link refid="_u_s_q_one_electron_operator_component_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="131" relation="include">
+        </childnode>
+        <childnode refid="133" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="134" relation="include">
+        </childnode>
+        <childnode refid="128" relation="include">
+        </childnode>
+        <childnode refid="106" relation="include">
         </childnode>
       </node>
       <node id="82">
@@ -317,15 +369,15 @@
         </childnode>
         <childnode refid="115" relation="include">
         </childnode>
-        <childnode refid="116" relation="include">
-        </childnode>
         <childnode refid="37" relation="include">
         </childnode>
-        <childnode refid="117" relation="include">
+        <childnode refid="116" relation="include">
         </childnode>
         <childnode refid="125" relation="include">
         </childnode>
-        <childnode refid="120" relation="include">
+        <childnode refid="119" relation="include">
+        </childnode>
+        <childnode refid="124" relation="include">
         </childnode>
         <childnode refid="107" relation="include">
         </childnode>
@@ -488,7 +540,7 @@
         <childnode refid="105" relation="include">
         </childnode>
       </node>
-      <node id="123">
+      <node id="121">
         <label>/__w/GQCP/GQCP/gqcp/include/DensityMatrix/G1DM.hpp</label>
         <link refid="_g1_d_m_8hpp"/>
         <childnode refid="2" relation="include">
@@ -536,6 +588,18 @@
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFSCFSolver.hpp</label>
         <link refid="_u_h_f_s_c_f_solver_8hpp"/>
         <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="130">
+        <label>/__w/GQCP/GQCP/gqcp/include/Domain/MullikenDomain/UMullikenDomainComponent.hpp</label>
+        <link refid="_u_mulliken_domain_component_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="131" relation="include">
+        </childnode>
+        <childnode refid="124" relation="include">
+        </childnode>
+        <childnode refid="132" relation="include">
         </childnode>
       </node>
       <node id="43">
@@ -586,22 +650,22 @@
         <childnode refid="96" relation="include">
         </childnode>
       </node>
+      <node id="127">
+        <label>/__w/GQCP/GQCP/gqcp/include/Domain/MullikenDomain/RMullikenDomain.hpp</label>
+        <link refid="_r_mulliken_domain_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="128" relation="include">
+        </childnode>
+      </node>
       <node id="52">
         <label>/__w/GQCP/GQCP/gqcp/include/Processing/Properties/RHFElectricalResponseSolver.hpp</label>
         <link refid="_r_h_f_electrical_response_solver_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="53" relation="include">
-        </childnode>
-      </node>
-      <node id="122">
-        <label>/__w/GQCP/GQCP/gqcp/include/Basis/MullikenPartitioning/GMullikenPartitioning.hpp</label>
-        <link refid="_g_mulliken_partitioning_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
         </childnode>
       </node>
       <node id="18">
@@ -612,14 +676,14 @@
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.cpp</label>
         <link refid="_q_c_method_newton_orbital_optimizer_8cpp"/>
       </node>
-      <node id="117">
+      <node id="116">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UJacobiRotation.hpp</label>
         <link refid="_u_jacobi_rotation_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="118" relation="include">
+        <childnode refid="117" relation="include">
         </childnode>
-        <childnode refid="119" relation="include">
+        <childnode refid="118" relation="include">
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
@@ -644,18 +708,18 @@
         <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="121">
+      <node id="120">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/GTransformation.hpp</label>
         <link refid="_g_transformation_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="122" relation="include">
-        </childnode>
         <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="123" relation="include">
+        <childnode refid="121" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="122" relation="include">
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
@@ -669,6 +733,16 @@
       <node id="54">
         <label>/__w/GQCP/GQCP/gqcp/src/Processing/Properties/BaseElectricalResponseSolver.cpp</label>
         <link refid="_base_electrical_response_solver_8cpp"/>
+      </node>
+      <node id="122">
+        <label>/__w/GQCP/GQCP/gqcp/include/Domain/MullikenDomain/GMullikenDomain.hpp</label>
+        <link refid="_g_mulliken_domain_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
       </node>
       <node id="70">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFSCFEnvironment.hpp</label>
@@ -784,20 +858,20 @@
         <childnode refid="26" relation="include">
         </childnode>
       </node>
-      <node id="120">
+      <node id="119">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UTransformation.hpp</label>
         <link refid="_u_transformation_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="114" relation="include">
-        </childnode>
         <childnode refid="37" relation="include">
         </childnode>
-        <childnode refid="121" relation="include">
+        <childnode refid="120" relation="include">
         </childnode>
-        <childnode refid="124" relation="include">
+        <childnode refid="123" relation="include">
         </childnode>
         <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="124" relation="include">
         </childnode>
         <childnode refid="106" relation="include">
         </childnode>
@@ -946,6 +1020,16 @@
         <childnode refid="2" relation="include">
         </childnode>
       </node>
+      <node id="124">
+        <label>/__w/GQCP/GQCP/gqcp/include/Domain/MullikenDomain/UMullikenDomain.hpp</label>
+        <link refid="_u_mulliken_domain_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="106" relation="include">
+        </childnode>
+      </node>
       <node id="37">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp</label>
         <link refid="_u_spin_orbital_basis_8hpp"/>
@@ -970,6 +1054,12 @@
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/RMP2/RMP2.hpp</label>
         <link refid="_r_m_p2_8hpp"/>
         <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="133">
+        <label>/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableUSQOneElectronOperatorComponent.hpp</label>
+        <link refid="_evaluable_u_s_q_one_electron_operator_component_8hpp"/>
+        <childnode refid="107" relation="include">
         </childnode>
       </node>
       <node id="22">
@@ -1032,6 +1122,30 @@
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="81" relation="include">
+        </childnode>
+      </node>
+      <node id="128">
+        <label>/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/RSQOneElectronOperator.hpp</label>
+        <link refid="_r_s_q_one_electron_operator_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="129" relation="include">
+        </childnode>
+        <childnode refid="111" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="106" relation="include">
+        </childnode>
+        <childnode refid="112" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="103" relation="include">
+        </childnode>
+        <childnode refid="105" relation="include">
         </childnode>
       </node>
       <node id="109">
@@ -1108,7 +1222,7 @@
         <childnode refid="28" relation="include">
         </childnode>
       </node>
-      <node id="118">
+      <node id="117">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/DoublySpinResolvedJacobiRotatable.hpp</label>
         <link refid="_doubly_spin_resolved_jacobi_rotatable_8hpp"/>
         <childnode refid="4" relation="include">
@@ -1174,16 +1288,6 @@
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="72" relation="include">
-        </childnode>
-      </node>
-      <node id="114">
-        <label>/__w/GQCP/GQCP/gqcp/include/Basis/MullikenPartitioning/UMullikenPartitioning.hpp</label>
-        <link refid="_u_mulliken_partitioning_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="37" relation="include">
-        </childnode>
-        <childnode refid="106" relation="include">
         </childnode>
       </node>
       <node id="83">
@@ -1306,7 +1410,7 @@
         <childnode refid="103" relation="include">
         </childnode>
       </node>
-      <node id="115">
+      <node id="114">
         <label>/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/Spinor.hpp</label>
         <link refid="_spinor_8hpp"/>
         <childnode refid="2" relation="include">

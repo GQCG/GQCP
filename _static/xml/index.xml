@@ -990,6 +990,7 @@
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a5caef4e970d0ede4e796fdddcfebc419" kind="function"><name>calculatePartialStabilityMatrixA</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1ad68ba71ec17facb8b5b26c1d65c65b35" kind="function"><name>calculatePartialStabilityMatrixB</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a220b3cd32800534b13f7a9b96babe3e1" kind="function"><name>calculateScalarBasis1DM</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a8b04729994eacfd0d159fb58f93e783b" kind="function"><name>calculateScalarBasis2DM</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a98bfae7d488a4f9628c83dd28fcc5fea" kind="function"><name>calculateStabilityMatrices</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1afaf9ed101f8a284a6c1e816f38472f3b" kind="function"><name>expansion</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a265a9cca0a499257569bd551aa7c2964" kind="function"><name>numberOfElectrons</name></member>
@@ -1002,6 +1003,7 @@
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a8781eab7eddf7f4b2361ad2686d5fd66" kind="function"><name>calculateError</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a7b0757202a3dc3cfe0f444d52d83c4b1" kind="function"><name>calculateElectronicEnergy</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a86c8caefafaf95457a8cd24a8b0d9930" kind="function"><name>calculateScalarBasis1DM</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1aee36a6b2a56f2ece4a37c3227e0a4759" kind="function"><name>calculateScalarBasis2DM</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1aef5200acafc8904a67df2bc21c620e06" kind="function"><name>calculateScalarBasisDirectMatrix</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1a14e62520a137ea7382be831cd17c2923" kind="function"><name>calculateScalarBasisExchangeMatrix</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f_1ad853c9a44e776b6fe37dd1f1800192df" kind="function"><name>calculateScalarBasisFockMatrix</name></member>
@@ -1070,15 +1072,10 @@
     <member refid="class_g_q_c_p_1_1_g_h_f_s_c_f_solver_1ac35616a70cc7acfc3fdc247c8b34acd8" kind="function"><name>Plain</name></member>
     <member refid="class_g_q_c_p_1_1_g_h_f_s_c_f_solver_1a0a38b3f923c9668b4638f72915842e10" kind="function"><name>DIIS</name></member>
   </compound>
-  <compound refid="class_g_q_c_p_1_1_g_mulliken_partitioning" kind="class"><name>GQCP::GMullikenPartitioning</name>
-    <member refid="class_g_q_c_p_1_1_g_mulliken_partitioning_1ad2fe79a12afd2eeae30210b5f5a36a66" kind="typedef"><name>Scalar</name></member>
-    <member refid="class_g_q_c_p_1_1_g_mulliken_partitioning_1a9b1e87288516ffed98895ee454c5eac1" kind="variable"><name>m_indices</name></member>
-    <member refid="class_g_q_c_p_1_1_g_mulliken_partitioning_1a1b1f54cf5ce773a7e10723bfb7d3886c" kind="variable"><name>C</name></member>
-    <member refid="class_g_q_c_p_1_1_g_mulliken_partitioning_1a3704f880011c96343edddf700cdd849e" kind="function"><name>GMullikenPartitioning</name></member>
-    <member refid="class_g_q_c_p_1_1_g_mulliken_partitioning_1a30481c713782d7a7547d902c4b4d443b" kind="function"><name>indices</name></member>
-    <member refid="class_g_q_c_p_1_1_g_mulliken_partitioning_1a39cc51cdff13c828efdb83423ab93ca8" kind="function"><name>numberOfOrbitals</name></member>
-    <member refid="class_g_q_c_p_1_1_g_mulliken_partitioning_1a4e4cc46f23ad9e668a66bd9568579375" kind="function"><name>partitionMatrix</name></member>
-    <member refid="class_g_q_c_p_1_1_g_mulliken_partitioning_1a894ef25f195dbb217041eccf7c76bf92" kind="function"><name>projectionMatrix</name></member>
+  <compound refid="class_g_q_c_p_1_1_g_mulliken_domain" kind="class"><name>GQCP::GMullikenDomain</name>
+    <member refid="class_g_q_c_p_1_1_g_mulliken_domain_1a188291f6208504cf175d2a37dc4efd0a" kind="typedef"><name>Scalar</name></member>
+    <member refid="class_g_q_c_p_1_1_g_mulliken_domain_1a0d02a2043d7b7c266e4bb2e905ad3e67" kind="function"><name>partitionMatrix</name></member>
+    <member refid="class_g_q_c_p_1_1_g_mulliken_domain_1aed26aa0fef8f3823bff15384979355f9" kind="function"><name>projectionMatrix</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_g_orbital_rotation_generators" kind="class"><name>GQCP::GOrbitalRotationGenerators</name>
     <member refid="class_g_q_c_p_1_1_g_orbital_rotation_generators_1a88c39705cd0e6eb914076570b895c214" kind="typedef"><name>Scalar</name></member>
@@ -1118,8 +1115,8 @@
     <member refid="class_g_q_c_p_1_1_g_spinor_basis_1aab715eecdc3a5b35ca8e0e6acff6c3cc" kind="function"><name>quantize</name></member>
     <member refid="class_g_q_c_p_1_1_g_spinor_basis_1ae1373befd3ede50fe3a1b06ebdbe4cb1" kind="function"><name>quantize</name></member>
     <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a29e97fd11c496f40147b63fcbf42a623" kind="function"><name>scalarBases</name></member>
-    <member refid="class_g_q_c_p_1_1_g_spinor_basis_1adf4e812f8804c98d441cea5ad8985dca" kind="function"><name>mullikenPartitioning</name></member>
-    <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a67766903b77d04018df2eb22c050e68a" kind="function"><name>mullikenPartitioning</name></member>
+    <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a4bdca30291db3577474ffd187dfe322a" kind="function"><name>mullikenDomain</name></member>
+    <member refid="class_g_q_c_p_1_1_g_spinor_basis_1af9fcda4830eaaaef03c69880a30586e9" kind="function"><name>mullikenDomain</name></member>
     <member refid="class_g_q_c_p_1_1_g_spinor_basis_1ab54024d72e1fbd81ae0d819787de297b" kind="function"><name>FromRestricted</name></member>
     <member refid="class_g_q_c_p_1_1_g_spinor_basis_1ac9e094db9455de1ad4823ac71af2c394" kind="function"><name>FromUnrestricted</name></member>
   </compound>
@@ -1951,7 +1948,7 @@
     <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_g_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4_1a8d638fc562b4b620cc6a5ed69571d824" kind="typedef"><name>Transformation</name></member>
     <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_g_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4_1a7a7770b3a95d5f3d30725a408bfafb76" kind="typedef"><name>OneDM</name></member>
     <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_g_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4_1a48104fbbb180ed938b8960f98adb2741" kind="typedef"><name>TwoDM</name></member>
-    <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_g_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4_1ad4e6cd2178e93514550c4fa56b8ba351" kind="typedef"><name>MullikenPartitioning</name></member>
+    <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_g_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4_1a9800098e751ce9f5d22a741bb6a89d74" kind="typedef"><name>MullikenDomain</name></member>
   </compound>
   <compound refid="struct_g_q_c_p_1_1_operator_traits_3_01_g_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" kind="struct"><name>GQCP::OperatorTraits&lt; GSQTwoElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</name>
     <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_g_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4_1a8144ed642c8f2cbc13d0ecb32472b420" kind="typedef"><name>ScalarOperator</name></member>
@@ -1981,7 +1978,7 @@
     <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_r_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4_1a59c2f0dc7fa17a990f03dc9c7cc91a0a" kind="typedef"><name>Transformation</name></member>
     <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_r_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4_1a2264755f5255f7202bb104dade470b38" kind="typedef"><name>OneDM</name></member>
     <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_r_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4_1af140818fee3a389f897fc59d198a48e1" kind="typedef"><name>TwoDM</name></member>
-    <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_r_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4_1aff77a38bcda8ec55af98325f058d8e42" kind="typedef"><name>MullikenPartitioning</name></member>
+    <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_r_s_q_one_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4_1a3ab146deb936d9c200c1a02cb893c56c" kind="typedef"><name>MullikenDomain</name></member>
   </compound>
   <compound refid="struct_g_q_c_p_1_1_operator_traits_3_01_r_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" kind="struct"><name>GQCP::OperatorTraits&lt; RSQTwoElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</name>
     <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_r_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4_1a1c17eb5c931ebb4567d15357cafda61b" kind="typedef"><name>ScalarOperator</name></member>
@@ -2016,7 +2013,7 @@
     <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_one_electron_operator_component_3_01_scalar_00_01_vectorizer_01_4_01_4_1a88efe429c610306c978d848eeead19cf" kind="typedef"><name>Transformation</name></member>
     <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_one_electron_operator_component_3_01_scalar_00_01_vectorizer_01_4_01_4_1a59f6bd72d88eb59e56ab83c8975ec67f" kind="typedef"><name>OneDM</name></member>
     <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_one_electron_operator_component_3_01_scalar_00_01_vectorizer_01_4_01_4_1ae20c6e9bb6fa612a6a385debba6122b4" kind="typedef"><name>TwoDM</name></member>
-    <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_one_electron_operator_component_3_01_scalar_00_01_vectorizer_01_4_01_4_1af899586c0923f8e406121af9df033ae0" kind="typedef"><name>MullikenPartitioning</name></member>
+    <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_one_electron_operator_component_3_01_scalar_00_01_vectorizer_01_4_01_4_1af03b511a5471c09499c20f422f061517" kind="typedef"><name>MullikenDomain</name></member>
   </compound>
   <compound refid="struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" kind="struct"><name>GQCP::OperatorTraits&lt; USQTwoElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</name>
     <member refid="struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4_1a9e8da0eee03b53dea2086a74ed0c04e0" kind="typedef"><name>ScalarOperator</name></member>
@@ -2242,6 +2239,7 @@
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a89649bd02764ba547142edeb4021fdc8" kind="function"><name>calculateOrthonormalBasis1DM</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a5267a344a0fea282ccfa8e2c85c43a9e" kind="function"><name>calculateOrthonormalBasis2DM</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a0ab5458cac7f9a10dacfa483de63a4b4" kind="function"><name>calculateScalarBasis1DM</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a2d963d84b14d257696ca0c81ea23430a" kind="function"><name>calculateScalarBasis2DM</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a38587786222db0bef4a25002a438461b" kind="function"><name>homoIndex</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a589da15230f06ea419e431056730597d" kind="function"><name>lumoIndex</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1aeef840b524f4f1475542c2347d981d43" kind="function"><name>orbitalSpace</name></member>
@@ -2260,6 +2258,7 @@
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a5be5ab69528f74147bd132ab4ccc8dcd" kind="function"><name>calculateOrthonormalBasis1DM</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a64d5b4d64cea2c88cd9208e8c2ab24cd" kind="function"><name>calculateOrthonormalBasis2DM</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a84eb07d7a5e372777ce0e5236d2ec427" kind="function"><name>calculateScalarBasis1DM</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a33d551f997011451c4147505aab539fb" kind="function"><name>calculateScalarBasis2DM</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1ad75543a8ad881961c9d40ad9d9fdb24a" kind="function"><name>calculateScalarBasisFockMatrix</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1adf6f1eeae05228ba3eff7d929b15ef1b" kind="function"><name>homoIndex</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_1a81c4ee2f8b91cc790a292c4b14846aae" kind="function"><name>lumoIndex</name></member>
@@ -2343,15 +2342,10 @@
     <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_solver_1a9dc00e9fe26b41554f5a8e35e32c1948" kind="function"><name>DIIS</name></member>
     <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_solver_1aac28fd47780a448947f1b924be6d5e46" kind="function"><name>Plain</name></member>
   </compound>
-  <compound refid="class_g_q_c_p_1_1_r_mulliken_partitioning" kind="class"><name>GQCP::RMullikenPartitioning</name>
-    <member refid="class_g_q_c_p_1_1_r_mulliken_partitioning_1ad33c9b688af44a2a6a08f83df941c00b" kind="typedef"><name>Scalar</name></member>
-    <member refid="class_g_q_c_p_1_1_r_mulliken_partitioning_1af3763df2e48ed09bf07d4bb1abce27cc" kind="variable"><name>m_indices</name></member>
-    <member refid="class_g_q_c_p_1_1_r_mulliken_partitioning_1a68fd09550c0b3196e5f973db15404ba8" kind="variable"><name>C</name></member>
-    <member refid="class_g_q_c_p_1_1_r_mulliken_partitioning_1a5da5ed983abdb3b352b02d2c52c5d862" kind="function"><name>RMullikenPartitioning</name></member>
-    <member refid="class_g_q_c_p_1_1_r_mulliken_partitioning_1ad1d0007c4fb7c462815a4a0436592072" kind="function"><name>indices</name></member>
-    <member refid="class_g_q_c_p_1_1_r_mulliken_partitioning_1a6b824ff394330b068bd01ff6b22258e3" kind="function"><name>numberOfOrbitals</name></member>
-    <member refid="class_g_q_c_p_1_1_r_mulliken_partitioning_1a5d1211c20ef5124b72cb1ea5eb817262" kind="function"><name>partitionMatrix</name></member>
-    <member refid="class_g_q_c_p_1_1_r_mulliken_partitioning_1a3e62e414ddbbc62d6dcbbca8f97e026b" kind="function"><name>projectionMatrix</name></member>
+  <compound refid="class_g_q_c_p_1_1_r_mulliken_domain" kind="class"><name>GQCP::RMullikenDomain</name>
+    <member refid="class_g_q_c_p_1_1_r_mulliken_domain_1aeffa5037ac263ce691e4b932c3888f59" kind="typedef"><name>Scalar</name></member>
+    <member refid="class_g_q_c_p_1_1_r_mulliken_domain_1a7fee7014f609f4c7a0ddabbe8541d953" kind="function"><name>partitionMatrix</name></member>
+    <member refid="class_g_q_c_p_1_1_r_mulliken_domain_1adbaf95674b1a4e2e6533d673a37fe89e" kind="function"><name>projectionMatrix</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_r_orbital_rotation_generators" kind="class"><name>GQCP::ROrbitalRotationGenerators</name>
     <member refid="class_g_q_c_p_1_1_r_orbital_rotation_generators_1a1f06c3d182daaf538a2c313718c7ac3b" kind="typedef"><name>Scalar</name></member>
@@ -2387,8 +2381,8 @@
     <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1aa1c01d076a42f04ede664dfe6c901e33" kind="function"><name>spatialOrbitals</name></member>
     <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a3a943c3a88881540c16f505acf62cf5c" kind="function"><name>spatialOrbitalGradients</name></member>
     <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a4f93ecf321ddc5e10f81f3344a3449a9" kind="function"><name>spinOrbitals</name></member>
-    <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a03892758a8559dcfb2a36ad05f62f1cc" kind="function"><name>mullikenPartitioning</name></member>
-    <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1ac769e0f84752591775771245c338fef2" kind="function"><name>mullikenPartitioning</name></member>
+    <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a951e5827840aa22662b718566f81dcbf" kind="function"><name>mullikenDomain</name></member>
+    <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a97a243f5e8bbda18006e3a71dbd6292a" kind="function"><name>mullikenDomain</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_r_s_q_one_electron_operator" kind="class"><name>GQCP::RSQOneElectronOperator</name>
     <member refid="class_g_q_c_p_1_1_r_s_q_one_electron_operator_1ab4dea0b6f2ed9906da78a5e72f9e28f4" kind="typedef"><name>Scalar</name></member>
@@ -2556,14 +2550,14 @@
     <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1a22bb1d9a25abec93b329d3563e1da508" kind="typedef"><name>Transformation</name></member>
     <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1acb59766aa2ef88790a36b059e4896bc1" kind="typedef"><name>Derived1DM</name></member>
     <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1a66f1572868ae3bc4105f55783551667a" kind="typedef"><name>Derived2DM</name></member>
-    <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1afcb21b0fa27c292d97432fca3d5053d2" kind="typedef"><name>MullikenPartitioning</name></member>
+    <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1a7fe7af4681a565b25df8d7731b114c48" kind="typedef"><name>MullikenDomain</name></member>
     <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1ab6a38425352d5efdf8e3a733be931c3d" kind="function"><name>calculateExpectationValue</name></member>
     <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1acdc164109eb242236265053a76993de5" kind="function"><name>calculateFockianMatrix</name></member>
     <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1a56ca07c0f5a64e3c6314a2134ce2ccd9" kind="function"><name>calculateSuperFockianMatrix</name></member>
     <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1ad74d55024bd63ad9138f011a13fdd5f0" kind="function"><name>transformed</name></member>
     <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1ab1474f3ec1beed8cc704747f81a73d31" kind="function"><name>rotated</name></member>
     <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1a860bef15613c7755de4338798f99a612" kind="function"><name>oneIndexTransformed</name></member>
-    <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1a9e0f7547e55b563f6fc4074a0b8d1779" kind="function"><name>partitioned</name></member>
+    <member refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator_1a86049c29b56492f6be4e95aa47c6efec" kind="function"><name>partitioned</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator" kind="class"><name>GQCP::SimpleSQTwoElectronOperator</name>
     <member refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator_1a941dd011a18ae37efac92163364a559b" kind="typedef"><name>Scalar</name></member>
@@ -2662,6 +2656,8 @@
   <compound refid="class_g_q_c_p_1_1_spin_resolved2_d_m" kind="class"><name>GQCP::SpinResolved2DM</name>
     <member refid="class_g_q_c_p_1_1_spin_resolved2_d_m_1ae334f20472a5e944c4ec8aedb2c973cf" kind="typedef"><name>Scalar</name></member>
     <member refid="class_g_q_c_p_1_1_spin_resolved2_d_m_1a2ef5bcf1e85d71497386544f2cbabfb1" kind="typedef"><name>Self</name></member>
+    <member refid="class_g_q_c_p_1_1_spin_resolved2_d_m_1a2b85859982e03da37619b9f555cd0c67" kind="typedef"><name>PureComponentType</name></member>
+    <member refid="class_g_q_c_p_1_1_spin_resolved2_d_m_1ac4efe1b57ac275cee3ed6380c041c634" kind="typedef"><name>MixedComponentType</name></member>
     <member refid="class_g_q_c_p_1_1_spin_resolved2_d_m_1a4c58e2057d5df2ac35f9f85e546a8366" kind="function"><name>numberOfOrbitals</name></member>
     <member refid="class_g_q_c_p_1_1_spin_resolved2_d_m_1af32067fd0dde6a92c3e00d775491ae49" kind="function"><name>orbitalDensity</name></member>
   </compound>
@@ -2987,6 +2983,7 @@
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a6145ccdc3e1c697c9ee33e9f2d640c2a" kind="function"><name>calculateOrthonormalBasis1DM</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1abbec73d25bdc19afa2663dbf7f901977" kind="function"><name>calculateOrthonormalBasis2DM</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a983dff445ed9047b327b8cf8e5759800" kind="function"><name>calculateScalarBasis1DM</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a5438e6956c1c21542a01f5e8bd83f626" kind="function"><name>calculateScalarBasis2DM</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a84db800972f82b1b576cca0a6add6608" kind="function"><name>calculateMixedSpinConservedAComponent</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a489a4cbb6c991415c89d5ad5cb87bb63" kind="function"><name>calculateMixedSpinConservedBComponent</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a6cd586a84cfc3090c70d91bed87e7669" kind="function"><name>calculatePureSpinConservedAComponent</name></member>
@@ -3013,6 +3010,7 @@
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ad9c0c78206d11404f885217dffbf3f4a" kind="function"><name>calculateOrthonormalBasis1DM</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1affbf8ab242f1720396975fd178689679" kind="function"><name>calculateOrthonormalBasis2DM</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1aac71310a237c53ac4b08ad4b162d500a" kind="function"><name>calculateScalarBasis1DM</name></member>
+    <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a7055d84df1c4c24cd7f31dafbd6c6652" kind="function"><name>calculateScalarBasis2DM</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a934d852fa46c859b4b3b728847ddfdf3" kind="function"><name>calculateScalarBasisDirectMatrix</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ab57a0fc113bf7c056ff8355e3d1c75e5" kind="function"><name>calculateScalarBasisExchangeMatrix</name></member>
     <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a2d63fb3a02eed78294ec4786d4bed2b9" kind="function"><name>calculateScalarBasisFockMatrix</name></member>
@@ -3083,21 +3081,16 @@
   <compound refid="class_g_q_c_p_1_1_u_jacobi_rotation" kind="class"><name>GQCP::UJacobiRotation</name>
     <member refid="class_g_q_c_p_1_1_u_jacobi_rotation_1a2cd243c399d1b6033411e34a955a0228" kind="typedef"><name>ComponentType</name></member>
   </compound>
-  <compound refid="class_g_q_c_p_1_1_u_mulliken_partitioning" kind="class"><name>GQCP::UMullikenPartitioning</name>
-    <member refid="class_g_q_c_p_1_1_u_mulliken_partitioning_1aee5dabc109eb60905defbe0da9c073d2" kind="typedef"><name>Scalar</name></member>
-    <member refid="class_g_q_c_p_1_1_u_mulliken_partitioning_1abed7a2a8ec6dd0714a66d8897274beb6" kind="typedef"><name>ComponentType</name></member>
-    <member refid="class_g_q_c_p_1_1_u_mulliken_partitioning_1a7af997cb70a1cc02384def069f308a9a" kind="function"><name>partitionMatrix</name></member>
-    <member refid="class_g_q_c_p_1_1_u_mulliken_partitioning_1acc835dbe52e4a3b4a3e4b2d06a2a12f4" kind="function"><name>projectionMatrix</name></member>
+  <compound refid="class_g_q_c_p_1_1_u_mulliken_domain" kind="class"><name>GQCP::UMullikenDomain</name>
+    <member refid="class_g_q_c_p_1_1_u_mulliken_domain_1a2ad59f2120cc3ad7e49ba06c446c2a62" kind="typedef"><name>Scalar</name></member>
+    <member refid="class_g_q_c_p_1_1_u_mulliken_domain_1a7831e20eeedc5237c10d1b25766b2ba2" kind="typedef"><name>ComponentType</name></member>
+    <member refid="class_g_q_c_p_1_1_u_mulliken_domain_1a342b2b7ecdea6d0ea43bfc403e467511" kind="function"><name>partitionMatrix</name></member>
+    <member refid="class_g_q_c_p_1_1_u_mulliken_domain_1abc34787621359847b000ba9021b97c8d" kind="function"><name>projectionMatrix</name></member>
   </compound>
-  <compound refid="class_g_q_c_p_1_1_u_mulliken_partitioning_component" kind="class"><name>GQCP::UMullikenPartitioningComponent</name>
-    <member refid="class_g_q_c_p_1_1_u_mulliken_partitioning_component_1a161f71eda071a0a58a6f2decb6c5a5e5" kind="typedef"><name>Scalar</name></member>
-    <member refid="class_g_q_c_p_1_1_u_mulliken_partitioning_component_1a018c77dbf49d04cc8b021b14d07bdd15" kind="variable"><name>m_indices</name></member>
-    <member refid="class_g_q_c_p_1_1_u_mulliken_partitioning_component_1a5462c61319c93869ab5b736853f8400c" kind="variable"><name>C</name></member>
-    <member refid="class_g_q_c_p_1_1_u_mulliken_partitioning_component_1a50c1ae70b4d68b767cfc31042f4d25c5" kind="function"><name>UMullikenPartitioningComponent</name></member>
-    <member refid="class_g_q_c_p_1_1_u_mulliken_partitioning_component_1a5c7f2a4f2eb941ecaf8aaf4ad1f699f8" kind="function"><name>indices</name></member>
-    <member refid="class_g_q_c_p_1_1_u_mulliken_partitioning_component_1ad6609b89d79c143abf9cd9585d673f77" kind="function"><name>numberOfOrbitals</name></member>
-    <member refid="class_g_q_c_p_1_1_u_mulliken_partitioning_component_1a26e3d5ffa8719bf121ff3732003f2b6b" kind="function"><name>partitionMatrix</name></member>
-    <member refid="class_g_q_c_p_1_1_u_mulliken_partitioning_component_1a62cb67abfd150beb1ca0158bd06dc273" kind="function"><name>projectionMatrix</name></member>
+  <compound refid="class_g_q_c_p_1_1_u_mulliken_domain_component" kind="class"><name>GQCP::UMullikenDomainComponent</name>
+    <member refid="class_g_q_c_p_1_1_u_mulliken_domain_component_1a2a4ada3f9ecc0711586b12d09bc1c281" kind="typedef"><name>Scalar</name></member>
+    <member refid="class_g_q_c_p_1_1_u_mulliken_domain_component_1a17f4f84f343f8a385eb0b3f299168275" kind="function"><name>partitionMatrix</name></member>
+    <member refid="class_g_q_c_p_1_1_u_mulliken_domain_component_1a74e9dbc784dd24eaaa0b05f6abddcd0d" kind="function"><name>projectionMatrix</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_unaltering_hessian_modifier" kind="class"><name>GQCP::UnalteringHessianModifier</name>
     <member refid="class_g_q_c_p_1_1_unaltering_hessian_modifier_1a81003869b0163039fea7cfe80c89ebb3" kind="function"><name>operator()</name></member>
@@ -3147,8 +3140,8 @@
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1a35ee2dc28bda2b64c75d8c6e2a2cd787" kind="function"><name>quantize</name></member>
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1a2200b24771de76df594a1971474ceeb7" kind="function"><name>quantize</name></member>
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1aa06df84fc3d1d8d81b04642a6195f382" kind="function"><name>quantize</name></member>
-    <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1adfac25a81350065376e8951e605c84e4" kind="function"><name>mullikenPartitioning</name></member>
-    <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1a8e4ec2e18ade56c8188b1413474b3884" kind="function"><name>mullikenPartitioning</name></member>
+    <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1add39c1ea5cd6656083f3b407e6e0cdb5" kind="function"><name>mullikenDomain</name></member>
+    <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1adc32afe4293ad7c11576e7d9f933b4e6" kind="function"><name>mullikenDomain</name></member>
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1aa44a67887b29acb6cee0fdbee427f9b6" kind="function"><name>FromRestricted</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_u_spin_orbital_basis_component" kind="class"><name>GQCP::USpinOrbitalBasisComponent</name>
@@ -3160,8 +3153,8 @@
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_component_1ab476cd084fa821bb61d6e97e26230405" kind="function"><name>quantize</name></member>
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_component_1a78a4b103d9bf7b2d896e96fc719c6a05" kind="function"><name>quantize</name></member>
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_component_1a57579c162357d7324ef2f9fe3c261ef4" kind="function"><name>quantize</name></member>
-    <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_component_1aac847d885bbbf1022ecfd180db378dee" kind="function"><name>mullikenPartitioning</name></member>
-    <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_component_1afe68e72762a5b22ab6319679a62e506f" kind="function"><name>mullikenPartitioning</name></member>
+    <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_component_1a6b17e0c30be846596a3359437cbda772" kind="function"><name>mullikenDomain</name></member>
+    <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_component_1ac3a4100389845c13a35f11a8b28eb8c2" kind="function"><name>mullikenDomain</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator" kind="class"><name>GQCP::USQOneElectronOperator</name>
     <member refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator_1a1e2a60e663998657605d3a14df95a40c" kind="typedef"><name>Scalar</name></member>
@@ -3180,7 +3173,7 @@
     <member refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator_1af8e744e4ec24bb3fc22dc28d794cf4fe" kind="function"><name>operator+=</name></member>
     <member refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator_1a8dd5c13f6d98c0835dd1db46fcbf412a" kind="function"><name>operator*=</name></member>
     <member refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator_1a182cf9bd640efd982b2cbba7e305fa70" kind="function"><name>oneIndexTransformed</name></member>
-    <member refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator_1aaead67708fd73092f4f8f0e72e7c43eb" kind="function"><name>partitioned</name></member>
+    <member refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator_1a49c08ab79e4003fdb49f17d8831e8ea4" kind="function"><name>partitioned</name></member>
     <member refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator_1aa890a9769916b6ba74f2a9d059abaaec" kind="function"><name>Zero</name></member>
     <member refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator_1aafb7dd9ebddf9b9e64535c7d849897e1" kind="function"><name>FromRestricted</name></member>
   </compound>
@@ -3195,6 +3188,8 @@
     <member refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1ab7ec3d27968b558dc79654dc35a00362" kind="typedef"><name>Transformation</name></member>
     <member refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1a6db397c500c999841da2018ef27acd87" kind="typedef"><name>JacobiRotationType</name></member>
     <member refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1ae3d6317cab5cc865f48f86be11b13842" kind="typedef"><name>SpinorTag</name></member>
+    <member refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1a4b127c1ab31a371d4c2340d20ca8e5d9" kind="typedef"><name>PureComponentType</name></member>
+    <member refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1aaf70198ff086416e97a4004371467bef" kind="typedef"><name>MixedComponentType</name></member>
     <member refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1adb2aff87bca5d424ba11902b28842251" kind="function"><name>USQTwoElectronOperator</name></member>
     <member refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1a7d10ee7472cb3129b2677ce055c3154a" kind="function"><name>USQTwoElectronOperator</name></member>
     <member refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1a60246004fd8389e883e9c9b1468a9210" kind="function"><name>USQTwoElectronOperator</name></member>
@@ -3567,14 +3562,6 @@
   </compound>
   <compound refid="_two_electron_integral_engine_8hpp" kind="file"><name>TwoElectronIntegralEngine.hpp</name>
   </compound>
-  <compound refid="_g_mulliken_partitioning_8hpp" kind="file"><name>GMullikenPartitioning.hpp</name>
-  </compound>
-  <compound refid="_r_mulliken_partitioning_8hpp" kind="file"><name>RMullikenPartitioning.hpp</name>
-  </compound>
-  <compound refid="_u_mulliken_partitioning_8hpp" kind="file"><name>UMullikenPartitioning.hpp</name>
-  </compound>
-  <compound refid="_u_mulliken_partitioning_component_8hpp" kind="file"><name>UMullikenPartitioningComponent.hpp</name>
-  </compound>
   <compound refid="_g_t_o_basis_set_8hpp" kind="file"><name>GTOBasisSet.hpp</name>
   </compound>
   <compound refid="_g_t_o_shell_8hpp" kind="file"><name>GTOShell.hpp</name>
@@ -3672,6 +3659,14 @@
   <compound refid="_spin_resolved1_d_m_component_8hpp" kind="file"><name>SpinResolved1DMComponent.hpp</name>
   </compound>
   <compound refid="_spin_resolved2_d_m_8hpp" kind="file"><name>SpinResolved2DM.hpp</name>
+  </compound>
+  <compound refid="_g_mulliken_domain_8hpp" kind="file"><name>GMullikenDomain.hpp</name>
+  </compound>
+  <compound refid="_r_mulliken_domain_8hpp" kind="file"><name>RMullikenDomain.hpp</name>
+  </compound>
+  <compound refid="_u_mulliken_domain_8hpp" kind="file"><name>UMullikenDomain.hpp</name>
+  </compound>
+  <compound refid="_u_mulliken_domain_component_8hpp" kind="file"><name>UMullikenDomainComponent.hpp</name>
   </compound>
   <compound refid="gqcp_8hpp" kind="file"><name>gqcp.hpp</name>
   </compound>
@@ -4239,13 +4234,15 @@
   </compound>
   <compound refid="dir_091bfa8a2ad26933326dea29b9e6653e" kind="dir"><name>/__w/GQCP/GQCP/gqcp/include/QCModel/CC</name>
   </compound>
-  <compound refid="dir_1898ac9af35c6d8ed6376f04110e77c0" kind="dir"><name>/__w/GQCP/GQCP/gqcp/include/QCMethod/CI</name>
-  </compound>
   <compound refid="dir_b003bc2eba300379a8aa313604c15910" kind="dir"><name>/__w/GQCP/GQCP/gqcp/include/QCModel/CI</name>
+  </compound>
+  <compound refid="dir_1898ac9af35c6d8ed6376f04110e77c0" kind="dir"><name>/__w/GQCP/GQCP/gqcp/include/QCMethod/CI</name>
   </compound>
   <compound refid="dir_fa8552c11c546e886dd0ab624ab9fd09" kind="dir"><name>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson</name>
   </compound>
   <compound refid="dir_48ddfae5dd558b6147ef35393fcef6e1" kind="dir"><name>/__w/GQCP/GQCP/gqcp/include/DensityMatrix</name>
+  </compound>
+  <compound refid="dir_e059414b3c41586f4e1d813552003cde" kind="dir"><name>/__w/GQCP/GQCP/gqcp/include/Domain</name>
   </compound>
   <compound refid="dir_56734510d0d14ef1ee351fb86f505aa1" kind="dir"><name>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem</name>
   </compound>
@@ -4257,13 +4254,13 @@
   </compound>
   <compound refid="dir_6c4af46cc71c81a187b7586915ea7074" kind="dir"><name>/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions</name>
   </compound>
-  <compound refid="dir_d258e53cc9882d4f53db1685bedb6902" kind="dir"><name>/__w/GQCP/GQCP/gqcp/src/QCMethod/Geminals</name>
+  <compound refid="dir_696a2fec5b8b30966ab29971c678fded" kind="dir"><name>/__w/GQCP/GQCP/gqcp/src/QCModel/Geminals</name>
   </compound>
-  <compound refid="dir_d14101abff67e2743de1df9a6546494d" kind="dir"><name>/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals</name>
+  <compound refid="dir_d258e53cc9882d4f53db1685bedb6902" kind="dir"><name>/__w/GQCP/GQCP/gqcp/src/QCMethod/Geminals</name>
   </compound>
   <compound refid="dir_f4550bdbdce8a93f628c6d1de55d3b14" kind="dir"><name>/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals</name>
   </compound>
-  <compound refid="dir_696a2fec5b8b30966ab29971c678fded" kind="dir"><name>/__w/GQCP/GQCP/gqcp/src/QCModel/Geminals</name>
+  <compound refid="dir_d14101abff67e2743de1df9a6546494d" kind="dir"><name>/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals</name>
   </compound>
   <compound refid="dir_204f2b3dc9948184c7bf9dbf7a7b4570" kind="dir"><name>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF</name>
   </compound>
@@ -4307,7 +4304,7 @@
   </compound>
   <compound refid="dir_501e58a87b3bc20b5fa6c6da5d5d2256" kind="dir"><name>/__w/GQCP/GQCP/gqcp/src/Molecule</name>
   </compound>
-  <compound refid="dir_79448545136e565c8efebc1ae12bce98" kind="dir"><name>/__w/GQCP/GQCP/gqcp/include/Basis/MullikenPartitioning</name>
+  <compound refid="dir_dd898d8719c36397b5d2988dc5f274c1" kind="dir"><name>/__w/GQCP/GQCP/gqcp/include/Domain/MullikenDomain</name>
   </compound>
   <compound refid="dir_4767a49069fe6ad868cda8b5db319b4a" kind="dir"><name>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation</name>
   </compound>

@@ -38,6 +38,32 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved2DM.hpp" line="50" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved2DM.hpp" bodystart="50" bodyend="-1"/>
       </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_spin_resolved2_d_m_1a2b85859982e03da37619b9f555cd0c67" prot="public" static="no">
+        <type>typename <ref refid="class_g_q_c_p_1_1_doubly_spin_resolved_base" kindref="compound">DoublySpinResolvedBase</ref>&lt; <ref refid="class_g_q_c_p_1_1_pure_spin_resolved2_d_m_component" kindref="compound">PureSpinResolved2DMComponent</ref>&lt; _Scalar &gt;, <ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component" kindref="compound">MixedSpinResolved2DMComponent</ref>&lt; _Scalar &gt;, <ref refid="class_g_q_c_p_1_1_spin_resolved2_d_m" kindref="compound">SpinResolved2DM</ref>&lt; _Scalar &gt; &gt;::<ref refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1aca1c50d6a880fe35529aec8e60bc8dd2" kindref="member">Pure</ref></type>
+        <definition>using GQCP::SpinResolved2DM&lt; _Scalar &gt;::PureComponentType =  typename DoublySpinResolvedBase&lt;PureSpinResolved2DMComponent&lt;_Scalar&gt;, MixedSpinResolved2DMComponent&lt;_Scalar&gt;, SpinResolved2DM&lt;_Scalar&gt; &gt;::Pure</definition>
+        <argsstring></argsstring>
+        <name>PureComponentType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved2DM.hpp" line="53" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved2DM.hpp" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="class_g_q_c_p_1_1_spin_resolved2_d_m_1ac4efe1b57ac275cee3ed6380c041c634" prot="public" static="no">
+        <type>typename <ref refid="class_g_q_c_p_1_1_doubly_spin_resolved_base" kindref="compound">DoublySpinResolvedBase</ref>&lt; <ref refid="class_g_q_c_p_1_1_pure_spin_resolved2_d_m_component" kindref="compound">PureSpinResolved2DMComponent</ref>&lt; _Scalar &gt;, <ref refid="class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component" kindref="compound">MixedSpinResolved2DMComponent</ref>&lt; _Scalar &gt;, <ref refid="class_g_q_c_p_1_1_spin_resolved2_d_m" kindref="compound">SpinResolved2DM</ref>&lt; _Scalar &gt; &gt;::<ref refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1a230628c5e23252fa38b8cc228430757e" kindref="member">Mixed</ref></type>
+        <definition>using GQCP::SpinResolved2DM&lt; _Scalar &gt;::MixedComponentType =  typename DoublySpinResolvedBase&lt;PureSpinResolved2DMComponent&lt;_Scalar&gt;, MixedSpinResolved2DMComponent&lt;_Scalar&gt;, SpinResolved2DM&lt;_Scalar&gt; &gt;::Mixed</definition>
+        <argsstring></argsstring>
+        <name>MixedComponentType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved2DM.hpp" line="54" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved2DM.hpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
       <memberdef kind="function" id="class_g_q_c_p_1_1_spin_resolved2_d_m_1a4c58e2057d5df2ac35f9f85e546a8366" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
@@ -79,7 +105,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved2DM.hpp" line="72" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved2DM.hpp" bodystart="72" bodyend="83"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved2DM.hpp" line="76" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved2DM.hpp" bodystart="76" bodyend="87"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_spin_resolved2_d_m_1af32067fd0dde6a92c3e00d775491ae49" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_orbital2_d_m" kindref="compound">Orbital2DM</ref>&lt; <ref refid="class_g_q_c_p_1_1_spin_resolved2_d_m_1ae334f20472a5e944c4ec8aedb2c973cf" kindref="member">Scalar</ref> &gt;</type>
@@ -95,7 +121,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved2DM.hpp" line="89" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved2DM.hpp" bodystart="89" bodyend="91"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved2DM.hpp" line="93" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved2DM.hpp" bodystart="93" bodyend="95"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -185,7 +211,7 @@
         <link refid="class_g_q_c_p_1_1_basis_transformable"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved2DM.hpp" line="41" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved2DM.hpp" bodystart="44" bodyend="111"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved2DM.hpp" line="41" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved2DM.hpp" bodystart="44" bodyend="115"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1a3b00a4e21ad888d40c95f497cbc5b694" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved2DM</scope><name>alphaAlpha</name></member>
       <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1a42eb4252e37bfb0c72a001f4b80c1bf8" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved2DM</scope><name>alphaAlpha</name></member>
@@ -199,11 +225,13 @@
       <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1a6cee2100ccc8d339d1305fcdbb146221" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved2DM</scope><name>DoublySpinResolvedBase</name></member>
       <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_jacobi_rotatable_1a22e5277961cb14e1d3b16aa5d6bd5aee" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved2DM</scope><name>JacobiRotationType</name></member>
       <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1a230628c5e23252fa38b8cc228430757e" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved2DM</scope><name>Mixed</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved2_d_m_1ac4efe1b57ac275cee3ed6380c041c634" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved2DM</scope><name>MixedComponentType</name></member>
       <member refid="class_g_q_c_p_1_1_spin_resolved2_d_m_1a4c58e2057d5df2ac35f9f85e546a8366" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved2DM</scope><name>numberOfOrbitals</name></member>
       <member refid="class_g_q_c_p_1_1_spin_resolved2_d_m_1af32067fd0dde6a92c3e00d775491ae49" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved2DM</scope><name>orbitalDensity</name></member>
       <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1aca1c50d6a880fe35529aec8e60bc8dd2" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved2DM</scope><name>Pure</name></member>
       <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1a8a01a6ef80fbad4b97822f2b0bd5f1dd" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved2DM</scope><name>pureComponent</name></member>
       <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1a0b7b5865e1070b4cfc54e3e5de2203a6" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved2DM</scope><name>pureComponent</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved2_d_m_1a2b85859982e03da37619b9f555cd0c67" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved2DM</scope><name>PureComponentType</name></member>
       <member refid="class_g_q_c_p_1_1_basis_transformable_1a2e107bd3cf4d603c003c8cb9357d0094" prot="public" virt="non-virtual" ambiguityscope="DoublySpinResolvedBasisTransformable&lt; SpinResolved2DM&lt; _Scalar &gt; &gt;::"><scope>GQCP::SpinResolved2DM</scope><name>rotate</name></member>
       <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a11657b774fe75246bef1f7849f9aad72" prot="public" virt="non-virtual" ambiguityscope="DoublySpinResolvedJacobiRotatable&lt; SpinResolved2DM&lt; _Scalar &gt; &gt;::"><scope>GQCP::SpinResolved2DM</scope><name>rotate</name></member>
       <member refid="class_g_q_c_p_1_1_basis_transformable_1ae0af50867dbd06193b64c2bcdd6b51ba" prot="public" virt="virtual" ambiguityscope="DoublySpinResolvedBasisTransformable&lt; SpinResolved2DM&lt; _Scalar &gt; &gt;::"><scope>GQCP::SpinResolved2DM</scope><name>rotated</name></member>
