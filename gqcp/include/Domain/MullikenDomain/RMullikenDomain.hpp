@@ -29,7 +29,7 @@ namespace GQCP {
 
 /**
  * A Mulliken partitioned domain as a collection of atomic orbitals.
- * The sites {`i'} that are present in the domain are represented by a set bit at the corresponding indices `i'.
+ * The sites {`i`} that are present in the domain are represented by a set bit at the corresponding indices `i`.
  */
 template <typename _Scalar>
 class RMullikenDomain:
