@@ -796,11 +796,11 @@ INPUT = "@CMAKE_SOURCE_DIR@/gqcp/include" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Basis/Integrals" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Basis/Integrals/Interfaces" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Basis/Integrals/Primitive" \
-        "@CMAKE_SOURCE_DIR@/gqcp/include/Basis/MullikenPartitioning" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Basis/ScalarBasis" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Basis/SpinorBasis" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Basis/Transformations" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/DensityMatrix" \
+        "@CMAKE_SOURCE_DIR@/gqcp/include/Domain/MullikenDomain" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Mathematical" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Mathematical/Algorithm" \
         "@CMAKE_SOURCE_DIR@/gqcp/include/Mathematical/Functions" \

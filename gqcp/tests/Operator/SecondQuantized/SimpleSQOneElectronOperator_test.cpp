@@ -584,14 +584,15 @@ BOOST_AUTO_TEST_CASE(mulliken_N2_STO_3G_restricted) {
 
     // Set up the Mulliken partitioning scheme.
     using Shell = GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell>::Shell;
-    const auto mulliken_partitioning = spin_orbital_basis.mullikenPartitioning(
+    const auto mulliken_domain = spin_orbital_basis.mullikenDomain(
         [](const Shell& shell) {
             return shell.nucleus().element() == "N";
         });
 
     // The Mulliken operator is the Mulliken-partitioned number (i.e. overlap) operator.
+    const auto P = mulliken_domain.projectionMatrix(spin_orbital_basis.expansion());
     const auto S = spin_orbital_basis.overlap();
-    const auto mulliken_op = S.partitioned(mulliken_partitioning);
+    const auto mulliken_op = S.partitioned(P);
 
 
     // Create the RHF 1-DM for N2 and check the total Mulliken operator.
@@ -620,14 +621,15 @@ BOOST_AUTO_TEST_CASE(mulliken_N2_STO_3G_generalized) {
 
     // Set up the Mulliken partitioning scheme.
     using Shell = GQCP::GSpinorBasis<double, GQCP::GTOShell>::Shell;
-    const auto mulliken_partitioning = spinor_basis.mullikenPartitioning(
+    const auto mulliken_domain = spinor_basis.mullikenDomain(
         [](const Shell& shell) {
             return shell.nucleus().element() == "N";
         });
 
     // The Mulliken operator is the Mulliken-partitioned number (i.e. overlap) operator.
+    const auto P = mulliken_domain.projectionMatrix(spinor_basis.expansion());
     const auto S = spinor_basis.overlap();
-    const auto mulliken_op = S.partitioned(mulliken_partitioning);
+    const auto mulliken_op = S.partitioned(P);
 
 
     // Create the GHF 1-DM for N2 and check the total Mulliken operator.

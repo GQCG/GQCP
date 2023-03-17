@@ -18,12 +18,12 @@
 #pragma once
 
 
-#include "Basis/MullikenPartitioning/UMullikenPartitioningComponent.hpp"
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Basis/ScalarBasis/LondonGTOShell.hpp"
 #include "Basis/SpinorBasis/SimpleSpinOrbitalBasis.hpp"
 #include "Basis/Transformations/JacobiRotation.hpp"
 #include "Basis/Transformations/UTransformationComponent.hpp"
+#include "Domain/MullikenDomain/UMullikenDomainComponent.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperatorComponent.hpp"
 #include "Utilities/type_traits.hpp"
 
@@ -33,7 +33,7 @@ namespace GQCP {
 
 /**
  *  A type specifically designed as one of the spin-components of a `USpinOrbitalBasis`.
- * 
+ *
  *  @tparam _ExpansionScalar        The scalar type used to represent an expansion coefficient of the spin-orbitals in the underlying scalar orbitals: real or complex.
  *  @tparam _Shell                  The type of shell the underlying scalar basis contains.
  */
@@ -69,11 +69,11 @@ public:
 
     /**
      *  Quantize a first-quantized one-electron operator.
-     * 
+     *
      *  @param fq_one_op                            The first-quantized one-electron operator.
-     * 
+     *
      *  @tparam FQOneElectronOperator               The type of the first-quantized one-electron operator.
-     * 
+     *
      *  @return The second-quantized operator corresponding to the given first-quantized operator, i.e. expressed in/projected onto this spin-orbital basis.
      */
     template <typename FQOneElectronOperator, typename Z = Shell>
@@ -97,11 +97,11 @@ public:
 
     /**
      *  Quantize a first-quantized one-electron operator.
-     * 
+     *
      *  @param fq_one_op                            The first-quantized one-electron operator.
-     * 
+     *
      *  @tparam FQOneElectronOperator               The type of the first-quantized one-electron operator.
-     * 
+     *
      *  @return The second-quantized operator corresponding to the given first-quantized operator, i.e. expressed in/projected onto this spin-orbital basis.
      */
     template <typename FQOneElectronOperator, typename Z = Shell>
@@ -143,9 +143,9 @@ public:
 
     /**
      *  Quantize the orbital Zeeman operator in this spin-orbital basis.
-     * 
+     *
      *  @param op               The (first-quantized) orbital Zeeman operator.
-     * 
+     *
      *  @return The orbital Zeeman operator expressed in this spin-orbital basis.
      */
     template <typename Z = Shell>
@@ -160,9 +160,9 @@ public:
 
     /**
      *  Quantize the diamagnetic operator in this spin-orbital basis.
-     * 
+     *
      *  @param op               The (first-quantized) diamagnetic operator.
-     * 
+     *
      *  @return The diamagnetic operator expressed in this spin-orbital basis.
      */
     template <typename Z = Shell>
@@ -201,38 +201,38 @@ public:
 
 
     /**
-     *  MARK: Mulliken partitioning
+     *  MARK: Mulliken domain
      */
 
     /**
      *  Partition this set of spin-orbitals related to one of the components of an unrestricted spin-orbital basis according to the Mulliken partitioning scheme.
-     * 
-     *  @param selector             A function that returns true for basis functions that should be included the Mulliken partitioning.
-     * 
-     *  @return A `UMullikenPartitioningComponent` for the AOs selected by the supplied selector function.
+     *
+     *  @param selector             A function that returns true for basis functions that should be included the Mulliken domain.
+     *
+     *  @return A `UMullikenDomainComponent` for the AOs selected by the supplied selector function.
      */
-    UMullikenPartitioningComponent<ExpansionScalar> mullikenPartitioning(const std::function<bool(const BasisFunction&)>& selector) const {
+    UMullikenDomainComponent<ExpansionScalar> mullikenDomain(const std::function<bool(const BasisFunction&)>& selector) const {
 
         // FIXME: Try to move this API to SimpleSpinOrbitalBasis.
 
         const auto ao_indices = this->scalarBasis().basisFunctionIndices(selector);
-        return UMullikenPartitioningComponent<ExpansionScalar> {ao_indices, this->expansion()};
+        return UMullikenDomainComponent<ExpansionScalar> {ao_indices, ao_indices.size()};
     }
 
 
     /**
      *  Partition this set of spin-orbitals related to one of the components of an unrestricted spin-orbital basis according to the Mulliken partitioning scheme.
-     * 
-     *  @param selector             A function that returns true for shells that should be included the Mulliken partitioning.
-     * 
-     *  @return A `UMullikenPartitioningComponent` for the AOs selected by the supplied selector function.
+     *
+     *  @param selector             A function that returns true for shells that should be included the Mulliken domain.
+     *
+     *  @return A `UMullikenDomainComponent` for the AOs selected by the supplied selector function.
      */
-    UMullikenPartitioningComponent<ExpansionScalar> mullikenPartitioning(const std::function<bool(const Shell&)>& selector) const {
+    UMullikenDomainComponent<ExpansionScalar> mullikenDomain(const std::function<bool(const Shell&)>& selector) const {
 
         // FIXME: Try to move this API to SimpleSpinOrbitalBasis.
 
         const auto ao_indices = this->scalarBasis().basisFunctionIndices(selector);
-        return UMullikenPartitioningComponent<ExpansionScalar> {ao_indices, this->expansion()};
+        return UMullikenDomainComponent<ExpansionScalar> {ao_indices, ao_indices.size()};
     }
 };
 

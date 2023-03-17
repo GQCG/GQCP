@@ -369,16 +369,17 @@ BOOST_AUTO_TEST_CASE(mulliken_N2_STO_3G_unrestricted) {
     spin_orbital_basis.lowdinOrthonormalize();
 
 
-    // Set up the Mulliken partitioning scheme.
+    // Set up the Mulliken domain.
     using Shell = GQCP::USpinOrbitalBasis<double, GQCP::GTOShell>::Shell;
-    const auto mulliken_partitioning = spin_orbital_basis.mullikenPartitioning(
+    const auto mulliken_domain = spin_orbital_basis.mullikenDomain(
         [](const Shell& shell) {
             return shell.nucleus().element() == "N";
         });
 
     // The Mulliken operator is the Mulliken-partitioned number (i.e. overlap) operator.
+    const auto P = mulliken_domain.projectionMatrix(spin_orbital_basis.expansion());
     const auto S = spin_orbital_basis.overlap();
-    const auto mulliken_op = S.partitioned(mulliken_partitioning);
+    const auto mulliken_op = S.partitioned(P);
 
 
     // Create the RHF 1-DM for N2 and check the total Mulliken operator.

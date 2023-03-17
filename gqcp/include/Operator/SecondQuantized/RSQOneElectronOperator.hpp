@@ -18,10 +18,10 @@
 #pragma once
 
 
-#include "Basis/MullikenPartitioning/RMullikenPartitioning.hpp"
 #include "Basis/Transformations/RTransformation.hpp"
 #include "DensityMatrix/Orbital1DM.hpp"
 #include "DensityMatrix/Orbital2DM.hpp"
+#include "Domain/MullikenDomain/RMullikenDomain.hpp"
 #include "Mathematical/Representation/DenseVectorizer.hpp"
 #include "Operator/SecondQuantized/SimpleSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperatorComponent.hpp"
@@ -33,7 +33,7 @@ namespace GQCP {
 
 /**
  *  A restricted one-electron operator, which is suited for expressing non-relativistic (spin-free) one-electron operators.
- * 
+ *
  *  @tparam _Scalar         The scalar type used for a single parameter: real or complex.
  *  @tparam _Vectorizer     The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
  */
@@ -113,7 +113,7 @@ using TensorRSQOneElectronOperator = RSQOneElectronOperator<Scalar, TensorVector
 
 /**
  *  A type that provides compile-time information (traits) on `RSQOneElectronOperator` that is otherwise not accessible through a public class alias.
- * 
+ *
  *  @tparam Scalar          The scalar type used for a single parameter: real or complex.
  *  @tparam Vectorizer      The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
  */
@@ -132,8 +132,8 @@ struct OperatorTraits<RSQOneElectronOperator<Scalar, Vectorizer>> {
     // The type of the two-particle density matrix that is naturally associated an `RSQOneElectronOperator`.
     using TwoDM = Orbital2DM<Scalar>;
 
-    // The type used to encapsulate the Mulliken partitioning scheme.
-    using MullikenPartitioning = RMullikenPartitioning<Scalar>;
+    // The type used to encapsulate the Mulliken domain.
+    using MullikenDomain = RMullikenDomain<Scalar>;
 };
 
 

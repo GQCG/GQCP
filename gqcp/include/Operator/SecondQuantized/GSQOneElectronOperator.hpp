@@ -18,10 +18,10 @@
 #pragma once
 
 
-#include "Basis/MullikenPartitioning/GMullikenPartitioning.hpp"
 #include "Basis/Transformations/GTransformation.hpp"
 #include "DensityMatrix/G1DM.hpp"
 #include "DensityMatrix/G2DM.hpp"
+#include "Domain/MullikenDomain/GMullikenDomain.hpp"
 #include "Mathematical/Representation/DenseVectorizer.hpp"
 #include "Operator/SecondQuantized/SimpleSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/USQOneElectronOperatorComponent.hpp"
@@ -33,7 +33,7 @@ namespace GQCP {
 
 /**
  *  A general(ized) one-electron operator, which is suited for expressing spin-dependent one-electron operators.
- * 
+ *
  *  @tparam _Scalar         The scalar type used for a single parameter: real or complex.
  *  @tparam _Vectorizer     The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
  */
@@ -65,7 +65,7 @@ public:
 
     /**
      *  Construct a `GSQOneElectronOperator` from a `USQOneElectronOperatorComponent`.
-     * 
+     *
      *  @param f_component          The component of an unrestricted one-electron operator that should be converted.
      */
     static GSQOneElectronOperator<Scalar, Vectorizer> FromUnrestrictedComponent(const USQOneElectronOperatorComponent<Scalar, Vectorizer>& f_component) {
@@ -104,7 +104,7 @@ using TensorGSQOneElectronOperator = GSQOneElectronOperator<Scalar, TensorVector
 
 /**
  *  A type that provides compile-time information (traits) on `GSQOneElectronOperator` that is otherwise not accessible through a public class alias.
- * 
+ *
  *  @tparam Scalar          The scalar type used for a single parameter: real or complex.
  *  @tparam Vectorizer      The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
  */
@@ -123,8 +123,8 @@ struct OperatorTraits<GSQOneElectronOperator<Scalar, Vectorizer>> {
     // The type of the two-particle density matrix that is naturally associated a restricted one-electron operator.
     using TwoDM = G2DM<Scalar>;
 
-    // The type used to encapsulate the Mulliken partitioning scheme.
-    using MullikenPartitioning = GMullikenPartitioning<Scalar>;
+    // The type used to encapsulate the Mulliken domain.
+    using MullikenDomain = GMullikenDomain<Scalar>;
 };
 
 
@@ -134,7 +134,7 @@ struct OperatorTraits<GSQOneElectronOperator<Scalar, Vectorizer>> {
 
 /**
  *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
- * 
+ *
  *  @tparam Scalar          The scalar type used for a single parameter: real or complex.
  *  @tparam Vectorizer      The type of the vectorizer that relates a one-dimensional storage of matrices to the tensor structure of one-electron operators. This allows for a distinction between scalar operators (such as the kinetic energy operator), vector operators (such as the spin operator) and matrix/tensor operators (such as quadrupole and multipole operators).
  */
