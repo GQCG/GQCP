@@ -550,7 +550,7 @@ void bindMullikenDomainIndicesInterface(Class& py_class) {
     // The C++ type corresponding to the Python class.
     using Type = typename Class::type;
 
-    py_class.def("indices",
+    py_class.def("domainIndices",
                  &Type::domainIndices,
                  "Return the set of indices that correspond to the AOs that are included in the Mulliken-domain.");
 }
