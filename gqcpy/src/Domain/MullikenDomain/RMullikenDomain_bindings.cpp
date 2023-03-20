@@ -41,14 +41,14 @@ void bindRMullikenDomain(py::module& module) {
     py::class_<RMullikenDomain<double>> py_RMullikenDomain_d {module, "RMullikenDomain_d", "A real restricted Mulliken-based domain of an AO basis."};
 
     // Expose the "Mulliken Domain" interface to the Python class.
-    bindMullikenDomainIndicesInterface(py_RMullikenDomain_d);
+    bindDiscreteDomainInterface(py_RMullikenDomain_d);
     bindMullikenDomainMatricesInterface(py_RMullikenDomain_d);
 
     // Define the Python class for `RMullikenDomain_cd`.
     py::class_<RMullikenDomain<complex>> py_RMullikenDomain_cd {module, "RMullikenDomain_cd", "A complex restricted Mulliken-based domain of an AO basis."};
 
     // Expose the "Mulliken Domain" interface to the Python class.
-    bindMullikenDomainIndicesInterface(py_RMullikenDomain_cd);
+    bindDiscreteDomainInterface(py_RMullikenDomain_cd);
     bindMullikenDomainMatricesInterface(py_RMullikenDomain_cd);
 }
 
