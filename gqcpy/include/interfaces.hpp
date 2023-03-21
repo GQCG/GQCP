@@ -552,8 +552,18 @@ void bindSimpleDomainInterface(Class& py_class) {
     using Scalar = typename Type::Scalar;
 
     py_class
-        .def(py::self == py::self)
-        .def(py::self != py::self);
+        .def(
+            "__eq__",
+            [](const Type& domain, const Type& other) {
+                return domain == other;
+            },
+            py::arg("other"),
+            "Returns whether this domain is equal to another domain.")
+
+        .def("inDomain",
+             &Type::inDomain,
+             py::arg("element"),
+             "Returns whether the domain contains the givene element.");
 }
 
 
@@ -581,10 +591,6 @@ void bindDiscreteDomainInterface(Class& py_class) {
              py::arg("i"),
              "Add an element to the domain at position i.")
 
-        .def("asBitstring",
-             &Type::asBitstring,
-             "Return the domain representation as a bitstring.")
-
         .def("asString",
              &Type::asString,
              "Return the domain string as a string.")
@@ -601,15 +607,18 @@ void bindDiscreteDomainInterface(Class& py_class) {
              &Type::numberOfElements,
              "Return the number of elements the domain contains.")
 
-        .def("overlapWith",
-             &Type::overlapWith,
-             py::arg("other"),
-             "Return the number of domain elements that are equal between `this` and the other discrete domain.")
+        .def(
+            "overlapWith",
+            [](const Type& domain, const Type& other) {
+                return domain.overlapWith(other);
+            },
+            py::arg("domain"),
+            "Return the number of domain elements that are equal between `this` and the other discrete domain.")
 
         .def("removeElement",
              &Type::removeElement,
              py::arg("i"),
-             "Remove an element from the domain at position i."),
+             "Remove an element from the domain at position i.")
 
         .def("unsignedRepresentation",
              &Type::unsignedRepresentation,

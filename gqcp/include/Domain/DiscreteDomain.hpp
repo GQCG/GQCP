@@ -120,7 +120,7 @@ public:
      *
      *  @return     The i-th element with values 0 or 1 depending on whether the i-th element is in the domain.
      */
-    bool operator()(const size_t i) const { return this->domain[i]; }
+    bool operator[](const size_t i) const { return this->domain[i]; }
 
     /**
      *  @param rhs            The discrete domain that will be assigned to `this`.
