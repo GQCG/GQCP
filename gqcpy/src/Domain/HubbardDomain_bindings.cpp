@@ -62,7 +62,8 @@ void bindHubbardDomain(py::module& module) {
             "Return the overlap of this domain with a given spin-resolved ONV.");
 
 
-    // Expose the "Mulliken Domain" interface to the Python class.
+    // Expose the "DiscreteDomain" interfaces to the Python class.
+    bindDiscreteDomainConstructorInterface(py_HubbardDomain);
     bindDiscreteDomainInterface(py_HubbardDomain);
 }
 
