@@ -43,7 +43,7 @@ public:
      *
      *  @return     The number of overlapping set bits after a bit-by-bit comparison between the Hubbard domain and the spin-unresolved ONV.
      */
-    size_t overlapWith(const SpinUnresolvedONV& onv) const;
+    size_t overlapWithONV(const SpinUnresolvedONV& onv) const;
 
     /**
      * Calculate the overlap between the Hubbard domain and a spin-resolved ONV since the Hubbard domain and each spin-type of the ONV can be represented as a bitstring.
@@ -52,7 +52,7 @@ public:
      *
      *  @return     The number of overlapping set bits after a bit-by-bit comparison between the Hubbard domain and the spin-types of the spin-resolved ONV.
      */
-    SpinResolved<size_t> overlapWith(const SpinResolvedONV& onv) const;
+    SpinResolved<size_t> overlapWithONV(const SpinResolvedONV& onv) const;
 };
 
 

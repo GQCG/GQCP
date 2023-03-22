@@ -549,7 +549,6 @@ void bindSimpleDomainInterface(Class& py_class) {
 
     // The C++ type corresponding to the Python class.
     using Type = typename Class::type;
-    using Scalar = typename Type::Scalar;
 
     py_class
         .def(
@@ -583,7 +582,6 @@ void bindDiscreteDomainInterface(Class& py_class) {
 
     // The C++ type corresponding to the Python class.
     using Type = typename Class::type;
-    using Scalar = typename Type::Scalar;
 
     py_class
         .def("addElement",
