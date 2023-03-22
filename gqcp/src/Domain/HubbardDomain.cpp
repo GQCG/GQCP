@@ -29,7 +29,7 @@ namespace GQCP {
  *
  *  @return     The number of overlapping set bits after a bit-by-bit comparison between the Hubbard domain and the spin-unresolved ONV.
  */
-size_t HubbardDomain::overlapWith(const SpinUnresolvedONV& onv) const {
+size_t HubbardDomain::overlapWithONV(const SpinUnresolvedONV& onv) const {
     boost::dynamic_bitset<> overlap;
     overlap = this->domain & boost::dynamic_bitset<>(this->dimension(), onv.unsignedRepresentation());
 
@@ -44,8 +44,8 @@ size_t HubbardDomain::overlapWith(const SpinUnresolvedONV& onv) const {
  *
  *  @return     The number of overlapping set bits after a bit-by-bit comparison between the Hubbard domain and the spin-types of the spin-resolved ONV.
  */
-SpinResolved<size_t> HubbardDomain::overlapWith(const SpinResolvedONV& onv) const {
-    return SpinResolved<size_t>(this->overlapWith(onv.onv(Spin::alpha)), this->overlapWith(onv.onv(Spin::beta)));
+SpinResolved<size_t> HubbardDomain::overlapWithONV(const SpinResolvedONV& onv) const {
+    return SpinResolved<size_t>(this->overlapWithONV(onv.onv(Spin::alpha)), this->overlapWithONV(onv.onv(Spin::beta)));
 }
 
 

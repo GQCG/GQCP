@@ -41,14 +41,14 @@ void bindUMullikenDomainComponent(py::module& module) {
     py::class_<UMullikenDomainComponent<double>> py_UMullikenDomainComponent_d {module, "UMullikenDomainComponent_d", "One of the components of a real unrestricted Mulliken-based domain of an AO basis."};
 
     // Expose the "Mulliken Domain" interface to the Python class.
-    bindMullikenDomainIndicesInterface(py_UMullikenDomainComponent_d);
+    bindDiscreteDomainInterface(py_UMullikenDomainComponent_d);
     bindMullikenDomainMatricesInterface(py_UMullikenDomainComponent_d);
 
     // Define the Python class for `UMullikenDomainComponent_cd`.
     py::class_<UMullikenDomainComponent<complex>> py_UMullikenDomainComponent_cd {module, "UMullikenDomainComponent_cd", "One of the components of a complex unrestricted Mulliken-based domain of an AO basis."};
 
     // Expose the "Mulliken Domain" interface to the Python class.
-    bindMullikenDomainIndicesInterface(py_UMullikenDomainComponent_cd);
+    bindDiscreteDomainInterface(py_UMullikenDomainComponent_cd);
     bindMullikenDomainMatricesInterface(py_UMullikenDomainComponent_cd);
 }
 

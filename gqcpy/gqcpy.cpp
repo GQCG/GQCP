@@ -87,6 +87,9 @@ void bindSpinResolved1DM(py::module& module);
 void bindSpinResolved1DMComponent(py::module& module);
 void bindSpinResolved2DM(py::module& module);
 
+// Domain - HubbardDomain
+void bindHubbardDomain(py::module& module);
+
 
 // Domain - MullikenDomain
 void bindGMullikenDomain(py::module& module);
@@ -364,7 +367,11 @@ PYBIND11_MODULE(gqcpy, module) {
     gqcpy::bindSpinResolved2DM(module);
 
 
-    // Basis - MullikenDomain
+    // Domain - HubbardDomain
+    gqcpy::bindHubbardDomain(module);
+
+
+    // Domain - MullikenDomain
     gqcpy::bindGMullikenDomain(module);
     gqcpy::bindRMullikenDomain(module);
     gqcpy::bindUMullikenDomain(module);
