@@ -29,6 +29,7 @@
     - file: examples/OO-DOCI
     - file: examples/FCI
     - file: examples/Hubbard
+    - file: examples/Hubbard-Domains
     - file: examples/AP1roG-calculations
     - file: examples/CCSD
     - file: examples/Mulliken-population
