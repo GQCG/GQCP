@@ -45,6 +45,10 @@ void bindHubbardDomain(py::module& module) {
     // Expose python bindings unique to the Hubbard domain.
     py_HubbardDomain
 
+        /*
+         * MARK: Overlap
+         */
+
         .def(
             "overlapWithONV",
             [](const HubbardDomain& domain, const GQCP::SpinUnresolvedONV& onv) {
@@ -59,7 +63,23 @@ void bindHubbardDomain(py::module& module) {
                 return domain.overlapWithONV(onv);
             },
             py::arg("resolved_ONV"),
-            "Return the overlap of this domain with a given spin-resolved ONV.");
+            "Return the overlap of this domain with a given spin-resolved ONV.")
+
+        /*
+         * MARK: Projection
+         */
+
+        .def(
+            "RProjectionMatrix",
+            &HubbardDomain::RProjectionMatrix,
+            py::arg("L"),
+            "Return the restricted projection matrix of this Hubbard Domain.")
+
+        .def(
+            "UProjectionMatrix",
+            &HubbardDomain::UProjectionMatrix,
+            py::arg("L"),
+            "Return the restricted projection matrix of this Hubbard Domain.");
 
 
     // Expose the "DiscreteDomain" interfaces to the Python class.

@@ -53,6 +53,28 @@ public:
      *  @return     The number of overlapping set bits after a bit-by-bit comparison between the Hubbard domain and the spin-types of the spin-resolved ONV.
      */
     SpinResolved<size_t> overlapWithONV(const SpinResolvedONV& onv) const;
+
+    /**
+     * Construct the restricted projection matrix of this Hubbard Domain.
+     *
+     * @param L     Number of sites in the Hubbard system.
+     *
+     * @return The projection matrix for this Hubbard domain.
+     */
+    RTransformation<double> RProjectionMatrix(const size_t& L) const {
+        return RTransformation<double> {SquareMatrix<double>::PartitionMatrix(this->domainIndices(), L)};
+    }
+
+    /**
+     * Construct the unrestricted projection matrix of this Hubbard Domain.
+     *
+     * @param L     Number of sites in the Hubbard system.
+     *
+     * @return The projection matrix for this Hubbard domain.
+     */
+    UTransformation<double> UProjectionMatrix(const size_t& L) const {
+        return UTransformation<double> {UTransformationComponent<double> {SquareMatrix<double>::PartitionMatrix(this->domainIndices(), L)}, UTransformationComponent<double> {SquareMatrix<double>::PartitionMatrix(this->domainIndices(), L)}};
+    }
 };
 
 
