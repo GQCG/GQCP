@@ -12,6 +12,7 @@ on:
       - 'cmake/**'
     branches:
       - 'develop'
+      - 'bugfix/docker'
   pull_request:
     paths:
       - '.github/workflows/docker-gqcp-deploy.yml'
