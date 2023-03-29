@@ -21,7 +21,7 @@ RUN conda --version
 
 ENV LIBINT_DATA_PATH=/usr/local/miniconda3/share/libint/2.6.0/basis
 ARG LIBINT_DATA_PATH=/usr/local/miniconda3/share/libint/2.6.0/basis
-RUN conda install -c conda-forge -c intel -c gqcg openmp=8.0.1 cmake=3.20.2 boost-cpp=1.75.0 eigen=3.3.9 blas=*=*mkl pybind11=2.6.2 benchmark numpy=1.20.3 jupyter=1.0.0 libint=2.6.0 cint=3.0.17 mkl=2020.4 mkl-include=2020.4 mkl-static=2020.4 intel-openmp=2020.3 doxygen=1.9.1 graphviz=2.47.2 jupyter-book=0.10.2 libblas=*=*mkl
+RUN conda install -c conda-forge -c intel -c gqcg openmp=8.0.1 cmake=3.26.1 boost-cpp=1.81.0 eigen=3.4.0 blas=*=*mkl pybind11=2.10.4 benchmark numpy=1.24.2 jupyter=1.0.0 libint=2.7.2 cint=5.1.4 mkl=2023.0.0 mkl-include=2023.0.0 mkl-static=2023.0.0 intel-openmp=2023.0.0 doxygen=1.9.6 graphviz=7.1.0 jupyter-book=0.19.1 libblas=*=*mkl
 
 RUN ldconfig
 
