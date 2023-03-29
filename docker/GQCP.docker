@@ -24,7 +24,7 @@ ARG LIBINT_DATA_PATH=/usr/local/miniconda3/share/libint/2.7.2/basis
 
 RUN conda create --name gqcp_env python=3.8
 RUN eval "$(conda shell.bash hook)" && conda activate gqcp_env
-RUN conda install -c defaults -c conda-forge -c intel -c gqcg cint=5.1.4 openmp=8.0.1 cmake=3.26.1 boost-cpp=1.81.0 eigen=3.4.0
+RUN conda install -c defaults -c conda-forge -c intel -c gqcg cint=5.1.4 openmp=8.0.1 cmake=3.26.1 boost-cpp=1.81.0 eigen=3.4.0 blas=*=*mkl libblas=*=*mkl benchmark
 RUN ldconfig
 
 COPY . .
