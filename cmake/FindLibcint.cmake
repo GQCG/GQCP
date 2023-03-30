@@ -10,11 +10,11 @@ Result Variables
 This module makes a ``Libcint::Libcint``target and will set the following variables in your project:
 
 ``Libcint_FOUND``
-  System has the Int2 library installed.
+  System has the Libcint library installed.
 ``Libcint_INCLUDE_DIR``
-  The Int2 include directories.
+  The Libcint include directories.
 ``Libcint_LIBRARY``
-  The Int2 library.
+  The Libcint library.
 
 Hints
 ^^^^^
@@ -32,7 +32,7 @@ find_package_handle_standard_args(Libcint REQUIRED_VARS
 
 if(Libcint_FOUND AND NOT TARGET Libcint::Libcint)
     add_library(Libcint::Libcint UNKNOWN IMPORTED)
-    set_target_properties(Int2::Int2 PROPERTIES
+    set_target_properties(Libcint::Libcint PROPERTIES
         INTERFACE_INCLUDE_DIRECTORIES ${Libcint_INCLUDE_DIR}
         IMPORTED_LOCATION ${Libcint_LIBRARY}
         INTERFACE_COMPILE_FEATURES cxx_std_11
