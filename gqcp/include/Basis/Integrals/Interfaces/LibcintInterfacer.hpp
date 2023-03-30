@@ -41,7 +41,7 @@ extern "C" {
 FINT cint1e_kin_cart(double* buf, const int* shls, const int* atm, int natm, const int* bas, int nbas, const double* env);   // kinetic energy
 FINT cint1e_nuc_cart(double* buf, const int* shls, const int* atm, int natm, const int* bas, int nbas, const double* env);   // nuclear attraction energy
 FINT cint1e_ovlp_cart(double* buf, const int* shls, const int* atm, int natm, const int* bas, int nbas, const double* env);  // overlap
-FINT cint1e_r_cart(double* buf, const int* shls, const int* atm, int natm, const int* bas, int nbas, const double* env);     // dipole integrals
+FINT cint1e_r_cart(double* buf, int* shls, int* atm, int natm, int* bas, int nbas, double* env);                             // dipole integrals
 
 
 }  // extern "C"
