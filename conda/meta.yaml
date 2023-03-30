@@ -18,7 +18,7 @@ requirements:
     host:
       - blas
       - boost-cpp
-      - cint ==5.1.4
+      - libcint
       - eigen
       - intel-openmp
       - mkl-include
@@ -33,7 +33,7 @@ requirements:
     run:
       - blas
       - boost-cpp
-      - cint ==5.1.4
+      - libcint
       - eigen
       - intel-openmp
       - mkl-include

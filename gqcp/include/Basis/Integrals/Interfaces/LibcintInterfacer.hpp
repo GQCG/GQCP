@@ -32,7 +32,7 @@
 extern "C" {
 
 
-#include <cint.h>
+#include <libcint.h>
 
 
 /*
@@ -99,42 +99,42 @@ public:
 
     /**
      *  @param op               the electronic electric dipole operator
-     * 
+     *
      *  @return the Libcint one-electron function that corresponds to the electronic electric dipole operator
      */
     Libcint1eFunction oneElectronFunction(const ElectronicDipoleOperator& op) const { return cint1e_r_cart; }
 
     /**
      *  @param op               the kinetic operator
-     * 
+     *
      *  @return the Libcint one-electron function that corresponds to the kinetic operator
      */
     Libcint1eFunction oneElectronFunction(const KineticOperator& op) const { return cint1e_kin_cart; }
 
     /**
      *  @param op               the nuclear attraction operator
-     * 
+     *
      *  @return the Libcint one-electron function that corresponds to the nuclear attraction operator
      */
     Libcint1eFunction oneElectronFunction(const NuclearAttractionOperator& op) const { return cint1e_nuc_cart; }
 
     /**
      *  @param op           the overlap operator
-     * 
+     *
      *  @return the Libcint one-electron function that corresponds to the overlap operator
      */
     Libcint1eFunction oneElectronFunction(const OverlapOperator& op) const { return cint1e_ovlp_cart; }
 
     /**
      *  @param op               the Coulomb repulsion operator
-     * 
+     *
      *  @return the Libcint two-electron function that corresponds to the Coulomb repulsion dipole operator
      */
     Libcint2eFunction twoElectronFunction(const CoulombRepulsionOperator& op) const { return cint2e_cart; }
 
     /**
      *  @param op               the Coulomb repulsion operator
-     * 
+     *
      *  @return the Libcint two-electron optimizer function that corresponds to the Coulomb repulsion dipole operator
      */
     Libcint2eOptimizerFunction twoElectronOptimizerFunction(const CoulombRepulsionOperator& op) const { return cint2e_cart_optimizer; }
@@ -166,7 +166,7 @@ static constexpr int ptr_coeff = PTR_COEFF;  // slot offset for a 'pointer' to t
 
 /**
  *  A wrapper that owns raw libcint 'atm', 'bas' and 'env' arrays
- * 
+ *
  *  @note The members are named after the libcint variables.
  */
 class RawContainer {

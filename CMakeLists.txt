@@ -14,7 +14,7 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake) # make CMake look into 
 find_package(Git REQUIRED)
 find_package(Eigen3 3.4.0 REQUIRED)
 find_package(Int2 REQUIRED)
-find_package(cint REQUIRED)
+find_package(libcint REQUIRED)
 find_package(MKL REQUIRED)
 
 # Get the latest commit hash
