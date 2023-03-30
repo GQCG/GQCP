@@ -32,7 +32,7 @@
 extern "C" {
 
 
-#include <libcint.h>
+#include <cint.h>
 
 
 /*
