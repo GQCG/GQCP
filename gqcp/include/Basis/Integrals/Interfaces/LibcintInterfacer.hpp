@@ -55,7 +55,7 @@ namespace GQCP {
  */
 
 using Libcint1eFunction = std::function<int(double*, const int*, const int*, int, const int*, int, const double*)>;
-using Libcint2eFunction = std::function<int(double*, const int*, const int*, int, const int*, int, const double*, const CINTOpt*)>;
+using Libcint2eFunction = std::function<int(double*, int*, int*, int, int*, int, double*, CINTOpt*)>;
 using Libcint2eOptimizerFunction = std::function<void(CINTOpt**, const int*, const int, const int*, const int, const double*)>;
 
 
