@@ -48,7 +48,7 @@ FINT cint2e_cart_const(double* buf, const int* shls, const int* atm, int natm, c
 }
 
 FINT cint2e_cart_optimizer_const(CINTOpt** opt, const int* atm, int natm, const int* bas, int nbas, const double* env) {
-    return cint2e_cart_optimizer(opt, const_cast<int*>(atm), natm, const_cast<int*>(bas), nbas, const_cast<double*>(env));
+    cint2e_cart_optimizer(opt, const_cast<int*>(atm), natm, const_cast<int*>(bas), nbas, const_cast<double*>(env));
 }
 
 }  // extern "C"
