@@ -43,6 +43,13 @@ FINT cint1e_nuc_cart(double* buf, const int* shls, const int* atm, int natm, con
 FINT cint1e_ovlp_cart(double* buf, const int* shls, const int* atm, int natm, const int* bas, int nbas, const double* env);  // overlap
 FINT cint1e_r_cart(double* buf, const int* shls, const int* atm, int natm, const int* bas, int nbas, const double* env);     // dipole integrals
 
+
+}  // extern "C"
+
+
+namespace GQCP {
+
+
 FINT cint2e_cart_const(double* buf, const int* shls, const int* atm, int natm, const int* bas, int nbas, const double* env, const CINTOpt* opt) {
     return cint2e_cart(buf, const_cast<int*>(shls), const_cast<int*>(atm), natm, const_cast<int*>(bas), nbas, const_cast<double*>(env), const_cast<CINTOpt*>(opt));
 }
@@ -50,12 +57,6 @@ FINT cint2e_cart_const(double* buf, const int* shls, const int* atm, int natm, c
 FINT cint2e_cart_optimizer_const(CINTOpt** opt, const int* atm, int natm, const int* bas, int nbas, const double* env) {
     cint2e_cart_optimizer(opt, const_cast<int*>(atm), natm, const_cast<int*>(bas), nbas, const_cast<double*>(env));
 }
-
-}  // extern "C"
-
-
-namespace GQCP {
-
 
 /*
  *  Aliases for functions that are used in Libcint
