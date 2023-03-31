@@ -43,8 +43,8 @@ FINT cint1e_nuc_cart(double* buf, const int* shls, const int* atm, int natm, con
 FINT cint1e_ovlp_cart(double* buf, const int* shls, const int* atm, int natm, const int* bas, int nbas, const double* env);  // overlap
 FINT cint1e_r_cart(double* buf, const int* shls, const int* atm, int natm, const int* bas, int nbas, const double* env);     // dipole integrals
 
-// FINT cint2e_cart(double* buf, const int* shls, const int* atm, int natm, const int* bas, int nbas, const double* env, CINTOpt* opt);
-// void cint2e_cart_optimizer(const CINTOpt** opt, const int* atm, int natm, const int* bas, int nbas, const double* env);
+FINT cint2e_cart(double* buf, const int* shls, const int* atm, int natm, const int* bas, int nbas, const double* env, CINTOpt* opt);
+void cint2e_cart_optimizer(const CINTOpt** opt, const int* atm, int natm, const int* bas, int nbas, const double* env);
 
 }  // extern "C"
 
@@ -57,8 +57,8 @@ namespace GQCP {
  */
 
 using Libcint1eFunction = std::function<int(double*, const int*, const int*, int, const int*, int, const double*)>;
-using Libcint2eFunction = std::function<int(double*, const int*, const int*, int, const int*, int, const double*, CINTOpt*)>;
-using Libcint2eOptimizerFunction = std::function<void(const CINTOpt**, const int*, int, const int*, int, const double*)>;
+using Libcint2eFunction = std::function<int(double*, const int*, const int*, int, const int*, int, const double*, const CINTOpt*)>;
+using Libcint2eOptimizerFunction = std::function<void(CINTOpt**, const int*, int, const int*, int, const double*)>;
 
 
 /*
