@@ -43,9 +43,6 @@ FINT cint1e_nuc_cart(double* buf, const int* shls, const int* atm, int natm, con
 FINT cint1e_ovlp_cart(double* buf, const int* shls, const int* atm, int natm, const int* bas, int nbas, const double* env);  // overlap
 FINT cint1e_r_cart(double* buf, const int* shls, const int* atm, int natm, const int* bas, int nbas, const double* env);     // dipole integrals
 
-FINT cint2e_cart(double* buf, const int* shls, const int* atm, int natm, const int* bas, int nbas, const double* env, CINTOpt* opt);
-void cint2e_cart_optimizer(const CINTOpt** opt, const int* atm, int natm, const int* bas, int nbas, const double* env);
-
 }  // extern "C"
 
 
