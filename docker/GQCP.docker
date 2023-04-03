@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y wget \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && apt-get autoremove -y
+RUN clang --version
 
 ENV PATH="/usr/local/miniconda3/bin:${PATH}"
 ARG PATH="/usr/local/miniconda3/bin:${PATH}"
@@ -19,13 +20,15 @@ RUN wget \
     && rm -f Miniconda3-py38_23.1.0-1-Linux-x86_64.sh 
 RUN conda --version
 
-ENV LIBINT_DATA_PATH=/usr/local/miniconda3/share/libint/2.7.2/basis
-ARG LIBINT_DATA_PATH=/usr/local/miniconda3/share/libint/2.7.2/basis
+ENV LIBINT_DATA_PATH=/usr/local/miniconda3/share/libint/2.6.0/basis
+ARG LIBINT_DATA_PATH=/usr/local/miniconda3/share/libint/2.6.0/basis
 
 RUN conda create --name gqcp_env python=3.8
 RUN eval "$(conda shell.bash hook)" && conda activate gqcp_env
-RUN conda install -c defaults -c conda-forge -c intel openmp=8.0.1 cmake=3.26.1 boost-cpp=1.81.0 eigen=3.4.0 blas=*=*mkl libblas=*=*mkl benchmark libcint=5.2.2 libint=2.6.0 mkl=2021.4.0 mkl-include=2021.4.0 mkl-static=2021.4.0 intel-openmp=2021.4.0 graphviz=7.1.0 doxygen=1.9.6  pybind11=2.10.4 numpy=1.24.2 jupyter=1.0.0 jupyter-book=0.15.1
+RUN conda install -c defaults -c conda-forge -c intel openmp=8.0.1 cmake=3.26.2 boost-cpp=1.81.0 eigen=3.4.0 blas=*=*mkl libblas=*=*mkl benchmark libcint=5.2.2 libint=2.6.0 mkl=2021.4.0 mkl-include=2021.4.0 mkl-static=2021.4.0 intel-openmp=2021.4.0 graphviz=7.1.0 doxygen=1.9.6  pybind11=2.10.4 numpy=1.24.2 jupyter=1.0.0 jupyter-book=0.15.1
 RUN ldconfig
+
+RUN clang --version
 
 COPY . .
 RUN mkdir build && cd build && cmake .. \
