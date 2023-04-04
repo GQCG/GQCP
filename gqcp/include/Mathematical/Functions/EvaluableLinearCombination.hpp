@@ -149,7 +149,7 @@ public:
      */
     Self& operator*=(const Coefficient& a) override {
 
-        if (std::complex::abs(a) < 1.0e-16) {  // multiplication by zero returns a 'zero vector'
+        if (std::abs(a) < 1.0e-16) {  // multiplication by zero returns a 'zero vector'
             this->m_coefficients = std::vector<Coefficient> {};
             this->m_functions = std::vector<FunctionType> {};
             return *this;
@@ -292,7 +292,7 @@ public:
     void appendWithThreshold(const Coefficient& coefficient, const FunctionType& function, const double threshold = 1.0e-16) {
 
         // Only enlarge the linear combination for sufficiently large coefficients.
-        if (std::complex::abs(coefficient) < threshold) {
+        if (std::abs(coefficient) < threshold) {
             return;
         } else {
             this->append(coefficient, function);
