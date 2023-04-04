@@ -21,6 +21,7 @@
 #include "Mathematical/Functions/Function.hpp"
 #include "Mathematical/Functions/VectorSpaceArithmetic.hpp"
 #include "Utilities/aliases.hpp"
+#include "Utilities/complex.hpp"
 
 #include <boost/format.hpp>
 #include <boost/lexical_cast.hpp>
