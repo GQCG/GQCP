@@ -42,7 +42,7 @@ if(MKL_FOUND)
   target_include_directories(MKL::MKL INTERFACE ${MKL_INCLUDE_DIR})
 
   if(NOT APPLE)
-    target_link_libraries(MKL::MKL INTERFACE -Wl,--start-group ${MKL_INTERFACE_LIBRARY} ${MKL_INTEL_THREAD} ${MKL_CORE_LIBRARY} ${MKL_IOMP5} -Wl,--end-group -Wl,--verbose iomp5 pthread m dl)
+    target_link_libraries(MKL::MKL INTERFACE -Wl,--start-group ${MKL_INTERFACE_LIBRARY} ${MKL_INTEL_THREAD} ${MKL_CORE_LIBRARY} ${MKL_IOMP5} -Wl,--end-group iomp5 pthread m dl)
   else()
     target_link_libraries(MKL::MKL INTERFACE ${MKL_INTERFACE_LIBRARY} ${MKL_INTEL_THREAD} ${MKL_CORE_LIBRARY} ${MKL_IOMP5} iomp5 pthread m dl)
   endif()
