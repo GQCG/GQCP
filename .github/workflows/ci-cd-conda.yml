@@ -44,10 +44,9 @@ jobs:
           update-conda: true
           python-version: ${{ matrix.py }}
           conda-channels: anaconda, conda-forge, intel
-      - name: Download MacOSX 10.9 SDK as conda-build dependency
+      - name: Download MacOSX 12.3 SDK as conda-build dependency
         if: matrix.os == 'macos-12'
         run: |
-          wget https://github.com/phracker/MacOSX-SDKs/releases/download/10.13/MacOSX10.9.sdk.tar.xz
           wget https://github.com/alexey-lysiuk/macos-sdk/releases/download/12.3/MacOSX12.3.tar.xz
           sudo mkdir /opt/MacOSX12.3.sdk
           sudo tar -xf MacOSX12.3.tar.xz -C /opt
