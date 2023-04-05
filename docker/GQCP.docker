@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.10
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -10,19 +10,24 @@ RUN apt-get update && apt-get install -y wget \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && apt-get autoremove -y
+RUN clang --version
 
 ENV PATH="/usr/local/miniconda3/bin:${PATH}"
 ARG PATH="/usr/local/miniconda3/bin:${PATH}"
 RUN wget \
-    https://repo.anaconda.com/miniconda/Miniconda3-py38_4.10.3-Linux-x86_64.sh \
-    && bash Miniconda3-py38_4.10.3-Linux-x86_64.sh -p /usr/local/miniconda3 -b \
-    && rm -f Miniconda3-py38_4.10.3-Linux-x86_64.sh 
+    https://repo.anaconda.com/miniconda/Miniconda3-py38_23.1.0-1-Linux-x86_64.sh \ 
+    && bash Miniconda3-py38_23.1.0-1-Linux-x86_64.sh -p /usr/local/miniconda3 -b \
+    && rm -f Miniconda3-py38_23.1.0-1-Linux-x86_64.sh 
 RUN conda --version
 
 ENV LIBINT_DATA_PATH=/usr/local/miniconda3/share/libint/2.6.0/basis
 ARG LIBINT_DATA_PATH=/usr/local/miniconda3/share/libint/2.6.0/basis
-RUN conda install -c conda-forge -c intel -c gqcg openmp=8.0.1 cmake=3.20.2 boost-cpp=1.75.0 eigen=3.3.9 blas=2.15 pybind11=2.6.2 benchmark numpy=1.20.3 jupyter=1.0.0 libint=2.6.0 cint=3.0.17 mkl=2020.4 mkl-include=2020.4 mkl-static=2020.4 intel-openmp=2020.3 doxygen=1.9.1 graphviz=2.47.2 jupyter-book=0.10.2 libblas=*=*mkl
 
+ENV CMAKE_LIBRARY_PATH=/usr/local/miniconda3/bin
+ARG CMAKE_LIBRARY_PATH=/usr/local/miniconda3/bin
+
+RUN conda install -c defaults -c conda-forge -c intel openmp=8.0.1 cmake=3.26.2 boost-cpp=1.81.0 eigen=3.4.0 blas=*=*mkl libblas=*=*mkl benchmark libcint=5.2.2 libint=2.6.0 mkl=2020.4 mkl-include=2020.4 mkl-static=2020.4 intel-openmp=2020.3 graphviz=7.1.0 doxygen=1.9.6  pybind11=2.10.4 numpy=1.24.2 jupyter=1.0.0 jupyter-book=0.15.1
+RUN cp /usr/local/miniconda3/lib/libiomp5* /usr/local/lib/
 RUN ldconfig
 
 COPY . .
@@ -30,7 +35,8 @@ RUN mkdir build && cd build && cmake .. \
     -DCMAKE_PREFIX_PATH=/usr/local/miniconda3 \
     -DCMAKE_INSTALL_PREFIX=/usr/local/miniconda3 \
     -DBUILD_TESTS=TRUE \
-    -DBUILD_PYTHON_BINDINGS=TRUE 
+    -DBUILD_PYTHON_BINDINGS=TRUE \
+
 RUN cd build && make -j2 VERBOSE=1 && env CTEST_OUTPUT_ON_FAILURE=1 make test && make install
 RUN rm -rf build
 

@@ -7,7 +7,7 @@ find_dependency(Git REQUIRED)
 find_dependency(Eigen3 3.3.4 REQUIRED MODULE)
 find_dependency(Int2 REQUIRED MODULE)
 find_dependency(Boost REQUIRED COMPONENTS program_options unit_test_framework)
-find_dependency(Cint REQUIRED)
+find_dependency(libcint REQUIRED)
 find_dependency(MKL REQUIRED MODULE)
 
 if(NOT TARGET gqcp::gqcp)
