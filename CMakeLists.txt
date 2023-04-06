@@ -167,6 +167,7 @@ install(
     ${CMAKE_SOURCE_DIR}/cmake/FindEigen3.cmake
     ${CMAKE_SOURCE_DIR}/cmake/FindInt2.cmake
     ${CMAKE_SOURCE_DIR}/cmake/FindMKL.cmake
+    ${CMAKE_SOURCE_DIR}/cmake/FindLibcint.cmake
     DESTINATION cmake
 )
 
