@@ -12,7 +12,6 @@ on:
       - 'cmake/**'
     branches:
       - 'develop'
-      - 'dependencies/upgrade'
   pull_request:
     paths:
       - '.github/workflows/docker-gqcp-deploy.yml'

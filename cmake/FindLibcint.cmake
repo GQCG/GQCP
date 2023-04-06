@@ -28,13 +28,13 @@ mark_as_advanced(Libcint_INCLUDE_DIR Libcint_LIBRARY)
 
 include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(Libcint REQUIRED_VARS
-    Libcint_INCLUDE_DIR Libcint_LIBRARY) # sets Libcint_FOUND
+  Libcint_INCLUDE_DIR Libcint_LIBRARY) # sets Libcint_FOUND
 
 if(Libcint_FOUND AND NOT TARGET Libcint::Libcint)
-    add_library(Libcint::Libcint UNKNOWN IMPORTED)
-    set_target_properties(Libcint::Libcint PROPERTIES
-        INTERFACE_INCLUDE_DIRECTORIES ${Libcint_INCLUDE_DIR}
-        IMPORTED_LOCATION ${Libcint_LIBRARY}
-        INTERFACE_COMPILE_FEATURES cxx_std_11
-    )
+  add_library(Libcint::Libcint UNKNOWN IMPORTED)
+  set_target_properties(Libcint::Libcint PROPERTIES
+    INTERFACE_INCLUDE_DIRECTORIES ${Libcint_INCLUDE_DIR}
+    IMPORTED_LOCATION ${Libcint_LIBRARY}
+    INTERFACE_COMPILE_FEATURES cxx_std_11
+  )
 endif()
