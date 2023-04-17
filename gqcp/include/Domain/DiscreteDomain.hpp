@@ -53,10 +53,8 @@ public:
      *
      *  @param domain_indices               The indices that the domain contains.
      *  @param M                            The dimension of the discrete domain, i.e. the maximum number of elements that the discrete domain can contain.
-     *
-     *  @return A spin-unresolved ONV from a set of occupied indices.
      */
-    DiscreteDomain(const std::vector<size_t>& domain_indices, const size_t M);
+    DiscreteDomain(const std::vector<size_t>& domain_indices, size_t M);
 
     /**
      *  Create a discrete domain from an unsigned representation.
@@ -64,7 +62,7 @@ public:
      *  @param unsigned_representation          The representation of this discrete domain as an unsigned integer.
      *  @param M                                The dimension of the discrete domain, i.e. the maximum number of elements that the discrete domain can contain.
      */
-    DiscreteDomain(const size_t unsigned_representation, const size_t M);
+    DiscreteDomain(size_t unsigned_representation, size_t M);
 
 
     /**
@@ -76,7 +74,7 @@ public:
      *
      *  @param i        The index in the domain bitstring.
      */
-    void addElement(const size_t i);
+    void addElement(size_t i);
 
     /**
      *  @return The domain representation as a bitstring.
@@ -93,7 +91,9 @@ public:
      */
     size_t dimension() const { return this->domain.size(); }
 
-
+    /**
+     *  @return     The domain indices of this discrete domain.
+     */
     const std::vector<size_t>& domainIndices() const { return this->domain_indices; }
 
     /**
@@ -120,7 +120,7 @@ public:
      *
      *  @return     The i-th element with values 0 or 1 depending on whether the i-th element is in the domain.
      */
-    bool operator()(const size_t i) const { return this->domain[i]; }
+    bool operator()(size_t i) const { return this->domain[i]; }
 
     /**
      *  @param rhs            The discrete domain that will be assigned to `this`.
@@ -137,7 +137,6 @@ public:
      */
     friend std::ostream& operator<<(std::ostream& os, const DiscreteDomain& domain);
 
-
     /**
      * Calculate the overlap between two discrete domains, i.e. the number of matching domain elements.
      *
@@ -152,7 +151,7 @@ public:
      *
      *  @param i        The index in the domain bitstring.
      */
-    void removeElement(const size_t i);
+    void removeElement(size_t i);
 
     /**
      *  @return The unsigned representation of this domain.
