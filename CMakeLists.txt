@@ -173,5 +173,6 @@ install(
 
 # Install the Python bindings
 if(BUILD_PYTHON_BINDINGS)
-    install(CODE "execute_process(COMMAND ${PYTHON_EXECUTABLE} \"\${CMAKE_BINARY_DIR}/gqcpy/setup.py\" install --prefix ${CMAKE_INSTALL_PREFIX} --force)")
+    # install(CODE "execute_process(COMMAND ${PYTHON_EXECUTABLE} \"\${CMAKE_BINARY_DIR}/gqcpy/setup.py\" install --prefix ${CMAKE_INSTALL_PREFIX} --force)")
+    install(CODE "execute_process(COMMAND pip install ${CMAKE_BINARY_DIR}/gqcpy/)")
 endif()
