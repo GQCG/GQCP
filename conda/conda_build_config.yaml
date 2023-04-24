@@ -10,7 +10,7 @@ target_platform:
   - osx-64                        # [osx]
   - linux-64                      # [linux]
 CONDA_BUILD_SYSROOT:
-  - /opt/MacOSX10.9.sdk           # [osx]
+  - /opt/MacOSX12.3.sdk           # [osx]
 
 pin_run_as_build:
   arpack:

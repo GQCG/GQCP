@@ -6,7 +6,7 @@ package:
     version: {{ version }}
 source:
     git_url: https://github.com/GQCG/GQCP.git
-    git_tag: develop
+    git_tag: dependencies/upgrade
 requirements:
     build:
       - benchmark
@@ -18,7 +18,7 @@ requirements:
     host:
       - blas
       - boost-cpp
-      - cint ==3.0.17
+      - libcint
       - eigen
       - intel-openmp
       - mkl-include
@@ -33,7 +33,7 @@ requirements:
     run:
       - blas
       - boost-cpp
-      - cint ==3.0.17
+      - libcint
       - eigen
       - intel-openmp
       - mkl-include

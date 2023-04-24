@@ -21,6 +21,7 @@
 #include "Mathematical/Functions/Function.hpp"
 #include "Mathematical/Functions/VectorSpaceArithmetic.hpp"
 #include "Utilities/aliases.hpp"
+#include "Utilities/complex.hpp"
 
 #include <boost/format.hpp>
 #include <boost/lexical_cast.hpp>
@@ -36,7 +37,7 @@ namespace GQCP {
  *
  *  @tparam _Coefficient        The type of a coefficient.
  *  @tparam _FunctionType       The type of the function.
- * 
+ *
  *  @note The type of the functions must derive from GQCP::Function, i.e. it must be evaluable.
  */
 template <typename _Coefficient, typename _FunctionType>
@@ -118,7 +119,7 @@ public:
 
     /**
      *  Construct a 'zero vector' given the '0' integer literal.
-     * 
+     *
      *  @param zero         The '0' integer literal.
      */
     EvaluableLinearCombination(const int zero) :
@@ -199,9 +200,9 @@ public:
 
     /**
      *  Access a coefficient.
-     * 
+     *
      *  @param i        An index.
-     * 
+     *
      *  @return A read-only reference to the coefficient of this linear combination that corresponds to the given index.
      */
     const Coefficient& coefficient(const size_t i) const { return this->m_coefficients[i]; }
@@ -213,9 +214,9 @@ public:
 
     /**
      *  Access a function.
-     * 
+     *
      *  @param i        An index.
-     * 
+     *
      *  @return A read-only reference to the function of this linear combination that corresponds to the given index.
      */
     const FunctionType& function(const size_t i) const { return this->m_functions[i]; }
@@ -232,7 +233,7 @@ public:
 
     /**
      *  Evaluate this linear combination.
-     * 
+     *
      *  @param in           The argument for which the function is to be evaluated.
      *
      *  @return The function value of this linear combination for the given argument.
@@ -283,7 +284,7 @@ public:
 
     /**
      *  Append the given coefficient and function to this linear combination, but only if the coefficients are larger than the given threshold.
-     * 
+     *
      *  @param coefficients         The coefficient that should be appended to this linear combination.
      *  @param functions            The function that should be appended to this linear combination.
      *  @param threshold            The threshold for the (absolute value of the) coefficient in order to be included in this linear combination.

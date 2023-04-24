@@ -28,8 +28,8 @@ jobs:
   conda-ci-cd:
     strategy:
       matrix:
-        os: [ubuntu-18.04, macos-10.15]
-        py: [3.6, 3.7]
+        os: [ubuntu-22.04]
+        py: [3.8]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout repo 
@@ -44,13 +44,13 @@ jobs:
           update-conda: true
           python-version: ${{ matrix.py }}
           conda-channels: anaconda, conda-forge, intel
-      - name: Download MacOSX 10.9 SDK as conda-build dependency
-        if: matrix.os == 'macos-10.15'
+      - name: Download MacOSX 12.3 SDK as conda-build dependency
+        if: matrix.os == 'macos-12'
         run: |
-          wget https://github.com/phracker/MacOSX-SDKs/releases/download/10.13/MacOSX10.9.sdk.tar.xz
-          sudo mkdir /opt/MacOSX10.9.sdk
-          sudo tar -xf MacOSX10.9.sdk.tar.xz -C /opt
-          ls -hal /opt/MacOSX10.9.sdk
+          wget https://github.com/alexey-lysiuk/macos-sdk/releases/download/12.3/MacOSX12.3.tar.xz
+          sudo mkdir /opt/MacOSX12.3.sdk
+          sudo tar -xf MacOSX12.3.tar.xz -C /opt
+          ls -hal /opt/MacOSX12.3.sdk
       - name: Build conda package
         if: github.event_name == 'pull_request'
         run: |
