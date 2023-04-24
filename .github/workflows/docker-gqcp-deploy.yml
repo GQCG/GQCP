@@ -41,7 +41,7 @@ jobs:
       with:
         context: .
         file: docker/GQCP.docker
-        push: true
+        push: false
         tags: gqcg/gqcp:latest
     - name: Build and deploy
       uses: docker/build-push-action@v2
