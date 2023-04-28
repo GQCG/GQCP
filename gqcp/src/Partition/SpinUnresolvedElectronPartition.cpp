@@ -33,7 +33,7 @@ std::string SpinUnresolvedElectronPartition::asString() const {
     std::string s;
 
     for (size_t i = 0; i < this->dimension(); i++) {
-        s += this->operator()(i).asString() + "e / ";
+        s += std::to_string(this->operator()(i)) + "e / ";
     }
     return s.substr(0, s.length() - 4);
 }

@@ -33,18 +33,6 @@ class DomainPartition:
 
 public:
     /*
-     *  MARK: Constructors
-     */
-
-    /**
-     *  Create a domain partition from a vector of domains.
-     *
-     *  @param domains          The vector of domains.
-     */
-    virtual DomainPartition(const std::vector<DomainType>& domains) :
-        partition {domains} {}
-
-    /*
      *  MARK: General info
      */
 

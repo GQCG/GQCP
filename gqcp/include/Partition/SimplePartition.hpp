@@ -94,6 +94,15 @@ public:
     }
 
     /**
+     *  @param other        the other partition
+     *
+     *  @return whether this DerivedPartition is not equal to the other DerivedPartition.
+     */
+    bool operator!=(DerivedPartition& other) const {
+        return !this->operator==(other);
+    }
+
+    /**
      *  @param i            The partition index.
      *
      *  @return     The i-th element of the partition.
@@ -108,15 +117,6 @@ public:
      */
     friend std::ostream& operator<<(std::ostream& os, const DerivedPartition& partition) {
         return os << partition.asString();
-    }
-
-    /**
-     *  @param other        the other domain
-     *
-     *  @return whether this DerivedDomain is not equal to the other DerivedDomain.
-     */
-    bool operator!=(DerivedDomain& other) const {
-        return !this->operator==(other);
     }
 
     /**

@@ -15,38 +15,31 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
-#pragma once
 
-
-#include <cstdlib>
+#include "Partition/SpinResolvedElectronPartition.hpp"
 
 
 namespace GQCP {
 
 
-/**
- *  A type that provides compile-time information on the type of elements in a partition that is otherwise not accessible through a public class alias.
+/*
+ *  MARK: General info
  */
-template <typename DerivedPartition>
-struct PartitionTraits {};
 
-template <typename DomainType>
-class DomainPartition;
-
-template <typename DomainType>
-struct PartitionTraits<DomainPartition<DomainType>> {
-    // The type of elements that are present in the domain.
-    using ElementType = DomainType;
-};
+/**
+ *  @return The electron partition string representation.
+ */
+std::string SpinResolvedElectronPartition::asString() const {
+    return this->alpha().asString() + std::string(" | ") + this->beta().asString();
+}
 
 
-class SpinUnresolvedElectronPartition;
-
-template <>
-struct PartitionTraits<SpinUnresolvedElectronPartition> {
-    // The type of elements that are present in the partition.
-    using ElementType = size_t;
-};
+/**
+ *  @return     The number of spin-resolved electrons the partition contains.
+ */
+size_t SpinResolvedElectronPartition::numberOfElectrons() const {
+    return this->alpha().numberOfElectrons() + this->beta().numberOfElectrons();
+}
 
 
 }  // namespace GQCP

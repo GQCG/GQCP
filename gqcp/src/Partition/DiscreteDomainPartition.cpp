@@ -22,33 +22,6 @@
 namespace GQCP {
 
 
-// This file is part of GQCG-GQCP.
-//
-// Copyright (C) 2017-2020  the GQCG developers
-//
-// GQCG-GQCP is free software: you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// GQCG-GQCP is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Lesser General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public License
-// along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
-
-#pragma once
-
-
-#include "Domain/DiscreteDomain.hpp"
-#include "Partition/DomainPartition.hpp"
-
-
-namespace GQCP {
-
-
 /*
  *  MARK: Constructors
  */
@@ -59,7 +32,7 @@ namespace GQCP {
  *  @param domains          The vector of discrete domains.
  */
 DiscreteDomainPartition::DiscreteDomainPartition(const std::vector<DiscreteDomain>& domains) :
-    partition {domains} {
+    SimplePartition<DomainPartition<DiscreteDomain>>(domains) {
     size_t domain_occupations = 0;
 
     for (size_t i = 0; i < domains.size() - 1; i++) {
@@ -92,7 +65,7 @@ std::string DiscreteDomainPartition::asString() const {
     const auto& v = this->asVector();
     std::string s;
 
-    for (size_t i = 0; i < this->v.size(); i++) {
+    for (size_t i = 0; i < v.size(); i++) {
         s += std::to_string(v[i]) + " / ";
     }
     return s.substr(0, s.length() - 3);
@@ -104,7 +77,7 @@ std::string DiscreteDomainPartition::asString() const {
 std::vector<size_t> DiscreteDomainPartition::asVector() const {
     std::vector<size_t> v;
     for (size_t i = 0; i < this->operator()(0).dimension(); i++) {
-        size_t domain = -1;
+        int domain = -1;
         for (size_t d = 0; this->dimension(); d++) {
             if (this->operator()(d)(i)) {
                 domain = d;
@@ -112,9 +85,9 @@ std::vector<size_t> DiscreteDomainPartition::asVector() const {
         }
 
         if (domain == -1) {
-            throw std::invalid_argument("DiscreteDomainPartition::asVector(): Found index " + std::to_string(d) + "that does not belong to any domain.");
+            throw std::invalid_argument("DiscreteDomainPartition::asVector(): Found an index " + std::to_string(i) + "that does not belong to any domain.");
         } else {
-            v.push_back(d);
+            v.push_back(domain);
         }
     }
 
