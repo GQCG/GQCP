@@ -33,6 +33,13 @@ class DomainPartition:
 
 public:
     /*
+     *  MARK: Constructors
+     */
+
+    // Inherit `SimplePartition`'s constructors.
+    using SimplePartition<DomainPartition<DomainType>>::SimplePartition;
+
+    /*
      *  MARK: General info
      */
 

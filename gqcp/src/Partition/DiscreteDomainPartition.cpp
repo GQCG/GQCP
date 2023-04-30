@@ -32,7 +32,7 @@ namespace GQCP {
  *  @param domains          The vector of discrete domains.
  */
 DiscreteDomainPartition::DiscreteDomainPartition(const std::vector<DiscreteDomain>& domains) :
-    SimplePartition<DomainPartition<DiscreteDomain>>(domains) {
+    DomainPartition<DiscreteDomain>(domains) {
     size_t domain_occupations = 0;
 
     for (size_t i = 0; i < domains.size() - 1; i++) {

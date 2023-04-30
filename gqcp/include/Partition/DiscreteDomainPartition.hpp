@@ -29,7 +29,7 @@ namespace GQCP {
  * A partition (i.e., collection) of discrete domains.
  */
 class DiscreteDomainPartition:
-    public SimplePartition<DomainPartition<DiscreteDomain>> {
+    public DomainPartition<DiscreteDomain> {
 
 public:
     /*
