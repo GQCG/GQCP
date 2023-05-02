@@ -19,7 +19,7 @@
 
 
 #include "Partition/SpinUnresolvedElectronPartition.hpp"
-#include "QuantumChemical/SpinResolvedBase.hpp"
+#include "QuantumChemical/SpinResolved.hpp"
 
 
 namespace GQCP {
@@ -29,17 +29,17 @@ namespace GQCP {
  * A spin-resolved partition of alpha and beta electron numbers over e.g. domains.
  */
 class SpinResolvedElectronPartition:
-    public SpinResolvedBase<SpinUnresolvedElectronPartition, SpinUnresolvedElectronPartition> {
+    public SpinResolved<SpinUnresolvedElectronPartition> {
 public:
     // The type component this spin resolved object is made of.
-    using ComponentType = typename SpinResolvedBase<SpinUnresolvedElectronPartition, SpinUnresolvedElectronPartition>::Of;
+    using ComponentType = typename SpinResolved<SpinUnresolvedElectronPartition>::Of;
 
     /*
      *  MARK: Constructors
      */
 
-    // Inherit `SpinResolvedBase`'s constructors.
-    using SpinResolvedBase<SpinUnresolvedElectronPartition, SpinUnresolvedElectronPartition>::SpinResolvedBase;
+    // Inherit `SpinResolved`'s constructors.
+    using SpinResolved<SpinUnresolvedElectronPartition>::SpinResolved;
 
     /*
      *  MARK: General info
@@ -56,7 +56,7 @@ public:
      *
      * @return     The number of alpha and beta electrons the partition contains at index `i`.
      */
-    SpinResolvedBase<size_t, size_t> numberOfElectrons(size_t i) const { return SpinResolvedBase<size_t, size_t>(this->alpha().numberOfElectrons(), this->beta().numberOfElectrons()); }
+    SpinResolved<size_t> numberOfElectrons(size_t i) const { return SpinResolvedBase<size_t, size_t>(this->alpha().numberOfElectrons(), this->beta().numberOfElectrons()); }
 
     /**
      *  @return     The number of electrons the partition contains.

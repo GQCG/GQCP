@@ -21,7 +21,6 @@
 #include "Basis/Transformations/GTransformation.hpp"
 #include "Domain/DiscreteDomain.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
-#include "QuantumChemical/SpinResolved.hpp"
 
 
 namespace GQCP {
@@ -74,4 +73,6 @@ public:
      */
     GTransformation<Scalar> projectionMatrix(const GTransformation<Scalar>& C) const { return GTransformation<Scalar> {C.inverse().matrix() * this->partitionMatrix(C) * C.matrix()}; }
 };
+
+
 }  // namespace GQCP

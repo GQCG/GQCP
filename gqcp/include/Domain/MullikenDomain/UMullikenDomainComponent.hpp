@@ -21,7 +21,6 @@
 #include "Basis/Transformations/UTransformationComponent.hpp"
 #include "Domain/DiscreteDomain.hpp"
 #include "Mathematical/Representation/SquareMatrix.hpp"
-#include "QuantumChemical/SpinResolved.hpp"
 
 
 namespace GQCP {
@@ -59,4 +58,6 @@ public:
      */
     UTransformationComponent<Scalar> projectionMatrix(const UTransformationComponent<Scalar>& C) const { return UTransformationComponent<Scalar> {C.inverse().matrix() * this->partitionMatrix(C) * C.matrix()}; }
 };
+
+
 }  // namespace GQCP
