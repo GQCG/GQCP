@@ -82,9 +82,9 @@ std::string DiscreteDomainPartition::asString() const {
     std::string s;
 
     for (size_t i = 0; i < v.size(); i++) {
-        s += std::to_string(v[i]) + " / ";
+        s += std::to_string(v[i]) + "-";
     }
-    return s.substr(0, s.length() - 3);
+    return s.substr(0, s.length() - 1);
 }
 
 /**
@@ -94,7 +94,7 @@ std::vector<size_t> DiscreteDomainPartition::asVector() const {
     std::vector<size_t> v;
     for (size_t i = 0; i < this->operator()(0).dimension(); i++) {
         int domain = -1;
-        for (size_t d = 0; this->dimension(); d++) {
+        for (size_t d = 0; d < this->dimension(); d++) {
             if (this->operator()(d)(i)) {
                 domain = d;
             }
@@ -108,6 +108,22 @@ std::vector<size_t> DiscreteDomainPartition::asVector() const {
     }
 
     return v;
+}
+
+
+/**
+ * Calculate the overlap between the discrete domains in this domain partition and a spin-unresolved ONV since both can be represented as a bitstring.
+ *
+ *  @param onv            The spin-unresolved ONV.
+ *
+ *  @return     The numbers of overlapping set bits after a bit-by-bit comparison between the discrete domains and the spin-unresolved ONV.
+ */
+SpinUnresolvedElectronPartition DiscreteDomainPartition::overlapWithONV(const SpinUnresolvedONV& onv) const {
+    std::vector<size_t> overlaps;
+    for (const auto& domain : this->partition) {
+        overlaps.push_back(domain.overlapWithONV(onv));
+    }
+    return SpinUnresolvedElectronPartition(overlaps);
 }
 
 

@@ -22,7 +22,7 @@
 #include "Partition/ONVPartition.hpp"
 
 /**
- *
+ *  Test the spin-unresolved ONVs when partitioned according to a discrete domain partitions.
  */
 BOOST_AUTO_TEST_CASE(spin_unresolved) {
 
@@ -48,6 +48,43 @@ BOOST_AUTO_TEST_CASE(spin_unresolved) {
 
     for (size_t i = 0; i < other_onv_partition.dimension(); ++i) {
         BOOST_CHECK_EQUAL(other_onv_partition(i).asString(), ref_other_onvs[i]);
+    }
+    BOOST_CHECK_EQUAL(other_onv_partition.phaseFactor(), 1);
+}
+
+
+/**
+ *  Test the spin-resolved ONVs when partitioned according to a discrete domain partitions.
+ */
+BOOST_AUTO_TEST_CASE(spin_resolved) {
+
+    // 001011 | 010000 | 100100
+    const GQCP::DiscreteDomainPartition domain_partition {std::vector<size_t> {11, 16, 36}, 6};
+    // 011101 | 101100
+    const GQCP::SpinResolvedONV onv {GQCP::SpinUnresolvedONV {6, 4, 29}, GQCP::SpinUnresolvedONV {6, 3, 44}};
+
+    const GQCP::ONVPartition<GQCP::SpinResolvedONV> onv_partition {domain_partition, onv};
+    const std::vector<std::string> ref_onvs_alpha = {"101", "1", "10"};
+    const std::vector<std::string> ref_onvs_beta = {"001", "0", "11"};
+
+    for (size_t i = 0; i < onv_partition.dimension(); ++i) {
+        BOOST_CHECK_EQUAL(onv_partition(i).onv(GQCP::Spin::alpha).asString(), ref_onvs_alpha[i]);
+        BOOST_CHECK_EQUAL(onv_partition(i).onv(GQCP::Spin::beta).asString(), ref_onvs_beta[i]);
+    }
+    BOOST_CHECK_EQUAL(onv_partition.phaseFactor(), -1);
+
+    // 0100000001010001 | 1000010000000010 | 0000000100000100 | 0011100000001000 | 0000001010100000
+    const GQCP::DiscreteDomainPartition other_domain_partition {std::vector<size_t> {16465, 33794, 260, 14344, 672}, 16};
+    // 0101111101001101 | 0100000111011011
+    const GQCP::SpinResolvedONV other_onv {GQCP::SpinUnresolvedONV {16, 10, 24397}, GQCP::SpinUnresolvedONV {16, 8, 16859}};
+
+    const GQCP::ONVPartition<GQCP::SpinResolvedONV> other_onv_partition {other_domain_partition, other_onv};
+    const std::vector<std::string> ref_other_onvs_alpha = {"1011", "010", "11", "1110", "001"};
+    const std::vector<std::string> ref_other_onvs_beta = {"1111", "100", "01", "1000", "010"};
+
+    for (size_t i = 0; i < other_onv_partition.dimension(); ++i) {
+        BOOST_CHECK_EQUAL(other_onv_partition(i).onv(GQCP::Spin::alpha).asString(), ref_other_onvs_alpha[i]);
+        BOOST_CHECK_EQUAL(other_onv_partition(i).onv(GQCP::Spin::beta).asString(), ref_other_onvs_beta[i]);
     }
     BOOST_CHECK_EQUAL(other_onv_partition.phaseFactor(), 1);
 }

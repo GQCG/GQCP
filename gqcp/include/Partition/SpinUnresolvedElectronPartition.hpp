@@ -34,6 +34,13 @@ class SpinUnresolvedElectronPartition:
 
 public:
     /*
+     *  MARK: Constructors
+     */
+
+    // Inherit `SimplePartition`'s constructors.
+    using SimplePartition<SpinUnresolvedElectronPartition>::SimplePartition;
+
+    /*
      *  MARK: General info
      */
 

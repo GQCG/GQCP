@@ -20,6 +20,8 @@
 
 #include "Domain/DiscreteDomain.hpp"
 #include "Partition/DomainPartition.hpp"
+#include "Partition/SpinResolvedElectronPartition.hpp"
+#include "Partition/SpinUnresolvedElectronPartition.hpp"
 
 
 namespace GQCP {
@@ -64,6 +66,24 @@ public:
      *  @return The discrete domain partition vector representation.
      */
     std::vector<size_t> asVector() const;
+
+    /**
+     * Calculate the overlap between the discrete domains in this domain partition and a spin-unresolved ONV since both can be represented as a bitstring.
+     *
+     *  @param onv            The spin-unresolved ONV.
+     *
+     *  @return     The numbers of overlapping set bits after a bit-by-bit comparison between the discrete domains and the spin-unresolved ONV.
+     */
+    SpinUnresolvedElectronPartition overlapWithONV(const SpinUnresolvedONV& onv) const;
+
+    /**
+     * Calculate the overlap between the discrete domains in this domain partition and a spin-resolved ONV since both can be represented as a bitstring.
+     *
+     *  @param onv            The spin-resolved ONV.
+     *
+     *  @return     The numbers of overlapping set bits after a bit-by-bit comparison between the discrete domains and the spin-resolved ONV.
+     */
+    SpinResolvedElectronPartition overlapWithONV(const SpinResolvedONV& onv) const { return SpinResolvedElectronPartition {this->overlapWithONV(onv.onv(Spin::alpha)), this->overlapWithONV(onv.onv(Spin::beta))}; }
 };
 
 

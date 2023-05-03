@@ -103,16 +103,13 @@ public:
         const auto onv_partition_alpha = ONVPartition<SpinUnresolvedONV>(domain_partition, onv.onv(Spin::alpha));
         const auto onv_partition_beta = ONVPartition<SpinUnresolvedONV>(domain_partition, onv.onv(Spin::beta));
 
-        std::vector<SpinResolvedONV> onv_partition;
         const auto D = domain_partition.dimension();
 
-        onv_partition.reserve(D);
+        this->partition.reserve(D);
         // Each domain in the domain partition will have a spin-resolved ONV.
         for (size_t d = 0; d < D; d++) {
-            onv_partition.push_back(GQCP::SpinResolvedONV(onv_partition_alpha[d], onv_partition_beta[d]));
+            this->partition.push_back(GQCP::SpinResolvedONV(onv_partition_alpha(d), onv_partition_beta(d)));
         }
-
-        this->onv_partition = onv_partition;
         this->phase_factor = onv_partition_alpha.phaseFactor() * onv_partition_beta.phaseFactor();  // Phase factor is the product of the phase factor of each spin-component separately.
     }
 
