@@ -53,6 +53,22 @@ DiscreteDomainPartition::DiscreteDomainPartition(const std::vector<DiscreteDomai
     }
 }
 
+/**
+ *  Create a discrete domain partition from a vector of unsigned representations.
+ *
+ *  @param domains          The vector of unsigned representations.
+ *  @param M                The dimension of each domain.
+ */
+DiscreteDomainPartition::DiscreteDomainPartition(const std::vector<size_t>& unsigned_representations, size_t M) {
+    std::vector<DiscreteDomain> domains;
+    for (size_t u : unsigned_representations) {
+        domains.push_back(DiscreteDomain(u, M));
+    }
+
+    this->partition = domains;
+    DiscreteDomainPartition {this->partition};  // Check conditions for domains.
+}
+
 /*
  *  MARK: General info
  */

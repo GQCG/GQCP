@@ -151,6 +151,33 @@ size_t DiscreteDomain::overlapWith(const DiscreteDomain& other) const {
 
 
 /**
+ * Calculate the overlap between the discrete domain and a spin-unresolved ONV since both can be represented as a bitstring.
+ *
+ *  @param onv            The spin-unresolved ONV.
+ *
+ *  @return     The number of overlapping set bits after a bit-by-bit comparison between the discrete domain and the spin-unresolved ONV.
+ */
+size_t DiscreteDomain::overlapWithONV(const SpinUnresolvedONV& onv) const {
+    boost::dynamic_bitset<> overlap;
+    overlap = this->domain & boost::dynamic_bitset<>(this->dimension(), onv.unsignedRepresentation());
+
+    return overlap.count();
+}
+
+
+/**
+ * Calculate the overlap between the discrete domain and a spin-resolved ONV since the discrete domain and each spin-type of the ONV can be represented as a bitstring.
+ *
+ *  @param onv            The spin-resolved ONV.
+ *
+ *  @return     The number of overlapping set bits after a bit-by-bit comparison between the discrete domain and the spin-types of the spin-resolved ONV.
+ */
+SpinResolved<size_t> DiscreteDomain::overlapWithONV(const SpinResolvedONV& onv) const {
+    return SpinResolved<size_t>(this->overlapWithONV(onv.onv(Spin::alpha)), this->overlapWithONV(onv.onv(Spin::beta)));
+}
+
+
+/**
  *  Remove an element from the domain at position i.
  *
  *  @param i        The index in the domain bitstring.

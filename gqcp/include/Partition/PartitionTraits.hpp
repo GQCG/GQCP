@@ -30,6 +30,7 @@ namespace GQCP {
 template <typename DerivedPartition>
 struct PartitionTraits {};
 
+
 template <typename DomainType>
 class DomainPartition;
 
@@ -46,6 +47,16 @@ template <>
 struct PartitionTraits<SpinUnresolvedElectronPartition> {
     // The type of elements that are present in the partition.
     using ElementType = size_t;
+};
+
+
+template <typename ONV>
+class ONVPartition;
+
+template <typename ONV>
+struct PartitionTraits<ONVPartition<ONV>> {
+    // The type of ONV: spin-unresolved or spin-resolved.
+    using ElementType = ONV;
 };
 
 

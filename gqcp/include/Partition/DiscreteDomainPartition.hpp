@@ -43,6 +43,14 @@ public:
      */
     DiscreteDomainPartition(const std::vector<DiscreteDomain>& domains);
 
+    /**
+     *  Create a discrete domain partition from a vector of unsigned representations.
+     *
+     *  @param domains          The vector of unsigned representations.
+     *  @param M                The dimension of each domain.
+     */
+    DiscreteDomainPartition(const std::vector<size_t>& unsigned_representations, size_t M);
+
     /*
      *  MARK: General info
      */

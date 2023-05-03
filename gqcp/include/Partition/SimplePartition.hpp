@@ -44,13 +44,15 @@ public:
 
 protected:
     // The partition with elements such as domains, electrons or orbitals.
-    const std::vector<ElementType> partition;
+    std::vector<ElementType> partition;
 
 
 public:
     /*
      *  MARK: Constructors
      */
+
+    SimplePartition() {}
 
     // COPY CONSTRUCTOR
     SimplePartition(const SimplePartition& partition) :

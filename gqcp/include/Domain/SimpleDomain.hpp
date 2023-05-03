@@ -41,6 +41,15 @@ public:
 
 
 public:
+    /*
+     *  MARK: Constructors
+     */
+    SimpleDomain() {}
+
+    /**
+     *  MARK: General information
+     */
+
     /**
      *  @param element        the element in the domain
      *

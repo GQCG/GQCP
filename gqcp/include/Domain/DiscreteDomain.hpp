@@ -21,6 +21,9 @@
 #include "Domain/DomainTraits.hpp"
 #include "Domain/SimpleDomain.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
+#include "ONVBasis/SpinResolvedONV.hpp"
+#include "ONVBasis/SpinUnresolvedONV.hpp"
+#include "QuantumChemical/SpinResolved.hpp"
 #include "Utilities/CRTP.hpp"
 #include "Utilities/type_traits.hpp"
 
@@ -145,6 +148,24 @@ public:
      *  @return     The number of domain elements that are equal between `this` and the other discrete domain.
      */
     size_t overlapWith(const DiscreteDomain& other) const;
+
+    /**
+     * Calculate the overlap between the discrete domain and a spin-unresolved ONV since both can be represented as a bitstring.
+     *
+     *  @param onv            The spin-unresolved ONV.
+     *
+     *  @return     The number of overlapping set bits after a bit-by-bit comparison between the discrete domain and the spin-unresolved ONV.
+     */
+    size_t overlapWithONV(const SpinUnresolvedONV& onv) const;
+
+    /**
+     * Calculate the overlap between the discrete domain and a spin-resolved ONV since the discrete domain and each spin-type of the ONV can be represented as a bitstring.
+     *
+     *  @param onv            The spin-resolved ONV.
+     *
+     *  @return     The number of overlapping set bits after a bit-by-bit comparison between the discrete domain and the spin-types of the spin-resolved ONV.
+     */
+    SpinResolved<size_t> overlapWithONV(const SpinResolvedONV& onv) const;
 
     /**
      *  Remove an element from the domain at position i.
