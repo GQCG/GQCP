@@ -100,7 +100,7 @@ public:
      *
      *  @return whether this DerivedPartition is not equal to the other DerivedPartition.
      */
-    bool operator!=(DerivedPartition& other) const {
+    bool operator!=(const DerivedPartition& other) const {
         return !this->operator==(other);
     }
 

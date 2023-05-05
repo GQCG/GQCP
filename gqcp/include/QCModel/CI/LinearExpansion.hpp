@@ -1999,7 +1999,7 @@ public:
      *  @param domain_partition              The partition of the orbitals in discrete domains.
      *  @param electron_partition            Electron occupation number in each discrete domain.
      *
-     *  @return The probability of finding a given electron distribution over the discrete domains.
+     *  @return the probability of finding a given electron distribution over the discrete domains.
      */
     template <typename ElectronPartition, typename Z = ONVBasis, std::enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, bool> = true>
     double calculateProbabilityOfFindingElectronPartition(const DiscreteDomainPartition& domain_partition, const ElectronPartition& electron_partition) const {

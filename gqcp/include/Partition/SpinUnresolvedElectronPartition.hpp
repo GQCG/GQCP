@@ -58,7 +58,7 @@ public:
     size_t numberOfElectrons(size_t i) const { return this->operator()(i); }
 
     /**
-     *  @return     The number of electrons the partition contains.
+     *  @return     The total number of electrons the partition contains.
      */
     size_t numberOfElectrons() const;
 };

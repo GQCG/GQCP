@@ -60,7 +60,7 @@ public:
 
 
     /**
-     *  @return     The number of electrons the partition contains.
+     *  @return     The total number of electrons the partition contains.
      */
     size_t numberOfElectrons() const;
 
@@ -68,14 +68,14 @@ public:
     /**
      *  @param other        the other partition
      *
-     *  @return whether this SpinResolvedPartition is equal to a SpinUnresolvedElectronPartition.
+     *  @return whether this `SpinResolvedElectronPartition` is equal to a `SpinUnresolvedElectronPartition`.
      */
     bool operator==(const SpinUnresolvedElectronPartition& other) const;
 
     /**
      *  @param other        the other partition
      *
-     *  @return whether this SpinResolvedPartition is equal to a SpinResolvedElectronPartition.
+     *  @return whether this `SpinResolvedElectronPartition` is equal to a `SpinResolvedElectronPartition`.
      */
     bool operator==(const SpinResolvedElectronPartition& other) const;
 };

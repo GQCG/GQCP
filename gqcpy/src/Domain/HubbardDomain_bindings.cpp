@@ -46,26 +46,6 @@ void bindHubbardDomain(py::module& module) {
     py_HubbardDomain
 
         /*
-         * MARK: Overlap
-         */
-
-        .def(
-            "overlapWithONV",
-            [](const HubbardDomain& domain, const GQCP::SpinUnresolvedONV& onv) {
-                return domain.overlapWithONV(onv);
-            },
-            py::arg("unresolved_ONV"),
-            "Return the overlap of this domain with a given spin-unresolved ONV.")
-
-        .def(
-            "overlapWithONV",
-            [](const HubbardDomain& domain, const GQCP::SpinResolvedONV& onv) {
-                return domain.overlapWithONV(onv);
-            },
-            py::arg("resolved_ONV"),
-            "Return the overlap of this domain with a given spin-resolved ONV.")
-
-        /*
          * MARK: Projection
          */
 

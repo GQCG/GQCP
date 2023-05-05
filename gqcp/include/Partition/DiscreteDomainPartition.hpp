@@ -67,6 +67,10 @@ public:
      */
     std::vector<size_t> asVector() const;
 
+    /*
+     * MARK: Overlap
+     */
+
     /**
      * Calculate the overlap between the discrete domains in this domain partition and a spin-unresolved ONV since both can be represented as a bitstring.
      *
