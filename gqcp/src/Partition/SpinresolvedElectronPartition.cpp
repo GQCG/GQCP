@@ -42,4 +42,43 @@ size_t SpinResolvedElectronPartition::numberOfElectrons() const {
 }
 
 
+/**
+ *  @param other        the other partition
+ *
+ *  @return whether this SpinResolvedPartition is equal to a SpinUnresolvedElectronPartition.
+ */
+bool SpinResolvedElectronPartition::operator==(const SpinUnresolvedElectronPartition& other) const {
+    bool equal = true;
+    const auto& alpha_partition = this->alpha();
+    const auto& beta_partition = this->beta();
+    for (size_t i = 0; i < alpha_partition.dimension(); i++) {
+        if (alpha_partition(i) + beta_partition(i) != other(i)) {
+            equal = false;
+        }
+    }
+    return equal;
+}
+
+
+/**
+ *  @param other        the other partition
+ *
+ *  @return whether this SpinResolvedPartition is equal to a SpinResolvedElectronPartition.
+ */
+bool SpinResolvedElectronPartition::operator==(const SpinResolvedElectronPartition& other) const {
+
+    bool equal = true;
+    const auto& alpha_partition = this->alpha();
+    const auto& beta_partition = this->beta();
+    const auto& other_alpha_partition = other.alpha();
+    const auto& other_beta_partition = other.beta();
+    for (size_t i = 0; i < alpha_partition.dimension(); i++) {
+        if (alpha_partition(i) != other_alpha_partition(i) || beta_partition(i) != other_beta_partition(i)) {
+            equal = false;
+        }
+    }
+    return equal;
+}
+
+
 }  // namespace GQCP

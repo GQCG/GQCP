@@ -35,6 +35,9 @@
 #include "ONVBasis/SpinResolvedONVBasis.hpp"
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 #include "ONVBasis/SpinUnresolvedSelectedONVBasis.hpp"
+#include "Partition/DiscreteDomainPartition.hpp"
+#include "Partition/SpinResolvedElectronPartition.hpp"
+#include "Partition/SpinUnresolvedElectronPartition.hpp"
 #include "Utilities/aliases.hpp"
 #include "Utilities/type_traits.hpp"
 
@@ -1983,6 +1986,55 @@ public:
 
         // Return the single orbital entropy.
         return S;
+    }
+
+
+    /**
+     *  MARK: Probability
+     */
+
+    /**
+     *  Calculate the probability of finding a given electron distribution over the discrete domains according to equation (11) in VanHende2022 (https://doi.org/10.1002/jcc.26806).
+     *
+     *  @param domain_partition              The partition of the orbitals in discrete domains.
+     *  @param electron_partition            Electron occupation number in each discrete domain.
+     *
+     *  @return The probability of finding a given electron distribution over the discrete domains.
+     */
+    template <typename ElectronPartition, typename Z = ONVBasis, std::enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, bool> = true>
+    double calculateProbabilityOfFindingElectronPartition(const DiscreteDomainPartition& domain_partition, const ElectronPartition& electron_partition) const {
+
+        double domain_probability = 0.0;
+        const auto calculate_domain_probability = [&](const GQCP::SpinUnresolvedONV& onv_alpha, const size_t I_alpha, const GQCP::SpinUnresolvedONV& onv_beta, const size_t I_beta) mutable {
+            const SpinResolvedONV onv(onv_alpha, onv_beta);
+            if (domain_partition.overlapWithONV(onv) == electron_partition) {
+                const size_t I_ab = this->onvBasis().compoundAddress(I_alpha, I_beta);
+                domain_probability += std::pow(this->coefficient(I_ab), 2);
+            }
+        };
+        onv_basis.forEach(calculate_domain_probability);
+        return domain_probability;
+    }
+
+    /**
+     *  Calculate the probability of finding a given electron distribution over the discrete domains according to equation (11) in VanHende2022 (https://doi.org/10.1002/jcc.26806).
+     *
+     *  @param domain_partition              The partition of the orbitals in discrete domains.
+     *  @param electron_partition            Electron occupation number in each discrete domain.
+     *
+     *  @return The probability of finding a given electron distribution over the discrete domains.
+     */
+    template <typename ElectronPartition, typename Z = ONVBasis, std::enable_if_t<std::is_same<Z, SpinUnresolvedONVBasis>::value, bool> = true>
+    double calculateProbabilityOfFindingElectronPartition(const DiscreteDomainPartition& domain_partition, const ElectronPartition& electron_partition) const {
+
+        double domain_probability = 0.0;
+        const auto calculate_domain_probability = [&](const GQCP::SpinUnresolvedONV& onv, const size_t I) mutable {
+            if (domain_partition.overlapWithONV(onv) == electron_partition) {
+                domain_probability += std::pow(this->coefficient(I), 2);
+            }
+        };
+        onv_basis.forEach(calculate_domain_probability);
+        return domain_probability;
     }
 
 

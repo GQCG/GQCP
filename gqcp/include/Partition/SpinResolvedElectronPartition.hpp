@@ -58,10 +58,26 @@ public:
      */
     SpinResolved<size_t> numberOfElectrons(size_t i) const { return SpinResolved<size_t>(this->alpha().numberOfElectrons(), this->beta().numberOfElectrons()); }
 
+
     /**
      *  @return     The number of electrons the partition contains.
      */
     size_t numberOfElectrons() const;
+
+
+    /**
+     *  @param other        the other partition
+     *
+     *  @return whether this SpinResolvedPartition is equal to a SpinUnresolvedElectronPartition.
+     */
+    bool operator==(const SpinUnresolvedElectronPartition& other) const;
+
+    /**
+     *  @param other        the other partition
+     *
+     *  @return whether this SpinResolvedPartition is equal to a SpinResolvedElectronPartition.
+     */
+    bool operator==(const SpinResolvedElectronPartition& other) const;
 };
 
 
