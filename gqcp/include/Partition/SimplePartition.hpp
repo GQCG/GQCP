@@ -54,7 +54,7 @@ public:
 
     SimplePartition() {}
 
-    // COPY CONSTRUCTOR
+
     SimplePartition(const SimplePartition& partition) :
         partition {partition.partitionElements()} {}
 
