@@ -37,7 +37,7 @@ template <typename _DerivedPartition>
 class SimplePartition:
     public CRTP<_DerivedPartition> {
 public:
-    // The type of partition that derives from this class, enabling CRTP and compile-time polymorphism..
+    // The type of partition that derives from this class, enabling CRTP and compile-time polymorphism.
     using DerivedPartition = _DerivedPartition;
     // The type of elements that are present in the partition: domains, electrons or orbitals.
     using ElementType = typename PartitionTraits<DerivedPartition>::ElementType;
@@ -81,7 +81,7 @@ public:
     size_t dimension() const { return this->partition.size(); }
 
     /**
-     *  @param other        the other partition
+     *  @param other        The other partition.
      *
      *  @return whether this DerivedPartition is equal to the other DerivedPartition.
      */
@@ -96,7 +96,7 @@ public:
     }
 
     /**
-     *  @param other        the other partition
+     *  @param other        The other partition.
      *
      *  @return whether this DerivedPartition is not equal to the other DerivedPartition.
      */

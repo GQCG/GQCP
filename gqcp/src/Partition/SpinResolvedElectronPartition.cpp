@@ -43,7 +43,7 @@ size_t SpinResolvedElectronPartition::numberOfElectrons() const {
 
 
 /**
- *  @param other        the other partition
+ *  @param other        The other partition.
  *
  *  @return whether this SpinResolvedPartition is equal to a SpinUnresolvedElectronPartition.
  */
@@ -61,7 +61,7 @@ bool SpinResolvedElectronPartition::operator==(const SpinUnresolvedElectronParti
 
 
 /**
- *  @param other        the other partition
+ *  @param other        The other partition.
  *
  *  @return whether this SpinResolvedPartition is equal to a SpinResolvedElectronPartition.
  */
