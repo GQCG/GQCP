@@ -19,6 +19,8 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
+#include "Basis/SpinorBasis/USpinOrbitalBasis.hpp"
 #include "ONVBasis/SpinResolvedONV.hpp"
 #include "QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp"
 #include "QCMethod/HF/RHF/RHF.hpp"
@@ -74,9 +76,9 @@ BOOST_AUTO_TEST_CASE(FromString) {
 
 /**
  *  Check if the overlap between an RHF-related ONV and an UHF-related ONV works as expected.
- * 
+ *
  *  We don't really have a reference implementation, but we can check if the overlaps are equal to 1 or 0 if we use RHF orbitals and UHF orbitals that have the same alpha- and beta-part.
- * 
+ *
  *  The system under consideration is H2 with a STO-3G basisset.
  */
 BOOST_AUTO_TEST_CASE(RHF_UHF_overlap) {

@@ -21,6 +21,8 @@
 #include "Domain/DomainTraits.hpp"
 #include "Utilities/CRTP.hpp"
 
+#include <string>
+
 
 namespace GQCP {
 
@@ -41,6 +43,20 @@ public:
 
 
 public:
+    /*
+     *  MARK: Constructors
+     */
+    SimpleDomain() {}
+
+    /**
+     *  MARK: General information
+     */
+
+    /**
+     *  @return The domain string.
+     */
+    virtual std::string asString() const = 0;
+
     /**
      *  @param element        the element in the domain
      *
@@ -60,7 +76,7 @@ public:
      *
      *  @return whether this DerivedDomain is not equal to the other DerivedDomain.
      */
-    bool operator!=(DerivedDomain& other) const {
+    bool operator!=(const DerivedDomain& other) const {
         return !this->operator==(other);
     }
 };

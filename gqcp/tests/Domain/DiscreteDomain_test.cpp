@@ -20,7 +20,6 @@
 #include <boost/test/unit_test.hpp>
 
 #include "Domain/DiscreteDomain.hpp"
-#include "Domain/SimpleDomain.hpp"
 
 
 /**
@@ -67,7 +66,7 @@ BOOST_AUTO_TEST_CASE(add_element) {
 
 
 /**
- *  Test if the `removeElement' functionality correctly removes an element from the discrete domain.
+ *  Test if the `removeElement` functionality correctly removes an element from the discrete domain.
  */
 BOOST_AUTO_TEST_CASE(remove_element) {
     std::vector<size_t> element_indices {0, 5};
@@ -119,4 +118,48 @@ BOOST_AUTO_TEST_CASE(unsigned_representation) {
     const std::vector<size_t> element_indices2 {0, 1, 2, 3, 4, 5, 6, 7};
     discrete_domain = GQCP::DiscreteDomain {element_indices2, 8};
     BOOST_CHECK_EQUAL(discrete_domain.unsignedRepresentation(), 255);
+}
+
+
+/**
+ *  Test whether the overlap between the discrete domain and a spin-unresolved ONV is calculated correctly.
+ */
+BOOST_AUTO_TEST_CASE(overlap_with_spinunresolved_onv) {
+    // Create a discrete domain with bitstring representation 00001011 (read right to left).
+    const GQCP::DiscreteDomain domain {11, 8};
+    // Create a spin-unresolved ONV with bitstring representation 00001011 (read right to left).
+    GQCP::SpinUnresolvedONV onv {8, 3, 11};
+    // The number of overlapping bits should be 3.
+    BOOST_CHECK_EQUAL(domain.overlapWithONV(onv), 3);
+
+    // Remove an electron from the ONV at position 1, the bitstring representation of the ONV is now 00001001 (read right to left).
+    const auto annihilated = onv.annihilate(1);
+    // The number of overlapping bits should now be 2.
+    BOOST_CHECK_EQUAL(domain.overlapWithONV(onv), 2);
+
+    // Create an electron at position 7, the bitstring representation of the ONV is now 10001001 (read right to left).
+    const auto created = onv.create(7);
+    // The number of overlapping bits should still be 2 since the domain does not contain the element at position 7.
+    BOOST_CHECK_EQUAL(domain.overlapWithONV(onv), 2);
+
+    // Create an empty discrete domain with bitstring representation 00000000 (read right to left).
+    const GQCP::DiscreteDomain empty_domain {0, 8};
+    // Create a spin-unresolved ONV with bitstring representation 11111111 (read right to left).
+    GQCP::SpinUnresolvedONV full_onv {8, 8, 255};
+    // There cannot be an overlap when the domain is empty.
+    BOOST_CHECK_EQUAL(empty_domain.overlapWithONV(full_onv), 0);
+}
+
+
+/**
+ *  Test whether the overlap between the discrete domain and a spin-resolved ONV is calculated correctly.
+ */
+BOOST_AUTO_TEST_CASE(overlap_with_spinresolved_onv) {
+    //  Create a discrete domain with bitstring representation 00001011 (read right to left).
+    const GQCP::DiscreteDomain domain {11, 8};
+    // Create a spin-resolved ONV where the alpha and beta part have bitstring representation 00101101 and 00010010 respectively (read right to left).
+    const GQCP::SpinResolvedONV onv {GQCP::SpinUnresolvedONV {8, 4, 45}, GQCP::SpinUnresolvedONV {8, 2, 18}};
+    // The number of overlapping bits should be 2 and 1 for both the alpha and beta part of the ONV respectively.
+    BOOST_CHECK_EQUAL(domain.overlapWithONV(onv).alpha(), 2);
+    BOOST_CHECK_EQUAL(domain.overlapWithONV(onv).beta(), 1);
 }

@@ -274,7 +274,29 @@ void bindLinearExpansions(py::module& module) {
             },
             py::arg("system_onvs"),
             py::arg("environment_onvs"),
-            "Return the expansion coefficients in tensor form.");
+            "Return the expansion coefficients in tensor form.")
+
+        /*
+         * MARK: Probability
+         */
+
+        .def(
+            "calculateProbabilityOfFindingElectronPartition",
+            [](const LinearExpansion<double, SpinResolvedONVBasis>& linear_expansion, const DiscreteDomainPartition& domain_partition, const SpinResolvedElectronPartition& electron_partition) {
+                return linear_expansion.calculateProbabilityOfFindingElectronPartition(domain_partition, electron_partition);
+            },
+            py::arg("domain_partition"),
+            py::arg("electron_partition"),
+            "Return the probability of finding a given (spin-resolved) electron distribution over the discrete domains.")
+
+        .def(
+            "calculateProbabilityOfFindingElectronPartition",
+            [](const LinearExpansion<double, SpinResolvedONVBasis>& linear_expansion, const DiscreteDomainPartition& domain_partition, const SpinUnresolvedElectronPartition& electron_partition) {
+                return linear_expansion.calculateProbabilityOfFindingElectronPartition(domain_partition, electron_partition);
+            },
+            py::arg("domain_partition"),
+            py::arg("electron_partition"),
+            "Return the probability of finding a given (spin-unresolved) electron distribution over the discrete domains.");
 
     // Expose the linear expansion interface.
     bindQCModelCILinearExpansionInterface(py_LinearExpansion_SpinResolved);
@@ -394,7 +416,21 @@ void bindLinearExpansions(py::module& module) {
             [](const LinearExpansion<double, SpinUnresolvedONVBasis>& linear_expansion) {
                 return linear_expansion.calculateShannonEntropy();
             },
-            "Return the Shannon entropy (information content) of the wave function.");
+            "Return the Shannon entropy (information content) of the wave function.")
+
+
+        /*
+         * MARK: Probability
+         */
+
+        .def(
+            "calculateProbabilityOfFindingElectronPartition",
+            [](const LinearExpansion<double, SpinUnresolvedONVBasis>& linear_expansion, const DiscreteDomainPartition& domain_partition, const SpinUnresolvedElectronPartition& electron_partition) {
+                return linear_expansion.calculateProbabilityOfFindingElectronPartition(domain_partition, electron_partition);
+            },
+            py::arg("domain_partition"),
+            py::arg("electron_partition"),
+            "Return the probability of finding a given (spin-unresolved) electron distribution over the discrete domains.");
 
     // Expose the linear expansion interface.
     bindQCModelCILinearExpansionInterface(py_LinearExpansion_SpinUnresolved);

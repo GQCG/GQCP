@@ -1,4 +1,5 @@
 list(APPEND python_bindings_sources
+    ${CMAKE_CURRENT_SOURCE_DIR}/DiscreteDomain_bindings.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/HubbardDomain_bindings.cpp
 )
 

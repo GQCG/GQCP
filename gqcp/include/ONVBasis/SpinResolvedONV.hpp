@@ -19,8 +19,6 @@
 
 
 #include "Basis/ScalarBasis/GTOShell.hpp"
-#include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
-#include "Basis/SpinorBasis/USpinOrbitalBasis.hpp"
 #include "ONVBasis/SpinUnresolvedONV.hpp"
 #include "QuantumChemical/Spin.hpp"
 
@@ -67,35 +65,35 @@ public:
 
     /**
      *  Create a spin-resolved ONV from textual/string representations.
-     * 
+     *
      *  @param string_representation_alpha              The textual representation of the alpha-part of the spin-resolved ONV, for example "0011", indicating that the first two alpha-spin-orbitals should be occupied.
      *  @param string_representation_beta               The textual representation of the beta-part of the spin-resolved ONV, for example "0011", indicating that the first two beta-spin-orbitals should be occupied.
-     * 
+     *
      *  @return A spin-resolved ONV from textual/string representations.
      */
     static SpinResolvedONV FromString(const std::string& string_representation_alpha, const std::string& string_representation_beta);
 
     /**
      *  Create a spin-resolved ONV that represents the RHF single Slater determinant, occupying the N_P lowest alpha- and beta-spin-orbitals.
-     * 
+     *
      *  @param K            The number of spatial orbitals.
      *  @param N_P          The number of electron pairs.
-     * 
+     *
      *  @return A spin-resolved ONV that represents the RHF single Slater determinant.
-     * 
+     *
      * @note The ordering of the spin-orbitals is implicit: this method assumes that the spin-orbitals in the corresponding RSpinOrbitalBasis are sorted with increasing one-particle energy.
      */
     static SpinResolvedONV RHF(const size_t K, const size_t N_P);
 
     /**
      *  Create a spin-resolved ONV that represents the UHF single Slater determinant, occupying the N_alpha lowest alpha-spin-orbitals, and the N_beta lowest beta-spin-orbitals.
-     * 
+     *
      *  @param K                The number of spatial orbitals.
      *  @param N_alpha          The number of alpha-electrons.
      *  @param N_beta           The number of beta-electrons.
-     * 
+     *
      *  @return A spin-resolved ONV that represents the UHF single Slater determinant.
-     * 
+     *
      * @note The ordering of the spin-orbitals is implicit: this method assumes that the spin-orbitals in the corresponding USpinOrbitalBasis are sorted with increasing one-particle energy.
      */
     static SpinResolvedONV UHF(const size_t K, const size_t N_alpha, const size_t N_beta);
@@ -110,14 +108,14 @@ public:
 
     /**
      *  Calculate the overlap <on|of>: the projection of between this spin-resolved ONV ('of') and another spin-resolved ONV ('on'), expressed in different R/U-spinor bases. The 'on'-ONV is supposed to be expressed in restricted spin-orbitals, and the 'of'-ONV is supposed to be expressed in unrestricted spin-orbitals.
-     * 
+     *
      *  @param onv_on                       The spin-resolved ONV that should be projected on.
      *  @param C_unrestricted               The transformation between the unrestricted spin-orbitals and the atomic spin-orbitals.
      *  @param C_restricted                 The transformation between the restricted spin-orbitals and the atomic spin-orbitals.
      *  @param S                            The overlap matrix of the underlying AOs.
-     * 
+     *
      *  @return The overlap element <on|of>.
-     * 
+     *
      *  @example This method can be used to project UHF-ONVs onto RHF-ONVs, by calling
      *          uhf_onv.calculateProjection(rhf_onv, C_unrestricted, C_restricted, S)
      */
@@ -125,7 +123,7 @@ public:
 
     /**
      *  @param sigma                Alpha or beta.
-     * 
+     *
      *  @return The number of sigma-electrons this spin-resolved ONV describes.
      */
     size_t numberOfElectrons(const Spin sigma) const;
@@ -137,14 +135,14 @@ public:
 
     /**
      *  @param sigma                alpha or beta
-     * 
+     *
      *  @return The number of sigma-spatial orbitals/spin-orbitals that this ONV is expressed with.
      */
     size_t numberOfSpatialOrbitals(const Spin sigma) const;
 
     /**
      *  @param sigma                Alpha or beta.
-     * 
+     *
      *  @return The ONV that describes the occupations of the sigma-spin orbitals.
      */
     const SpinUnresolvedONV& onv(const Spin sigma) const;

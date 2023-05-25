@@ -234,6 +234,50 @@ BOOST_AUTO_TEST_CASE(single_orbital_entropy_spinResolved) {
 
 
 /**
+ *  Check if the probability according to equation (11) in VanHende2022 (https://doi.org/10.1002/jcc.26806) is calculated correctly for a spin-resolved ONV basis.
+ */
+BOOST_AUTO_TEST_CASE(probability_SpinResolvedONVBasis) {
+
+    // 110 | 001
+    const GQCP::DiscreteDomainPartition domain_partition {std::vector<size_t> {6, 1}, 3};
+    // ONVBasis with 4 electrons (2 alpha, 2 beta) divided over 6 spin-orbitals.
+    const GQCP::SpinResolvedONVBasis onv_basis {3, 2, 2};
+    const auto wfn = GQCP::LinearExpansion<double, GQCP::SpinResolvedONVBasis>::Random(onv_basis);
+
+    // With a spin-unresolved electron partition.
+    const GQCP::SpinUnresolvedElectronPartition electron_partition_sur {std::vector<size_t>{3, 1}};
+    auto probability = wfn.calculateProbabilityOfFindingElectronPartition<GQCP::SpinUnresolvedElectronPartition>(domain_partition, electron_partition_sur);
+    auto ref_probability = std::pow(wfn.coefficient(2), 2) + std::pow(wfn.coefficient(5), 2) + std::pow(wfn.coefficient(6), 2) + std::pow(wfn.coefficient(7), 2);
+    BOOST_CHECK_EQUAL(probability, ref_probability);
+
+    // With a spin-resolved electron partition.
+    const GQCP::SpinResolvedElectronPartition electron_partition_sr {std::vector<size_t>{2, 0}, std::vector<size_t>{1, 1}};
+    probability = wfn.calculateProbabilityOfFindingElectronPartition<GQCP::SpinResolvedElectronPartition>(domain_partition, electron_partition_sr);
+    ref_probability = std::pow(wfn.coefficient(6), 2) + std::pow(wfn.coefficient(7), 2);
+    BOOST_CHECK_EQUAL(probability, ref_probability);
+}
+
+
+/**
+ *  Check if the probability according to equation (11) in VanHende2022 (https://doi.org/10.1002/jcc.26806) is calculated correctly for a spin-unresolved ONV basis.
+ */
+BOOST_AUTO_TEST_CASE(probability_SpinUnresolvedONVBasis) {
+
+    // 110 | 001
+    const GQCP::DiscreteDomainPartition domain_partition {std::vector<size_t> {5, 10}, 4};
+    // ONVBasis with 2 electrons 4 spin-orbitals.
+    const GQCP::SpinUnresolvedONVBasis onv_basis {4, 2};
+    const auto wfn = GQCP::LinearExpansion<double, GQCP::SpinUnresolvedONVBasis>::Random(onv_basis);
+
+    // With a spin-unresolved electron partition.
+    const GQCP::SpinUnresolvedElectronPartition electron_partition_sur {std::vector<size_t>{1, 1}};
+    auto probability = wfn.calculateProbabilityOfFindingElectronPartition<GQCP::SpinUnresolvedElectronPartition>(domain_partition, electron_partition_sur);
+    auto ref_probability = std::pow(wfn.coefficient(0), 2) + std::pow(wfn.coefficient(2), 2) + std::pow(wfn.coefficient(3), 2) + std::pow(wfn.coefficient(5), 2);
+    BOOST_CHECK_EQUAL(probability, ref_probability);
+}
+
+
+/**
  *  Check if the basis transformation of a linear expansion inside the full spin-resolved ONV basis is correctly implemented: we compare the direct transformation of the expansion coefficients with another FCI calculation using the transformed spinor basis.
  *  The test system is a linear H chain H3-//STO-3G, with an internuclear charge 0.742 bohr.
  */
