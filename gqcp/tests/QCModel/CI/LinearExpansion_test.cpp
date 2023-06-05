@@ -169,33 +169,37 @@ BOOST_AUTO_TEST_CASE(orbital_reduced_density_matrix) {
 
     const GQCP::SpinUnresolvedONVBasis onv_basis {4, 2};
     const auto wfn = GQCP::LinearExpansion<double, GQCP::SpinUnresolvedONVBasis>::Random(onv_basis);
+    const GQCP::DiscreteDomainPartition domain_partition(std::vector<size_t> {10, 5}, 4);
+    const auto rho = wfn.calculateSystemOrbitalRDM(domain_partition);
 
-    // |10>, |11>, |01>, |10>, |00>, |01> (read from left to right)
-    std::vector<GQCP::SpinUnresolvedONV> system_onvs {{2, 1, 1}, {2, 2, 3}, {2, 1, 2}, {2, 1, 1}, {2, 0, 0}, {2, 1, 2}};
-    // |10>, |00>, |10>, |01>, |11>, |01>
-    std::vector<GQCP::SpinUnresolvedONV> environment_onvs {{2, 1, 1}, {2, 0, 0}, {2, 1, 1}, {2, 1, 2}, {2, 2, 3}, {2, 1, 2}};
+    std::cout << "wfn dimension: " << onv_basis.dimension() << std::endl;
+    std::cout << wfn.coefficients() << std::endl;
+    const auto print_f = [](const GQCP::SpinUnresolvedONV& onv, size_t I) {
+        std::cout << onv << "  (" << I << ") \t" << std::endl;
+    };
+    onv_basis.forEach(print_f);
 
-    const auto rho = wfn.calculateSystemOrbitalRDM(system_onvs, environment_onvs);
+    rho.asMatrix().print();
 
-    // <n| = <10|, |n'> = |10>
-    BOOST_CHECK_EQUAL(rho(0, 0), wfn.coefficient(0) * wfn.coefficient(0) + wfn.coefficient(3) * wfn.coefficient(3));
-    // <n| = <10|, |n'> = |11>
-    BOOST_CHECK_EQUAL(rho(0, 1), 0);
-    // <n| = <10|, |n'> = |01>
-    BOOST_CHECK_EQUAL(rho(0, 2), wfn.coefficient(0) * wfn.coefficient(2) + wfn.coefficient(3) * wfn.coefficient(5));
-    // <n| = <10|, |n'> = |00>
-    BOOST_CHECK_EQUAL(rho(0, 3), 0);
-    // <n| = <11|, |n'> = |11>
-    BOOST_CHECK_EQUAL(rho(1, 1), wfn.coefficient(1) * wfn.coefficient(1));
-    // <n| = <11|, |n'> = |01>
-    BOOST_CHECK_EQUAL(rho(1, 2), 0);
-    // <n| = <11|, |n'> = |00>
-    BOOST_CHECK_EQUAL(rho(1, 3), 0);
     // <n| = <01|, |n'> = |01>
-    BOOST_CHECK_EQUAL(rho(2, 2), wfn.coefficient(2) * wfn.coefficient(2) + wfn.coefficient(5) * wfn.coefficient(5));
+    BOOST_CHECK_EQUAL(rho(0, 0), wfn.coefficient(0) * wfn.coefficient(0) + wfn.coefficient(2) * wfn.coefficient(2));
     // <n| = <01|, |n'> = |00>
-    BOOST_CHECK_EQUAL(rho(2, 3), 0);
+    BOOST_CHECK_EQUAL(rho(0, 1), 0);
+    // <n| = <01|, |n'> = |10>
+    BOOST_CHECK_EQUAL(rho(0, 2), wfn.coefficient(0) * wfn.coefficient(3) + wfn.coefficient(2) * wfn.coefficient(5));
+    // <n| = <01|, |n'> = |11>
+    BOOST_CHECK_EQUAL(rho(0, 3), 0);
     // <n| = <00|, |n'> = |00>
+    BOOST_CHECK_EQUAL(rho(1, 1), wfn.coefficient(1) * wfn.coefficient(1));
+    // <n| = <00|, |n'> = |10>
+    BOOST_CHECK_EQUAL(rho(1, 2), 0);
+    // <n| = <00|, |n'> = |11>
+    BOOST_CHECK_EQUAL(rho(1, 3), 0);
+    // <n| = <10|, |n'> = |10>
+    BOOST_CHECK_EQUAL(rho(2, 2), wfn.coefficient(3) * wfn.coefficient(3) + wfn.coefficient(5) * wfn.coefficient(5));
+    // <n| = <10|, |n'> = |11>
+    BOOST_CHECK_EQUAL(rho(2, 3), 0);
+    // <n| = <11|, |n'> = |11>
     BOOST_CHECK_EQUAL(rho(3, 3), wfn.coefficient(4) * wfn.coefficient(4));
 }
 
