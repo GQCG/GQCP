@@ -1809,9 +1809,7 @@ public:
         const auto unique_onvs = [](const std::vector<typename ONVBasis::ONV>& onvs) {
             // The ONV basis containing all unique ONVs.
             std::vector<typename ONVBasis::ONV> onv_collection;
-
             for (const auto& onv : onvs) {
-
                 bool unique = true;
                 // If the ONV already is inside this collection, do not add it again.
                 for (const auto& unique_onv : onv_collection) {
@@ -1833,7 +1831,6 @@ public:
         // Retrieve the index of a given ONV in the collection of unique ONVs.
         const auto onv_index = [](const typename ONVBasis::ONV onv, std::vector<typename ONVBasis::ONV> onv_collection) {
             for (int i = 0; i < onv_collection.size(); ++i) {
-
                 if (onv == onv_collection[i]) {
                     return i;
                 }
@@ -1845,10 +1842,8 @@ public:
         C.setZero();
 
         for (size_t ij = 0; ij < system_onvs.size(); ++ij) {
-
             int i = onv_index(system_onvs[ij], system_onv_collection);
             int j = onv_index(environment_onvs[ij], environment_onv_collection);
-
             C(i, j) = this->coefficient(ij);
         }
         return C;

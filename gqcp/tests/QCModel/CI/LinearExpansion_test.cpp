@@ -161,25 +161,13 @@ BOOST_AUTO_TEST_CASE(tensorize_coeffients) {
 
 
 /**
- *  Check if the calculation of the system orbital density matrix matches the manual example (https://github.com/GQCG/GQCP/pull/1000#issuecomment-944194757).
+ *  Check if the calculation of the system orbital density matrix matches a manual example.
  */
 BOOST_AUTO_TEST_CASE(orbital_reduced_density_matrix) {
-
-    // Manual example, see (https://github.com/GQCG/GQCP/pull/1000#issuecomment-944194757) for more details.
-
     const GQCP::SpinUnresolvedONVBasis onv_basis {4, 2};
     const auto wfn = GQCP::LinearExpansion<double, GQCP::SpinUnresolvedONVBasis>::Random(onv_basis);
-    const GQCP::DiscreteDomainPartition domain_partition(std::vector<size_t> {10, 5}, 4);
+    const GQCP::DiscreteDomainPartition domain_partition(std::vector<size_t> {10, 5}, 4);   // Domain partition with bitstring representation 0101 (from right to left).
     const auto rho = wfn.calculateSystemOrbitalRDM(domain_partition);
-
-    std::cout << "wfn dimension: " << onv_basis.dimension() << std::endl;
-    std::cout << wfn.coefficients() << std::endl;
-    const auto print_f = [](const GQCP::SpinUnresolvedONV& onv, size_t I) {
-        std::cout << onv << "  (" << I << ") \t" << std::endl;
-    };
-    onv_basis.forEach(print_f);
-
-    rho.asMatrix().print();
 
     // <n| = <01|, |n'> = |01>
     BOOST_CHECK_EQUAL(rho(0, 0), wfn.coefficient(0) * wfn.coefficient(0) + wfn.coefficient(2) * wfn.coefficient(2));
