@@ -186,7 +186,7 @@ BOOST_AUTO_TEST_CASE(orbital_reduced_density_matrix) {
     // <n| = <01|, |n'> = |00>
     BOOST_CHECK_EQUAL(rho(0, 1), 0);
     // <n| = <01|, |n'> = |10>
-    BOOST_CHECK_EQUAL(rho(0, 2), wfn.coefficient(0) * wfn.coefficient(3) + wfn.coefficient(2) * wfn.coefficient(5));
+    BOOST_CHECK_EQUAL(rho(0, 2), wfn.coefficient(0) * wfn.coefficient(3) - wfn.coefficient(2) * wfn.coefficient(5));
     // <n| = <01|, |n'> = |11>
     BOOST_CHECK_EQUAL(rho(0, 3), 0);
     // <n| = <00|, |n'> = |00>
