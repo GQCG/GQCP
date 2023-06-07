@@ -245,12 +245,11 @@ void bindLinearExpansions(py::module& module) {
 
         .def(
             "calculateSystemOrbitalRDM",
-            [](const LinearExpansion<double, SpinResolvedONVBasis>& linear_expansion, const std::vector<GQCP::SpinResolvedONV>& system_onvs, const std::vector<GQCP::SpinResolvedONV>& environment_onvs) {
-                return linear_expansion.calculateSystemOrbitalRDM(system_onvs, environment_onvs).asMatrix();
+            [](const LinearExpansion<double, SpinResolvedONVBasis>& linear_expansion, GQCP::DiscreteDomainPartition& domain_partition) {
+                return linear_expansion.calculateSystemOrbitalRDM(domain_partition).asMatrix();
             },
-            py::arg("system_onvs"),
-            py::arg("environment_onvs"),
-            "Return the system orbital reduced density matrix")
+            py::arg("domain_partition"),
+            "Return the system orbital reduced density matrix.")
 
         .def(
             "calculateShannonEntropy",
@@ -388,12 +387,11 @@ void bindLinearExpansions(py::module& module) {
 
         .def(
             "calculateSystemOrbitalRDM",
-            [](const LinearExpansion<double, SpinUnresolvedONVBasis>& linear_expansion, const std::vector<GQCP::SpinUnresolvedONV>& system_onvs, const std::vector<GQCP::SpinUnresolvedONV>& environment_onvs) {
-                return linear_expansion.calculateSystemOrbitalRDM(system_onvs, environment_onvs);
+            [](const LinearExpansion<double, SpinUnresolvedONVBasis>& linear_expansion, const GQCP::DiscreteDomainPartition& domain_partition) {
+                return linear_expansion.calculateSystemOrbitalRDM(domain_partition);
             },
-            py::arg("system_onvs"),
-            py::arg("environment_onvs"),
-            "Return the orbital reduced density matrix")
+            py::arg("domain_partition"),
+            "Return the orbital reduced density matrix.")
 
         /*
          * MARK: Iteration

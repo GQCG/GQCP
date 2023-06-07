@@ -36,6 +36,7 @@
 #include "ONVBasis/SpinResolvedSelectedONVBasis.hpp"
 #include "ONVBasis/SpinUnresolvedSelectedONVBasis.hpp"
 #include "Partition/DiscreteDomainPartition.hpp"
+#include "Partition/ONVPartition.hpp"
 #include "Partition/SpinResolvedElectronPartition.hpp"
 #include "Partition/SpinUnresolvedElectronPartition.hpp"
 #include "Utilities/aliases.hpp"
@@ -1801,16 +1802,14 @@ public:
     enable_if_t<std::is_same<Z, SpinUnresolvedONVBasis>::value | std::is_same<Z, SpinResolvedONVBasis>::value, GQCP::Tensor<Scalar, 2>> tensorizeCoefficients(const std::vector<typename ONVBasis::ONV>& system_onvs, const std::vector<typename ONVBasis::ONV>& environment_onvs) const {
 
         if (system_onvs.size() != environment_onvs.size()) {
-            throw std::invalid_argument("LinearExpansion::calculateSystemOrbitalRDM(std::vector<ONV>& system_onvs, std::vector<ONV>& environment_onvs) const: The amount of system ONVs should be exactly the same as the amount of environment ONVs.");
+            throw std::invalid_argument("LinearExpansion::tensorizeCoefficients(std::vector<ONV>& system_onvs, std::vector<ONV>& environment_onvs) const: The amount of system ONVs should be exactly the same as the amount of environment ONVs.");
         }
 
         // Create a collection of unique ONVs to determine the dimension of the system orbital RDM.
         const auto unique_onvs = [](const std::vector<typename ONVBasis::ONV>& onvs) {
             // The ONV basis containing all unique ONVs.
             std::vector<typename ONVBasis::ONV> onv_collection;
-
             for (const auto& onv : onvs) {
-
                 bool unique = true;
                 // If the ONV already is inside this collection, do not add it again.
                 for (const auto& unique_onv : onv_collection) {
@@ -1832,7 +1831,6 @@ public:
         // Retrieve the index of a given ONV in the collection of unique ONVs.
         const auto onv_index = [](const typename ONVBasis::ONV onv, std::vector<typename ONVBasis::ONV> onv_collection) {
             for (int i = 0; i < onv_collection.size(); ++i) {
-
                 if (onv == onv_collection[i]) {
                     return i;
                 }
@@ -1844,10 +1842,8 @@ public:
         C.setZero();
 
         for (size_t ij = 0; ij < system_onvs.size(); ++ij) {
-
             int i = onv_index(system_onvs[ij], system_onv_collection);
             int j = onv_index(environment_onvs[ij], environment_onv_collection);
-
             C(i, j) = this->coefficient(ij);
         }
         return C;
@@ -1857,20 +1853,77 @@ public:
     /**
      *  Calculate the system orbital reduced density matrix as defined in equation (2) of Rissler2005 (https://doi.org/10.1016/j.chemphys.2005.10.018).
      *
-     *  @param system_onvs              A vector of all ONVs of the system that is obtained after splitting a collection of ONVs into two subsystems.
-     *  @param environment_onvs         A vector of all ONVs of the environment that is obtained after splitting a collection of ONVs into two subsystems.
+     *  @param domain_partition         The (discrete) domain partition used to partition the spin-resolved ONVs in this `LinearExpansion`.
      *
      *  @return The system orbital reduced density matrix.
      */
     template <typename Z = ONVBasis>
-    enable_if_t<std::is_same<Z, SpinUnresolvedONVBasis>::value | std::is_same<Z, SpinResolvedONVBasis>::value, GQCP::Tensor<Scalar, 2>> calculateSystemOrbitalRDM(const std::vector<typename ONVBasis::ONV>& system_onvs, const std::vector<typename ONVBasis::ONV>& environment_onvs) const {
+    enable_if_t<std::is_same<Z, SpinResolvedONVBasis>::value, Tensor<Scalar, 2>> calculateSystemOrbitalRDM(const DiscreteDomainPartition& domain_partition) const {
 
-        if (system_onvs.size() != environment_onvs.size()) {
-            throw std::invalid_argument("LinearExpansion::calculateSystemOrbitalRDM(std::vector<ONV>& system_onvs, std::vector<ONV>& environment_onvs) const: The amount of system ONVs should be exactly the same as the amount of environment ONVs.");
-        }
+        // The expansion coefficients of this linear expansion must be adjusted according to fermionic anti-commutation rules when we partition the ONVs according to the domain partition.
+        VectorX<Scalar> adjusted_coefficients = VectorX<Scalar>::Zero(this->onvBasis().dimension());  // The adjusted expansion coefficients.
+        std::vector<std::vector<SpinResolvedONV>> onvs(domain_partition.dimension());
+
+        const auto partition_onv = [&](const SpinUnresolvedONV& onv_alpha, size_t I_alpha, const SpinUnresolvedONV& onv_beta, size_t I_beta) {
+            const auto onv = GQCP::SpinResolvedONV(onv_alpha, onv_beta);
+            const auto I_ab = this->onvBasis().compoundAddress(I_alpha, I_beta);
+
+            ONVPartition<SpinResolvedONV> onv_partition {domain_partition, onv};
+            for (size_t i = 0; i < onv_partition.dimension(); ++i) {
+                onvs[i].push_back(onv_partition(i));
+            }
+            adjusted_coefficients(I_ab) = this->coefficient(I_ab) * onv_partition.phaseFactor();
+        };
+
+        this->onvBasis().forEach(partition_onv);
+        LinearExpansion<Scalar, SpinResolvedONVBasis> adjusted_wfn(this->onvBasis(), adjusted_coefficients);
 
         // The coefficients must be in the tensorized form to apply equation (2).
-        const auto C = this->tensorizeCoefficients(system_onvs, environment_onvs);
+        const auto C = adjusted_wfn.tensorizeCoefficients(onvs[0], onvs[1]);
+
+        // Partial trace over the index of the environment ("j").
+        return C.template einsum<1>("ij,kj->ik", C);
+    }
+
+
+    /**
+     *  Calculate the system orbital reduced density matrix as defined in equation (2) of Rissler2005 (https://doi.org/10.1016/j.chemphys.2005.10.018).
+     *
+     *  @param domain_partition         The (discrete) domain partition used to partition the spin-unresolved ONVs in this `LinearExpansion`.
+     *
+     *  @return The system orbital reduced density matrix.
+     */
+    template <typename Z = ONVBasis>
+    enable_if_t<std::is_same<Z, SpinUnresolvedONVBasis>::value, Tensor<Scalar, 2>> calculateSystemOrbitalRDM(const DiscreteDomainPartition& domain_partition) const {
+
+        // The expansion coefficients of this linear expansion must be adjusted according to fermionic anti-commutation rules when we partition the ONVs according to the domain partition.
+        VectorX<Scalar> adjusted_coefficients = VectorX<Scalar>::Zero(this->onvBasis().dimension());  // The adjusted expansion coefficients.
+        std::vector<std::vector<SpinUnresolvedONV>> onvs(domain_partition.dimension());
+
+        const auto partition_onv = [&](const SpinUnresolvedONV& onv, size_t I) {
+            ONVPartition<SpinUnresolvedONV> onv_partition {domain_partition, onv};
+            for (size_t i = 0; i < onv_partition.dimension(); ++i) {
+                onvs[i].push_back(onv_partition(i));
+            }
+            adjusted_coefficients(I) = this->coefficient(I) * onv_partition.phaseFactor();
+        };
+
+        this->onvBasis().forEach(partition_onv);
+        LinearExpansion<Scalar, SpinUnresolvedONVBasis> adjusted_wfn(this->onvBasis(), adjusted_coefficients);
+
+        // The coefficients must be in the tensorized form to apply equation (2).
+        const auto C = adjusted_wfn.tensorizeCoefficients(onvs[0], onvs[1]);
+
+        std::cout << "system onvs: " << std::endl;
+        for (size_t i = 0; i < this->onvBasis().dimension(); i++) {
+            std::cout << onvs[0][i] << "\t";
+        }
+        std::cout << std::endl;
+        std::cout << "environment onvs: " << std::endl;
+        for (size_t i = 0; i < this->onvBasis().dimension(); i++) {
+            std::cout << onvs[1][i] << "\t";
+        }
+        std::cout << std::endl;
 
         // Partial trace over the index of the environment ("j").
         return C.template einsum<1>("ij,kj->ik", C);
@@ -2005,7 +2058,7 @@ public:
     double calculateProbabilityOfFindingElectronPartition(const DiscreteDomainPartition& domain_partition, const ElectronPartition& electron_partition) const {
 
         double domain_probability = 0.0;
-        const auto calculate_domain_probability = [&](const GQCP::SpinUnresolvedONV& onv_alpha, const size_t I_alpha, const GQCP::SpinUnresolvedONV& onv_beta, const size_t I_beta) mutable {
+        const auto calculate_domain_probability = [&](const SpinUnresolvedONV& onv_alpha, size_t I_alpha, const SpinUnresolvedONV& onv_beta, size_t I_beta) mutable {
             const SpinResolvedONV onv(onv_alpha, onv_beta);
             if (domain_partition.overlapWithONV(onv) == electron_partition) {
                 const size_t I_ab = this->onvBasis().compoundAddress(I_alpha, I_beta);
@@ -2028,7 +2081,7 @@ public:
     double calculateProbabilityOfFindingElectronPartition(const DiscreteDomainPartition& domain_partition, const ElectronPartition& electron_partition) const {
 
         double domain_probability = 0.0;
-        const auto calculate_domain_probability = [&](const GQCP::SpinUnresolvedONV& onv, const size_t I) mutable {
+        const auto calculate_domain_probability = [&](const SpinUnresolvedONV& onv, size_t I) mutable {
             if (domain_partition.overlapWithONV(onv) == electron_partition) {
                 domain_probability += std::pow(this->coefficient(I), 2);
             }
