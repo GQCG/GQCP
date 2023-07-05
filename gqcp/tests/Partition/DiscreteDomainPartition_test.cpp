@@ -38,6 +38,20 @@ BOOST_AUTO_TEST_CASE(constructor) {
 
 
 /**
+ * Test if the discrete domain partition is correctly constructed from its vector representation.
+ */
+BOOST_AUTO_TEST_CASE(vector_constructor) {
+    // 10100001 | 01010010 | 00001100
+    const GQCP::DiscreteDomainPartition domain_partition {std::vector<size_t> {0, 1, 2, 2, 1, 0, 1, 0}};
+    BOOST_CHECK_EQUAL(domain_partition.asString(), std::string("0-1-2-2-1-0-1-0"));
+
+    const auto domain_partition_vector = domain_partition.asVector();
+    const std::vector<size_t> ref_vector = {0, 1, 2, 2, 1, 0, 1, 0};
+    BOOST_CHECK_EQUAL_COLLECTIONS(domain_partition_vector.begin(), domain_partition_vector.end(), ref_vector.begin(), ref_vector.end());
+}
+
+
+/**
  * Test if the calculated overlap with a spin-unresolved ONV gives the correct electron partition.
  */
 BOOST_AUTO_TEST_CASE(overlap_with_SpinUnresolvedONV) {
