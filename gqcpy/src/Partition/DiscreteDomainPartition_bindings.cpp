@@ -43,6 +43,15 @@ void bindDiscreteDomainPartition(py::module& module) {
     py_DiscreteDomainPartition
 
         /*
+         *  MARK: Constructors
+         */
+        .def(py::init([](const std::vector<size_t> domain_partition_vector) {
+                 return DiscreteDomainPartition(domain_partition_vector);
+             }),
+             py::arg("domain_partition_vector"),
+             "Create a discrete domain partition from a vector representation of discrete domains.")
+
+        /*
          *  MARK: General info
          */
         .def(

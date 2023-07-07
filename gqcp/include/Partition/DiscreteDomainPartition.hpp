@@ -23,6 +23,8 @@
 #include "Partition/SpinResolvedElectronPartition.hpp"
 #include "Partition/SpinUnresolvedElectronPartition.hpp"
 
+#include <set>
+
 
 namespace GQCP {
 
@@ -44,6 +46,13 @@ public:
      *  @param domains          The vector of discrete domains.
      */
     DiscreteDomainPartition(const std::vector<DiscreteDomain>& domains);
+
+    /**
+     *  Create a discrete domain partition from a vector representation of discrete domains.
+     *
+     *  @param domain_partition_vector          The vector representation of discrete domains.
+     */
+    DiscreteDomainPartition(const std::vector<size_t>& domain_partition_vector);
 
     /**
      *  Create a discrete domain partition from a vector of unsigned representations.
