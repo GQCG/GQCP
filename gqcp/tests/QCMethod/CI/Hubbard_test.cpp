@@ -36,8 +36,7 @@ BOOST_AUTO_TEST_CASE(Hubbard_specialized_vs_unspecialized_dense_diagonalization)
     const auto K = 4;    // The number of lattice sites.
     const auto N_P = 2;  // The number of electron pairs.
 
-    const auto H = GQCP::HoppingMatrix<double>::Random(K);
-    const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian {H};
+    const auto hubbard_hamiltonian = GQCP::HubbardHamiltonian<double>::Random(K);
 
     const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
 
@@ -69,8 +68,7 @@ BOOST_AUTO_TEST_CASE(Hubbard_specialized_vs_unspecialized_dense_diagonalization_
     const auto K = 6;    // The number of lattice sites.
     const auto N_P = 3;  // The number of electron pairs.
 
-    const auto H = GQCP::HoppingMatrix<double>::Random(K);
-    const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian {H};
+    const auto hubbard_hamiltonian = GQCP::HubbardHamiltonian<double>::Random(K);
 
     const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
 
@@ -115,8 +113,8 @@ BOOST_AUTO_TEST_CASE(four_site_chain) {
     for (size_t i = 0; i < 7; i++) {
 
         // Create the Hubbard model Hamiltonian.
-        const GQCP::HoppingMatrix<double> H {A, t, U_list[i]};
-        const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian {H};
+        const auto H = GQCP::HoppingMatrix<double>::Homogeneous(A, t);
+        const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian {H, U_list[i]};
 
 
         // Optimize the CI model, using a dense solver.
@@ -152,8 +150,8 @@ BOOST_AUTO_TEST_CASE(six_site_ring) {
     for (size_t i = 0; i < 7; i++) {
 
         // Create the Hubbard model Hamiltonian.
-        const GQCP::HoppingMatrix<double> H {A, t, U_list[i]};
-        const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian {H};
+        const auto H = GQCP::HoppingMatrix<double>::Homogeneous(A, t);
+        const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian {H, U_list[i]};
 
 
         // Optimize the CI model, using a dense solver.
@@ -175,8 +173,7 @@ BOOST_AUTO_TEST_CASE(Hubbard_specialized_vs_unspecialized_Davidson_diagonalizati
     const auto K = 4;    // The number of lattice sites.
     const auto N_P = 2;  // The number of electron pairs.
 
-    const auto H = GQCP::HoppingMatrix<double>::Random(K);
-    const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian {H};
+    const auto hubbard_hamiltonian = GQCP::HubbardHamiltonian<double>::Random(K);
 
     const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
 
@@ -209,8 +206,7 @@ BOOST_AUTO_TEST_CASE(Hubbard_specialized_vs_unspecialized_Davidson_diagonalizati
     const auto K = 6;    // The number of lattice sites.
     const auto N_P = 3;  // The number of electron pairs.
 
-    const auto H = GQCP::HoppingMatrix<double>::Random(K);
-    const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian {H};
+    const auto hubbard_hamiltonian = GQCP::HubbardHamiltonian<double>::Random(K);
 
     const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
 

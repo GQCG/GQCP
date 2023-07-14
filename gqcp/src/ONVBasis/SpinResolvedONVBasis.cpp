@@ -377,7 +377,7 @@ VectorX<double> SpinResolvedONVBasis::evaluateOperatorDiagonal(const HubbardHami
     // Prepare some variables.
     const auto dim_alpha = this->alpha().dimension();
     const auto dim_beta = this->beta().dimension();
-    const auto& H = hamiltonian.hoppingMatrix().matrix();
+    const auto& H = hamiltonian.HubbardHamiltonianMatrix();
 
 
     // Calculate the diagonal contributions resulting from the two-electron on-site interactions by iterating over all ONVs.
@@ -394,7 +394,7 @@ VectorX<double> SpinResolvedONVBasis::evaluateOperatorDiagonal(const HubbardHami
             // There is a contribution for all orbital indices p that are occupied both in the alpha- and beta ONV.
             std::vector<size_t> occupations = onv_alpha.findMatchingOccupations(onv_beta);
             for (const auto& p : occupations) {
-                diagonal(I) += H(p, p);  // The two-electron (on-site repulsion) contributions are on the diagonal of the hopping matrix.
+                diagonal(I) += H(p, p);  // The two-electron (on-site repulsion) contributions are on the diagonal of the Hubbard Hamiltonian matrix.
             }
 
             if (Ib < dim_beta - 1) {  // Prevent the last permutation from occurring.

@@ -68,7 +68,7 @@ public:
 
     /**
      *  A default constructor for Pybind11's Eigen-related casting.
-     * 
+     *
      *  @note This method is only here to avoid compile-time errors with Pybind11 and should never be called directly!
      */
     SquareMatrix(const size_t rows, const size_t cols) :
@@ -109,7 +109,7 @@ public:
 
     /**
      *  @param a        the strict (not including the diagonal) lower/upper triangle of the matrix in column major form
-     * 
+     *
      *  @return a square matrix in which the lower triangle is filled in with its given vector representation; all other elements are set to zero
      */
     static Self FromStrictTriangle(const VectorX<Scalar>& v) {
@@ -135,9 +135,9 @@ public:
 
     /**
      *  Create an identity square matrix.
-     * 
+     *
      *  @param dim          The dimension of the square matrix.
-     * 
+     *
      *  @return An identity square matrix.
      */
     static Self Identity(const size_t dim) { return Self {MatrixX<Scalar>::Identity(dim, dim)}; }
@@ -183,9 +183,9 @@ public:
 
     /**
      *  Create a random square matrix.
-     * 
+     *
      *  @param dim          The dimension of the resulting matrix.
-     * 
+     *
      *  @return A random square matrix.
      */
     static Self Random(const size_t dim) { return Self {MatrixX<Scalar>::Random(dim, dim)}; }
@@ -193,9 +193,9 @@ public:
 
     /**
      *  Create a random symmetrix matrix.
-     * 
+     *
      *  @param dim          The dimension of the resulting matrix.
-     * 
+     *
      *  @return A random symmetric matrix.
      */
     static Self RandomSymmetric(const size_t dim) {
@@ -208,7 +208,7 @@ public:
 
     /**
      *  Create a random unitary matrix.
-     * 
+     *
      *  @param dim          The dimension of the resulting matrix.
      *
      *  @return A random unitary matrix.
@@ -253,10 +253,39 @@ public:
 
 
     /**
+     *  @param v    the upper triangle (NOT including the diagonal) of a matrix
+     *
+     *  @return the full, symmetric matrix corresponding to the given upper triangle, without the diagonal.
+     */
+    static Self SymmetricFromUpperTriangleWithoutDiagonal(const VectorX<Scalar>& v) {
+
+        size_t dim = 0;
+        for (size_t d = 1; d < v.size(); d++) {
+            dim += d;
+        }
+
+        Self A = Self::Zero(dim);
+
+        size_t k = 0;                           // vector index
+        for (size_t i = 0; i < dim; i++) {      // row index
+            for (size_t j = i; j < dim; j++) {  // column index
+                if (i != j) {
+                    A(i, j) = v(k);
+                    A(j, i) = v(k);
+                    k++;
+                }
+            }
+        }
+
+        return A;
+    }
+
+
+    /**
      *  Create a zero square matrix.
-     * 
+     *
      *  @param dim          The dimension of the square matrix.
-     * 
+     *
      *  @return An zero square matrix.
      */
     static Self Zero(const size_t dim) { return Self {MatrixX<Scalar>::Zero(dim, dim)}; }
@@ -302,7 +331,7 @@ public:
 
     /**
      *  @return a non-pivoted LU decomposition in an array, with L at position 0 and U on position 1 of the array.
-     *  
+     *
      *  @note Pivoting is required to ensure that the decomposition is stable. Eigen3 provides partial and full pivot modules, so when the pivot or permutation of a matrix is not of interest we strongly recommend using Eigen3 instead
      */
     std::array<Self, 2> noPivotLUDecompose() const {
@@ -364,9 +393,9 @@ public:
      *
      *  in which
      *      m is calculated from i and j in a column-major way, with the restriction that i>j
-     * 
+     *
      *  Note that this is equal to extracting to strict lower triangular matrix as a vector in column major form. Example:
-     * 
+     *
      *          5
      *          1   5       -> (1, 2, 3)
      *          2   3   5

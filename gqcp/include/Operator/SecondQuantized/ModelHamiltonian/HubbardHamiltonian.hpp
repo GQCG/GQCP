@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp"
 #include "Operator/SecondQuantized/RSQOneElectronOperator.hpp"
 #include "Operator/SecondQuantized/RSQTwoElectronOperator.hpp"
@@ -28,19 +29,19 @@ namespace GQCP {
 
 /**
  *  The Hubbard model Hamiltonian.
- * 
+ *
  *  @tparam _Scalar         The scalar type for a hopping matrix element.
  */
 template <typename _Scalar>
 class HubbardHamiltonian {
 public:
-    // The scalar type for a hopping matrix element.
+    // The scalar type for a matrix element.
     using Scalar = _Scalar;
 
 
 private:
-    // The Hubbard hopping matrix.
-    HoppingMatrix<Scalar> H;
+    // The Hubbard Hamiltonian matrix.
+    SquareMatrix<Scalar> Hubbard_Hamiltonian_matrix;
 
 
 public:
@@ -49,12 +50,78 @@ public:
      */
 
     /**
-     *  Create a `HubbardHamiltonian` from a `HoppingMatrix`.
-     * 
-     *  @param H            The Hubbard hopping matrix.
+     *  Create a Hubbard Hamiltonian matrix from its representation as a `SquareMatrix`.
+     *
+     *  @param H        The Hubbard Hamiltonian matrix, represented as a `SquareMatrix`.
      */
-    HubbardHamiltonian(const HoppingMatrix<Scalar>& H) :
-        H {H} {}
+    HubbardHamiltonian(const SquareMatrix<Scalar>& H) :
+        Hubbard_Hamiltonian_matrix {H} {
+
+        if (!H.isHermitian()) {
+            throw std::invalid_argument("HubbardHamiltonian::HubbardHamiltonian(const SquareMatrix<Scalar>&): The given matrix must be Hermitian.");
+        }
+    }
+
+
+    /**
+     *  Create a `HubbardHamiltonian` from a `HoppingMatrix` and constant parameters `U`and `mu`.
+     *
+     *  @param H            The Hubbard hopping matrix.
+     *  @param U            The on site repulsion value.
+     *  @param mu           The on site potential. Default is zero.
+     */
+    HubbardHamiltonian(const HoppingMatrix<Scalar>& H, const double& U, const double& mu = 0.0) :
+        Hubbard_Hamiltonian_matrix {SquareMatrix<double>::Identity(1)} {
+        // Fill in the on site repulsion on the diagonal.
+        const auto U_matrix = U * SquareMatrix<double>::Identity(H.matrix().dimension());
+
+        // Fill in the on-site potentials on the diagonal.
+        const auto mu_matrix = mu * SquareMatrix<double>::Identity(H.matrix().dimension());
+
+        this->Hubbard_Hamiltonian_matrix = H.matrix() + U_matrix + mu_matrix;
+    }
+
+
+    /**
+     *  Create a `HubbardHamiltonian` from a `HoppingMatrix` and parameters `U`and `mu` for each site as a vector.
+     *
+     *  @param H            The Hubbard hopping matrix.
+     *  @param U            The on site repulsion values as a vector.
+     *  @param mu           The on site potential values as a vector.
+     */
+    HubbardHamiltonian(const HoppingMatrix<Scalar>& H, const std::vector<double>& U, const std::vector<double>& mu) :
+        Hubbard_Hamiltonian_matrix {SquareMatrix<double>::Identity(1)} {
+        // Create identity matrices of the correct dimension for U and mu.
+        auto U_matrix = SquareMatrix<double>::Identity(H.matrix().dimension());
+        auto mu_matrix = SquareMatrix<double>::Identity(H.matrix().dimension());
+
+        // Fill in the given vectors.
+        for (size_t i = 0; i < U.size(); i++) {
+            U_matrix[i, i] *= U[i];
+            mu_matrix[i, i] *= mu[i];
+        }
+
+        this->Hubbard_Hamiltonian_matrix = H.matrix() + U_matrix + mu_matrix;
+    }
+
+
+    /*
+     * MARK: Named constructors
+     */
+
+    /**
+     *  Create a random Hubbard Hamiltonian matrix matrix with elements distributed uniformly in [-1.0, 1.0].
+     *
+     *  @param K        The number of lattice sites.
+     *
+     *  @return A random Hubbard Hamiltonian matrix.
+     *
+     *  @note This method is only available for real scalars.
+     */
+    template <typename Z = Scalar>
+    static enable_if_t<std::is_same<Z, double>::value, HubbardHamiltonian<double>> Random(const size_t K) {
+        return HubbardHamiltonian {SquareMatrix<double>::RandomSymmetric(K)};
+    }
 
 
     /*
@@ -63,7 +130,7 @@ public:
 
     /**
      *  @return The core Hamiltonian (i.e. resulting from the Hubbard hopping operator) as a one-electron operator.
-     * 
+     *
      *  @note This method is only available for real scalars.
      */
     template <typename Z = Scalar>
@@ -71,7 +138,7 @@ public:
 
         // Prepare some variables.
         const auto K = this->numberOfLatticeSites();
-        const auto& H = this->hoppingMatrix().matrix();
+        const auto& H = this->HubbardHamiltonianMatrix();
         auto h = ScalarRSQOneElectronOperator<double>::Zero(K);
 
         // The one-electron hopping terms can be found on the off-diagonal elements of the hopping matrix.
@@ -90,14 +157,14 @@ public:
 
     /**
      *  @return The two-electron part of the Hamiltonian (resulting from the on-site repulsion) as a two-electron operator.
-     * 
+     *
      *  @note This method is only available for real scalars.
      */
     template <typename Z = Scalar>
     enable_if_t<std::is_same<Z, double>::value, ScalarRSQTwoElectronOperator<double>> twoElectron() const {
 
         const auto K = this->numberOfLatticeSites();
-        const auto& H = this->hoppingMatrix().matrix();
+        const auto& H = this->HubbardHamiltonianMatrix();
         SquareRankFourTensor<double> g_par = SquareRankFourTensor<double>::Zero(K);
 
         // The two-electron on-site repulsion is found on the diagonal of the hopping matrix.
@@ -112,7 +179,7 @@ public:
     /**
      *  @return The Hubbard hopping matrix for this Hubbard model Hamiltonian.
      */
-    const HoppingMatrix<Scalar>& hoppingMatrix() const { return this->H; }
+    const SquareMatrix<Scalar>& HubbardHamiltonianMatrix() const { return this->Hubbard_Hamiltonian_matrix; }
 
 
     /*
@@ -122,7 +189,7 @@ public:
     /**
      *  @return the number of lattice sites corresponding used in this Hubbard model Hamiltonian
      */
-    size_t numberOfLatticeSites() const { return this->H.numberOfLatticeSites(); }
+    size_t numberOfLatticeSites() const { return this->Hubbard_Hamiltonian_matrix.dimension(); }
 };
 
 

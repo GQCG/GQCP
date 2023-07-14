@@ -36,19 +36,23 @@ void bindHoppingMatrix(py::module& module) {
          *  MARK: Constructors
          */
 
-        .def(py::init<const AdjacencyMatrix&, const double, const double>(),
-             py::arg("A"),
-             py::arg("t"),
-             py::arg("U"),
-             "Return the Hubbard hopping matrix from an adjacency matrix and Hubbard model parameters U and t.")
+        .def_static(
+            "Homogeneous",
+            [](const AdjacencyMatrix& A, const double t) {
+                return HoppingMatrix<double>::Homogeneous(A, t);
+            },
+            py::arg("A"),
+            py::arg("t"),
+
+            "Return the Hubbard hopping matrix from an adjacency matrix and Hubbard model parameter t.")
 
         .def_static(
-            "FromCSLine",
-            [](const std::string& cs_line) {
-                return HoppingMatrix<double>::FromCSLine(cs_line);
+            "Dense",
+            [](std::vector<double>& triagonal_data) {
+                return HoppingMatrix<double>::Dense(triagonal_data);
             },
-            py::arg("csline"),
-            "Return the hopping matrix that corresponds to the given comma-separated line.")
+            py::arg("triagonal_data"),
+            "Return the hopping matrix that corresponds to the given upper triangle values.")
 
         /*
          *  MARK: Access

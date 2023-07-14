@@ -114,10 +114,10 @@ BOOST_AUTO_TEST_CASE(single_orbital_entropy_throw) {
     const auto adjacency = GQCP::AdjacencyMatrix::Cyclic(3);
 
     // Next, we use the adjacency matrix to create the Hopping Matrix.
-    const auto hopping = GQCP::HoppingMatrix<double>(adjacency, 1.5, 1.0);
+    const auto hopping = GQCP::HoppingMatrix<double>::Homogeneous(adjacency, 1.5);
 
     // Finally, create the Hubbard Hamiltonian.
-    const auto hubbard_hamiltonian = GQCP::HubbardHamiltonian<double>(hopping);
+    const auto hubbard_hamiltonian = GQCP::HubbardHamiltonian<double>(hopping, 1.0);
 
     // Next, densely solve the Hubbard CI problem to find the linear expansion.
     const GQCP::SpinResolvedONVBasis onv_basis {3, 2, 1};
@@ -202,10 +202,10 @@ BOOST_AUTO_TEST_CASE(single_orbital_entropy_spinResolved) {
     const auto adjacency = GQCP::AdjacencyMatrix::Cyclic(4);
 
     // Next, we use the adjacency matrix to create the Hopping Matrix.
-    const auto hopping = GQCP::HoppingMatrix<double>(adjacency, 1.5, 1.0);
+    const auto hopping = GQCP::HoppingMatrix<double>::Homogeneous(adjacency, 1.5);
 
     // Finally, create the Hubbard Hamiltonian.
-    const auto hubbard_hamiltonian = GQCP::HubbardHamiltonian<double>(hopping);
+    const auto hubbard_hamiltonian = GQCP::HubbardHamiltonian<double>(hopping, 1.0);
 
     // Next, densely solve the Hubbard CI problem to find the linear expansion.
     const GQCP::SpinResolvedONVBasis onv_basis {4, 2, 2};

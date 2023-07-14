@@ -35,8 +35,15 @@ void bindHubbardHamiltonian(py::module& module) {
          *  MARK: Constructors
          */
 
-        .def(py::init<const HoppingMatrix<double>&>(),
-             py::arg("H"))
+        .def(py::init<const HoppingMatrix<double>&, const double&, const double&>(),
+             py::arg("H"),
+             py::arg("U"),
+             py::arg("mu"))
+
+        .def(py::init<const HoppingMatrix<double>&, std::vector<double>&, std::vector<double>&>(),
+             py::arg("H"),
+             py::arg("U_vector"),
+             py::arg("mu_vector"))
 
 
         /*
@@ -58,11 +65,11 @@ void bindHubbardHamiltonian(py::module& module) {
             "Return the two-electron part of the Hamiltonian (resulting from the on-site repulsion) as a two-electron operator.")
 
         .def(
-            "hoppingMatrix",
+            "HubbardHamiltonianMatrix",
             [](const HubbardHamiltonian<double>& hamiltonian) {
-                return hamiltonian.hoppingMatrix();
+                return hamiltonian.HubbardHamiltonianMatrix();
             },
-            "Return the Hubbard hopping matrix for this Hubbard model Hamiltonian.");
+            "Return the Hubbard Hamiltonian matrix for this Hubbard model Hamiltonian.");
 }
 
 
