@@ -5,7 +5,7 @@ A = gqcpy.AdjacencyMatrix.Linear(4)
 
 t = 1.0
 U = 3.5
-H = gqcpy.HoppingMatrix(A, t)
+H = gqcpy.HoppingMatrix.Homogeneous(A, t)
 
 hubbard_hamiltonian = gqcpy.HubbardHamiltonian(H, U)
 
