@@ -38,7 +38,7 @@ void bindHubbardHamiltonian(py::module& module) {
         .def(py::init<const HoppingMatrix<double>&, const double&, const double&>(),
              py::arg("H"),
              py::arg("U"),
-             py::arg("mu"))
+             py::arg("mu") = 0.0)
 
         .def(py::init<const HoppingMatrix<double>&, std::vector<double>&, std::vector<double>&>(),
              py::arg("H"),
