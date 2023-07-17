@@ -21,6 +21,7 @@
 
 #include "Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp"
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
+#include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CI/CI.hpp"
@@ -151,7 +152,10 @@ BOOST_AUTO_TEST_CASE(six_site_ring) {
 
         // Create the Hubbard model Hamiltonian.
         const auto H = GQCP::HoppingMatrix<double>::Homogeneous(A, t);
+        std::cout << H.matrix() << std::endl;
+        std::cout << 10 * GQCP::SquareMatrix<double>::Identity(H.matrix().dimension()) << std::endl;
         const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian {H, U_list[i]};
+        std::cout << hubbard_hamiltonian.HubbardHamiltonianMatrix() << std::endl;
 
 
         // Optimize the CI model, using a dense solver.

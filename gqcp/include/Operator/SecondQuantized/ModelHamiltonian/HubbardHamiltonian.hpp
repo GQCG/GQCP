@@ -71,14 +71,14 @@ public:
      *  @param mu           The on site potential. Default is zero.
      */
     HubbardHamiltonian(const HoppingMatrix<Scalar>& H, const double& U, const double& mu = 0.0) :
-        Hubbard_Hamiltonian_matrix {SquareMatrix<double>::Identity(1)} {
+        Hubbard_Hamiltonian_matrix {SquareMatrix<double>::Identity(H.matrix().dimension())} {
         // Fill in the on site repulsion on the diagonal.
-        const auto U_matrix = U * SquareMatrix<double>::Identity(H.matrix().dimension());
+        for (size_t i = 0; i < H.matrix().dimension(); i++) {
+            this->Hubbard_Hamiltonian_matrix(i, i) *= U;
+            this->Hubbard_Hamiltonian_matrix(i, i) += mu;
+        }
 
-        // Fill in the on-site potentials on the diagonal.
-        const auto mu_matrix = mu * SquareMatrix<double>::Identity(H.matrix().dimension());
-
-        this->Hubbard_Hamiltonian_matrix = H.matrix() + U_matrix + mu_matrix;
+        this->Hubbard_Hamiltonian_matrix += H.matrix();
     }
 
 
@@ -90,18 +90,14 @@ public:
      *  @param mu           The on site potential values as a vector.
      */
     HubbardHamiltonian(const HoppingMatrix<Scalar>& H, const std::vector<double>& U, const std::vector<double>& mu) :
-        Hubbard_Hamiltonian_matrix {SquareMatrix<double>::Identity(1)} {
-        // Create identity matrices of the correct dimension for U and mu.
-        auto U_matrix = SquareMatrix<double>::Identity(H.matrix().dimension());
-        auto mu_matrix = SquareMatrix<double>::Identity(H.matrix().dimension());
-
+        Hubbard_Hamiltonian_matrix {SquareMatrix<double>::Identity(H.matrix().dimension())} {
         // Fill in the given vectors.
         for (size_t i = 0; i < U.size(); i++) {
-            U_matrix[i, i] *= U[i];
-            mu_matrix[i, i] *= mu[i];
+            this->Hubbard_Hamiltonian_matrix(i, i) *= U[i];
+            this->Hubbard_Hamiltonian_matrix(i, i) += mu[i];
         }
 
-        this->Hubbard_Hamiltonian_matrix = H.matrix() + U_matrix + mu_matrix;
+        this->Hubbard_Hamiltonian_matrix += H.matrix();
     }
 
 
