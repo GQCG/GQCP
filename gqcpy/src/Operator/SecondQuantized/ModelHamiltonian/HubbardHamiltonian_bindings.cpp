@@ -65,11 +65,32 @@ void bindHubbardHamiltonian(py::module& module) {
             "Return the two-electron part of the Hamiltonian (resulting from the on-site repulsion) as a two-electron operator.")
 
         .def(
-            "HubbardHamiltonianMatrix",
+            "hoppingMatrix",
             [](const HubbardHamiltonian<double>& hamiltonian) {
-                return hamiltonian.HubbardHamiltonianMatrix();
+                return hamiltonian.hoppingMatrix();
             },
-            "Return the Hubbard Hamiltonian matrix for this Hubbard model Hamiltonian.");
+            "Return the Hubbard Hamiltonian hopping matrix for this Hubbard model Hamiltonian.")
+
+        .def(
+            "oneElectronContributions",
+            [](const HubbardHamiltonian<double>& hamiltonian) {
+                return hamiltonian.oneElectronContributions();
+            },
+            "Return the one electron contributions as a matrix for this Hubbard model Hamiltonian.")
+
+        .def(
+            "onSitePotentialMatrix",
+            [](const HubbardHamiltonian<double>& hamiltonian) {
+                return hamiltonian.onSitePotentialMatrix();
+            },
+            "Return the on-site potentials as a matrix for this Hubbard model Hamiltonian.")
+
+        .def(
+            "onSiteRepulsionMatrix",
+            [](const HubbardHamiltonian<double>& hamiltonian) {
+                return hamiltonian.onSiteRepulsionMatrix();
+            },
+            "Return the on-site repulsion contributions as a matrix for this Hubbard model Hamiltonian.");
 }
 
 

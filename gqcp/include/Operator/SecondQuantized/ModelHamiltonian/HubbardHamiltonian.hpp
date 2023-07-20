@@ -41,7 +41,9 @@ public:
 
 private:
     // The Hubbard Hamiltonian matrix.
-    SquareMatrix<Scalar> Hubbard_Hamiltonian_matrix;
+    HoppingMatrix<Scalar> hopping_matrix;
+    SquareMatrix<Scalar> U_matrix;
+    SquareMatrix<Scalar> mu_matrix;
 
 
 public:
@@ -52,13 +54,19 @@ public:
     /**
      *  Create a Hubbard Hamiltonian matrix from its representation as a `SquareMatrix`.
      *
-     *  @param H        The Hubbard Hamiltonian matrix, represented as a `SquareMatrix`.
+     *  @param H        The Hopping matrix.
+     *  @param U        The U contributions, represented as a `SquareMatrix`.
+     *  @param mu       The on-site potentials, represented as a `SquareMatrix`.
      */
-    HubbardHamiltonian(const SquareMatrix<Scalar>& H) :
-        Hubbard_Hamiltonian_matrix {H} {
+    HubbardHamiltonian(const HoppingMatrix<Scalar>& H, const SquareMatrix<Scalar>& U, const SquareMatrix<Scalar>& mu) :
+        hopping_matrix {H},
+        U_matrix {U},
+        mu_matrix {mu} {
 
-        if (!H.isHermitian()) {
-            throw std::invalid_argument("HubbardHamiltonian::HubbardHamiltonian(const SquareMatrix<Scalar>&): The given matrix must be Hermitian.");
+        const SquareMatrix<Scalar> total = this->hopping_matrix.matrix() + this->U_matrix + this->mu_matrix;
+
+        if (!total.isHermitian()) {
+            throw std::invalid_argument("HubbardHamiltonian::HubbardHamiltonian(const HoppingMatrix<Scalar>&, const SquareMatrix<Scalar>&, const SquareMatrix<Scalar>&): The total Hubbard Hamiltonian matrix must be Hermitian.");
         }
     }
 
@@ -71,14 +79,15 @@ public:
      *  @param mu           The on site potential. Default is zero.
      */
     HubbardHamiltonian(const HoppingMatrix<Scalar>& H, const double& U, const double& mu = 0.0) :
-        Hubbard_Hamiltonian_matrix {SquareMatrix<double>::Identity(H.matrix().dimension())} {
+        hopping_matrix {H},
+        U_matrix {SquareMatrix<double>::Identity(H.matrix().dimension())},
+        mu_matrix {SquareMatrix<double>::Identity(H.matrix().dimension())} {
+
         // Fill in the on site repulsion on the diagonal.
         for (size_t i = 0; i < H.matrix().dimension(); i++) {
-            this->Hubbard_Hamiltonian_matrix(i, i) *= U;
-            this->Hubbard_Hamiltonian_matrix(i, i) += mu;
+            this->U_matrix(i, i) *= U;
+            this->mu_matrix(i, i) *= mu;
         }
-
-        this->Hubbard_Hamiltonian_matrix += H.matrix();
     }
 
 
@@ -90,14 +99,15 @@ public:
      *  @param mu           The on site potential values as a vector.
      */
     HubbardHamiltonian(const HoppingMatrix<Scalar>& H, const std::vector<double>& U, const std::vector<double>& mu) :
-        Hubbard_Hamiltonian_matrix {SquareMatrix<double>::Identity(H.matrix().dimension())} {
+        hopping_matrix {H},
+        U_matrix {SquareMatrix<double>::Identity(H.matrix().dimension())},
+        mu_matrix {SquareMatrix<double>::Identity(H.matrix().dimension())} {
+
         // Fill in the given vectors.
         for (size_t i = 0; i < U.size(); i++) {
-            this->Hubbard_Hamiltonian_matrix(i, i) *= U[i];
-            this->Hubbard_Hamiltonian_matrix(i, i) += mu[i];
+            this->U_matrix(i, i) *= U[i];
+            this->mu_matrix(i, i) *= mu[i];
         }
-
-        this->Hubbard_Hamiltonian_matrix += H.matrix();
     }
 
 
@@ -113,10 +123,31 @@ public:
      *  @return A random Hubbard Hamiltonian matrix.
      *
      *  @note This method is only available for real scalars.
+     *  @note This method always sets the on-site potential contributions (mu) to zero.
      */
     template <typename Z = Scalar>
     static enable_if_t<std::is_same<Z, double>::value, HubbardHamiltonian<double>> Random(const size_t K) {
-        return HubbardHamiltonian {SquareMatrix<double>::RandomSymmetric(K)};
+        // prepare the empty matrices.
+        auto mu = SquareMatrix<double>::Zero(K);
+        auto hopping = SquareMatrix<double>::Zero(K);
+        auto U = SquareMatrix<double>::Zero(K);
+
+        // Generate a random matrix.
+        const auto hopping_plus_u = SquareMatrix<double>::RandomSymmetric(K);
+
+        // Distribute the random matrix values correctly between the component matrices.
+        for (size_t p = 0; p < K; p++) {
+            for (size_t q = p; q < K; q++) {
+                if (p != q) {
+                    hopping(p, q) = hopping_plus_u(p, q);
+                    hopping(q, p) = hopping_plus_u(q, p);
+                } else if (p == q) {
+                    U(p, q) = hopping_plus_u(p, q);
+                }
+            }
+        }
+
+        return HubbardHamiltonian {HoppingMatrix<double> {hopping}, U, mu};
     }
 
 
@@ -134,16 +165,14 @@ public:
 
         // Prepare some variables.
         const auto K = this->numberOfLatticeSites();
-        const auto& H = this->HubbardHamiltonianMatrix();
+        const auto& H = this->oneElectronContributions();
         auto h = ScalarRSQOneElectronOperator<double>::Zero(K);
 
         // The one-electron hopping terms can be found on the off-diagonal elements of the hopping matrix.
         for (size_t p = 0; p < K; p++) {
             for (size_t q = p; q < K; q++) {
-                if (p != q) {
-                    h.parameters()(p, q) = H(p, q);
-                    h.parameters()(q, p) = H(q, p);
-                }
+                h.parameters()(p, q) = H(p, q);
+                h.parameters()(q, p) = H(q, p);
             }
         }
 
@@ -160,7 +189,7 @@ public:
     enable_if_t<std::is_same<Z, double>::value, ScalarRSQTwoElectronOperator<double>> twoElectron() const {
 
         const auto K = this->numberOfLatticeSites();
-        const auto& H = this->HubbardHamiltonianMatrix();
+        const auto& H = this->onSiteRepulsionMatrix();
         SquareRankFourTensor<double> g_par = SquareRankFourTensor<double>::Zero(K);
 
         // The two-electron on-site repulsion is found on the diagonal of the hopping matrix.
@@ -172,20 +201,40 @@ public:
     }
 
 
-    /**
-     *  @return The Hubbard hopping matrix for this Hubbard model Hamiltonian.
-     */
-    const SquareMatrix<Scalar>& HubbardHamiltonianMatrix() const { return this->Hubbard_Hamiltonian_matrix; }
-
-
     /*
      *  MARK: General information
      */
 
     /**
+     *  @return The Hubbard hopping matrix for this Hubbard model Hamiltonian.
+     */
+    const HoppingMatrix<Scalar>& hoppingMatrix() const { return this->hopping_matrix; }
+
+
+    /**
      *  @return the number of lattice sites corresponding used in this Hubbard model Hamiltonian
      */
-    size_t numberOfLatticeSites() const { return this->Hubbard_Hamiltonian_matrix.dimension(); }
+    size_t numberOfLatticeSites() const { return this->hopping_matrix.matrix().dimension(); }
+
+
+    /**
+     *  @return The one electron parameter contributions of this Hubbard model Hamiltonian.
+     */
+    const SquareMatrix<Scalar> oneElectronContributions() const {
+        return this->hopping_matrix.matrix() + this->mu_matrix;
+    }
+
+
+    /**
+     *  @return The matrix containing the on-site potentials for this Hubbard model Hamiltonian.
+     */
+    const SquareMatrix<Scalar>& onSitePotentialMatrix() const { return this->mu_matrix; }
+
+
+    /**
+     *  @return The matrix containing the on-site repulsions for this Hubbard model Hamiltonian.
+     */
+    const SquareMatrix<Scalar>& onSiteRepulsionMatrix() const { return this->U_matrix; }
 };
 
 

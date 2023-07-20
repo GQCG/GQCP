@@ -47,7 +47,7 @@ SpinResolvedONVBasis::SpinResolvedONVBasis(const size_t K, const size_t N_alpha,
 
 /**
  *  Calculate the dimension of a spin-resolved ONV basis with a given number of orbitals and electrons.
- * 
+ *
  *  @param K            The number of alpha or beta spin-orbitals.
  *  @param N_alpha      The number of alpha electrons, i.e. the number of occupied alpha spin-orbitals.
  *  @param N_beta       The number of beta electrons, i.e. the number of occupied beta spin-orbitals.
@@ -119,10 +119,10 @@ ScalarUSQOneElectronOperatorComponent<double> SpinResolvedONVBasis::calculateOne
 
 /**
  *  Calculate the compound address of an ONV represented by the two given alpha- and beta-addresses.
- * 
+ *
  *  @param I_alpha              the alpha-address
  *  @param I_beta               the beta-address
- * 
+ *
  *  @return the compound address of an ONV represented by the two given alpha- and beta-addresses.
  */
 size_t SpinResolvedONVBasis::compoundAddress(const size_t I_alpha, const size_t I_beta) const {
@@ -139,8 +139,8 @@ size_t SpinResolvedONVBasis::compoundAddress(const size_t I_alpha, const size_t 
 
 /**
  *  Iterate over all ONVs (implicitly, by resolving in their spin components) in this ONV basis and apply the given callback function.
- * 
-    *  @param callback             The function to be applied in every iteration. Its arguments are two pairs of spin-unresolved ONVs and their corresponding addresses, where the first two arguments are related to alpha-spin. The last two arguments are related to beta-spin.
+ *
+ *  @param callback             The function to be applied in every iteration. Its arguments are two pairs of spin-unresolved ONVs and their corresponding addresses, where the first two arguments are related to alpha-spin. The last two arguments are related to beta-spin.
  */
 void SpinResolvedONVBasis::forEach(const std::function<void(const SpinUnresolvedONV&, const size_t, const SpinUnresolvedONV&, const size_t)>& callback) const {
 
@@ -170,8 +170,8 @@ void SpinResolvedONVBasis::forEach(const std::function<void(const SpinUnresolved
 
 
 /*
-  *  MARK: Dense restricted operator evaluations
-  */
+ *  MARK: Dense restricted operator evaluations
+ */
 
 
 /**
@@ -377,7 +377,7 @@ VectorX<double> SpinResolvedONVBasis::evaluateOperatorDiagonal(const HubbardHami
     // Prepare some variables.
     const auto dim_alpha = this->alpha().dimension();
     const auto dim_beta = this->beta().dimension();
-    const auto& H = hamiltonian.HubbardHamiltonianMatrix();
+    const auto& H_diag = hamiltonian.onSiteRepulsionMatrix();
 
 
     // Calculate the diagonal contributions resulting from the two-electron on-site interactions by iterating over all ONVs.
@@ -394,7 +394,7 @@ VectorX<double> SpinResolvedONVBasis::evaluateOperatorDiagonal(const HubbardHami
             // There is a contribution for all orbital indices p that are occupied both in the alpha- and beta ONV.
             std::vector<size_t> occupations = onv_alpha.findMatchingOccupations(onv_beta);
             for (const auto& p : occupations) {
-                diagonal(I) += H(p, p);  // The two-electron (on-site repulsion) contributions are on the diagonal of the Hubbard Hamiltonian matrix.
+                diagonal(I) += H_diag(p, p);  // The two-electron (on-site repulsion) contributions are on the diagonal of the Hubbard Hamiltonian matrix.
             }
 
             if (Ib < dim_beta - 1) {  // Prevent the last permutation from occurring.
