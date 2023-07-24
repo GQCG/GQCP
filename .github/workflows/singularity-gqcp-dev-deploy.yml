@@ -1,0 +1,56 @@
+name: Singularity deploy
+
+on:
+  push:
+    paths:
+      - '.github/workflows/singularity-gqcp-dev-deploy.yml'
+      - 'singularity/GQCP-dev.def'
+    branches:
+      - 'develop'
+  pull_request:
+    paths:
+      - '.github/workflows/singularity-gqcp-dev-deploy.yml'
+      - 'singularity/GQCP-dev.def'
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    steps:
+    - name: Set up Git repository
+      uses: actions/checkout@v2
+    - name: Set up Go 1.13
+      uses: actions/setup-go@v1
+      with:
+        go-version: 1.13
+      id: go
+    - name: Install Dependencies
+      run: |
+        sudo apt-get update && sudo apt-get install -y \
+          build-essential \
+          libssl-dev \
+          uuid-dev \
+          libgpgme11-dev \
+          squashfs-tools \
+          libseccomp-dev \
+          pkg-config       
+    - name: Install Singularity
+      env:
+        SINGULARITY_VERSION: 3.8.1
+        GOPATH: /tmp/go
+      run: |
+        mkdir -p $GOPATH
+        sudo mkdir -p /usr/local/var/singularity/mnt && \
+        mkdir -p $GOPATH/src/github.com/sylabs && \
+        cd $GOPATH/src/github.com/sylabs && \
+        wget -qO- https://github.com/sylabs/singularity/releases/download/v${SINGULARITY_VERSION}/singularity-ce-${SINGULARITY_VERSION}.tar.gz | \
+        tar xzv && \
+        cd singularity-ce-${SINGULARITY_VERSION} && \
+        ./mconfig -p /usr/local && \
+        make -C builddir && \
+        sudo make -C builddir install            
+    - name: Build Singularity image
+      run: sudo -E singularity build gqcp-dev.sif singularity/GQCP-dev.def
+
