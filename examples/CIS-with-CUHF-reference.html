@@ -1,0 +1,900 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Molecular setup</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples/CIS-with-CUHF-reference';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="DOCI calculations" href="DOCI.html" />
+    <link rel="prev" title="ONV path manipulation" href="ONVPath.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../landing-page.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../landing-page.html">
+                    The Ghent Quantum Chemistry Package
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../user-documentation/installing-gqcp.html">Installing GQCP(y)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user-documentation/using-gqcp.html">Using GQCP(y)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/introduction.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/molecules.html">Molecules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/orbital-bases.html">Orbital bases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/quantum-chemical-methods.html">Quantum chemical methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/quantum-chemical-models.html">Quantum chemical models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/use-cases.html">Common use cases</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Spinor-bases.html">Spinor bases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RHF-dipole-moments.html">Calculating the RHF dipole moment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UHF-calculations.html">UHF SCF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Custom-algorithms-showcase-CUHF.html">Custom algorithms showcase - CUHF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="R-U-GHF-overlaps.html">Overlaps between R/U/GHF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HF-Stability.html">Checking the Hartree-Fock Stability conditions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Following-internal-GHF-instabilities.html">Following internal instabilities in GHF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ONVPath.html">ONV path manipulation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Molecular setup</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="DOCI.html">DOCI calculations</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="OO-DOCI.html">OO-DOCI calculations</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="FCI.html">Molecular FCI calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hubbard.html">Hubbard calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hubbard-Domains.html">Set up two different domains</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="AP1roG-calculations.html">AP1roG calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CCSD.html">CCSD calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mulliken-population.html">Calculating the Mulliken population</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Biorthogonalization.html">Setup the basis and the overlap</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="NOCI.html">Non Orthogonal Configuration Interaction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Magnetic-inducibility.html">The ipsocentric magnetic inducibility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Integrals-over-GTOs.html">Calculating integrals over GTOs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="London-integrals.html">Gauge-origin independence for London kinetic integrals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mean-field-magnetic.html">Mean-field calculations in magnetic fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mulliken-constrained-CI.html">Mulliken constrained CI calculations</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Developer documentation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../developer-documentation/getting-started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer-documentation/style-guide.html">GQCP Style Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer-documentation/introduction.html">Introduction for developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer-documentation/ONV-path-manipulation.html">Manipulating ONVs and their addresses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer-documentation/devops.html">GQCP devops</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Miscellaneous</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../miscellaneous/troubleshooting.html">Troubleshooting guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../miscellaneous/citations.html">Academic references</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../miscellaneous/api.html">API</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Blog posts</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../blog/2020-11-30-RSDD.html">GQCP appears in RSDD2020</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/GQCG/GQCP/develop?urlpath=tree/examples/CIS-with-CUHF-reference.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/examples/CIS-with-CUHF-reference.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Molecular setup</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Molecular setup</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-standard-plain-uhf-scf-algorithm">The standard ‘plain’ UHF SCF algorithm</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cuhf-scuseria-thesis-algorithm">The CUHF (Scuseria/thesis) algorithm</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dense-cis-calculations">Dense CIS calculations</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Force the local gqcpy to be imported</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;../../build/gqcpy/&#39;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">gqcpy</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="molecular-setup">
+<h1>Molecular setup<a class="headerlink" href="#molecular-setup" title="Permalink to this headline">#</a></h1>
+<p>Let us start by defining the molecular system under consideration. We’ll take an H3-ring, 1 angstrom apart and in the STO-3G basisset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">molecule</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">Molecule</span><span class="o">.</span><span class="n">HRingFromDistance</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mf">1.889</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">N</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">numberOfElectrons</span><span class="p">()</span>
+<span class="n">N_P</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">numberOfElectronPairs</span><span class="p">()</span>  <span class="c1"># rounds down</span>
+<span class="n">N_alpha</span> <span class="o">=</span> <span class="n">N_P</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">N_beta</span> <span class="o">=</span> <span class="n">N_P</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">molecule</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of alpha electrons: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">N_alpha</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of beta electrons: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">N_beta</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of electrons: 3 
+H  (1.09061, 0, 0)
+H  (-0.545307, 0.9445, 0)
+H  (-0.545307, -0.9445, 0)
+
+Number of alpha electrons: 2
+Number of beta electrons: 1
+</pre></div>
+</div>
+</div>
+</div>
+<p>In order to start any unrestricted calculations, we need to calculate the molecular integrals. In <code class="docutils literal notranslate"><span class="pre">GQCP</span></code>, this is done by creating an unrestricted spin-orbital basis:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spinor_basis</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">USpinOrbitalBasis_d</span><span class="p">(</span><span class="n">molecule</span><span class="p">,</span> <span class="s2">&quot;STO-3G&quot;</span><span class="p">)</span>  <span class="c1"># in AO basis; atomic spin-orbitals</span>
+<span class="n">K</span> <span class="o">=</span> <span class="n">spinor_basis</span><span class="o">.</span><span class="n">numberOfSpinors</span><span class="p">()</span>
+
+<span class="n">S</span> <span class="o">=</span> <span class="n">spinor_basis</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">OverlapOperator</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then, we will quantize the molecular Hamiltonian (in which the interactions terms are the electron’s kinetic energy, the nucleus-electron attraction and the interelectronic repulson) in that spin-orbital basis:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fq_hamiltonian</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">FQMolecularHamiltonian</span><span class="p">(</span><span class="n">molecule</span><span class="p">)</span>
+<span class="n">sq_hamiltonian</span> <span class="o">=</span> <span class="n">spinor_basis</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">fq_hamiltonian</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-standard-plain-uhf-scf-algorithm">
+<h1>The standard ‘plain’ UHF SCF algorithm<a class="headerlink" href="#the-standard-plain-uhf-scf-algorithm" title="Permalink to this headline">#</a></h1>
+<p>Let’s establish a base line for the algorithms by examining the standard ‘plain’ UHF SCF algorithm. In <code class="docutils literal notranslate"><span class="pre">GQCP</span></code>, we have implemented algorithms and environments:</p>
+<ul class="simple">
+<li><p>an <em>environment</em> acts as a ‘calculation space’, storing intermediate calculations;</p></li>
+<li><p>an <em>algorithm</em> and its composing <em>steps</em> continuously modify the environment.</p></li>
+</ul>
+<p>For UHF SCF, we use an <code class="docutils literal notranslate"><span class="pre">UHFSCFEnvironment</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">environment</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">UHFSCFEnvironment_d</span><span class="o">.</span><span class="n">WithCoreGuess</span><span class="p">(</span><span class="n">N_alpha</span><span class="p">,</span> <span class="n">N_beta</span><span class="p">,</span> <span class="n">sq_hamiltonian</span><span class="p">,</span> <span class="n">S</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>where we have initialized the alpha- and beta-coefficient matrices with the (generalized) eigenvectors of the core Hamiltonian (in AO basis).</p>
+<p>Let’s now take a look at the plain UHF SCF solver:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plain_algorithm</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">UHFSCFSolver_d</span><span class="o">.</span><span class="n">Plain</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="mf">1.0e-04</span><span class="p">,</span> <span class="n">maximum_number_of_iterations</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">plain_algorithm</span><span class="o">.</span><span class="n">description</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>An iterative algorithm (with a maximum of 1000 iterations) consisting of the following steps:
+An algorithmic step consisting of 4 algorithmic steps:
+	1. Calculate the current UHF alpha and beta density matrices (in the AO basis) and place them in the environment.
+	2. Calculate the current UHF Fock matrices (expressed in the scalar/AO basis) and place them in the environment.
+	3. Solve the generalized eigenvalue problem for the most recent scalar/AO Fock matrices. Add the associated coefficient matrices and orbital energies to the environment.
+	4. Calculate the current electronic UHF energy and place it in the environment.
+
+With the following convergence criterion:
+A convergence criterion that checks if the norm of the difference of two iterates (the UHF spin resolved density matrix in AO basis) is converged, with a tolerance of 1.00e-04.
+</pre></div>
+</div>
+</div>
+</div>
+<p>With this algorithm, let’s check the UHF SCF procedure.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uhf_qc_structure</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">UHF_d</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">plain_algorithm</span><span class="p">,</span> <span class="n">environment</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uhf_energy</span> <span class="o">=</span> <span class="n">uhf_qc_structure</span><span class="o">.</span><span class="n">groundStateEnergy</span><span class="p">()</span>
+<span class="n">uhf_parameters</span> <span class="o">=</span> <span class="n">uhf_qc_structure</span><span class="o">.</span><span class="n">groundStateParameters</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;UHF total energy: </span><span class="si">{:.8f}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">uhf_energy</span> <span class="o">+</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">NuclearRepulsionOperator</span><span class="p">(</span><span class="n">molecule</span><span class="o">.</span><span class="n">nuclearFramework</span><span class="p">())</span><span class="o">.</span><span class="n">value</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;UHF C_alpha:</span><span class="se">\n</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">uhf_parameters</span><span class="o">.</span><span class="n">expansion</span><span class="p">()</span><span class="o">.</span><span class="n">alpha</span><span class="o">.</span><span class="n">matrix</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;UHF C_beta:</span><span class="se">\n</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">uhf_parameters</span><span class="o">.</span><span class="n">expansion</span><span class="p">()</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">matrix</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>UHF total energy: -1.33584716
+
+UHF C_alpha:
+[[-4.599757e-01 -9.968298e-01 -5.353406e-01]
+ [-4.599315e-01  9.966246e-01 -5.357604e-01]
+ [-3.016910e-01  2.559108e-04  1.183562e+00]]
+
+UHF C_beta:
+[[ 2.806758e-01 -6.474947e-01  9.968995e-01]
+ [ 2.807662e-01 -6.479857e-01 -9.965549e-01]
+ [ 6.386637e-01  1.041127e+00 -2.275071e-04]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-cuhf-scuseria-thesis-algorithm">
+<h1>The CUHF (Scuseria/thesis) algorithm<a class="headerlink" href="#the-cuhf-scuseria-thesis-algorithm" title="Permalink to this headline">#</a></h1>
+<p>One of the CUHF algorithms described by Scuseria’s group can be found in the PhD thesis by T. Tsuchimochi. Since this algorithm uses a modification of the UHF alpha- and beta-Fock matrices, this is an ideal opportunity to use <code class="docutils literal notranslate"><span class="pre">GQCP</span></code>’s injection capabilities.</p>
+<p>I’ve taken the reference implementation from Xeno’s <a class="reference external" href="https://github.com/GQCG/ghf">ghf</a> repository, and adapted it to <code class="docutils literal notranslate"><span class="pre">GQCP</span></code>.</p>
+<p>We start off by defining a <code class="docutils literal notranslate"><span class="pre">Python</span></code> function that modifies the alpha- and beta- Fock matrices in an <code class="docutils literal notranslate"><span class="pre">UHFSCFEnvironment</span></code>. We then wrap that <code class="docutils literal notranslate"><span class="pre">Python</span></code> function into a special class <code class="docutils literal notranslate"><span class="pre">FunctionalStep_UHFSCFEnvironment</span></code>, which allows for the bridging between <code class="docutils literal notranslate"><span class="pre">Python</span></code> functions and <code class="docutils literal notranslate"><span class="pre">GQCP</span></code>’s Algorithm framework.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">constrain_function_thesis</span><span class="p">(</span><span class="n">environment</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Replace the alpha- and beta- UHF Fock matrices by their constrained counterparts, as explained in the CUHF &#39;thesis&#39; algorithm.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Prepare some variables to be used in the algorithm.</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">spinor_basis</span><span class="o">.</span><span class="n">lowdinOrthonormalization</span><span class="p">()</span><span class="o">.</span><span class="n">alpha</span><span class="o">.</span><span class="n">matrix</span><span class="p">()</span>  <span class="c1"># the transformation matrix TO an orthonormal basis</span>
+    
+    <span class="n">F_alpha</span> <span class="o">=</span> <span class="n">environment</span><span class="o">.</span><span class="n">fock_matrices</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">alpha</span><span class="o">.</span><span class="n">parameters</span><span class="p">()</span>  <span class="c1"># in AO basis</span>
+    <span class="n">F_beta</span> <span class="o">=</span> <span class="n">environment</span><span class="o">.</span><span class="n">fock_matrices</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">parameters</span><span class="p">()</span>  <span class="c1"># in AO basis</span>
+    
+    <span class="n">D_alpha</span> <span class="o">=</span> <span class="n">environment</span><span class="o">.</span><span class="n">density_matrices</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">alpha</span><span class="o">.</span><span class="n">matrix</span><span class="p">()</span>  <span class="c1"># in AO basis</span>
+    <span class="n">D_beta</span> <span class="o">=</span> <span class="n">environment</span><span class="o">.</span><span class="n">density_matrices</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">matrix</span><span class="p">()</span>  <span class="c1"># in AO basis</span>
+    
+    <span class="n">N_alpha</span> <span class="o">=</span> <span class="n">environment</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">alpha</span>
+    <span class="n">N_beta</span> <span class="o">=</span> <span class="n">environment</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">beta</span>
+    
+    <span class="c1"># Form the closed-shell Fock matrix and the UHF modification.</span>
+    <span class="n">F_cs</span> <span class="o">=</span> <span class="p">(</span><span class="n">F_alpha</span> <span class="o">+</span> <span class="n">F_beta</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span>  <span class="c1"># the closed-shell Fock matrix, in AO basis</span>
+    <span class="n">Delta_UHF</span> <span class="o">=</span> <span class="p">(</span><span class="n">F_alpha</span> <span class="o">-</span> <span class="n">F_beta</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span>  <span class="c1"># in AO basis</span>
+
+    <span class="c1"># Form modified Fock matrices.</span>
+    <span class="n">F_aa</span> <span class="o">=</span> <span class="n">F_cs</span> <span class="o">+</span> <span class="n">Delta_UHF</span>
+    <span class="n">F_bb</span> <span class="o">=</span> <span class="n">F_cs</span> <span class="o">-</span> <span class="n">Delta_UHF</span>
+    
+    <span class="c1"># Find the natural occupation numbers and vectors by diagonalizing the charge-density matrix in an orthonormal basis.</span>
+    <span class="n">P_AO</span> <span class="o">=</span> <span class="p">(</span><span class="n">D_alpha</span> <span class="o">+</span> <span class="n">D_beta</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span>
+    <span class="n">P_MO</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">@</span> <span class="n">P_AO</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+    
+    <span class="n">natural_occupation_numbers</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">P_MO</span><span class="p">)</span>
+    
+    <span class="c1"># Construct the Langrange multipliers to add them to the &#39;constrained&#39; Fock matrices.</span>
+    <span class="n">Delta_UHF_NO</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">V</span><span class="p">)</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">@</span> <span class="n">Delta_UHF</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">V</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>  <span class="c1"># in the natural occupation (NO) basis</span>
+    <span class="n">Lambda_NO</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">Delta_UHF_NO</span><span class="p">))</span>
+    <span class="n">Lambda_NO</span><span class="p">[:</span><span class="n">N_beta</span><span class="p">,</span> <span class="n">N_alpha</span><span class="p">:]</span> <span class="o">=</span> <span class="o">-</span><span class="n">Delta_UHF_NO</span><span class="p">[:</span><span class="n">N_beta</span><span class="p">,</span> <span class="n">N_alpha</span><span class="p">:]</span>
+    <span class="n">Lambda_NO</span><span class="p">[</span><span class="n">N_alpha</span><span class="p">:,</span> <span class="p">:</span><span class="n">N_beta</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">Delta_UHF_NO</span><span class="p">[</span><span class="n">N_alpha</span><span class="p">:,</span> <span class="p">:</span><span class="n">N_beta</span><span class="p">]</span>
+    <span class="n">Lambda_AO</span> <span class="o">=</span> <span class="n">X</span> <span class="o">@</span> <span class="n">V</span> <span class="o">@</span> <span class="n">Lambda_NO</span> <span class="o">@</span> <span class="n">V</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span>
+    
+
+    <span class="c1"># Overwrite the most recent UHF Fock matrices with the cUHF ones</span>
+    
+    <span class="n">F_alpha_constrained</span> <span class="o">=</span> <span class="n">F_aa</span> <span class="o">+</span> <span class="n">Lambda_AO</span>
+    <span class="n">F_alpha_constrained</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">ScalarUSQOneElectronOperatorComponent_d</span><span class="p">(</span><span class="n">F_alpha_constrained</span><span class="p">)</span>
+    <span class="n">F_beta_constrained</span> <span class="o">=</span> <span class="n">F_bb</span> <span class="o">-</span> <span class="n">Lambda_AO</span>
+    <span class="n">F_beta_constrained</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">ScalarUSQOneElectronOperatorComponent_d</span><span class="p">(</span><span class="n">F_beta_constrained</span><span class="p">)</span>
+
+    <span class="n">fock_matrix</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">ScalarUSQOneElectronOperator_d</span><span class="p">(</span><span class="n">F_alpha_constrained</span><span class="p">,</span> <span class="n">F_beta_constrained</span><span class="p">)</span>
+    <span class="n">environment</span><span class="o">.</span><span class="n">replace_current_fock_matrix</span><span class="p">(</span><span class="n">fock_matrix</span><span class="p">)</span>
+
+<span class="n">constrain_step_thesis</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">FunctionalStep_UHFSCFEnvironment_d</span><span class="p">(</span><span class="n">constrain_function_thesis</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Replace the alpha- and beta- UHF Fock matrices by their constrained counterparts, as explained in the CUHF &#39;thesis&#39; algorithm.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’ll now modify the plain UHF SCF algorithm with this modification <code class="docutils literal notranslate"><span class="pre">constrain_step_thesis</span></code>. From the algorithmic description printed above, we’ll have to insert the Fock matrix modification at index <code class="docutils literal notranslate"><span class="pre">2</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">CUHF_algorithm_thesis</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">UHFSCFSolver_d</span><span class="o">.</span><span class="n">Plain</span><span class="p">(</span><span class="n">threshold</span> <span class="o">=</span> <span class="mf">1.0e-12</span><span class="p">,</span> <span class="n">maximum_number_of_iterations</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">)</span>
+
+<span class="n">CUHF_algorithm_thesis</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">constrain_step_thesis</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">CUHF_algorithm_thesis</span><span class="o">.</span><span class="n">description</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>An iterative algorithm (with a maximum of 1000 iterations) consisting of the following steps:
+An algorithmic step consisting of 5 algorithmic steps:
+	1. Calculate the current UHF alpha and beta density matrices (in the AO basis) and place them in the environment.
+	2. Calculate the current UHF Fock matrices (expressed in the scalar/AO basis) and place them in the environment.
+	3. Replace the alpha- and beta- UHF Fock matrices by their constrained counterparts, as explained in the CUHF &#39;thesis&#39; algorithm.
+	4. Solve the generalized eigenvalue problem for the most recent scalar/AO Fock matrices. Add the associated coefficient matrices and orbital energies to the environment.
+	5. Calculate the current electronic UHF energy and place it in the environment.
+
+With the following convergence criterion:
+A convergence criterion that checks if the norm of the difference of two iterates (the UHF spin resolved density matrix in AO basis) is converged, with a tolerance of 1.00e-12.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since we’ve now created the <code class="docutils literal notranslate"><span class="pre">CUHF_algorithm_thesis</span></code>, which is still an UHF SCF solver, we can set up an environment and optimize the CUHF model parameters.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">environment</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">UHFSCFEnvironment_d</span><span class="o">.</span><span class="n">WithCoreGuess</span><span class="p">(</span><span class="n">N_alpha</span><span class="p">,</span> <span class="n">N_beta</span><span class="p">,</span> <span class="n">sq_hamiltonian</span><span class="p">,</span> <span class="n">S</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cuhf_qc_structure_thesis</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">UHF_d</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">CUHF_algorithm_thesis</span><span class="p">,</span> <span class="n">environment</span><span class="p">)</span>
+<span class="n">cuhf_energy_thesis</span> <span class="o">=</span> <span class="n">cuhf_qc_structure_thesis</span><span class="o">.</span><span class="n">groundStateEnergy</span><span class="p">()</span>
+<span class="n">cuhf_parameters_thesis</span> <span class="o">=</span> <span class="n">cuhf_qc_structure_thesis</span><span class="o">.</span><span class="n">groundStateParameters</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CUHF electronic energy (thesis): </span><span class="si">{:.8f}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cuhf_energy_thesis</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CUHF C_alpha (thesis):</span><span class="se">\n</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cuhf_parameters_thesis</span><span class="o">.</span><span class="n">expansion</span><span class="p">()</span><span class="o">.</span><span class="n">alpha</span><span class="o">.</span><span class="n">matrix</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CUHF C_beta (thesis):</span><span class="se">\n</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cuhf_parameters_thesis</span><span class="o">.</span><span class="n">expansion</span><span class="p">()</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">matrix</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CUHF electronic energy (thesis): -2.91619904
+
+CUHF C_alpha (thesis):
+[[-4.754485e-01 -1.125071e+00 -7.419621e-13]
+ [-3.746105e-01  5.983634e-01 -9.967273e-01]
+ [-3.746105e-01  5.983634e-01  9.967273e-01]]
+
+CUHF C_beta (thesis):
+[[ 2.552886e-01  1.853517e-13 -1.194431e+00]
+ [ 4.804962e-01  9.967273e-01  5.171993e-01]
+ [ 4.804962e-01 -9.967273e-01  5.171993e-01]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sq_hamiltonian</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">cuhf_parameters_thesis</span><span class="o">.</span><span class="n">expansion</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="dense-cis-calculations">
+<h1>Dense CIS calculations<a class="headerlink" href="#dense-cis-calculations" title="Permalink to this headline">#</a></h1>
+<p>In order to do a dense CIS calculation, GQCP uses its own framework for mathematical optimization. We’ll have to create:</p>
+<ol class="arabic simple">
+<li><p>a dense eigenvalue problem solver</p></li>
+<li><p>an associated eigenvalue problem environment</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">onv_basis</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">SpinResolvedSelectedONVBasis</span><span class="o">.</span><span class="n">CIS</span><span class="p">(</span><span class="n">K</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="n">N_alpha</span><span class="p">,</span> <span class="n">N_beta</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">solver</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">EigenproblemSolver</span><span class="o">.</span><span class="n">Dense_d</span><span class="p">()</span>
+<span class="n">environment</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">CIEnvironment</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">sq_hamiltonian</span><span class="p">,</span> <span class="n">onv_basis</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The encompassing <code class="docutils literal notranslate"><span class="pre">QCMethod</span></code> is <code class="docutils literal notranslate"><span class="pre">CI</span></code> (for any type of configuration interaction), so we’ll use that to find the optimized and associated wave function model: a <code class="docutils literal notranslate"><span class="pre">LinearExpansion</span></code>. Internally, <code class="docutils literal notranslate"><span class="pre">QCMethod</span></code>s return a <code class="docutils literal notranslate"><span class="pre">QCStructure</span></code>, which wraps energies and optimized parameters for the ground state and excited states.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc_structure</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">CI</span><span class="p">(</span><span class="n">onv_basis</span><span class="p">,</span> <span class="n">onv_basis</span><span class="o">.</span><span class="n">dimension</span><span class="p">())</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">solver</span><span class="p">,</span> <span class="n">environment</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">onv_basis</span><span class="o">.</span><span class="n">dimension</span><span class="p">()):</span>
+    <span class="n">energy</span> <span class="o">=</span> <span class="n">qc_structure</span><span class="o">.</span><span class="n">energy</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="c1">#+ gqcpy.NuclearRepulsionOperator(molecule.nuclearFramework()).value()</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">energy</span> <span class="o">-</span> <span class="n">cuhf_energy_thesis</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1e-8</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;excited state (electronic) energy: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">energy</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ground state (electronic) energy: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">energy</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>excited state (electronic) energy: -2.923132380774984
+ground state (electronic) energy: -2.91619903663055
+ground state (electronic) energy: -2.9161990366305486
+excited state (electronic) energy: -2.896197641014147
+excited state (electronic) energy: -2.5611054054604567
+excited state (electronic) energy: -2.436718810736164
+excited state (electronic) energy: -2.3232093422666957
+excited state (electronic) energy: -2.176823953117537
+excited state (electronic) energy: -2.1768239531175366
+excited state (electronic) energy: -2.1392307239340025
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "GQCG/GQCP",
+            ref: "develop",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python385jvsc74a57bd0e4c6ce54e6d1ccff551279c9aafc06b78c48fd9e60d6b4e74c0583a74ec1d1f9",
+            path: "./examples"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python385jvsc74a57bd0e4c6ce54e6d1ccff551279c9aafc06b78c48fd9e60d6b4e74c0583a74ec1d1f9'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="ONVPath.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">ONV path manipulation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="DOCI.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">DOCI calculations</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Molecular setup</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-standard-plain-uhf-scf-algorithm">The standard ‘plain’ UHF SCF algorithm</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cuhf-scuseria-thesis-algorithm">The CUHF (Scuseria/thesis) algorithm</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dense-cis-calculations">Dense CIS calculations</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Ghent Quantum Chemistry Group
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2017-2021.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
