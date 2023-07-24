@@ -1,75 +1,29 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="_c_i_environment_8hpp" kind="file" language="C++">
     <compoundname>CIEnvironment.hpp</compoundname>
     <includes refid="_eigenproblem_environment_8hpp" local="yes">Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp</includes>
-    <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
     <includedby refid="_d_o_c_i_newton_orbital_optimizer_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp</includedby>
+    <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
     <incdepgraph>
-      <node id="12">
-        <label>boost/algorithm/string.hpp</label>
+      <node id="5">
+        <label>Mathematical/Functions/CartesianDirection.hpp</label>
+        <link refid="_cartesian_direction_8hpp"/>
       </node>
-      <node id="19">
-        <label>functional</label>
-      </node>
-      <node id="6">
-        <label>Utilities/Eigen.hpp</label>
-        <link refid="_eigen_8hpp"/>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="20">
-        <label>iterator</label>
-      </node>
-      <node id="16">
-        <label>Mathematical/Representation/SquareMatrix.hpp</label>
-        <link refid="_square_matrix_8hpp"/>
+      <node id="3">
+        <label>Mathematical/Optimization/Eigenproblem/Eigenpair.hpp</label>
+        <link refid="_eigenpair_8hpp"/>
         <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-        <childnode refid="22" relation="include">
-        </childnode>
-        <childnode refid="23" relation="include">
-        </childnode>
       </node>
-      <node id="17">
-        <label>Utilities/miscellaneous.hpp</label>
-        <link refid="miscellaneous_8hpp"/>
-        <childnode refid="18" relation="include">
+      <node id="2">
+        <label>Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp</label>
+        <link refid="_eigenproblem_environment_8hpp"/>
+        <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="11" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="20" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
-      </node>
-      <node id="23">
-        <label>numeric</label>
-      </node>
-      <node id="21">
-        <label>string</label>
-      </node>
-      <node id="22">
-        <label>boost/numeric/conversion/converter.hpp</label>
-      </node>
-      <node id="13">
-        <label>fstream</label>
-      </node>
-      <node id="7">
-        <label>Eigen/Dense</label>
-      </node>
-      <node id="1">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CIEnvironment.hpp</label>
-        <link refid="_c_i_environment_8hpp"/>
-        <childnode refid="2" relation="include">
+        <childnode refid="16" relation="include">
         </childnode>
       </node>
       <node id="4">
@@ -92,14 +46,29 @@
         <childnode refid="15" relation="include">
         </childnode>
       </node>
-      <node id="9">
-        <label>Utilities/type_traits.hpp</label>
-        <link refid="type__traits_8hpp"/>
-        <childnode refid="10" relation="include">
+      <node id="16">
+        <label>Mathematical/Representation/SquareMatrix.hpp</label>
+        <link refid="_square_matrix_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
         </childnode>
       </node>
-      <node id="15">
-        <label>vector</label>
+      <node id="1">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CIEnvironment.hpp</label>
+        <link refid="_c_i_environment_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Utilities/Eigen.hpp</label>
+        <link refid="_eigen_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
       </node>
       <node id="8">
         <label>Utilities/aliases.hpp</label>
@@ -109,37 +78,68 @@
         <childnode refid="11" relation="include">
         </childnode>
       </node>
-      <node id="11">
-        <label>cstdlib</label>
-      </node>
-      <node id="14">
-        <label>iostream</label>
-      </node>
-      <node id="10">
-        <label>type_traits</label>
-      </node>
-      <node id="2">
-        <label>Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp</label>
-        <link refid="_eigenproblem_environment_8hpp"/>
-        <childnode refid="3" relation="include">
+      <node id="17">
+        <label>Utilities/miscellaneous.hpp</label>
+        <link refid="miscellaneous_8hpp"/>
+        <childnode refid="18" relation="include">
         </childnode>
-        <childnode refid="4" relation="include">
+        <childnode refid="11" relation="include">
         </childnode>
-        <childnode refid="16" relation="include">
+        <childnode refid="13" relation="include">
         </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Utilities/type_traits.hpp</label>
+        <link refid="type__traits_8hpp"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Eigen/Dense</label>
       </node>
       <node id="18">
         <label>algorithm</label>
       </node>
-      <node id="5">
-        <label>Mathematical/Functions/CartesianDirection.hpp</label>
-        <link refid="_cartesian_direction_8hpp"/>
+      <node id="12">
+        <label>boost/algorithm/string.hpp</label>
       </node>
-      <node id="3">
-        <label>Mathematical/Optimization/Eigenproblem/Eigenpair.hpp</label>
-        <link refid="_eigenpair_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
+      <node id="22">
+        <label>boost/numeric/conversion/converter.hpp</label>
+      </node>
+      <node id="11">
+        <label>cstdlib</label>
+      </node>
+      <node id="13">
+        <label>fstream</label>
+      </node>
+      <node id="19">
+        <label>functional</label>
+      </node>
+      <node id="14">
+        <label>iostream</label>
+      </node>
+      <node id="20">
+        <label>iterator</label>
+      </node>
+      <node id="23">
+        <label>numeric</label>
+      </node>
+      <node id="21">
+        <label>string</label>
+      </node>
+      <node id="10">
+        <label>type_traits</label>
+      </node>
+      <node id="15">
+        <label>vector</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
@@ -152,14 +152,14 @@
         </childnode>
       </node>
       <node id="2">
-        <label>/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</label>
-        <link refid="gqcp_8hpp"/>
-      </node>
-      <node id="3">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp</label>
         <link refid="_d_o_c_i_newton_orbital_optimizer_8hpp"/>
-        <childnode refid="2" relation="include">
+        <childnode refid="3" relation="include">
         </childnode>
+      </node>
+      <node id="3">
+        <label>/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</label>
+        <link refid="gqcp_8hpp"/>
       </node>
     </invincdepgraph>
     <innernamespace refid="namespace_g_q_c_p">GQCP</innernamespace>
@@ -199,7 +199,7 @@
 <codeline lineno="39"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Hamiltonian,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>ONVBasis&gt;</highlight></codeline>
 <codeline lineno="40" refid="namespace_g_q_c_p_1_1_c_i_environment_1a304b7b0ff99dbd03933bd214abf8f77c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1_1_c_i_environment_1a304b7b0ff99dbd03933bd214abf8f77c" kindref="member">Dense</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Hamiltonian&amp;<sp/>hamiltonian,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ONVBasis&amp;<sp/>onv_basis)<sp/>-&gt;<sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment" kindref="compound">EigenproblemEnvironment&lt;typename Hamiltonian::Scalar&gt;</ref><sp/>{</highlight></codeline>
 <codeline lineno="41"><highlight class="normal"></highlight></codeline>
-<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>Scalar<sp/>=<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Hamiltonian::Scalar;<sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>scalar<sp/>type<sp/>of<sp/>a<sp/>Hamiltonian<sp/>element.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">Scalar<sp/>=<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Hamiltonian::Scalar;<sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>scalar<sp/>type<sp/>of<sp/>a<sp/>Hamiltonian<sp/>element.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="43"><highlight class="normal"></highlight></codeline>
 <codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Determine<sp/>the<sp/>dense<sp/>matrix<sp/>representation<sp/>of<sp/>the<sp/>Hamiltonian<sp/>in<sp/>the<sp/>given<sp/>ONV<sp/>basis,<sp/>and<sp/>supply<sp/>it<sp/>to<sp/>an<sp/>`EigenproblemEnvironment`.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>H<sp/>=<sp/>onv_basis.evaluateOperatorDense(hamiltonian);</highlight></codeline>
@@ -208,7 +208,7 @@
 <codeline lineno="48"><highlight class="normal"></highlight></codeline>
 <codeline lineno="49"><highlight class="normal"></highlight></codeline>
 <codeline lineno="62"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Hamiltonian,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>ONVBasis&gt;</highlight></codeline>
-<codeline lineno="63" refid="namespace_g_q_c_p_1_1_c_i_environment_1a4c3d06afcdcd7d37ab4185bf369ea7e2" refkind="member"><highlight class="normal"><ref refid="class_g_q_c_p_1_1_eigenproblem_environment" kindref="compound">EigenproblemEnvironment&lt;double&gt;</ref><sp/><ref refid="namespace_g_q_c_p_1_1_c_i_environment_1a4c3d06afcdcd7d37ab4185bf369ea7e2" kindref="member">Iterative</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Hamiltonian&amp;<sp/>hamiltonian,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ONVBasis&amp;<sp/>onv_basis,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">MatrixX&lt;double&gt;</ref>&amp;<sp/>V)<sp/>{</highlight></codeline>
+<codeline lineno="63" refid="namespace_g_q_c_p_1_1_c_i_environment_1aa568afa5012235df56fb621612c44766" refkind="member"><highlight class="normal"><ref refid="class_g_q_c_p_1_1_eigenproblem_environment" kindref="compound">EigenproblemEnvironment&lt;double&gt;</ref><sp/><ref refid="namespace_g_q_c_p_1_1_c_i_environment_1aa568afa5012235df56fb621612c44766" kindref="member">Iterative</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Hamiltonian&amp;<sp/>hamiltonian,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ONVBasis&amp;<sp/>onv_basis,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">MatrixX&lt;double&gt;</ref>&amp;<sp/>V)<sp/>{</highlight></codeline>
 <codeline lineno="64"><highlight class="normal"></highlight></codeline>
 <codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Determine<sp/>the<sp/>diagonal<sp/>of<sp/>the<sp/>Hamiltonian<sp/>matrix<sp/>representation,<sp/>and<sp/>supply<sp/>a<sp/>matrix-vector<sp/>product<sp/>function<sp/>to<sp/>the<sp/>`EigenproblemEnvironment`.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>diagonal<sp/>=<sp/>onv_basis.evaluateOperatorDiagonal(hamiltonian);</highlight></codeline>

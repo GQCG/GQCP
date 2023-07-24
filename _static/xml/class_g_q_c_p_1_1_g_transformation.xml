@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_g_transformation" kind="class" language="C++" prot="public">
     <compoundname>GQCP::GTransformation</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_simple_transformation" prot="public" virt="non-virtual">GQCP::SimpleTransformation&lt; _Scalar, GTransformation&lt; _Scalar &gt; &gt;</basecompoundref>
@@ -15,6 +15,7 @@
         <definition>using GQCP::GTransformation&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
         <argsstring></argsstring>
         <name>Scalar</name>
+        <qualifiedname>GQCP::GTransformation::Scalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -30,6 +31,7 @@
         <definition>SpinResolved&lt;size_t&gt; GQCP::GTransformation&lt; _Scalar &gt;::K</definition>
         <argsstring></argsstring>
         <name>K</name>
+        <qualifiedname>GQCP::GTransformation::K</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -45,6 +47,7 @@
         <definition>GQCP::GTransformation&lt; _Scalar &gt;::GTransformation</definition>
         <argsstring>(const SquareMatrix&lt; Scalar &gt; &amp;T)</argsstring>
         <name>GTransformation</name>
+        <qualifiedname>GQCP::GTransformation::GTransformation</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_transformation_1aa5372444af700cc04548803517a225d3" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>T</declname>
@@ -73,6 +76,7 @@
         <definition>GQCP::GTransformation&lt; _Scalar &gt;::GTransformation</definition>
         <argsstring>(const SquareMatrix&lt; Scalar &gt; &amp;T, const size_t K_alpha, const size_t K_beta)</argsstring>
         <name>GTransformation</name>
+        <qualifiedname>GQCP::GTransformation::GTransformation</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_transformation_1aa5372444af700cc04548803517a225d3" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>T</declname>
@@ -120,11 +124,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/GTransformation.hpp" line="76" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/GTransformation.hpp" bodystart="76" bodyend="83"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_g_transformation_1a35294c4513ec448c7740080377781eb6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_transformation_1abbda56963a4398fd7802891d870feab0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" kindref="member">MatrixX</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_transformation_1aa5372444af700cc04548803517a225d3" kindref="member">Scalar</ref> &gt;</type>
-        <definition>MatrixX&lt;Scalar&gt; GQCP::GTransformation&lt; _Scalar &gt;::alpha</definition>
+        <definition>MatrixX&lt; Scalar &gt; GQCP::GTransformation&lt; _Scalar &gt;::alpha</definition>
         <argsstring>() const</argsstring>
         <name>alpha</name>
+        <qualifiedname>GQCP::GTransformation::alpha</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -136,11 +141,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/GTransformation.hpp" line="145" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/GTransformation.hpp" bodystart="145" bodyend="145"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_g_transformation_1a5c03564330bdb423500ded04404f7fe2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_transformation_1a8a3e194acf720666b073bbd09abde437" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" kindref="member">MatrixX</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_transformation_1aa5372444af700cc04548803517a225d3" kindref="member">Scalar</ref> &gt;</type>
-        <definition>MatrixX&lt;Scalar&gt; GQCP::GTransformation&lt; _Scalar &gt;::beta</definition>
+        <definition>MatrixX&lt; Scalar &gt; GQCP::GTransformation&lt; _Scalar &gt;::beta</definition>
         <argsstring>() const</argsstring>
         <name>beta</name>
+        <qualifiedname>GQCP::GTransformation::beta</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -152,11 +158,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/GTransformation.hpp" line="150" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/GTransformation.hpp" bodystart="150" bodyend="150"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_g_transformation_1a6bdc555980660dec5c3594ef4ad2199d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_transformation_1a03511203a8f1a7e67b0b39e14893be4f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" kindref="member">MatrixX</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_transformation_1aa5372444af700cc04548803517a225d3" kindref="member">Scalar</ref> &gt;</type>
-        <definition>MatrixX&lt;Scalar&gt; GQCP::GTransformation&lt; _Scalar &gt;::component</definition>
+        <definition>MatrixX&lt; Scalar &gt; GQCP::GTransformation&lt; _Scalar &gt;::component</definition>
         <argsstring>(const Spin sigma) const</argsstring>
         <name>component</name>
+        <qualifiedname>GQCP::GTransformation::component</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4f" kindref="member">Spin</ref></type>
           <declname>sigma</declname>
@@ -183,11 +190,12 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="class_g_q_c_p_1_1_g_transformation_1a7984f715c1907b1e9756c86a4566e302" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_transformation_1a48d0bdfab758087da1f3e51d02bd1433" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">GTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_transformation_1aa5372444af700cc04548803517a225d3" kindref="member">Scalar</ref> &gt;</type>
-        <definition>static GTransformation&lt;Scalar&gt; GQCP::GTransformation&lt; _Scalar &gt;::FromRestricted</definition>
+        <definition>static GTransformation&lt; Scalar &gt; GQCP::GTransformation&lt; _Scalar &gt;::FromRestricted</definition>
         <argsstring>(const RTransformation&lt; Scalar &gt; &amp;r_transformation)</argsstring>
         <name>FromRestricted</name>
+        <qualifiedname>GQCP::GTransformation::FromRestricted</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_r_transformation" kindref="compound">RTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_transformation_1aa5372444af700cc04548803517a225d3" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>r_transformation</declname>
@@ -213,11 +221,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/GTransformation.hpp" line="97" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/GTransformation.hpp" bodystart="97" bodyend="101"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_g_transformation_1a511cfa0246d40baa45e7dcee1f79cacb" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_transformation_1abb4719583a6cc5cb1526673712088a43" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">GTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_transformation_1aa5372444af700cc04548803517a225d3" kindref="member">Scalar</ref> &gt;</type>
-        <definition>static GTransformation&lt;Scalar&gt; GQCP::GTransformation&lt; _Scalar &gt;::FromUnrestricted</definition>
+        <definition>static GTransformation&lt; Scalar &gt; GQCP::GTransformation&lt; _Scalar &gt;::FromUnrestricted</definition>
         <argsstring>(const UTransformation&lt; Scalar &gt; &amp;u_transformation)</argsstring>
         <name>FromUnrestricted</name>
+        <qualifiedname>GQCP::GTransformation::FromUnrestricted</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_u_transformation" kindref="compound">UTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_transformation_1aa5372444af700cc04548803517a225d3" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>u_transformation</declname>
@@ -243,11 +252,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/GTransformation.hpp" line="111" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/GTransformation.hpp" bodystart="111" bodyend="126"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_g_transformation_1a31d3196ed11543a85afe55d53cf96cb2" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_transformation_1aae3d672d280d875d34a94fe7a799f195" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">GTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_transformation_1aa5372444af700cc04548803517a225d3" kindref="member">Scalar</ref> &gt;</type>
-        <definition>static GTransformation&lt;Scalar&gt; GQCP::GTransformation&lt; _Scalar &gt;::Identity</definition>
+        <definition>static GTransformation&lt; Scalar &gt; GQCP::GTransformation&lt; _Scalar &gt;::Identity</definition>
         <argsstring>(const size_t K_alpha, const size_t K_beta)</argsstring>
         <name>Identity</name>
+        <qualifiedname>GQCP::GTransformation::Identity</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>K_alpha</declname>
@@ -283,15 +293,19 @@
 </para>
     </detaileddescription>
     <inheritancegraph>
-      <node id="4">
-        <label>GQCP::JacobiRotatable&lt; T &gt;</label>
-        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      <node id="3">
+        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
       </node>
       <node id="1">
         <label>GQCP::GTransformation&lt; _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_g_transformation"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="4">
+        <label>GQCP::JacobiRotatable&lt; T &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
       </node>
       <node id="2">
         <label>GQCP::SimpleTransformation&lt; _Scalar, GTransformation&lt; _Scalar &gt; &gt;</label>
@@ -300,21 +314,30 @@
         </childnode>
         <childnode refid="4" relation="public-inheritance">
         </childnode>
-      </node>
-      <node id="3">
-        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
-        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="4">
-        <label>GQCP::JacobiRotatable&lt; T &gt;</label>
-        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      <node id="7">
+        <label>Eigen::Matrix&lt; double, Dynamic, Dynamic &gt;</label>
+      </node>
+      <node id="3">
+        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
       </node>
       <node id="1">
         <label>GQCP::GTransformation&lt; _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_g_transformation"/>
         <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>GQCP::JacobiRotatable&lt; T &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      </node>
+      <node id="6">
+        <label>MatrixX&lt; Scalar  &gt;</label>
+        <link refid="class_g_q_c_p_1_1_matrix"/>
+        <childnode refid="7" relation="public-inheritance">
         </childnode>
       </node>
       <node id="2">
@@ -324,40 +347,46 @@
         </childnode>
         <childnode refid="4" relation="public-inheritance">
         </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>#T</edgelabel>
+        </childnode>
       </node>
-      <node id="3">
-        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
-        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      <node id="5">
+        <label>GQCP::SquareMatrix&lt; Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_square_matrix"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
       </node>
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/GTransformation.hpp" line="42" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/GTransformation.hpp" bodystart="43" bodyend="171"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_simple_transformation_1a1c0f14136382fc6d98f006013eb87c15" prot="public" virt="non-virtual"><scope>GQCP::GTransformation</scope><name>adjoint</name></member>
-      <member refid="class_g_q_c_p_1_1_g_transformation_1a35294c4513ec448c7740080377781eb6" prot="public" virt="non-virtual"><scope>GQCP::GTransformation</scope><name>alpha</name></member>
-      <member refid="class_g_q_c_p_1_1_g_transformation_1a5c03564330bdb423500ded04404f7fe2" prot="public" virt="non-virtual"><scope>GQCP::GTransformation</scope><name>beta</name></member>
-      <member refid="class_g_q_c_p_1_1_g_transformation_1a6bdc555980660dec5c3594ef4ad2199d" prot="public" virt="non-virtual"><scope>GQCP::GTransformation</scope><name>component</name></member>
+      <member refid="class_g_q_c_p_1_1_g_transformation_1abbda56963a4398fd7802891d870feab0" prot="public" virt="non-virtual"><scope>GQCP::GTransformation</scope><name>alpha</name></member>
+      <member refid="class_g_q_c_p_1_1_g_transformation_1a8a3e194acf720666b073bbd09abde437" prot="public" virt="non-virtual"><scope>GQCP::GTransformation</scope><name>beta</name></member>
+      <member refid="class_g_q_c_p_1_1_g_transformation_1a03511203a8f1a7e67b0b39e14893be4f" prot="public" virt="non-virtual"><scope>GQCP::GTransformation</scope><name>component</name></member>
       <member refid="class_g_q_c_p_1_1_simple_transformation_1a9ddaf7cad44d42ad616be867a418c87f" prot="public" virt="non-virtual"><scope>GQCP::GTransformation</scope><name>DerivedTransformation</name></member>
       <member refid="class_g_q_c_p_1_1_simple_transformation_1a639513b3b77cdce79434a46e81c4cd0d" prot="public" virt="non-virtual"><scope>GQCP::GTransformation</scope><name>dimension</name></member>
       <member refid="class_g_q_c_p_1_1_simple_transformation_1a62eded5880afac6391df8e70a51c5dfe" prot="public" virt="non-virtual"><scope>GQCP::GTransformation</scope><name>FromJacobi</name></member>
-      <member refid="class_g_q_c_p_1_1_g_transformation_1a7984f715c1907b1e9756c86a4566e302" prot="public" virt="non-virtual"><scope>GQCP::GTransformation</scope><name>FromRestricted</name></member>
-      <member refid="class_g_q_c_p_1_1_g_transformation_1a511cfa0246d40baa45e7dcee1f79cacb" prot="public" virt="non-virtual"><scope>GQCP::GTransformation</scope><name>FromUnrestricted</name></member>
+      <member refid="class_g_q_c_p_1_1_g_transformation_1a48d0bdfab758087da1f3e51d02bd1433" prot="public" virt="non-virtual"><scope>GQCP::GTransformation</scope><name>FromRestricted</name></member>
+      <member refid="class_g_q_c_p_1_1_g_transformation_1abb4719583a6cc5cb1526673712088a43" prot="public" virt="non-virtual"><scope>GQCP::GTransformation</scope><name>FromUnrestricted</name></member>
       <member refid="class_g_q_c_p_1_1_g_transformation_1af0a06a95f3ac730b767a26a3b14ab805" prot="public" virt="non-virtual"><scope>GQCP::GTransformation</scope><name>GTransformation</name></member>
       <member refid="class_g_q_c_p_1_1_g_transformation_1af71b9f36f524da82d19e7bf740ca91ae" prot="public" virt="non-virtual"><scope>GQCP::GTransformation</scope><name>GTransformation</name></member>
-      <member refid="class_g_q_c_p_1_1_g_transformation_1a31d3196ed11543a85afe55d53cf96cb2" prot="public" virt="non-virtual"><scope>GQCP::GTransformation</scope><name>Identity</name></member>
+      <member refid="class_g_q_c_p_1_1_g_transformation_1aae3d672d280d875d34a94fe7a799f195" prot="public" virt="non-virtual"><scope>GQCP::GTransformation</scope><name>Identity</name></member>
       <member refid="class_g_q_c_p_1_1_simple_transformation_1af9eb142b5ae58396440fbb408d029d4c" prot="public" virt="non-virtual" ambiguityscope="SimpleTransformation&lt; _Scalar, GTransformation&lt; _Scalar &gt; &gt;::"><scope>GQCP::GTransformation</scope><name>Identity</name></member>
       <member refid="class_g_q_c_p_1_1_simple_transformation_1a5f36fc890460cc7c7a64eee376261c54" prot="public" virt="non-virtual"><scope>GQCP::GTransformation</scope><name>inverse</name></member>
       <member refid="class_g_q_c_p_1_1_simple_transformation_1a69eb192652259a3c7894b873aba818a1" prot="public" virt="non-virtual"><scope>GQCP::GTransformation</scope><name>isUnitary</name></member>
       <member refid="class_g_q_c_p_1_1_simple_transformation_1a30b9d326d44957602bc7081c692fc719" prot="public" virt="non-virtual"><scope>GQCP::GTransformation</scope><name>JacobiRotationType</name></member>
       <member refid="class_g_q_c_p_1_1_g_transformation_1aba8b9f0293e09b2658283639341b4c89" prot="private" virt="non-virtual"><scope>GQCP::GTransformation</scope><name>K</name></member>
-      <member refid="class_g_q_c_p_1_1_simple_transformation_1a006ae80a78c72409fad4769058c4e048" prot="public" virt="non-virtual"><scope>GQCP::GTransformation</scope><name>matrix</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_transformation_1a644af38c173e77dc21e4dc4306916bd0" prot="public" virt="non-virtual"><scope>GQCP::GTransformation</scope><name>matrix</name></member>
       <member refid="class_g_q_c_p_1_1_simple_transformation_1a2bf93e827850f7ccebcd64af4999abb4" prot="public" virt="non-virtual"><scope>GQCP::GTransformation</scope><name>numberOfOrbitals</name></member>
       <member refid="class_g_q_c_p_1_1_simple_transformation_1a2cb26d3ddc4f033220363ed7ddb78765" prot="public" virt="non-virtual"><scope>GQCP::GTransformation</scope><name>OrbitalRotationGeneratorType</name></member>
       <member refid="class_g_q_c_p_1_1_simple_transformation_1a66165a4d5eb2217a80196d6d34a27023" prot="public" virt="non-virtual"><scope>GQCP::GTransformation</scope><name>Random</name></member>
       <member refid="class_g_q_c_p_1_1_simple_transformation_1af94648942e1be2a5929462fd48daea27" prot="public" virt="non-virtual"><scope>GQCP::GTransformation</scope><name>RandomUnitary</name></member>
       <member refid="class_g_q_c_p_1_1_basis_transformable_1a2e107bd3cf4d603c003c8cb9357d0094" prot="public" virt="non-virtual" ambiguityscope="GQCP::"><scope>GQCP::GTransformation</scope><name>rotate</name></member>
       <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a11657b774fe75246bef1f7849f9aad72" prot="public" virt="non-virtual" ambiguityscope="GQCP::JacobiRotatable::"><scope>GQCP::GTransformation</scope><name>rotate</name></member>
-      <member refid="class_g_q_c_p_1_1_simple_transformation_1a31eeb20c66eabcc2c2c88599716c0ea9" prot="public" virt="virtual"><scope>GQCP::GTransformation</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_transformation_1a31eeb20c66eabcc2c2c88599716c0ea9" prot="public" virt="non-virtual"><scope>GQCP::GTransformation</scope><name>rotated</name></member>
       <member refid="class_g_q_c_p_1_1_basis_transformable_1ae0af50867dbd06193b64c2bcdd6b51ba" prot="public" virt="virtual" ambiguityscope="GQCP::BasisTransformable::"><scope>GQCP::GTransformation</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1ae518b652e54f43acf2db43300c1d6fc0" prot="public" virt="pure-virtual" ambiguityscope="GQCP::JacobiRotatable::"><scope>GQCP::GTransformation</scope><name>rotated</name></member>
       <member refid="class_g_q_c_p_1_1_g_transformation_1aa5372444af700cc04548803517a225d3" prot="public" virt="non-virtual"><scope>GQCP::GTransformation</scope><name>Scalar</name></member>
       <member refid="class_g_q_c_p_1_1_simple_transformation_1ada44eeef314de5b5ad79587480745505" prot="public" virt="non-virtual"><scope>GQCP::GTransformation</scope><name>Self</name></member>
       <member refid="class_g_q_c_p_1_1_simple_transformation_1a5ecd32337e09da059a91ba0a9a5da30e" prot="public" virt="non-virtual"><scope>GQCP::GTransformation</scope><name>SimpleTransformation</name></member>

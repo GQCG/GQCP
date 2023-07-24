@@ -1,0 +1,282 @@
+\hypertarget{_evaluable_linear_combination_8hpp_source}{}\doxysection{Evaluable\+Linear\+Combination.\+hpp}
+\label{_evaluable_linear_combination_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp}}
+\mbox{\hyperlink{_evaluable_linear_combination_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_function_8hpp}{Mathematical/Functions/Function.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_vector_space_arithmetic_8hpp}{Mathematical/Functions/VectorSpaceArithmetic.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{aliases_8hpp}{Utilities/aliases.hpp}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{complex_8hpp}{Utilities/complex.hpp}}"{}}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <boost/format.hpp>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <boost/lexical\_cast.hpp>}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Coefficient,\ \textcolor{keyword}{typename}\ \_FunctionType>}
+\DoxyCodeLine{00044\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{EvaluableLinearCombination}}:}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_function}{Function}}<sum\_t<\_Coefficient,\ typename\ \_FunctionType::OutputType>,\ typename\ \_FunctionType::InputType>,}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_vector_space_arithmetic}{VectorSpaceArithmetic}}<EvaluableLinearCombination<\_Coefficient,\ \_FunctionType>,\ \_Coefficient>\ \{}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ a\ coefficient.}}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_ae0ad3778c716fd7a7cf5803ded7d3096}{Coefficient}}\ =\ \_Coefficient;}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ the\ function.}}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a08f379ee95b9b80e42a3570634d08d03}{FunctionType}}\ =\ \_FunctionType;}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//\ The\ return\ type\ of\ the\ `operator()`.}}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a6b9cf06ae3c935c0d6b1c1b7d28110d2}{OutputType}}\ =\ \mbox{\hyperlink{namespace_g_q_c_p_ad8362e85425df3608c553719ea712652}{sum\_t<Coefficient,\ typename\ FunctionType::OutputType>}};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{//\ The\ input\ type\ of\ the\ `operator()`.}}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a4c6f34edfb5e99f458713b17f83ee1b8}{InputType}}\ =\ \textcolor{keyword}{typename}\ FunctionType::InputType;}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{comment}{//\ static\_assert(std::is\_base\_of<Function<OutputType,\ InputType>,\ FunctionType>::value,\ "{}EvaluableLinearCombination:\ FunctionType\ must\ derive\ from\ `Function`."{});}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ 'this'.}}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{Self}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{EvaluableLinearCombination<Coefficient,\ FunctionType>}};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//\ The\ coefficients\ of\ the\ linear\ combination.}}
+\DoxyCodeLine{00069\ \ \ \ \ std::vector<Coefficient>\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_aefcf4dde90ef185404be60ac8444f02b}{m\_coefficients}};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{comment}{//\ The\ functions\ of\ the\ linear\ combination.}}
+\DoxyCodeLine{00072\ \ \ \ \ std::vector<FunctionType>\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a0d23b4233a94a97d3db521801608b72e}{m\_functions}};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00077\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Constructors}}
+\DoxyCodeLine{00078\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a0529edb4777e200fb6240d838f34ebb5}{EvaluableLinearCombination}}(\textcolor{keyword}{const}\ std::vector<Coefficient>\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_aa2514bcc1d6e9b1cbe398ae0932fd5a2}{coefficients}},\ \textcolor{keyword}{const}\ std::vector<FunctionType>\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a1e6d48ee5c1d8067324b5f8b0896cd1b}{functions}})\ :}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_aefcf4dde90ef185404be60ac8444f02b}{m\_coefficients}}\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_aa2514bcc1d6e9b1cbe398ae0932fd5a2}{coefficients}}\},}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a0d23b4233a94a97d3db521801608b72e}{m\_functions}}\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a1e6d48ee5c1d8067324b5f8b0896cd1b}{functions}}\}\ \{}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_aa2514bcc1d6e9b1cbe398ae0932fd5a2}{coefficients}}.size()\ !=\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a1e6d48ee5c1d8067324b5f8b0896cd1b}{functions}}.size())\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}EvaluableLinearCombination(const\ std::vector<Coefficient>\&,\ const\ std::vector<FunctionType>\&):\ The\ number\ of\ coefficients\ and\ functions\ do\ not\ match."{}});}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00097\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a61234d87c74c9932c7bee6be4375701c}{EvaluableLinearCombination}}()\ :}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{EvaluableLinearCombination}}(std::vector<\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_ae0ad3778c716fd7a7cf5803ded7d3096}{Coefficient}}>\ \{\},\ std::vector<FunctionType>\ \{\})\ \{\}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00107\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a01043ac2576fddd5dd42de1a7cf43d34}{EvaluableLinearCombination}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_ae0ad3778c716fd7a7cf5803ded7d3096}{Coefficient}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_afeacd375e8e9aff9aee17da17130cde5}{coefficient}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a08f379ee95b9b80e42a3570634d08d03}{FunctionType}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a31a60fe911ed1ff867d49a3d90b48b2b}{function}})\ :}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{EvaluableLinearCombination}}(std::vector<\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_ae0ad3778c716fd7a7cf5803ded7d3096}{Coefficient}}>\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_afeacd375e8e9aff9aee17da17130cde5}{coefficient}}\},\ std::vector<FunctionType>\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a31a60fe911ed1ff867d49a3d90b48b2b}{function}}\})\ \{\}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00116\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_ad8d1bbd7cf2085dd8f7198eb5f544382}{EvaluableLinearCombination}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a08f379ee95b9b80e42a3570634d08d03}{FunctionType}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a31a60fe911ed1ff867d49a3d90b48b2b}{function}})\ :}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{EvaluableLinearCombination}}(\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_ae0ad3778c716fd7a7cf5803ded7d3096}{Coefficient}}\ \{1.0\},\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a31a60fe911ed1ff867d49a3d90b48b2b}{function}})\ \{\}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00125\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a2030546be9a5b3f205bc1c71bec4354f}{EvaluableLinearCombination}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ zero)\ :}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{EvaluableLinearCombination}}()\ \{}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (zero\ !=\ 0)\ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}EvaluableLinearCombination(const\ int):\ Can't\ convert\ a\ non-\/zero\ integer\ to\ a\ 'zero'\ instance."{}});}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00131\ \ \ \ \ \}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00135\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Vector\ space\ arithmetic}}
+\DoxyCodeLine{00136\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00141\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{Self}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a0c569746f624d82dbe519b7e1816cfdc}{operator+=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{Self}}\&\ rhs)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_ad3141b0c9149295e77aa768e134a415f}{append}}(rhs.\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_aefcf4dde90ef185404be60ac8444f02b}{m\_coefficients}},\ rhs.\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a0d23b4233a94a97d3db521801608b72e}{m\_functions}});}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00144\ \ \ \ \ \}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00150\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{Self}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a40b0d9a5eaefdc84e42e04e6d455ebed}{operator*=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_ae0ad3778c716fd7a7cf5803ded7d3096}{Coefficient}}\&\ a)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (std::abs(a)\ <\ 1.0e-\/16)\ \{\ \ \textcolor{comment}{//\ multiplication\ by\ zero\ returns\ a\ 'zero\ vector'}}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>m\_coefficients\ =\ std::vector<Coefficient>\ \{\};}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>m\_functions\ =\ std::vector<FunctionType>\ \{\};}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ std::transform(this-\/>m\_coefficients.begin(),\ this-\/>m\_coefficients.end(),}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>m\_coefficients.begin(),\ [a](\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_ae0ad3778c716fd7a7cf5803ded7d3096}{Coefficient}}\&\ C)\ \{\ return\ C\ *\ a;\ \});}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00162\ \ \ \ \ \}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00166\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ General\ information}}
+\DoxyCodeLine{00167\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00172\ \ \ \ \ std::string\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a35ba5217282e8340992f5bedba5141ff}{description}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a35ba5217282e8340992f5bedba5141ff}{description}}\ =\ \textcolor{stringliteral}{"{}["{}};}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_af69af51a2d4f1912f4d980f6cb28d266}{length}}();\ i++)\ \{}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Provide\ the\ coefficient\ and\ the\ function's\ description.}}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a35ba5217282e8340992f5bedba5141ff}{description}}\ +=\ (boost::format(\textcolor{stringliteral}{"{}(\%|.3f|)\ \%s"{}})\ \%\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_afeacd375e8e9aff9aee17da17130cde5}{coefficient}}(i)\ \%\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a31a60fe911ed1ff867d49a3d90b48b2b}{function}}(i).description()).str();}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ a\ '+'\ when\ we're\ not\ at\ the\ end.}}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ !=\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_af69af51a2d4f1912f4d980f6cb28d266}{length}}()\ -\/\ 1)\ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ description\ +=\ \textcolor{stringliteral}{"{}\ +\ "{}};}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a35ba5217282e8340992f5bedba5141ff}{description}}\ +=\ \textcolor{stringliteral}{"{}]"{}};}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a35ba5217282e8340992f5bedba5141ff}{description}};}
+\DoxyCodeLine{00189\ \ \ \ \ \}}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_af69af51a2d4f1912f4d980f6cb28d266}{length}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>m\_coefficients.size();\ \}}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00198\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Access}}
+\DoxyCodeLine{00199\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_ae0ad3778c716fd7a7cf5803ded7d3096}{Coefficient}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_afeacd375e8e9aff9aee17da17130cde5}{coefficient}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ i)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>m\_coefficients[i];\ \}}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{keyword}{const}\ std::vector<Coefficient>\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_aa2514bcc1d6e9b1cbe398ae0932fd5a2}{coefficients}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_aefcf4dde90ef185404be60ac8444f02b}{m\_coefficients}};\ \}}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00222\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a08f379ee95b9b80e42a3570634d08d03}{FunctionType}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a31a60fe911ed1ff867d49a3d90b48b2b}{function}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ i)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>m\_functions[i];\ \}}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00227\ \ \ \ \ \textcolor{keyword}{const}\ std::vector<FunctionType>\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a1e6d48ee5c1d8067324b5f8b0896cd1b}{functions}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a0d23b4233a94a97d3db521801608b72e}{m\_functions}};\ \}}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00231\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Conforming\ to\ `Function`}}
+\DoxyCodeLine{00232\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00241\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a6b9cf06ae3c935c0d6b1c1b7d28110d2}{OutputType}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a5c09be16f8ced29d9243f6da9877fffe}{operator()}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a4c6f34edfb5e99f458713b17f83ee1b8}{InputType}}\&\ in)\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Evaluate\ every\ function\ of\ the\ linear\ combination.}}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a6b9cf06ae3c935c0d6b1c1b7d28110d2}{OutputType}}\ out\ \{\};\ \ \textcolor{comment}{//\ Default\ initialization\ of\ the\ `OutputType`.}}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ n\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_af69af51a2d4f1912f4d980f6cb28d266}{length}}();}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ n;\ i++)\ \{}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ out\ +=\ this-\/>m\_coefficients[i]\ *\ this-\/>m\_functions[i].operator()(in);}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ out;}
+\DoxyCodeLine{00251\ \ \ \ \ \}}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00255\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Comparison\ operators}}
+\DoxyCodeLine{00256\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00263\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_aca009eb05e42ec82f9621d11a3a931bf}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{Self}}\&\ other)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (this-\/>m\_coefficients\ ==\ other.\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_aefcf4dde90ef185404be60ac8444f02b}{m\_coefficients}})\ \&\&\ (this-\/>m\_functions\ ==\ other.\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a0d23b4233a94a97d3db521801608b72e}{m\_functions}});}
+\DoxyCodeLine{00265\ \ \ \ \ \}}
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00269\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Appending}}
+\DoxyCodeLine{00270\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00278\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_ad3141b0c9149295e77aa768e134a415f}{append}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_ae0ad3778c716fd7a7cf5803ded7d3096}{Coefficient}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_afeacd375e8e9aff9aee17da17130cde5}{coefficient}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a08f379ee95b9b80e42a3570634d08d03}{FunctionType}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a31a60fe911ed1ff867d49a3d90b48b2b}{function}})\ \{}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ this-\/>m\_coefficients.push\_back(\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_afeacd375e8e9aff9aee17da17130cde5}{coefficient}});}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ this-\/>m\_functions.push\_back(\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a31a60fe911ed1ff867d49a3d90b48b2b}{function}});}
+\DoxyCodeLine{00282\ \ \ \ \ \}}
+\DoxyCodeLine{00283\ }
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00292\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a5fa37456db5398996bdfe66db554cf02}{appendWithThreshold}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_ae0ad3778c716fd7a7cf5803ded7d3096}{Coefficient}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_afeacd375e8e9aff9aee17da17130cde5}{coefficient}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a08f379ee95b9b80e42a3570634d08d03}{FunctionType}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a31a60fe911ed1ff867d49a3d90b48b2b}{function}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ threshold\ =\ 1.0e-\/16)\ \{}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Only\ enlarge\ the\ linear\ combination\ for\ sufficiently\ large\ coefficients.}}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (std::abs(\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_afeacd375e8e9aff9aee17da17130cde5}{coefficient}})\ <\ threshold)\ \{}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_ad3141b0c9149295e77aa768e134a415f}{append}}(coefficient,\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a31a60fe911ed1ff867d49a3d90b48b2b}{function}});}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00300\ \ \ \ \ \}}
+\DoxyCodeLine{00301\ }
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00309\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a5c7bcb1c402887a0feab4e464c891a93}{append}}(\textcolor{keyword}{const}\ std::vector<Coefficient>\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_aa2514bcc1d6e9b1cbe398ae0932fd5a2}{coefficients}},\ \textcolor{keyword}{const}\ std::vector<FunctionType>\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a1e6d48ee5c1d8067324b5f8b0896cd1b}{functions}})\ \{}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_aa2514bcc1d6e9b1cbe398ae0932fd5a2}{coefficients}}.size()\ !=\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a1e6d48ee5c1d8067324b5f8b0896cd1b}{functions}}.size())\ \{}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}EvaluableLinearCombination::append(const\ std::vector<Coefficient>\&,\ const\ std::vector<FunctionType>\&):\ The\ number\ of\ coefficients\ and\ functions\ do\ not\ match."{}});}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00314\ }
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ this-\/>m\_coefficients.insert(this-\/>m\_coefficients.end(),\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_aa2514bcc1d6e9b1cbe398ae0932fd5a2}{coefficients}}.begin(),\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_aa2514bcc1d6e9b1cbe398ae0932fd5a2}{coefficients}}.end());}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ this-\/>m\_functions.insert(this-\/>m\_functions.end(),\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a1e6d48ee5c1d8067324b5f8b0896cd1b}{functions}}.begin(),\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination_a1e6d48ee5c1d8067324b5f8b0896cd1b}{functions}}.end());}
+\DoxyCodeLine{00317\ \ \ \ \ \}}
+\DoxyCodeLine{00318\ \};}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00321\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+\DoxyCodeLine{00322\ }
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ \textcolor{preprocessor}{\#include\ <Eigen/Dense>}}
+\DoxyCodeLine{00325\ }
+\DoxyCodeLine{00326\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00327\ \textcolor{comment}{\ *\ \ Make\ GQCP::EvaluableLinearCombination<FunctionType>\ an\ Eigen\ scalar\ type.}}
+\DoxyCodeLine{00328\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00329\ }
+\DoxyCodeLine{00330\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_eigen}{Eigen}}\ \{}
+\DoxyCodeLine{00331\ }
+\DoxyCodeLine{00332\ }
+\DoxyCodeLine{00333\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Coefficient,\ \textcolor{keyword}{typename}\ FunctionType>}
+\DoxyCodeLine{00334\ \textcolor{keyword}{struct\ }NumTraits<\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}::EvaluableLinearCombination<Coefficient,\ FunctionType>>:}
+\DoxyCodeLine{00335\ \ \ \ \ \textcolor{keyword}{public}\ NumTraits<double>\ \{\ \ \textcolor{comment}{//\ permits\ to\ get\ the\ epsilon,\ dummy\_precision,\ lowest,\ highest\ functions}}
+\DoxyCodeLine{00336\ }
+\DoxyCodeLine{00337\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{Real}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{GQCP::EvaluableLinearCombination<Coefficient,\ FunctionType>}};}
+\DoxyCodeLine{00338\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{NonInteger}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{GQCP::EvaluableLinearCombination<Coefficient,\ FunctionType>}};}
+\DoxyCodeLine{00339\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{Nested}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{GQCP::EvaluableLinearCombination<Coefficient,\ FunctionType>}};}
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00341\ \ \ \ \ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ IsComplex\ =\ 0,}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ IsInteger\ =\ 0,}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ IsSigned\ =\ 1,}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ RequireInitialization\ =\ 1,}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ ReadCost\ =\ 1,}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ AddCost\ =\ 5,}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ MulCost\ =\ 1000\ \ \textcolor{comment}{//\ just\ put\ something\ big}}
+\DoxyCodeLine{00349\ \ \ \ \ \};}
+\DoxyCodeLine{00350\ \};}
+\DoxyCodeLine{00351\ }
+\DoxyCodeLine{00352\ }
+\DoxyCodeLine{00353\ \textcolor{comment}{//\ Enable\ the\ scalar\ product\ of\ a\ EvaluableLinearCombination<Coefficient,\ FunctionType>\ with\ its\ own\ Coefficient\ (both\ sides).}}
+\DoxyCodeLine{00354\ }
+\DoxyCodeLine{00355\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Coefficient,\ \textcolor{keyword}{typename}\ FunctionType>}
+\DoxyCodeLine{00356\ \textcolor{keyword}{struct\ }ScalarBinaryOpTraits<\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}::EvaluableLinearCombination<Coefficient,\ FunctionType>,\ Coefficient,}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Eigen::internal::scalar\_product\_op<GQCP::EvaluableLinearCombination<Coefficient,\ FunctionType>,\ Coefficient>>\ \{}
+\DoxyCodeLine{00358\ }
+\DoxyCodeLine{00359\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{ReturnType}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{GQCP::EvaluableLinearCombination<Coefficient,\ FunctionType>}};}
+\DoxyCodeLine{00360\ \};}
+\DoxyCodeLine{00361\ }
+\DoxyCodeLine{00362\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Coefficient,\ \textcolor{keyword}{typename}\ FunctionType>}
+\DoxyCodeLine{00363\ \textcolor{keyword}{struct\ }ScalarBinaryOpTraits<Coefficient,\ \mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}::EvaluableLinearCombination<Coefficient,\ FunctionType>,}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Eigen::internal::scalar\_product\_op<Coefficient,\ GQCP::EvaluableLinearCombination<Coefficient,\ FunctionType>>>\ \{}
+\DoxyCodeLine{00365\ }
+\DoxyCodeLine{00366\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{ReturnType}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{GQCP::EvaluableLinearCombination<Coefficient,\ FunctionType>}};}
+\DoxyCodeLine{00367\ \};}
+\DoxyCodeLine{00368\ }
+\DoxyCodeLine{00369\ }
+\DoxyCodeLine{00370\ \}\ \ \textcolor{comment}{//\ namespace\ Eigen}}
+
+\end{DoxyCode}

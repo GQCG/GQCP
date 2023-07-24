@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine" kind="class" language="C++" prot="public" abstract="yes">
     <compoundname>GQCP::BaseScalarPrimitiveIntegralEngine</compoundname>
     <derivedcompoundref refid="class_g_q_c_p_1_1_functional_one_electron_primitive_integral_engine" prot="public" virt="non-virtual">GQCP::FunctionalOneElectronPrimitiveIntegralEngine&lt; _IntegralScalar &gt;</derivedcompoundref>
@@ -15,6 +15,7 @@
         <definition>constexpr size_t GQCP::BaseScalarPrimitiveIntegralEngine::Components</definition>
         <argsstring></argsstring>
         <name>Components</name>
+        <qualifiedname>GQCP::BaseScalarPrimitiveIntegralEngine::Components</qualifiedname>
         <initializer>= 1</initializer>
         <briefdescription>
         </briefdescription>
@@ -31,6 +32,7 @@
         <definition>GQCP::BaseScalarPrimitiveIntegralEngine::~BaseScalarPrimitiveIntegralEngine</definition>
         <argsstring>()=0</argsstring>
         <name>~BaseScalarPrimitiveIntegralEngine</name>
+        <qualifiedname>GQCP::BaseScalarPrimitiveIntegralEngine::~BaseScalarPrimitiveIntegralEngine</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -45,6 +47,7 @@
         <definition>void GQCP::BaseScalarPrimitiveIntegralEngine::prepareStateForComponent</definition>
         <argsstring>(const size_t component)</argsstring>
         <name>prepareStateForComponent</name>
+        <qualifiedname>GQCP::BaseScalarPrimitiveIntegralEngine::prepareStateForComponent</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>component</declname>
@@ -81,15 +84,15 @@
         <label>GQCP::BaseScalarPrimitiveIntegralEngine</label>
         <link refid="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine"/>
       </node>
-      <node id="3">
-        <label>GQCP::FunctionalTwoElectronPrimitiveIntegralEngine&lt; _IntegralScalar &gt;</label>
-        <link refid="class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine"/>
+      <node id="2">
+        <label>GQCP::FunctionalOneElectronPrimitiveIntegralEngine&lt; _IntegralScalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_functional_one_electron_primitive_integral_engine"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="6">
-        <label>GQCP::PrimitiveNuclearAttractionIntegralEngine&lt; _Shell &gt;</label>
-        <link refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine"/>
+      <node id="3">
+        <label>GQCP::FunctionalTwoElectronPrimitiveIntegralEngine&lt; _IntegralScalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
@@ -105,9 +108,9 @@
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="2">
-        <label>GQCP::FunctionalOneElectronPrimitiveIntegralEngine&lt; _IntegralScalar &gt;</label>
-        <link refid="class_g_q_c_p_1_1_functional_one_electron_primitive_integral_engine"/>
+      <node id="6">
+        <label>GQCP::PrimitiveNuclearAttractionIntegralEngine&lt; _Shell &gt;</label>
+        <link refid="class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>

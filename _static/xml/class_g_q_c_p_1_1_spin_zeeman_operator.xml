@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_spin_zeeman_operator" kind="class" language="C++" prot="public">
     <compoundname>GQCP::SpinZeemanOperator</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_base_scalar_f_q_operator" prot="public" virt="non-virtual">GQCP::BaseScalarFQOperator&lt; complex &gt;</basecompoundref>
@@ -10,6 +10,7 @@
         <definition>HomogeneousMagneticField GQCP::SpinZeemanOperator::B</definition>
         <argsstring></argsstring>
         <name>B</name>
+        <qualifiedname>GQCP::SpinZeemanOperator::B</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -25,6 +26,7 @@
         <definition>GQCP::SpinZeemanOperator::SpinZeemanOperator</definition>
         <argsstring>(const HomogeneousMagneticField &amp;B)</argsstring>
         <name>SpinZeemanOperator</name>
+        <qualifiedname>GQCP::SpinZeemanOperator::SpinZeemanOperator</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_homogeneous_magnetic_field" kindref="compound">HomogeneousMagneticField</ref> &amp;</type>
           <declname>B</declname>
@@ -48,11 +50,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/SpinZeemanOperator.hpp" line="46" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/SpinZeemanOperator.cpp" bodystart="33" bodyend="34"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_spin_zeeman_operator_1a2759f4fda647e7ac999762e4499d901b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_spin_zeeman_operator_1abfcbe78e79dae99327b71af02ce4d367" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_homogeneous_magnetic_field" kindref="compound">HomogeneousMagneticField</ref> &amp;</type>
-        <definition>const HomogeneousMagneticField&amp; GQCP::SpinZeemanOperator::magneticField</definition>
+        <definition>const HomogeneousMagneticField &amp; GQCP::SpinZeemanOperator::magneticField</definition>
         <argsstring>() const</argsstring>
         <name>magneticField</name>
+        <qualifiedname>GQCP::SpinZeemanOperator::magneticField</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -70,15 +73,15 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
+      <node id="3">
+        <label>GQCP::BaseFQOperator&lt; N, _Scalar, ScalarVectorizer &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_f_q_operator"/>
+      </node>
       <node id="2">
         <label>BaseScalarFQOneElectronOperator&lt; complex &gt;</label>
         <link refid="class_g_q_c_p_1_1_base_scalar_f_q_operator"/>
         <childnode refid="3" relation="public-inheritance">
         </childnode>
-      </node>
-      <node id="3">
-        <label>GQCP::BaseFQOperator&lt; N, _Scalar, ScalarVectorizer &gt;</label>
-        <link refid="class_g_q_c_p_1_1_base_f_q_operator"/>
       </node>
       <node id="1">
         <label>GQCP::SpinZeemanOperator</label>
@@ -88,6 +91,10 @@
       </node>
     </inheritancegraph>
     <collaborationgraph>
+      <node id="3">
+        <label>GQCP::BaseFQOperator&lt; N, _Scalar, ScalarVectorizer &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_f_q_operator"/>
+      </node>
       <node id="2">
         <label>BaseScalarFQOneElectronOperator&lt; complex &gt;</label>
         <link refid="class_g_q_c_p_1_1_base_scalar_f_q_operator"/>
@@ -101,10 +108,6 @@
         <label>GQCP::DenseVectorizer&lt; A &gt;</label>
         <link refid="class_g_q_c_p_1_1_dense_vectorizer"/>
       </node>
-      <node id="3">
-        <label>GQCP::BaseFQOperator&lt; N, _Scalar, ScalarVectorizer &gt;</label>
-        <link refid="class_g_q_c_p_1_1_base_f_q_operator"/>
-      </node>
       <node id="1">
         <label>GQCP::SpinZeemanOperator</label>
         <link refid="class_g_q_c_p_1_1_spin_zeeman_operator"/>
@@ -115,7 +118,7 @@
     <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/SpinZeemanOperator.hpp" line="29" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/SpinZeemanOperator.hpp" bodystart="30" bodyend="57"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_spin_zeeman_operator_1a17df7222f10fe71ca020bc93963932c0" prot="private" virt="non-virtual"><scope>GQCP::SpinZeemanOperator</scope><name>B</name></member>
-      <member refid="class_g_q_c_p_1_1_spin_zeeman_operator_1a2759f4fda647e7ac999762e4499d901b" prot="public" virt="non-virtual"><scope>GQCP::SpinZeemanOperator</scope><name>magneticField</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_zeeman_operator_1abfcbe78e79dae99327b71af02ce4d367" prot="public" virt="non-virtual"><scope>GQCP::SpinZeemanOperator</scope><name>magneticField</name></member>
       <member refid="class_g_q_c_p_1_1_base_scalar_f_q_operator_1a7bf7164b798fb0becf494a29e8d54eb7" prot="public" virt="non-virtual"><scope>GQCP::SpinZeemanOperator</scope><name>NumberOfComponents</name></member>
       <member refid="class_g_q_c_p_1_1_base_f_q_operator_1ae56208bbc85e6d9d401fa4540f20a573" prot="public" virt="non-virtual"><scope>GQCP::SpinZeemanOperator</scope><name>NumberOfElectrons</name></member>
       <member refid="class_g_q_c_p_1_1_base_f_q_operator_1afebca98f82d7d9d4c27b39beaf4c58fb" prot="public" virt="non-virtual"><scope>GQCP::SpinZeemanOperator</scope><name>Scalar</name></member>

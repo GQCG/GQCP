@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer" kind="class" language="C++" prot="public">
     <compoundname>GQCP::AP1roGJacobiOrbitalOptimizer</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer" prot="public" virt="non-virtual">GQCP::JacobiOrbitalOptimizer</basecompoundref>
@@ -10,6 +10,7 @@
         <definition>size_t GQCP::AP1roGJacobiOrbitalOptimizer::N_P</definition>
         <argsstring></argsstring>
         <name>N_P</name>
+        <qualifiedname>GQCP::AP1roGJacobiOrbitalOptimizer::N_P</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -23,6 +24,7 @@
         <definition>double GQCP::AP1roGJacobiOrbitalOptimizer::A1</definition>
         <argsstring></argsstring>
         <name>A1</name>
+        <qualifiedname>GQCP::AP1roGJacobiOrbitalOptimizer::A1</qualifiedname>
         <initializer>= 0.0</initializer>
         <briefdescription>
         </briefdescription>
@@ -37,6 +39,7 @@
         <definition>double GQCP::AP1roGJacobiOrbitalOptimizer::B1</definition>
         <argsstring></argsstring>
         <name>B1</name>
+        <qualifiedname>GQCP::AP1roGJacobiOrbitalOptimizer::B1</qualifiedname>
         <initializer>= 0.0</initializer>
         <briefdescription>
         </briefdescription>
@@ -51,6 +54,7 @@
         <definition>double GQCP::AP1roGJacobiOrbitalOptimizer::C1</definition>
         <argsstring></argsstring>
         <name>C1</name>
+        <qualifiedname>GQCP::AP1roGJacobiOrbitalOptimizer::C1</qualifiedname>
         <initializer>= 0.0</initializer>
         <briefdescription>
         </briefdescription>
@@ -65,6 +69,7 @@
         <definition>double GQCP::AP1roGJacobiOrbitalOptimizer::A2</definition>
         <argsstring></argsstring>
         <name>A2</name>
+        <qualifiedname>GQCP::AP1roGJacobiOrbitalOptimizer::A2</qualifiedname>
         <initializer>= 0.0</initializer>
         <briefdescription>
         </briefdescription>
@@ -79,6 +84,7 @@
         <definition>double GQCP::AP1roGJacobiOrbitalOptimizer::B2</definition>
         <argsstring></argsstring>
         <name>B2</name>
+        <qualifiedname>GQCP::AP1roGJacobiOrbitalOptimizer::B2</qualifiedname>
         <initializer>= 0.0</initializer>
         <briefdescription>
         </briefdescription>
@@ -93,6 +99,7 @@
         <definition>double GQCP::AP1roGJacobiOrbitalOptimizer::C2</definition>
         <argsstring></argsstring>
         <name>C2</name>
+        <qualifiedname>GQCP::AP1roGJacobiOrbitalOptimizer::C2</qualifiedname>
         <initializer>= 0.0</initializer>
         <briefdescription>
         </briefdescription>
@@ -107,6 +114,7 @@
         <definition>double GQCP::AP1roGJacobiOrbitalOptimizer::D2</definition>
         <argsstring></argsstring>
         <name>D2</name>
+        <qualifiedname>GQCP::AP1roGJacobiOrbitalOptimizer::D2</qualifiedname>
         <initializer>= 0.0</initializer>
         <briefdescription>
         </briefdescription>
@@ -121,6 +129,7 @@
         <definition>double GQCP::AP1roGJacobiOrbitalOptimizer::E2</definition>
         <argsstring></argsstring>
         <name>E2</name>
+        <qualifiedname>GQCP::AP1roGJacobiOrbitalOptimizer::E2</qualifiedname>
         <initializer>= 0.0</initializer>
         <briefdescription>
         </briefdescription>
@@ -135,6 +144,7 @@
         <definition>double GQCP::AP1roGJacobiOrbitalOptimizer::A3</definition>
         <argsstring></argsstring>
         <name>A3</name>
+        <qualifiedname>GQCP::AP1roGJacobiOrbitalOptimizer::A3</qualifiedname>
         <initializer>= 0.0</initializer>
         <briefdescription>
         </briefdescription>
@@ -149,6 +159,7 @@
         <definition>double GQCP::AP1roGJacobiOrbitalOptimizer::B3</definition>
         <argsstring></argsstring>
         <name>B3</name>
+        <qualifiedname>GQCP::AP1roGJacobiOrbitalOptimizer::B3</qualifiedname>
         <initializer>= 0.0</initializer>
         <briefdescription>
         </briefdescription>
@@ -163,6 +174,7 @@
         <definition>double GQCP::AP1roGJacobiOrbitalOptimizer::C3</definition>
         <argsstring></argsstring>
         <name>C3</name>
+        <qualifiedname>GQCP::AP1roGJacobiOrbitalOptimizer::C3</qualifiedname>
         <initializer>= 0.0</initializer>
         <briefdescription>
         </briefdescription>
@@ -177,6 +189,7 @@
         <definition>double GQCP::AP1roGJacobiOrbitalOptimizer::E</definition>
         <argsstring></argsstring>
         <name>E</name>
+        <qualifiedname>GQCP::AP1roGJacobiOrbitalOptimizer::E</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -190,6 +203,7 @@
         <definition>AP1roGGeminalCoefficients GQCP::AP1roGJacobiOrbitalOptimizer::G</definition>
         <argsstring></argsstring>
         <name>G</name>
+        <qualifiedname>GQCP::AP1roGJacobiOrbitalOptimizer::G</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -205,6 +219,7 @@
         <definition>GQCP::AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer</definition>
         <argsstring>(const size_t N_P, const size_t K, const double convergence_threshold=1.0e-08, const size_t maximum_number_of_iterations=128)</argsstring>
         <name>AP1roGJacobiOrbitalOptimizer</name>
+        <qualifiedname>GQCP::AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>N_P</declname>
@@ -270,6 +285,7 @@ The initial guess for the geminal coefficients is zero </para>
         <definition>GQCP::AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer</definition>
         <argsstring>(const AP1roGGeminalCoefficients &amp;G, const double convergence_threshold=1.0e-08, const size_t maximum_number_of_iterations=128)</argsstring>
         <name>AP1roGJacobiOrbitalOptimizer</name>
+        <qualifiedname>GQCP::AP1roGJacobiOrbitalOptimizer::AP1roGJacobiOrbitalOptimizer</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients" kindref="compound">AP1roGGeminalCoefficients</ref> &amp;</type>
           <declname>G</declname>
@@ -323,6 +339,7 @@ The initial guess for the geminal coefficients is zero </para>
         <definition>void GQCP::AP1roGJacobiOrbitalOptimizer::calculateJacobiCoefficients</definition>
         <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian, const size_t p, const size_t q) override</argsstring>
         <name>calculateJacobiCoefficients</name>
+        <qualifiedname>GQCP::AP1roGJacobiOrbitalOptimizer::calculateJacobiCoefficients</qualifiedname>
         <reimplements refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1a1d0903ec685d348fc47027d6d2cfe0bd">calculateJacobiCoefficients</reimplements>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
@@ -368,6 +385,7 @@ The initial guess for the geminal coefficients is zero </para>
         <definition>double GQCP::AP1roGJacobiOrbitalOptimizer::calculateOptimalRotationAngle</definition>
         <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian, const size_t p, const size_t q) const override</argsstring>
         <name>calculateOptimalRotationAngle</name>
+        <qualifiedname>GQCP::AP1roGJacobiOrbitalOptimizer::calculateOptimalRotationAngle</qualifiedname>
         <reimplements refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1a88fb6f7fd3ce8670e540b1f1e0e896cf">calculateOptimalRotationAngle</reimplements>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
@@ -422,6 +440,7 @@ The initial guess for the geminal coefficients is zero </para>
         <definition>double GQCP::AP1roGJacobiOrbitalOptimizer::calculateScalarFunctionChange</definition>
         <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian, const JacobiRotation &amp;jacobi_rotation) const override</argsstring>
         <name>calculateScalarFunctionChange</name>
+        <qualifiedname>GQCP::AP1roGJacobiOrbitalOptimizer::calculateScalarFunctionChange</qualifiedname>
         <reimplements refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1adb16cd498fedf675dbc0ef1f9c538757">calculateScalarFunctionChange</reimplements>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
@@ -483,6 +502,7 @@ The initial guess for the geminal coefficients is zero </para>
         <definition>void GQCP::AP1roGJacobiOrbitalOptimizer::prepareJacobiSpecificConvergenceChecking</definition>
         <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian) override</argsstring>
         <name>prepareJacobiSpecificConvergenceChecking</name>
+        <qualifiedname>GQCP::AP1roGJacobiOrbitalOptimizer::prepareJacobiSpecificConvergenceChecking</qualifiedname>
         <reimplements refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1ab453b26fea4b3901b2483afa97b061b1">prepareJacobiSpecificConvergenceChecking</reimplements>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
@@ -503,6 +523,7 @@ The initial guess for the geminal coefficients is zero </para>
         <definition>double GQCP::AP1roGJacobiOrbitalOptimizer::electronicEnergy</definition>
         <argsstring>() const</argsstring>
         <name>electronicEnergy</name>
+        <qualifiedname>GQCP::AP1roGJacobiOrbitalOptimizer::electronicEnergy</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -522,15 +543,15 @@ The initial guess for the geminal coefficients is zero </para>
 <para>Note that, since this algorithm does not use the PSE Lagrangian, a rotation can jump out of the AP1roG manifold, so this algorithm should be used with care </para>
     </detaileddescription>
     <inheritancegraph>
-      <node id="3">
-        <label>GQCP::BaseOrbitalOptimizer</label>
-        <link refid="class_g_q_c_p_1_1_base_orbital_optimizer"/>
-      </node>
       <node id="1">
         <label>GQCP::AP1roGJacobiOrbitalOptimizer</label>
         <link refid="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="3">
+        <label>GQCP::BaseOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_base_orbital_optimizer"/>
       </node>
       <node id="2">
         <label>GQCP::JacobiOrbitalOptimizer</label>
@@ -540,15 +561,15 @@ The initial guess for the geminal coefficients is zero </para>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="3">
-        <label>GQCP::BaseOrbitalOptimizer</label>
-        <link refid="class_g_q_c_p_1_1_base_orbital_optimizer"/>
-      </node>
       <node id="1">
         <label>GQCP::AP1roGJacobiOrbitalOptimizer</label>
         <link refid="class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="3">
+        <label>GQCP::BaseOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_base_orbital_optimizer"/>
       </node>
       <node id="2">
         <label>GQCP::JacobiOrbitalOptimizer</label>

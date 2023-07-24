@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g" kind="class" language="C++" prot="public">
     <compoundname>GQCP::QCModel::AP1roG</compoundname>
     <includes refid="_q_c_model_2_geminals_2_a_p1ro_g_8hpp" local="no">AP1roG.hpp</includes>
@@ -9,6 +9,7 @@
         <definition>AP1roGGeminalCoefficients GQCP::QCModel::AP1roG::G</definition>
         <argsstring></argsstring>
         <name>G</name>
+        <qualifiedname>GQCP::QCModel::AP1roG::G</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -24,6 +25,7 @@
         <definition>GQCP::QCModel::AP1roG::AP1roG</definition>
         <argsstring>(const AP1roGGeminalCoefficients &amp;G)</argsstring>
         <name>AP1roG</name>
+        <qualifiedname>GQCP::QCModel::AP1roG::AP1roG</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients" kindref="compound">AP1roGGeminalCoefficients</ref> &amp;</type>
           <declname>G</declname>
@@ -51,6 +53,7 @@
         <definition>double GQCP::QCModel::AP1roG::calculateEnergy</definition>
         <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian) const</argsstring>
         <name>calculateEnergy</name>
+        <qualifiedname>GQCP::QCModel::AP1roG::calculateEnergy</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
           <declname>sq_hamiltonian</declname>
@@ -75,11 +78,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/AP1roG.hpp" line="127" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/AP1roG.hpp" bodystart="127" bodyend="127"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1a9c5154f7c663cea49b086ee367622579" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1a7d1c9b3faf303637c6f0d618895d90d2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; double &gt;</type>
-        <definition>ImplicitRankFourTensorSlice&lt;double&gt; GQCP::QCModel::AP1roG::calculatePSEJacobian</definition>
+        <definition>ImplicitRankFourTensorSlice&lt; double &gt; GQCP::QCModel::AP1roG::calculatePSEJacobian</definition>
         <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian) const</argsstring>
         <name>calculatePSEJacobian</name>
+        <qualifiedname>GQCP::QCModel::AP1roG::calculatePSEJacobian</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
           <declname>sq_hamiltonian</declname>
@@ -104,11 +108,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/AP1roG.hpp" line="134" column="33" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/AP1roG.hpp" bodystart="134" bodyend="134"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1ad711e91f6b4182ba8a7c4278ed6b70a8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1a6de18c205db011cd40e054dfbe1f3632" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients" kindref="compound">AP1roGGeminalCoefficients</ref> &amp;</type>
-        <definition>const AP1roGGeminalCoefficients&amp; GQCP::QCModel::AP1roG::geminalCoefficients</definition>
+        <definition>const AP1roGGeminalCoefficients &amp; GQCP::QCModel::AP1roG::geminalCoefficients</definition>
         <argsstring>() const</argsstring>
         <name>geminalCoefficients</name>
+        <qualifiedname>GQCP::QCModel::AP1roG::geminalCoefficients</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -125,6 +130,7 @@
         <definition>size_t GQCP::QCModel::AP1roG::numberOfElectronPairs</definition>
         <argsstring>() const</argsstring>
         <name>numberOfElectronPairs</name>
+        <qualifiedname>GQCP::QCModel::AP1roG::numberOfElectronPairs</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -141,6 +147,7 @@
         <definition>size_t GQCP::QCModel::AP1roG::numberOfSpatialOrbitals</definition>
         <argsstring>() const</argsstring>
         <name>numberOfSpatialOrbitals</name>
+        <qualifiedname>GQCP::QCModel::AP1roG::numberOfSpatialOrbitals</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -157,6 +164,7 @@
         <definition>OrbitalSpace GQCP::QCModel::AP1roG::orbitalSpace</definition>
         <argsstring>() const</argsstring>
         <name>orbitalSpace</name>
+        <qualifiedname>GQCP::QCModel::AP1roG::orbitalSpace</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -175,6 +183,7 @@
         <definition>double GQCP::QCModel::AP1roG::calculateEnergy</definition>
         <argsstring>(const AP1roGGeminalCoefficients &amp;G, const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian)</argsstring>
         <name>calculateEnergy</name>
+        <qualifiedname>GQCP::QCModel::AP1roG::calculateEnergy</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients" kindref="compound">AP1roGGeminalCoefficients</ref> &amp;</type>
           <declname>G</declname>
@@ -235,6 +244,7 @@
         <definition>double GQCP::QCModel::AP1roG::calculatePSECoordinateFunction</definition>
         <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian, const AP1roGGeminalCoefficients &amp;G, const size_t i, const size_t a)</argsstring>
         <name>calculatePSECoordinateFunction</name>
+        <qualifiedname>GQCP::QCModel::AP1roG::calculatePSECoordinateFunction</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
           <declname>sq_hamiltonian</declname>
@@ -300,6 +310,7 @@
         <definition>ImplicitMatrixSlice&lt; double &gt; GQCP::QCModel::AP1roG::calculatePSECoordinateFunctions</definition>
         <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian, const AP1roGGeminalCoefficients &amp;G)</argsstring>
         <name>calculatePSECoordinateFunctions</name>
+        <qualifiedname>GQCP::QCModel::AP1roG::calculatePSECoordinateFunctions</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
           <declname>sq_hamiltonian</declname>
@@ -341,6 +352,7 @@
         <definition>ImplicitRankFourTensorSlice&lt; double &gt; GQCP::QCModel::AP1roG::calculatePSEJacobian</definition>
         <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian, const AP1roGGeminalCoefficients &amp;G)</argsstring>
         <name>calculatePSEJacobian</name>
+        <qualifiedname>GQCP::QCModel::AP1roG::calculatePSEJacobian</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
           <declname>sq_hamiltonian</declname>
@@ -382,6 +394,7 @@
         <definition>MatrixFunction&lt; double &gt; GQCP::QCModel::AP1roG::callablePSEJacobian</definition>
         <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian, const size_t N_P)</argsstring>
         <name>callablePSEJacobian</name>
+        <qualifiedname>GQCP::QCModel::AP1roG::callablePSEJacobian</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
           <declname>sq_hamiltonian</declname>
@@ -423,6 +436,7 @@
         <definition>VectorFunction&lt; double &gt; GQCP::QCModel::AP1roG::callablePSECoordinateFunctions</definition>
         <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian, const size_t N_P)</argsstring>
         <name>callablePSECoordinateFunctions</name>
+        <qualifiedname>GQCP::QCModel::AP1roG::callablePSECoordinateFunctions</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
           <declname>sq_hamiltonian</declname>
@@ -464,6 +478,7 @@
         <definition>double GQCP::QCModel::AP1roG::calculatePSEJacobianElement</definition>
         <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian, const AP1roGGeminalCoefficients &amp;G, const size_t i, const size_t a, const size_t j, const size_t b)</argsstring>
         <name>calculatePSEJacobianElement</name>
+        <qualifiedname>GQCP::QCModel::AP1roG::calculatePSEJacobianElement</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
           <declname>sq_hamiltonian</declname>
@@ -568,12 +583,12 @@
       <member refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1a5a45133f35275f9c34da2708b34ac52b" prot="public" virt="non-virtual"><scope>GQCP::QCModel::AP1roG</scope><name>calculatePSECoordinateFunction</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1ab67d87d4990776227871e6b68ea726cc" prot="public" virt="non-virtual"><scope>GQCP::QCModel::AP1roG</scope><name>calculatePSECoordinateFunctions</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1a855fc777447b989dcd4b0deb153dd1b1" prot="public" virt="non-virtual"><scope>GQCP::QCModel::AP1roG</scope><name>calculatePSEJacobian</name></member>
-      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1a9c5154f7c663cea49b086ee367622579" prot="public" virt="non-virtual"><scope>GQCP::QCModel::AP1roG</scope><name>calculatePSEJacobian</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1a7d1c9b3faf303637c6f0d618895d90d2" prot="public" virt="non-virtual"><scope>GQCP::QCModel::AP1roG</scope><name>calculatePSEJacobian</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1a153cceaa3e19f3387fc703f468de09ae" prot="public" virt="non-virtual"><scope>GQCP::QCModel::AP1roG</scope><name>calculatePSEJacobianElement</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1ac5bb3c054474a28f82e40cf4b3c1b940" prot="public" virt="non-virtual"><scope>GQCP::QCModel::AP1roG</scope><name>callablePSECoordinateFunctions</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1a79195d8abb1f7da152ada5b5b05909b0" prot="public" virt="non-virtual"><scope>GQCP::QCModel::AP1roG</scope><name>callablePSEJacobian</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1ac954d184a0921503e6f8ca70fa64a6e4" prot="private" virt="non-virtual"><scope>GQCP::QCModel::AP1roG</scope><name>G</name></member>
-      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1ad711e91f6b4182ba8a7c4278ed6b70a8" prot="public" virt="non-virtual"><scope>GQCP::QCModel::AP1roG</scope><name>geminalCoefficients</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1a6de18c205db011cd40e054dfbe1f3632" prot="public" virt="non-virtual"><scope>GQCP::QCModel::AP1roG</scope><name>geminalCoefficients</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1adc626240acb081ffeaada4b64f49ee16" prot="public" virt="non-virtual"><scope>GQCP::QCModel::AP1roG</scope><name>numberOfElectronPairs</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1af37536e8ca03b59472cee79abfd9f052" prot="public" virt="non-virtual"><scope>GQCP::QCModel::AP1roG</scope><name>numberOfSpatialOrbitals</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_1a0b336c18af4c184591021bcfdd5d3f3a" prot="public" virt="non-virtual"><scope>GQCP::QCModel::AP1roG</scope><name>orbitalSpace</name></member>

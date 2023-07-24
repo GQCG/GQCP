@@ -1,0 +1,195 @@
+\hypertarget{_libcint_interfacer_8hpp_source}{}\doxysection{Libcint\+Interfacer.\+hpp}
+\label{_libcint_interfacer_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintInterfacer.hpp}}
+\mbox{\hyperlink{_libcint_interfacer_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_g_t_o_shell_8hpp}{Basis/ScalarBasis/GTOShell.hpp}}"{}}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_shell_set_8hpp}{Basis/ScalarBasis/ShellSet.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_molecule_8hpp}{Molecule/Molecule.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_coulomb_repulsion_operator_8hpp}{Operator/FirstQuantized/CoulombRepulsionOperator.hpp}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_electronic_dipole_operator_8hpp}{Operator/FirstQuantized/ElectronicDipoleOperator.hpp}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_kinetic_operator_8hpp}{Operator/FirstQuantized/KineticOperator.hpp}}"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_nuclear_attraction_operator_8hpp}{Operator/FirstQuantized/NuclearAttractionOperator.hpp}}"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_overlap_operator_8hpp}{Operator/FirstQuantized/OverlapOperator.hpp}}"{}}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#include\ <cint.h>}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00039\ \textcolor{comment}{\ *\ \ The\ following\ functions\ are\ not\ inside\ the\ include\ header\ <cint.h>,\ so\ we\ should\ define\ them\ in\ order\ to\ be\ able\ to\ use\ them\ in\ our\ source\ code}}
+\DoxyCodeLine{00040\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00041\ FINT\ \mbox{\hyperlink{_libcint_interfacer_8hpp_a6c2a186dcf0acac2b41dffd37416a24e}{cint1e\_kin\_cart}}(\textcolor{keywordtype}{double}*\ buf,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}*\ shls,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}*\ atm,\ \textcolor{keywordtype}{int}\ natm,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}*\ bas,\ \textcolor{keywordtype}{int}\ nbas,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}*\ env);\ \ \ \textcolor{comment}{//\ kinetic\ energy}}
+\DoxyCodeLine{00042\ FINT\ \mbox{\hyperlink{_libcint_interfacer_8hpp_a486df8072a50991766c43c2c17e4caf3}{cint1e\_nuc\_cart}}(\textcolor{keywordtype}{double}*\ buf,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}*\ shls,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}*\ atm,\ \textcolor{keywordtype}{int}\ natm,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}*\ bas,\ \textcolor{keywordtype}{int}\ nbas,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}*\ env);\ \ \ \textcolor{comment}{//\ nuclear\ attraction\ energy}}
+\DoxyCodeLine{00043\ FINT\ \mbox{\hyperlink{_libcint_interfacer_8hpp_a92f6330fd89e1bb23c9805d67234a35d}{cint1e\_ovlp\_cart}}(\textcolor{keywordtype}{double}*\ buf,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}*\ shls,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}*\ atm,\ \textcolor{keywordtype}{int}\ natm,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}*\ bas,\ \textcolor{keywordtype}{int}\ nbas,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}*\ env);\ \ \textcolor{comment}{//\ overlap}}
+\DoxyCodeLine{00044\ FINT\ \mbox{\hyperlink{_libcint_interfacer_8hpp_a51f59c02f04c9ded61396b886fe2dd21}{cint1e\_r\_cart}}(\textcolor{keywordtype}{double}*\ buf,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}*\ shls,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}*\ atm,\ \textcolor{keywordtype}{int}\ natm,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}*\ bas,\ \textcolor{keywordtype}{int}\ nbas,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}*\ env);\ \ \ \ \ \textcolor{comment}{//\ dipole\ integrals}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \}\ \ \textcolor{comment}{//\ extern\ "{}C"{}}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{inline}\ FINT\ \mbox{\hyperlink{namespace_g_q_c_p_a313d88a853d27a55e70b3f440021391a}{cint2e\_cart\_const}}(\textcolor{keywordtype}{double}*\ buf,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}*\ shls,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}*\ atm,\ \textcolor{keywordtype}{int}\ natm,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}*\ bas,\ \textcolor{keywordtype}{int}\ nbas,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}*\ env,\ \textcolor{keyword}{const}\ CINTOpt*\ opt)\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordflow}{return}\ cint2e\_cart(buf,\ \textcolor{keyword}{const\_cast<}\textcolor{keywordtype}{int}*\textcolor{keyword}{>}(shls),\ \textcolor{keyword}{const\_cast<}\textcolor{keywordtype}{int}*\textcolor{keyword}{>}(atm),\ natm,\ \textcolor{keyword}{const\_cast<}\textcolor{keywordtype}{int}*\textcolor{keyword}{>}(bas),\ nbas,\ \textcolor{keyword}{const\_cast<}\textcolor{keywordtype}{double}*\textcolor{keyword}{>}(env),\ \textcolor{keyword}{const\_cast<}CINTOpt*\textcolor{keyword}{>}(opt));}
+\DoxyCodeLine{00055\ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_g_q_c_p_a6168567e0dc79ba35c9e6b923efee96f}{cint2e\_cart\_optimizer\_const}}(CINTOpt**\ opt,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}*\ atm,\ \textcolor{keywordtype}{int}\ natm,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}*\ bas,\ \textcolor{keywordtype}{int}\ nbas,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}*\ env)\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ cint2e\_cart\_optimizer(opt,\ \textcolor{keyword}{const\_cast<}\textcolor{keywordtype}{int}*\textcolor{keyword}{>}(atm),\ natm,\ \textcolor{keyword}{const\_cast<}\textcolor{keywordtype}{int}*\textcolor{keyword}{>}(bas),\ nbas,\ \textcolor{keyword}{const\_cast<}\textcolor{keywordtype}{double}*\textcolor{keyword}{>}(env));}
+\DoxyCodeLine{00059\ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00062\ \textcolor{comment}{\ *\ \ Aliases\ for\ functions\ that\ are\ used\ in\ Libcint}}
+\DoxyCodeLine{00063\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_g_q_c_p_abf3608f80cd58b5801026056ec5edef0}{Libcint1eFunction}}\ =\ std::function<int(\textcolor{keywordtype}{double}*,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}*,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}*,\ \textcolor{keywordtype}{int},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}*,\ \textcolor{keywordtype}{int},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}*)>;}
+\DoxyCodeLine{00066\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_g_q_c_p_ab9e82f4c5fc3ac406b005fcbea227dfb}{Libcint2eFunction}}\ =\ std::function<int(\textcolor{keywordtype}{double}*,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}*,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}*,\ \textcolor{keywordtype}{int},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}*,\ \textcolor{keywordtype}{int},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}*,\ \textcolor{keyword}{const}\ CINTOpt*)>;}
+\DoxyCodeLine{00067\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_g_q_c_p_ac6643c2ed5e21d07597ca1dfaf5881c7}{Libcint2eOptimizerFunction}}\ =\ std::function<void(CINTOpt**,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}*,\ \textcolor{keywordtype}{int},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}*,\ \textcolor{keywordtype}{int},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}*)>;}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00071\ \textcolor{comment}{\ *\ \ Forward\ declarations}}
+\DoxyCodeLine{00072\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{keyword}{namespace\ }libcint\ \{}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1libcint_1_1_raw_container}{RawContainer}};}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \}\ \ \textcolor{comment}{//\ namespace\ libcint}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00086\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_libcint_interfacer}{LibcintInterfacer}}\ \{}
+\DoxyCodeLine{00087\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{comment}{//\ PUBLIC\ METHODS\ -\/\ INTERFACING}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00095\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1libcint_1_1_raw_container}{libcint::RawContainer}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_interfacer_a9d42e7a68062a1218cb797fa87f9be36}{convert}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{ShellSet<GTOShell>}}\&\ shell\_set)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_interfacer_a20b8176235c9cac423b7d3a13eef690e}{setCommonOrigin}}(\mbox{\hyperlink{class_g_q_c_p_1_1libcint_1_1_raw_container}{libcint::RawContainer}}\&\ raw\_container,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Vector<double,\ 3>}}\&\ origin)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{comment}{//\ \ PUBLIC\ METHODS\ -\/\ INTEGRAL\ FUNCTIONS}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00113\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_abf3608f80cd58b5801026056ec5edef0}{Libcint1eFunction}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_interfacer_a98c802563352cc392c100e92a1653e2d}{oneElectronFunction}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_dipole_operator}{ElectronicDipoleOperator}}\&\ op)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_libcint_interfacer_8hpp_a51f59c02f04c9ded61396b886fe2dd21}{cint1e\_r\_cart}};\ \}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00120\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_abf3608f80cd58b5801026056ec5edef0}{Libcint1eFunction}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_interfacer_af49518493a037acddc67fdc17b8f3241}{oneElectronFunction}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_kinetic_operator}{KineticOperator}}\&\ op)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_libcint_interfacer_8hpp_a6c2a186dcf0acac2b41dffd37416a24e}{cint1e\_kin\_cart}};\ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00127\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_abf3608f80cd58b5801026056ec5edef0}{Libcint1eFunction}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_interfacer_a746cb52ff139ef3ed144c13a80bbdf85}{oneElectronFunction}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_attraction_operator}{NuclearAttractionOperator}}\&\ op)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_libcint_interfacer_8hpp_a486df8072a50991766c43c2c17e4caf3}{cint1e\_nuc\_cart}};\ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00134\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_abf3608f80cd58b5801026056ec5edef0}{Libcint1eFunction}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_interfacer_ac8e5ca75e5472adae5f0d943b890b278}{oneElectronFunction}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_overlap_operator}{OverlapOperator}}\&\ op)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_libcint_interfacer_8hpp_a92f6330fd89e1bb23c9805d67234a35d}{cint1e\_ovlp\_cart}};\ \}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00141\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_ab9e82f4c5fc3ac406b005fcbea227dfb}{Libcint2eFunction}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_interfacer_ac12ad664a5da14d88fe081e84b196b87}{twoElectronFunction}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{CoulombRepulsionOperator}}\&\ op)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_g_q_c_p_a313d88a853d27a55e70b3f440021391a}{cint2e\_cart\_const}};\ \}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00148\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_ac6643c2ed5e21d07597ca1dfaf5881c7}{Libcint2eOptimizerFunction}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_interfacer_abed14f8b3e85fad265ef1d569ef4eae6}{twoElectronOptimizerFunction}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{CoulombRepulsionOperator}}\&\ op)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_g_q_c_p_a6168567e0dc79ba35c9e6b923efee96f}{cint2e\_cart\_optimizer\_const}};\ \}}
+\DoxyCodeLine{00149\ \};}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \textcolor{keyword}{namespace\ }libcint\ \{}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00158\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ ptr\_common\_orig\ =\ PTR\_COMMON\_ORIG;\ \ \textcolor{comment}{//\ an\ offset\ for\ the\ origin\ of\ vector\ operators}}
+\DoxyCodeLine{00159\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ ptr\_env\_start\ =\ PTR\_ENV\_START;\ \ \ \ \ \ \textcolor{comment}{//\ an\ offset\ such\ that\ libcint\ can\ retrieve\ the\ correct\ index\ inside\ the\ environment,\ starts\ at\ 20}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ atm\_slots\ =\ ATM\_SLOTS;\ \ \textcolor{comment}{//\ the\ number\ of\ 'slots'\ (i.e.\ 'members')\ for\ an\ atom}}
+\DoxyCodeLine{00162\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ charge\_of\ =\ CHARGE\_OF;\ \ \textcolor{comment}{//\ slot\ offset\ for\ atomic\ charge}}
+\DoxyCodeLine{00163\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ ptr\_coord\ =\ PTR\_COORD;\ \ \textcolor{comment}{//\ slot\ offset\ for\ a\ 'pointer'\ of\ the\ atom\ inside\ the\ libcint\ environment}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ bas\_slots\ =\ BAS\_SLOTS;\ \ \textcolor{comment}{//\ the\ number\ of\ 'slots'\ (i.e.\ 'members')\ for\ a\ basis\ function}}
+\DoxyCodeLine{00167\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ atom\_of\ =\ ATOM\_OF;\ \ \ \ \ \ \textcolor{comment}{//\ slot\ offset\ for\ the\ corresponding\ atom\ in\ the\ basis\ function}}
+\DoxyCodeLine{00168\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ ang\_of\ =\ ANG\_OF;\ \ \ \ \ \ \ \ \textcolor{comment}{//\ slot\ offset\ for\ the\ angular\ momentum}}
+\DoxyCodeLine{00169\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ nprim\_of\ =\ NPRIM\_OF;\ \ \ \ \textcolor{comment}{//\ slot\ offset\ for\ the\ number\ of\ primitives\ inside\ the\ basis\ function}}
+\DoxyCodeLine{00170\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ nctr\_of\ =\ NCTR\_OF;\ \ \ \ \ \ \textcolor{comment}{//\ slot\ offset\ for\ the\ number\ of\ contractions}}
+\DoxyCodeLine{00171\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ ptr\_exp\ =\ PTR\_EXP;\ \ \ \ \ \ \textcolor{comment}{//\ slot\ offset\ for\ a\ 'pointer'\ to\ the\ exponents\ of\ the\ shell\ inside\ the\ libcint\ environment}}
+\DoxyCodeLine{00172\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ ptr\_coeff\ =\ PTR\_COEFF;\ \ \textcolor{comment}{//\ slot\ offset\ for\ a\ 'pointer'\ to\ the\ contraction\ coefficients\ inside\ the\ libcint\ environment}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00180\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1libcint_1_1_raw_container}{RawContainer}}\ \{}
+\DoxyCodeLine{00181\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keywordtype}{int}\ natm;\ \ \textcolor{comment}{//\ number\ of\ atoms}}
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordtype}{int}\ nbf;\ \ \ \textcolor{comment}{//\ number\ of\ basis\ functions}}
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keywordtype}{int}\ nsh;\ \ \ \textcolor{comment}{//\ the\ number\ of\ shells}}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keywordtype}{int}*\ libcint\_atm;\ \ \ \ \ \textcolor{comment}{//\ information\ about\ the\ atoms}}
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keywordtype}{int}*\ libcint\_bas;\ \ \ \ \ \textcolor{comment}{//\ information\ about\ the\ basis\ functions}}
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keywordtype}{double}*\ libcint\_env;\ \ \textcolor{comment}{//\ a\ raw\ block\ of\ doubles\ in\ which\ libcint\ (probably)\ places\ intermediary\ calculations}}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00193\ \textcolor{comment}{\ \ \ \ \ *\ \ CONSTRUCTORS}}
+\DoxyCodeLine{00194\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00203\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1libcint_1_1_raw_container_a0c166064cf5c7a6081097fef06855795}{RawContainer}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ natm,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ nbf,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ nsh)\ :}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ natm\ \{static\_cast<int>(natm)\},}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ nbf\ \{static\_cast<int>(nbf)\},}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ nsh\ \{static\_cast<int>(nsh)\},}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ libcint\_atm\ \{new\ int[this-\/>natm\ *\ atm\_slots]\},}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ libcint\_bas\ \{new\ int[this-\/>nbf\ *\ bas\_slots]\},}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ libcint\_env\ \{new\ double[10000]\}\ \{\}}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00213\ \textcolor{comment}{\ \ \ \ \ *\ \ DESTRUCTOR}}
+\DoxyCodeLine{00214\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00219\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1libcint_1_1_raw_container_a93b0c05d09caa6c0465bf6830d55a86b}{\string~RawContainer}}()\ \{}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}[]\ this-\/>libcint\_atm;}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}[]\ this-\/>libcint\_bas;}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}[]\ this-\/>libcint\_env;}
+\DoxyCodeLine{00223\ \ \ \ \ \}}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00227\ \textcolor{comment}{\ \ \ \ \ *\ \ PUBLIC\ METHODS}}
+\DoxyCodeLine{00228\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00233\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}*\ \mbox{\hyperlink{class_g_q_c_p_1_1libcint_1_1_raw_container_a32577dca62f7f76dd2944d9b99d354c7}{atmData}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>libcint\_atm;\ \}}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00238\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}*\ \mbox{\hyperlink{class_g_q_c_p_1_1libcint_1_1_raw_container_a54c18555c4f20096d76aaeb3010dcc56}{basData}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>libcint\_bas;\ \}}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}*\ \mbox{\hyperlink{class_g_q_c_p_1_1libcint_1_1_raw_container_ae52a151c84e04f3902b89048afaa0551}{envData}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>libcint\_env;\ \}}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00248\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_g_q_c_p_1_1libcint_1_1_raw_container_a624c001d1a870c14fe2368fb98d2927b}{numberOfAtoms}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>natm;\ \}}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00253\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_g_q_c_p_1_1libcint_1_1_raw_container_aeb5441c826159782cfbe71f119c70f18}{numberOfBasisFunctions}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>nbf;\ \}}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_g_q_c_p_1_1libcint_1_1_raw_container_aaba9c0adb8f657706abee6c266fa1054}{numberOfShells}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>nsh;\ \}}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00261\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00262\ \textcolor{comment}{\ \ \ \ \ *\ \ FRIENDS}}
+\DoxyCodeLine{00263\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00264\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_libcint_interfacer}{GQCP::LibcintInterfacer}};}
+\DoxyCodeLine{00265\ \};}
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \}\ \ \textcolor{comment}{//\ namespace\ libcint}}
+\DoxyCodeLine{00269\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

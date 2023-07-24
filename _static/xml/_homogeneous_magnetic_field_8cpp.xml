@@ -1,29 +1,12 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="_homogeneous_magnetic_field_8cpp" kind="file" language="C++">
     <compoundname>HomogeneousMagneticField.cpp</compoundname>
     <includes refid="_homogeneous_magnetic_field_8hpp" local="yes">Physical/HomogeneousMagneticField.hpp</includes>
     <incdepgraph>
-      <node id="11">
-        <label>boost/algorithm/string.hpp</label>
-      </node>
-      <node id="2">
-        <label>Physical/HomogeneousMagneticField.hpp</label>
-        <link refid="_homogeneous_magnetic_field_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="5">
-        <label>Utilities/Eigen.hpp</label>
-        <link refid="_eigen_8hpp"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-      <node id="12">
-        <label>fstream</label>
-      </node>
-      <node id="6">
-        <label>Eigen/Dense</label>
+      <node id="4">
+        <label>Mathematical/Functions/CartesianDirection.hpp</label>
+        <link refid="_cartesian_direction_8hpp"/>
       </node>
       <node id="3">
         <label>Mathematical/Representation/Matrix.hpp</label>
@@ -45,14 +28,17 @@
         <childnode refid="14" relation="include">
         </childnode>
       </node>
-      <node id="8">
-        <label>Utilities/type_traits.hpp</label>
-        <link refid="type__traits_8hpp"/>
-        <childnode refid="9" relation="include">
+      <node id="2">
+        <label>Physical/HomogeneousMagneticField.hpp</label>
+        <link refid="_homogeneous_magnetic_field_8hpp"/>
+        <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="14">
-        <label>vector</label>
+      <node id="5">
+        <label>Utilities/Eigen.hpp</label>
+        <link refid="_eigen_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
       </node>
       <node id="7">
         <label>Utilities/aliases.hpp</label>
@@ -62,11 +48,11 @@
         <childnode refid="10" relation="include">
         </childnode>
       </node>
-      <node id="10">
-        <label>cstdlib</label>
-      </node>
-      <node id="13">
-        <label>iostream</label>
+      <node id="8">
+        <label>Utilities/type_traits.hpp</label>
+        <link refid="type__traits_8hpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
       </node>
       <node id="1">
         <label>/__w/GQCP/GQCP/gqcp/src/Physical/HomogeneousMagneticField.cpp</label>
@@ -74,12 +60,26 @@
         <childnode refid="2" relation="include">
         </childnode>
       </node>
+      <node id="6">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="11">
+        <label>boost/algorithm/string.hpp</label>
+      </node>
+      <node id="10">
+        <label>cstdlib</label>
+      </node>
+      <node id="12">
+        <label>fstream</label>
+      </node>
+      <node id="13">
+        <label>iostream</label>
+      </node>
       <node id="9">
         <label>type_traits</label>
       </node>
-      <node id="4">
-        <label>Mathematical/Functions/CartesianDirection.hpp</label>
-        <link refid="_cartesian_direction_8hpp"/>
+      <node id="14">
+        <label>vector</label>
       </node>
     </incdepgraph>
     <innernamespace refid="namespace_g_q_c_p">GQCP</innernamespace>

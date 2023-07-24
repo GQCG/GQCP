@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_compound_convergence_criterion" kind="class" language="C++" prot="public">
     <compoundname>GQCP::CompoundConvergenceCriterion</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_convergence_criterion" prot="public" virt="non-virtual">GQCP::ConvergenceCriterion&lt; _Environment &gt;</basecompoundref>
@@ -15,6 +15,7 @@
         <definition>using GQCP::CompoundConvergenceCriterion&lt; _Environment &gt;::Environment =  _Environment</definition>
         <argsstring></argsstring>
         <name>Environment</name>
+        <qualifiedname>GQCP::CompoundConvergenceCriterion::Environment</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -28,6 +29,7 @@
         <definition>using GQCP::CompoundConvergenceCriterion&lt; _Environment &gt;::Self =  CompoundConvergenceCriterion&lt;Environment&gt;</definition>
         <argsstring></argsstring>
         <name>Self</name>
+        <qualifiedname>GQCP::CompoundConvergenceCriterion::Self</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -43,6 +45,7 @@
         <definition>std::vector&lt;std::shared_ptr&lt;ConvergenceCriterion&lt;Environment&gt; &gt; &gt; GQCP::CompoundConvergenceCriterion&lt; _Environment &gt;::criteria</definition>
         <argsstring></argsstring>
         <name>criteria</name>
+        <qualifiedname>GQCP::CompoundConvergenceCriterion::criteria</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -66,6 +69,7 @@
         <definition>GQCP::CompoundConvergenceCriterion&lt; _Environment &gt;::CompoundConvergenceCriterion</definition>
         <argsstring>(const C1 &amp;criterion1, const C2 &amp;criterion2)</argsstring>
         <name>CompoundConvergenceCriterion</name>
+        <qualifiedname>GQCP::CompoundConvergenceCriterion::CompoundConvergenceCriterion</qualifiedname>
         <param>
           <type>const C1 &amp;</type>
           <declname>criterion1</declname>
@@ -106,6 +110,7 @@
         <definition>std::string GQCP::CompoundConvergenceCriterion&lt; _Environment &gt;::description</definition>
         <argsstring>() const override</argsstring>
         <name>description</name>
+        <qualifiedname>GQCP::CompoundConvergenceCriterion::description</qualifiedname>
         <reimplements refid="class_g_q_c_p_1_1_convergence_criterion_1a5d2993454005779f8a6376c63aec430c">description</reimplements>
         <briefdescription>
         </briefdescription>
@@ -123,6 +128,7 @@
         <definition>bool GQCP::CompoundConvergenceCriterion&lt; _Environment &gt;::isFulfilled</definition>
         <argsstring>(Environment &amp;environment) override</argsstring>
         <name>isFulfilled</name>
+        <qualifiedname>GQCP::CompoundConvergenceCriterion::isFulfilled</qualifiedname>
         <reimplements refid="class_g_q_c_p_1_1_convergence_criterion_1a84503e9b2b4bdd01188f21be512bc281">isFulfilled</reimplements>
         <param>
           <type><ref refid="class_g_q_c_p_1_1_compound_convergence_criterion_1ae9036ef3b116abfbfd7a9193ab294070" kindref="member">Environment</ref> &amp;</type>
@@ -158,6 +164,7 @@
         <definition>Self GQCP::CompoundConvergenceCriterion&lt; _Environment &gt;::add</definition>
         <argsstring>(const C &amp;criterion)</argsstring>
         <name>add</name>
+        <qualifiedname>GQCP::CompoundConvergenceCriterion::add</qualifiedname>
         <param>
           <type>const C &amp;</type>
           <declname>criterion</declname>
@@ -188,6 +195,7 @@
         <definition>size_t GQCP::CompoundConvergenceCriterion&lt; _Environment &gt;::count</definition>
         <argsstring>() const</argsstring>
         <name>count</name>
+        <qualifiedname>GQCP::CompoundConvergenceCriterion::count</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -216,27 +224,27 @@
 </para>
     </detaileddescription>
     <inheritancegraph>
-      <node id="2">
-        <label>GQCP::ConvergenceCriterion&lt; _Environment &gt;</label>
-        <link refid="class_g_q_c_p_1_1_convergence_criterion"/>
-      </node>
       <node id="1">
         <label>GQCP::CompoundConvergenceCriterion&lt; _Environment &gt;</label>
         <link refid="class_g_q_c_p_1_1_compound_convergence_criterion"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::ConvergenceCriterion&lt; _Environment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_convergence_criterion"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="2">
-        <label>GQCP::ConvergenceCriterion&lt; _Environment &gt;</label>
-        <link refid="class_g_q_c_p_1_1_convergence_criterion"/>
-      </node>
       <node id="1">
         <label>GQCP::CompoundConvergenceCriterion&lt; _Environment &gt;</label>
         <link refid="class_g_q_c_p_1_1_compound_convergence_criterion"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::ConvergenceCriterion&lt; _Environment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_convergence_criterion"/>
       </node>
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/CompoundConvergenceCriterion.hpp" line="38" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/CompoundConvergenceCriterion.hpp" bodystart="39" bodyend="124"/>

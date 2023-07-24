@@ -1,0 +1,70 @@
+\hypertarget{_c_c_d_intermediates_update_8hpp_source}{}\doxysection{CCDIntermediates\+Update.\+hpp}
+\label{_c_c_d_intermediates_update_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCDIntermediatesUpdate.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCDIntermediatesUpdate.hpp}}
+\mbox{\hyperlink{_c_c_d_intermediates_update_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_algorithm_2_step_8hpp}{Mathematical/Algorithm/Step.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_c_s_d_environment_8hpp}{QCMethod/CC/CCSDEnvironment.hpp}}"{}}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar>}
+\DoxyCodeLine{00034\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_intermediates_update}{CCDIntermediatesUpdate}}:}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_step}{Step}}<CCSDEnvironment<\_Scalar>>\ \{}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_intermediates_update_ae819cc38f90d5f808990e10127b3ccd6}{Scalar}}\ =\ \_Scalar;}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment}{Environment}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment}{CCSDEnvironment<Scalar>}};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00044\ \textcolor{comment}{\ \ \ \ \ *\ \ OVERRIDDEN\ PUBLIC\ METHODS}}
+\DoxyCodeLine{00045\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00050\ \ \ \ \ std::string\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_intermediates_update_a25cb1458843fd03b10e323a9201e9cff}{description}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Calculate\ the\ current\ CCD\ intermediates\ as\ described\ in\ Stanton1991."{}};}
+\DoxyCodeLine{00052\ \ \ \ \ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_intermediates_update_a3eceef76249a2b0acdb2f1d966389629}{execute}}(\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment}{Environment}}\&\ environment)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Extract\ and\ prepare\ some\ variables.}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ f\ =\ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a96da3b098a302ff00696091b168cba8e}{f}};}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ V\_A\ =\ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a288b0979b63efb8eb9aadd045f8c93aa}{V\_A}};}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ t2\ =\ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a3a005b633746ec034014da148dfae1e5}{t2\_amplitudes}}.back();}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ other\ CCD\ intermediates\ and\ push\ them\ to\ the\ environment.}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a72da8af53a68fa131224b46dc95c6d38}{F1}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_a0f85caa6a5c07d51003e2b25f53b1845}{QCModel::CCD<Scalar>::calculateF1}}(f,\ V\_A,\ t2);}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_abe71efd4652b9bd6c52bb8fbba7c5a8a}{F2}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_af787246f9e56a90eacc24db8f049606e}{QCModel::CCD<Scalar>::calculateF2}}(f,\ V\_A,\ t2);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_af3bf999f40eb1f4019f4f6cedaf68497}{W1}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_a554257c3d8270648814fed2412381418}{QCModel::CCD<Scalar>::calculateW1}}(V\_A,\ t2);}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a3b8177e76f48c0c23672614df1d655b9}{W2}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_a135ee877f75cd2aa4666f15ffcf25118}{QCModel::CCD<Scalar>::calculateW2}}(V\_A,\ t2);}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_aebad34c0e75242395ac182c8acf8f76c}{W3}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_ae39be7a177f3b78fdb80043e9503aa84}{QCModel::CCD<Scalar>::calculateW3}}(V\_A,\ t2);}
+\DoxyCodeLine{00073\ \ \ \ \ \}}
+\DoxyCodeLine{00074\ \};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

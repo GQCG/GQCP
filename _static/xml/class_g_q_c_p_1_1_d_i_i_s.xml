@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_d_i_i_s" kind="class" language="C++" prot="public">
     <compoundname>GQCP::DIIS</compoundname>
     <includes refid="_d_i_i_s_8hpp" local="no">DIIS.hpp</includes>
@@ -14,6 +14,7 @@
         <definition>using GQCP::DIIS&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
         <argsstring></argsstring>
         <name>Scalar</name>
+        <qualifiedname>GQCP::DIIS::Scalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -24,7 +25,7 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="class_g_q_c_p_1_1_d_i_i_s_1afc4b6a0b711eafeeb3740780eb7f8a9f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_d_i_i_s_1a60b91c219acac53eab5f3e6f3b32a34d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Subject</type>
@@ -32,14 +33,15 @@
         </templateparamlist>
         <type>Subject</type>
         <definition>Subject GQCP::DIIS&lt; _Scalar &gt;::accelerate</definition>
-        <argsstring>(const std::vector&lt; Subject &gt; &amp;subjects, const std::vector&lt; VectorX&lt; Scalar &gt;&gt; &amp;errors) const</argsstring>
+        <argsstring>(const std::vector&lt; Subject &gt; &amp;subjects, const std::vector&lt; VectorX&lt; Scalar &gt; &gt; &amp;errors) const</argsstring>
         <name>accelerate</name>
+        <qualifiedname>GQCP::DIIS::accelerate</qualifiedname>
         <param>
           <type>const std::vector&lt; Subject &gt; &amp;</type>
           <declname>subjects</declname>
         </param>
         <param>
-          <type>const std::vector&lt; <ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; <ref refid="class_g_q_c_p_1_1_d_i_i_s_1aa101fd6c8ab281acbf34f9d168444ff8" kindref="member">Scalar</ref> &gt;&gt; &amp;</type>
+          <type>const std::vector&lt; <ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; <ref refid="class_g_q_c_p_1_1_d_i_i_s_1aa101fd6c8ab281acbf34f9d168444ff8" kindref="member">Scalar</ref> &gt; &gt; &amp;</type>
           <declname>errors</declname>
         </param>
         <briefdescription>
@@ -62,13 +64,14 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Accelerator/DIIS.hpp" line="52" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Accelerator/DIIS.hpp" bodystart="52" bodyend="62"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_d_i_i_s_1ada680f4053f5b2f63d4f0f3cfdec45fa" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_d_i_i_s_1a1a0f40c40fe98df7d68fab5bd3851a1e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; <ref refid="class_g_q_c_p_1_1_d_i_i_s_1aa101fd6c8ab281acbf34f9d168444ff8" kindref="member">Scalar</ref> &gt;</type>
-        <definition>VectorX&lt;Scalar&gt; GQCP::DIIS&lt; _Scalar &gt;::calculateDIISCoefficients</definition>
-        <argsstring>(const std::vector&lt; VectorX&lt; Scalar &gt;&gt; &amp;errors) const</argsstring>
+        <definition>VectorX&lt; Scalar &gt; GQCP::DIIS&lt; _Scalar &gt;::calculateDIISCoefficients</definition>
+        <argsstring>(const std::vector&lt; VectorX&lt; Scalar &gt; &gt; &amp;errors) const</argsstring>
         <name>calculateDIISCoefficients</name>
+        <qualifiedname>GQCP::DIIS::calculateDIISCoefficients</qualifiedname>
         <param>
-          <type>const std::vector&lt; <ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; <ref refid="class_g_q_c_p_1_1_d_i_i_s_1aa101fd6c8ab281acbf34f9d168444ff8" kindref="member">Scalar</ref> &gt;&gt; &amp;</type>
+          <type>const std::vector&lt; <ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; <ref refid="class_g_q_c_p_1_1_d_i_i_s_1aa101fd6c8ab281acbf34f9d168444ff8" kindref="member">Scalar</ref> &gt; &gt; &amp;</type>
           <declname>errors</declname>
         </param>
         <briefdescription>
@@ -107,8 +110,8 @@
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Accelerator/DIIS.hpp" line="37" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Accelerator/DIIS.hpp" bodystart="37" bodyend="98"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_d_i_i_s_1afc4b6a0b711eafeeb3740780eb7f8a9f" prot="public" virt="non-virtual"><scope>GQCP::DIIS</scope><name>accelerate</name></member>
-      <member refid="class_g_q_c_p_1_1_d_i_i_s_1ada680f4053f5b2f63d4f0f3cfdec45fa" prot="public" virt="non-virtual"><scope>GQCP::DIIS</scope><name>calculateDIISCoefficients</name></member>
+      <member refid="class_g_q_c_p_1_1_d_i_i_s_1a60b91c219acac53eab5f3e6f3b32a34d" prot="public" virt="non-virtual"><scope>GQCP::DIIS</scope><name>accelerate</name></member>
+      <member refid="class_g_q_c_p_1_1_d_i_i_s_1a1a0f40c40fe98df7d68fab5bd3851a1e" prot="public" virt="non-virtual"><scope>GQCP::DIIS</scope><name>calculateDIISCoefficients</name></member>
       <member refid="class_g_q_c_p_1_1_d_i_i_s_1aa101fd6c8ab281acbf34f9d168444ff8" prot="public" virt="non-virtual"><scope>GQCP::DIIS</scope><name>Scalar</name></member>
     </listofallmembers>
   </compounddef>

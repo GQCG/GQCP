@@ -1,0 +1,77 @@
+\hypertarget{_mc_murchie_davidson_coefficient_8hpp_source}{}\doxysection{Mc\+Murchie\+Davidson\+Coefficient.\+hpp}
+\label{_mc_murchie_davidson_coefficient_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/McMurchieDavidsonCoefficient.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/McMurchieDavidsonCoefficient.hpp}}
+\mbox{\hyperlink{_mc_murchie_davidson_coefficient_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_matrix_8hpp}{Mathematical/Representation/Matrix.hpp}}"{}}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_mc_murchie_davidson_coefficient}{McMurchieDavidsonCoefficient}}\ \{}
+\DoxyCodeLine{00031\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{comment}{//\ One\ of\ the\ Cartesian\ components\ of\ the\ center\ of\ the\ left\ Cartesian\ GTO.}}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{double}\ K;}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{//\ One\ of\ the\ Cartesian\ components\ of\ the\ center\ of\ the\ right\ Cartesian\ GTO.}}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{double}\ L;}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//\ The\ Gaussian\ exponent\ of\ the\ left\ Cartesian\ GTO.}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{double}\ a;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ The\ Gaussian\ exponent\ of\ the\ right\ Cartesian\ GTO.}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{double}\ b;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00047\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Constructors}}
+\DoxyCodeLine{00048\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_mc_murchie_davidson_coefficient}{McMurchieDavidsonCoefficient}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ K,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ a,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ L,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ b);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00060\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ McMurchie-\/Davidson\ behavior}}
+\DoxyCodeLine{00061\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_aaa4db462c959066380ea4a9b201ce1f8}{operator()}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ j,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ t)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00074\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Gaussian\ overlap\ behavior}}
+\DoxyCodeLine{00075\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_a6e45664e3ffca2c50c94ae6e46d2ef44}{centerOfMass}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_a93a17b44635c47cab7d157daf9f946ea}{reducedExponent}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_a08f173bdd06c961321fcb9e6a1c6ea87}{totalExponent}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ a\ +\ b;\ \}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_add58479b11276f84af4e77433214e11b}{distance}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>K\ -\/\ this-\/>L;\ \}}
+\DoxyCodeLine{00096\ \};}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

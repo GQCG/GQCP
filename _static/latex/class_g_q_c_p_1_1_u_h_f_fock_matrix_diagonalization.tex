@@ -1,4 +1,4 @@
-\hypertarget{class_g_q_c_p_1_1_u_h_f_fock_matrix_diagonalization}{}\doxysection{GQCP\+::UHFFock\+Matrix\+Diagonalization$<$ \+\_\+\+Scalar $>$ Class Template Reference}
+\hypertarget{class_g_q_c_p_1_1_u_h_f_fock_matrix_diagonalization}{}\doxysection{GQCP\+::UHFFock\+Matrix\+Diagonalization\texorpdfstring{$<$}{<} \+\_\+\+Scalar \texorpdfstring{$>$}{>} Class Template Reference}
 \label{class_g_q_c_p_1_1_u_h_f_fock_matrix_diagonalization}\index{GQCP::UHFFockMatrixDiagonalization$<$ \_Scalar $>$@{GQCP::UHFFockMatrixDiagonalization$<$ \_Scalar $>$}}
 
 
@@ -6,7 +6,7 @@
 
 
 
-Inheritance diagram for GQCP\+::UHFFock\+Matrix\+Diagonalization$<$ \+\_\+\+Scalar $>$\+:
+Inheritance diagram for GQCP\+::UHFFock\+Matrix\+Diagonalization\texorpdfstring{$<$}{<} \+\_\+\+Scalar \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -16,7 +16,7 @@ Inheritance diagram for GQCP\+::UHFFock\+Matrix\+Diagonalization$<$ \+\_\+\+Scal
 \end{figure}
 
 
-Collaboration diagram for GQCP\+::UHFFock\+Matrix\+Diagonalization$<$ \+\_\+\+Scalar $>$\+:
+Collaboration diagram for GQCP\+::UHFFock\+Matrix\+Diagonalization\texorpdfstring{$<$}{<} \+\_\+\+Scalar \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -31,6 +31,11 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_fock_matrix_diagonalization_a5eb4
 \item 
 using \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_fock_matrix_diagonalization_ad2b6c14c14faeb792a7ebab0fbfd7474}{Environment}} = \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment}{UHFSCFEnvironment}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_fock_matrix_diagonalization_a5eb48760d843cc05e3f01b4ebc75ede8}{Scalar}} $>$
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_step}{GQCP\+::\+Step$<$ UHFSCFEnvironment$<$ \+\_\+\+Scalar $>$ $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_step_a479d9d1f930d4cabb39879a6e71f4915}{Environment}} = \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment}{UHFSCFEnvironment}}$<$ \+\_\+\+Scalar $>$
+\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -38,12 +43,20 @@ std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_fock_matrix_diagonalizati
 \item 
 void \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_fock_matrix_diagonalization_ae358b2b13f6dcc5299745573298be194}{execute}} (\mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_fock_matrix_diagonalization_ad2b6c14c14faeb792a7ebab0fbfd7474}{Environment}} \&environment) override
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_step}{GQCP\+::\+Step$<$ UHFSCFEnvironment$<$ \+\_\+\+Scalar $>$ $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_step_a013c882b1c3e8c18babbe1a478382cb0}{$\sim$\+Step}} ()=default
+\item 
+virtual std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_step_af2276da3e9eef7f8d2049a8aa255b9fb}{description}} () const=0
+\item 
+virtual void \mbox{\hyperlink{class_g_q_c_p_1_1_step_afc654a62596b3fff0801acb2d993818f}{execute}} (\mbox{\hyperlink{class_g_q_c_p_1_1_step_a479d9d1f930d4cabb39879a6e71f4915}{Environment}} \&environment)=0
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$typename \+\_\+\+Scalar$>$\newline
 class GQCP\+::\+UHFFock\+Matrix\+Diagonalization$<$ \+\_\+\+Scalar $>$}
-
 An iteration step that solves the generalized eigenvalue problem for the current scalar/\+AO basis Fock matrix for the coefficient matrix.
 
 
@@ -59,14 +72,14 @@ An iteration step that solves the generalized eigenvalue problem for the current
 \index{Environment@{Environment}!GQCP::UHFFockMatrixDiagonalization$<$ \_Scalar $>$@{GQCP::UHFFockMatrixDiagonalization$<$ \_Scalar $>$}}
 \doxysubsubsection{\texorpdfstring{Environment}{Environment}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
-using \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_fock_matrix_diagonalization}{GQCP\+::\+UHFFock\+Matrix\+Diagonalization}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_fock_matrix_diagonalization_ad2b6c14c14faeb792a7ebab0fbfd7474}{Environment}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment}{UHFSCFEnvironment}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_fock_matrix_diagonalization_a5eb48760d843cc05e3f01b4ebc75ede8}{Scalar}}$>$}
+using \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_fock_matrix_diagonalization}{GQCP\+::\+UHFFock\+Matrix\+Diagonalization}}$<$ \+\_\+\+Scalar $>$\+::\+Environment =  \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment}{UHFSCFEnvironment}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_fock_matrix_diagonalization_a5eb48760d843cc05e3f01b4ebc75ede8}{Scalar}}$>$}
 
 \mbox{\Hypertarget{class_g_q_c_p_1_1_u_h_f_fock_matrix_diagonalization_a5eb48760d843cc05e3f01b4ebc75ede8}\label{class_g_q_c_p_1_1_u_h_f_fock_matrix_diagonalization_a5eb48760d843cc05e3f01b4ebc75ede8}} 
 \index{GQCP::UHFFockMatrixDiagonalization$<$ \_Scalar $>$@{GQCP::UHFFockMatrixDiagonalization$<$ \_Scalar $>$}!Scalar@{Scalar}}
 \index{Scalar@{Scalar}!GQCP::UHFFockMatrixDiagonalization$<$ \_Scalar $>$@{GQCP::UHFFockMatrixDiagonalization$<$ \_Scalar $>$}}
 \doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
-using \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_fock_matrix_diagonalization}{GQCP\+::\+UHFFock\+Matrix\+Diagonalization}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_fock_matrix_diagonalization_a5eb48760d843cc05e3f01b4ebc75ede8}{Scalar}} =  \+\_\+\+Scalar}
+using \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_fock_matrix_diagonalization}{GQCP\+::\+UHFFock\+Matrix\+Diagonalization}}$<$ \+\_\+\+Scalar $>$\+::\+Scalar =  \+\_\+\+Scalar}
 
 
 

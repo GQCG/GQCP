@@ -1,0 +1,64 @@
+\hypertarget{_e_r_newton_localizer_8hpp_source}{}\doxysection{ERNewton\+Localizer.\+hpp}
+\label{_e_r_newton_localizer_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.hpp}}
+\mbox{\hyperlink{_e_r_newton_localizer_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_orbital_space_8hpp}{Basis/SpinorBasis/OrbitalSpace.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_newton_orbital_optimizer_8hpp}{QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.hpp}}"{}}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_e_r_newton_localizer}{ERNewtonLocalizer}}:\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_newton_orbital_optimizer}{NewtonOrbitalOptimizer}}\ \{}
+\DoxyCodeLine{00032\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{OrbitalSpace}}\ orbital\_space;\ \ \textcolor{comment}{//\ the\ occupied-\/virtual\ orbital\ space}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//\ CONSTRUCTORS}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_e_r_newton_localizer}{ERNewtonLocalizer}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{OrbitalSpace}}\ orbital\_space,\ std::shared\_ptr<BaseHessianModifier>\ \mbox{\hyperlink{class_g_q_c_p_1_1_newton_orbital_optimizer_ad31068b230ffb38e97432624120c4318}{hessian\_modifier}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_a641d1bcc0494b20cec91ed4b782ab1f0}{convergence\_threshold}}\ =\ 1.0e-\/08,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_adce91f67cf6314d31a2b73bb54cdd815}{maximum\_number\_of\_iterations}}\ =\ 128);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{comment}{//\ PUBLIC\ OVERRIDDEN\ METHODS}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<double>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_e_r_newton_localizer_a2a512ac9d603955917c5fffcf2929e3e}{calculateGradientMatrix}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{RSQHamiltonian<double>}}\&\ sq\_hamiltonian)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{SquareRankFourTensor<double>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_e_r_newton_localizer_ab95ca42113e2e839113f61349a7ba5af}{calculateHessianTensor}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{RSQHamiltonian<double>}}\&\ sq\_hamiltonian)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_r_orbital_rotation_generators}{ROrbitalRotationGenerators<double>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_e_r_newton_localizer_a1d304d9d97be250b0bf544dd7a1240c1}{calculateNewFullOrbitalGenerators}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{RSQHamiltonian<double>}}\&\ sq\_hamiltonian)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_e_r_newton_localizer_ac736fd3da99a293e336f759704944413}{prepareOrbitalDerivativesCalculation}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{RSQHamiltonian<double>}}\&\ sq\_hamiltonian)\textcolor{keyword}{\ override\ }\{\}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{comment}{//\ PUBLIC\ METHODS}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_g_q_c_p_1_1_e_r_newton_localizer_ae17466a9719678c3263edf19f2c93872}{calculateGradientMatrixElement}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{RSQHamiltonian<double>}}\&\ sq\_hamiltonian,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ j)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_g_q_c_p_1_1_e_r_newton_localizer_aa4868063120b4fb560a3d84b476ff3da}{calculateHessianTensorElement}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{RSQHamiltonian<double>}}\&\ sq\_hamiltonian,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ j,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ k,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ l)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00100\ \};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

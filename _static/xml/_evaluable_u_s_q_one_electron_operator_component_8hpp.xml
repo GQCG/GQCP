@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="_evaluable_u_s_q_one_electron_operator_component_8hpp" kind="file" language="C++">
     <compoundname>EvaluableUSQOneElectronOperatorComponent.hpp</compoundname>
     <includes refid="_spin_resolved1_d_m_component_8hpp" local="yes">DensityMatrix/SpinResolved1DMComponent.hpp</includes>
@@ -7,243 +7,9 @@
     <includes refid="_u_s_q_one_electron_operator_component_8hpp" local="yes">Operator/SecondQuantized/USQOneElectronOperatorComponent.hpp</includes>
     <includedby refid="_evaluable_u_s_q_one_electron_operator_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableUSQOneElectronOperator.hpp</includedby>
     <incdepgraph>
-      <node id="66">
-        <label>Operator/SecondQuantized/SQOperatorStorage.hpp</label>
-        <link refid="_s_q_operator_storage_8hpp"/>
-        <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="50" relation="include">
-        </childnode>
-        <childnode refid="25" relation="include">
-        </childnode>
-      </node>
-      <node id="20">
-        <label>boost/algorithm/string.hpp</label>
-      </node>
-      <node id="26">
-        <label>functional</label>
-      </node>
-      <node id="9">
-        <label>Utilities/Eigen.hpp</label>
-        <link refid="_eigen_8hpp"/>
-        <childnode refid="10" relation="include">
-        </childnode>
-      </node>
-      <node id="27">
-        <label>iterator</label>
-      </node>
-      <node id="62">
-        <label>QuantumChemical/SpinResolved.hpp</label>
-        <link refid="_spin_resolved_8hpp"/>
-        <childnode refid="63" relation="include">
-        </childnode>
-      </node>
-      <node id="55">
-        <label>Operator/SecondQuantized/OperatorTraits.hpp</label>
-        <link refid="_operator_traits_8hpp"/>
-      </node>
-      <node id="49">
-        <label>boost/lexical_cast.hpp</label>
-      </node>
-      <node id="14">
-        <label>Mathematical/Representation/SquareMatrix.hpp</label>
-        <link refid="_square_matrix_8hpp"/>
-        <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="24" relation="include">
-        </childnode>
-        <childnode refid="29" relation="include">
-        </childnode>
-        <childnode refid="30" relation="include">
-        </childnode>
-      </node>
-      <node id="33">
-        <label>Basis/Transformations/SimpleOrbitalRotationGenerators.hpp</label>
-        <link refid="_simple_orbital_rotation_generators_8hpp"/>
-        <childnode refid="34" relation="include">
-        </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-      </node>
-      <node id="24">
-        <label>Utilities/miscellaneous.hpp</label>
-        <link refid="miscellaneous_8hpp"/>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-        <childnode refid="26" relation="include">
-        </childnode>
-        <childnode refid="27" relation="include">
-        </childnode>
-        <childnode refid="28" relation="include">
-        </childnode>
-        <childnode refid="23" relation="include">
-        </childnode>
-      </node>
-      <node id="48">
-        <label>boost/format.hpp</label>
-      </node>
       <node id="34">
         <label>Basis/SpinorBasis/OccupationType.hpp</label>
         <link refid="_occupation_type_8hpp"/>
-      </node>
-      <node id="6">
-        <label>stdexcept</label>
-      </node>
-      <node id="30">
-        <label>numeric</label>
-      </node>
-      <node id="36">
-        <label>Mathematical/Representation/ImplicitMatrixSlice.hpp</label>
-        <link refid="_implicit_matrix_slice_8hpp"/>
-        <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="37" relation="include">
-        </childnode>
-        <childnode refid="30" relation="include">
-        </childnode>
-      </node>
-      <node id="28">
-        <label>string</label>
-      </node>
-      <node id="31">
-        <label>unsupported/Eigen/MatrixFunctions</label>
-      </node>
-      <node id="37">
-        <label>map</label>
-      </node>
-      <node id="56">
-        <label>Operator/SecondQuantized/USQOneElectronOperatorComponent.hpp</label>
-        <link refid="_u_s_q_one_electron_operator_component_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="57" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="60" relation="include">
-        </childnode>
-        <childnode refid="52" relation="include">
-        </childnode>
-        <childnode refid="65" relation="include">
-        </childnode>
-      </node>
-      <node id="3">
-        <label>Basis/Transformations/UTransformationComponent.hpp</label>
-        <link refid="_u_transformation_component_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="32" relation="include">
-        </childnode>
-      </node>
-      <node id="40">
-        <label>unsupported/Eigen/CXX11/Tensor</label>
-      </node>
-      <node id="2">
-        <label>DensityMatrix/SpinResolved1DMComponent.hpp</label>
-        <link refid="_spin_resolved1_d_m_component_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="41" relation="include">
-        </childnode>
-      </node>
-      <node id="63">
-        <label>QuantumChemical/SpinResolvedBase.hpp</label>
-        <link refid="_spin_resolved_base_8hpp"/>
-        <childnode refid="64" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="53" relation="include">
-        </childnode>
-        <childnode refid="23" relation="include">
-        </childnode>
-      </node>
-      <node id="50">
-        <label>Operator/SecondQuantized/SQOperatorStorageBase.hpp</label>
-        <link refid="_s_q_operator_storage_base_8hpp"/>
-        <childnode refid="51" relation="include">
-        </childnode>
-        <childnode refid="55" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="25" relation="include">
-        </childnode>
-      </node>
-      <node id="59">
-        <label>Mathematical/Representation/SquareRankFourTensor.hpp</label>
-        <link refid="_square_rank_four_tensor_8hpp"/>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="39" relation="include">
-        </childnode>
-        <childnode refid="22" relation="include">
-        </childnode>
-      </node>
-      <node id="58">
-        <label>DensityMatrix/Simple2DM.hpp</label>
-        <link refid="_simple2_d_m_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-        <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="59" relation="include">
-        </childnode>
-      </node>
-      <node id="29">
-        <label>boost/numeric/conversion/converter.hpp</label>
-      </node>
-      <node id="21">
-        <label>fstream</label>
-      </node>
-      <node id="42">
-        <label>DensityMatrix/DensityMatrixTraits.hpp</label>
-        <link refid="_density_matrix_traits_8hpp"/>
-      </node>
-      <node id="12">
-        <label>ostream</label>
-      </node>
-      <node id="13">
-        <label>Basis/Transformations/OrbitalRotationGeneratorTraits.hpp</label>
-        <link refid="_orbital_rotation_generator_traits_8hpp"/>
-      </node>
-      <node id="4">
-        <label>Basis/Transformations/SimpleTransformation.hpp</label>
-        <link refid="_simple_transformation_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="31" relation="include">
-        </childnode>
-      </node>
-      <node id="47">
-        <label>Mathematical/Functions/Function.hpp</label>
-        <link refid="_function_8hpp"/>
-        <childnode refid="17" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="48" relation="include">
-        </childnode>
-      </node>
-      <node id="44">
-        <label>Utilities/CRTP.hpp</label>
-        <link refid="_c_r_t_p_8hpp"/>
       </node>
       <node id="35">
         <label>Basis/SpinorBasis/OrbitalSpace.hpp</label>
@@ -263,6 +29,136 @@
         <childnode refid="23" relation="include">
         </childnode>
       </node>
+      <node id="5">
+        <label>Basis/Transformations/BasisTransformable.hpp</label>
+        <link refid="_basis_transformable_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Basis/Transformations/JacobiRotatable.hpp</label>
+        <link refid="_jacobi_rotatable_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Basis/Transformations/JacobiRotation.hpp</label>
+        <link refid="_jacobi_rotation_8hpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>Basis/Transformations/OrbitalRotationGeneratorTraits.hpp</label>
+        <link refid="_orbital_rotation_generator_traits_8hpp"/>
+      </node>
+      <node id="33">
+        <label>Basis/Transformations/SimpleOrbitalRotationGenerators.hpp</label>
+        <link refid="_simple_orbital_rotation_generators_8hpp"/>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Basis/Transformations/SimpleTransformation.hpp</label>
+        <link refid="_simple_transformation_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>Basis/Transformations/UOrbitalRotationGeneratorsComponent.hpp</label>
+        <link refid="_u_orbital_rotation_generators_component_8hpp"/>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Basis/Transformations/UTransformationComponent.hpp</label>
+        <link refid="_u_transformation_component_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>DensityMatrix/DensityMatrixTraits.hpp</label>
+        <link refid="_density_matrix_traits_8hpp"/>
+      </node>
+      <node id="59">
+        <label>DensityMatrix/PureSpinResolved2DMComponent.hpp</label>
+        <link refid="_pure_spin_resolved2_d_m_component_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>DensityMatrix/Simple1DM.hpp</label>
+        <link refid="_simple1_d_m_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="60">
+        <label>DensityMatrix/Simple2DM.hpp</label>
+        <link refid="_simple2_d_m_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>DensityMatrix/SpinResolved1DMComponent.hpp</label>
+        <link refid="_spin_resolved1_d_m_component_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+      </node>
+      <node id="62">
+        <label>Domain/MullikenDomain/UMullikenDomainComponent.hpp</label>
+        <link refid="_u_mulliken_domain_component_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>Mathematical/Functions/CartesianDirection.hpp</label>
+        <link refid="_cartesian_direction_8hpp"/>
+      </node>
       <node id="46">
         <label>Mathematical/Functions/EvaluableLinearCombination.hpp</label>
         <link refid="_evaluable_linear_combination_8hpp"/>
@@ -272,34 +168,67 @@
         </childnode>
         <childnode refid="17" relation="include">
         </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
         <childnode refid="48" relation="include">
         </childnode>
-        <childnode refid="49" relation="include">
+        <childnode refid="51" relation="include">
         </childnode>
         <childnode refid="23" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
       </node>
-      <node id="10">
-        <label>Eigen/Dense</label>
-      </node>
-      <node id="60">
-        <label>Domain/MullikenDomain/UMullikenDomainComponent.hpp</label>
-        <link refid="_u_mulliken_domain_component_8hpp"/>
-        <childnode refid="3" relation="include">
+      <node id="47">
+        <label>Mathematical/Functions/Function.hpp</label>
+        <link refid="_function_8hpp"/>
+        <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="61" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="62" relation="include">
+        <childnode refid="48" relation="include">
         </childnode>
       </node>
-      <node id="5">
-        <label>Basis/Transformations/BasisTransformable.hpp</label>
-        <link refid="_basis_transformable_8hpp"/>
+      <node id="43">
+        <label>Mathematical/Functions/VectorSpaceArithmetic.hpp</label>
+        <link refid="_vector_space_arithmetic_8hpp"/>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="54">
+        <label>Mathematical/Representation/DenseVectorizer.hpp</label>
+        <link refid="_dense_vectorizer_8hpp"/>
         <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>Mathematical/Representation/ImplicitMatrixSlice.hpp</label>
+        <link refid="_implicit_matrix_slice_8hpp"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>Mathematical/Representation/ImplicitRankFourTensorSlice.hpp</label>
+        <link refid="_implicit_rank_four_tensor_slice_8hpp"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
         </childnode>
       </node>
       <node id="15">
@@ -322,153 +251,39 @@
         <childnode refid="23" relation="include">
         </childnode>
       </node>
-      <node id="52">
-        <label>Mathematical/Representation/DenseVectorizer.hpp</label>
-        <link refid="_dense_vectorizer_8hpp"/>
-        <childnode refid="6" relation="include">
+      <node id="14">
+        <label>Mathematical/Representation/SquareMatrix.hpp</label>
+        <link refid="_square_matrix_8hpp"/>
+        <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="53" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
-        <childnode refid="54" relation="include">
+        <childnode refid="29" relation="include">
         </childnode>
         <childnode refid="30" relation="include">
         </childnode>
       </node>
-      <node id="18">
-        <label>Utilities/type_traits.hpp</label>
-        <link refid="type__traits_8hpp"/>
-        <childnode refid="19" relation="include">
-        </childnode>
-      </node>
-      <node id="23">
-        <label>vector</label>
-      </node>
-      <node id="17">
-        <label>Utilities/aliases.hpp</label>
-        <link refid="aliases_8hpp"/>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-      </node>
-      <node id="64">
-        <label>QuantumChemical/Spin.hpp</label>
-        <link refid="_spin_8hpp"/>
-      </node>
-      <node id="57">
-        <label>DensityMatrix/PureSpinResolved2DMComponent.hpp</label>
-        <link refid="_pure_spin_resolved2_d_m_component_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="58" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="53">
-        <label>array</label>
-      </node>
       <node id="61">
-        <label>Domain/DiscreteDomain.hpp</label>
-      </node>
-      <node id="8">
-        <label>Basis/Transformations/JacobiRotation.hpp</label>
-        <link refid="_jacobi_rotation_8hpp"/>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-      </node>
-      <node id="38">
-        <label>Mathematical/Representation/ImplicitRankFourTensorSlice.hpp</label>
-        <link refid="_implicit_rank_four_tensor_slice_8hpp"/>
-        <childnode refid="15" relation="include">
+        <label>Mathematical/Representation/SquareRankFourTensor.hpp</label>
+        <link refid="_square_rank_four_tensor_8hpp"/>
+        <childnode refid="14" relation="include">
         </childnode>
         <childnode refid="39" relation="include">
         </childnode>
-        <childnode refid="37" relation="include">
+        <childnode refid="22" relation="include">
         </childnode>
-        <childnode refid="30" relation="include">
+      </node>
+      <node id="53">
+        <label>Mathematical/Representation/StorageArray.hpp</label>
+        <link refid="_storage_array_8hpp"/>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="23" relation="include">
         </childnode>
-      </node>
-      <node id="11">
-        <label>cstdlib</label>
-      </node>
-      <node id="22">
-        <label>iostream</label>
-      </node>
-      <node id="7">
-        <label>Basis/Transformations/JacobiRotatable.hpp</label>
-        <link refid="_jacobi_rotatable_8hpp"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-      </node>
-      <node id="54">
-        <label>cstddef</label>
-      </node>
-      <node id="65">
-        <label>Operator/SecondQuantized/SimpleSQOneElectronOperator.hpp</label>
-        <link refid="_simple_s_q_one_electron_operator_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="66" relation="include">
-        </childnode>
-      </node>
-      <node id="45">
-        <label>Operator/SecondQuantized/EvaluableSimpleSQOneElectronOperator.hpp</label>
-        <link refid="_evaluable_simple_s_q_one_electron_operator_8hpp"/>
-        <childnode refid="46" relation="include">
-        </childnode>
-        <childnode refid="47" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="50" relation="include">
-        </childnode>
-      </node>
-      <node id="1">
-        <label>/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableUSQOneElectronOperatorComponent.hpp</label>
-        <link refid="_evaluable_u_s_q_one_electron_operator_component_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="45" relation="include">
-        </childnode>
-        <childnode refid="56" relation="include">
-        </childnode>
-      </node>
-      <node id="19">
-        <label>type_traits</label>
-      </node>
-      <node id="25">
-        <label>algorithm</label>
-      </node>
-      <node id="41">
-        <label>DensityMatrix/Simple1DM.hpp</label>
-        <link refid="_simple1_d_m_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-        <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-      </node>
-      <node id="16">
-        <label>Mathematical/Functions/CartesianDirection.hpp</label>
-        <link refid="_cartesian_direction_8hpp"/>
       </node>
       <node id="39">
         <label>Mathematical/Representation/Tensor.hpp</label>
@@ -488,41 +303,215 @@
         <childnode refid="28" relation="include">
         </childnode>
       </node>
-      <node id="51">
-        <label>Mathematical/Representation/StorageArray.hpp</label>
-        <link refid="_storage_array_8hpp"/>
+      <node id="45">
+        <label>Operator/SecondQuantized/EvaluableSimpleSQOneElectronOperator.hpp</label>
+        <link refid="_evaluable_simple_s_q_one_electron_operator_8hpp"/>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
         <childnode refid="52" relation="include">
         </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="23" relation="include">
-        </childnode>
       </node>
-      <node id="43">
-        <label>Mathematical/Functions/VectorSpaceArithmetic.hpp</label>
-        <link refid="_vector_space_arithmetic_8hpp"/>
-        <childnode refid="44" relation="include">
-        </childnode>
-      </node>
-      <node id="32">
-        <label>Basis/Transformations/UOrbitalRotationGeneratorsComponent.hpp</label>
-        <link refid="_u_orbital_rotation_generators_component_8hpp"/>
-        <childnode refid="33" relation="include">
-        </childnode>
-      </node>
-    </incdepgraph>
-    <invincdepgraph>
       <node id="1">
         <label>/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableUSQOneElectronOperatorComponent.hpp</label>
         <link refid="_evaluable_u_s_q_one_electron_operator_component_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
       </node>
+      <node id="57">
+        <label>Operator/SecondQuantized/OperatorTraits.hpp</label>
+        <link refid="_operator_traits_8hpp"/>
+      </node>
+      <node id="65">
+        <label>Operator/SecondQuantized/SQOperatorStorage.hpp</label>
+        <link refid="_s_q_operator_storage_8hpp"/>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+      </node>
+      <node id="52">
+        <label>Operator/SecondQuantized/SQOperatorStorageBase.hpp</label>
+        <link refid="_s_q_operator_storage_base_8hpp"/>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+      </node>
+      <node id="64">
+        <label>Operator/SecondQuantized/SimpleSQOneElectronOperator.hpp</label>
+        <link refid="_simple_s_q_one_electron_operator_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+      </node>
+      <node id="58">
+        <label>Operator/SecondQuantized/USQOneElectronOperatorComponent.hpp</label>
+        <link refid="_u_s_q_one_electron_operator_component_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>Utilities/CRTP.hpp</label>
+        <link refid="_c_r_t_p_8hpp"/>
+      </node>
+      <node id="9">
+        <label>Utilities/Eigen.hpp</label>
+        <link refid="_eigen_8hpp"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>Utilities/aliases.hpp</label>
+        <link refid="aliases_8hpp"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="49">
+        <label>Utilities/complex.hpp</label>
+        <link refid="complex_8hpp"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>Utilities/miscellaneous.hpp</label>
+        <link refid="miscellaneous_8hpp"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>Utilities/type_traits.hpp</label>
+        <link refid="type__traits_8hpp"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="63">
+        <label>Domain/DiscreteDomain.hpp</label>
+      </node>
+      <node id="10">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="25">
+        <label>algorithm</label>
+      </node>
+      <node id="55">
+        <label>array</label>
+      </node>
+      <node id="20">
+        <label>boost/algorithm/string.hpp</label>
+      </node>
+      <node id="48">
+        <label>boost/format.hpp</label>
+      </node>
+      <node id="51">
+        <label>boost/lexical_cast.hpp</label>
+      </node>
+      <node id="29">
+        <label>boost/numeric/conversion/converter.hpp</label>
+      </node>
+      <node id="50">
+        <label>complex</label>
+      </node>
+      <node id="56">
+        <label>cstddef</label>
+      </node>
+      <node id="11">
+        <label>cstdlib</label>
+      </node>
+      <node id="21">
+        <label>fstream</label>
+      </node>
+      <node id="26">
+        <label>functional</label>
+      </node>
+      <node id="22">
+        <label>iostream</label>
+      </node>
+      <node id="27">
+        <label>iterator</label>
+      </node>
+      <node id="37">
+        <label>map</label>
+      </node>
+      <node id="30">
+        <label>numeric</label>
+      </node>
+      <node id="12">
+        <label>ostream</label>
+      </node>
+      <node id="6">
+        <label>stdexcept</label>
+      </node>
+      <node id="28">
+        <label>string</label>
+      </node>
+      <node id="19">
+        <label>type_traits</label>
+      </node>
+      <node id="40">
+        <label>unsupported/Eigen/CXX11/Tensor</label>
+      </node>
+      <node id="31">
+        <label>unsupported/Eigen/MatrixFunctions</label>
+      </node>
+      <node id="23">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
       <node id="2">
         <label>/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableUSQOneElectronOperator.hpp</label>
         <link refid="_evaluable_u_s_q_one_electron_operator_8hpp"/>
+      </node>
+      <node id="1">
+        <label>/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableUSQOneElectronOperatorComponent.hpp</label>
+        <link refid="_evaluable_u_s_q_one_electron_operator_component_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
       </node>
     </invincdepgraph>
     <innerclass refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component" prot="public">GQCP::EvaluableUSQOneElectronOperatorComponent</innerclass>
@@ -565,10 +554,10 @@
 <codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_evaluable_simple_s_q_one_electron_operator" kindref="compound">EvaluableSimpleSQOneElectronOperator</ref>&lt;_FunctionType,<sp/>_Vectorizer,<sp/>EvaluableUSQOneElectronOperatorComponent&lt;_FunctionType,<sp/>_Vectorizer&gt;&gt;<sp/>{</highlight></codeline>
 <codeline lineno="37"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>type<sp/>of<sp/>evaluatable<sp/>function<sp/>that<sp/>is<sp/>used<sp/>as<sp/>a<sp/>matrix<sp/>element<sp/>of<sp/>this<sp/>one-electron<sp/>operator.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="39" refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component_1a85befaad289edd998e815648359d6d63" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component_1a85befaad289edd998e815648359d6d63" kindref="member">FunctionType</ref><sp/>=<sp/>_FunctionType;</highlight></codeline>
+<codeline lineno="39" refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component_1a85befaad289edd998e815648359d6d63" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component_1a85befaad289edd998e815648359d6d63" kindref="member">FunctionType</ref><sp/>=<sp/>_FunctionType;</highlight></codeline>
 <codeline lineno="40"><highlight class="normal"></highlight></codeline>
 <codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>type<sp/>of<sp/>the<sp/>vectorizer<sp/>that<sp/>relates<sp/>a<sp/>one-dimensional<sp/>storage<sp/>of<sp/>matrices<sp/>to<sp/>the<sp/>tensor<sp/>structure<sp/>of<sp/>one-electron<sp/>operators.<sp/>This<sp/>allows<sp/>for<sp/>a<sp/>distinction<sp/>between<sp/>scalar<sp/>operators<sp/>(such<sp/>as<sp/>the<sp/>density)<sp/>and<sp/>vector<sp/>operators<sp/>(such<sp/>as<sp/>the<sp/>current<sp/>density<sp/>operator).</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="42" refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component_1a71d11b13f466119730d148a8f595d1ae" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component_1a71d11b13f466119730d148a8f595d1ae" kindref="member">Vectorizer</ref><sp/>=<sp/>_Vectorizer;</highlight></codeline>
+<codeline lineno="42" refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component_1a71d11b13f466119730d148a8f595d1ae" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component_1a71d11b13f466119730d148a8f595d1ae" kindref="member">Vectorizer</ref><sp/>=<sp/>_Vectorizer;</highlight></codeline>
 <codeline lineno="43"><highlight class="normal"></highlight></codeline>
 <codeline lineno="44"><highlight class="normal"></highlight></codeline>
 <codeline lineno="45"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
@@ -577,7 +566,7 @@
 <codeline lineno="48"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="49"><highlight class="normal"></highlight></codeline>
 <codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Inherit<sp/>`EvaluableSimpleSQOneElectronOperator`&apos;s<sp/>constructors.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_evaluable_simple_s_q_one_electron_operator" kindref="compound">EvaluableSimpleSQOneElectronOperator&lt;_FunctionType, _Vectorizer, EvaluableUSQOneElectronOperatorComponent&lt;_FunctionType, _Vectorizer&gt;</ref>&gt;<ref refid="class_g_q_c_p_1_1_evaluable_simple_s_q_one_electron_operator" kindref="compound">::EvaluableSimpleSQOneElectronOperator</ref>;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_evaluable_simple_s_q_one_electron_operator" kindref="compound">EvaluableSimpleSQOneElectronOperator</ref>&lt;_FunctionType,<sp/>_Vectorizer,<sp/><ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component" kindref="compound">EvaluableUSQOneElectronOperatorComponent&lt;_FunctionType, _Vectorizer&gt;</ref>&gt;::EvaluableSimpleSQOneElectronOperator;</highlight></codeline>
 <codeline lineno="52"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="53"><highlight class="normal"></highlight></codeline>
 <codeline lineno="54"><highlight class="normal"></highlight></codeline>
@@ -587,19 +576,19 @@
 <codeline lineno="58"><highlight class="normal"></highlight></codeline>
 <codeline lineno="59"><highlight class="normal"></highlight><highlight class="comment">//<sp/>A<sp/>scalar-like<sp/>EvaluableUSQOneElectronOperatorComponent,<sp/>i.e.<sp/>with<sp/>scalar-like<sp/>access.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="60"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>FunctionType&gt;</highlight></codeline>
-<codeline lineno="61" refid="namespace_g_q_c_p_1abf628c70e828cdd06793728d741f9432" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component" kindref="compound">ScalarEvaluableUSQOneElectronOperatorComponent</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component" kindref="compound">EvaluableUSQOneElectronOperatorComponent&lt;FunctionType, ScalarVectorizer&gt;</ref>;</highlight></codeline>
+<codeline lineno="61" refid="namespace_g_q_c_p_1abf628c70e828cdd06793728d741f9432" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component" kindref="compound">ScalarEvaluableUSQOneElectronOperatorComponent</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component" kindref="compound">EvaluableUSQOneElectronOperatorComponent&lt;FunctionType, ScalarVectorizer&gt;</ref>;</highlight></codeline>
 <codeline lineno="62"><highlight class="normal"></highlight></codeline>
 <codeline lineno="63"><highlight class="normal"></highlight><highlight class="comment">//<sp/>A<sp/>vector-like<sp/>EvaluableUSQOneElectronOperatorComponent,<sp/>i.e.<sp/>with<sp/>vector-like<sp/>access.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="64"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>FunctionType&gt;</highlight></codeline>
-<codeline lineno="65" refid="namespace_g_q_c_p_1aa78830db72286e4090e0b00bf466d40d" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component" kindref="compound">VectorEvaluableUSQOneElectronOperatorComponent</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component" kindref="compound">EvaluableUSQOneElectronOperatorComponent&lt;FunctionType, VectorVectorizer&gt;</ref>;</highlight></codeline>
+<codeline lineno="65" refid="namespace_g_q_c_p_1aa78830db72286e4090e0b00bf466d40d" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component" kindref="compound">VectorEvaluableUSQOneElectronOperatorComponent</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component" kindref="compound">EvaluableUSQOneElectronOperatorComponent&lt;FunctionType, VectorVectorizer&gt;</ref>;</highlight></codeline>
 <codeline lineno="66"><highlight class="normal"></highlight></codeline>
 <codeline lineno="67"><highlight class="normal"></highlight><highlight class="comment">//<sp/>A<sp/>matrix-like<sp/>EvaluableUSQOneElectronOperatorComponent,<sp/>i.e.<sp/>with<sp/>matrix-like<sp/>access.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="68"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>FunctionType&gt;</highlight></codeline>
-<codeline lineno="69" refid="namespace_g_q_c_p_1a597a0e3639772f66cdd343bc4b3c3a46" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component" kindref="compound">MatrixEvaluableUSQOneElectronOperatorComponent</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component" kindref="compound">EvaluableUSQOneElectronOperatorComponent&lt;FunctionType, MatrixVectorizer&gt;</ref>;</highlight></codeline>
+<codeline lineno="69" refid="namespace_g_q_c_p_1a597a0e3639772f66cdd343bc4b3c3a46" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component" kindref="compound">MatrixEvaluableUSQOneElectronOperatorComponent</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component" kindref="compound">EvaluableUSQOneElectronOperatorComponent&lt;FunctionType, MatrixVectorizer&gt;</ref>;</highlight></codeline>
 <codeline lineno="70"><highlight class="normal"></highlight></codeline>
 <codeline lineno="71"><highlight class="normal"></highlight><highlight class="comment">//<sp/>A<sp/>tensor-like<sp/>EvaluableUSQOneElectronOperatorComponent,<sp/>i.e.<sp/>with<sp/>tensor-like<sp/>access.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="72"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>FunctionType,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>N&gt;</highlight></codeline>
-<codeline lineno="73" refid="namespace_g_q_c_p_1ace61aa51098f188f334909d9ce8b81f2" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component" kindref="compound">TensorEvaluableUSQOneElectronOperatorComponent</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component" kindref="compound">EvaluableUSQOneElectronOperatorComponent&lt;FunctionType, TensorVectorizer&lt;N&gt;</ref>&gt;;</highlight></codeline>
+<codeline lineno="73" refid="namespace_g_q_c_p_1ace61aa51098f188f334909d9ce8b81f2" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component" kindref="compound">TensorEvaluableUSQOneElectronOperatorComponent</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component" kindref="compound">EvaluableUSQOneElectronOperatorComponent&lt;FunctionType, TensorVectorizer&lt;N&gt;</ref>&gt;;</highlight></codeline>
 <codeline lineno="74"><highlight class="normal"></highlight></codeline>
 <codeline lineno="75"><highlight class="normal"></highlight></codeline>
 <codeline lineno="76"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
@@ -610,25 +599,25 @@
 <codeline lineno="87" refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_u_s_q_one_electron_operator_component_3_01___faa52a61b2cbfb19d3fb5e3044c4b12a3" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_g_q_c_p_1_1_operator_traits" kindref="compound">OperatorTraits</ref>&lt;<ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component" kindref="compound">EvaluableUSQOneElectronOperatorComponent</ref>&lt;_FunctionType,<sp/>_Vectorizer&gt;&gt;<sp/>{</highlight></codeline>
 <codeline lineno="88"><highlight class="normal"></highlight></codeline>
 <codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>type<sp/>of<sp/>evaluatable<sp/>function<sp/>that<sp/>is<sp/>used<sp/>as<sp/>a<sp/>matrix<sp/>element<sp/>of<sp/>the<sp/>one-electron<sp/>operator.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="90" refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_u_s_q_one_electron_operator_component_3_01___faa52a61b2cbfb19d3fb5e3044c4b12a3_1ad85f268feda4fcd7955265bf3dbd6cca" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_u_s_q_one_electron_operator_component_3_01___faa52a61b2cbfb19d3fb5e3044c4b12a3_1ad85f268feda4fcd7955265bf3dbd6cca" kindref="member">FunctionType</ref><sp/>=<sp/>_FunctionType;</highlight></codeline>
+<codeline lineno="90" refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_u_s_q_one_electron_operator_component_3_01___faa52a61b2cbfb19d3fb5e3044c4b12a3_1ad85f268feda4fcd7955265bf3dbd6cca" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_u_s_q_one_electron_operator_component_3_01___faa52a61b2cbfb19d3fb5e3044c4b12a3_1ad85f268feda4fcd7955265bf3dbd6cca" kindref="member">FunctionType</ref><sp/>=<sp/>_FunctionType;</highlight></codeline>
 <codeline lineno="91"><highlight class="normal"></highlight></codeline>
 <codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>return<sp/>type<sp/>of<sp/>the<sp/>`operator()`.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="93" refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_u_s_q_one_electron_operator_component_3_01___faa52a61b2cbfb19d3fb5e3044c4b12a3_1ae876126a1070fcf41ff052e49a72019b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_u_s_q_one_electron_operator_component_3_01___faa52a61b2cbfb19d3fb5e3044c4b12a3_1ae876126a1070fcf41ff052e49a72019b" kindref="member">OutputType</ref><sp/>=<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_FunctionType::OutputType;</highlight></codeline>
+<codeline lineno="93" refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_u_s_q_one_electron_operator_component_3_01___faa52a61b2cbfb19d3fb5e3044c4b12a3_1ae876126a1070fcf41ff052e49a72019b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_u_s_q_one_electron_operator_component_3_01___faa52a61b2cbfb19d3fb5e3044c4b12a3_1ae876126a1070fcf41ff052e49a72019b" kindref="member">OutputType</ref><sp/>=<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_FunctionType::OutputType;</highlight></codeline>
 <codeline lineno="94"><highlight class="normal"></highlight></codeline>
 <codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>type<sp/>of<sp/>the<sp/>vectorizer<sp/>that<sp/>relates<sp/>a<sp/>one-dimensional<sp/>storage<sp/>of<sp/>matrices<sp/>to<sp/>the<sp/>tensor<sp/>structure<sp/>of<sp/>one-electron<sp/>operators.<sp/>This<sp/>allows<sp/>for<sp/>a<sp/>distinction<sp/>between<sp/>scalar<sp/>operators<sp/>(such<sp/>as<sp/>the<sp/>kinetic<sp/>energy<sp/>operator),<sp/>vector<sp/>operators<sp/>(such<sp/>as<sp/>the<sp/>spin<sp/>operator)<sp/>and<sp/>matrix/tensor<sp/>operators<sp/>(such<sp/>as<sp/>quadrupole<sp/>and<sp/>multipole<sp/>operators).</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="96" refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_u_s_q_one_electron_operator_component_3_01___faa52a61b2cbfb19d3fb5e3044c4b12a3_1aaa60e72a2c27cf2c4c03d16847a03178" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_u_s_q_one_electron_operator_component_3_01___faa52a61b2cbfb19d3fb5e3044c4b12a3_1aaa60e72a2c27cf2c4c03d16847a03178" kindref="member">Vectorizer</ref><sp/>=<sp/>_Vectorizer;</highlight></codeline>
+<codeline lineno="96" refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_u_s_q_one_electron_operator_component_3_01___faa52a61b2cbfb19d3fb5e3044c4b12a3_1aaa60e72a2c27cf2c4c03d16847a03178" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_u_s_q_one_electron_operator_component_3_01___faa52a61b2cbfb19d3fb5e3044c4b12a3_1aaa60e72a2c27cf2c4c03d16847a03178" kindref="member">Vectorizer</ref><sp/>=<sp/>_Vectorizer;</highlight></codeline>
 <codeline lineno="97"><highlight class="normal"></highlight></codeline>
 <codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>type<sp/>of<sp/>the<sp/>operator<sp/>at<sp/>the<sp/>end<sp/>of<sp/>the<sp/>inheritance<sp/>chain<sp/>of<sp/>`SQOperatorStorageBase`.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="99" refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_u_s_q_one_electron_operator_component_3_01___faa52a61b2cbfb19d3fb5e3044c4b12a3_1a668b266db564637a3439ba14f1112bf2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component" kindref="compound">DerivedOperator</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component" kindref="compound">EvaluableUSQOneElectronOperatorComponent&lt;FunctionType, Vectorizer&gt;</ref>;</highlight></codeline>
+<codeline lineno="99" refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_u_s_q_one_electron_operator_component_3_01___faa52a61b2cbfb19d3fb5e3044c4b12a3_1a668b266db564637a3439ba14f1112bf2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component" kindref="compound">DerivedOperator</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component" kindref="compound">EvaluableUSQOneElectronOperatorComponent&lt;FunctionType, Vectorizer&gt;</ref>;</highlight></codeline>
 <codeline lineno="100"><highlight class="normal"></highlight></codeline>
 <codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>scalar<sp/>version<sp/>of<sp/>the<sp/>type<sp/>of<sp/>the<sp/>operator<sp/>at<sp/>the<sp/>end<sp/>of<sp/>the<sp/>inheritance<sp/>chain<sp/>of<sp/>`SQOperatorStorageBase`.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="102" refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_u_s_q_one_electron_operator_component_3_01___faa52a61b2cbfb19d3fb5e3044c4b12a3_1a27b40b96e6c63c5638c62801fbcca112" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component" kindref="compound">ScalarOperator</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component" kindref="compound">ScalarEvaluableUSQOneElectronOperatorComponent&lt;FunctionType&gt;</ref>;</highlight></codeline>
+<codeline lineno="102" refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_u_s_q_one_electron_operator_component_3_01___faa52a61b2cbfb19d3fb5e3044c4b12a3_1a27b40b96e6c63c5638c62801fbcca112" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component" kindref="compound">ScalarOperator</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_component" kindref="compound">ScalarEvaluableUSQOneElectronOperatorComponent&lt;FunctionType&gt;</ref>;</highlight></codeline>
 <codeline lineno="103"><highlight class="normal"></highlight></codeline>
 <codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>type<sp/>that<sp/>represents<sp/>the<sp/>derived<sp/>operator<sp/>after<sp/>its<sp/>evaluation<sp/>at<sp/>a<sp/>point<sp/>in<sp/>space.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="105" refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_u_s_q_one_electron_operator_component_3_01___faa52a61b2cbfb19d3fb5e3044c4b12a3_1ac143162e0520d45b2003d03625ba2233" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator_component" kindref="compound">EvaluatedOperator</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator_component" kindref="compound">USQOneElectronOperatorComponent&lt;OutputType, Vectorizer&gt;</ref>;</highlight></codeline>
+<codeline lineno="105" refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_u_s_q_one_electron_operator_component_3_01___faa52a61b2cbfb19d3fb5e3044c4b12a3_1ac143162e0520d45b2003d03625ba2233" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator_component" kindref="compound">EvaluatedOperator</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator_component" kindref="compound">USQOneElectronOperatorComponent&lt;OutputType, Vectorizer&gt;</ref>;</highlight></codeline>
 <codeline lineno="106"><highlight class="normal"></highlight></codeline>
 <codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>1-DM<sp/>that<sp/>is<sp/>naturally<sp/>associated<sp/>to<sp/>the<sp/>evaluable<sp/>one-electron<sp/>operator.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="108" refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_u_s_q_one_electron_operator_component_3_01___faa52a61b2cbfb19d3fb5e3044c4b12a3_1aabcdac2ed480105f317cd073c801ea72" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m_component" kindref="compound">OneDM</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m_component" kindref="compound">SpinResolved1DMComponent&lt;OutputType&gt;</ref>;</highlight></codeline>
+<codeline lineno="108" refid="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_u_s_q_one_electron_operator_component_3_01___faa52a61b2cbfb19d3fb5e3044c4b12a3_1aabcdac2ed480105f317cd073c801ea72" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m_component" kindref="compound">OneDM</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m_component" kindref="compound">SpinResolved1DMComponent&lt;OutputType&gt;</ref>;</highlight></codeline>
 <codeline lineno="109"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="110"><highlight class="normal"></highlight></codeline>
 <codeline lineno="111"><highlight class="normal"></highlight></codeline>

@@ -3,11 +3,12 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Manipulating ONVs and their addresses</title>
   
   
@@ -18,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -37,18 +38,20 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
@@ -63,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="GQCP devops" href="devops.html" />
     <link rel="prev" title="Introduction for developers" href="introduction.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
   
   
@@ -377,14 +380,14 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="section" id="manipulating-onvs-and-their-addresses">
-<h1>Manipulating ONVs and their addresses<a class="headerlink" href="#manipulating-onvs-and-their-addresses" title="Permalink to this heading">#</a></h1>
+  <section id="manipulating-onvs-and-their-addresses">
+<h1>Manipulating ONVs and their addresses<a class="headerlink" href="#manipulating-onvs-and-their-addresses" title="Permalink to this headline">#</a></h1>
 <p>Understanding the inner workings of a low-level CI code can be daunting, mainly because bit string manipulations can be very hard to understand without any guidance. This section should help aspiring developers how GQCP deals with the manipulation of ONV’s (occupation number vectors) and their path representation in an addressing scheme.</p>
 <blockquote>
 <div><p>Note: In order to understand the following section, it is necessary that you understand the theory first, since the code tries to follow the theory as closely as possible. To brush up on CI algorithms, ONVs and addressing schemes, we highly recommend chapter 11 in the ‘purple bible’ <a class="reference external" href="https://onlinelibrary.wiley.com/doi/book/10.1002/9781119019572">Molecular Electronic‐Structure Theory</a> by Helgaker, Jørgensen and Olsen.</p>
 </div></blockquote>
-<div class="section" id="one-electron-excitations">
-<h2>One-electron excitations<a class="headerlink" href="#one-electron-excitations" title="Permalink to this heading">#</a></h2>
+<section id="one-electron-excitations">
+<h2>One-electron excitations<a class="headerlink" href="#one-electron-excitations" title="Permalink to this headline">#</a></h2>
 <p>ONV path manipulations are intuitively described using a second quantization approach, which GQCP’s API sticks to as closely as possible by providing a class <code class="docutils literal notranslate"><span class="pre">ONVPath</span></code>. To manipulate an ONV path, we use the elementary second quantization operators to annihilate or create arcs that represent occupied orbitals. In an ONV path, a diagonal arc represents an occupied orbital, while a vertical arc represents an unoccupied orbital. As an example, we will use the path of the ONV <code class="docutils literal notranslate"><span class="pre">|10110&gt;</span></code>.</p>
 <!--DOCUSAURUS_CODE_TABS-->
 <!--Python-->
@@ -397,13 +400,13 @@ document.write(`
 </div>
 <!--C++-->
 <div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Set up a F(5,3) Fock space.</span>
-<span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
-<span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"></span>
 
-<span class="k">const</span><span class="w"> </span><span class="n">GQCP</span><span class="o">::</span><span class="n">SpinUnresolvedONVBasis</span><span class="w"> </span><span class="n">onv_basis</span><span class="w"> </span><span class="p">{</span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">};</span>
+<span class="k">const</span><span class="w"> </span><span class="n">GQCP</span><span class="o">::</span><span class="n">SpinUnresolvedONVBasis</span><span class="w"> </span><span class="n">onv_basis</span><span class="w"> </span><span class="p">{</span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">};</span><span class="w"></span>
 
 <span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">I</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GQCP</span><span class="o">::</span><span class="n">SpinUnresolvedONV</span><span class="o">::</span><span class="n">FromOccupiedIndices</span><span class="p">({</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">},</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span><span class="w">  </span><span class="c1">// |10110&gt;</span>
-<span class="n">GQCP</span><span class="o">::</span><span class="n">ONVPath</span><span class="w"> </span><span class="n">onv_path</span><span class="w"> </span><span class="p">{</span><span class="n">onv_basis</span><span class="p">,</span><span class="w"> </span><span class="n">I</span><span class="p">};</span>
+<span class="n">GQCP</span><span class="o">::</span><span class="n">ONVPath</span><span class="w"> </span><span class="n">onv_path</span><span class="w"> </span><span class="p">{</span><span class="n">onv_basis</span><span class="p">,</span><span class="w"> </span><span class="n">I</span><span class="p">};</span><span class="w"></span>
 </pre></div>
 </div>
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -419,15 +422,15 @@ document.write(`
 <span class="cm">* </span>
 <span class="cm">*  @param q        the index of the orbital that should be annihilated</span>
 <span class="cm">*  @param n        the number of electrons in the ONV/path up to the orbital index q</span>
-<span class="cm">*/</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">ONVPath::annihilate</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="cm">*/</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">ONVPath::annihilate</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// During annihilation, we&#39;re removing an arc, so we&#39;ll have to update the current address by removing the corresponding arc weight.</span>
-<span class="w">    </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">m_address</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">onv_basis</span><span class="p">.</span><span class="n">arcWeight</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
+<span class="w">    </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">m_address</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">onv_basis</span><span class="p">.</span><span class="n">arcWeight</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// Update the next possible creation index. Since we&#39;re always constructing paths from the top-left to the bottom-right, we&#39;re only considering creation indices p &gt; q.</span>
-<span class="w">    </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">    </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>There are three diagonal arcs (starting at [0, 0], [2, 1] and [3, 2]), which are the coordinates where <code class="docutils literal notranslate"><span class="pre">annihilate()</span></code> can remove an electron. Let’s say we <code class="docutils literal notranslate"><span class="pre">annihilate(0,</span> <span class="pre">0)</span></code>. The diagonal arc starting at [0, 0] will then become a vertical arc, resulting in a new, <em>open</em> path, related to the ONV <code class="docutils literal notranslate"><span class="pre">|00110&gt;</span></code></p>
@@ -442,7 +445,7 @@ document.write(`
 </div>
 <!--C++-->
 <div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Annihilate the electron in the orbital with index 0.</span>
-<span class="n">onv_path</span><span class="p">.</span><span class="n">annihilate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="n">onv_path</span><span class="p">.</span><span class="n">annihilate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -453,12 +456,12 @@ document.write(`
 <span class="cm">* </span>
 <span class="cm">*  @param p        the index of the orbital that should be created</span>
 <span class="cm">*  @param n        the number of electrons in the ONV/path up to the orbital index q, prior to the creation</span>
-<span class="cm">*/</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">ONVPath::create</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="cm">*/</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">ONVPath::create</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// During creation, we&#39;re adding an arc, so we&#39;ll have to update the current address by adding the corresponding arc weight.</span>
-<span class="w">    </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">m_address</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">onv_basis</span><span class="p">.</span><span class="n">arcWeight</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="w">    </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">m_address</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">onv_basis</span><span class="p">.</span><span class="n">arcWeight</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>In this particular case, the path can be closed by creating at coordinate [1, 0], resulting in a new ONV: <code class="docutils literal notranslate"><span class="pre">|01110&gt;</span></code>.</p>
@@ -470,7 +473,7 @@ document.write(`
 </div>
 <!--C++-->
 <div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create an electron in the orbital with index 1.</span>
-<span class="n">onv_path</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="n">onv_path</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -481,16 +484,16 @@ document.write(`
 <span class="cm">  * </span>
 <span class="cm">  *  @param p        the index of the orbital that should be annihilated</span>
 <span class="cm">  *  @param n        the number of electrons in the ONV/path up to the orbital index p</span>
-<span class="cm">  */</span>
-<span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">ONVPath::leftTranslateDiagonalArc</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="cm">  */</span><span class="w"></span>
+<span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">ONVPath::leftTranslateDiagonalArc</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
 <span class="w">     </span><span class="c1">// Translating a diagonal arc can be rewritten as an annihilation, followed by a creation.</span>
-<span class="w">     </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">annihilate</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
-<span class="w">     </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">create</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">     </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">annihilate</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span><span class="w"></span>
+<span class="w">     </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">create</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">     </span><span class="c1">// Since a left-translation describes the process of &#39;encountering an electron/occupied orbital&#39;, the sign factor should be updated according to the fermionic anti-commutation rules.</span>
-<span class="w">     </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">m_sign</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">     </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">m_sign</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <blockquote>
@@ -510,7 +513,7 @@ document.write(`
 </div>
 <!--C++-->
 <div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Translate the diagonal arc that starts at (2, 1) to (2, 0).</span>
-<span class="n">onv_path</span><span class="p">.</span><span class="n">leftTranslateDiagonalArc</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="n">onv_path</span><span class="p">.</span><span class="n">leftTranslateDiagonalArc</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -523,7 +526,7 @@ document.write(`
 </div>
 <!--C++-->
 <div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Translate the diagonal arc that starts at (3, 2) to (3, 1).</span>
-<span class="n">onv_path</span><span class="p">.</span><span class="n">leftTranslateDiagonalArc</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="n">onv_path</span><span class="p">.</span><span class="n">leftTranslateDiagonalArc</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -536,7 +539,7 @@ document.write(`
 </div>
 <!--C++-->
 <div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Keep translating diagonal arcs to the left, until an unoccupied index is found.</span>
-<span class="n">onv_path</span><span class="p">.</span><span class="n">leftTranslateDiagonalArcUntilVerticalArc</span><span class="p">();</span>
+<span class="n">onv_path</span><span class="p">.</span><span class="n">leftTranslateDiagonalArcUntilVerticalArc</span><span class="p">();</span><span class="w"></span>
 </pre></div>
 </div>
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -551,13 +554,13 @@ document.write(`
 </div>
 <!--C++-->
 <div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create an electron in the orbital with index 4.</span>
-<span class="n">onv_path</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="n">onv_path</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <!--END_DOCUSAURUS_CODE_TABS-->
 <p><img alt="final_creation" src="../_images/ONVPath_00111.png" /></p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -585,7 +588,10 @@ document.write(`
               
               
                 <footer class="bd-footer-article">
-                  <!-- Previous / next buttons -->
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="introduction.html"
@@ -605,7 +611,10 @@ document.write(`
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
@@ -629,7 +638,7 @@ document.write(`
             
           </div>
           <footer class="bd-footer-content">
-            <div class="bd-footer-content__inner">
+            
 <div class="bd-footer-content__inner container">
   
   <div class="footer-item">
@@ -659,7 +668,7 @@ By The Ghent Quantum Chemistry Group
     
   </div>
   
-</div></div>
+</div>
           </footer>
         
 
@@ -668,8 +677,8 @@ By The Ghent Quantum Chemistry Group
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
   </footer>

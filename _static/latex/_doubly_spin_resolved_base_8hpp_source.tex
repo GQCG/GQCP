@@ -1,0 +1,116 @@
+\hypertarget{_doubly_spin_resolved_base_8hpp_source}{}\doxysection{Doubly\+Spin\+Resolved\+Base.\+hpp}
+\label{_doubly_spin_resolved_base_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/QuantumChemical/DoublySpinResolvedBase.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/QuantumChemical/DoublySpinResolvedBase.hpp}}
+\mbox{\hyperlink{_doubly_spin_resolved_base_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Pure,\ \textcolor{keyword}{typename}\ \_Mixed,\ \textcolor{keyword}{typename}\ \_Derived>}
+\DoxyCodeLine{00036\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base}{DoublySpinResolvedBase}}\ \{}
+\DoxyCodeLine{00037\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//\ The\ type\ that\ represents\ a\ 'pure'\ combination\ of\ spin\ components,\ i.e.\ the\ alpha-\/alpha\ or\ beta-\/beta\ type.}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_aca1c50d6a880fe35529aec8e60bc8dd2}{Pure}}\ =\ \_Pure;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ The\ type\ that\ represents\ a\ 'mixed'\ combination\ of\ spin\ components,\ i.e.\ the\ alpha-\/beta\ or\ beta-\/alpha\ type.}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_a230628c5e23252fa38b8cc228430757e}{Mixed}}\ =\ \_Mixed;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{comment}{//\ The\ type\ that\ derives\ from\ this\ type,\ given\ as\ a\ template\ argument,\ enabling\ CRTP\ and\ compile-\/time\ polymorphism.}}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_a1916ec0b84dff2397eaa37d1e6a26d7f}{Derived}}\ =\ \_Derived;}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ 'this'.}}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base}{Self}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base}{DoublySpinResolvedBase<Pure,\ Mixed,\ Derived>}};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ The\ alpha-\/alpha-\/object.}}
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_aca1c50d6a880fe35529aec8e60bc8dd2}{Pure}}\ aa;}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//\ The\ alpha-\/beta\ object.}}
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_a230628c5e23252fa38b8cc228430757e}{Mixed}}\ ab;}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{//\ The\ beta-\/alpha\ object.}}
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_a230628c5e23252fa38b8cc228430757e}{Mixed}}\ ba;}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{comment}{//\ The\ beta-\/beta\ object.}}
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_aca1c50d6a880fe35529aec8e60bc8dd2}{Pure}}\ bb;}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00067\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Constructors}}
+\DoxyCodeLine{00068\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00078\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_a6cee2100ccc8d339d1305fcdbb146221}{DoublySpinResolvedBase}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_aca1c50d6a880fe35529aec8e60bc8dd2}{Pure}}\&\ aa,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_a230628c5e23252fa38b8cc228430757e}{Mixed}}\&\ ab,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_a230628c5e23252fa38b8cc228430757e}{Mixed}}\&\ ba,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_aca1c50d6a880fe35529aec8e60bc8dd2}{Pure}}\&\ bb)\ :}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ aa\ \{aa\},}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ ab\ \{ab\},}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ ba\ \{ba\},}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ bb\ \{bb\}\ \{\}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00086\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Accessing\ spin\ components}}
+\DoxyCodeLine{00087\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_aca1c50d6a880fe35529aec8e60bc8dd2}{Pure}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_a9c49bbea8e139a0e2d743c3f0d9c81df}{alphaAlpha}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>aa;\ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00097\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_aca1c50d6a880fe35529aec8e60bc8dd2}{Pure}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_a31fefeed695886f170160cf7325f2019}{alphaAlpha}}()\ \{\ \textcolor{keywordflow}{return}\ this-\/>aa;\ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_a230628c5e23252fa38b8cc228430757e}{Mixed}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_a795c9995179305bdf7e4fb33b545d2f9}{alphaBeta}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>ab;\ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00107\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_a230628c5e23252fa38b8cc228430757e}{Mixed}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_a5d427c19d4494ecaaa469cda5e4ea49a}{alphaBeta}}()\ \{\ \textcolor{keywordflow}{return}\ this-\/>ab;\ \}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_a230628c5e23252fa38b8cc228430757e}{Mixed}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_a469dd84d608a04e22453b7bc0c3da24a}{betaAlpha}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>ba;\ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00117\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_a230628c5e23252fa38b8cc228430757e}{Mixed}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_a05080a52605d8b0f38957e5075277ee2}{betaAlpha}}()\ \{\ \textcolor{keywordflow}{return}\ this-\/>ba;\ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_aca1c50d6a880fe35529aec8e60bc8dd2}{Pure}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_affdd177bee1ee3b2f71e53d0bbacbd74}{betaBeta}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>bb;\ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00127\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_aca1c50d6a880fe35529aec8e60bc8dd2}{Pure}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_a8ba5afa2719dcf4506a9d2b9ef65d6fa}{betaBeta}}()\ \{\ \textcolor{keywordflow}{return}\ this-\/>bb;\ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_aca1c50d6a880fe35529aec8e60bc8dd2}{Pure}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_ac8c737476d1ba66cf974fd3db97a348b}{pureComponent}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4f}{Spin}}\&\ sigma)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sigma\ ==\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{Spin::alpha}})\ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>aa;}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>bb;}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00141\ \ \ \ \ \}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00148\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_aca1c50d6a880fe35529aec8e60bc8dd2}{Pure}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_a4554c01ee53cee3ad10d5d4749e818f7}{pureComponent}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4f}{Spin}}\&\ sigma)\ \{}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sigma\ ==\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{Spin::alpha}})\ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>aa;}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>bb;}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00155\ \ \ \ \ \}}
+\DoxyCodeLine{00156\ \};}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

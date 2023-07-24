@@ -1,4 +1,4 @@
-\hypertarget{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence}{}\doxysection{GQCP\+::Consecutive\+Iterates\+Norm\+Convergence$<$ \+\_\+\+Iterate, \+\_\+\+Environment $>$ Class Template Reference}
+\hypertarget{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence}{}\doxysection{GQCP\+::Consecutive\+Iterates\+Norm\+Convergence\texorpdfstring{$<$}{<} \+\_\+\+Iterate, \+\_\+\+Environment \texorpdfstring{$>$}{>} Class Template Reference}
 \label{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence}\index{GQCP::ConsecutiveIteratesNormConvergence$<$ \_Iterate, \_Environment $>$@{GQCP::ConsecutiveIteratesNormConvergence$<$ \_Iterate, \_Environment $>$}}
 
 
@@ -6,7 +6,7 @@
 
 
 
-Inheritance diagram for GQCP\+::Consecutive\+Iterates\+Norm\+Convergence$<$ \+\_\+\+Iterate, \+\_\+\+Environment $>$\+:
+Inheritance diagram for GQCP\+::Consecutive\+Iterates\+Norm\+Convergence\texorpdfstring{$<$}{<} \+\_\+\+Iterate, \+\_\+\+Environment \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -16,7 +16,7 @@ Inheritance diagram for GQCP\+::Consecutive\+Iterates\+Norm\+Convergence$<$ \+\_
 \end{figure}
 
 
-Collaboration diagram for GQCP\+::Consecutive\+Iterates\+Norm\+Convergence$<$ \+\_\+\+Iterate, \+\_\+\+Environment $>$\+:
+Collaboration diagram for GQCP\+::Consecutive\+Iterates\+Norm\+Convergence\texorpdfstring{$<$}{<} \+\_\+\+Iterate, \+\_\+\+Environment \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -33,6 +33,11 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_a
 \item 
 using \mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_ad92e2a91dcc2370791b40284ed3d30e5}{Environment}} = \+\_\+\+Environment
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_convergence_criterion}{GQCP\+::\+Convergence\+Criterion$<$ \+\_\+\+Environment $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_convergence_criterion_af1d80b82ec0172943d13c50a48cc1cb3}{Environment}} = \+\_\+\+Environment
+\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -44,12 +49,20 @@ bool \mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_a0
 \item 
 double \mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_affe980b772bae2019d82987d5c04487d}{threshold}} () const
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_convergence_criterion}{GQCP\+::\+Convergence\+Criterion$<$ \+\_\+\+Environment $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_convergence_criterion_a4594ec2c922fcc9aafb6734e68fa158d}{$\sim$\+Convergence\+Criterion}} ()=default
+\item 
+virtual std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_convergence_criterion_a5d2993454005779f8a6376c63aec430c}{description}} () const =0
+\item 
+virtual bool \mbox{\hyperlink{class_g_q_c_p_1_1_convergence_criterion_a84503e9b2b4bdd01188f21be512bc281}{is\+Fulfilled}} (\mbox{\hyperlink{class_g_q_c_p_1_1_convergence_criterion_af1d80b82ec0172943d13c50a48cc1cb3}{Environment}} \&environment)=0
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$typename \+\_\+\+Iterate, typename \+\_\+\+Environment$>$\newline
 class GQCP\+::\+Consecutive\+Iterates\+Norm\+Convergence$<$ \+\_\+\+Iterate, \+\_\+\+Environment $>$}
-
 A convergence criterion that checks if the norm of the difference of two iterates is converged.
 
 
@@ -67,21 +80,21 @@ A convergence criterion that checks if the norm of the difference of two iterate
 \index{Environment@{Environment}!GQCP::ConsecutiveIteratesNormConvergence$<$ \_Iterate, \_Environment $>$@{GQCP::ConsecutiveIteratesNormConvergence$<$ \_Iterate, \_Environment $>$}}
 \doxysubsubsection{\texorpdfstring{Environment}{Environment}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Iterate , typename \+\_\+\+Environment $>$ \\
-using \mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence}{GQCP\+::\+Consecutive\+Iterates\+Norm\+Convergence}}$<$ \+\_\+\+Iterate, \+\_\+\+Environment $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_ad92e2a91dcc2370791b40284ed3d30e5}{Environment}} =  \+\_\+\+Environment}
+using \mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence}{GQCP\+::\+Consecutive\+Iterates\+Norm\+Convergence}}$<$ \+\_\+\+Iterate, \+\_\+\+Environment $>$\+::\+Environment =  \+\_\+\+Environment}
 
 \mbox{\Hypertarget{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_a89ec3d0f315128d7abb0d7a39a6b2f1e}\label{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_a89ec3d0f315128d7abb0d7a39a6b2f1e}} 
 \index{GQCP::ConsecutiveIteratesNormConvergence$<$ \_Iterate, \_Environment $>$@{GQCP::ConsecutiveIteratesNormConvergence$<$ \_Iterate, \_Environment $>$}!Iterate@{Iterate}}
 \index{Iterate@{Iterate}!GQCP::ConsecutiveIteratesNormConvergence$<$ \_Iterate, \_Environment $>$@{GQCP::ConsecutiveIteratesNormConvergence$<$ \_Iterate, \_Environment $>$}}
 \doxysubsubsection{\texorpdfstring{Iterate}{Iterate}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Iterate , typename \+\_\+\+Environment $>$ \\
-using \mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence}{GQCP\+::\+Consecutive\+Iterates\+Norm\+Convergence}}$<$ \+\_\+\+Iterate, \+\_\+\+Environment $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_a89ec3d0f315128d7abb0d7a39a6b2f1e}{Iterate}} =  \+\_\+\+Iterate}
+using \mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence}{GQCP\+::\+Consecutive\+Iterates\+Norm\+Convergence}}$<$ \+\_\+\+Iterate, \+\_\+\+Environment $>$\+::\+Iterate =  \+\_\+\+Iterate}
 
 \mbox{\Hypertarget{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_a467bffa868b422a79cb56d6d3c0180c1}\label{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_a467bffa868b422a79cb56d6d3c0180c1}} 
 \index{GQCP::ConsecutiveIteratesNormConvergence$<$ \_Iterate, \_Environment $>$@{GQCP::ConsecutiveIteratesNormConvergence$<$ \_Iterate, \_Environment $>$}!Scalar@{Scalar}}
 \index{Scalar@{Scalar}!GQCP::ConsecutiveIteratesNormConvergence$<$ \_Iterate, \_Environment $>$@{GQCP::ConsecutiveIteratesNormConvergence$<$ \_Iterate, \_Environment $>$}}
 \doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Iterate , typename \+\_\+\+Environment $>$ \\
-using \mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence}{GQCP\+::\+Consecutive\+Iterates\+Norm\+Convergence}}$<$ \+\_\+\+Iterate, \+\_\+\+Environment $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_a467bffa868b422a79cb56d6d3c0180c1}{Scalar}} =  typename Iterate\+::\+Scalar}
+using \mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence}{GQCP\+::\+Consecutive\+Iterates\+Norm\+Convergence}}$<$ \+\_\+\+Iterate, \+\_\+\+Environment $>$\+::\+Scalar =  typename Iterate\+::\+Scalar}
 
 
 
@@ -91,7 +104,7 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence}{
 \index{ConsecutiveIteratesNormConvergence@{ConsecutiveIteratesNormConvergence}!GQCP::ConsecutiveIteratesNormConvergence$<$ \_Iterate, \_Environment $>$@{GQCP::ConsecutiveIteratesNormConvergence$<$ \_Iterate, \_Environment $>$}}
 \doxysubsubsection{\texorpdfstring{ConsecutiveIteratesNormConvergence()}{ConsecutiveIteratesNormConvergence()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Iterate , typename \+\_\+\+Environment $>$ \\
-\mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence}{GQCP\+::\+Consecutive\+Iterates\+Norm\+Convergence}}$<$ \+\_\+\+Iterate, \+\_\+\+Environment $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence}{Consecutive\+Iterates\+Norm\+Convergence}} (\begin{DoxyParamCaption}\item[{const double}]{threshold = {\ttfamily 1.0e-\/08},  }\item[{const std\+::function$<$ std\+::deque$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_a89ec3d0f315128d7abb0d7a39a6b2f1e}{Iterate}} $>$(const \mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_ad92e2a91dcc2370791b40284ed3d30e5}{Environment}} \&)$>$}]{extractor = {\ttfamily \mbox{[}\mbox{]}(const~\mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_ad92e2a91dcc2370791b40284ed3d30e5}{Environment}}\&~environment)~\{~return~environment.variables;~\}},  }\item[{const std\+::string \&}]{iterate\+\_\+description = {\ttfamily \char`\"{}a~general~iterate\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence}{GQCP\+::\+Consecutive\+Iterates\+Norm\+Convergence}}$<$ \+\_\+\+Iterate, \+\_\+\+Environment $>$\+::\+Consecutive\+Iterates\+Norm\+Convergence (\begin{DoxyParamCaption}\item[{const double}]{threshold = {\ttfamily 1.0e-\/08},  }\item[{const std\+::function$<$ std\+::deque$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_a89ec3d0f315128d7abb0d7a39a6b2f1e}{Iterate}} $>$(const \mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_ad92e2a91dcc2370791b40284ed3d30e5}{Environment}} \&)$>$}]{extractor = {\ttfamily \mbox{[}\mbox{]}(const~\mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_ad92e2a91dcc2370791b40284ed3d30e5}{Environment}}\&~environment)~\{~return~environment.variables;~\}},  }\item[{const std\+::string \&}]{iterate\+\_\+description = {\ttfamily \char`\"{}a~general~iterate\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 \begin{DoxyParams}{Parameters}

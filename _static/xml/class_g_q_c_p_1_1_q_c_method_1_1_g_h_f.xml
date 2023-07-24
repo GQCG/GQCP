@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_q_c_method_1_1_g_h_f" kind="class" language="C++" prot="public">
     <compoundname>GQCP::QCMethod::GHF</compoundname>
     <includes refid="_q_c_method_2_h_f_2_g_h_f_2_g_h_f_8hpp" local="no">GHF.hpp</includes>
@@ -14,6 +14,7 @@
         <definition>using GQCP::QCMethod::GHF&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
         <argsstring></argsstring>
         <name>Scalar</name>
+        <qualifiedname>GQCP::QCMethod::GHF::Scalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -24,16 +25,17 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_method_1_1_g_h_f_1a36c6fda6cae6e65fb234d192f40619af" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_method_1_1_g_h_f_1a7f170afa998412067445406e39a82b21" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Solver</type>
           </param>
         </templateparamlist>
         <type><ref refid="class_g_q_c_p_1_1_q_c_structure" kindref="compound">QCStructure</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_g_h_f" kindref="compound">QCModel::GHF</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_method_1_1_g_h_f_1afcecd552770f3b0252e8015171e08c8a" kindref="member">Scalar</ref> &gt;, <ref refid="class_g_q_c_p_1_1_q_c_method_1_1_g_h_f_1afcecd552770f3b0252e8015171e08c8a" kindref="member">Scalar</ref> &gt;</type>
-        <definition>QCStructure&lt;QCModel::GHF&lt;Scalar&gt;, Scalar&gt; GQCP::QCMethod::GHF&lt; _Scalar &gt;::optimize</definition>
+        <definition>QCStructure&lt; QCModel::GHF&lt; Scalar &gt;, Scalar &gt; GQCP::QCMethod::GHF&lt; _Scalar &gt;::optimize</definition>
         <argsstring>(Solver &amp;solver, GHFSCFEnvironment&lt; Scalar &gt; &amp;environment) const</argsstring>
         <name>optimize</name>
+        <qualifiedname>GQCP::QCMethod::GHF::optimize</qualifiedname>
         <param>
           <type>Solver &amp;</type>
           <declname>solver</declname>
@@ -102,7 +104,7 @@
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHF.hpp" line="40" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHF.hpp" bodystart="40" bodyend="76"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_q_c_method_1_1_g_h_f_1a36c6fda6cae6e65fb234d192f40619af" prot="public" virt="non-virtual"><scope>GQCP::QCMethod::GHF</scope><name>optimize</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_method_1_1_g_h_f_1a7f170afa998412067445406e39a82b21" prot="public" virt="non-virtual"><scope>GQCP::QCMethod::GHF</scope><name>optimize</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_method_1_1_g_h_f_1afcecd552770f3b0252e8015171e08c8a" prot="public" virt="non-virtual"><scope>GQCP::QCMethod::GHF</scope><name>Scalar</name></member>
     </listofallmembers>
   </compounddef>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_mc_murchie_davidson_coefficient" kind="class" language="C++" prot="public">
     <compoundname>GQCP::McMurchieDavidsonCoefficient</compoundname>
     <includes refid="_mc_murchie_davidson_coefficient_8hpp" local="no">McMurchieDavidsonCoefficient.hpp</includes>
@@ -9,6 +9,7 @@
         <definition>double GQCP::McMurchieDavidsonCoefficient::K</definition>
         <argsstring></argsstring>
         <name>K</name>
+        <qualifiedname>GQCP::McMurchieDavidsonCoefficient::K</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -22,6 +23,7 @@
         <definition>double GQCP::McMurchieDavidsonCoefficient::L</definition>
         <argsstring></argsstring>
         <name>L</name>
+        <qualifiedname>GQCP::McMurchieDavidsonCoefficient::L</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -35,6 +37,7 @@
         <definition>double GQCP::McMurchieDavidsonCoefficient::a</definition>
         <argsstring></argsstring>
         <name>a</name>
+        <qualifiedname>GQCP::McMurchieDavidsonCoefficient::a</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -48,6 +51,7 @@
         <definition>double GQCP::McMurchieDavidsonCoefficient::b</definition>
         <argsstring></argsstring>
         <name>b</name>
+        <qualifiedname>GQCP::McMurchieDavidsonCoefficient::b</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -63,6 +67,7 @@
         <definition>GQCP::McMurchieDavidsonCoefficient::McMurchieDavidsonCoefficient</definition>
         <argsstring>(const double K, const double a, const double L, const double b)</argsstring>
         <name>McMurchieDavidsonCoefficient</name>
+        <qualifiedname>GQCP::McMurchieDavidsonCoefficient::McMurchieDavidsonCoefficient</qualifiedname>
         <param>
           <type>const double</type>
           <declname>K</declname>
@@ -126,6 +131,7 @@
         <definition>double GQCP::McMurchieDavidsonCoefficient::operator()</definition>
         <argsstring>(const int i, const int j, const int t) const</argsstring>
         <name>operator()</name>
+        <qualifiedname>GQCP::McMurchieDavidsonCoefficient::operator()</qualifiedname>
         <param>
           <type>const int</type>
           <declname>i</declname>
@@ -179,6 +185,7 @@
         <definition>double GQCP::McMurchieDavidsonCoefficient::centerOfMass</definition>
         <argsstring>() const</argsstring>
         <name>centerOfMass</name>
+        <qualifiedname>GQCP::McMurchieDavidsonCoefficient::centerOfMass</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -195,6 +202,7 @@
         <definition>double GQCP::McMurchieDavidsonCoefficient::reducedExponent</definition>
         <argsstring>() const</argsstring>
         <name>reducedExponent</name>
+        <qualifiedname>GQCP::McMurchieDavidsonCoefficient::reducedExponent</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -211,6 +219,7 @@
         <definition>double GQCP::McMurchieDavidsonCoefficient::totalExponent</definition>
         <argsstring>() const</argsstring>
         <name>totalExponent</name>
+        <qualifiedname>GQCP::McMurchieDavidsonCoefficient::totalExponent</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -227,6 +236,7 @@
         <definition>double GQCP::McMurchieDavidsonCoefficient::distance</definition>
         <argsstring>() const</argsstring>
         <name>distance</name>
+        <qualifiedname>GQCP::McMurchieDavidsonCoefficient::distance</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>

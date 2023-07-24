@@ -1,0 +1,807 @@
+\hypertarget{_q_c_model_2_h_f_2_r_h_f_8hpp_source}{}\doxysection{RHF.\+hpp}
+\label{_q_c_model_2_h_f_2_r_h_f_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp}}
+\mbox{\hyperlink{_q_c_model_2_h_f_2_r_h_f_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_g_t_o_shell_8hpp}{Basis/ScalarBasis/GTOShell.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_current_density_matrix_element_8hpp}{Basis/SpinorBasis/CurrentDensityMatrixElement.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_orbital_space_8hpp}{Basis/SpinorBasis/OrbitalSpace.hpp}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_r_transformation_8hpp}{Basis/Transformations/RTransformation.hpp}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_orbital1_d_m_8hpp}{DensityMatrix/Orbital1DM.hpp}}"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_cubic_grid_8hpp}{Mathematical/Grid/CubicGrid.hpp}}"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_implicit_rank_four_tensor_slice_8hpp}{Mathematical/Representation/ImplicitRankFourTensorSlice.hpp}}"{}}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_levi_civita_tensor_8hpp}{Mathematical/Representation/LeviCivitaTensor.hpp}}"{}}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_square_matrix_8hpp}{Mathematical/Representation/SquareMatrix.hpp}}"{}}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_evaluable_r_s_q_one_electron_operator_8hpp}{Operator/SecondQuantized/EvaluableRSQOneElectronOperator.hpp}}"{}}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_r_s_q_one_electron_operator_8hpp}{Operator/SecondQuantized/RSQOneElectronOperator.hpp}}"{}}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_q_hamiltonian_8hpp}{Operator/SecondQuantized/SQHamiltonian.hpp}}"{}}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ "{}QCModel/HF/StabilityMatrices/RHFStabilityMatrices.hpp"{}}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_spin_8hpp}{QuantumChemical/Spin.hpp}}"{}}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{complex_8hpp}{Utilities/complex.hpp}}"{}}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{type__traits_8hpp}{Utilities/type\_traits.hpp}}"{}}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00040\ \textcolor{keyword}{namespace\ }QCModel\ \{}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar>}
+\DoxyCodeLine{00049\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{RHF}}\ \{}
+\DoxyCodeLine{00050\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ scalar\ that\ is\ used\ for\ the\ expansion\ of\ the\ spatial\ orbitals\ in\ their\ underlying\ scalar\ basis:\ real\ or\ complex.}}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}}\ =\ \_Scalar;}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{//\ The\ number\ of\ electron\ pairs.}}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ N\_P;}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{//\ The\ orbital\ energies\ sorted\ in\ ascending\ order.}}
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<Scalar>}}\ orbital\_energies;}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{comment}{//\ The\ transformation\ that\ expresses\ the\ RHF\ MOs\ in\ terms\ of\ the\ atomic\ spinors.}}
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{RTransformation<Scalar>}}\ C;}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00068\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Constructors}}
+\DoxyCodeLine{00069\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00078\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a62de0e924b548aa50e0c754e9a365665}{RHF}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ N\_P,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<Scalar>}}\&\ orbital\_energies,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{RTransformation<Scalar>}}\&\ C)\ :}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ N\_P\ \{N\_P\},}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ orbital\_energies\ \{orbital\_energies\},}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ C(C)\ \{\}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00087\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a1383beff6bf900d017b7a0ad846a0c9e}{RHF}}()\ :}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{RHF}}(0.0,\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{RTransformation}}<\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}}>::Zero(0),\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX}}<\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}}>::Zero(0))\ \{\}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00092\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Energy}}
+\DoxyCodeLine{00093\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a7e32e7b47f3099d4954a8b6fbfd5d684}{calculateElectronicEnergy}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital1_d_m}{Orbital1DM<Scalar>}}\&\ D,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_one_electron_operator}{ScalarRSQOneElectronOperator<Scalar>}}\&\ H\_core,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_one_electron_operator}{ScalarRSQOneElectronOperator<Scalar>}}\&\ F)\ \{}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ First,\ calculate\ the\ sum\ of\ H\_core\ and\ F\ (this\ saves\ a\ contraction).}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ Z\ =\ H\_core\ +\ F;}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Convert\ the\ matrix\ Z\ to\ an\ GQCP::Tensor<double,\ 2>\ Z\_tensor.}}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Einsum\ is\ only\ implemented\ for\ a\ tensor\ +\ a\ matrix,\ not\ for\ 2\ matrices.}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ Eigen::TensorMap<Eigen::Tensor<const\ Scalar,\ 2>>\ Z\_t\ \{Z.\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a347d31f5837873ca173a9177bb10f837}{parameters}}().data(),\ D.\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_ac30875260405df322f951b6458dc5788}{matrix}}().rows(),\ D.\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_ac30875260405df322f951b6458dc5788}{matrix}}().cols()\};}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor<Scalar,\ 2>}}\ Z\_tensor\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor<Scalar,\ 2>}}(Z\_t);}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ To\ calculate\ the\ electronic\ energy,\ we\ must\ perform\ a\ double\ contraction\ (with\ prefactor\ 0.5):}}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ 0.5\ D(nu\ mu)\ Z(mu\ nu).}}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor<Scalar,\ 0>}}\ contraction\ =\ 0.5\ *\ Z\_tensor.template\ einsum<2>(\textcolor{stringliteral}{"{}ij,ij-\/>"{}},\ D.\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_ac30875260405df322f951b6458dc5788}{matrix}}());}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ As\ the\ double\ contraction\ of\ two\ matrices\ is\ a\ scalar\ (a\ tensor\ of\ rank\ 0),\ we\ should\ access\ the\ value\ as\ (0).}}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ contraction(0);}
+\DoxyCodeLine{00118\ \ \ \ \ \}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00126\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a9711b1d2324983d16e6c314f1bd3d56b}{excitationEnergies}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ the\ orbital\ space\ to\ determine\ the\ loops.}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ orbital\_space\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_aeef840b524f4f1475542c2347d981d43}{orbitalSpace}}();}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ number\ of\ occupied\ and\ virtual\ orbitals.}}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_occ\ =\ orbital\_space.numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}});}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_virt\ =\ orbital\_space.numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}});}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ occupied\ and\ virtual\ orbital\ energies.}}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ occupied\_energies\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_aa02e2bc72788992a5e5488afdc5f0bbd}{occupiedOrbitalEnergies}}();}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ virtual\_energies\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a695cacbcbaacad0bd3537f6426447aa9}{virtualOrbitalEnergies}}();}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ the\ F\ matrix.}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<Scalar>}}\ F\_values(n\_virt,\ n\_occ);}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ a\ =\ 0;\ a\ <\ n\_virt;\ a++)\ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ n\_occ;\ i++)\ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ F\_values(a,\ i)\ =\ virtual\_energies[a]\ -\/\ occupied\_energies[i];}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ F\_values;}
+\DoxyCodeLine{00147\ \ \ \ \ \}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00153\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a305a15cc19b0760b22ef808886b94806}{spinOrbitalEnergiesBlocked}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a8427492486742da6035bfd6525c3ce22}{numberOfSpatialOrbitals}}();}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<Scalar>}}\ total\_orbital\_energies\ \{2\ *\ K\};}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ total\_orbital\_energies.head(K)\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_aff8b751c7004192ced8d5981ca97fb3e}{orbitalEnergies}}();}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ total\_orbital\_energies.tail(K)\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_aff8b751c7004192ced8d5981ca97fb3e}{orbitalEnergies}}();}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ total\_orbital\_energies;}
+\DoxyCodeLine{00162\ \ \ \ \ \}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00168\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_ad0d844fbb51c0f585e9ed82682b5b8b2}{spinOrbitalEnergiesInterleaved}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a8427492486742da6035bfd6525c3ce22}{numberOfSpatialOrbitals}}();}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<Scalar>}}\ total\_orbital\_energies\ \{2\ *\ K\};}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ p\ =\ 0;\ p\ <\ K;\ p++)\ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ total\_orbital\_energies(2\ *\ p)\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a11ef4ff3a43c40c298e60ecdc1ac7fc9}{orbitalEnergy}}(p);}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ total\_orbital\_energies(2\ *\ p\ +\ 1)\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a11ef4ff3a43c40c298e60ecdc1ac7fc9}{orbitalEnergy}}(p);}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ total\_orbital\_energies;}
+\DoxyCodeLine{00179\ \ \ \ \ \}}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00185\ \ \ \ \ std::vector<Scalar>\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a695cacbcbaacad0bd3537f6426447aa9}{virtualOrbitalEnergies}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ number\ of\ occupied\ orbitals.}}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ n\_occ\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_aeef840b524f4f1475542c2347d981d43}{orbitalSpace}}().\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a6749db783d556c8d21e52e2a72ea329f}{numberOfOrbitals}}(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}});}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ std::vector<Scalar>\ mo\_energies;\ \ \textcolor{comment}{//\ We\ use\ a\ std::vector\ in\ order\ to\ be\ able\ to\ slice\ the\ vector\ later\ on.}}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a8427492486742da6035bfd6525c3ce22}{numberOfSpatialOrbitals}}();\ i++)\ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ mo\_energies.push\_back(this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a11ef4ff3a43c40c298e60ecdc1ac7fc9}{orbitalEnergy}}(i));}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ the\ values\ with\ indices\ greater\ than\ the\ occupied\ orbital\ indices,\ i.e.\ the\ virtual\ orbital\ indices,\ to\ the\ new\ vector.}}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ std::vector<Scalar>\ mo\_energies\_virtual;}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ std::copy(mo\_energies.begin()\ +\ n\_occ,\ mo\_energies.end(),\ std::back\_inserter(mo\_energies\_virtual));}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mo\_energies\_virtual;}
+\DoxyCodeLine{00199\ \ \ \ \ \}}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00205\ \ \ \ \ std::vector<Scalar>\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_aa02e2bc72788992a5e5488afdc5f0bbd}{occupiedOrbitalEnergies}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ number\ of\ occupied\ orbitals.}}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ n\_occ\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_aeef840b524f4f1475542c2347d981d43}{orbitalSpace}}().\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a6749db783d556c8d21e52e2a72ea329f}{numberOfOrbitals}}(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}});}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ std::vector<Scalar>\ mo\_energies;\ \ \textcolor{comment}{//\ We\ use\ a\ std::vector\ in\ order\ to\ be\ able\ to\ slice\ the\ vector\ later\ on.}}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a8427492486742da6035bfd6525c3ce22}{numberOfSpatialOrbitals}}();\ i++)\ \{}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ mo\_energies.push\_back(this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a11ef4ff3a43c40c298e60ecdc1ac7fc9}{orbitalEnergy}}(i));}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ the\ values\ with\ indices\ smaller\ than\ the\ occupied\ orbital\ indices,\ to\ the\ new\ vector.}}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ std::vector<Scalar>\ mo\_energies\_occupied;}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ std::copy(mo\_energies.begin(),\ mo\_energies.begin()\ +\ n\_occ,\ std::back\_inserter(mo\_energies\_occupied));}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mo\_energies\_occupied;}
+\DoxyCodeLine{00219\ \ \ \ \ \}}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_aff8b751c7004192ced8d5981ca97fb3e}{orbitalEnergies}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>orbital\_energies;\ \}}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00232\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a11ef4ff3a43c40c298e60ecdc1ac7fc9}{orbitalEnergy}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ i)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>orbital\_energies(i);\ \}}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00236\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Error}}
+\DoxyCodeLine{00237\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00246\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a5b8a2d33cb0a8a12b6914985a09ae623}{calculateError}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_one_electron_operator}{ScalarRSQOneElectronOperator<Scalar>}}\&\ F,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital1_d_m}{Orbital1DM<Scalar>}}\&\ D,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_one_electron_operator}{ScalarRSQOneElectronOperator<Scalar>}}\&\ S)\ \{}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ F.\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a347d31f5837873ca173a9177bb10f837}{parameters}}()\ *\ D.\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_ac30875260405df322f951b6458dc5788}{matrix}}()\ *\ S.\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a347d31f5837873ca173a9177bb10f837}{parameters}}()\ -\/\ S.\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a347d31f5837873ca173a9177bb10f837}{parameters}}()\ *\ D.\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_ac30875260405df322f951b6458dc5788}{matrix}}()\ *\ F.\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a347d31f5837873ca173a9177bb10f837}{parameters}}();}
+\DoxyCodeLine{00248\ \ \ \ \ \}}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00252\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Hessians}}
+\DoxyCodeLine{00253\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adc2d191ddd486bdfb5a6494e39bce7f6}{Scalar}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a5180203a16f4c24b55ceb9418dcd783a}{calculateOrbitalHessianElement}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{RSQHamiltonian<Scalar>}}\&\ sq\_hamiltonian,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ N\_P,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ a,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ b,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ j)\ \{}
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Prepare\ some\ variables.}}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ g\_op\ =\ sq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a2dc43cc8615c2c34751535f3c07ef828}{twoElectron}}();}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\ =\ g\_op.numberOfOrbitals();\ \ \textcolor{comment}{//\ The\ number\ of\ spatial\ orbitals.}}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ g\ =\ g\_op.parameters();}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ orbital\_space\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_aeef840b524f4f1475542c2347d981d43}{RHF<Scalar>::orbitalSpace}}(K,\ N\_P);}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ value\ \{0.0\};}
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Inactive\ Fock\ matrix\ part.}}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ F\ =\ sq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a165d926ef2e3fd2067ea3b204f7c81f1}{calculateInactiveFockian}}(orbital\_space).parameters();}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ ==\ j)\ \{}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ value\ +=\ F(a,\ b);}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (a\ ==\ b)\ \{}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ value\ -\/=\ F(i,\ j);}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ two-\/electron\ part.}}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ value\ +=\ 4\ *\ g(a,\ i,\ b,\ j)\ -\/\ g(a,\ b,\ i,\ j)\ -\/\ g(a,\ j,\ b,\ i);}
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 4\ *\ value;}
+\DoxyCodeLine{00292\ \ \ \ \ \}}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00301\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_rank_four_tensor_slice}{ImplicitRankFourTensorSlice<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_ab43b34b8bc42c32ea3c326c7724500df}{calculateOrbitalHessianTensor}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{RSQHamiltonian<Scalar>}}\&\ sq\_hamiltonian,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ N\_P)\ \{}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ an\ occupied-\/virtual\ orbital\ space.}}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\ =\ sq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a9beb3656dcb386bb52a74e74f7723ad2}{numberOfOrbitals}}();}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ orbital\_space\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a22c967bc1d33a75341c86b1ca52b0532}{OrbitalSpace::Implicit}}(\{\{\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ N\_P\},\ \{\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}},\ K\ -\/\ N\_P\}\});\ \ \textcolor{comment}{//\ N\_P\ occupied\ spatial\ orbitals,\ K-\/N\_P\ virtual\ spatial\ orbitals}}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ hessian\ =\ orbital\_space.template\ initializeRepresentableObjectFor<Scalar>(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}});\ \ \textcolor{comment}{//\ zero-\/initialize\ an\ object\ suitable\ for\ the\ representation\ of\ a\ virtual-\/occupied,virtual-\/occupied\ object\ (ai,bj)}}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Loop\ over\ all\ indices\ (ai,bj)\ to\ construct\ the\ orbital\ hessian.}}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ a\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ i\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00312\ }
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ b\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ j\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hessian(a,\ i,\ b,\ j)\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a5180203a16f4c24b55ceb9418dcd783a}{RHF<Scalar>::calculateOrbitalHessianElement}}(sq\_hamiltonian,\ N\_P,\ a,\ i,\ b,\ j);}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ hessian;}
+\DoxyCodeLine{00322\ \ \ \ \ \}}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ }
+\DoxyCodeLine{00333\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Scalar>}
+\DoxyCodeLine{00334\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<std::is\_same<Z,\ double>::value}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_rank_four_tensor_slice}{ImplicitRankFourTensorSlice<complex>}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_ac4d73ffb1af12c31b9a21467d1d37d56}{calculateOrbitalHessianForImaginaryResponse}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{RSQHamiltonian<double>}}\&\ sq\_hamiltonian,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{OrbitalSpace}}\&\ orbital\_space)\ \{}
+\DoxyCodeLine{00335\ }
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ namespace\ }\mbox{\hyperlink{namespace_g_q_c_p_1_1literals}{GQCP::literals}};}
+\DoxyCodeLine{00337\ }
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Prepare\ some\ variables.}}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ g\ =\ sq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a2dc43cc8615c2c34751535f3c07ef828}{twoElectron}}().parameters();}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ F\ =\ sq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a165d926ef2e3fd2067ea3b204f7c81f1}{calculateInactiveFockian}}(orbital\_space).parameters();}
+\DoxyCodeLine{00341\ }
+\DoxyCodeLine{00342\ }
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Zero-\/initialize\ a\ virtual-\/occupied-\/virtual-\/occupied\ object.}}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ H\ =\ orbital\_space.\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a510fc684cc5b32892691e6165a85de2b}{initializeRepresentableObjectFor}}<\mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}}>(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}});}
+\DoxyCodeLine{00345\ }
+\DoxyCodeLine{00346\ }
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ elements\ of\ the\ specific\ orbital\ Hessian\ (ai,bj)}}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ a\ :\ orbital\_space.\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a0a401c9945db2d1a81d1bd9a609805a4}{indices}}(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ i\ :\ orbital\_space.\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a0a401c9945db2d1a81d1bd9a609805a4}{indices}}(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ b\ :\ orbital\_space.\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a0a401c9945db2d1a81d1bd9a609805a4}{indices}}(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ j\ :\ orbital\_space.\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a0a401c9945db2d1a81d1bd9a609805a4}{indices}}(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00352\ }
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}}\ value\ \{\};\ \ \textcolor{comment}{//\ The\ term\ in\ parentheses.}}
+\DoxyCodeLine{00354\ }
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ the\ contribution\ from\ the\ orbital\ energies,\ i.e.\ the\ diagonal\ term.}}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((a\ ==\ b)\ \&\&\ (i\ ==\ j))\ \{}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ value\ +=\ F(a,\ a)\ -\/\ F(i,\ i);}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00359\ }
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ the\ contributions\ from\ the\ other\ terms.}}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ value\ +=\ g(i,\ b,\ j,\ a)\ -\/\ g(i,\ j,\ b,\ a);}
+\DoxyCodeLine{00362\ }
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ H(a,\ i,\ b,\ j)\ =\ -\/4\_ii\ *\ value;}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00368\ }
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ H;}
+\DoxyCodeLine{00370\ \ \ \ \ \}}
+\DoxyCodeLine{00371\ }
+\DoxyCodeLine{00372\ }
+\DoxyCodeLine{00373\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00374\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Stability}}
+\DoxyCodeLine{00375\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00376\ }
+\DoxyCodeLine{00387\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_aa50dcabb8ba40346909fd51e579809e9}{calculateSingletAStabilityMatrix}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{RSQHamiltonian<Scalar>}}\&\ rsq\_hamiltonian)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00388\ }
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ the\ orbital\ space.}}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ orbital\_space\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_aeef840b524f4f1475542c2347d981d43}{orbitalSpace}}();}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ the\ number\ of\ occupied\ and\ virtual\ orbitals.}}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_occ\ =\ orbital\_space.numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}});}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_virt\ =\ orbital\_space.numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}});}
+\DoxyCodeLine{00395\ }
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ two\ electron\ integrals\ are\ extracted\ from\ the\ Hamiltonian.}}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ g\ =\ rsq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a2dc43cc8615c2c34751535f3c07ef828}{twoElectron}}().parameters();}
+\DoxyCodeLine{00398\ }
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ elements\ (F\_R)\_AA\ and\ (F\_R)\_IJ\ are\ the\ eigenvalues\ of\ the\ one-\/electron\ Fock\ operator.}}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ excitationEnergies\ API\ can\ be\ used\ to\ find\ these\ values.}}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ F\_values\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a9711b1d2324983d16e6c314f1bd3d56b}{excitationEnergies}}();}
+\DoxyCodeLine{00402\ }
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ next\ step\ is\ to\ create\ the\ needed\ tensor\ slice.}}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Zero-\/initialize\ an\ occupied-\/virtual-\/occupied-\/virtual\ object.}}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ singlet\_A\_slice\ =\ orbital\_space.template\ initializeRepresentableObjectFor<Scalar>(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}});}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ i\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ a\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ j\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ b\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ singlet\_A\_slice(i,\ a,\ j,\ b)\ =\ 2.0\ *\ g(a,\ i,\ j,\ b)\ -\/\ g(a,\ b,\ j,\ i);}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00415\ }
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Turn\ the\ ImplicitRankFourTensorSlice\ in\ an\ actual\ Tensor.}}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ singlet\_A\_iajb\ =\ singlet\_A\_slice.asTensor();}
+\DoxyCodeLine{00418\ }
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ the\ previously\ calculated\ F\ values\ on\ the\ correct\ positions.}}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ a\ =\ 0;\ a\ <\ n\_virt;\ a++)\ \{}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ n\_occ;\ i++)\ \{}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ singlet\_A\_iajb(i,\ a,\ i,\ a)\ +=\ F\_values(a,\ i);}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00425\ }
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Finally,\ reshape\ the\ tensor\ to\ a\ matrix.}}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ singlet\_A\_matrix\ =\ singlet\_A\_iajb.reshape(n\_occ\ *\ n\_virt,\ n\_occ\ *\ n\_virt);}
+\DoxyCodeLine{00428\ }
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ singlet\_A\_matrix;}
+\DoxyCodeLine{00430\ \ \ \ \ \}}
+\DoxyCodeLine{00431\ }
+\DoxyCodeLine{00432\ }
+\DoxyCodeLine{00443\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a293b4086fc4df2ff3a12bc35f49fb667}{calculateSingletBStabilityMatrix}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{RSQHamiltonian<Scalar>}}\&\ rsq\_hamiltonian)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00444\ }
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ the\ orbital\ space.}}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ orbital\_space\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_aeef840b524f4f1475542c2347d981d43}{orbitalSpace}}();}
+\DoxyCodeLine{00447\ }
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ the\ number\ of\ occupied\ and\ virtual\ orbitals.}}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_occ\ =\ orbital\_space.numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}});}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_virt\ =\ orbital\_space.numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}});}
+\DoxyCodeLine{00451\ }
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ two\ electron\ integrals\ are\ extracted\ from\ the\ Hamiltonian.}}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ g\ =\ rsq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a2dc43cc8615c2c34751535f3c07ef828}{twoElectron}}().parameters();}
+\DoxyCodeLine{00454\ }
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ next\ step\ is\ to\ create\ the\ needed\ tensor\ slice.}}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Zero-\/initialize\ an\ occupied-\/virtual-\/occupied-\/virtual\ object.}}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ singlet\_B\_slice\ =\ orbital\_space.template\ initializeRepresentableObjectFor<Scalar>(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}});}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ i\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ a\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ j\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ b\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ singlet\_B\_slice(i,\ a,\ j,\ b)\ =\ 2.0\ *\ g(a,\ i,\ b,\ j)\ -\/\ g(a,\ j,\ b,\ i);}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00467\ }
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Turn\ the\ ImplicitRankFourTensorSlice\ in\ an\ actual\ Tensor.}}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ singlet\_B\_iajb\ =\ singlet\_B\_slice.asTensor();}
+\DoxyCodeLine{00470\ }
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Finally,\ reshape\ the\ tensor\ to\ a\ matrix.}}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ singlet\_B\_matrix\ =\ singlet\_B\_iajb.reshape(n\_occ\ *\ n\_virt,\ n\_occ\ *\ n\_virt);}
+\DoxyCodeLine{00473\ }
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ singlet\_B\_matrix;}
+\DoxyCodeLine{00475\ \ \ \ \ \}}
+\DoxyCodeLine{00476\ }
+\DoxyCodeLine{00477\ }
+\DoxyCodeLine{00488\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_afef846b6f68e9f2758e717992471564f}{calculateTripletAStabilityMatrix}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{RSQHamiltonian<Scalar>}}\&\ rsq\_hamiltonian)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00489\ }
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ the\ orbital\ space.}}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ orbital\_space\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_aeef840b524f4f1475542c2347d981d43}{orbitalSpace}}();}
+\DoxyCodeLine{00492\ }
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ the\ number\ of\ occupied\ and\ virtual\ orbitals.}}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_occ\ =\ orbital\_space.numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}});}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_virt\ =\ orbital\_space.numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}});}
+\DoxyCodeLine{00496\ }
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ two\ electron\ integrals\ are\ extracted\ from\ the\ Hamiltonian.}}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ g\ =\ rsq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a2dc43cc8615c2c34751535f3c07ef828}{twoElectron}}().parameters();}
+\DoxyCodeLine{00499\ }
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ elements\ (F\_R)\_AA\ and\ (F\_R)\_IJ\ are\ the\ eigenvalues\ of\ the\ one-\/electron\ Fock\ operator.}}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ excitationEnergies\ API\ can\ be\ used\ to\ find\ these\ values.}}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ F\_values\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a9711b1d2324983d16e6c314f1bd3d56b}{excitationEnergies}}();}
+\DoxyCodeLine{00503\ }
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ next\ step\ is\ to\ create\ the\ needed\ tensor\ slice.}}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Zero-\/initialize\ an\ occupied-\/virtual-\/occupied-\/virtual\ object.}}
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ triplet\_A\_slice\ =\ orbital\_space.template\ initializeRepresentableObjectFor<Scalar>(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}});}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ i\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ a\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ j\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ b\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ triplet\_A\_slice(i,\ a,\ j,\ b)\ =\ -\/g(a,\ b,\ j,\ i);}
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00516\ }
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Turn\ the\ ImplicitRankFourTensorSlice\ in\ an\ actual\ Tensor.}}
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ triplet\_A\_iajb\ =\ triplet\_A\_slice.asTensor();}
+\DoxyCodeLine{00519\ }
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ the\ previously\ calculated\ F\ values\ on\ the\ correct\ positions.}}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ a\ =\ 0;\ a\ <\ n\_virt;\ a++)\ \{}
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ n\_occ;\ i++)\ \{}
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ triplet\_A\_iajb(i,\ a,\ i,\ a)\ +=\ F\_values(a,\ i);}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00526\ }
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Finally,\ reshape\ the\ tensor\ to\ a\ matrix.}}
+\DoxyCodeLine{00528\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ triplet\_A\_matrix\ =\ triplet\_A\_iajb.reshape(n\_occ\ *\ n\_virt,\ n\_occ\ *\ n\_virt);}
+\DoxyCodeLine{00529\ }
+\DoxyCodeLine{00530\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ triplet\_A\_matrix;}
+\DoxyCodeLine{00531\ \ \ \ \ \}}
+\DoxyCodeLine{00532\ }
+\DoxyCodeLine{00533\ }
+\DoxyCodeLine{00544\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_af6c9404b2aa10c0de083a13997a4bad2}{calculateTripletBStabilityMatrix}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{RSQHamiltonian<Scalar>}}\&\ rsq\_hamiltonian)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00545\ }
+\DoxyCodeLine{00546\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ the\ orbital\ space.}}
+\DoxyCodeLine{00547\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ orbital\_space\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_aeef840b524f4f1475542c2347d981d43}{orbitalSpace}}();}
+\DoxyCodeLine{00548\ }
+\DoxyCodeLine{00549\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ the\ number\ of\ occupied\ and\ virtual\ orbitals.}}
+\DoxyCodeLine{00550\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_occ\ =\ orbital\_space.numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}});}
+\DoxyCodeLine{00551\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_virt\ =\ orbital\_space.numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}});}
+\DoxyCodeLine{00552\ }
+\DoxyCodeLine{00553\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ two\ electron\ integrals\ are\ extracted\ from\ the\ Hamiltonian.}}
+\DoxyCodeLine{00554\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ g\ =\ rsq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a2dc43cc8615c2c34751535f3c07ef828}{twoElectron}}().parameters();}
+\DoxyCodeLine{00555\ }
+\DoxyCodeLine{00556\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ next\ step\ is\ to\ create\ the\ needed\ tensor\ slice.}}
+\DoxyCodeLine{00557\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Zero-\/initialize\ an\ occupied-\/virtual-\/occupied-\/virtual\ object.}}
+\DoxyCodeLine{00558\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ triplet\_B\_slice\ =\ orbital\_space.template\ initializeRepresentableObjectFor<Scalar>(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}});}
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ i\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ a\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ j\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ b\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00563\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ triplet\_B\_slice(i,\ a,\ j,\ b)\ =\ -\/g(a,\ j,\ b,\ i);}
+\DoxyCodeLine{00564\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00565\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00566\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00567\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00568\ }
+\DoxyCodeLine{00569\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Turn\ the\ ImplicitRankFourTensorSlice\ in\ an\ actual\ Tensor.}}
+\DoxyCodeLine{00570\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ triplet\_B\_iajb\ =\ triplet\_B\_slice.asTensor();}
+\DoxyCodeLine{00571\ }
+\DoxyCodeLine{00572\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Finally,\ reshape\ the\ tensor\ to\ a\ matrix.}}
+\DoxyCodeLine{00573\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ triplet\_B\_matrix\ =\ triplet\_B\_iajb.reshape(n\_occ\ *\ n\_virt,\ n\_occ\ *\ n\_virt);}
+\DoxyCodeLine{00574\ }
+\DoxyCodeLine{00575\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ triplet\_B\_matrix;}
+\DoxyCodeLine{00576\ \ \ \ \ \}}
+\DoxyCodeLine{00577\ }
+\DoxyCodeLine{00578\ }
+\DoxyCodeLine{00586\ \ \ \ \ RHFStabilityMatrices<Scalar>\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a033fd7f7e24472496c8f31883dd98810}{calculateStabilityMatrices}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{RSQHamiltonian<Scalar>}}\&\ rsq\_hamiltonian)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00587\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ RHFStabilityMatrices<Scalar>\ \{this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_aa50dcabb8ba40346909fd51e579809e9}{calculateSingletAStabilityMatrix}}(rsq\_hamiltonian),\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a293b4086fc4df2ff3a12bc35f49fb667}{calculateSingletBStabilityMatrix}}(rsq\_hamiltonian),}
+\DoxyCodeLine{00588\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_afef846b6f68e9f2758e717992471564f}{calculateTripletAStabilityMatrix}}(rsq\_hamiltonian),\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_af6c9404b2aa10c0de083a13997a4bad2}{calculateTripletBStabilityMatrix}}(rsq\_hamiltonian)\};}
+\DoxyCodeLine{00589\ \ \ \ \ \}}
+\DoxyCodeLine{00590\ }
+\DoxyCodeLine{00591\ }
+\DoxyCodeLine{00592\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00593\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Density\ matrices}}
+\DoxyCodeLine{00594\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00595\ }
+\DoxyCodeLine{00604\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital1_d_m}{Orbital1DM<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_ac4ed2ca30504da6262c0f2c26eea7076}{calculateOrthonormalBasis1DM}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ K,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ N)\ \{}
+\DoxyCodeLine{00605\ }
+\DoxyCodeLine{00606\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (N\ \%\ 2\ !=\ 0)\ \{}
+\DoxyCodeLine{00607\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}QCMethod::RHF::calculateOrthonormalBasis1DM(const\ size\_t,\ const\ size\_t):\ The\ number\ of\ given\ electrons\ cannot\ be\ odd\ for\ RHF."{}});}
+\DoxyCodeLine{00608\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00609\ }
+\DoxyCodeLine{00610\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ 1-\/DM\ for\ RHF\ looks\ like\ (for\ K=5,\ N=6):}}
+\DoxyCodeLine{00611\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ 2\ \ 0\ \ 0\ \ 0\ \ 0}}
+\DoxyCodeLine{00612\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ 0\ \ 2\ \ 0\ \ 0\ \ 0}}
+\DoxyCodeLine{00613\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ 0\ \ 0\ \ 2\ \ 0\ \ 0}}
+\DoxyCodeLine{00614\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ 0\ \ 0\ \ 0\ \ 0\ \ 0}}
+\DoxyCodeLine{00615\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ 0\ \ 0\ \ 0\ \ 0\ \ 0}}
+\DoxyCodeLine{00616\ }
+\DoxyCodeLine{00617\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\ D\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_ae3551bb3ac15b2560846f7a5956d1d90}{SquareMatrix<Scalar>::Zero}}(K);}
+\DoxyCodeLine{00618\ \ \ \ \ \ \ \ \ D.topLeftCorner(N\ /\ 2,\ N\ /\ 2)\ =\ 2\ *\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_aa6a5cf30d688d7b21a2605b4a46d2ca9}{SquareMatrix<Scalar>::Identity}}(N\ /\ 2);}
+\DoxyCodeLine{00619\ }
+\DoxyCodeLine{00620\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital1_d_m}{Orbital1DM<Scalar>}}\ \{D\};}
+\DoxyCodeLine{00621\ \ \ \ \ \}}
+\DoxyCodeLine{00622\ }
+\DoxyCodeLine{00623\ }
+\DoxyCodeLine{00627\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital1_d_m}{Orbital1DM<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a44bec4d028ed910ca96c755ca4ba71f2}{calculateOrthonormalBasis1DM}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00628\ }
+\DoxyCodeLine{00629\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a8427492486742da6035bfd6525c3ce22}{numberOfSpatialOrbitals}}();}
+\DoxyCodeLine{00630\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ N\ =\ 2\ *\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a95a8eb19e2eaa1f4d590341a4ea2d5c1}{numberOfElectronPairs}}();}
+\DoxyCodeLine{00631\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a44bec4d028ed910ca96c755ca4ba71f2}{RHF<Scalar>::calculateOrthonormalBasis1DM}}(K,\ N);}
+\DoxyCodeLine{00632\ \ \ \ \ \}}
+\DoxyCodeLine{00633\ }
+\DoxyCodeLine{00634\ }
+\DoxyCodeLine{00643\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital2_d_m}{Orbital2DM<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_acba1ee34bdb04f958fcbe4f9112cea02}{calculateOrthonormalBasis2DM}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ K,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ N)\ \{}
+\DoxyCodeLine{00644\ }
+\DoxyCodeLine{00645\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (N\ \%\ 2\ !=\ 0)\ \{}
+\DoxyCodeLine{00646\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}QCMethod::RHF::calculateOrthonormalBasis2DM(const\ size\_t,\ const\ size\_t):\ The\ number\ of\ given\ electrons\ cannot\ be\ odd\ for\ RHF."{}});}
+\DoxyCodeLine{00647\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00648\ }
+\DoxyCodeLine{00649\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ N\_P\ =\ N\ /\ 2;\ \ \textcolor{comment}{//\ The\ number\ of\ electron\ pairs.}}
+\DoxyCodeLine{00650\ }
+\DoxyCodeLine{00651\ }
+\DoxyCodeLine{00652\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ the\ orbital\ space\ to\ determine\ the\ loops.}}
+\DoxyCodeLine{00653\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ orbital\_space\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_aeef840b524f4f1475542c2347d981d43}{RHF<Scalar>::orbitalSpace}}(K,\ N\_P);}
+\DoxyCodeLine{00654\ }
+\DoxyCodeLine{00655\ }
+\DoxyCodeLine{00656\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Implement\ a\ KISS\ formula\ for\ the\ RHF\ 2-\/DM.}}
+\DoxyCodeLine{00657\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{SquareRankFourTensor<Scalar>}}\ d\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor_ac8d9dac01c85a4f11aa67c7efa877e04}{SquareRankFourTensor<Scalar>::Zero}}(K);}
+\DoxyCodeLine{00658\ }
+\DoxyCodeLine{00659\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ i\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00660\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ j\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00661\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ k\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00662\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ l\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00663\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((i\ ==\ j)\ \&\&\ (k\ ==\ l))\ \{}
+\DoxyCodeLine{00664\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ d(i,\ j,\ k,\ l)\ +=\ 4.0;}
+\DoxyCodeLine{00665\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00666\ }
+\DoxyCodeLine{00667\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((i\ ==\ l)\ \&\&\ (j\ ==\ k))\ \{}
+\DoxyCodeLine{00668\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ d(i,\ j,\ k,\ l)\ -\/=\ 2.0;}
+\DoxyCodeLine{00669\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00670\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00671\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00672\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00673\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00674\ }
+\DoxyCodeLine{00675\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital2_d_m}{Orbital2DM<Scalar>}}(d);}
+\DoxyCodeLine{00676\ \ \ \ \ \}}
+\DoxyCodeLine{00677\ }
+\DoxyCodeLine{00678\ }
+\DoxyCodeLine{00682\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital2_d_m}{Orbital2DM<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_ab59d7642f79937cc26d4994d8cc18e4e}{calculateOrthonormalBasis2DM}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00683\ }
+\DoxyCodeLine{00684\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a8427492486742da6035bfd6525c3ce22}{numberOfSpatialOrbitals}}();}
+\DoxyCodeLine{00685\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ N\ =\ 2\ *\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a95a8eb19e2eaa1f4d590341a4ea2d5c1}{numberOfElectronPairs}}();}
+\DoxyCodeLine{00686\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_ab59d7642f79937cc26d4994d8cc18e4e}{RHF<Scalar>::calculateOrthonormalBasis2DM}}(K,\ N);}
+\DoxyCodeLine{00687\ \ \ \ \ \}}
+\DoxyCodeLine{00688\ }
+\DoxyCodeLine{00689\ }
+\DoxyCodeLine{00696\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital1_d_m}{Orbital1DM<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_ad587a5b961d6872b81a6cfd52d534a62}{calculateScalarBasis1DM}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{RTransformation<Scalar>}}\&\ C,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ N)\ \{}
+\DoxyCodeLine{00697\ }
+\DoxyCodeLine{00698\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ K\ =\ C.\mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_a2bf93e827850f7ccebcd64af4999abb4}{numberOfOrbitals}}();}
+\DoxyCodeLine{00699\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ D\_orthonormal\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a44bec4d028ed910ca96c755ca4ba71f2}{RHF<Scalar>::calculateOrthonormalBasis1DM}}(K,\ N);}
+\DoxyCodeLine{00700\ }
+\DoxyCodeLine{00701\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Transform\ the\ 1-\/DM\ in\ an\ orthonormal\ basis\ to\ the\ underlying\ scalar\ basis.}}
+\DoxyCodeLine{00702\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ D\_orthonormal.transformed(C.\mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_a5f36fc890460cc7c7a64eee376261c54}{inverse}}());}
+\DoxyCodeLine{00703\ \ \ \ \ \}}
+\DoxyCodeLine{00704\ }
+\DoxyCodeLine{00705\ }
+\DoxyCodeLine{00709\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital1_d_m}{Orbital1DM<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a5a25f2213731af14f24851b1c2f3afa9}{calculateScalarBasis1DM}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00710\ }
+\DoxyCodeLine{00711\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ N\ =\ 2\ *\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a95a8eb19e2eaa1f4d590341a4ea2d5c1}{numberOfElectronPairs}}();}
+\DoxyCodeLine{00712\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a5a25f2213731af14f24851b1c2f3afa9}{RHF<Scalar>::calculateScalarBasis1DM}}(this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_ad353d1b65666cb769d1608b14e5aa5dc}{expansion}}(),\ N);}
+\DoxyCodeLine{00713\ \ \ \ \ \}}
+\DoxyCodeLine{00714\ }
+\DoxyCodeLine{00715\ }
+\DoxyCodeLine{00722\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital2_d_m}{Orbital2DM<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a8d8ed11d80ff7fee9a22c9a3488e4e40}{calculateScalarBasis2DM}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{RTransformation<Scalar>}}\&\ C,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ N)\ \{}
+\DoxyCodeLine{00723\ }
+\DoxyCodeLine{00724\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ K\ =\ C.\mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_a2bf93e827850f7ccebcd64af4999abb4}{numberOfOrbitals}}();}
+\DoxyCodeLine{00725\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ d\_orthonormal\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_ab59d7642f79937cc26d4994d8cc18e4e}{RHF<Scalar>::calculateOrthonormalBasis2DM}}(K,\ N);}
+\DoxyCodeLine{00726\ }
+\DoxyCodeLine{00727\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Transform\ the\ 1-\/DM\ in\ an\ orthonormal\ basis\ to\ the\ underlying\ scalar\ basis.}}
+\DoxyCodeLine{00728\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ d\_orthonormal.transformed(C.\mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_a5f36fc890460cc7c7a64eee376261c54}{inverse}}());}
+\DoxyCodeLine{00729\ \ \ \ \ \}}
+\DoxyCodeLine{00730\ }
+\DoxyCodeLine{00731\ }
+\DoxyCodeLine{00735\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital2_d_m}{Orbital2DM<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_aacc4b369e525c4cd2328bb039d9de235}{calculateScalarBasis2DM}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00736\ }
+\DoxyCodeLine{00737\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ N\ =\ 2\ *\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a95a8eb19e2eaa1f4d590341a4ea2d5c1}{numberOfElectronPairs}}();}
+\DoxyCodeLine{00738\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_aacc4b369e525c4cd2328bb039d9de235}{RHF<Scalar>::calculateScalarBasis2DM}}(this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_ad353d1b65666cb769d1608b14e5aa5dc}{expansion}}(),\ N);}
+\DoxyCodeLine{00739\ \ \ \ \ \}}
+\DoxyCodeLine{00740\ }
+\DoxyCodeLine{00741\ }
+\DoxyCodeLine{00750\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_one_electron_operator}{ScalarRSQOneElectronOperator<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a6732d9b47bc1ff44196b1db24aee00a1}{calculateScalarBasisFockMatrix}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital1_d_m}{Orbital1DM<Scalar>}}\&\ D,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{RSQHamiltonian<Scalar>}}\&\ sq\_hamiltonian)\ \{}
+\DoxyCodeLine{00751\ }
+\DoxyCodeLine{00752\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ the\ two-\/electron\ parameters.}}
+\DoxyCodeLine{00753\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ g\ =\ sq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a2dc43cc8615c2c34751535f3c07ef828}{twoElectron}}().parameters();}
+\DoxyCodeLine{00754\ }
+\DoxyCodeLine{00755\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ To\ calculate\ G,\ we\ must\ perform\ two\ double\ contractions:}}
+\DoxyCodeLine{00756\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ 1.\ (mu\ nu|rho\ lambda)\ P(lambda\ rho),}}
+\DoxyCodeLine{00757\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor<Scalar,\ 2>}}\ direct\_contraction\ =\ g.template\ einsum<2>(\textcolor{stringliteral}{"{}ijkl,kl-\/>ij"{}},\ D.\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_ac30875260405df322f951b6458dc5788}{matrix}}());}
+\DoxyCodeLine{00758\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ 2.\ -\/0.5\ (mu\ lambda|rho\ nu)\ P(lambda\ rho).}}
+\DoxyCodeLine{00759\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor<Scalar,\ 2>}}\ exchange\_contraction\ =\ -\/0.5\ *\ g.template\ einsum<2>(\textcolor{stringliteral}{"{}ijkl,kj-\/>il"{}},\ D.\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_ac30875260405df322f951b6458dc5788}{matrix}}());}
+\DoxyCodeLine{00760\ }
+\DoxyCodeLine{00761\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ previous\ contractions\ are\ Tensor<Scalar,\ 2>\ instances.\ In\ order\ to\ calculate\ the\ total\ G\ matrix,\ we\ will\ convert\ them\ back\ into\ GQCP::Matrix<Scalar>.}}
+\DoxyCodeLine{00762\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ G1\ =\ direct\_contraction.\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_ab0e5ba6f1b1fe279289bb98772e3e387}{asMatrix}}();}
+\DoxyCodeLine{00763\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ G2\ =\ exchange\_contraction.\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_ab0e5ba6f1b1fe279289bb98772e3e387}{asMatrix}}();}
+\DoxyCodeLine{00764\ }
+\DoxyCodeLine{00765\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_one_electron_operator}{ScalarRSQOneElectronOperator<Scalar>}}\ \{sq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a5cf60477e7d69713eb5dd4069bbda1cb}{core}}().parameters()\ +\ G1\ +\ G2\};}
+\DoxyCodeLine{00766\ \ \ \ \ \}}
+\DoxyCodeLine{00767\ }
+\DoxyCodeLine{00768\ }
+\DoxyCodeLine{00769\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00770\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Orbital\ indices}}
+\DoxyCodeLine{00771\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00772\ }
+\DoxyCodeLine{00773\ }
+\DoxyCodeLine{00779\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_adf6f1eeae05228ba3eff7d929b15ef1b}{homoIndex}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ N)\ \{}
+\DoxyCodeLine{00780\ }
+\DoxyCodeLine{00781\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (N\ \%\ 2\ !=\ 0)\ \{}
+\DoxyCodeLine{00782\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}QCModel::RHF::homoIndex(const\ size\_t):\ Can't\ calculate\ the\ RHF\ HOMO\ index\ for\ an\ odd\ number\ of\ electrons\ N."{}});}
+\DoxyCodeLine{00783\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00784\ }
+\DoxyCodeLine{00785\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ N\ /\ 2\ -\/\ 1;\ \ \textcolor{comment}{//\ We\ need\ to\ subtract\ 1\ because\ computer\ indices\ start\ at\ 0.}}
+\DoxyCodeLine{00786\ \ \ \ \ \}}
+\DoxyCodeLine{00787\ }
+\DoxyCodeLine{00788\ }
+\DoxyCodeLine{00794\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a38587786222db0bef4a25002a438461b}{homoIndex}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a38587786222db0bef4a25002a438461b}{RHF<Scalar>::homoIndex}}(this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a25d36506d48fd81a791814c1688a105a}{numberOfElectrons}}());\ \}}
+\DoxyCodeLine{00795\ }
+\DoxyCodeLine{00796\ }
+\DoxyCodeLine{00803\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a81c4ee2f8b91cc790a292c4b14846aae}{lumoIndex}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ K,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ N)\ \{}
+\DoxyCodeLine{00804\ }
+\DoxyCodeLine{00805\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (N\ >=\ 2\ *\ K)\ \{}
+\DoxyCodeLine{00806\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}QCModel::RHF::lumoIndex(const\ size\_t,\ constsize\_t):\ There\ is\ no\ LUMO\ for\ the\ given\ number\ of\ electrons\ N\ and\ spatial\ orbitals\ K"{}});}
+\DoxyCodeLine{00807\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00808\ }
+\DoxyCodeLine{00809\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a38587786222db0bef4a25002a438461b}{RHF<Scalar>::homoIndex}}(N)\ +\ 1;}
+\DoxyCodeLine{00810\ \ \ \ \ \}}
+\DoxyCodeLine{00811\ }
+\DoxyCodeLine{00812\ }
+\DoxyCodeLine{00819\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a589da15230f06ea419e431056730597d}{lumoIndex}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a589da15230f06ea419e431056730597d}{RHF<Scalar>::lumoIndex}}(this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a8427492486742da6035bfd6525c3ce22}{numberOfSpatialOrbitals}}(),\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a25d36506d48fd81a791814c1688a105a}{numberOfElectrons}}());\ \}}
+\DoxyCodeLine{00820\ }
+\DoxyCodeLine{00821\ }
+\DoxyCodeLine{00828\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{OrbitalSpace}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a5ff28a68b31046759b783da1725872e7}{orbitalSpace}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ K,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ N\_P)\ \{}
+\DoxyCodeLine{00829\ }
+\DoxyCodeLine{00830\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a22c967bc1d33a75341c86b1ca52b0532}{OrbitalSpace::Implicit}}(\{\{\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ N\_P\},\ \{\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}},\ K\ -\/\ N\_P\}\});}
+\DoxyCodeLine{00831\ \ \ \ \ \}}
+\DoxyCodeLine{00832\ }
+\DoxyCodeLine{00833\ }
+\DoxyCodeLine{00837\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{OrbitalSpace}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_aeef840b524f4f1475542c2347d981d43}{orbitalSpace}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_aeef840b524f4f1475542c2347d981d43}{RHF<Scalar>::orbitalSpace}}(this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a8427492486742da6035bfd6525c3ce22}{numberOfSpatialOrbitals}}(),\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a95a8eb19e2eaa1f4d590341a4ea2d5c1}{numberOfElectronPairs}}());\ \}}
+\DoxyCodeLine{00838\ }
+\DoxyCodeLine{00839\ }
+\DoxyCodeLine{00840\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00841\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ General\ information}}
+\DoxyCodeLine{00842\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00843\ }
+\DoxyCodeLine{00847\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{RTransformation<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_ad353d1b65666cb769d1608b14e5aa5dc}{expansion}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>C;\ \}}
+\DoxyCodeLine{00848\ }
+\DoxyCodeLine{00852\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a95a8eb19e2eaa1f4d590341a4ea2d5c1}{numberOfElectronPairs}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>N\_P;\ \}}
+\DoxyCodeLine{00853\ }
+\DoxyCodeLine{00857\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a25d36506d48fd81a791814c1688a105a}{numberOfElectrons}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ 2\ *\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a95a8eb19e2eaa1f4d590341a4ea2d5c1}{numberOfElectronPairs}}();\ \}}
+\DoxyCodeLine{00858\ }
+\DoxyCodeLine{00864\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a99ec917c56a86b39b21e64a5296dfec3}{numberOfElectrons}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4f}{Spin}}\ sigma)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a95a8eb19e2eaa1f4d590341a4ea2d5c1}{numberOfElectronPairs}}();\ \}}
+\DoxyCodeLine{00865\ }
+\DoxyCodeLine{00869\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a8427492486742da6035bfd6525c3ce22}{numberOfSpatialOrbitals}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_ad353d1b65666cb769d1608b14e5aa5dc}{expansion}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_a2bf93e827850f7ccebcd64af4999abb4}{numberOfOrbitals}}();\ \}}
+\DoxyCodeLine{00870\ }
+\DoxyCodeLine{00871\ }
+\DoxyCodeLine{00872\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00873\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Response\ forces}}
+\DoxyCodeLine{00874\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00875\ }
+\DoxyCodeLine{00883\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Scalar>}
+\DoxyCodeLine{00884\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<std::is\_same<Z,\ double>::value}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix<complex,\ Dynamic,\ 3>}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_ae7b12eef544090fca9311cc71d583a06}{calculateMagneticFieldResponseForce}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_one_electron_operator}{VectorRSQOneElectronOperator<complex>}}\&\ L\_op)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00885\ }
+\DoxyCodeLine{00886\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Prepare\ some\ variables.}}
+\DoxyCodeLine{00887\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ orbital\_space\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_aeef840b524f4f1475542c2347d981d43}{orbitalSpace}}();}
+\DoxyCodeLine{00888\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ L\ =\ L\_op.\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a6833dc88eeab1e0f842a3d9154d7ace8}{allParameters}}();}
+\DoxyCodeLine{00889\ }
+\DoxyCodeLine{00890\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Every\ column\ of\ the\ matrix\ `F\_kappa\_B`\ contains\ the\ response\ force\ along\ the\ given\ component:\ x,\ y,\ z.}}
+\DoxyCodeLine{00891\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ dim\ =\ orbital\_space.numberOfExcitations(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}});}
+\DoxyCodeLine{00892\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix<complex,\ Dynamic,\ 3>}}\ F\_kappa\_B\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix<complex,\ Dynamic,\ 3>::Zero}}(dim,\ 3);}
+\DoxyCodeLine{00893\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ m\ =\ 0;\ m\ <\ 3;\ m++)\ \{\ \ \textcolor{comment}{//\ `m`\ labels\ a\ Cartesian\ direction.}}
+\DoxyCodeLine{00894\ }
+\DoxyCodeLine{00895\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initialize\ a\ virtual-\/occupied\ object\ for\ every\ component.}}
+\DoxyCodeLine{00896\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ F\_kappa\_B\_m\ =\ orbital\_space.template\ initializeRepresentableObjectFor<complex>(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}});}
+\DoxyCodeLine{00897\ }
+\DoxyCodeLine{00898\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ a\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00899\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ i\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00900\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ F\_kappa\_B\_m(a,\ i)\ =\ -\/2.0\ *\ L[m](i,\ a);}
+\DoxyCodeLine{00901\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00902\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00903\ \ \ \ \ \ \ \ \ \ \ \ \ F\_kappa\_B.col(m)\ =\ F\_kappa\_B\_m.asVector();}
+\DoxyCodeLine{00904\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00905\ }
+\DoxyCodeLine{00906\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ F\_kappa\_B;}
+\DoxyCodeLine{00907\ \ \ \ \ \}}
+\DoxyCodeLine{00908\ }
+\DoxyCodeLine{00909\ }
+\DoxyCodeLine{00917\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Scalar>}
+\DoxyCodeLine{00918\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<std::is\_same<Z,\ double>::value}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix<complex,\ Dynamic,\ 6>}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a3ce066488b90d520740762d39aad3827}{calculateGaugeOriginTranslationResponseForce}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_one_electron_operator}{VectorRSQOneElectronOperator<complex>}}\&\ p\_op)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00919\ }
+\DoxyCodeLine{00920\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Prepare\ some\ variables.}}
+\DoxyCodeLine{00921\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_levi_civita_tensor}{LeviCivitaTensor<double>}}\ epsilon\ \{\};}
+\DoxyCodeLine{00922\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ p\ =\ p\_op.\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a6833dc88eeab1e0f842a3d9154d7ace8}{allParameters}}();}
+\DoxyCodeLine{00923\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ orbital\_space\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_aeef840b524f4f1475542c2347d981d43}{orbitalSpace}}();}
+\DoxyCodeLine{00924\ }
+\DoxyCodeLine{00925\ }
+\DoxyCodeLine{00926\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Every\ column\ of\ the\ matrix\ `F\_kappa\_G\_mn`\ contains\ the\ response\ force\ along\ the\ given\ component:\ xy,\ xz,\ yx,\ yz,\ zx,\ zy.}}
+\DoxyCodeLine{00927\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ dim\ =\ orbital\_space.numberOfExcitations(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}});}
+\DoxyCodeLine{00928\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix<complex,\ Dynamic,\ 6>}}\ F\_kappa\_G\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix<complex,\ Dynamic,\ 6>::Zero}}(dim,\ 6);}
+\DoxyCodeLine{00929\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ column\_index\ =\ 0;}
+\DoxyCodeLine{00930\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ m\ =\ 0;\ m\ <\ 3;\ m++)\ \{\ \ \ \ \ \ \textcolor{comment}{//\ `m`\ labels\ a\ Cartesian\ direction.}}
+\DoxyCodeLine{00931\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ n\ =\ 0;\ n\ <\ 3;\ n++)\ \{\ \ \textcolor{comment}{//\ `n`\ labels\ another\ Cartesian\ direction.}}
+\DoxyCodeLine{00932\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\ ==\ n)\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Skip\ the\ diagonal\ components:\ xx,\ yy,\ zz.}}
+\DoxyCodeLine{00933\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00934\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00935\ }
+\DoxyCodeLine{00936\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initialize\ a\ virtual-\/occupied\ object\ for\ every\ component.}}
+\DoxyCodeLine{00937\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ F\_kappa\_G\_mn\ =\ orbital\_space.template\ initializeRepresentableObjectFor<complex>(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}});}
+\DoxyCodeLine{00938\ }
+\DoxyCodeLine{00939\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ a\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{GQCP::OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00940\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ i\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{GQCP::OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00941\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ f\ =\ epsilon.nonZeroIndex(m,\ n);}
+\DoxyCodeLine{00942\ }
+\DoxyCodeLine{00943\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ F\_kappa\_G\_mn(a,\ i)\ =\ 2.0\ *\ epsilon(m,\ n,\ f)\ *\ p[f](i,\ a);}
+\DoxyCodeLine{00944\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00945\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00946\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ F\_kappa\_G.col(column\_index)\ =\ F\_kappa\_G\_mn.asVector();}
+\DoxyCodeLine{00947\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ column\_index++;}
+\DoxyCodeLine{00948\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00949\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00950\ }
+\DoxyCodeLine{00951\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ F\_kappa\_G;}
+\DoxyCodeLine{00952\ \ \ \ \ \}}
+\DoxyCodeLine{00953\ }
+\DoxyCodeLine{00954\ }
+\DoxyCodeLine{00955\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00956\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Response\ properties}}
+\DoxyCodeLine{00957\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00958\ }
+\DoxyCodeLine{00970\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix<complex,\ 3,\ 3>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a5eb588959ed8ebcf6f48bc6d30b31284}{calculateIpsocentricMagneticInducibility}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Vector<double,\ 3>}}\&\ r,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{OrbitalSpace}}\&\ orbital\_space,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix<complex,\ Dynamic,\ 3>}}\&\ x\_B,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix<complex,\ Dynamic,\ 6>}}\&\ x\_G,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_r_s_q_one_electron_operator}{VectorEvaluableRSQOneElectronOperator}}<\mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element}{CurrentDensityMatrixElement<complex,\ CartesianGTO>}}>\&\ j\_op)\ \{}
+\DoxyCodeLine{00971\ }
+\DoxyCodeLine{00972\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ namespace\ }\mbox{\hyperlink{namespace_g_q_c_p_1_1literals}{GQCP::literals}};}
+\DoxyCodeLine{00973\ }
+\DoxyCodeLine{00974\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Prepare\ some\ variables.}}
+\DoxyCodeLine{00975\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ j\ =\ j\_op.allParameters();}
+\DoxyCodeLine{00976\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix<complex,\ 3,\ 3>}}\ J\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix<complex,\ 3,\ 3>::Zero}}();}
+\DoxyCodeLine{00977\ }
+\DoxyCodeLine{00978\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Loop\ over\ both\ components\ of\ the\ magnetic\ inducibility.}}
+\DoxyCodeLine{00979\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ u\ =\ 0;\ u\ <\ 3;\ u++)\ \{\ \ \ \ \ \ \textcolor{comment}{//\ `u`\ loops\ over\ the\ component\ of\ the\ induced\ current.}}
+\DoxyCodeLine{00980\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ m\ =\ 0;\ m\ <\ 3;\ m++)\ \{\ \ \textcolor{comment}{//\ `m`\ loops\ over\ the\ component\ of\ the\ applied\ external\ magnetic\ field.}}
+\DoxyCodeLine{00981\ }
+\DoxyCodeLine{00982\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initialize\ a\ more\ useful\ matrix\ representation\ of\ the\ linear\ response\ coefficients\ related\ to\ the\ magnetic\ field\ perturbation.}}
+\DoxyCodeLine{00983\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ x\_m\_matrix\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a8d4e7b8addc8c2b642764dc46008ef2b}{MatrixX<complex>::FromColumnMajorVector}}(x\_B.col(m),\ orbital\_space.\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a6749db783d556c8d21e52e2a72ea329f}{numberOfOrbitals}}(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}),\ orbital\_space.\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a6749db783d556c8d21e52e2a72ea329f}{numberOfOrbitals}}(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}));}
+\DoxyCodeLine{00984\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ x\_m\ =\ orbital\_space.\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_aabe4ddf0895d9cfc3e0a87387b713554}{createRepresentableObjectFor}}<\mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}}>(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ x\_m\_matrix);}
+\DoxyCodeLine{00985\ }
+\DoxyCodeLine{00986\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ a\ :\ orbital\_space.\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a0a401c9945db2d1a81d1bd9a609805a4}{indices}}(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00987\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ i\ :\ orbital\_space.\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a0a401c9945db2d1a81d1bd9a609805a4}{indices}}(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00988\ }
+\DoxyCodeLine{00989\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ left\ factor,\ i.e.\ the\ contribution\ from\ the\ field-\/free\ current\ density\ matrix\ elements.}}
+\DoxyCodeLine{00990\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}}\ left\_value\ =\ 2.0\_ii\ *\ j[u](i,\ a)(r);}
+\DoxyCodeLine{00991\ }
+\DoxyCodeLine{00992\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ right\ factor,\ i.e.\ the\ contribution\ from\ the\ linear\ response\ coefficients.}}
+\DoxyCodeLine{00993\ }
+\DoxyCodeLine{00994\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1.\ The\ linear\ response\ coefficient\ related\ to\ the\ magnetic\ field\ perturbation.}}
+\DoxyCodeLine{00995\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}}\ right\_value\ =\ -\/1.0\_ii\ *\ x\_m(a,\ i);}
+\DoxyCodeLine{00996\ }
+\DoxyCodeLine{00997\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2.\ The\ linear\ response\ coefficient\ related\ to\ the\ gauge\ origin\ translation\ perturbation.}}
+\DoxyCodeLine{00998\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ n\ =\ 0;\ n\ <\ 3;\ n++)\ \{}
+\DoxyCodeLine{00999\ }
+\DoxyCodeLine{01000\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 'm'\ cannot\ be\ equal\ to\ 'n':\ there\ is\ no\ such\ linear\ response.}}
+\DoxyCodeLine{01001\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (n\ ==\ m)\ \{}
+\DoxyCodeLine{01002\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{01003\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01004\ }
+\DoxyCodeLine{01005\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ compound\ index\ 'mn'\ of\ the\ dyadic\ Cartesian\ direction\ in\ the\ 6-\/column\ matrix\ representation.}}
+\DoxyCodeLine{01006\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ row\_major\_index\ =\ 3\ *\ m\ +\ n;}
+\DoxyCodeLine{01007\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ mn\ =\ row\_major\_index\ <\ 4\ ?\ row\_major\_index\ -\/\ 1\ :\ row\_major\_index\ -\/\ 2;}
+\DoxyCodeLine{01008\ }
+\DoxyCodeLine{01009\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initialize\ a\ more\ useful\ matrix\ representation\ of\ the\ linear\ response\ coefficients\ related\ to\ the\ gauge\ origin\ translation\ perturbation.}}
+\DoxyCodeLine{01010\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ epsilon\_mn\_matrix\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a8d4e7b8addc8c2b642764dc46008ef2b}{MatrixX<complex>::FromColumnMajorVector}}(x\_G.col(mn),\ orbital\_space.\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a6749db783d556c8d21e52e2a72ea329f}{numberOfOrbitals}}(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}),\ orbital\_space.\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a6749db783d556c8d21e52e2a72ea329f}{numberOfOrbitals}}(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}));}
+\DoxyCodeLine{01011\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ epsilon\_mn\ =\ orbital\_space.\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_aabe4ddf0895d9cfc3e0a87387b713554}{createRepresentableObjectFor}}<\mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}}>(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ epsilon\_mn\_matrix);}
+\DoxyCodeLine{01012\ }
+\DoxyCodeLine{01013\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ the\ ipsocentric\ CSGT\ step,\ i.e.\ d\ =\ r\ -\/\ G\_0\ with\ G\_0\ the\ gauge\ origin\ (i.e.\ the\ origin).}}
+\DoxyCodeLine{01014\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ right\_value\ +=\ -\/1.0\_ii\ *\ epsilon\_mn(a,\ i)\ *\ r(n);}
+\DoxyCodeLine{01015\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01016\ }
+\DoxyCodeLine{01017\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ J(u,\ m)\ +=\ 2\_ii\ *\ left\_value\ *\ right\_value;}
+\DoxyCodeLine{01018\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ assert(J(u,\ m).imag()\ <\ 1.0e-\/12);\ \ \textcolor{comment}{//\ The\ magnetic\ inducibility\ should\ be\ a\ real-\/valued\ quantity.}}
+\DoxyCodeLine{01019\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01021\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01022\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01023\ }
+\DoxyCodeLine{01024\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ J;}
+\DoxyCodeLine{01025\ \ \ \ \ \}}
+\DoxyCodeLine{01026\ }
+\DoxyCodeLine{01027\ }
+\DoxyCodeLine{01039\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_field}{Field<Matrix<complex,\ 3,\ 3>}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a9afd67450407af48a6f9fbd8e4d069af}{calculateIpsocentricMagneticInducibility}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid}{CubicGrid}}\&\ grid,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{OrbitalSpace}}\&\ orbital\_space,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix<complex,\ Dynamic,\ 3>}}\&\ x\_B,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix<complex,\ Dynamic,\ 6>}}\&\ x\_G,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_r_s_q_one_electron_operator}{VectorEvaluableRSQOneElectronOperator}}<\mbox{\hyperlink{class_g_q_c_p_1_1_current_density_matrix_element}{CurrentDensityMatrixElement<complex,\ CartesianGTO>}}>\&\ j\_op)\ \{}
+\DoxyCodeLine{01040\ }
+\DoxyCodeLine{01041\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ namespace\ }\mbox{\hyperlink{namespace_g_q_c_p_1_1literals}{GQCP::literals}};}
+\DoxyCodeLine{01042\ }
+\DoxyCodeLine{01043\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Evaluate\ the\ value\ of\ the\ magnetic\ inducibility\ for\ every\ point\ of\ the\ grid.}}
+\DoxyCodeLine{01044\ \ \ \ \ \ \ \ \ std::vector<Matrix<complex,\ 3,\ 3>>\ J\_field\_values;}
+\DoxyCodeLine{01045\ \ \ \ \ \ \ \ \ J\_field\_values.reserve(grid.\mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid_a068787c38bbf15233da1646dfef0783d}{numberOfPoints}}());}
+\DoxyCodeLine{01046\ }
+\DoxyCodeLine{01047\ \ \ \ \ \ \ \ \ grid.\mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid_ace375c620c4f97646710110da215a589}{forEach}}([\&orbital\_space,\ \&x\_B,\ \&x\_G,\ \&J\_field\_values,\ \&j\_op](\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Vector<double,\ 3>}}\&\ r)\ \{}
+\DoxyCodeLine{01048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ J\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a5eb588959ed8ebcf6f48bc6d30b31284}{RHF<complex>::calculateIpsocentricMagneticInducibility}}(r,\ orbital\_space,\ x\_B,\ x\_G,\ j\_op);}
+\DoxyCodeLine{01049\ \ \ \ \ \ \ \ \ \ \ \ \ J\_field\_values.push\_back(J);}
+\DoxyCodeLine{01050\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{01051\ }
+\DoxyCodeLine{01052\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_field}{Field<Matrix<complex,\ 3,\ 3>}}>\ \{J\_field\_values\};}
+\DoxyCodeLine{01053\ \ \ \ \ \}}
+\DoxyCodeLine{01054\ \};}
+\DoxyCodeLine{01055\ }
+\DoxyCodeLine{01056\ }
+\DoxyCodeLine{01057\ \}\ \ \textcolor{comment}{//\ namespace\ QCModel}}
+\DoxyCodeLine{01058\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

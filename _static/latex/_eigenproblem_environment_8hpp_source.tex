@@ -1,0 +1,146 @@
+\hypertarget{_eigenproblem_environment_8hpp_source}{}\doxysection{Eigenproblem\+Environment.\+hpp}
+\label{_eigenproblem_environment_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp}}
+\mbox{\hyperlink{_eigenproblem_environment_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_eigenpair_8hpp}{Mathematical/Optimization/Eigenproblem/Eigenpair.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_matrix_8hpp}{Mathematical/Representation/Matrix.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_square_matrix_8hpp}{Mathematical/Representation/SquareMatrix.hpp}}"{}}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar>}
+\DoxyCodeLine{00035\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{EigenproblemEnvironment}}\ \{}
+\DoxyCodeLine{00036\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//\ The\ scalar\ type\ of\ the\ matrix\ elements:\ real\ or\ complex.}}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a088f09eda9140bf157ab9deb5a4d7b3f}{Scalar}}\ =\ \_Scalar;}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{comment}{//\ A\ vector\ function\ that\ returns\ the\ matrix-\/vector\ product\ (i.e.\ the\ matrix-\/vector\ product\ representation\ of\ the\ matrix).}}
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_ae8a9e0086f5fbab030b1d49b05202054}{VectorFunction<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_aa5d1ac8e9e8a5124ff821328c190cd9e}{matrix\_vector\_product\_function}};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{comment}{//\ The\ self-\/adjoint\ matrix\ whose\ eigenvalue\ problem\ should\ be\ solved.}}
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a849aa0ad0c9466c531ae2801fc12d8de}{A}};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{//\ The\ diagonal\ of\ the\ matrix.}}
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a25b534ad54e086e91c69bde714a0c4c4}{diagonal}};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ The\ dimension\ of\ the\ diagonalization\ problem\ (the\ dimension\ of\ one\ eigenvector).}}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a5409c53cfd95076713c08a6fb341afb1}{dimension}};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{//\ The\ eigenvalues\ of\ the\ matrix\ A.}}
+\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<double>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a32a61251a3de42f08c34013bd764a9bc}{eigenvalues}};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{//\ The\ eigenvectors\ of\ the\ matrix\ A.}}
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_ae6067f5f512100449b51ff98a2c22a4f}{eigenvectors}};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{comment}{//\ The\ "{}subspace\ matrix"{}:\ the\ projection\ of\ the\ matrix\ A\ onto\ the\ subspace\ spanned\ by\ the\ vectors\ in\ V.}}
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_abf4e241d51681616cb4b6ed28a6d4026}{S}};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{comment}{//\ The\ (requested\ number\ of)\ eigenvalues\ of\ the\ subspace\ matrix\ S.}}
+\DoxyCodeLine{00066\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<double>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_ab9d9ff337078f8cdd90cc166f89d7cbe}{Lambda}};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//\ The\ (requested\ number\ of)\ eigenvectors\ of\ the\ subspace\ matrix\ S.}}
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a7f53eede93b4b59a2bdfb50dfb7bd810}{Z}};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{comment}{//\ The\ subspace\ of\ guess\ vectors\ in\ an\ iterative\ diagonalization\ algorithm.}}
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a33c85239d26787d391d5036f136bc153}{V}};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{comment}{//\ VA\ =\ A\ *\ V\ (implicitly\ calculated\ through\ the\ matrix-\/vector\ product).}}
+\DoxyCodeLine{00076\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_ad1322f5ba8ad32def492dc275f85cb76}{VA}};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{comment}{//\ Contains\ the\ new\ guesses\ for\ the\ eigenvectors\ (as\ a\ linear\ combination\ of\ the\ current\ subspace\ V).}}
+\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a238f88df14aff1b0ce73f34e4aa8ba0f}{X}};}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{comment}{//\ The\ residual\ vectors.}}
+\DoxyCodeLine{00083\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_af75cf9113b87fd65208c7b6d38910be6}{R}};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{comment}{//\ The\ correction\ vectors,\ i.e.\ the\ solutions\ to\ the\ residual\ equations.}}
+\DoxyCodeLine{00086\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a38990312c6e1d4f8e39eea7d714f409e}{Delta}};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00091\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Constructors}}
+\DoxyCodeLine{00092\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00097\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_ad144d41a45edab52a494694a7e59066f}{EigenproblemEnvironment}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a849aa0ad0c9466c531ae2801fc12d8de}{A}})\ :}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a849aa0ad0c9466c531ae2801fc12d8de}{A}}\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a849aa0ad0c9466c531ae2801fc12d8de}{A}}\}\ \{\}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00104\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a7ecaa971dceb4e76e0efa1058593eb2a}{EigenproblemEnvironment}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_ae8a9e0086f5fbab030b1d49b05202054}{VectorFunction<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_aa5d1ac8e9e8a5124ff821328c190cd9e}{matrix\_vector\_product\_function}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a25b534ad54e086e91c69bde714a0c4c4}{diagonal}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a33c85239d26787d391d5036f136bc153}{V}})\ :}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a5409c53cfd95076713c08a6fb341afb1}{dimension}}\ \{static\_cast<size\_t>(\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a25b534ad54e086e91c69bde714a0c4c4}{diagonal}}.size())\},}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_aa5d1ac8e9e8a5124ff821328c190cd9e}{matrix\_vector\_product\_function}}\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_aa5d1ac8e9e8a5124ff821328c190cd9e}{matrix\_vector\_product\_function}}\},}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a25b534ad54e086e91c69bde714a0c4c4}{diagonal}}\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a25b534ad54e086e91c69bde714a0c4c4}{diagonal}}\},}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a33c85239d26787d391d5036f136bc153}{V}}\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a33c85239d26787d391d5036f136bc153}{V}}\},}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_ad1322f5ba8ad32def492dc275f85cb76}{VA}}\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX}}<\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a088f09eda9140bf157ab9deb5a4d7b3f}{Scalar}}>::Zero(\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a33c85239d26787d391d5036f136bc153}{V}}.rows(),\ 0)\}\ \{\}\ \ \textcolor{comment}{//\ The\ initial\ environment\ should\ have\ no\ columns\ in\ VA.}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00113\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Named\ constructors}}
+\DoxyCodeLine{00114\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{EigenproblemEnvironment}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_acf84deadaff12d58fc9cf21d46b45787}{Dense}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a849aa0ad0c9466c531ae2801fc12d8de}{A}})\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{EigenproblemEnvironment}}(\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a849aa0ad0c9466c531ae2801fc12d8de}{A}});\ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{EigenproblemEnvironment}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a727e721f3027d6da3b35790584f4cf1a}{Iterative}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_ae8a9e0086f5fbab030b1d49b05202054}{VectorFunction<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_aa5d1ac8e9e8a5124ff821328c190cd9e}{matrix\_vector\_product\_function}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a25b534ad54e086e91c69bde714a0c4c4}{diagonal}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a33c85239d26787d391d5036f136bc153}{V}})\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{EigenproblemEnvironment}}(\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_aa5d1ac8e9e8a5124ff821328c190cd9e}{matrix\_vector\_product\_function}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a25b534ad54e086e91c69bde714a0c4c4}{diagonal}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a33c85239d26787d391d5036f136bc153}{V}});\ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{EigenproblemEnvironment}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a826d9df6c704d8128195ff08dc447973}{Iterative}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a849aa0ad0c9466c531ae2801fc12d8de}{A}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a33c85239d26787d391d5036f136bc153}{V}})\ \{}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_aa5d1ac8e9e8a5124ff821328c190cd9e}{matrix\_vector\_product\_function}}\ =\ [\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a849aa0ad0c9466c531ae2801fc12d8de}{A}}](\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<Scalar>}}\&\ \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{x}})\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a849aa0ad0c9466c531ae2801fc12d8de}{A}}\ *\ \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{x}};\ \};}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a727e721f3027d6da3b35790584f4cf1a}{EigenproblemEnvironment::Iterative}}(\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_aa5d1ac8e9e8a5124ff821328c190cd9e}{matrix\_vector\_product\_function}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a849aa0ad0c9466c531ae2801fc12d8de}{A}}.diagonal(),\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a33c85239d26787d391d5036f136bc153}{V}});}
+\DoxyCodeLine{00142\ \ \ \ \ \}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00146\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Access}}
+\DoxyCodeLine{00147\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00154\ \ \ \ \ std::vector<Eigenpair<double,\ Scalar>>\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a13adc7214798089577bc2e1705c02fc3}{eigenpairs}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ number\_of\_requested\_eigenpairs\ =\ 1)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (number\_of\_requested\_eigenpairs\ >\ this-\/>eigenvectors.cols())\ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}EigenproblemEnvironment::eigenpairs(const\ size\_t):\ You\ cannot\ retrieve\ that\ many\ eigenpairs."{}});}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ std::vector<Eigenpair<double,\ Scalar>>\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a13adc7214798089577bc2e1705c02fc3}{eigenpairs}}\ \{\};}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a13adc7214798089577bc2e1705c02fc3}{eigenpairs}}.reserve(number\_of\_requested\_eigenpairs);}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ number\_of\_requested\_eigenpairs;\ i++)\ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ eigenvalue\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a32a61251a3de42f08c34013bd764a9bc}{eigenvalues}}(i);}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ eigenvector\ =\ this-\/>eigenvectors.col(i);}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a13adc7214798089577bc2e1705c02fc3}{eigenpairs}}.emplace\_back(eigenvalue,\ eigenvector);}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a13adc7214798089577bc2e1705c02fc3}{eigenpairs}};}
+\DoxyCodeLine{00171\ \ \ \ \ \}}
+\DoxyCodeLine{00172\ \};}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

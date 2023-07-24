@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="_field_8hpp" kind="file" language="C++">
     <compoundname>Field.hpp</compoundname>
     <includes refid="_matrix_8hpp" local="yes">Mathematical/Representation/Matrix.hpp</includes>
@@ -8,48 +8,13 @@
     <includes local="no">algorithm</includes>
     <includes local="no">functional</includes>
     <includes local="no">vector</includes>
-    <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
     <includedby refid="_cubic_grid_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp</includedby>
     <includedby refid="_weighted_grid_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/WeightedGrid.hpp</includedby>
+    <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
     <incdepgraph>
-      <node id="10">
-        <label>boost/algorithm/string.hpp</label>
-      </node>
-      <node id="16">
-        <label>functional</label>
-      </node>
-      <node id="4">
-        <label>Utilities/Eigen.hpp</label>
-        <link refid="_eigen_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-      </node>
-      <node id="17">
-        <label>iterator</label>
-      </node>
-      <node id="14">
-        <label>Utilities/miscellaneous.hpp</label>
-        <link refid="miscellaneous_8hpp"/>
-        <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-      </node>
-      <node id="18">
-        <label>string</label>
-      </node>
-      <node id="11">
-        <label>fstream</label>
+      <node id="3">
+        <label>Mathematical/Functions/CartesianDirection.hpp</label>
+        <link refid="_cartesian_direction_8hpp"/>
       </node>
       <node id="1">
         <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp</label>
@@ -66,9 +31,6 @@
         </childnode>
         <childnode refid="13" relation="include">
         </childnode>
-      </node>
-      <node id="5">
-        <label>Eigen/Dense</label>
       </node>
       <node id="2">
         <label>Mathematical/Representation/Matrix.hpp</label>
@@ -90,14 +52,11 @@
         <childnode refid="13" relation="include">
         </childnode>
       </node>
-      <node id="7">
-        <label>Utilities/type_traits.hpp</label>
-        <link refid="type__traits_8hpp"/>
-        <childnode refid="8" relation="include">
+      <node id="4">
+        <label>Utilities/Eigen.hpp</label>
+        <link refid="_eigen_8hpp"/>
+        <childnode refid="5" relation="include">
         </childnode>
-      </node>
-      <node id="13">
-        <label>vector</label>
       </node>
       <node id="6">
         <label>Utilities/aliases.hpp</label>
@@ -107,115 +66,256 @@
         <childnode refid="9" relation="include">
         </childnode>
       </node>
-      <node id="9">
-        <label>cstdlib</label>
+      <node id="14">
+        <label>Utilities/miscellaneous.hpp</label>
+        <link refid="miscellaneous_8hpp"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
       </node>
-      <node id="12">
-        <label>iostream</label>
+      <node id="7">
+        <label>Utilities/type_traits.hpp</label>
+        <link refid="type__traits_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
       </node>
-      <node id="8">
-        <label>type_traits</label>
+      <node id="5">
+        <label>Eigen/Dense</label>
       </node>
       <node id="15">
         <label>algorithm</label>
       </node>
-      <node id="3">
-        <label>Mathematical/Functions/CartesianDirection.hpp</label>
-        <link refid="_cartesian_direction_8hpp"/>
+      <node id="10">
+        <label>boost/algorithm/string.hpp</label>
+      </node>
+      <node id="9">
+        <label>cstdlib</label>
+      </node>
+      <node id="11">
+        <label>fstream</label>
+      </node>
+      <node id="16">
+        <label>functional</label>
+      </node>
+      <node id="12">
+        <label>iostream</label>
+      </node>
+      <node id="17">
+        <label>iterator</label>
+      </node>
+      <node id="18">
+        <label>string</label>
+      </node>
+      <node id="8">
+        <label>type_traits</label>
+      </node>
+      <node id="13">
+        <label>vector</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="15">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFFockMatrixCalculation.hpp</label>
-        <link refid="_r_h_f_fock_matrix_calculation_8hpp"/>
+      <node id="2">
+        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp</label>
+        <link refid="_cubic_grid_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp</label>
+        <link refid="_field_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="11" relation="include">
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/WeightedGrid.hpp</label>
+        <link refid="_weighted_grid_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp</label>
+        <link refid="_diagonal_r_h_f_fock_matrix_objective_8hpp"/>
+        <childnode refid="4" relation="include">
         </childnode>
       </node>
       <node id="8">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHF.hpp</label>
         <link refid="_q_c_method_2_h_f_2_r_h_f_2_r_h_f_8hpp"/>
-        <childnode refid="2" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
       </node>
-      <node id="28">
-        <label>/__w/GQCP/GQCP/gqcp/src/Mathematical/Grid/CubicGrid.cpp</label>
-        <link refid="_cubic_grid_8cpp"/>
-      </node>
-      <node id="24">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFFockMatrixDiagonalization.hpp</label>
-        <link refid="_u_h_f_fock_matrix_diagonalization_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="20" relation="include">
-        </childnode>
-      </node>
-      <node id="4">
-        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/WeightedGrid.hpp</label>
-        <link refid="_weighted_grid_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-      </node>
-      <node id="22">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFErrorCalculation.hpp</label>
-        <link refid="_u_h_f_error_calculation_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="20" relation="include">
-        </childnode>
-      </node>
-      <node id="25">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFFockMatrixDIIS.hpp</label>
-        <link refid="_u_h_f_fock_matrix_d_i_i_s_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="20" relation="include">
-        </childnode>
-      </node>
-      <node id="18">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHF.hpp</label>
-        <link refid="_q_c_method_2_h_f_2_u_h_f_2_u_h_f_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="11">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFSolver.hpp</label>
-        <link refid="_r_h_f_s_c_f_solver_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="3">
-        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp</label>
-        <link refid="_cubic_grid_8hpp"/>
-        <childnode refid="2" relation="include">
+      <node id="10">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFDensityMatrixCalculation.hpp</label>
+        <link refid="_r_h_f_density_matrix_calculation_8hpp"/>
+        <childnode refid="11" relation="include">
         </childnode>
         <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="28" relation="include">
         </childnode>
       </node>
       <node id="12">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFDensityMatrixDamper.hpp</label>
         <link refid="_r_h_f_density_matrix_damper_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
         <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFElectronicEnergyCalculation.hpp</label>
+        <link refid="_r_h_f_electronic_energy_calculation_8hpp"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFErrorCalculation.hpp</label>
+        <link refid="_r_h_f_error_calculation_8hpp"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFFockMatrixCalculation.hpp</label>
+        <link refid="_r_h_f_fock_matrix_calculation_8hpp"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFFockMatrixDIIS.hpp</label>
+        <link refid="_r_h_f_fock_matrix_d_i_i_s_8hpp"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFSolver.hpp</label>
+        <link refid="_r_h_f_s_c_f_solver_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHF.hpp</label>
+        <link refid="_q_c_method_2_h_f_2_u_h_f_2_u_h_f_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFDensityMatrixCalculation.hpp</label>
+        <link refid="_u_h_f_density_matrix_calculation_8hpp"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFElectronicEnergyCalculation.hpp</label>
+        <link refid="_u_h_f_electronic_energy_calculation_8hpp"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFErrorCalculation.hpp</label>
+        <link refid="_u_h_f_error_calculation_8hpp"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFFockMatrixCalculation.hpp</label>
+        <link refid="_u_h_f_fock_matrix_calculation_8hpp"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFFockMatrixDIIS.hpp</label>
+        <link refid="_u_h_f_fock_matrix_d_i_i_s_8hpp"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFFockMatrixDiagonalization.hpp</label>
+        <link refid="_u_h_f_fock_matrix_diagonalization_8hpp"/>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFSCFEnvironment.hpp</label>
+        <link refid="_u_h_f_s_c_f_environment_8hpp"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFSCFSolver.hpp</label>
+        <link refid="_u_h_f_s_c_f_solver_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/RMP2/RMP2.hpp</label>
+        <link refid="_r_m_p2_8hpp"/>
+        <childnode refid="4" relation="include">
         </childnode>
       </node>
       <node id="6">
         <label>/__w/GQCP/GQCP/gqcp/include/QCModel/HF/RHF.hpp</label>
         <link refid="_q_c_model_2_h_f_2_r_h_f_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
         <childnode refid="7" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
@@ -238,84 +338,14 @@
         </childnode>
         <childnode refid="27" relation="include">
         </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="10">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFDensityMatrixCalculation.hpp</label>
-        <link refid="_r_h_f_density_matrix_calculation_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-      </node>
-      <node id="1">
-        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp</label>
-        <link refid="_field_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
         <childnode refid="4" relation="include">
         </childnode>
-      </node>
-      <node id="14">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFErrorCalculation.hpp</label>
-        <link refid="_r_h_f_error_calculation_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-      </node>
-      <node id="23">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFFockMatrixCalculation.hpp</label>
-        <link refid="_u_h_f_fock_matrix_calculation_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="20" relation="include">
-        </childnode>
-      </node>
-      <node id="20">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFSCFSolver.hpp</label>
-        <link refid="_u_h_f_s_c_f_solver_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="21">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFElectronicEnergyCalculation.hpp</label>
-        <link refid="_u_h_f_electronic_energy_calculation_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="20" relation="include">
+        <childnode refid="9" relation="include">
         </childnode>
       </node>
       <node id="27">
         <label>/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp</label>
         <link refid="_q_c_model_2_h_f_2_u_h_f_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-        <childnode refid="22" relation="include">
-        </childnode>
-        <childnode refid="23" relation="include">
-        </childnode>
-        <childnode refid="25" relation="include">
-        </childnode>
-      </node>
-      <node id="2">
-        <label>/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</label>
-        <link refid="gqcp_8hpp"/>
-      </node>
-      <node id="17">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFSCFEnvironment.hpp</label>
-        <link refid="_u_h_f_s_c_f_environment_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
         <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="19" relation="include">
@@ -328,54 +358,24 @@
         </childnode>
         <childnode refid="24" relation="include">
         </childnode>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="20" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="9">
-        <label>/__w/GQCP/GQCP/gqcp/src/Processing/Properties/RHFElectricalResponseSolver.cpp</label>
-        <link refid="_r_h_f_electrical_response_solver_8cpp"/>
+      <node id="4">
+        <label>/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</label>
+        <link refid="gqcp_8hpp"/>
       </node>
-      <node id="26">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/RMP2/RMP2.hpp</label>
-        <link refid="_r_m_p2_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="7">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp</label>
-        <link refid="_diagonal_r_h_f_fock_matrix_objective_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="16">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFFockMatrixDIIS.hpp</label>
-        <link refid="_r_h_f_fock_matrix_d_i_i_s_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
+      <node id="28">
+        <label>/__w/GQCP/GQCP/gqcp/src/Mathematical/Grid/CubicGrid.cpp</label>
+        <link refid="_cubic_grid_8cpp"/>
       </node>
       <node id="5">
         <label>/__w/GQCP/GQCP/gqcp/src/Mathematical/Grid/WeightedGrid.cpp</label>
         <link refid="_weighted_grid_8cpp"/>
       </node>
-      <node id="13">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFElectronicEnergyCalculation.hpp</label>
-        <link refid="_r_h_f_electronic_energy_calculation_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-      </node>
-      <node id="19">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFDensityMatrixCalculation.hpp</label>
-        <link refid="_u_h_f_density_matrix_calculation_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="20" relation="include">
-        </childnode>
+      <node id="9">
+        <label>/__w/GQCP/GQCP/gqcp/src/Processing/Properties/RHFElectricalResponseSolver.cpp</label>
+        <link refid="_r_h_f_electrical_response_solver_8cpp"/>
       </node>
     </invincdepgraph>
     <innerclass refid="class_g_q_c_p_1_1_field" prot="public">GQCP::Field</innerclass>
@@ -421,7 +421,7 @@
 <codeline lineno="39" refid="class_g_q_c_p_1_1_field" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field</ref><sp/>{</highlight></codeline>
 <codeline lineno="40"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>type<sp/>of<sp/>the<sp/>evaluated<sp/>function<sp/>values.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="42" refid="class_g_q_c_p_1_1_field_1a24cfed19b25ab94e35da3357ac923534" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_field_1a24cfed19b25ab94e35da3357ac923534" kindref="member">T</ref><sp/>=<sp/>T_;</highlight></codeline>
+<codeline lineno="42" refid="class_g_q_c_p_1_1_field_1a24cfed19b25ab94e35da3357ac923534" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_field_1a24cfed19b25ab94e35da3357ac923534" kindref="member">T</ref><sp/>=<sp/>T_;</highlight></codeline>
 <codeline lineno="43"><highlight class="normal"></highlight></codeline>
 <codeline lineno="44"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>evaluated<sp/>function<sp/>values,<sp/>in<sp/>the<sp/>order<sp/>of<sp/>the<sp/>grid&apos;s<sp/>loop.</highlight><highlight class="normal"></highlight></codeline>
@@ -433,8 +433,8 @@
 <codeline lineno="51"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>Constructors</highlight></codeline>
 <codeline lineno="52"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="53"><highlight class="normal"></highlight></codeline>
-<codeline lineno="59" refid="class_g_q_c_p_1_1_field_1a9c9b48d7aa478798952d3d5373df34ce" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_field_1a9c9b48d7aa478798952d3d5373df34ce" kindref="member">Field</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;T&gt;&amp;<sp/><ref refid="class_g_q_c_p_1_1_field_1adb01c471dae3664d7df87aa094d9c9f0" kindref="member">values</ref>)<sp/>:</highlight></codeline>
-<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_values<sp/>{<ref refid="class_g_q_c_p_1_1_field_1adb01c471dae3664d7df87aa094d9c9f0" kindref="member">values</ref>}<sp/>{}</highlight></codeline>
+<codeline lineno="59" refid="class_g_q_c_p_1_1_field_1a9c9b48d7aa478798952d3d5373df34ce" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_field_1a9c9b48d7aa478798952d3d5373df34ce" kindref="member">Field</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;T&gt;&amp;<sp/><ref refid="class_g_q_c_p_1_1_field_1a828d6993869541c594465b9583844cf8" kindref="member">values</ref>)<sp/>:</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_values<sp/>{<ref refid="class_g_q_c_p_1_1_field_1a828d6993869541c594465b9583844cf8" kindref="member">values</ref>}<sp/>{}</highlight></codeline>
 <codeline lineno="61"><highlight class="normal"></highlight></codeline>
 <codeline lineno="62"><highlight class="normal"></highlight></codeline>
 <codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
@@ -442,7 +442,7 @@
 <codeline lineno="65"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="66"><highlight class="normal"></highlight></codeline>
 <codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Z<sp/>=<sp/>T&gt;</highlight></codeline>
-<codeline lineno="75" refid="class_g_q_c_p_1_1_field_1a27a36ef2709acc7dffb2c656e2b280be" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t&lt;std::is_same&lt;Z, double&gt;::value</ref>,<sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;double&gt;</ref>&gt;<sp/><ref refid="class_g_q_c_p_1_1_field_1a27a36ef2709acc7dffb2c656e2b280be" kindref="member">ReadCubeFile</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>filename)<sp/>{</highlight></codeline>
+<codeline lineno="75" refid="class_g_q_c_p_1_1_field_1a4cc50927583a5eb6bf70514b1b5d592a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t&lt;std::is_same&lt;Z, double&gt;::value</ref>,<sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;double&gt;</ref>&gt;<sp/><ref refid="class_g_q_c_p_1_1_field_1a4cc50927583a5eb6bf70514b1b5d592a" kindref="member">ReadCubeFile</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>filename)<sp/>{</highlight></codeline>
 <codeline lineno="76"><highlight class="normal"></highlight></codeline>
 <codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Prepare<sp/>the<sp/>input<sp/>file.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::ifstream<sp/>input_file_stream<sp/>=<sp/><ref refid="namespace_g_q_c_p_1acf6fe8292e618c8a1f4b7f0bfe23cce4" kindref="member">validateAndOpen</ref>(filename,<sp/></highlight><highlight class="stringliteral">&quot;cube&quot;</highlight><highlight class="normal">);</highlight></codeline>
@@ -497,8 +497,8 @@
 <codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>boost::split(splitted_line,<sp/>line,<sp/>boost::is_any_of(</highlight><highlight class="stringliteral">&quot;<sp/>\t&quot;</highlight><highlight class="normal">),<sp/>boost::token_compress_on);</highlight></codeline>
 <codeline lineno="128"><highlight class="normal"></highlight></codeline>
 <codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Add<sp/>the<sp/>field<sp/>values<sp/>from<sp/>this<sp/>line<sp/>to<sp/>the<sp/>total<sp/>array.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="class_g_q_c_p_1_1_field_1a81765d874f7d2801409ef47f8368b589" kindref="member">value</ref><sp/>:<sp/>splitted_line)<sp/>{</highlight></codeline>
-<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>field_values.push_back(std::stod(<ref refid="class_g_q_c_p_1_1_field_1a81765d874f7d2801409ef47f8368b589" kindref="member">value</ref>));<sp/><sp/></highlight><highlight class="comment">//<sp/>no<sp/>worries<sp/>about<sp/>push_back,<sp/>since<sp/>we<sp/>have<sp/>reserved<sp/>enough<sp/>memory<sp/>up-front</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="class_g_q_c_p_1_1_field_1a4a7f1e8a8fc1a45c2b82a8424ada5db9" kindref="member">value</ref><sp/>:<sp/>splitted_line)<sp/>{</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>field_values.push_back(std::stod(<ref refid="class_g_q_c_p_1_1_field_1a4a7f1e8a8fc1a45c2b82a8424ada5db9" kindref="member">value</ref>));<sp/><sp/></highlight><highlight class="comment">//<sp/>no<sp/>worries<sp/>about<sp/>push_back,<sp/>since<sp/>we<sp/>have<sp/>reserved<sp/>enough<sp/>memory<sp/>up-front</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="134"><highlight class="normal"></highlight></codeline>
@@ -509,7 +509,7 @@
 <codeline lineno="139"><highlight class="normal"></highlight></codeline>
 <codeline lineno="140"><highlight class="normal"></highlight></codeline>
 <codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>N&gt;</highlight></codeline>
-<codeline lineno="162" refid="class_g_q_c_p_1_1_field_1a82ca6e4f67d4e5798c3756e2a79bf49c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;Vector&lt;double, N&gt;</ref>&gt;<sp/><ref refid="class_g_q_c_p_1_1_field_1a82ca6e4f67d4e5798c3756e2a79bf49c" kindref="member">ReadGridFile</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>filename)<sp/>{</highlight></codeline>
+<codeline lineno="162" refid="class_g_q_c_p_1_1_field_1af93d840bfa82a82b263eb9175ed573ef" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;Vector&lt;double, N&gt;</ref>&gt;<sp/><ref refid="class_g_q_c_p_1_1_field_1af93d840bfa82a82b263eb9175ed573ef" kindref="member">ReadGridFile</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>filename)<sp/>{</highlight></codeline>
 <codeline lineno="163"><highlight class="normal"></highlight></codeline>
 <codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Find<sp/>the<sp/>extension<sp/>of<sp/>the<sp/>given<sp/>path<sp/>(https://stackoverflow.com/a/51992).</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/>filename_extension;<sp/><sp/></highlight><highlight class="comment">//<sp/>will<sp/>contain<sp/>the<sp/>extension<sp/>of<sp/>the<sp/>given<sp/>filename</highlight><highlight class="normal"></highlight></codeline>
@@ -571,35 +571,35 @@
 <codeline lineno="221"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>Canonical<sp/>mathematical<sp/>operators<sp/>(https://en.cppreference.com/w/cpp/language/operators)</highlight></codeline>
 <codeline lineno="222"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="223"><highlight class="normal"></highlight></codeline>
-<codeline lineno="233" refid="class_g_q_c_p_1_1_field_1af24904055f469aa13f6ddd259d9280d2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;T&gt;</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_field_1af24904055f469aa13f6ddd259d9280d2" kindref="member">operator+=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;T&gt;</ref>&amp;<sp/>rhs)<sp/>{</highlight></codeline>
+<codeline lineno="233" refid="class_g_q_c_p_1_1_field_1ad1a1501c301167be4c79ee935fd1262a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;T&gt;</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_field_1ad1a1501c301167be4c79ee935fd1262a" kindref="member">operator+=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;T&gt;</ref>&amp;<sp/>rhs)<sp/>{</highlight></codeline>
 <codeline lineno="234"><highlight class="normal"></highlight></codeline>
-<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1afed89df1a3e5cf5d125edc3e66e81f06" kindref="member">std::transform</ref>(this-&gt;m_values.begin(),<sp/>this-&gt;m_values.end(),<sp/>rhs.<ref refid="class_g_q_c_p_1_1_field_1adb01c471dae3664d7df87aa094d9c9f0" kindref="member">values</ref>().begin(),</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::transform(this-&gt;m_values.begin(),<sp/>this-&gt;m_values.end(),<sp/>rhs.<ref refid="class_g_q_c_p_1_1_field_1a828d6993869541c594465b9583844cf8" kindref="member">values</ref>().begin(),</highlight></codeline>
 <codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;m_values.begin(),<sp/>std::plus&lt;T&gt;());</highlight></codeline>
 <codeline lineno="237"><highlight class="normal"></highlight></codeline>
 <codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="240"><highlight class="normal"></highlight></codeline>
 <codeline lineno="241"><highlight class="normal"></highlight></codeline>
-<codeline lineno="252" refid="class_g_q_c_p_1_1_field_1af389765c10f7818e16bd66d6e9d235cd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;T&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_field_1af389765c10f7818e16bd66d6e9d235cd" kindref="member">operator+</ref>(<ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;T&gt;</ref><sp/>lhs,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;T&gt;</ref>&amp;<sp/>rhs)<sp/>{</highlight></codeline>
+<codeline lineno="252" refid="class_g_q_c_p_1_1_field_1a43d3d11671503441606d93db6ee19158" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;T&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_field_1a43d3d11671503441606d93db6ee19158" kindref="member">operator+</ref>(<ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;T&gt;</ref><sp/>lhs,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;T&gt;</ref>&amp;<sp/>rhs)<sp/>{</highlight></codeline>
 <codeline lineno="253"><highlight class="normal"></highlight></codeline>
 <codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lhs<sp/>+=<sp/>rhs;</highlight></codeline>
 <codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>lhs;</highlight></codeline>
 <codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="257"><highlight class="normal"></highlight></codeline>
 <codeline lineno="258"><highlight class="normal"></highlight></codeline>
-<codeline lineno="264" refid="class_g_q_c_p_1_1_field_1a5acac668fdd46a52239474c80cd5efbb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;T&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_field_1a5acac668fdd46a52239474c80cd5efbb" kindref="member">operator-</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="264" refid="class_g_q_c_p_1_1_field_1a3344b792d37ab8de8e77c49fe295f595" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;T&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_field_1a3344b792d37ab8de8e77c49fe295f595" kindref="member">operator-</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="265"><highlight class="normal"></highlight></codeline>
 <codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;T&gt;<sp/>result;</highlight></codeline>
 <codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result.reserve(this-&gt;<ref refid="class_g_q_c_p_1_1_field_1aaab5b4df2677052efa8f93f0933e34ae" kindref="member">size</ref>());</highlight></codeline>
 <codeline lineno="268"><highlight class="normal"></highlight></codeline>
-<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1afed89df1a3e5cf5d125edc3e66e81f06" kindref="member">std::transform</ref>(this-&gt;m_values.begin(),<sp/>this-&gt;m_values.end(),</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::transform(this-&gt;m_values.begin(),<sp/>this-&gt;m_values.end(),</highlight></codeline>
 <codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::back_inserter(result),<sp/>std::negate&lt;T&gt;());</highlight></codeline>
 <codeline lineno="271"><highlight class="normal"></highlight></codeline>
 <codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>result;</highlight></codeline>
 <codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="274"><highlight class="normal"></highlight></codeline>
 <codeline lineno="275"><highlight class="normal"></highlight></codeline>
-<codeline lineno="285" refid="class_g_q_c_p_1_1_field_1a84f28f86b5ecd48b91a379fc6fe8602e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;T&gt;</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_field_1a84f28f86b5ecd48b91a379fc6fe8602e" kindref="member">operator-=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;T&gt;</ref>&amp;<sp/>rhs)<sp/>{</highlight></codeline>
+<codeline lineno="285" refid="class_g_q_c_p_1_1_field_1aebae43a24e7609218678f0d274f90ac8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;T&gt;</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_field_1aebae43a24e7609218678f0d274f90ac8" kindref="member">operator-=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;T&gt;</ref>&amp;<sp/>rhs)<sp/>{</highlight></codeline>
 <codeline lineno="286"><highlight class="normal"></highlight></codeline>
 <codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Define<sp/>subtraction<sp/>as<sp/>addition<sp/>with<sp/>the<sp/>negation.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>+=<sp/>(-rhs);</highlight></codeline>
@@ -607,7 +607,7 @@
 <codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="291"><highlight class="normal"></highlight></codeline>
 <codeline lineno="292"><highlight class="normal"></highlight></codeline>
-<codeline lineno="303" refid="class_g_q_c_p_1_1_field_1af08d9a23cd201e1b7e71675a05fd8c9e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;T&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_field_1af08d9a23cd201e1b7e71675a05fd8c9e" kindref="member">operator-</ref>(<ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;T&gt;</ref><sp/>lhs,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;T&gt;</ref>&amp;<sp/>rhs)<sp/>{</highlight></codeline>
+<codeline lineno="303" refid="class_g_q_c_p_1_1_field_1ac212fb7ea34c77655bab22a740698391" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;T&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_field_1ac212fb7ea34c77655bab22a740698391" kindref="member">operator-</ref>(<ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;T&gt;</ref><sp/>lhs,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;T&gt;</ref>&amp;<sp/>rhs)<sp/>{</highlight></codeline>
 <codeline lineno="304"><highlight class="normal"></highlight></codeline>
 <codeline lineno="305"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lhs<sp/>-=<sp/>rhs;</highlight></codeline>
 <codeline lineno="306"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>lhs;</highlight></codeline>
@@ -625,17 +625,17 @@
 <codeline lineno="321"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>Mappings</highlight></codeline>
 <codeline lineno="322"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="323"><highlight class="normal"></highlight></codeline>
-<codeline lineno="329" refid="class_g_q_c_p_1_1_field_1a944ad51413a8231e78dbe2bb34c1c6e0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_field_1a944ad51413a8231e78dbe2bb34c1c6e0" kindref="member">map</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::function&lt;<ref refid="class_g_q_c_p_1_1_field_1a24cfed19b25ab94e35da3357ac923534" kindref="member">T</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_field_1a24cfed19b25ab94e35da3357ac923534" kindref="member">T</ref>&amp;)&gt;&amp;<sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="329" refid="class_g_q_c_p_1_1_field_1a944ad51413a8231e78dbe2bb34c1c6e0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_field_1a944ad51413a8231e78dbe2bb34c1c6e0" kindref="member">map</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::function&lt;<ref refid="class_g_q_c_p_1_1_field_1a24cfed19b25ab94e35da3357ac923534" kindref="member">T</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_field_1a24cfed19b25ab94e35da3357ac923534" kindref="member">T</ref>&amp;)&gt;&amp;<sp/>function)<sp/>{</highlight></codeline>
 <codeline lineno="330"><highlight class="normal"></highlight></codeline>
-<codeline lineno="331"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1afed89df1a3e5cf5d125edc3e66e81f06" kindref="member">std::transform</ref>(this-&gt;m_values.begin(),<sp/>this-&gt;m_values.end(),<sp/>this-&gt;m_values.begin(),</highlight></codeline>
-<codeline lineno="332"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="331"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::transform(this-&gt;m_values.begin(),<sp/>this-&gt;m_values.end(),<sp/>this-&gt;m_values.begin(),</highlight></codeline>
+<codeline lineno="332"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>function);</highlight></codeline>
 <codeline lineno="333"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="334"><highlight class="normal"></highlight></codeline>
 <codeline lineno="335"><highlight class="normal"></highlight></codeline>
-<codeline lineno="343" refid="class_g_q_c_p_1_1_field_1ac995ed1daac26daea9f13f2f69f01599" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;T&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_field_1ac995ed1daac26daea9f13f2f69f01599" kindref="member">mapped</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::function&lt;<ref refid="class_g_q_c_p_1_1_field_1a24cfed19b25ab94e35da3357ac923534" kindref="member">T</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_field_1a24cfed19b25ab94e35da3357ac923534" kindref="member">T</ref>&amp;)&gt;&amp;<sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="343" refid="class_g_q_c_p_1_1_field_1ae5a2d2096b269cf1634cc9bb3ed0fe5b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;T&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_field_1ae5a2d2096b269cf1634cc9bb3ed0fe5b" kindref="member">mapped</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::function&lt;<ref refid="class_g_q_c_p_1_1_field_1a24cfed19b25ab94e35da3357ac923534" kindref="member">T</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_field_1a24cfed19b25ab94e35da3357ac923534" kindref="member">T</ref>&amp;)&gt;&amp;<sp/>function)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="344"><highlight class="normal"></highlight></codeline>
 <codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>this_copy<sp/>=<sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="346"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this_copy.map(</highlight><highlight class="keyword">function</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="346"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this_copy.map(function);</highlight></codeline>
 <codeline lineno="347"><highlight class="normal"></highlight></codeline>
 <codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this_copy;</highlight></codeline>
 <codeline lineno="349"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
@@ -645,11 +645,11 @@
 <codeline lineno="353"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>Access</highlight></codeline>
 <codeline lineno="354"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="355"><highlight class="normal"></highlight></codeline>
-<codeline lineno="363" refid="class_g_q_c_p_1_1_field_1a81765d874f7d2801409ef47f8368b589" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_field_1a24cfed19b25ab94e35da3357ac923534" kindref="member">T</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_field_1a81765d874f7d2801409ef47f8368b589" kindref="member">value</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>index)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;m_values[index];<sp/>}</highlight></codeline>
+<codeline lineno="363" refid="class_g_q_c_p_1_1_field_1a4a7f1e8a8fc1a45c2b82a8424ada5db9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_field_1a24cfed19b25ab94e35da3357ac923534" kindref="member">T</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_field_1a4a7f1e8a8fc1a45c2b82a8424ada5db9" kindref="member">value</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>index)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;m_values[index];<sp/>}</highlight></codeline>
 <codeline lineno="364"><highlight class="normal"></highlight></codeline>
-<codeline lineno="372" refid="class_g_q_c_p_1_1_field_1af726909cd622ffeef1b870d22581f5a0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_field_1a24cfed19b25ab94e35da3357ac923534" kindref="member">T</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_field_1af726909cd622ffeef1b870d22581f5a0" kindref="member">value</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>index)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;m_values[index];<sp/>}</highlight></codeline>
+<codeline lineno="372" refid="class_g_q_c_p_1_1_field_1a99f3d9c080ba9426caf87c9dcadb011b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_field_1a24cfed19b25ab94e35da3357ac923534" kindref="member">T</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_field_1a99f3d9c080ba9426caf87c9dcadb011b" kindref="member">value</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>index)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;m_values[index];<sp/>}</highlight></codeline>
 <codeline lineno="373"><highlight class="normal"></highlight></codeline>
-<codeline lineno="377" refid="class_g_q_c_p_1_1_field_1adb01c471dae3664d7df87aa094d9c9f0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;T&gt;&amp;<sp/><ref refid="class_g_q_c_p_1_1_field_1adb01c471dae3664d7df87aa094d9c9f0" kindref="member">values</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;m_values;<sp/>}</highlight></codeline>
+<codeline lineno="377" refid="class_g_q_c_p_1_1_field_1a828d6993869541c594465b9583844cf8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;T&gt;&amp;<sp/><ref refid="class_g_q_c_p_1_1_field_1a828d6993869541c594465b9583844cf8" kindref="member">values</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;m_values;<sp/>}</highlight></codeline>
 <codeline lineno="378"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="379"><highlight class="normal"></highlight></codeline>
 <codeline lineno="380"><highlight class="normal"></highlight></codeline>
@@ -658,10 +658,10 @@
 <codeline lineno="383"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="384"><highlight class="normal"></highlight></codeline>
 <codeline lineno="385"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Scalar&gt;</highlight></codeline>
-<codeline lineno="386" refid="namespace_g_q_c_p_1af28a3d8a83e9f482716fe9745cae7825" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">VectorField</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;Vector&lt;Scalar, 3&gt;</ref>&gt;;</highlight></codeline>
+<codeline lineno="386" refid="namespace_g_q_c_p_1af28a3d8a83e9f482716fe9745cae7825" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_field" kindref="compound">VectorField</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;Vector&lt;Scalar, 3&gt;</ref>&gt;;</highlight></codeline>
 <codeline lineno="387"><highlight class="normal"></highlight></codeline>
 <codeline lineno="388"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Scalar&gt;</highlight></codeline>
-<codeline lineno="389" refid="namespace_g_q_c_p_1a0c826b411620de5c7fc49249b4518785" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">MatrixField</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;Matrix&lt;Scalar, 3, 3&gt;</ref>&gt;;</highlight></codeline>
+<codeline lineno="389" refid="namespace_g_q_c_p_1a0c826b411620de5c7fc49249b4518785" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_field" kindref="compound">MatrixField</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;Matrix&lt;Scalar, 3, 3&gt;</ref>&gt;;</highlight></codeline>
 <codeline lineno="390"><highlight class="normal"></highlight></codeline>
 <codeline lineno="391"><highlight class="normal"></highlight></codeline>
 <codeline lineno="392"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>

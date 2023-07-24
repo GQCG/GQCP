@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="dir_d8e2c13fa0a721c4c8395a551a68aabd" kind="dir">
     <compoundname>/__w/GQCP/GQCP/gqcp/src/Mathematical/Grid</compoundname>
     <innerfile refid="_cubic_grid_8cpp">CubicGrid.cpp</innerfile>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_molecule" kind="class" language="C++" prot="public">
     <compoundname>GQCP::Molecule</compoundname>
     <includes refid="_molecule_8hpp" local="no">Molecule.hpp</includes>
@@ -9,6 +9,7 @@
         <definition>size_t GQCP::Molecule::N</definition>
         <argsstring></argsstring>
         <name>N</name>
+        <qualifiedname>GQCP::Molecule::N</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -22,6 +23,7 @@
         <definition>NuclearFramework GQCP::Molecule::nuclear_framework</definition>
         <argsstring></argsstring>
         <name>nuclear_framework</name>
+        <qualifiedname>GQCP::Molecule::nuclear_framework</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -37,6 +39,7 @@
         <definition>GQCP::Molecule::Molecule</definition>
         <argsstring>(const NuclearFramework &amp;nuclear_framework, const int charge=0)</argsstring>
         <name>Molecule</name>
+        <qualifiedname>GQCP::Molecule::Molecule</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_nuclear_framework" kindref="compound">NuclearFramework</ref> &amp;</type>
           <declname>nuclear_framework</declname>
@@ -77,6 +80,7 @@
         <definition>GQCP::Molecule::Molecule</definition>
         <argsstring>(const std::vector&lt; Nucleus &gt; &amp;nuclei, const int charge=0)</argsstring>
         <name>Molecule</name>
+        <qualifiedname>GQCP::Molecule::Molecule</qualifiedname>
         <param>
           <type>const std::vector&lt; <ref refid="class_g_q_c_p_1_1_nucleus" kindref="compound">Nucleus</ref> &gt; &amp;</type>
           <declname>nuclei</declname>
@@ -117,6 +121,7 @@
         <definition>double GQCP::Molecule::calculateInternuclearDistanceBetween</definition>
         <argsstring>(const size_t index1, const size_t index2) const</argsstring>
         <name>calculateInternuclearDistanceBetween</name>
+        <qualifiedname>GQCP::Molecule::calculateInternuclearDistanceBetween</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>index1</declname>
@@ -158,6 +163,7 @@
         <definition>int GQCP::Molecule::charge</definition>
         <argsstring>() const</argsstring>
         <name>charge</name>
+        <qualifiedname>GQCP::Molecule::charge</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -174,6 +180,7 @@
         <definition>std::string GQCP::Molecule::description</definition>
         <argsstring>() const</argsstring>
         <name>description</name>
+        <qualifiedname>GQCP::Molecule::description</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -185,11 +192,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Molecule/Molecule.hpp" line="140" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Molecule/Molecule.hpp" bodystart="140" bodyend="146"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_molecule_1abb23281bd50936d1115c7edf884cebba" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_molecule_1a8727eb57557da152b80b2124c2a482ab" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_nuclear_framework" kindref="compound">NuclearFramework</ref> &amp;</type>
-        <definition>const NuclearFramework&amp; GQCP::Molecule::nuclearFramework</definition>
+        <definition>const NuclearFramework &amp; GQCP::Molecule::nuclearFramework</definition>
         <argsstring>() const</argsstring>
         <name>nuclearFramework</name>
+        <qualifiedname>GQCP::Molecule::nuclearFramework</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -206,6 +214,7 @@
         <definition>size_t GQCP::Molecule::numberOfAtoms</definition>
         <argsstring>() const</argsstring>
         <name>numberOfAtoms</name>
+        <qualifiedname>GQCP::Molecule::numberOfAtoms</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -222,6 +231,7 @@
         <definition>size_t GQCP::Molecule::numberOfElectronPairs</definition>
         <argsstring>() const</argsstring>
         <name>numberOfElectronPairs</name>
+        <qualifiedname>GQCP::Molecule::numberOfElectronPairs</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -238,6 +248,7 @@
         <definition>size_t GQCP::Molecule::numberOfElectrons</definition>
         <argsstring>() const</argsstring>
         <name>numberOfElectrons</name>
+        <qualifiedname>GQCP::Molecule::numberOfElectrons</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -254,6 +265,7 @@
         <definition>size_t GQCP::Molecule::totalNucleicCharge</definition>
         <argsstring>() const</argsstring>
         <name>totalNucleicCharge</name>
+        <qualifiedname>GQCP::Molecule::totalNucleicCharge</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -272,6 +284,7 @@
         <definition>Molecule GQCP::Molecule::HChain</definition>
         <argsstring>(const size_t n, const double spacing, const int charge=0, const CartesianDirection axis=CartesianDirection::z)</argsstring>
         <name>HChain</name>
+        <qualifiedname>GQCP::Molecule::HChain</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>n</declname>
@@ -288,7 +301,7 @@
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8" kindref="member">CartesianDirection</ref></type>
           <declname>axis</declname>
-          <defval>CartesianDirection::z</defval>
+          <defval><ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a11d242b501b62c0182e98a9d516335f7" kindref="member">CartesianDirection::z</ref></defval>
         </param>
         <briefdescription>
         </briefdescription>
@@ -358,6 +371,7 @@
         <definition>Molecule GQCP::Molecule::H2Chain</definition>
         <argsstring>(const size_t n, const double a, const double b, const int charge=0, const CartesianDirection axis=CartesianDirection::z)</argsstring>
         <name>H2Chain</name>
+        <qualifiedname>GQCP::Molecule::H2Chain</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>n</declname>
@@ -378,7 +392,7 @@
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8" kindref="member">CartesianDirection</ref></type>
           <declname>axis</declname>
-          <defval>CartesianDirection::z</defval>
+          <defval><ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a11d242b501b62c0182e98a9d516335f7" kindref="member">CartesianDirection::z</ref></defval>
         </param>
         <briefdescription>
         </briefdescription>
@@ -429,6 +443,7 @@
         <definition>Molecule GQCP::Molecule::HRingFromDistance</definition>
         <argsstring>(const size_t n, const double distance, const int charge=0)</argsstring>
         <name>HRingFromDistance</name>
+        <qualifiedname>GQCP::Molecule::HRingFromDistance</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>n</declname>
@@ -475,6 +490,7 @@
         <definition>Molecule GQCP::Molecule::HRingFromRadius</definition>
         <argsstring>(const size_t n, const double radius, const int charge=0)</argsstring>
         <name>HRingFromRadius</name>
+        <qualifiedname>GQCP::Molecule::HRingFromRadius</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>n</declname>
@@ -521,6 +537,7 @@
         <definition>Molecule GQCP::Molecule::ReadXYZ</definition>
         <argsstring>(const std::string &amp;xyz_filename, const int charge=0)</argsstring>
         <name>ReadXYZ</name>
+        <qualifiedname>GQCP::Molecule::ReadXYZ</qualifiedname>
         <param>
           <type>const std::string &amp;</type>
           <declname>xyz_filename</declname>
@@ -559,11 +576,12 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="friend">
-      <memberdef kind="friend" id="class_g_q_c_p_1_1_molecule_1a26f5bb69dbe474029870d2ba1f064a19" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="friend" id="class_g_q_c_p_1_1_molecule_1a40c82ebe5039489d2f6875bf59a8a806" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::ostream &amp;</type>
-        <definition>std::ostream&amp; operator&lt;&lt;</definition>
+        <definition>std::ostream &amp; operator&lt;&lt;</definition>
         <argsstring>(std::ostream &amp;os, const Molecule &amp;molecule)</argsstring>
         <name>operator&lt;&lt;</name>
+        <qualifiedname>GQCP::Molecule::operator&lt;&lt;</qualifiedname>
         <param>
           <type>std::ostream &amp;</type>
           <declname>os</declname>
@@ -625,11 +643,11 @@
       <member refid="class_g_q_c_p_1_1_molecule_1a8f45be13b20d535d79ce42e9228d82fd" prot="public" virt="non-virtual"><scope>GQCP::Molecule</scope><name>Molecule</name></member>
       <member refid="class_g_q_c_p_1_1_molecule_1ad8a0935e1866131708a23d86512dc61e" prot="private" virt="non-virtual"><scope>GQCP::Molecule</scope><name>N</name></member>
       <member refid="class_g_q_c_p_1_1_molecule_1a513d2e753a6d0c97a1b8341366b90d4c" prot="private" virt="non-virtual"><scope>GQCP::Molecule</scope><name>nuclear_framework</name></member>
-      <member refid="class_g_q_c_p_1_1_molecule_1abb23281bd50936d1115c7edf884cebba" prot="public" virt="non-virtual"><scope>GQCP::Molecule</scope><name>nuclearFramework</name></member>
+      <member refid="class_g_q_c_p_1_1_molecule_1a8727eb57557da152b80b2124c2a482ab" prot="public" virt="non-virtual"><scope>GQCP::Molecule</scope><name>nuclearFramework</name></member>
       <member refid="class_g_q_c_p_1_1_molecule_1a5337c0a0c80c96b19ab510b84519c437" prot="public" virt="non-virtual"><scope>GQCP::Molecule</scope><name>numberOfAtoms</name></member>
       <member refid="class_g_q_c_p_1_1_molecule_1a09a87198a37af7590019ce31e6e0b8e2" prot="public" virt="non-virtual"><scope>GQCP::Molecule</scope><name>numberOfElectronPairs</name></member>
       <member refid="class_g_q_c_p_1_1_molecule_1a4ca709831d05e304432a5f7cac306c77" prot="public" virt="non-virtual"><scope>GQCP::Molecule</scope><name>numberOfElectrons</name></member>
-      <member refid="class_g_q_c_p_1_1_molecule_1a26f5bb69dbe474029870d2ba1f064a19" prot="public" virt="non-virtual"><scope>GQCP::Molecule</scope><name>operator&lt;&lt;</name></member>
+      <member refid="class_g_q_c_p_1_1_molecule_1a40c82ebe5039489d2f6875bf59a8a806" prot="public" virt="non-virtual"><scope>GQCP::Molecule</scope><name>operator&lt;&lt;</name></member>
       <member refid="class_g_q_c_p_1_1_molecule_1abcb84141cfe68fa68905e10672550cde" prot="public" virt="non-virtual"><scope>GQCP::Molecule</scope><name>ReadXYZ</name></member>
       <member refid="class_g_q_c_p_1_1_molecule_1a7654f858b1e93f82490e569d94ae8acf" prot="public" virt="non-virtual"><scope>GQCP::Molecule</scope><name>totalNucleicCharge</name></member>
     </listofallmembers>

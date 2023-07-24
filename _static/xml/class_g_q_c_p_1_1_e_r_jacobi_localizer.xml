@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_e_r_jacobi_localizer" kind="class" language="C++" prot="public">
     <compoundname>GQCP::ERJacobiLocalizer</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer" prot="public" virt="non-virtual">GQCP::JacobiOrbitalOptimizer</basecompoundref>
@@ -10,6 +10,7 @@
         <definition>double GQCP::ERJacobiLocalizer::A</definition>
         <argsstring></argsstring>
         <name>A</name>
+        <qualifiedname>GQCP::ERJacobiLocalizer::A</qualifiedname>
         <initializer>= 0.0</initializer>
         <briefdescription>
         </briefdescription>
@@ -24,6 +25,7 @@
         <definition>double GQCP::ERJacobiLocalizer::B</definition>
         <argsstring></argsstring>
         <name>B</name>
+        <qualifiedname>GQCP::ERJacobiLocalizer::B</qualifiedname>
         <initializer>= 0.0</initializer>
         <briefdescription>
         </briefdescription>
@@ -38,6 +40,7 @@
         <definition>double GQCP::ERJacobiLocalizer::C</definition>
         <argsstring></argsstring>
         <name>C</name>
+        <qualifiedname>GQCP::ERJacobiLocalizer::C</qualifiedname>
         <initializer>= 0.0</initializer>
         <briefdescription>
         </briefdescription>
@@ -54,6 +57,7 @@
         <definition>void GQCP::ERJacobiLocalizer::calculateJacobiCoefficients</definition>
         <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian, const size_t i, const size_t j) override</argsstring>
         <name>calculateJacobiCoefficients</name>
+        <qualifiedname>GQCP::ERJacobiLocalizer::calculateJacobiCoefficients</qualifiedname>
         <reimplements refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1a1d0903ec685d348fc47027d6d2cfe0bd">calculateJacobiCoefficients</reimplements>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
@@ -117,6 +121,7 @@ Calculate the trigoniometric polynomial coefficients for the given Jacobi rotati
         <definition>double GQCP::ERJacobiLocalizer::calculateOptimalRotationAngle</definition>
         <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian, const size_t i, const size_t j) const override</argsstring>
         <name>calculateOptimalRotationAngle</name>
+        <qualifiedname>GQCP::ERJacobiLocalizer::calculateOptimalRotationAngle</qualifiedname>
         <reimplements refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1a88fb6f7fd3ce8670e540b1f1e0e896cf">calculateOptimalRotationAngle</reimplements>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
@@ -171,6 +176,7 @@ Calculate the trigoniometric polynomial coefficients for the given Jacobi rotati
         <definition>double GQCP::ERJacobiLocalizer::calculateScalarFunctionChange</definition>
         <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian, const JacobiRotation &amp;jacobi_rotation) const override</argsstring>
         <name>calculateScalarFunctionChange</name>
+        <qualifiedname>GQCP::ERJacobiLocalizer::calculateScalarFunctionChange</qualifiedname>
         <reimplements refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1adb16cd498fedf675dbc0ef1f9c538757">calculateScalarFunctionChange</reimplements>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
@@ -232,6 +238,7 @@ Calculate the trigoniometric polynomial coefficients for the given Jacobi rotati
         <definition>void GQCP::ERJacobiLocalizer::prepareJacobiSpecificConvergenceChecking</definition>
         <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian) override</argsstring>
         <name>prepareJacobiSpecificConvergenceChecking</name>
+        <qualifiedname>GQCP::ERJacobiLocalizer::prepareJacobiSpecificConvergenceChecking</qualifiedname>
         <reimplements refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1ab453b26fea4b3901b2483afa97b061b1">prepareJacobiSpecificConvergenceChecking</reimplements>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
@@ -251,6 +258,7 @@ Calculate the trigoniometric polynomial coefficients for the given Jacobi rotati
         <definition>GQCP::JacobiOrbitalOptimizer::JacobiOrbitalOptimizer</definition>
         <argsstring>(const size_t dim, const double convergence_threshold=1.0e-08, const size_t maximum_number_of_iterations=128)</argsstring>
         <name>JacobiOrbitalOptimizer</name>
+        <qualifiedname>GQCP::ERJacobiLocalizer::JacobiOrbitalOptimizer</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>dim</declname>
@@ -310,16 +318,16 @@ Calculate the trigoniometric polynomial coefficients for the given Jacobi rotati
         <label>GQCP::BaseOrbitalOptimizer</label>
         <link refid="class_g_q_c_p_1_1_base_orbital_optimizer"/>
       </node>
-      <node id="2">
-        <label>GQCP::JacobiOrbitalOptimizer</label>
-        <link refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer"/>
-        <childnode refid="3" relation="public-inheritance">
-        </childnode>
-      </node>
       <node id="1">
         <label>GQCP::ERJacobiLocalizer</label>
         <link refid="class_g_q_c_p_1_1_e_r_jacobi_localizer"/>
         <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::JacobiOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer"/>
+        <childnode refid="3" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
@@ -328,16 +336,16 @@ Calculate the trigoniometric polynomial coefficients for the given Jacobi rotati
         <label>GQCP::BaseOrbitalOptimizer</label>
         <link refid="class_g_q_c_p_1_1_base_orbital_optimizer"/>
       </node>
-      <node id="2">
-        <label>GQCP::JacobiOrbitalOptimizer</label>
-        <link refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer"/>
-        <childnode refid="3" relation="public-inheritance">
-        </childnode>
-      </node>
       <node id="1">
         <label>GQCP::ERJacobiLocalizer</label>
         <link refid="class_g_q_c_p_1_1_e_r_jacobi_localizer"/>
         <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::JacobiOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer"/>
+        <childnode refid="3" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
@@ -358,7 +366,6 @@ Calculate the trigoniometric polynomial coefficients for the given Jacobi rotati
       <member refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1afa2b23e301f0eee1ea111cde0cbf9231" prot="protected" virt="non-virtual"><scope>GQCP::ERJacobiLocalizer</scope><name>dim</name></member>
       <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a0334372101297cb9e997d3981442439f" prot="protected" virt="non-virtual"><scope>GQCP::ERJacobiLocalizer</scope><name>is_converged</name></member>
       <member refid="class_g_q_c_p_1_1_e_r_jacobi_localizer_1acdb881443d205c747880aa88382f8e23" prot="public" virt="non-virtual"><scope>GQCP::ERJacobiLocalizer</scope><name>JacobiOrbitalOptimizer</name></member>
-      <member refid="class_g_q_c_p_1_1_jacobi_orbital_optimizer_1acdb881443d205c747880aa88382f8e23" prot="public" virt="non-virtual" ambiguityscope="GQCP::JacobiOrbitalOptimizer::"><scope>GQCP::ERJacobiLocalizer</scope><name>JacobiOrbitalOptimizer</name></member>
       <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1adce91f67cf6314d31a2b73bb54cdd815" prot="protected" virt="non-virtual"><scope>GQCP::ERJacobiLocalizer</scope><name>maximum_number_of_iterations</name></member>
       <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a728ec120b0025ec997b6020b7ef588e3" prot="protected" virt="non-virtual"><scope>GQCP::ERJacobiLocalizer</scope><name>number_of_iterations</name></member>
       <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a053125eead499da4abf2088e75d47353" prot="public" virt="non-virtual"><scope>GQCP::ERJacobiLocalizer</scope><name>numberOfIterations</name></member>

@@ -1,0 +1,91 @@
+\hypertarget{_spin_resolved1_d_m_component_8hpp_source}{}\doxysection{Spin\+Resolved1\+DMComponent.\+hpp}
+\label{_spin_resolved1_d_m_component_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved1DMComponent.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved1DMComponent.hpp}}
+\mbox{\hyperlink{_spin_resolved1_d_m_component_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_u_transformation_component_8hpp}{Basis/Transformations/UTransformationComponent.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_simple1_d_m_8hpp}{DensityMatrix/Simple1DM.hpp}}"{}}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ *\ \ MARK:\ SpinResolved1DMComponent\ implementation}}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar>}
+\DoxyCodeLine{00040\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved1_d_m_component}{SpinResolved1DMComponent}}:}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m}{Simple1DM}}<\_Scalar,\ SpinResolved1DMComponent<\_Scalar>>\ \{}
+\DoxyCodeLine{00042\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{//\ The\ scalar\ type\ used\ for\ a\ density\ matrix\ element:\ real\ or\ complex.}}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved1_d_m_component_a509a7464a5fb4c7ec8a9fc66af2a6f5c}{Scalar}}\ =\ \_Scalar;}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00048\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Constructors}}
+\DoxyCodeLine{00049\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{//\ Inherit\ `Simple1DM`'s\ constructors.}}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m}{Simple1DM}}<\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved1_d_m_component_a509a7464a5fb4c7ec8a9fc66af2a6f5c}{Scalar}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved1_d_m_component}{SpinResolved1DMComponent<Scalar>}}>\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_ae16447c5b63cd60e31d154e791d79dc0}{::Simple1DM}};}
+\DoxyCodeLine{00053\ \};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00057\ \textcolor{comment}{\ *\ \ MARK:\ BasisTransformableTraits}}
+\DoxyCodeLine{00058\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00063\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00064\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_g_q_c_p_1_1_basis_transformable_traits}{BasisTransformableTraits}}<\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved1_d_m_component}{SpinResolved1DMComponent}}<Scalar>>\ \{}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ transformation\ that\ is\ naturally\ related\ to\ a\ `SpinResolved1DMComponent`.}}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation_component}{Transformation}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation_component}{UTransformationComponent<Scalar>}};}
+\DoxyCodeLine{00068\ \};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00072\ \textcolor{comment}{\ *\ \ MARK:\ JacobiRotatableTraits}}
+\DoxyCodeLine{00073\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00078\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00079\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_g_q_c_p_1_1_jacobi_rotatable_traits}{JacobiRotatableTraits}}<\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved1_d_m_component}{SpinResolved1DMComponent}}<Scalar>>\ \{}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ Jacobi\ rotation\ that\ is\ naturally\ related\ to\ an\ `SpinResolved1DMComponent`.}}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_rotation}{JacobiRotationType}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_rotation}{JacobiRotation}};}
+\DoxyCodeLine{00083\ \};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00087\ \textcolor{comment}{\ *\ \ MARK:\ DensityMatrixTraits}}
+\DoxyCodeLine{00088\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00093\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00094\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_g_q_c_p_1_1_density_matrix_traits}{DensityMatrixTraits}}<\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved1_d_m_component}{SpinResolved1DMComponent}}<Scalar>>\ \{}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ transformation\ that\ is\ naturally\ related\ to\ a\ `SpinResolved1DMComponent`.\ Since\ a\ `SpinResolved1DM`\ naturally\ transforms\ with\ a\ `UTransformation`,\ a\ `SpinResolved1DMComponent`\ naturally\ transforms\ with\ a\ `UTransformationComponent`.}}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation_component}{Transformation}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation_component}{UTransformationComponent<Scalar>}};}
+\DoxyCodeLine{00098\ \};}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

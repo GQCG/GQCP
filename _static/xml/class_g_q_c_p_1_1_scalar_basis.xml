@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_scalar_basis" kind="class" language="C++" prot="public">
     <compoundname>GQCP::ScalarBasis</compoundname>
     <includes refid="_scalar_basis_8hpp" local="no">ScalarBasis.hpp</includes>
@@ -14,6 +14,7 @@
         <definition>using GQCP::ScalarBasis&lt; _Shell &gt;::Shell =  _Shell</definition>
         <argsstring></argsstring>
         <name>Shell</name>
+        <qualifiedname>GQCP::ScalarBasis::Shell</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -27,6 +28,7 @@
         <definition>using GQCP::ScalarBasis&lt; _Shell &gt;::Primitive =  typename Shell::Primitive</definition>
         <argsstring></argsstring>
         <name>Primitive</name>
+        <qualifiedname>GQCP::ScalarBasis::Primitive</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -40,6 +42,7 @@
         <definition>using GQCP::ScalarBasis&lt; _Shell &gt;::BasisFunction =  typename Shell::BasisFunction</definition>
         <argsstring></argsstring>
         <name>BasisFunction</name>
+        <qualifiedname>GQCP::ScalarBasis::BasisFunction</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -55,6 +58,7 @@
         <definition>ShellSet&lt;Shell&gt; GQCP::ScalarBasis&lt; _Shell &gt;::shell_set</definition>
         <argsstring></argsstring>
         <name>shell_set</name>
+        <qualifiedname>GQCP::ScalarBasis::shell_set</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -70,6 +74,7 @@
         <definition>GQCP::ScalarBasis&lt; _Shell &gt;::ScalarBasis</definition>
         <argsstring>(const ShellSet&lt; Shell &gt; &amp;shell_set)</argsstring>
         <name>ScalarBasis</name>
+        <qualifiedname>GQCP::ScalarBasis::ScalarBasis</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet</ref>&lt; <ref refid="class_g_q_c_p_1_1_scalar_basis_1a56cb0cabc632a2e4222abd17affb23eb" kindref="member">Shell</ref> &gt; &amp;</type>
           <declname>shell_set</declname>
@@ -103,6 +108,7 @@
         <definition>GQCP::ScalarBasis&lt; _Shell &gt;::ScalarBasis</definition>
         <argsstring>(const NuclearFramework &amp;nuclear_framework, const std::string &amp;basisset_name, typename std::enable_if&lt; std::is_same&lt; Z, GTOShell &gt;::value &gt;::type *=0)</argsstring>
         <name>ScalarBasis</name>
+        <qualifiedname>GQCP::ScalarBasis::ScalarBasis</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_nuclear_framework" kindref="compound">NuclearFramework</ref> &amp;</type>
           <declname>nuclear_framework</declname>
@@ -155,6 +161,7 @@
         <definition>GQCP::ScalarBasis&lt; _Shell &gt;::ScalarBasis</definition>
         <argsstring>(const Molecule &amp;molecule, const std::string &amp;basisset_name, typename std::enable_if&lt; std::is_same&lt; Z, GTOShell &gt;::value &gt;::type *=0)</argsstring>
         <name>ScalarBasis</name>
+        <qualifiedname>GQCP::ScalarBasis::ScalarBasis</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_molecule" kindref="compound">Molecule</ref> &amp;</type>
           <declname>molecule</declname>
@@ -207,6 +214,7 @@
         <definition>GQCP::ScalarBasis&lt; _Shell &gt;::ScalarBasis</definition>
         <argsstring>(const NuclearFramework &amp;nuclear_framework, const std::string &amp;basisset_name, const HomogeneousMagneticField &amp;B, typename std::enable_if&lt; std::is_same&lt; Z, LondonGTOShell &gt;::value &gt;::type *=0)</argsstring>
         <name>ScalarBasis</name>
+        <qualifiedname>GQCP::ScalarBasis::ScalarBasis</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_nuclear_framework" kindref="compound">NuclearFramework</ref> &amp;</type>
           <declname>nuclear_framework</declname>
@@ -271,6 +279,7 @@
         <definition>GQCP::ScalarBasis&lt; _Shell &gt;::ScalarBasis</definition>
         <argsstring>(const Molecule &amp;molecule, const std::string &amp;basisset_name, const HomogeneousMagneticField &amp;B, typename std::enable_if&lt; std::is_same&lt; Z, LondonGTOShell &gt;::value &gt;::type *=0)</argsstring>
         <name>ScalarBasis</name>
+        <qualifiedname>GQCP::ScalarBasis::ScalarBasis</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_molecule" kindref="compound">Molecule</ref> &amp;</type>
           <declname>molecule</declname>
@@ -324,11 +333,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" line="128" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" bodystart="128" bodyend="130"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_scalar_basis_1acb55672e9094fa4a56cb7fd190dbd8ae" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_scalar_basis_1aeb9d5b6e2903b492d96a8d4d4cfd9b55" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet</ref>&lt; <ref refid="class_g_q_c_p_1_1_scalar_basis_1a56cb0cabc632a2e4222abd17affb23eb" kindref="member">Shell</ref> &gt; &amp;</type>
-        <definition>const ShellSet&lt;Shell&gt;&amp; GQCP::ScalarBasis&lt; _Shell &gt;::shellSet</definition>
+        <definition>const ShellSet&lt; Shell &gt; &amp; GQCP::ScalarBasis&lt; _Shell &gt;::shellSet</definition>
         <argsstring>() const</argsstring>
         <name>shellSet</name>
+        <qualifiedname>GQCP::ScalarBasis::shellSet</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -340,11 +350,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" line="140" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" bodystart="140" bodyend="140"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_scalar_basis_1a3a5d51d79c5b93f05c7ada89a746451c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_scalar_basis_1a000b7c24c209792eff7f965de01a657c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>std::vector&lt; <ref refid="class_g_q_c_p_1_1_scalar_basis_1af7f13ae4384545ad6fd8c9e622cb2180" kindref="member">BasisFunction</ref> &gt;</type>
-        <definition>std::vector&lt;BasisFunction&gt; GQCP::ScalarBasis&lt; _Shell &gt;::basisFunctions</definition>
+        <definition>std::vector&lt; BasisFunction &gt; GQCP::ScalarBasis&lt; _Shell &gt;::basisFunctions</definition>
         <argsstring>() const</argsstring>
         <name>basisFunctions</name>
+        <qualifiedname>GQCP::ScalarBasis::basisFunctions</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -361,6 +372,7 @@
         <definition>size_t GQCP::ScalarBasis&lt; _Shell &gt;::numberOfBasisFunctions</definition>
         <argsstring>() const</argsstring>
         <name>numberOfBasisFunctions</name>
+        <qualifiedname>GQCP::ScalarBasis::numberOfBasisFunctions</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -372,11 +384,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" line="155" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" bodystart="155" bodyend="155"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_scalar_basis_1aa662b73933aa6ab2a05137065cc6a4df" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_scalar_basis_1acd5f433e61fcaa284350331a566516a7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>std::vector&lt; size_t &gt;</type>
-        <definition>std::vector&lt;size_t&gt; GQCP::ScalarBasis&lt; _Shell &gt;::basisFunctionIndices</definition>
+        <definition>std::vector&lt; size_t &gt; GQCP::ScalarBasis&lt; _Shell &gt;::basisFunctionIndices</definition>
         <argsstring>(const std::function&lt; bool(const Shell &amp;)&gt; &amp;selector) const</argsstring>
         <name>basisFunctionIndices</name>
+        <qualifiedname>GQCP::ScalarBasis::basisFunctionIndices</qualifiedname>
         <param>
           <type>const std::function&lt; bool(const <ref refid="class_g_q_c_p_1_1_scalar_basis_1a56cb0cabc632a2e4222abd17affb23eb" kindref="member">Shell</ref> &amp;)&gt; &amp;</type>
           <declname>selector</declname>
@@ -402,11 +415,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" line="164" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" bodystart="164" bodyend="188"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_scalar_basis_1aa80ce5e3db54a12bcf510d455d16bc0b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_scalar_basis_1af6d85f66e262223634566908e22edd62" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>std::vector&lt; size_t &gt;</type>
-        <definition>std::vector&lt;size_t&gt; GQCP::ScalarBasis&lt; _Shell &gt;::basisFunctionIndices</definition>
+        <definition>std::vector&lt; size_t &gt; GQCP::ScalarBasis&lt; _Shell &gt;::basisFunctionIndices</definition>
         <argsstring>(const std::function&lt; bool(const BasisFunction &amp;)&gt; &amp;selector) const</argsstring>
         <name>basisFunctionIndices</name>
+        <qualifiedname>GQCP::ScalarBasis::basisFunctionIndices</qualifiedname>
         <param>
           <type>const std::function&lt; bool(const <ref refid="class_g_q_c_p_1_1_scalar_basis_1af7f13ae4384545ad6fd8c9e622cb2180" kindref="member">BasisFunction</ref> &amp;)&gt; &amp;</type>
           <declname>selector</declname>
@@ -457,9 +471,9 @@
     <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" line="41" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp" bodystart="41" bodyend="214"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_scalar_basis_1af7f13ae4384545ad6fd8c9e622cb2180" prot="public" virt="non-virtual"><scope>GQCP::ScalarBasis</scope><name>BasisFunction</name></member>
-      <member refid="class_g_q_c_p_1_1_scalar_basis_1aa662b73933aa6ab2a05137065cc6a4df" prot="public" virt="non-virtual"><scope>GQCP::ScalarBasis</scope><name>basisFunctionIndices</name></member>
-      <member refid="class_g_q_c_p_1_1_scalar_basis_1aa80ce5e3db54a12bcf510d455d16bc0b" prot="public" virt="non-virtual"><scope>GQCP::ScalarBasis</scope><name>basisFunctionIndices</name></member>
-      <member refid="class_g_q_c_p_1_1_scalar_basis_1a3a5d51d79c5b93f05c7ada89a746451c" prot="public" virt="non-virtual"><scope>GQCP::ScalarBasis</scope><name>basisFunctions</name></member>
+      <member refid="class_g_q_c_p_1_1_scalar_basis_1acd5f433e61fcaa284350331a566516a7" prot="public" virt="non-virtual"><scope>GQCP::ScalarBasis</scope><name>basisFunctionIndices</name></member>
+      <member refid="class_g_q_c_p_1_1_scalar_basis_1af6d85f66e262223634566908e22edd62" prot="public" virt="non-virtual"><scope>GQCP::ScalarBasis</scope><name>basisFunctionIndices</name></member>
+      <member refid="class_g_q_c_p_1_1_scalar_basis_1a000b7c24c209792eff7f965de01a657c" prot="public" virt="non-virtual"><scope>GQCP::ScalarBasis</scope><name>basisFunctions</name></member>
       <member refid="class_g_q_c_p_1_1_scalar_basis_1a7e604db3de1539af1ff231992743e4f7" prot="public" virt="non-virtual"><scope>GQCP::ScalarBasis</scope><name>numberOfBasisFunctions</name></member>
       <member refid="class_g_q_c_p_1_1_scalar_basis_1aca51beca0624a8c632902a9cd06617ed" prot="public" virt="non-virtual"><scope>GQCP::ScalarBasis</scope><name>Primitive</name></member>
       <member refid="class_g_q_c_p_1_1_scalar_basis_1a062e580dff23f232205131c185fb908a" prot="public" virt="non-virtual"><scope>GQCP::ScalarBasis</scope><name>ScalarBasis</name></member>
@@ -469,7 +483,7 @@
       <member refid="class_g_q_c_p_1_1_scalar_basis_1aab3d105699f8e3929c1d4e090243a117" prot="public" virt="non-virtual"><scope>GQCP::ScalarBasis</scope><name>ScalarBasis</name></member>
       <member refid="class_g_q_c_p_1_1_scalar_basis_1a56cb0cabc632a2e4222abd17affb23eb" prot="public" virt="non-virtual"><scope>GQCP::ScalarBasis</scope><name>Shell</name></member>
       <member refid="class_g_q_c_p_1_1_scalar_basis_1a2514857be82d99fc1d04211ae9f7e493" prot="private" virt="non-virtual"><scope>GQCP::ScalarBasis</scope><name>shell_set</name></member>
-      <member refid="class_g_q_c_p_1_1_scalar_basis_1acb55672e9094fa4a56cb7fd190dbd8ae" prot="public" virt="non-virtual"><scope>GQCP::ScalarBasis</scope><name>shellSet</name></member>
+      <member refid="class_g_q_c_p_1_1_scalar_basis_1aeb9d5b6e2903b492d96a8d4d4cfd9b55" prot="public" virt="non-virtual"><scope>GQCP::ScalarBasis</scope><name>shellSet</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

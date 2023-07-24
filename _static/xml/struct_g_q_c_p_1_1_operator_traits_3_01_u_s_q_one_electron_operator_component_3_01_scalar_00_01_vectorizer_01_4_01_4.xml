@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="struct_g_q_c_p_1_1_operator_traits_3_01_u_s_q_one_electron_operator_component_3_01_scalar_00_01_vectorizer_01_4_01_4" kind="struct" language="C++" prot="public">
     <compoundname>GQCP::OperatorTraits&lt; USQOneElectronOperatorComponent&lt; Scalar, Vectorizer &gt; &gt;</compoundname>
     <includes refid="_u_s_q_one_electron_operator_component_8hpp" local="no">USQOneElectronOperatorComponent.hpp</includes>
@@ -17,6 +17,7 @@
         <definition>using GQCP::OperatorTraits&lt; USQOneElectronOperatorComponent&lt; Scalar, Vectorizer &gt; &gt;::ScalarOperator =  ScalarUSQOneElectronOperatorComponent&lt;Scalar&gt;</definition>
         <argsstring></argsstring>
         <name>ScalarOperator</name>
+        <qualifiedname>GQCP::OperatorTraits&lt; USQOneElectronOperatorComponent&lt; Scalar, Vectorizer &gt; &gt;::ScalarOperator</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -30,6 +31,7 @@
         <definition>using GQCP::OperatorTraits&lt; USQOneElectronOperatorComponent&lt; Scalar, Vectorizer &gt; &gt;::Transformation =  UTransformationComponent&lt;Scalar&gt;</definition>
         <argsstring></argsstring>
         <name>Transformation</name>
+        <qualifiedname>GQCP::OperatorTraits&lt; USQOneElectronOperatorComponent&lt; Scalar, Vectorizer &gt; &gt;::Transformation</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -43,6 +45,7 @@
         <definition>using GQCP::OperatorTraits&lt; USQOneElectronOperatorComponent&lt; Scalar, Vectorizer &gt; &gt;::OneDM =  SpinResolved1DMComponent&lt;Scalar&gt;</definition>
         <argsstring></argsstring>
         <name>OneDM</name>
+        <qualifiedname>GQCP::OperatorTraits&lt; USQOneElectronOperatorComponent&lt; Scalar, Vectorizer &gt; &gt;::OneDM</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -56,6 +59,7 @@
         <definition>using GQCP::OperatorTraits&lt; USQOneElectronOperatorComponent&lt; Scalar, Vectorizer &gt; &gt;::TwoDM =  PureSpinResolved2DMComponent&lt;Scalar&gt;</definition>
         <argsstring></argsstring>
         <name>TwoDM</name>
+        <qualifiedname>GQCP::OperatorTraits&lt; USQOneElectronOperatorComponent&lt; Scalar, Vectorizer &gt; &gt;::TwoDM</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -69,6 +73,7 @@
         <definition>using GQCP::OperatorTraits&lt; USQOneElectronOperatorComponent&lt; Scalar, Vectorizer &gt; &gt;::MullikenDomain =  UMullikenDomainComponent&lt;Scalar&gt;</definition>
         <argsstring></argsstring>
         <name>MullikenDomain</name>
+        <qualifiedname>GQCP::OperatorTraits&lt; USQOneElectronOperatorComponent&lt; Scalar, Vectorizer &gt; &gt;::MullikenDomain</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>

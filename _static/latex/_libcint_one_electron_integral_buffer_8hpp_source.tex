@@ -1,0 +1,71 @@
+\hypertarget{_libcint_one_electron_integral_buffer_8hpp_source}{}\doxysection{Libcint\+One\+Electron\+Integral\+Buffer.\+hpp}
+\label{_libcint_one_electron_integral_buffer_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintOneElectronIntegralBuffer.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintOneElectronIntegralBuffer.hpp}}
+\mbox{\hyperlink{_libcint_one_electron_integral_buffer_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_base_one_electron_integral_buffer_8hpp}{Basis/Integrals/BaseOneElectronIntegralBuffer.hpp}}"{}}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_IntegralScalar,\ \textcolor{keywordtype}{size\_t}\ \_N>}
+\DoxyCodeLine{00036\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_libcint_one_electron_integral_buffer}{LibcintOneElectronIntegralBuffer}}:\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer}{BaseOneElectronIntegralBuffer}}<\_IntegralScalar,\ \_N>\ \{}
+\DoxyCodeLine{00037\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_libcint_one_electron_integral_buffer_a7f722c70ac54deb13b76a7baab9c18c2}{IntegralScalar}}\ =\ \_IntegralScalar;\ \ \textcolor{comment}{//\ the\ scalar\ representation\ of\ an\ integral}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_one_electron_integral_buffer_a8776d8e60cca25c3ec81bea00b7adb88}{N}}\ =\ \_N;\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ number\ of\ components\ the\ operator\ has}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{double}\ scaling\_factor;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ a\ factor\ that\ multiplies\ every\ calculated\ value\ (for\ example\ in\ the\ dipole\ integrals,\ an\ extra\ factor\ -\/1\ should\ be\ included)}}
+\DoxyCodeLine{00044\ \ \ \ \ std::vector<IntegralScalar>\ buffer;\ \ \textcolor{comment}{//\ the\ libcint\ integral\ data\ converted\ to\ a\ C++\ vector}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{int}\ result;\ \ \textcolor{comment}{//\ the\ result\ of\ the\ libcint\_function\ call}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00051\ \textcolor{comment}{\ \ \ \ \ *\ \ CONSTRUCTORS}}
+\DoxyCodeLine{00052\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_one_electron_integral_buffer_ad3bf7e879c8996394a67d3f01bac76c0}{LibcintOneElectronIntegralBuffer}}(\textcolor{keyword}{const}\ std::vector<IntegralScalar>\&\ buffer,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_aa35cde54a1104ab16272a0642fcb5c3a}{nbf1}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a3d261dcc128d01c14b848e4debec9493}{nbf2}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ result,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ scaling\_factor\ =\ 1.0)\ :}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ scaling\_factor\ \{scaling\_factor\},}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ buffer\ \{buffer\},}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ result\ \{result\},}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer}{BaseOneElectronIntegralBuffer}}<\mbox{\hyperlink{class_g_q_c_p_1_1_libcint_one_electron_integral_buffer_a7f722c70ac54deb13b76a7baab9c18c2}{IntegralScalar}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_one_electron_integral_buffer_a8776d8e60cca25c3ec81bea00b7adb88}{N}}>(\mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_aa35cde54a1104ab16272a0642fcb5c3a}{nbf1}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a3d261dcc128d01c14b848e4debec9493}{nbf2}})\ \{\}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00069\ \textcolor{comment}{\ \ \ \ \ *\ \ PUBLIC\ OVERRIDDEN\ METHODS}}
+\DoxyCodeLine{00070\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_one_electron_integral_buffer_a505efa700605e761f5fc72aa41878dc1}{areIntegralsAllZero}}()\textcolor{keyword}{\ const\ override\ }\{\ \textcolor{keywordflow}{return}\ (this-\/>result\ ==\ 0);\ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_one_electron_integral_buffer_a7f722c70ac54deb13b76a7baab9c18c2}{IntegralScalar}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_one_electron_integral_buffer_a2b5f6303c7798c9e58494847f028320e}{value}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ f1,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ f2)\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>scaling\_factor\ *\ this-\/>buffer[f1\ +\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_aa35cde54a1104ab16272a0642fcb5c3a}{nbf1}}\ *\ (f2\ +\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a3d261dcc128d01c14b848e4debec9493}{nbf2}}\ *\ i)];\ \ \textcolor{comment}{//\ column-\/major\ ordering\ for\ libcint}}
+\DoxyCodeLine{00086\ \ \ \ \ \}}
+\DoxyCodeLine{00087\ \};}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

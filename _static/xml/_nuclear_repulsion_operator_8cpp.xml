@@ -1,76 +1,12 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="_nuclear_repulsion_operator_8cpp" kind="file" language="C++">
     <compoundname>NuclearRepulsionOperator.cpp</compoundname>
     <includes refid="_nuclear_repulsion_operator_8hpp" local="yes">Operator/FirstQuantized/NuclearRepulsionOperator.hpp</includes>
     <incdepgraph>
-      <node id="14">
-        <label>boost/algorithm/string.hpp</label>
-      </node>
-      <node id="21">
-        <label>iomanip</label>
-      </node>
-      <node id="20">
-        <label>functional</label>
-      </node>
-      <node id="8">
-        <label>Utilities/Eigen.hpp</label>
-        <link refid="_eigen_8hpp"/>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="4">
-        <label>Molecule/NuclearFramework.hpp</label>
-        <link refid="_nuclear_framework_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-      </node>
-      <node id="2">
-        <label>Operator/FirstQuantized/NuclearRepulsionOperator.hpp</label>
-        <link refid="_nuclear_repulsion_operator_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="19">
-        <label>string</label>
-      </node>
-      <node id="6">
-        <label>Molecule/Nucleus.hpp</label>
-        <link refid="_nucleus_8hpp"/>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="20" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-      </node>
-      <node id="15">
-        <label>fstream</label>
-      </node>
-      <node id="18">
-        <label>Molecule/elements.hpp</label>
-        <link refid="elements_8hpp"/>
-        <childnode refid="19" relation="include">
-        </childnode>
-      </node>
-      <node id="3">
-        <label>Operator/FirstQuantized/BaseNuclearOperator.hpp</label>
-        <link refid="_base_nuclear_operator_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
-      <node id="9">
-        <label>Eigen/Dense</label>
+      <node id="5">
+        <label>Mathematical/Functions/CartesianDirection.hpp</label>
+        <link refid="_cartesian_direction_8hpp"/>
       </node>
       <node id="7">
         <label>Mathematical/Representation/Matrix.hpp</label>
@@ -92,14 +28,55 @@
         <childnode refid="17" relation="include">
         </childnode>
       </node>
-      <node id="11">
-        <label>Utilities/type_traits.hpp</label>
-        <link refid="type__traits_8hpp"/>
-        <childnode refid="12" relation="include">
+      <node id="4">
+        <label>Molecule/NuclearFramework.hpp</label>
+        <link refid="_nuclear_framework_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
         </childnode>
       </node>
-      <node id="17">
-        <label>vector</label>
+      <node id="6">
+        <label>Molecule/Nucleus.hpp</label>
+        <link refid="_nucleus_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>Molecule/elements.hpp</label>
+        <link refid="elements_8hpp"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Operator/FirstQuantized/BaseNuclearOperator.hpp</label>
+        <link refid="_base_nuclear_operator_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Operator/FirstQuantized/NuclearRepulsionOperator.hpp</label>
+        <link refid="_nuclear_repulsion_operator_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Utilities/Eigen.hpp</label>
+        <link refid="_eigen_8hpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
       </node>
       <node id="10">
         <label>Utilities/aliases.hpp</label>
@@ -109,8 +86,11 @@
         <childnode refid="13" relation="include">
         </childnode>
       </node>
-      <node id="13">
-        <label>cstdlib</label>
+      <node id="11">
+        <label>Utilities/type_traits.hpp</label>
+        <link refid="type__traits_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
       </node>
       <node id="1">
         <label>/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/NuclearRepulsionOperator.cpp</label>
@@ -118,15 +98,35 @@
         <childnode refid="2" relation="include">
         </childnode>
       </node>
+      <node id="9">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="14">
+        <label>boost/algorithm/string.hpp</label>
+      </node>
+      <node id="13">
+        <label>cstdlib</label>
+      </node>
+      <node id="15">
+        <label>fstream</label>
+      </node>
+      <node id="20">
+        <label>functional</label>
+      </node>
+      <node id="21">
+        <label>iomanip</label>
+      </node>
       <node id="16">
         <label>iostream</label>
+      </node>
+      <node id="19">
+        <label>string</label>
       </node>
       <node id="12">
         <label>type_traits</label>
       </node>
-      <node id="5">
-        <label>Mathematical/Functions/CartesianDirection.hpp</label>
-        <link refid="_cartesian_direction_8hpp"/>
+      <node id="17">
+        <label>vector</label>
       </node>
     </incdepgraph>
     <innernamespace refid="namespace_g_q_c_p">GQCP</innernamespace>
@@ -164,11 +164,11 @@
 <codeline lineno="27"><highlight class="normal"></highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_nuclear_repulsion_operator_1a095316bd4ac0e4c331e10f1326251105" kindref="member">NuclearRepulsionOperator::value</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="32"><highlight class="normal"></highlight></codeline>
-<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>nuclei<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_base_nuclear_operator_1a5bc883585f494a18a575c2e35f9febe1" kindref="member">nuclearFramework</ref>().<ref refid="class_g_q_c_p_1_1_nuclear_framework_1ae9ef2e5d439ff7b7be8cd3c72137bc66" kindref="member">nucleiAsVector</ref>();</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>nuclei<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_base_nuclear_operator_1a7b692bac54528c1353f5eaad288ca43d" kindref="member">nuclearFramework</ref>().<ref refid="class_g_q_c_p_1_1_nuclear_framework_1a653c180ca3c5b45ff912d644c908dfec" kindref="member">nucleiAsVector</ref>();</highlight></codeline>
 <codeline lineno="34"><highlight class="normal"></highlight></codeline>
 <codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Sum<sp/>over<sp/>every<sp/>unique<sp/>nucleus<sp/>pair.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_nuclear_repulsion_operator_1a095316bd4ac0e4c331e10f1326251105" kindref="member">value</ref><sp/>{0.0};</highlight></codeline>
-<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>n_nuclei<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_base_nuclear_operator_1a5bc883585f494a18a575c2e35f9febe1" kindref="member">nuclearFramework</ref>().<ref refid="class_g_q_c_p_1_1_nuclear_framework_1a6cbb29c6b5f00a9a4ff734f8eb94941b" kindref="member">numberOfNuclei</ref>();</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>n_nuclei<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_base_nuclear_operator_1a7b692bac54528c1353f5eaad288ca43d" kindref="member">nuclearFramework</ref>().<ref refid="class_g_q_c_p_1_1_nuclear_framework_1a6cbb29c6b5f00a9a4ff734f8eb94941b" kindref="member">numberOfNuclei</ref>();</highlight></codeline>
 <codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>n_nuclei;<sp/>i++)<sp/>{</highlight></codeline>
 <codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>j<sp/>=<sp/>i<sp/>+<sp/>1;<sp/>j<sp/>&lt;<sp/>n_nuclei;<sp/>j++)<sp/>{</highlight></codeline>
 <codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>nucleus1<sp/>=<sp/>nuclei[i];</highlight></codeline>

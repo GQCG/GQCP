@@ -33,7 +33,7 @@ size\+\_\+t \mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents_af87af131d9c
 \item 
 std\+::vector$<$ \mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents}{Cartesian\+Exponents}} $>$ \mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents_a0a4880e488b1fbdedc160ee5f727c81f}{all\+Permutations}} () const
 \item 
-const std\+::array$<$ size\+\_\+t, 3 $>$ \& \mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents_a150724bc37aec10de7ab5a28ca3dbbc5}{as\+Array}} () const
+const std\+::array$<$ size\+\_\+t, 3 $>$ \& \mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents_af3f6f108aeeccfdb47bcda95037ee598}{as\+Array}} () const
 \item 
 std\+::string \mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents_ac4331957ae21837147bcdc9175b77340}{description}} () const
 \item 
@@ -108,11 +108,11 @@ a sorted list of all permutations (i.\+e. switching x, y, z) of these Cartesian 
 \begin{DoxyReturn}{Returns}
 the angular momentum corresponding to these exponents 
 \end{DoxyReturn}
-\mbox{\Hypertarget{struct_g_q_c_p_1_1_cartesian_exponents_a150724bc37aec10de7ab5a28ca3dbbc5}\label{struct_g_q_c_p_1_1_cartesian_exponents_a150724bc37aec10de7ab5a28ca3dbbc5}} 
+\mbox{\Hypertarget{struct_g_q_c_p_1_1_cartesian_exponents_af3f6f108aeeccfdb47bcda95037ee598}\label{struct_g_q_c_p_1_1_cartesian_exponents_af3f6f108aeeccfdb47bcda95037ee598}} 
 \index{GQCP::CartesianExponents@{GQCP::CartesianExponents}!asArray@{asArray}}
 \index{asArray@{asArray}!GQCP::CartesianExponents@{GQCP::CartesianExponents}}
 \doxysubsubsection{\texorpdfstring{asArray()}{asArray()}}
-{\footnotesize\ttfamily const std\+::array$<$size\+\_\+t, 3$>$\& GQCP\+::\+Cartesian\+Exponents\+::as\+Array (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily const std\+::array$<$ size\+\_\+t, 3 $>$ \& GQCP\+::\+Cartesian\+Exponents\+::as\+Array (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \begin{DoxyReturn}{Returns}
 the exponents as an array 
@@ -148,17 +148,17 @@ if the Cartesian exponents are considered different
 
 
 \begin{DoxyParams}{Parameters}
-{\em rhs} & the right-\/hand side of the operator $<$\\
+{\em rhs} & the right-\/hand side of the operator \texorpdfstring{$<$}{<}\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-if these Cartesian exponents are \textquotesingle{}smaller\textquotesingle{} than the ones on the right-\/hand side. The following logic is used\+: lhs $<$ rhs
+if these Cartesian exponents are \textquotesingle{}smaller\textquotesingle{} than the ones on the right-\/hand side. The following logic is used\+: lhs \texorpdfstring{$<$}{<} rhs
 \begin{DoxyItemize}
 \item if lhs\textquotesingle{}s angular momentum is smaller
 \item if both angular momenta are equal, x takes precedence over y, over z
 \end{DoxyItemize}
 \end{DoxyReturn}
-This means that \{1, 0, 0\}(=x) $<$ \{2, 0, 0\}(=x$^\wedge$2), and \{2, 0, 0\}(=x$^\wedge$2) $<$ \{1, 1, 0\}(=xy) \mbox{\Hypertarget{struct_g_q_c_p_1_1_cartesian_exponents_ab757a59ee0e6aece7d91044b4b5df6c1}\label{struct_g_q_c_p_1_1_cartesian_exponents_ab757a59ee0e6aece7d91044b4b5df6c1}} 
+This means that \{1, 0, 0\}(=x) \texorpdfstring{$<$}{<} \{2, 0, 0\}(=x$^\wedge$2), and \{2, 0, 0\}(=x$^\wedge$2) \texorpdfstring{$<$}{<} \{1, 1, 0\}(=xy) \mbox{\Hypertarget{struct_g_q_c_p_1_1_cartesian_exponents_ab757a59ee0e6aece7d91044b4b5df6c1}\label{struct_g_q_c_p_1_1_cartesian_exponents_ab757a59ee0e6aece7d91044b4b5df6c1}} 
 \index{GQCP::CartesianExponents@{GQCP::CartesianExponents}!operator==@{operator==}}
 \index{operator==@{operator==}!GQCP::CartesianExponents@{GQCP::CartesianExponents}}
 \doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_one_electron_integral_engine" kind="class" language="C++" prot="public">
     <compoundname>GQCP::OneElectronIntegralEngine</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_base_one_electron_integral_engine" prot="public" virt="non-virtual">GQCP::BaseOneElectronIntegralEngine&lt; _PrimitiveIntegralEngine::Shell, _PrimitiveIntegralEngine::Components, _PrimitiveIntegralEngine::IntegralScalar &gt;</basecompoundref>
@@ -15,6 +15,7 @@
         <definition>using GQCP::OneElectronIntegralEngine&lt; _PrimitiveIntegralEngine &gt;::PrimitiveIntegralEngine =  _PrimitiveIntegralEngine</definition>
         <argsstring></argsstring>
         <name>PrimitiveIntegralEngine</name>
+        <qualifiedname>GQCP::OneElectronIntegralEngine::PrimitiveIntegralEngine</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -28,6 +29,7 @@
         <definition>using GQCP::OneElectronIntegralEngine&lt; _PrimitiveIntegralEngine &gt;::Shell =  typename _PrimitiveIntegralEngine::Shell</definition>
         <argsstring></argsstring>
         <name>Shell</name>
+        <qualifiedname>GQCP::OneElectronIntegralEngine::Shell</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -41,6 +43,7 @@
         <definition>using GQCP::OneElectronIntegralEngine&lt; _PrimitiveIntegralEngine &gt;::IntegralScalar =  typename _PrimitiveIntegralEngine::IntegralScalar</definition>
         <argsstring></argsstring>
         <name>IntegralScalar</name>
+        <qualifiedname>GQCP::OneElectronIntegralEngine::IntegralScalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -56,6 +59,7 @@
         <definition>constexpr auto GQCP::OneElectronIntegralEngine&lt; _PrimitiveIntegralEngine &gt;::N</definition>
         <argsstring></argsstring>
         <name>N</name>
+        <qualifiedname>GQCP::OneElectronIntegralEngine::N</qualifiedname>
         <initializer>= _PrimitiveIntegralEngine::Components</initializer>
         <briefdescription>
         </briefdescription>
@@ -72,6 +76,7 @@
         <definition>PrimitiveIntegralEngine GQCP::OneElectronIntegralEngine&lt; _PrimitiveIntegralEngine &gt;::primitive_engine</definition>
         <argsstring></argsstring>
         <name>primitive_engine</name>
+        <qualifiedname>GQCP::OneElectronIntegralEngine::primitive_engine</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -87,6 +92,7 @@
         <definition>GQCP::OneElectronIntegralEngine&lt; _PrimitiveIntegralEngine &gt;::OneElectronIntegralEngine</definition>
         <argsstring>(const PrimitiveIntegralEngine &amp;primitive_engine)</argsstring>
         <name>OneElectronIntegralEngine</name>
+        <qualifiedname>GQCP::OneElectronIntegralEngine::OneElectronIntegralEngine</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_one_electron_integral_engine_1a73f5ac982a764301fc88ded6f35d7abc" kindref="member">PrimitiveIntegralEngine</ref> &amp;</type>
           <declname>primitive_engine</declname>
@@ -109,12 +115,13 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/OneElectronIntegralEngine.hpp" line="63" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/OneElectronIntegralEngine.hpp" bodystart="63" bodyend="64"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_one_electron_integral_engine_1ae4d0cafa515f1537853318284e813a93" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_one_electron_integral_engine_1a702a7d95f11a204fcc39737d41acac3b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>std::shared_ptr&lt; <ref refid="class_g_q_c_p_1_1_base_one_electron_integral_buffer" kindref="compound">BaseOneElectronIntegralBuffer</ref>&lt; <ref refid="class_g_q_c_p_1_1_one_electron_integral_engine_1a3d835dc7e567158ae8ed14f2e89bf742" kindref="member">IntegralScalar</ref>, <ref refid="class_g_q_c_p_1_1_one_electron_integral_engine_1a1bac3c2b4884506c6b3f3dbad3e00cc1" kindref="member">N</ref> &gt; &gt;</type>
-        <definition>std::shared_ptr&lt;BaseOneElectronIntegralBuffer&lt;IntegralScalar, N&gt; &gt; GQCP::OneElectronIntegralEngine&lt; _PrimitiveIntegralEngine &gt;::calculate</definition>
+        <definition>std::shared_ptr&lt; BaseOneElectronIntegralBuffer&lt; IntegralScalar, N &gt; &gt; GQCP::OneElectronIntegralEngine&lt; _PrimitiveIntegralEngine &gt;::calculate</definition>
         <argsstring>(const Shell &amp;shell1, const Shell &amp;shell2) override</argsstring>
         <name>calculate</name>
-        <reimplements refid="class_g_q_c_p_1_1_base_one_electron_integral_engine_1aa72a849494df30951a5466471fdc246f">calculate</reimplements>
+        <qualifiedname>GQCP::OneElectronIntegralEngine::calculate</qualifiedname>
+        <reimplements refid="class_g_q_c_p_1_1_base_one_electron_integral_engine_1a5ebc73dd256d9d703043250e3a39d6dd">calculate</reimplements>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_one_electron_integral_engine_1af0a5fc7767c21059024937dd2b60954f" kindref="member">Shell</ref> &amp;</type>
           <declname>shell1</declname>
@@ -171,32 +178,32 @@
 </para>
     </detaileddescription>
     <inheritancegraph>
+      <node id="2">
+        <label>GQCP::BaseOneElectronIntegralEngine&lt; _PrimitiveIntegralEngine::Shell, _PrimitiveIntegralEngine::Components, _PrimitiveIntegralEngine::IntegralScalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_one_electron_integral_engine"/>
+      </node>
       <node id="1">
         <label>GQCP::OneElectronIntegralEngine&lt; _PrimitiveIntegralEngine &gt;</label>
         <link refid="class_g_q_c_p_1_1_one_electron_integral_engine"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
-      </node>
-      <node id="2">
-        <label>GQCP::BaseOneElectronIntegralEngine&lt; _PrimitiveIntegralEngine::Shell, _PrimitiveIntegralEngine::Components, _PrimitiveIntegralEngine::IntegralScalar &gt;</label>
-        <link refid="class_g_q_c_p_1_1_base_one_electron_integral_engine"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
+      <node id="2">
+        <label>GQCP::BaseOneElectronIntegralEngine&lt; _PrimitiveIntegralEngine::Shell, _PrimitiveIntegralEngine::Components, _PrimitiveIntegralEngine::IntegralScalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_one_electron_integral_engine"/>
+      </node>
       <node id="1">
         <label>GQCP::OneElectronIntegralEngine&lt; _PrimitiveIntegralEngine &gt;</label>
         <link refid="class_g_q_c_p_1_1_one_electron_integral_engine"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
-      </node>
-      <node id="2">
-        <label>GQCP::BaseOneElectronIntegralEngine&lt; _PrimitiveIntegralEngine::Shell, _PrimitiveIntegralEngine::Components, _PrimitiveIntegralEngine::IntegralScalar &gt;</label>
-        <link refid="class_g_q_c_p_1_1_base_one_electron_integral_engine"/>
       </node>
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/OneElectronIntegralEngine.hpp" line="34" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/OneElectronIntegralEngine.hpp" bodystart="35" bodyend="120"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_one_electron_integral_engine_1ae4d0cafa515f1537853318284e813a93" prot="public" virt="virtual"><scope>GQCP::OneElectronIntegralEngine</scope><name>calculate</name></member>
+      <member refid="class_g_q_c_p_1_1_one_electron_integral_engine_1a702a7d95f11a204fcc39737d41acac3b" prot="public" virt="virtual"><scope>GQCP::OneElectronIntegralEngine</scope><name>calculate</name></member>
       <member refid="class_g_q_c_p_1_1_one_electron_integral_engine_1a3d835dc7e567158ae8ed14f2e89bf742" prot="public" virt="non-virtual"><scope>GQCP::OneElectronIntegralEngine</scope><name>IntegralScalar</name></member>
       <member refid="class_g_q_c_p_1_1_one_electron_integral_engine_1a1bac3c2b4884506c6b3f3dbad3e00cc1" prot="public" virt="non-virtual"><scope>GQCP::OneElectronIntegralEngine</scope><name>N</name></member>
       <member refid="class_g_q_c_p_1_1_one_electron_integral_engine_1add86ed808aeab5fd10dd12beca8c2564" prot="public" virt="non-virtual"><scope>GQCP::OneElectronIntegralEngine</scope><name>OneElectronIntegralEngine</name></member>

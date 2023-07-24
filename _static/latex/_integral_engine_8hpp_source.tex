@@ -1,0 +1,142 @@
+\hypertarget{_integral_engine_8hpp_source}{}\doxysection{Integral\+Engine.\+hpp}
+\label{_integral_engine_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp}}
+\mbox{\hyperlink{_integral_engine_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_libcint_one_electron_integral_engine_8hpp}{Basis/Integrals/Interfaces/LibcintOneElectronIntegralEngine.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_libcint_two_electron_integral_engine_8hpp}{Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_libint_one_electron_integral_engine_8hpp}{Basis/Integrals/Interfaces/LibintOneElectronIntegralEngine.hpp}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_libint_two_electron_integral_engine_8hpp}{Basis/Integrals/Interfaces/LibintTwoElectronIntegralEngine.hpp}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_one_electron_integral_engine_8hpp}{Basis/Integrals/OneElectronIntegralEngine.hpp}}"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_primitive_angular_momentum_integral_engine_8hpp}{Basis/Integrals/Primitive/PrimitiveAngularMomentumIntegralEngine.hpp}}"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_primitive_canonical_kinetic_energy_integral_engine_8hpp}{Basis/Integrals/Primitive/PrimitiveCanonicalKineticEnergyIntegralEngine.hpp}}"{}}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_primitive_coulomb_repulsion_integral_engine_8hpp}{Basis/Integrals/Primitive/PrimitiveCoulombRepulsionIntegralEngine.hpp}}"{}}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_primitive_electronic_dipole_integral_engine_8hpp}{Basis/Integrals/Primitive/PrimitiveElectronicDipoleIntegralEngine.hpp}}"{}}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_primitive_electronic_quadrupole_integral_engine_8hpp}{Basis/Integrals/Primitive/PrimitiveElectronicQuadrupoleIntegralEngine.hpp}}"{}}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_primitive_linear_momentum_integral_engine_8hpp}{Basis/Integrals/Primitive/PrimitiveLinearMomentumIntegralEngine.hpp}}"{}}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_primitive_nuclear_attraction_integral_engine_8hpp}{Basis/Integrals/Primitive/PrimitiveNuclearAttractionIntegralEngine.hpp}}"{}}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_primitive_overlap_integral_engine_8hpp}{Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp}}"{}}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_two_electron_integral_engine_8hpp}{Basis/Integrals/TwoElectronIntegralEngine.hpp}}"{}}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{aliases_8hpp}{Utilities/aliases.hpp}}"{}}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_integral_engine}{IntegralEngine}}\ \{}
+\DoxyCodeLine{00045\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00047\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ GQCP\ ("{}In-\/house"{})\ integral\ engines}}
+\DoxyCodeLine{00048\ \textcolor{comment}{\ \ \ \ \ *\ }}
+\DoxyCodeLine{00049\ \textcolor{comment}{\ \ \ \ \ *\ \ These\ integral\ engines\ can\ only\ calculate\ integrals\ over\ Cartesian\ d-\/shells,\ not\ over\ spherical\ d-\/shells.}}
+\DoxyCodeLine{00050\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Shell>}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_engine_a5045305deee498747a6d92e8eeeb34db}{InHouse}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_overlap_operator}{OverlapOperator}}\&\ op)\ -\/>\ \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine}{OneElectronIntegralEngine<PrimitiveOverlapIntegralEngine<Shell>}}>\ \{}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine}{OneElectronIntegralEngine<PrimitiveOverlapIntegralEngine<Shell>}}>(\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine}{PrimitiveOverlapIntegralEngine<Shell>}}());}
+\DoxyCodeLine{00067\ \ \ \ \ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Shell>}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_engine_a6044d088cacff2dfa24fde532349158e}{InHouse}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_dipole_operator}{ElectronicDipoleOperator}}\&\ op)\ -\/>\ \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine}{OneElectronIntegralEngine<PrimitiveElectronicDipoleIntegralEngine<Shell>}}>\ \{}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine}{OneElectronIntegralEngine<PrimitiveElectronicDipoleIntegralEngine<Shell>}}>(\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine}{PrimitiveElectronicDipoleIntegralEngine<Shell>}}(op));}
+\DoxyCodeLine{00085\ \ \ \ \ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Shell>}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_engine_a2ec1c79590bceecf8ec8c424f17ccb74}{InHouse}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_momentum_operator}{LinearMomentumOperator}}\&\ op)\ -\/>\ \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine}{OneElectronIntegralEngine<PrimitiveLinearMomentumIntegralEngine<Shell>}}>\ \{}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine}{OneElectronIntegralEngine<PrimitiveLinearMomentumIntegralEngine<Shell>}}>(\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine}{PrimitiveLinearMomentumIntegralEngine<Shell>}}());}
+\DoxyCodeLine{00103\ \ \ \ \ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Shell>}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_engine_a8831da0da0f91750f70137135a3c1db8}{InHouse}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_kinetic_operator}{KineticOperator}}\&\ op)\ -\/>\ \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine}{OneElectronIntegralEngine<PrimitiveCanonicalKineticEnergyIntegralEngine<Shell>}}>\ \{}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine}{OneElectronIntegralEngine<PrimitiveCanonicalKineticEnergyIntegralEngine<Shell>}}>(\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine}{PrimitiveCanonicalKineticEnergyIntegralEngine<Shell>}}());}
+\DoxyCodeLine{00121\ \ \ \ \ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Shell>}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_engine_ae9940954b501f66a5225680b356ff558}{InHouse}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_angular_momentum_operator}{AngularMomentumOperator}}\&\ op)\ -\/>\ \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine}{OneElectronIntegralEngine<PrimitiveAngularMomentumIntegralEngine<Shell>}}>\ \{}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine}{OneElectronIntegralEngine<PrimitiveAngularMomentumIntegralEngine<Shell>}}>(\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine}{PrimitiveAngularMomentumIntegralEngine<Shell>}}(op));}
+\DoxyCodeLine{00139\ \ \ \ \ \}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Shell>}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_engine_a7fef7c71915e938c1e3a57666acfb04a}{InHouse}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_quadrupole_operator}{ElectronicQuadrupoleOperator}}\&\ op)\ -\/>\ \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine}{OneElectronIntegralEngine<PrimitiveElectronicQuadrupoleIntegralEngine<Shell>}}>\ \{}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine}{OneElectronIntegralEngine<PrimitiveElectronicQuadrupoleIntegralEngine<Shell>}}>(\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_quadrupole_integral_engine}{PrimitiveElectronicQuadrupoleIntegralEngine<Shell>}}(op));}
+\DoxyCodeLine{00157\ \ \ \ \ \}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Shell>}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_engine_a824c3fc7cb059fd01802280b747fb3ce}{InHouse}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_attraction_operator}{NuclearAttractionOperator}}\&\ op)\ -\/>\ \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine}{OneElectronIntegralEngine<PrimitiveNuclearAttractionIntegralEngine<Shell>}}>\ \{}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_one_electron_integral_engine}{OneElectronIntegralEngine<PrimitiveNuclearAttractionIntegralEngine<Shell>}}>(\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine}{PrimitiveNuclearAttractionIntegralEngine<Shell>}}(op));}
+\DoxyCodeLine{00175\ \ \ \ \ \};}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Shell>}
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_engine_ab1c2866ac24a55883529a10dbf351195}{InHouse}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{CoulombRepulsionOperator}}\&\ op)\ -\/>\ \mbox{\hyperlink{class_g_q_c_p_1_1_two_electron_integral_engine}{TwoElectronIntegralEngine<PrimitiveCoulombRepulsionIntegralEngine<Shell>}}>\ \{}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_two_electron_integral_engine}{TwoElectronIntegralEngine<PrimitiveCoulombRepulsionIntegralEngine<Shell>}}>(\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine}{PrimitiveCoulombRepulsionIntegralEngine<Shell>}}());}
+\DoxyCodeLine{00193\ \ \ \ \ \}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00197\ \textcolor{comment}{\ \ \ \ \ *\ \ LIBINT}}
+\DoxyCodeLine{00198\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_engine_ab787d80066396f64d88877c848535aed}{Libint}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{CoulombRepulsionOperator}}\&\ op,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ max\_nprim,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ max\_l)\ -\/>\ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_two_electron_integral_engine}{LibintTwoElectronIntegralEngine<CoulombRepulsionOperator::NumberOfComponents>}};}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_engine_ab787d80066396f64d88877c848535aed}{Libint}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_dipole_operator}{ElectronicDipoleOperator}}\&\ op,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ max\_nprim,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ max\_l)\ -\/>\ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_engine}{LibintOneElectronIntegralEngine<ElectronicDipoleOperator::NumberOfComponents>}};}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_engine_ab787d80066396f64d88877c848535aed}{Libint}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_attraction_operator}{NuclearAttractionOperator}}\&\ op,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ max\_nprim,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ max\_l)\ -\/>\ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_engine}{LibintOneElectronIntegralEngine<NuclearAttractionOperator::NumberOfComponents>}};}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_engine_ab787d80066396f64d88877c848535aed}{Libint}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_kinetic_operator}{KineticOperator}}\&\ op,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ max\_nprim,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ max\_l)\ -\/>\ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_engine}{LibintOneElectronIntegralEngine<KineticOperator::NumberOfComponents>}};}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_engine_ab787d80066396f64d88877c848535aed}{Libint}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_overlap_operator}{OverlapOperator}}\&\ op,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ max\_nprim,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ max\_l)\ -\/>\ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_engine}{LibintOneElectronIntegralEngine<OverlapOperator::NumberOfComponents>}};}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00247\ \textcolor{comment}{\ \ \ \ \ *\ \ LIBCINT}}
+\DoxyCodeLine{00248\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00256\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_engine_adda456fbfda8083c3f931e666b558af5}{Libcint}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{CoulombRepulsionOperator}}\&\ op,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{ShellSet<GTOShell>}}\&\ shell\_set)\ -\/>\ \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_engine}{LibcintTwoElectronIntegralEngine<GTOShell,\ CoulombRepulsionOperator::NumberOfComponents,\ double>}};}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00264\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_engine_adda456fbfda8083c3f931e666b558af5}{Libcint}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_dipole_operator}{ElectronicDipoleOperator}}\&\ op,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{ShellSet<GTOShell>}}\&\ shell\_set)\ -\/>\ \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_one_electron_integral_engine}{LibcintOneElectronIntegralEngine<GTOShell,\ ElectronicDipoleOperator::NumberOfComponents,\ double>}};}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00272\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_engine_adda456fbfda8083c3f931e666b558af5}{Libcint}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_attraction_operator}{NuclearAttractionOperator}}\&\ op,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{ShellSet<GTOShell>}}\&\ shell\_set)\ -\/>\ \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_one_electron_integral_engine}{LibcintOneElectronIntegralEngine<GTOShell,\ NuclearAttractionOperator::NumberOfComponents,\ double>}};}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00280\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_engine_adda456fbfda8083c3f931e666b558af5}{Libcint}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_kinetic_operator}{KineticOperator}}\&\ op,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{ShellSet<GTOShell>}}\&\ shell\_set)\ -\/>\ \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_one_electron_integral_engine}{LibcintOneElectronIntegralEngine<GTOShell,\ KineticOperator::NumberOfComponents,\ double>}};}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00288\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_engine_adda456fbfda8083c3f931e666b558af5}{Libcint}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_overlap_operator}{OverlapOperator}}\&\ op,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{ShellSet<GTOShell>}}\&\ shell\_set)\ -\/>\ \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_one_electron_integral_engine}{LibcintOneElectronIntegralEngine<GTOShell,\ OverlapOperator::NumberOfComponents,\ double>}};}
+\DoxyCodeLine{00289\ \};}
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00292\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

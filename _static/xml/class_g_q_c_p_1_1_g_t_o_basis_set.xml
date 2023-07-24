@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_g_t_o_basis_set" kind="class" language="C++" prot="public">
     <compoundname>GQCP::GTOBasisSet</compoundname>
     <includes refid="_g_t_o_basis_set_8hpp" local="no">GTOBasisSet.hpp</includes>
@@ -9,6 +9,7 @@
         <definition>std::string GQCP::GTOBasisSet::basisset_name</definition>
         <argsstring></argsstring>
         <name>basisset_name</name>
+        <qualifiedname>GQCP::GTOBasisSet::basisset_name</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -24,6 +25,7 @@
         <definition>GQCP::GTOBasisSet::GTOBasisSet</definition>
         <argsstring>(const std::string &amp;basisset_name)</argsstring>
         <name>GTOBasisSet</name>
+        <qualifiedname>GQCP::GTOBasisSet::GTOBasisSet</qualifiedname>
         <param>
           <type>const std::string &amp;</type>
           <declname>basisset_name</declname>
@@ -51,6 +53,7 @@
         <definition>ShellSet&lt; GTOShell &gt; GQCP::GTOBasisSet::generate</definition>
         <argsstring>(const NuclearFramework &amp;nuclear_framework) const</argsstring>
         <name>generate</name>
+        <qualifiedname>GQCP::GTOBasisSet::generate</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_nuclear_framework" kindref="compound">NuclearFramework</ref> &amp;</type>
           <declname>nuclear_framework</declname>
@@ -91,6 +94,7 @@ PUBLIC METHODS <parameterlist kind="param"><parameteritem>
         <definition>ShellSet&lt; GTOShell &gt; GQCP::GTOBasisSet::generate</definition>
         <argsstring>(const Molecule &amp;molecule) const</argsstring>
         <name>generate</name>
+        <qualifiedname>GQCP::GTOBasisSet::generate</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_molecule" kindref="compound">Molecule</ref> &amp;</type>
           <declname>molecule</declname>
@@ -115,11 +119,12 @@ PUBLIC METHODS <parameterlist kind="param"><parameteritem>
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/GTOBasisSet.hpp" line="63" column="14" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/ScalarBasis/GTOBasisSet.cpp" bodystart="60" bodyend="63"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_g_t_o_basis_set_1a119b18faf3007a2db6f0b725e6b340f9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_t_o_basis_set_1ab678b7a71592d2aa0f0b335bbce6bd9c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const std::string &amp;</type>
-        <definition>const std::string&amp; GQCP::GTOBasisSet::name</definition>
+        <definition>const std::string &amp; GQCP::GTOBasisSet::name</definition>
         <argsstring>() const</argsstring>
         <name>name</name>
+        <qualifiedname>GQCP::GTOBasisSet::name</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -149,7 +154,7 @@ PUBLIC METHODS <parameterlist kind="param"><parameteritem>
       <member refid="class_g_q_c_p_1_1_g_t_o_basis_set_1a08624f31c4f05cb3e8ff9784587d48c1" prot="public" virt="non-virtual"><scope>GQCP::GTOBasisSet</scope><name>generate</name></member>
       <member refid="class_g_q_c_p_1_1_g_t_o_basis_set_1acc7abae92675c4a80eac95e8ae387517" prot="public" virt="non-virtual"><scope>GQCP::GTOBasisSet</scope><name>generate</name></member>
       <member refid="class_g_q_c_p_1_1_g_t_o_basis_set_1aab57a3ac1776d26445aa0a332bb5bf48" prot="public" virt="non-virtual"><scope>GQCP::GTOBasisSet</scope><name>GTOBasisSet</name></member>
-      <member refid="class_g_q_c_p_1_1_g_t_o_basis_set_1a119b18faf3007a2db6f0b725e6b340f9" prot="public" virt="non-virtual"><scope>GQCP::GTOBasisSet</scope><name>name</name></member>
+      <member refid="class_g_q_c_p_1_1_g_t_o_basis_set_1ab678b7a71592d2aa0f0b335bbce6bd9c" prot="public" virt="non-virtual"><scope>GQCP::GTOBasisSet</scope><name>name</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

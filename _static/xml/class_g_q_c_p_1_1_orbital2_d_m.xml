@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_orbital2_d_m" kind="class" language="C++" prot="public">
     <compoundname>GQCP::Orbital2DM</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_simple2_d_m" prot="public" virt="non-virtual">GQCP::Simple2DM&lt; _Scalar, Orbital2DM&lt; _Scalar &gt; &gt;</basecompoundref>
@@ -15,6 +15,7 @@
         <definition>using GQCP::Orbital2DM&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
         <argsstring></argsstring>
         <name>Scalar</name>
+        <qualifiedname>GQCP::Orbital2DM::Scalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -40,15 +41,13 @@
 </para>
     </detaileddescription>
     <inheritancegraph>
-      <node id="2">
-        <label>GQCP::Simple2DM&lt; _Scalar, Orbital2DM&lt; _Scalar &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_simple2_d_m"/>
-        <childnode refid="3" relation="public-inheritance">
-        </childnode>
-        <childnode refid="4" relation="public-inheritance">
-        </childnode>
-        <childnode refid="5" relation="public-inheritance">
-        </childnode>
+      <node id="6">
+        <label>GQCP::CRTP&lt; T &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
+      </node>
+      <node id="3">
+        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
       </node>
       <node id="4">
         <label>GQCP::JacobiRotatable&lt; T &gt;</label>
@@ -60,31 +59,31 @@
         <childnode refid="2" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="6">
-        <label>GQCP::CRTP&lt; T &gt;</label>
-        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
-      </node>
       <node id="5">
         <label>GQCP::VectorSpaceArithmetic&lt; T, Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
         <childnode refid="6" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="3">
-        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
-        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      <node id="2">
+        <label>GQCP::Simple2DM&lt; _Scalar, Orbital2DM&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_simple2_d_m"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="2">
-        <label>GQCP::Simple2DM&lt; _Scalar, Orbital2DM&lt; _Scalar &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_simple2_d_m"/>
-        <childnode refid="3" relation="public-inheritance">
-        </childnode>
-        <childnode refid="4" relation="public-inheritance">
-        </childnode>
-        <childnode refid="5" relation="public-inheritance">
-        </childnode>
+      <node id="6">
+        <label>GQCP::CRTP&lt; T &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
+      </node>
+      <node id="3">
+        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
       </node>
       <node id="4">
         <label>GQCP::JacobiRotatable&lt; T &gt;</label>
@@ -96,36 +95,38 @@
         <childnode refid="2" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="6">
-        <label>GQCP::CRTP&lt; T &gt;</label>
-        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
-      </node>
       <node id="5">
         <label>GQCP::VectorSpaceArithmetic&lt; T, Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
         <childnode refid="6" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="3">
-        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
-        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      <node id="2">
+        <label>GQCP::Simple2DM&lt; _Scalar, Orbital2DM&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_simple2_d_m"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
       </node>
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Orbital2DM.hpp" line="40" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/Orbital2DM.hpp" bodystart="41" bodyend="53"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_c_r_t_p_1a2266d4aacaad437e302033b24e1d6d11" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>derived</name></member>
-      <member refid="class_g_q_c_p_1_1_c_r_t_p_1ab53c6ca668c4f27dd4aa51856b6aee91" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>derived</name></member>
+      <member refid="class_g_q_c_p_1_1_c_r_t_p_1afbb2119ea002c348828c45726583d863" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>derived</name></member>
+      <member refid="class_g_q_c_p_1_1_c_r_t_p_1a28a8bce1d2ca75d90ecf1295dd640f13" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>derived</name></member>
       <member refid="class_g_q_c_p_1_1_c_r_t_p_1ab72cbeb2fad6d811d4f6fcd2c962b55e" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>Derived</name></member>
       <member refid="class_g_q_c_p_1_1_simple2_d_m_1a93bdb5f040f6bf30738d5f85d06de515" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>DerivedDM</name></member>
       <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a107861c91912a3808817f5845823204f" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>JacobiRotationType</name></member>
       <member refid="class_g_q_c_p_1_1_simple2_d_m_1a9294ffe2b798149a40916f8750e511c7" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>numberOfOrbitals</name></member>
       <member refid="class_g_q_c_p_1_1_simple2_d_m_1aed1f55de7a9d98b0840235518c9936b9" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>OneDM</name></member>
-      <member refid="class_g_q_c_p_1_1_simple2_d_m_1aec142ff4054c04001007500e9009513b" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>operator*=</name></member>
-      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a1ea665b4c39561433d116ee4b6c1d911" prot="public" virt="pure-virtual" ambiguityscope="GQCP::VectorSpaceArithmetic::"><scope>GQCP::Orbital2DM</scope><name>operator*=</name></member>
-      <member refid="class_g_q_c_p_1_1_simple2_d_m_1ad39edb07d7dcd4b8cf1b8d64a5355e8d" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>operator+=</name></member>
-      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a241d8217aa2b2f34384a4439a968d555" prot="public" virt="pure-virtual" ambiguityscope="GQCP::VectorSpaceArithmetic::"><scope>GQCP::Orbital2DM</scope><name>operator+=</name></member>
+      <member refid="class_g_q_c_p_1_1_simple2_d_m_1a276dab10c3ae1beed6f89d2122cebf54" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>operator*=</name></member>
+      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1af51affdc48585acbd2de35c1d1bc88c6" prot="public" virt="pure-virtual" ambiguityscope="GQCP::VectorSpaceArithmetic::"><scope>GQCP::Orbital2DM</scope><name>operator*=</name></member>
+      <member refid="class_g_q_c_p_1_1_simple2_d_m_1ab0708da3e127b927930dc53e30394065" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>operator+=</name></member>
+      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a766eadd335959ff0a7a51f85142ce3c7" prot="public" virt="pure-virtual" ambiguityscope="GQCP::VectorSpaceArithmetic::"><scope>GQCP::Orbital2DM</scope><name>operator+=</name></member>
       <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a6b0d86c96ce2b6aaed10dc6d70a493bc" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>operator-</name></member>
-      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a63a0cb54302a2d2f1d54af66e7527c4f" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>operator-=</name></member>
+      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a5dcedcec644cdc0b4ea33fb8ab2ea43f" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>operator-=</name></member>
       <member refid="class_g_q_c_p_1_1_simple2_d_m_1aa0174297056f19cd441279cb3f1f4b20" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>reduce</name></member>
       <member refid="class_g_q_c_p_1_1_basis_transformable_1a2e107bd3cf4d603c003c8cb9357d0094" prot="public" virt="non-virtual" ambiguityscope="GQCP::"><scope>GQCP::Orbital2DM</scope><name>rotate</name></member>
       <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a11657b774fe75246bef1f7849f9aad72" prot="public" virt="non-virtual" ambiguityscope="GQCP::JacobiRotatable::"><scope>GQCP::Orbital2DM</scope><name>rotate</name></member>
@@ -136,12 +137,13 @@
       <member refid="class_g_q_c_p_1_1_simple2_d_m_1aefc8c5af3ee2724a55047ea838b0c6bf" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>Self</name></member>
       <member refid="class_g_q_c_p_1_1_simple2_d_m_1a1d060aeddc9190dde803c35abdcc3a7b" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>Simple2DM</name></member>
       <member refid="class_g_q_c_p_1_1_simple2_d_m_1a3ab74c809c6d59a4644a0961bd07c95f" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>Simple2DM</name></member>
-      <member refid="class_g_q_c_p_1_1_simple2_d_m_1aad3ffde69137305a6beff84f68fa0734" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>tensor</name></member>
-      <member refid="class_g_q_c_p_1_1_simple2_d_m_1a251e04ca90de055345b494907a4f76d9" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>tensor</name></member>
+      <member refid="class_g_q_c_p_1_1_simple2_d_m_1adf65dbdb4eccf2b2e99ebd6857168214" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>tensor</name></member>
+      <member refid="class_g_q_c_p_1_1_simple2_d_m_1a0fa0f77f2f059c5d8d243c525163bc59" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>tensor</name></member>
       <member refid="class_g_q_c_p_1_1_simple2_d_m_1a9f69bac123516579adcd3a106e032208" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>trace</name></member>
       <member refid="class_g_q_c_p_1_1_basis_transformable_1aa55d3cf1b186ac2ec926e97a7b6d645f" prot="public" virt="virtual"><scope>GQCP::Orbital2DM</scope><name>transform</name></member>
       <member refid="class_g_q_c_p_1_1_simple2_d_m_1aba11548e39f9172a41286b4bab30bfbf" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>Transformation</name></member>
-      <member refid="class_g_q_c_p_1_1_simple2_d_m_1aba6f33b2d67fc36483b2ed3d75c6e2dc" prot="public" virt="virtual"><scope>GQCP::Orbital2DM</scope><name>transformed</name></member>
+      <member refid="class_g_q_c_p_1_1_simple2_d_m_1aba6f33b2d67fc36483b2ed3d75c6e2dc" prot="public" virt="non-virtual"><scope>GQCP::Orbital2DM</scope><name>transformed</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1a3c511224fd132184fb2e01579754850d" prot="public" virt="pure-virtual" ambiguityscope="GQCP::BasisTransformable::"><scope>GQCP::Orbital2DM</scope><name>transformed</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

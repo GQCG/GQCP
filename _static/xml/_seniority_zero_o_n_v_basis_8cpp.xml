@@ -1,14 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="_seniority_zero_o_n_v_basis_8cpp" kind="file" language="C++">
     <compoundname>SeniorityZeroONVBasis.cpp</compoundname>
     <includes local="yes">ONVBasis/SeniorityZeroONVBasis.hpp</includes>
     <includes local="yes">ONVBasis/SpinResolvedSelectedONVBasis.hpp</includes>
     <includes local="yes">ONVBasis/SpinUnresolvedONVBasis.hpp</includes>
     <incdepgraph>
-      <node id="2">
-        <label>ONVBasis/SeniorityZeroONVBasis.hpp</label>
-      </node>
       <node id="1">
         <label>/__w/GQCP/GQCP/gqcp/src/ONVBasis/SeniorityZeroONVBasis.cpp</label>
         <link refid="_seniority_zero_o_n_v_basis_8cpp"/>
@@ -19,11 +16,14 @@
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="4">
-        <label>ONVBasis/SpinUnresolvedONVBasis.hpp</label>
+      <node id="2">
+        <label>ONVBasis/SeniorityZeroONVBasis.hpp</label>
       </node>
       <node id="3">
         <label>ONVBasis/SpinResolvedSelectedONVBasis.hpp</label>
+      </node>
+      <node id="4">
+        <label>ONVBasis/SpinUnresolvedONVBasis.hpp</label>
       </node>
     </incdepgraph>
     <innernamespace refid="namespace_g_q_c_p">GQCP</innernamespace>
@@ -114,7 +114,7 @@
 <codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>N_P<sp/>=<sp/>this-&gt;numberOfElectronPairs();</highlight></codeline>
 <codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>dim<sp/>=<sp/>this-&gt;dimension();</highlight></codeline>
 <codeline lineno="106"><highlight class="normal"></highlight></codeline>
-<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>SquareMatrix&lt;double&gt;<sp/>H<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_square_matrix_1ae3551bb3ac15b2560846f7a5956d1d90" kindref="member">SquareMatrix&lt;double&gt;::Zero</ref>(dim);<sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>matrix<sp/>representation<sp/>of<sp/>the<sp/>Hamiltonian.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>SquareMatrix&lt;double&gt;<sp/>H<sp/>=<sp/>SquareMatrix&lt;double&gt;::Zero(dim);<sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>matrix<sp/>representation<sp/>of<sp/>the<sp/>Hamiltonian.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>diagonal<sp/>=<sp/>this-&gt;evaluateOperatorDiagonal(hamiltonian);</highlight></codeline>
 <codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>g<sp/>=<sp/>hamiltonian.twoElectron().parameters();</highlight></codeline>
 <codeline lineno="110"><highlight class="normal"></highlight></codeline>
@@ -280,14 +280,14 @@
 <codeline lineno="291"><highlight class="comment"><sp/>*<sp/><sp/>MARK:<sp/>Restricted<sp/>matrix-vector<sp/>product<sp/>evaluations</highlight></codeline>
 <codeline lineno="292"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="293"><highlight class="normal"></highlight></codeline>
-<codeline lineno="302"><highlight class="normal">VectorX&lt;double&gt;<sp/>SeniorityZeroONVBasis::evaluateOperatorMatrixVectorProduct(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ScalarRSQOneElectronOperator&lt;double&gt;&amp;<sp/>f,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorX&lt;double&gt;&amp;<sp/><ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5" kindref="member">x</ref>)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="302"><highlight class="normal">VectorX&lt;double&gt;<sp/>SeniorityZeroONVBasis::evaluateOperatorMatrixVectorProduct(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ScalarRSQOneElectronOperator&lt;double&gt;&amp;<sp/>f,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorX&lt;double&gt;&amp;<sp/>x)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="303"><highlight class="normal"></highlight></codeline>
 <codeline lineno="304"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>SpinResolvedSelectedONVBasis<sp/>selected_onv_basis<sp/>{*</highlight><highlight class="keyword">this</highlight><highlight class="normal">};</highlight></codeline>
-<codeline lineno="305"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>selected_onv_basis.evaluateOperatorMatrixVectorProduct(f,<sp/><ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5" kindref="member">x</ref>);</highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>selected_onv_basis.evaluateOperatorMatrixVectorProduct(f,<sp/>x);</highlight></codeline>
 <codeline lineno="306"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="307"><highlight class="normal"></highlight></codeline>
 <codeline lineno="308"><highlight class="normal"></highlight></codeline>
-<codeline lineno="317"><highlight class="normal">VectorX&lt;double&gt;<sp/>SeniorityZeroONVBasis::evaluateOperatorMatrixVectorProduct(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>RSQHamiltonian&lt;double&gt;&amp;<sp/>hamiltonian,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorX&lt;double&gt;&amp;<sp/><ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5" kindref="member">x</ref>)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="317"><highlight class="normal">VectorX&lt;double&gt;<sp/>SeniorityZeroONVBasis::evaluateOperatorMatrixVectorProduct(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>RSQHamiltonian&lt;double&gt;&amp;<sp/>hamiltonian,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorX&lt;double&gt;&amp;<sp/>x)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="318"><highlight class="normal"></highlight></codeline>
 <codeline lineno="319"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(hamiltonian.numberOfOrbitals()<sp/>!=<sp/>this-&gt;numberOfSpatialOrbitals())<sp/>{</highlight></codeline>
 <codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(</highlight><highlight class="stringliteral">&quot;DOCI::matrixVectorProduct(const<sp/>RSQHamiltonian&lt;double&gt;&amp;,<sp/>const<sp/>VectorX&lt;double&gt;&amp;,<sp/>const<sp/>VectorX&lt;double&gt;&amp;):<sp/>The<sp/>number<sp/>of<sp/>spatial<sp/>orbitals<sp/>for<sp/>the<sp/>ONV<sp/>basis<sp/>and<sp/>Hamiltonian<sp/>are<sp/>incompatible.&quot;</highlight><highlight class="normal">);</highlight></codeline>
@@ -301,7 +301,7 @@
 <codeline lineno="328"><highlight class="normal"></highlight></codeline>
 <codeline lineno="329"><highlight class="normal"></highlight></codeline>
 <codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Initialize<sp/>the<sp/>resulting<sp/>matrix-vector<sp/>product<sp/>from<sp/>the<sp/>diagonal<sp/>contributions.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="331"><highlight class="normal"><sp/><sp/><sp/><sp/>VectorX&lt;double&gt;<sp/>matvec<sp/>=<sp/>this-&gt;evaluateOperatorDiagonal(hamiltonian).cwiseProduct(<ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5" kindref="member">x</ref>);</highlight></codeline>
+<codeline lineno="331"><highlight class="normal"><sp/><sp/><sp/><sp/>VectorX&lt;double&gt;<sp/>matvec<sp/>=<sp/>this-&gt;evaluateOperatorDiagonal(hamiltonian).cwiseProduct(x);</highlight></codeline>
 <codeline lineno="332"><highlight class="normal"></highlight></codeline>
 <codeline lineno="333"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Create<sp/>the<sp/>first<sp/>doubly-occupied<sp/>ONV<sp/>basis.<sp/>Since<sp/>in<sp/>DOCI,<sp/>alpha<sp/>==<sp/>beta,<sp/>we<sp/>can<sp/>use<sp/>the<sp/>proxy<sp/>ONV<sp/>basis<sp/>to<sp/>treat<sp/>them<sp/>as<sp/>one<sp/>and<sp/>multiply<sp/>all<sp/>contributions<sp/>by<sp/>2.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="334"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>proxy_onv_basis<sp/>=<sp/>this-&gt;proxy();</highlight></codeline>

@@ -1,4 +1,4 @@
-\hypertarget{class_g_q_c_p_1_1_scalar_basis}{}\doxysection{GQCP\+::Scalar\+Basis$<$ \+\_\+\+Shell $>$ Class Template Reference}
+\hypertarget{class_g_q_c_p_1_1_scalar_basis}{}\doxysection{GQCP\+::Scalar\+Basis\texorpdfstring{$<$}{<} \+\_\+\+Shell \texorpdfstring{$>$}{>} Class Template Reference}
 \label{class_g_q_c_p_1_1_scalar_basis}\index{GQCP::ScalarBasis$<$ \_Shell $>$@{GQCP::ScalarBasis$<$ \_Shell $>$}}
 
 
@@ -6,7 +6,7 @@
 
 
 
-Collaboration diagram for GQCP\+::Scalar\+Basis$<$ \+\_\+\+Shell $>$\+:
+Collaboration diagram for GQCP\+::Scalar\+Basis\texorpdfstring{$<$}{<} \+\_\+\+Shell \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -36,22 +36,21 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_af7f13ae4384545ad6fd8c9e62
 \item 
 {\footnotesize template$<$typename Z  = Shell$>$ }\\\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_aab3d105699f8e3929c1d4e090243a117}{Scalar\+Basis}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}} \&molecule, const std\+::string \&basisset\+\_\+name, const \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{Homogeneous\+Magnetic\+Field}} \&B, typename std\+::enable\+\_\+if$<$ std\+::is\+\_\+same$<$ Z, \mbox{\hyperlink{class_g_q_c_p_1_1_london_g_t_o_shell}{London\+GTOShell}} $>$\+::value $>$\+::type $\ast$=0)
 \item 
-const \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{Shell\+Set}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_a56cb0cabc632a2e4222abd17affb23eb}{Shell}} $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_acb55672e9094fa4a56cb7fd190dbd8ae}{shell\+Set}} () const
+const \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{Shell\+Set}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_a56cb0cabc632a2e4222abd17affb23eb}{Shell}} $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_aeb9d5b6e2903b492d96a8d4d4cfd9b55}{shell\+Set}} () const
 \item 
-std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_af7f13ae4384545ad6fd8c9e622cb2180}{Basis\+Function}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_a3a5d51d79c5b93f05c7ada89a746451c}{basis\+Functions}} () const
+std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_af7f13ae4384545ad6fd8c9e622cb2180}{Basis\+Function}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_a000b7c24c209792eff7f965de01a657c}{basis\+Functions}} () const
 \item 
 size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_a7e604db3de1539af1ff231992743e4f7}{number\+Of\+Basis\+Functions}} () const
 \item 
-std\+::vector$<$ size\+\_\+t $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_aa662b73933aa6ab2a05137065cc6a4df}{basis\+Function\+Indices}} (const std\+::function$<$ bool(const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_a56cb0cabc632a2e4222abd17affb23eb}{Shell}} \&)$>$ \&selector) const
+std\+::vector$<$ size\+\_\+t $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_acd5f433e61fcaa284350331a566516a7}{basis\+Function\+Indices}} (const std\+::function$<$ bool(const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_a56cb0cabc632a2e4222abd17affb23eb}{Shell}} \&)$>$ \&selector) const
 \item 
-std\+::vector$<$ size\+\_\+t $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_aa80ce5e3db54a12bcf510d455d16bc0b}{basis\+Function\+Indices}} (const std\+::function$<$ bool(const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_af7f13ae4384545ad6fd8c9e622cb2180}{Basis\+Function}} \&)$>$ \&selector) const
+std\+::vector$<$ size\+\_\+t $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_af6d85f66e262223634566908e22edd62}{basis\+Function\+Indices}} (const std\+::function$<$ bool(const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_af7f13ae4384545ad6fd8c9e622cb2180}{Basis\+Function}} \&)$>$ \&selector) const
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$typename \+\_\+\+Shell$>$\newline
 class GQCP\+::\+Scalar\+Basis$<$ \+\_\+\+Shell $>$}
-
 A class that represents a scalar basis\+: it represents a collection of scalar basis functions. It provides an interface to obtain basis functions and calculate integrals over the shell type.
 
 
@@ -67,21 +66,21 @@ A class that represents a scalar basis\+: it represents a collection of scalar b
 \index{BasisFunction@{BasisFunction}!GQCP::ScalarBasis$<$ \_Shell $>$@{GQCP::ScalarBasis$<$ \_Shell $>$}}
 \doxysubsubsection{\texorpdfstring{BasisFunction}{BasisFunction}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
-using \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{GQCP\+::\+Scalar\+Basis}}$<$ \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_af7f13ae4384545ad6fd8c9e622cb2180}{Basis\+Function}} =  typename Shell\+::\+Basis\+Function}
+using \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{GQCP\+::\+Scalar\+Basis}}$<$ \+\_\+\+Shell $>$\+::\+Basis\+Function =  typename Shell\+::\+Basis\+Function}
 
 \mbox{\Hypertarget{class_g_q_c_p_1_1_scalar_basis_aca51beca0624a8c632902a9cd06617ed}\label{class_g_q_c_p_1_1_scalar_basis_aca51beca0624a8c632902a9cd06617ed}} 
 \index{GQCP::ScalarBasis$<$ \_Shell $>$@{GQCP::ScalarBasis$<$ \_Shell $>$}!Primitive@{Primitive}}
 \index{Primitive@{Primitive}!GQCP::ScalarBasis$<$ \_Shell $>$@{GQCP::ScalarBasis$<$ \_Shell $>$}}
 \doxysubsubsection{\texorpdfstring{Primitive}{Primitive}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
-using \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{GQCP\+::\+Scalar\+Basis}}$<$ \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_aca51beca0624a8c632902a9cd06617ed}{Primitive}} =  typename Shell\+::\+Primitive}
+using \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{GQCP\+::\+Scalar\+Basis}}$<$ \+\_\+\+Shell $>$\+::\+Primitive =  typename Shell\+::\+Primitive}
 
 \mbox{\Hypertarget{class_g_q_c_p_1_1_scalar_basis_a56cb0cabc632a2e4222abd17affb23eb}\label{class_g_q_c_p_1_1_scalar_basis_a56cb0cabc632a2e4222abd17affb23eb}} 
 \index{GQCP::ScalarBasis$<$ \_Shell $>$@{GQCP::ScalarBasis$<$ \_Shell $>$}!Shell@{Shell}}
 \index{Shell@{Shell}!GQCP::ScalarBasis$<$ \_Shell $>$@{GQCP::ScalarBasis$<$ \_Shell $>$}}
 \doxysubsubsection{\texorpdfstring{Shell}{Shell}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
-using \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{GQCP\+::\+Scalar\+Basis}}$<$ \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_a56cb0cabc632a2e4222abd17affb23eb}{Shell}} =  \+\_\+\+Shell}
+using \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{GQCP\+::\+Scalar\+Basis}}$<$ \+\_\+\+Shell $>$\+::\+Shell =  \+\_\+\+Shell}
 
 
 
@@ -91,7 +90,7 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{GQCP\+::\+Scalar\+Basis}}
 \index{ScalarBasis@{ScalarBasis}!GQCP::ScalarBasis$<$ \_Shell $>$@{GQCP::ScalarBasis$<$ \_Shell $>$}}
 \doxysubsubsection{\texorpdfstring{ScalarBasis()}{ScalarBasis()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
-\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{GQCP\+::\+Scalar\+Basis}}$<$ \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{Shell\+Set}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_a56cb0cabc632a2e4222abd17affb23eb}{Shell}} $>$ \&}]{shell\+\_\+set }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{GQCP\+::\+Scalar\+Basis}}$<$ \+\_\+\+Shell $>$\+::\+Scalar\+Basis (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{Shell\+Set}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_a56cb0cabc632a2e4222abd17affb23eb}{Shell}} $>$ \&}]{shell\+\_\+set }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 \begin{DoxyParams}{Parameters}
@@ -104,7 +103,7 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{GQCP\+::\+Scalar\+Basis}}
 \doxysubsubsection{\texorpdfstring{ScalarBasis()}{ScalarBasis()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
 template$<$typename Z  = Shell$>$ \\
-\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{GQCP\+::\+Scalar\+Basis}}$<$ \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework}{Nuclear\+Framework}} \&}]{nuclear\+\_\+framework,  }\item[{const std\+::string \&}]{basisset\+\_\+name,  }\item[{typename std\+::enable\+\_\+if$<$ std\+::is\+\_\+same$<$ Z, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}} $>$\+::value $>$\+::type $\ast$}]{ = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{GQCP\+::\+Scalar\+Basis}}$<$ \+\_\+\+Shell $>$\+::\+Scalar\+Basis (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework}{Nuclear\+Framework}} \&}]{nuclear\+\_\+framework,  }\item[{const std\+::string \&}]{basisset\+\_\+name,  }\item[{typename std\+::enable\+\_\+if$<$ std\+::is\+\_\+same$<$ Z, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}} $>$\+::value $>$\+::type $\ast$}]{ = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Construct a scalar basis by placing shells corresponding to the basisset specification on every nucleus of the nuclear framework.
 
@@ -124,7 +123,7 @@ The normalization factors of the spherical (or axis-\/aligned Cartesian) GTO pri
 \doxysubsubsection{\texorpdfstring{ScalarBasis()}{ScalarBasis()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
 template$<$typename Z  = Shell$>$ \\
-\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{GQCP\+::\+Scalar\+Basis}}$<$ \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}} \&}]{molecule,  }\item[{const std\+::string \&}]{basisset\+\_\+name,  }\item[{typename std\+::enable\+\_\+if$<$ std\+::is\+\_\+same$<$ Z, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}} $>$\+::value $>$\+::type $\ast$}]{ = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{GQCP\+::\+Scalar\+Basis}}$<$ \+\_\+\+Shell $>$\+::\+Scalar\+Basis (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}} \&}]{molecule,  }\item[{const std\+::string \&}]{basisset\+\_\+name,  }\item[{typename std\+::enable\+\_\+if$<$ std\+::is\+\_\+same$<$ Z, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}} $>$\+::value $>$\+::type $\ast$}]{ = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Construct a scalar basis by placing shells corresponding to the basisset specification on every nucleus of the molecule.
 
@@ -144,7 +143,7 @@ The normalization factors of the spherical (or axis-\/aligned Cartesian) GTO pri
 \doxysubsubsection{\texorpdfstring{ScalarBasis()}{ScalarBasis()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
 template$<$typename Z  = Shell$>$ \\
-\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{GQCP\+::\+Scalar\+Basis}}$<$ \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework}{Nuclear\+Framework}} \&}]{nuclear\+\_\+framework,  }\item[{const std\+::string \&}]{basisset\+\_\+name,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{Homogeneous\+Magnetic\+Field}} \&}]{B,  }\item[{typename std\+::enable\+\_\+if$<$ std\+::is\+\_\+same$<$ Z, \mbox{\hyperlink{class_g_q_c_p_1_1_london_g_t_o_shell}{London\+GTOShell}} $>$\+::value $>$\+::type $\ast$}]{ = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{GQCP\+::\+Scalar\+Basis}}$<$ \+\_\+\+Shell $>$\+::\+Scalar\+Basis (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework}{Nuclear\+Framework}} \&}]{nuclear\+\_\+framework,  }\item[{const std\+::string \&}]{basisset\+\_\+name,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{Homogeneous\+Magnetic\+Field}} \&}]{B,  }\item[{typename std\+::enable\+\_\+if$<$ std\+::is\+\_\+same$<$ Z, \mbox{\hyperlink{class_g_q_c_p_1_1_london_g_t_o_shell}{London\+GTOShell}} $>$\+::value $>$\+::type $\ast$}]{ = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Construct a scalar basis by placing gauge-\/including shells corresponding to the basisset specification on every nucleus of the nuclear framework.
 
@@ -166,7 +165,7 @@ The normalization factors of the spherical (or axis-\/aligned Cartesian) GTO pri
 \doxysubsubsection{\texorpdfstring{ScalarBasis()}{ScalarBasis()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
 template$<$typename Z  = Shell$>$ \\
-\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{GQCP\+::\+Scalar\+Basis}}$<$ \+\_\+\+Shell $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}} \&}]{molecule,  }\item[{const std\+::string \&}]{basisset\+\_\+name,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{Homogeneous\+Magnetic\+Field}} \&}]{B,  }\item[{typename std\+::enable\+\_\+if$<$ std\+::is\+\_\+same$<$ Z, \mbox{\hyperlink{class_g_q_c_p_1_1_london_g_t_o_shell}{London\+GTOShell}} $>$\+::value $>$\+::type $\ast$}]{ = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{GQCP\+::\+Scalar\+Basis}}$<$ \+\_\+\+Shell $>$\+::\+Scalar\+Basis (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}} \&}]{molecule,  }\item[{const std\+::string \&}]{basisset\+\_\+name,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{Homogeneous\+Magnetic\+Field}} \&}]{B,  }\item[{typename std\+::enable\+\_\+if$<$ std\+::is\+\_\+same$<$ Z, \mbox{\hyperlink{class_g_q_c_p_1_1_london_g_t_o_shell}{London\+GTOShell}} $>$\+::value $>$\+::type $\ast$}]{ = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Construct a scalar basis by placing gauge-\/including shells corresponding to the basisset specification on every nucleus of the molecule.
 
@@ -185,12 +184,12 @@ The normalization factors of the spherical (or axis-\/aligned Cartesian) GTO pri
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_scalar_basis_aa80ce5e3db54a12bcf510d455d16bc0b}\label{class_g_q_c_p_1_1_scalar_basis_aa80ce5e3db54a12bcf510d455d16bc0b}} 
+\mbox{\Hypertarget{class_g_q_c_p_1_1_scalar_basis_af6d85f66e262223634566908e22edd62}\label{class_g_q_c_p_1_1_scalar_basis_af6d85f66e262223634566908e22edd62}} 
 \index{GQCP::ScalarBasis$<$ \_Shell $>$@{GQCP::ScalarBasis$<$ \_Shell $>$}!basisFunctionIndices@{basisFunctionIndices}}
 \index{basisFunctionIndices@{basisFunctionIndices}!GQCP::ScalarBasis$<$ \_Shell $>$@{GQCP::ScalarBasis$<$ \_Shell $>$}}
 \doxysubsubsection{\texorpdfstring{basisFunctionIndices()}{basisFunctionIndices()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
-std\+::vector$<$size\+\_\+t$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{GQCP\+::\+Scalar\+Basis}}$<$ \+\_\+\+Shell $>$\+::basis\+Function\+Indices (\begin{DoxyParamCaption}\item[{const std\+::function$<$ bool(const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_af7f13ae4384545ad6fd8c9e622cb2180}{Basis\+Function}} \&)$>$ \&}]{selector }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+std\+::vector$<$ size\+\_\+t $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{GQCP\+::\+Scalar\+Basis}}$<$ \+\_\+\+Shell $>$\+::basis\+Function\+Indices (\begin{DoxyParamCaption}\item[{const std\+::function$<$ bool(const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_af7f13ae4384545ad6fd8c9e622cb2180}{Basis\+Function}} \&)$>$ \&}]{selector }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 Find the basis function indices selected by a given selector.
 
@@ -202,12 +201,12 @@ Find the basis function indices selected by a given selector.
 \begin{DoxyReturn}{Returns}
 The indices of the basis functions whose corresponding shells are selected. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_scalar_basis_aa662b73933aa6ab2a05137065cc6a4df}\label{class_g_q_c_p_1_1_scalar_basis_aa662b73933aa6ab2a05137065cc6a4df}} 
+\mbox{\Hypertarget{class_g_q_c_p_1_1_scalar_basis_acd5f433e61fcaa284350331a566516a7}\label{class_g_q_c_p_1_1_scalar_basis_acd5f433e61fcaa284350331a566516a7}} 
 \index{GQCP::ScalarBasis$<$ \_Shell $>$@{GQCP::ScalarBasis$<$ \_Shell $>$}!basisFunctionIndices@{basisFunctionIndices}}
 \index{basisFunctionIndices@{basisFunctionIndices}!GQCP::ScalarBasis$<$ \_Shell $>$@{GQCP::ScalarBasis$<$ \_Shell $>$}}
 \doxysubsubsection{\texorpdfstring{basisFunctionIndices()}{basisFunctionIndices()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
-std\+::vector$<$size\+\_\+t$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{GQCP\+::\+Scalar\+Basis}}$<$ \+\_\+\+Shell $>$\+::basis\+Function\+Indices (\begin{DoxyParamCaption}\item[{const std\+::function$<$ bool(const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_a56cb0cabc632a2e4222abd17affb23eb}{Shell}} \&)$>$ \&}]{selector }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+std\+::vector$<$ size\+\_\+t $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{GQCP\+::\+Scalar\+Basis}}$<$ \+\_\+\+Shell $>$\+::basis\+Function\+Indices (\begin{DoxyParamCaption}\item[{const std\+::function$<$ bool(const \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_a56cb0cabc632a2e4222abd17affb23eb}{Shell}} \&)$>$ \&}]{selector }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 Find the basis function indices selected by a given selector.
 
@@ -219,12 +218,12 @@ Find the basis function indices selected by a given selector.
 \begin{DoxyReturn}{Returns}
 The indices of the basis functions whose corresponding shells are selected. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_scalar_basis_a3a5d51d79c5b93f05c7ada89a746451c}\label{class_g_q_c_p_1_1_scalar_basis_a3a5d51d79c5b93f05c7ada89a746451c}} 
+\mbox{\Hypertarget{class_g_q_c_p_1_1_scalar_basis_a000b7c24c209792eff7f965de01a657c}\label{class_g_q_c_p_1_1_scalar_basis_a000b7c24c209792eff7f965de01a657c}} 
 \index{GQCP::ScalarBasis$<$ \_Shell $>$@{GQCP::ScalarBasis$<$ \_Shell $>$}!basisFunctions@{basisFunctions}}
 \index{basisFunctions@{basisFunctions}!GQCP::ScalarBasis$<$ \_Shell $>$@{GQCP::ScalarBasis$<$ \_Shell $>$}}
 \doxysubsubsection{\texorpdfstring{basisFunctions()}{basisFunctions()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
-std\+::vector$<$\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_af7f13ae4384545ad6fd8c9e622cb2180}{Basis\+Function}}$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{GQCP\+::\+Scalar\+Basis}}$<$ \+\_\+\+Shell $>$\+::basis\+Functions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_af7f13ae4384545ad6fd8c9e622cb2180}{Basis\+Function}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{GQCP\+::\+Scalar\+Basis}}$<$ \+\_\+\+Shell $>$\+::basis\+Functions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \begin{DoxyReturn}{Returns}
 The basis functions that this scalar basis consists of. 
@@ -239,12 +238,12 @@ size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{GQCP\+::\+Scalar\+B
 \begin{DoxyReturn}{Returns}
 The number of basis functions that this scalar basis consists of. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_scalar_basis_acb55672e9094fa4a56cb7fd190dbd8ae}\label{class_g_q_c_p_1_1_scalar_basis_acb55672e9094fa4a56cb7fd190dbd8ae}} 
+\mbox{\Hypertarget{class_g_q_c_p_1_1_scalar_basis_aeb9d5b6e2903b492d96a8d4d4cfd9b55}\label{class_g_q_c_p_1_1_scalar_basis_aeb9d5b6e2903b492d96a8d4d4cfd9b55}} 
 \index{GQCP::ScalarBasis$<$ \_Shell $>$@{GQCP::ScalarBasis$<$ \_Shell $>$}!shellSet@{shellSet}}
 \index{shellSet@{shellSet}!GQCP::ScalarBasis$<$ \_Shell $>$@{GQCP::ScalarBasis$<$ \_Shell $>$}}
 \doxysubsubsection{\texorpdfstring{shellSet()}{shellSet()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Shell $>$ \\
-const \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{Shell\+Set}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_a56cb0cabc632a2e4222abd17affb23eb}{Shell}}$>$\& \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{GQCP\+::\+Scalar\+Basis}}$<$ \+\_\+\+Shell $>$\+::shell\+Set (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{Shell\+Set}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_a56cb0cabc632a2e4222abd17affb23eb}{Shell}} $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{GQCP\+::\+Scalar\+Basis}}$<$ \+\_\+\+Shell $>$\+::shell\+Set (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \begin{DoxyReturn}{Returns}
 The collection of shells that represents this scalar basis. 

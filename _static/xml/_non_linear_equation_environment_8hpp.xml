@@ -1,31 +1,28 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="_non_linear_equation_environment_8hpp" kind="file" language="C++">
     <compoundname>NonLinearEquationEnvironment.hpp</compoundname>
     <includes refid="_optimization_environment_8hpp" local="yes">Mathematical/Optimization/OptimizationEnvironment.hpp</includes>
     <includes refid="_matrix_8hpp" local="yes">Mathematical/Representation/Matrix.hpp</includes>
-    <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
     <includedby refid="_minimization_2_newton_step_update_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/NewtonStepUpdate.hpp</includedby>
     <includedby refid="_non_linear_equation_2_newton_step_update_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NewtonStepUpdate.hpp</includedby>
     <includedby refid="_non_linear_equation_solver_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NonLinearEquationSolver.hpp</includedby>
     <includedby refid="_q_c_method_2_geminals_2_a_p1ro_g_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roG.hpp</includedby>
     <includedby refid="_p_s_environment_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/PSEnvironment.hpp</includedby>
     <includedby refid="_q_c_method_2_geminals_2v_a_p1ro_g_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/vAP1roG.hpp</includedby>
+    <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
     <incdepgraph>
-      <node id="12">
-        <label>boost/algorithm/string.hpp</label>
+      <node id="5">
+        <label>Mathematical/Functions/CartesianDirection.hpp</label>
+        <link refid="_cartesian_direction_8hpp"/>
       </node>
-      <node id="6">
-        <label>Utilities/Eigen.hpp</label>
-        <link refid="_eigen_8hpp"/>
-        <childnode refid="7" relation="include">
+      <node id="1">
+        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp</label>
+        <link refid="_non_linear_equation_environment_8hpp"/>
+        <childnode refid="2" relation="include">
         </childnode>
-      </node>
-      <node id="13">
-        <label>fstream</label>
-      </node>
-      <node id="7">
-        <label>Eigen/Dense</label>
+        <childnode refid="4" relation="include">
+        </childnode>
       </node>
       <node id="2">
         <label>Mathematical/Optimization/OptimizationEnvironment.hpp</label>
@@ -53,14 +50,11 @@
         <childnode refid="15" relation="include">
         </childnode>
       </node>
-      <node id="9">
-        <label>Utilities/type_traits.hpp</label>
-        <link refid="type__traits_8hpp"/>
-        <childnode refid="10" relation="include">
+      <node id="6">
+        <label>Utilities/Eigen.hpp</label>
+        <link refid="_eigen_8hpp"/>
+        <childnode refid="7" relation="include">
         </childnode>
-      </node>
-      <node id="15">
-        <label>vector</label>
       </node>
       <node id="8">
         <label>Utilities/aliases.hpp</label>
@@ -70,112 +64,68 @@
         <childnode refid="11" relation="include">
         </childnode>
       </node>
+      <node id="9">
+        <label>Utilities/type_traits.hpp</label>
+        <link refid="type__traits_8hpp"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="12">
+        <label>boost/algorithm/string.hpp</label>
+      </node>
       <node id="11">
         <label>cstdlib</label>
-      </node>
-      <node id="14">
-        <label>iostream</label>
       </node>
       <node id="3">
         <label>deque</label>
       </node>
+      <node id="13">
+        <label>fstream</label>
+      </node>
+      <node id="14">
+        <label>iostream</label>
+      </node>
       <node id="10">
         <label>type_traits</label>
       </node>
-      <node id="5">
-        <label>Mathematical/Functions/CartesianDirection.hpp</label>
-        <link refid="_cartesian_direction_8hpp"/>
+      <node id="15">
+        <label>vector</label>
       </node>
-      <node id="1">
-        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp</label>
-        <link refid="_non_linear_equation_environment_8hpp"/>
-        <childnode refid="2" relation="include">
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="3">
+        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/Minimizer.hpp</label>
+        <link refid="_minimizer_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/NewtonStepUpdate.hpp</label>
+        <link refid="_minimization_2_newton_step_update_8hpp"/>
+        <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-    </incdepgraph>
-    <invincdepgraph>
       <node id="6">
         <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NewtonStepUpdate.hpp</label>
         <link refid="_non_linear_equation_2_newton_step_update_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
         <childnode refid="7" relation="include">
         </childnode>
-      </node>
-      <node id="3">
-        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/NewtonStepUpdate.hpp</label>
-        <link refid="_minimization_2_newton_step_update_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
         <childnode refid="4" relation="include">
-        </childnode>
-      </node>
-      <node id="4">
-        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/Minimizer.hpp</label>
-        <link refid="_minimizer_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-      </node>
-      <node id="7">
-        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NonLinearEquationSolver.hpp</label>
-        <link refid="_non_linear_equation_solver_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-      </node>
-      <node id="11">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/vAP1roG.hpp</label>
-        <link refid="_q_c_method_2_geminals_2v_a_p1ro_g_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-      </node>
-      <node id="8">
-        <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/Geminals/AP1roGLagrangianNewtonOrbitalOptimizer.cpp</label>
-        <link refid="_a_p1ro_g_lagrangian_newton_orbital_optimizer_8cpp"/>
-      </node>
-      <node id="2">
-        <label>/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</label>
-        <link refid="gqcp_8hpp"/>
-      </node>
-      <node id="10">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/PSEnvironment.hpp</label>
-        <link refid="_p_s_environment_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-      </node>
-      <node id="5">
-        <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.cpp</label>
-        <link refid="_a_p1ro_g_jacobi_orbital_optimizer_8cpp"/>
-      </node>
-      <node id="9">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roG.hpp</label>
-        <link refid="_q_c_method_2_geminals_2_a_p1ro_g_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
         </childnode>
       </node>
       <node id="1">
         <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp</label>
         <link refid="_non_linear_equation_environment_8hpp"/>
         <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
@@ -187,6 +137,56 @@
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NonLinearEquationSolver.hpp</label>
+        <link refid="_non_linear_equation_solver_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roG.hpp</label>
+        <link refid="_q_c_method_2_geminals_2_a_p1ro_g_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/PSEnvironment.hpp</label>
+        <link refid="_p_s_environment_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/vAP1roG.hpp</label>
+        <link refid="_q_c_method_2_geminals_2v_a_p1ro_g_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</label>
+        <link refid="gqcp_8hpp"/>
+      </node>
+      <node id="5">
+        <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.cpp</label>
+        <link refid="_a_p1ro_g_jacobi_orbital_optimizer_8cpp"/>
+      </node>
+      <node id="8">
+        <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/Geminals/AP1roGLagrangianNewtonOrbitalOptimizer.cpp</label>
+        <link refid="_a_p1ro_g_lagrangian_newton_orbital_optimizer_8cpp"/>
       </node>
     </invincdepgraph>
     <innerclass refid="class_g_q_c_p_1_1_non_linear_equation_environment" prot="public">GQCP::NonLinearEquationEnvironment</innerclass>
@@ -228,7 +228,7 @@
 <codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_optimization_environment" kindref="compound">OptimizationEnvironment</ref>&lt;VectorX&lt;_Scalar&gt;&gt;<sp/>{</highlight></codeline>
 <codeline lineno="36"><highlight class="normal"></highlight></codeline>
 <codeline lineno="37"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="38" refid="class_g_q_c_p_1_1_non_linear_equation_environment_1a18f9b7533278b7953010229b233226c9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_non_linear_equation_environment_1a18f9b7533278b7953010229b233226c9" kindref="member">Scalar</ref><sp/>=<sp/>_Scalar;</highlight></codeline>
+<codeline lineno="38" refid="class_g_q_c_p_1_1_non_linear_equation_environment_1a18f9b7533278b7953010229b233226c9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_non_linear_equation_environment_1a18f9b7533278b7953010229b233226c9" kindref="member">Scalar</ref><sp/>=<sp/>_Scalar;</highlight></codeline>
 <codeline lineno="39"><highlight class="normal"></highlight></codeline>
 <codeline lineno="40"><highlight class="normal"></highlight></codeline>
 <codeline lineno="41"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>

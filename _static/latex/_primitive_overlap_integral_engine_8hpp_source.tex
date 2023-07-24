@@ -1,0 +1,151 @@
+\hypertarget{_primitive_overlap_integral_engine_8hpp_source}{}\doxysection{Primitive\+Overlap\+Integral\+Engine.\+hpp}
+\label{_primitive_overlap_integral_engine_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp}}
+\mbox{\hyperlink{_primitive_overlap_integral_engine_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_base_scalar_primitive_integral_engine_8hpp}{Basis/Integrals/Primitive/BaseScalarPrimitiveIntegralEngine.hpp}}"{}}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_mc_murchie_davidson_coefficient_8hpp}{Basis/Integrals/Primitive/McMurchieDavidsonCoefficient.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_g_t_o_shell_8hpp}{Basis/ScalarBasis/GTOShell.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_london_g_t_o_shell_8hpp}{Basis/ScalarBasis/LondonGTOShell.hpp}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_cartesian_g_t_o_8hpp}{Mathematical/Functions/CartesianGTO.hpp}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_london_cartesian_g_t_o_8hpp}{Mathematical/Functions/LondonCartesianGTO.hpp}}"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_overlap_operator_8hpp}{Operator/FirstQuantized/OverlapOperator.hpp}}"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{complex_8hpp}{Utilities/complex.hpp}}"{}}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{type__traits_8hpp}{Utilities/type\_traits.hpp}}"{}}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ <boost/math/constants/constants.hpp>}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Shell>}
+\DoxyCodeLine{00042\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine}{PrimitiveOverlapIntegralEngine}}:}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_base_scalar_primitive_integral_engine}{BaseScalarPrimitiveIntegralEngine}}\ \{}
+\DoxyCodeLine{00044\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ shell\ that\ this\ integral\ engine\ is\ related\ to.}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a201abfc83ece872d3af91a3b96ca3334}{Shell}}\ =\ \_Shell;}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ primitive\ that\ underlies\ the\ type\ of\ shell.}}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a5c8908dbe85b8dc45f432053fe816aa0}{Primitive}}\ =\ \textcolor{keyword}{typename}\ Shell::Primitive;}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{//\ The\ scalar\ representation\ of\ an\ overlap\ integral.}}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a16eebeb9da28b1ed74114b2e79a801f6}{IntegralScalar}}\ =\ \mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\_t<OverlapOperator::Scalar,\ typename\ Primitive::OutputType>}};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00057\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ CartesianGTO\ integrals}}
+\DoxyCodeLine{00058\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Shell>}
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<std::is\_same<Z,\ GTOShell>::value}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a16eebeb9da28b1ed74114b2e79a801f6}{IntegralScalar}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_af07c309420ed492944c5e9fe00cfe429}{calculate}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{CartesianGTO}}\&\ left,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{CartesianGTO}}\&\ right)\ \{}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ 3D\ integral\ is\ separable\ in\ three\ 1D\ integrals.}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a16eebeb9da28b1ed74114b2e79a801f6}{IntegralScalar}}\ primitive\_integral\ \{1.0\};}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ direction\ :\ \{\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{GQCP::CartesianDirection::x}},\ \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a8611d87f8dc5908d04f3d314c7c321b1}{GQCP::CartesianDirection::y}},\ \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a11d242b501b62c0182e98a9d516335f7}{GQCP::CartesianDirection::z}}\})\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ i\ =\ left.\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ae362602050de10275e3588dbd229785d}{cartesianExponents}}().\mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents_a311290fc4ae2e2fce7d21d2dbb8c3194}{value}}(direction);}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ j\ =\ right.\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ae362602050de10275e3588dbd229785d}{cartesianExponents}}().\mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents_a311290fc4ae2e2fce7d21d2dbb8c3194}{value}}(direction);}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ primitive\_integral\ *=\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a7f75bdad6c765a1680f3dd124ba2e205}{calculate1D}}(left.\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ab38b2d462ea81e9755a32d3433642863}{gaussianExponent}}(),\ left.\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a1e7691184b5896251ea1812e78547ed5}{center}}()(direction),\ i,\ right.\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ab38b2d462ea81e9755a32d3433642863}{gaussianExponent}}(),\ right.\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a1e7691184b5896251ea1812e78547ed5}{center}}()(direction),\ j);}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ primitive\_integral;}
+\DoxyCodeLine{00081\ \ \ \ \ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Shell>}
+\DoxyCodeLine{00097\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<std::is\_same<Z,\ GTOShell>::value}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a16eebeb9da28b1ed74114b2e79a801f6}{IntegralScalar}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a7f75bdad6c765a1680f3dd124ba2e205}{calculate1D}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ a,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ K,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ b,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ L,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ j)\ \{}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Negative\ Cartesian\ exponents\ should\ be\ ignored:\ the\ correct\ value\ for\ the\ corresponding\ integral\ is\ 0.}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((i\ <\ 0)\ ||\ (j\ <\ 0))\ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0.0;}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ the\ McMurchie-\/Davidson\ recursion\ to\ calculate\ the\ overlap\ integral.}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ p\ =\ a\ +\ b;}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_mc_murchie_davidson_coefficient}{McMurchieDavidsonCoefficient}}\ E\ \{K,\ a,\ L,\ b\};}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::pow(boost::math::constants::pi<double>()\ /\ p,\ 0.5)\ *\ E(i,\ j,\ 0);}
+\DoxyCodeLine{00109\ \ \ \ \ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00113\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ LondonCartesianGTO\ integrals}}
+\DoxyCodeLine{00114\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Shell>}
+\DoxyCodeLine{00125\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<std::is\_same<Z,\ LondonGTOShell>::value}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a16eebeb9da28b1ed74114b2e79a801f6}{IntegralScalar}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a98caf0864e57060b08d904d0218a433f}{calculate}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o}{LondonCartesianGTO}}\&\ left,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o}{LondonCartesianGTO}}\&\ right)\ \{}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Vector<double,\ 3>}}\ k1\ =\ right.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_a41950c00f15c081511681d8ac24eaa47}{kVector}}()\ -\/\ left.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_a41950c00f15c081511681d8ac24eaa47}{kVector}}();\ \ \textcolor{comment}{//\ The\ k-\/vector\ of\ the\ London\ overlap\ distribution.}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ 3D\ integral\ is\ separable\ in\ three\ 1D\ integrals.}}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a16eebeb9da28b1ed74114b2e79a801f6}{IntegralScalar}}\ primitive\_integral\ \{1.0\};}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ direction\ :\ \{\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{GQCP::CartesianDirection::x}},\ \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a8611d87f8dc5908d04f3d314c7c321b1}{GQCP::CartesianDirection::y}},\ \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a11d242b501b62c0182e98a9d516335f7}{GQCP::CartesianDirection::z}}\})\ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ a\ =\ left.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_ab6b2dc7fbca5ba89c436254bc6bfeac8}{cartesianGTO}}().\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ab38b2d462ea81e9755a32d3433642863}{gaussianExponent}}();}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\ =\ left.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_ab6b2dc7fbca5ba89c436254bc6bfeac8}{cartesianGTO}}().\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a1e7691184b5896251ea1812e78547ed5}{center}}()(direction);}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ i\ =\ left.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_ab6b2dc7fbca5ba89c436254bc6bfeac8}{cartesianGTO}}().\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ae362602050de10275e3588dbd229785d}{cartesianExponents}}().\mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents_a311290fc4ae2e2fce7d21d2dbb8c3194}{value}}(direction);}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ b\ =\ right.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_ab6b2dc7fbca5ba89c436254bc6bfeac8}{cartesianGTO}}().\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ab38b2d462ea81e9755a32d3433642863}{gaussianExponent}}();}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ L\ =\ right.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_ab6b2dc7fbca5ba89c436254bc6bfeac8}{cartesianGTO}}().\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a1e7691184b5896251ea1812e78547ed5}{center}}()(direction);}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ j\ =\ right.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_ab6b2dc7fbca5ba89c436254bc6bfeac8}{cartesianGTO}}().\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ae362602050de10275e3588dbd229785d}{cartesianExponents}}().\mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents_a311290fc4ae2e2fce7d21d2dbb8c3194}{value}}(direction);}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ k1\_component\ =\ k1(direction);}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ primitive\_integral\ *=\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a7f75bdad6c765a1680f3dd124ba2e205}{calculate1D}}(k1\_component,\ a,\ K,\ i,\ b,\ L,\ j);}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ primitive\_integral;}
+\DoxyCodeLine{00145\ \ \ \ \ \}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Shell>}
+\DoxyCodeLine{00162\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<std::is\_same<Z,\ LondonGTOShell>::value}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a16eebeb9da28b1ed74114b2e79a801f6}{IntegralScalar}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_ae6154f623285a73a64bc204cd2333b1d}{calculate1D}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}}\ k1,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ a,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ K,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ b,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ L,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ j)\ \{}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Negative\ Cartesian\ exponents\ should\ be\ ignored:\ the\ correct\ value\ for\ the\ corresponding\ integral\ is\ 0.}}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((i\ <\ 0)\ ||\ (j\ <\ 0))\ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0.0;}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ namespace\ }\mbox{\hyperlink{namespace_g_q_c_p_1_1literals}{GQCP::literals}};}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ the\ McMurchie-\/Davidson\ recursion\ to\ calculate\ the\ overlap\ integral.}}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ p\ =\ a\ +\ b;}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_mc_murchie_davidson_coefficient}{McMurchieDavidsonCoefficient}}\ E\ \{K,\ a,\ L,\ b\};}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ P\ =\ E.\mbox{\hyperlink{class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_a6e45664e3ffca2c50c94ae6e46d2ef44}{centerOfMass}}();}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a16eebeb9da28b1ed74114b2e79a801f6}{IntegralScalar}}\ integral\ \{0.0\};}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ t\ =\ 0;\ t\ <=\ i\ +\ j;\ t++)\ \{}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ integral\ +=\ E(i,\ j,\ t)\ *}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::pow(-\/1.0\_ii\ *\ k1,\ t)\ *}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::pow(boost::math::constants::pi<double>()\ /\ p,\ 0.5)\ *}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::exp(-\/1.0\_ii\ *\ k1\ *\ P)\ *}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::exp(-\/std::pow(k1,\ 2)\ /\ (4\ *\ p));}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ integral;}
+\DoxyCodeLine{00187\ \ \ \ \ \}}
+\DoxyCodeLine{00188\ \};}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

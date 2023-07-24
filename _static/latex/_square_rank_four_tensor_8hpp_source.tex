@@ -1,0 +1,191 @@
+\hypertarget{_square_rank_four_tensor_8hpp_source}{}\doxysection{Square\+Rank\+Four\+Tensor.\+hpp}
+\label{_square_rank_four_tensor_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareRankFourTensor.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareRankFourTensor.hpp}}
+\mbox{\hyperlink{_square_rank_four_tensor_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_square_matrix_8hpp}{Mathematical/Representation/SquareMatrix.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_tensor_8hpp}{Mathematical/Representation/Tensor.hpp}}"{}}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar>}
+\DoxyCodeLine{00036\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{SquareRankFourTensor}}:\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor}}<\_Scalar,\ 4>\ \{}
+\DoxyCodeLine{00037\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor_ac9c0e565ff801e4127477353bd3e7a19}{Scalar}}\ =\ \_Scalar;}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Base}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor<Scalar,\ 4>}};}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{Self}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{SquareRankFourTensor<Scalar>}};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00046\ \textcolor{comment}{\ \ \ \ \ *\ \ CONSTRUCTORS}}
+\DoxyCodeLine{00047\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor_a69d281a8471cddd9cfacb64a15330769}{SquareRankFourTensor}}()\ :}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Base}}()\ \{\}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor_aa7d76da72a02cda047036cfdee4dd398}{SquareRankFourTensor}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ dim)\ :}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Base}}(dim,\ dim,\ dim,\ dim)\ \{\}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor_ad7a0f38bc13a432d0b0bc8f1e757550f}{SquareRankFourTensor}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Base}}\&\ tensor)\ :}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Base}}(tensor)\ \{}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ the\ given\ tensor\ is\ 'square'.}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ dims\ =\ this-\/>dimensions();}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((dims[0]\ !=\ dims[1])\ ||\ (dims[1]\ !=\ dims[2])\ ||\ (dims[2]\ !=\ dims[3]))\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}SquareRankFourTensor(Eigen::TensorBase<OtherDerived,\ AccessLevel>):\ The\ given\ tensor\ should\ have\ equal\ dimensions\ in\ every\ rank."{}});}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00078\ \ \ \ \ \}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ExpDerived,\ \textcolor{keywordtype}{int}\ AccessLevel>}
+\DoxyCodeLine{00090\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor_a7aa129b102b42f24a27d967dc05e9190}{SquareRankFourTensor}}(\textcolor{keyword}{const}\ Eigen::TensorBase<ExpDerived,\ AccessLevel>\&\ exp)\ :}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{Self}}(\mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Base}}(exp))\ \{\}\ \ \textcolor{comment}{//\ the\ Base\ constructor\ returns\ the\ required\ type\ for\ the\ square-\/checking\ constructor}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00095\ \textcolor{comment}{\ \ \ \ \ *\ \ NAMED\ CONSTRUCTORS}}
+\DoxyCodeLine{00096\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{Self}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor_a3d43828d2fa60cdb902529d56a34c21c}{FromFile}}(\textcolor{keyword}{const}\ std::string\&\ filename,\ \textcolor{keywordtype}{size\_t}\ dim)\ \{}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{Self}}\ result\ \{dim\};}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ result.setZero();\ \ \textcolor{comment}{//\ make\ sure\ that\ the\ tensor\ is\ initialized\ to\ zero\ values\ before\ reading\ in}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ std::ifstream\ file\ \{filename\};}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (file.is\_open())\ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ line;}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(file,\ line))\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ splitted\_line;\ \ \textcolor{comment}{//\ create\ a\ container\ for\ the\ line\ to\ be\ split\ in}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Split\ the\ line\ on\ any\ whitespace\ or\ tabs.}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ boost::split(splitted\_line,\ line,\ boost::is\_any\_of(\textcolor{stringliteral}{"{}\ \(\backslash\)t"{}}),\ boost::token\_compress\_on);}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (splitted\_line.size()\ !=\ 5)\ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}SquareRankFourTensor::FromFile(std::string,\ size\_t):\ Found\ a\ line\ that\ doesn't\ contain\ exactly\ 5\ fields\ delimited\ by\ whitespace."{}});}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ i\ =\ std::stoi(splitted\_line[0]);}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ j\ =\ std::stoi(splitted\_line[1]);}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ k\ =\ std::stoi(splitted\_line[2]);}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ l\ =\ std::stoi(splitted\_line[3]);}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ value\ =\ std::stod(splitted\_line[4]);}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result(i,\ j,\ k,\ l)\ =\ value;}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ file.close();}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}SquareRankFourTensor::FromFile(std::string,\ size\_t):\ Cannot\ open\ the\ given\ file.\ Maybe\ you\ specified\ a\ wrong\ path?"{}});}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00137\ \ \ \ \ \}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{Self}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor_ac8d9dac01c85a4f11aa67c7efa877e04}{Zero}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ dim)\ \{}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{SquareRankFourTensor<Scalar>}}\ T\ \{dim\};\ \ \textcolor{comment}{//\ 'Random'\ initialization\ happens\ here.}}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ T.setZero();}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ T;}
+\DoxyCodeLine{00152\ \ \ \ \ \}}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{Self}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor_a52e4cca8048c3e51977fa460f5715d76}{Random}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ dim)\ \{}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{SquareRankFourTensor<Scalar>}}\ T\ \{dim\};}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ T.setRandom();\ \ \textcolor{comment}{//\ Uniformly\ distributed\ between\ [0,\ 1].}}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Move\ the\ distribution\ from\ [0,\ 1]\ -\/>\ [-\/1,\ 1].}}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ dim;\ i++)\ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ j\ =\ 0;\ j\ <\ dim;\ j++)\ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ k\ =\ 0;\ k\ <\ dim;\ k++)\ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ l\ =\ 0;\ l\ <\ dim;\ l++)\ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ T(i,\ j,\ k,\ l)\ =\ 2\ *\ T(i,\ j,\ k,\ l)\ -\/\ 1;\ \ \textcolor{comment}{//\ Scale\ from\ [0,\ 1]\ -\/>\ [0,\ 2]\ -\/>\ [-\/1,\ 1].}}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ T;}
+\DoxyCodeLine{00178\ \ \ \ \ \}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00182\ \textcolor{comment}{\ \ \ \ \ *\ \ OPERATORS}}
+\DoxyCodeLine{00183\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ExpDerived,\ \textcolor{keywordtype}{int}\ AccessLevel>}
+\DoxyCodeLine{00194\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{Self}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor_a4517ba2d2676bbd03bb6e63bc68c107b}{operator=}}(\textcolor{keyword}{const}\ Eigen::TensorBase<ExpDerived,\ AccessLevel>\&\ exp)\ \{}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ this-\/>Base::operator=(exp);}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (*\textcolor{keyword}{this});}
+\DoxyCodeLine{00197\ \ \ \ \ \}}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00201\ \textcolor{comment}{\ \ \ \ \ *\ \ PUBLIC\ METHODS}}
+\DoxyCodeLine{00202\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keyword}{using\ }Base::dimension;}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor_aa3537155a1ab4f7207232610ddeae5f9}{dimension}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor_aa3537155a1ab4f7207232610ddeae5f9}{dimension}}(0);\ \}\ \ \textcolor{comment}{//\ all\ tensor\ dimensions\ are\ equal\ because\ of\ the\ constructor}}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00218\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<double>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor_a3afe6bce284bb1b7825165ab45875b18}{pairWiseStrictReduced}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initialize\ the\ resulting\ matrix}}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor_aa3537155a1ab4f7207232610ddeae5f9}{dimension}}();}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<double>}}\ M\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_ae3551bb3ac15b2560846f7a5956d1d90}{SquareMatrix<double>::Zero}}(K\ *\ (K\ -\/\ 1)\ /\ 2);}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ compound\ indices\ and\ bring\ the\ elements\ from\ the\ tensor\ over\ into\ the\ matrix}}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ row\_index\ =\ 0;}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ j\ =\ 0;\ j\ <\ K;\ j++)\ \{\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ "{}column\ major"{}\ ordering\ for\ row\_index<-\/i,j\ so\ we\ do\ j\ first,\ then\ i}}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ j\ +\ 1;\ i\ <\ K;\ i++)\ \{\ \ \textcolor{comment}{//\ in\ column\ major\ indices,\ columns\ are\ contiguous,\ so\ the\ first\ of\ two\ indices\ changes\ more\ rapidly}}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ require\ i\ >\ j\ for\ "{}lower\ triangle"{}}}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ column\_index\ =\ 0;}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ l\ =\ 0;\ l\ <\ K;\ l++)\ \{\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ "{}column\ major"{}\ ordering\ for\ column\_index<-\/k,l\ so\ we\ do\ l\ first,\ then\ k}}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ k\ =\ l\ +\ 1;\ k\ <\ K;\ k++)\ \{\ \ \textcolor{comment}{//\ in\ column\ major\ indices,\ columns\ are\ contiguous,\ so\ the\ first\ of\ two\ indices\ changes\ more\ rapidly}}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ require\ l\ >\ k\ for\ "{}lower\ triangle"{}}}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ M(row\_index,\ column\_index)\ =\ this-\/>operator()(i,\ j,\ k,\ l);}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ column\_index++;}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ row\_index++;}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ M;}
+\DoxyCodeLine{00246\ \ \ \ \ \}}
+\DoxyCodeLine{00247\ \};}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00249\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

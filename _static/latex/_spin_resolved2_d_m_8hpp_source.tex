@@ -1,0 +1,130 @@
+\hypertarget{_spin_resolved2_d_m_8hpp_source}{}\doxysection{Spin\+Resolved2\+DM.\+hpp}
+\label{_spin_resolved2_d_m_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved2DM.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved2DM.hpp}}
+\mbox{\hyperlink{_spin_resolved2_d_m_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_doubly_spin_resolved_basis_transformable_8hpp}{Basis/Transformations/DoublySpinResolvedBasisTransformable.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_doubly_spin_resolved_jacobi_rotatable_8hpp}{Basis/Transformations/DoublySpinResolvedJacobiRotatable.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_u_jacobi_rotation_8hpp}{Basis/Transformations/UJacobiRotation.hpp}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_u_transformation_8hpp}{Basis/Transformations/UTransformation.hpp}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_mixed_spin_resolved2_d_m_component_8hpp}{DensityMatrix/MixedSpinResolved2DMComponent.hpp}}"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_orbital2_d_m_8hpp}{DensityMatrix/Orbital2DM.hpp}}"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_pure_spin_resolved2_d_m_component_8hpp}{DensityMatrix/PureSpinResolved2DMComponent.hpp}}"{}}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_doubly_spin_resolved_base_8hpp}{QuantumChemical/DoublySpinResolvedBase.hpp}}"{}}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_spin_8hpp}{QuantumChemical/Spin.hpp}}"{}}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar>}
+\DoxyCodeLine{00041\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved2_d_m}{SpinResolved2DM}}:}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base}{DoublySpinResolvedBase}}<PureSpinResolved2DMComponent<\_Scalar>,\ MixedSpinResolved2DMComponent<\_Scalar>,\ SpinResolved2DM<\_Scalar>>,}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformable}{DoublySpinResolvedBasisTransformable}}<SpinResolved2DM<\_Scalar>>,}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_jacobi_rotatable}{DoublySpinResolvedJacobiRotatable}}<SpinResolved2DM<\_Scalar>>\ \{}
+\DoxyCodeLine{00045\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{comment}{//\ The\ scalar\ type\ of\ one\ of\ the\ density\ matrix\ elements:\ real\ or\ complex.}}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved2_d_m_ae334f20472a5e944c4ec8aedb2c973cf}{Scalar}}\ =\ \_Scalar;}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ 'this'.}}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved2_d_m}{Self}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved2_d_m}{SpinResolved2DM<Scalar>}};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ The\ type\ components\ this\ spin\ resolved\ object\ is\ made\ of.}}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved2_d_m_a2b85859982e03da37619b9f555cd0c67}{PureComponentType}}\ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base}{DoublySpinResolvedBase<PureSpinResolved2DMComponent<\_Scalar>}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component}{MixedSpinResolved2DMComponent<\_Scalar>}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved2_d_m}{SpinResolved2DM<\_Scalar>}}>\mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_aca1c50d6a880fe35529aec8e60bc8dd2}{::Pure}};}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved2_d_m_ac4efe1b57ac275cee3ed6380c041c634}{MixedComponentType}}\ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base}{DoublySpinResolvedBase<PureSpinResolved2DMComponent<\_Scalar>}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component}{MixedSpinResolved2DMComponent<\_Scalar>}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved2_d_m}{SpinResolved2DM<\_Scalar>}}>\mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_a230628c5e23252fa38b8cc228430757e}{::Mixed}};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00059\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Constructors}}
+\DoxyCodeLine{00060\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{comment}{//\ Inherit\ `DoublySpinResolvedBase`'s\ constructors.}}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base}{DoublySpinResolvedBase}}<\mbox{\hyperlink{class_g_q_c_p_1_1_pure_spin_resolved2_d_m_component}{PureSpinResolved2DMComponent<\_Scalar>}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component}{MixedSpinResolved2DMComponent<\_Scalar>}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved2_d_m}{SpinResolved2DM<\_Scalar>}}>::DoublySpinResolvedBase;}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00067\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ General\ information}}
+\DoxyCodeLine{00068\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved2_d_m_a4c58e2057d5df2ac35f9f85e546a8366}{numberOfOrbitals}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4f}{Spin}}\ sigma,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4f}{Spin}}\ tau)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sigma\ ==\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{Spin::alpha}}\ \&\&\ tau\ ==\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{Spin::beta}})\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_a9c49bbea8e139a0e2d743c3f0d9c81df}{alphaAlpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_a9294ffe2b798149a40916f8750e511c7}{numberOfOrbitals}}();}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (sigma\ ==\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{Spin::alpha}}\ \&\&\ tau\ ==\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{Spin::beta}})\ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_a795c9995179305bdf7e4fb33b545d2f9}{alphaBeta}}().\mbox{\hyperlink{class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_a192e4c3262c24fd817a310ab8267d56b}{numberOfOrbitals}}();}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (sigma\ ==\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{Spin::beta}}\ \&\&\ tau\ ==\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{Spin::alpha}})\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_a469dd84d608a04e22453b7bc0c3da24a}{betaAlpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_a192e4c3262c24fd817a310ab8267d56b}{numberOfOrbitals}}();}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_affdd177bee1ee3b2f71e53d0bbacbd74}{betaBeta}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_a9294ffe2b798149a40916f8750e511c7}{numberOfOrbitals}}();}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00087\ \ \ \ \ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00093\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital2_d_m}{Orbital2DM<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved2_d_m_a0e7377b83b9bfe15ce1cc3d95e81304a}{orbitalDensity}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital2_d_m}{Orbital2DM<Scalar>}}\ \{this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_a9c49bbea8e139a0e2d743c3f0d9c81df}{alphaAlpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_adf65dbdb4eccf2b2e99ebd6857168214}{tensor}}().\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a1975212d179fc9fee2020d1cdf835c88}{Eigen}}()\ +\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_a795c9995179305bdf7e4fb33b545d2f9}{alphaBeta}}().\mbox{\hyperlink{class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_a439e0b479663170bdc9ab259f9037b00}{tensor}}().\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a1975212d179fc9fee2020d1cdf835c88}{Eigen}}()\ +\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_a469dd84d608a04e22453b7bc0c3da24a}{betaAlpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component_a439e0b479663170bdc9ab259f9037b00}{tensor}}().\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a1975212d179fc9fee2020d1cdf835c88}{Eigen}}()\ +\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_base_affdd177bee1ee3b2f71e53d0bbacbd74}{betaBeta}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_adf65dbdb4eccf2b2e99ebd6857168214}{tensor}}().\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a1975212d179fc9fee2020d1cdf835c88}{Eigen}}()\};}
+\DoxyCodeLine{00095\ \ \ \ \ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{comment}{//\ Since\ `rotate`\ and\ `rotated`\ are\ both\ defined\ in\ `DoublySpinResolvedBasisTransformable`\ and\ `DoublySpinResolvedJacobiRotatable`,\ we\ have\ to\ explicitly\ enable\ these\ methods\ here.}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{comment}{//\ Allow\ the\ `rotate`\ method\ from\ `DoublySpinResolvedBasisTransformable`,\ since\ there's\ also\ a\ `rotate`\ from\ `DoublySpinResolvedJacobiRotatable`.}}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformable}{DoublySpinResolvedBasisTransformable}}<\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved2_d_m_a2ef5bcf1e85d71497386544f2cbabfb1}{Self}}>\mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_a2e107bd3cf4d603c003c8cb9357d0094}{::rotate}};}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{comment}{//\ Allow\ the\ `rotated`\ method\ from\ `DoublySpinResolvedBasisTransformable`,\ since\ there's\ also\ a\ `rotated`\ from\ `DoublySpinResolvedJacobiRotatable`.}}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformable}{DoublySpinResolvedBasisTransformable}}<\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved2_d_m_a2ef5bcf1e85d71497386544f2cbabfb1}{Self}}>\mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_jacobi_rotatable_a6d8f51cf240f4a7acc6bc309a84ab563}{::rotated}};}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{comment}{//\ Allow\ the\ `rotate`\ method\ from\ `DoublySpinResolvedJacobiRotatable`,\ since\ there's\ also\ a\ `rotate`\ from\ `DoublySpinResolvedBasisTransformable`.}}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_jacobi_rotatable}{DoublySpinResolvedJacobiRotatable}}<\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved2_d_m_a2ef5bcf1e85d71497386544f2cbabfb1}{Self}}>\mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_a2e107bd3cf4d603c003c8cb9357d0094}{::rotate}};}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{comment}{//\ Allow\ the\ `rotated`\ method\ from\ `DoublySpinResolvedJacobiRotatable`,\ since\ there's\ also\ a\ `rotated`\ from\ `DoublySpinResolvedBasisTransformable`.}}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_jacobi_rotatable}{DoublySpinResolvedJacobiRotatable}}<\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved2_d_m_a2ef5bcf1e85d71497386544f2cbabfb1}{Self}}>\mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_jacobi_rotatable_a6d8f51cf240f4a7acc6bc309a84ab563}{::rotated}};}
+\DoxyCodeLine{00115\ \};}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00119\ \textcolor{comment}{\ *\ \ MARK:\ BasisTransformableTraits}}
+\DoxyCodeLine{00120\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00125\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00126\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_g_q_c_p_1_1_basis_transformable_traits}{BasisTransformableTraits}}<\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved2_d_m}{SpinResolved2DM}}<Scalar>>\ \{}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ transformation\ that\ is\ naturally\ related\ to\ a\ `SpinResolved2DM`.}}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{Transformation}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<Scalar>}};}
+\DoxyCodeLine{00130\ \};}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00134\ \textcolor{comment}{\ *\ \ MARK:\ JacobiRotatableTraits}}
+\DoxyCodeLine{00135\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00140\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00141\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_g_q_c_p_1_1_jacobi_rotatable_traits}{JacobiRotatableTraits}}<\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved2_d_m}{SpinResolved2DM}}<Scalar>>\ \{}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ Jacobi\ rotation\ for\ which\ the\ Jacobi\ rotation\ should\ be\ defined.}}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_u_jacobi_rotation}{JacobiRotationType}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_jacobi_rotation}{UJacobiRotation}};}
+\DoxyCodeLine{00145\ \};}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

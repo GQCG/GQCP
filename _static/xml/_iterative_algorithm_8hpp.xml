@@ -1,12 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="_iterative_algorithm_8hpp" kind="file" language="C++">
     <compoundname>IterativeAlgorithm.hpp</compoundname>
     <includes refid="_convergence_criterion_8hpp" local="yes">Mathematical/Algorithm/ConvergenceCriterion.hpp</includes>
     <includes refid="_step_collection_8hpp" local="yes">Mathematical/Algorithm/StepCollection.hpp</includes>
     <includes local="no">boost/format.hpp</includes>
     <includes local="no">cstddef</includes>
-    <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
     <includedby refid="_davidson_solver_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp</includedby>
     <includedby refid="_minimizer_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/Minimizer.hpp</includedby>
     <includedby refid="_non_linear_equation_solver_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NonLinearEquationSolver.hpp</includedby>
@@ -19,6 +18,7 @@
     <includedby refid="_r_h_f_s_c_f_solver_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFSolver.hpp</includedby>
     <includedby refid="_q_c_method_2_h_f_2_u_h_f_2_u_h_f_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHF.hpp</includedby>
     <includedby refid="_u_h_f_s_c_f_solver_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFSCFSolver.hpp</includedby>
+    <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
     <incdepgraph>
       <node id="2">
         <label>Mathematical/Algorithm/ConvergenceCriterion.hpp</label>
@@ -26,17 +26,23 @@
         <childnode refid="3" relation="include">
         </childnode>
       </node>
+      <node id="1">
+        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/IterativeAlgorithm.hpp</label>
+        <link refid="_iterative_algorithm_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
       <node id="5">
         <label>Mathematical/Algorithm/Step.hpp</label>
         <link refid="_algorithm_2_step_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
-      </node>
-      <node id="12">
-        <label>boost/format.hpp</label>
-      </node>
-      <node id="3">
-        <label>string</label>
       </node>
       <node id="4">
         <label>Mathematical/Algorithm/StepCollection.hpp</label>
@@ -70,145 +76,33 @@
         <childnode refid="9" relation="include">
         </childnode>
       </node>
-      <node id="13">
-        <label>vector</label>
-      </node>
-      <node id="10">
-        <label>utility</label>
+      <node id="12">
+        <label>boost/format.hpp</label>
       </node>
       <node id="7">
         <label>cstddef</label>
       </node>
-      <node id="1">
-        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/IterativeAlgorithm.hpp</label>
-        <link refid="_iterative_algorithm_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
+      <node id="8">
+        <label>memory</label>
+      </node>
+      <node id="3">
+        <label>string</label>
       </node>
       <node id="9">
         <label>type_traits</label>
       </node>
-      <node id="8">
-        <label>memory</label>
+      <node id="10">
+        <label>utility</label>
+      </node>
+      <node id="13">
+        <label>vector</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="14">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHF.hpp</label>
-        <link refid="_q_c_method_2_h_f_2_r_h_f_2_r_h_f_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
-      </node>
-      <node id="13">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFSCFSolver.hpp</label>
-        <link refid="_g_h_f_s_c_f_solver_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="9">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDSolver.hpp</label>
-        <link refid="_c_c_s_d_solver_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="8">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCDSolver.hpp</label>
-        <link refid="_c_c_d_solver_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="17">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHF.hpp</label>
-        <link refid="_q_c_method_2_h_f_2_u_h_f_2_u_h_f_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="16">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFSolver.hpp</label>
-        <link refid="_r_h_f_s_c_f_solver_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="4">
-        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/Minimizer.hpp</label>
-        <link refid="_minimizer_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-      </node>
-      <node id="18">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFSCFSolver.hpp</label>
-        <link refid="_u_h_f_s_c_f_solver_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="6">
-        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NonLinearEquationSolver.hpp</label>
-        <link refid="_non_linear_equation_solver_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="7">
-        <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/Geminals/AP1roGLagrangianNewtonOrbitalOptimizer.cpp</label>
-        <link refid="_a_p1ro_g_lagrangian_newton_orbital_optimizer_8cpp"/>
-      </node>
-      <node id="2">
-        <label>/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</label>
-        <link refid="gqcp_8hpp"/>
-      </node>
-      <node id="3">
-        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp</label>
-        <link refid="_davidson_solver_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="15">
-        <label>/__w/GQCP/GQCP/gqcp/src/Processing/Properties/RHFElectricalResponseSolver.cpp</label>
-        <link refid="_r_h_f_electrical_response_solver_8cpp"/>
-      </node>
-      <node id="12">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHF.hpp</label>
-        <link refid="_q_c_method_2_h_f_2_g_h_f_2_g_h_f_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="11">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp</label>
-        <link refid="_d_o_c_i_newton_orbital_optimizer_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="5">
-        <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.cpp</label>
-        <link refid="_a_p1ro_g_jacobi_orbital_optimizer_8cpp"/>
-      </node>
-      <node id="10">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp</label>
-        <link refid="_c_i_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-      </node>
       <node id="1">
         <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/IterativeAlgorithm.hpp</label>
         <link refid="_iterative_algorithm_8hpp"/>
         <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
@@ -232,6 +126,112 @@
         </childnode>
         <childnode refid="18" relation="include">
         </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp</label>
+        <link refid="_davidson_solver_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/Minimizer.hpp</label>
+        <link refid="_minimizer_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/NonLinearEquationSolver.hpp</label>
+        <link refid="_non_linear_equation_solver_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCDSolver.hpp</label>
+        <link refid="_c_c_d_solver_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDSolver.hpp</label>
+        <link refid="_c_c_s_d_solver_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp</label>
+        <link refid="_c_i_8hpp"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp</label>
+        <link refid="_d_o_c_i_newton_orbital_optimizer_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHF.hpp</label>
+        <link refid="_q_c_method_2_h_f_2_g_h_f_2_g_h_f_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF/GHFSCFSolver.hpp</label>
+        <link refid="_g_h_f_s_c_f_solver_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHF.hpp</label>
+        <link refid="_q_c_method_2_h_f_2_r_h_f_2_r_h_f_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFSolver.hpp</label>
+        <link refid="_r_h_f_s_c_f_solver_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHF.hpp</label>
+        <link refid="_q_c_method_2_h_f_2_u_h_f_2_u_h_f_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFSCFSolver.hpp</label>
+        <link refid="_u_h_f_s_c_f_solver_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</label>
+        <link refid="gqcp_8hpp"/>
+      </node>
+      <node id="15">
+        <label>/__w/GQCP/GQCP/gqcp/src/Processing/Properties/RHFElectricalResponseSolver.cpp</label>
+        <link refid="_r_h_f_electrical_response_solver_8cpp"/>
+      </node>
+      <node id="5">
+        <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/Geminals/AP1roGJacobiOrbitalOptimizer.cpp</label>
+        <link refid="_a_p1ro_g_jacobi_orbital_optimizer_8cpp"/>
+      </node>
+      <node id="7">
+        <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/Geminals/AP1roGLagrangianNewtonOrbitalOptimizer.cpp</label>
+        <link refid="_a_p1ro_g_lagrangian_newton_orbital_optimizer_8cpp"/>
       </node>
     </invincdepgraph>
     <innerclass refid="class_g_q_c_p_1_1_iterative_algorithm" prot="public">GQCP::IterativeAlgorithm</innerclass>
@@ -275,7 +275,7 @@
 <codeline lineno="37"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Environment&gt;</highlight></codeline>
 <codeline lineno="38" refid="class_g_q_c_p_1_1_iterative_algorithm" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_iterative_algorithm" kindref="compound">IterativeAlgorithm</ref><sp/>{</highlight></codeline>
 <codeline lineno="39"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="40" refid="class_g_q_c_p_1_1_iterative_algorithm_1ad8a935ff155d2a6d392444038135803a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_iterative_algorithm_1ad8a935ff155d2a6d392444038135803a" kindref="member">Environment</ref><sp/>=<sp/>_Environment;</highlight></codeline>
+<codeline lineno="40" refid="class_g_q_c_p_1_1_iterative_algorithm_1ad8a935ff155d2a6d392444038135803a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_iterative_algorithm_1ad8a935ff155d2a6d392444038135803a" kindref="member">Environment</ref><sp/>=<sp/>_Environment;</highlight></codeline>
 <codeline lineno="41"><highlight class="normal"></highlight></codeline>
 <codeline lineno="42"><highlight class="normal"></highlight></codeline>
 <codeline lineno="43"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
@@ -316,7 +316,7 @@
 <codeline lineno="90"><highlight class="normal"></highlight></codeline>
 <codeline lineno="91"><highlight class="normal"></highlight></codeline>
 <codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Z<sp/>=<sp/>Step&lt;Environment&gt;&gt;</highlight></codeline>
-<codeline lineno="99" refid="class_g_q_c_p_1_1_iterative_algorithm_1a356f37e3d7fa7de9f7ac27a98d63e5f5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t&lt;std::is_same&lt;Environment, typename Z::Environment&gt;::value</ref>,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">&gt;<sp/><ref refid="class_g_q_c_p_1_1_iterative_algorithm_1a356f37e3d7fa7de9f7ac27a98d63e5f5" kindref="member">insert</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Z&amp;<sp/>step,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>index)<sp/>{<sp/>this-&gt;steps.<ref refid="class_g_q_c_p_1_1_step_collection_1a009873ccc611a2c200c15d51e0c38e2b" kindref="member">insert</ref>(step,<sp/>index);<sp/>}</highlight></codeline>
+<codeline lineno="99" refid="class_g_q_c_p_1_1_iterative_algorithm_1a3f8838d9873c7529f2f63d2941c46f00" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t&lt;std::is_same&lt;Environment, typename Z::Environment&gt;::value</ref>,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">&gt;<sp/><ref refid="class_g_q_c_p_1_1_iterative_algorithm_1a3f8838d9873c7529f2f63d2941c46f00" kindref="member">insert</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Z&amp;<sp/>step,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>index)<sp/>{<sp/>this-&gt;steps.<ref refid="class_g_q_c_p_1_1_step_collection_1a1382fc8584fa77d82e6648b9f929ac74" kindref="member">insert</ref>(step,<sp/>index);<sp/>}</highlight></codeline>
 <codeline lineno="100"><highlight class="normal"></highlight></codeline>
 <codeline lineno="101"><highlight class="normal"></highlight></codeline>
 <codeline lineno="105" refid="class_g_q_c_p_1_1_iterative_algorithm_1ae459d4c90d11df0f1b4ea67db7b2e293" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_iterative_algorithm_1ae459d4c90d11df0f1b4ea67db7b2e293" kindref="member">maximumNumberOfIterations</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;maximum_number_of_iterations;<sp/>}</highlight></codeline>
@@ -347,7 +347,7 @@
 <codeline lineno="143"><highlight class="normal"></highlight></codeline>
 <codeline lineno="144"><highlight class="normal"></highlight></codeline>
 <codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Z<sp/>=<sp/>Step&lt;Environment&gt;&gt;</highlight></codeline>
-<codeline lineno="152" refid="class_g_q_c_p_1_1_iterative_algorithm_1ac92f77d72edff57a7bf169c6a555f1b2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t&lt;std::is_same&lt;Environment, typename Z::Environment&gt;::value</ref>,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">&gt;<sp/><ref refid="class_g_q_c_p_1_1_iterative_algorithm_1ac92f77d72edff57a7bf169c6a555f1b2" kindref="member">replace</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Z&amp;<sp/>step,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>index)<sp/>{<sp/>this-&gt;steps.<ref refid="class_g_q_c_p_1_1_step_collection_1a10234ffefae0fbec6949dc0a85902323" kindref="member">replace</ref>(step,<sp/>index);<sp/>}</highlight></codeline>
+<codeline lineno="152" refid="class_g_q_c_p_1_1_iterative_algorithm_1ad4c35728ce2e847b9dd338b13f8a1905" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t&lt;std::is_same&lt;Environment, typename Z::Environment&gt;::value</ref>,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">&gt;<sp/><ref refid="class_g_q_c_p_1_1_iterative_algorithm_1ad4c35728ce2e847b9dd338b13f8a1905" kindref="member">replace</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Z&amp;<sp/>step,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>index)<sp/>{<sp/>this-&gt;steps.<ref refid="class_g_q_c_p_1_1_step_collection_1a5a31f46749bfa08eadfa3cee42d28ddc" kindref="member">replace</ref>(step,<sp/>index);<sp/>}</highlight></codeline>
 <codeline lineno="153"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="154"><highlight class="normal"></highlight></codeline>
 <codeline lineno="155"><highlight class="normal"></highlight></codeline>

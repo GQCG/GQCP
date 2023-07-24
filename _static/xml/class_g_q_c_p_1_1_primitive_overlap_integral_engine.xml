@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_primitive_overlap_integral_engine" kind="class" language="C++" prot="public">
     <compoundname>GQCP::PrimitiveOverlapIntegralEngine</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine" prot="public" virt="non-virtual">GQCP::BaseScalarPrimitiveIntegralEngine</basecompoundref>
@@ -15,6 +15,7 @@
         <definition>using GQCP::PrimitiveOverlapIntegralEngine&lt; _Shell &gt;::Shell =  _Shell</definition>
         <argsstring></argsstring>
         <name>Shell</name>
+        <qualifiedname>GQCP::PrimitiveOverlapIntegralEngine::Shell</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -28,6 +29,7 @@
         <definition>using GQCP::PrimitiveOverlapIntegralEngine&lt; _Shell &gt;::Primitive =  typename Shell::Primitive</definition>
         <argsstring></argsstring>
         <name>Primitive</name>
+        <qualifiedname>GQCP::PrimitiveOverlapIntegralEngine::Primitive</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -41,6 +43,7 @@
         <definition>using GQCP::PrimitiveOverlapIntegralEngine&lt; _Shell &gt;::IntegralScalar =  product_t&lt;OverlapOperator::Scalar, typename Primitive::OutputType&gt;</definition>
         <argsstring></argsstring>
         <name>IntegralScalar</name>
+        <qualifiedname>GQCP::PrimitiveOverlapIntegralEngine::IntegralScalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -51,7 +54,7 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a587b7a75b51ad5fa8724d3614cb93a96" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1af07c309420ed492944c5e9fe00cfe429" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z</type>
@@ -59,9 +62,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a16eebeb9da28b1ed74114b2e79a801f6" kindref="member">IntegralScalar</ref> &gt;</type>
-        <definition>enable_if_t&lt;std::is_same&lt;Z, GTOShell&gt;::value, IntegralScalar&gt; GQCP::PrimitiveOverlapIntegralEngine&lt; _Shell &gt;::calculate</definition>
+        <definition>enable_if_t&lt; std::is_same&lt; Z, GTOShell &gt;::value, IntegralScalar &gt; GQCP::PrimitiveOverlapIntegralEngine&lt; _Shell &gt;::calculate</definition>
         <argsstring>(const CartesianGTO &amp;left, const CartesianGTO &amp;right)</argsstring>
         <name>calculate</name>
+        <qualifiedname>GQCP::PrimitiveOverlapIntegralEngine::calculate</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_cartesian_g_t_o" kindref="compound">CartesianGTO</ref> &amp;</type>
           <declname>left</declname>
@@ -99,7 +103,7 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp" line="69" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp" bodystart="69" bodyend="81"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a9edc7f130735ba38aa76edbcd65f9de5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a7f75bdad6c765a1680f3dd124ba2e205" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z</type>
@@ -107,9 +111,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a16eebeb9da28b1ed74114b2e79a801f6" kindref="member">IntegralScalar</ref> &gt;</type>
-        <definition>enable_if_t&lt;std::is_same&lt;Z, GTOShell&gt;::value, IntegralScalar&gt; GQCP::PrimitiveOverlapIntegralEngine&lt; _Shell &gt;::calculate1D</definition>
+        <definition>enable_if_t&lt; std::is_same&lt; Z, GTOShell &gt;::value, IntegralScalar &gt; GQCP::PrimitiveOverlapIntegralEngine&lt; _Shell &gt;::calculate1D</definition>
         <argsstring>(const double a, const double K, const int i, const double b, const double L, const int j)</argsstring>
         <name>calculate1D</name>
+        <qualifiedname>GQCP::PrimitiveOverlapIntegralEngine::calculate1D</qualifiedname>
         <param>
           <type>const double</type>
           <declname>a</declname>
@@ -195,7 +200,7 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp" line="97" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp" bodystart="97" bodyend="109"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a48e33652f532b9ccefda0da754d348ea" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a98caf0864e57060b08d904d0218a433f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z</type>
@@ -203,9 +208,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_london_g_t_o_shell" kindref="compound">LondonGTOShell</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a16eebeb9da28b1ed74114b2e79a801f6" kindref="member">IntegralScalar</ref> &gt;</type>
-        <definition>enable_if_t&lt;std::is_same&lt;Z, LondonGTOShell&gt;::value, IntegralScalar&gt; GQCP::PrimitiveOverlapIntegralEngine&lt; _Shell &gt;::calculate</definition>
+        <definition>enable_if_t&lt; std::is_same&lt; Z, LondonGTOShell &gt;::value, IntegralScalar &gt; GQCP::PrimitiveOverlapIntegralEngine&lt; _Shell &gt;::calculate</definition>
         <argsstring>(const LondonCartesianGTO &amp;left, const LondonCartesianGTO &amp;right)</argsstring>
         <name>calculate</name>
+        <qualifiedname>GQCP::PrimitiveOverlapIntegralEngine::calculate</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_london_cartesian_g_t_o" kindref="compound">LondonCartesianGTO</ref> &amp;</type>
           <declname>left</declname>
@@ -243,7 +249,7 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp" line="125" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp" bodystart="125" bodyend="145"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a65f4ea11edfb45f12cac951fdd10501f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1ae6154f623285a73a64bc204cd2333b1d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z</type>
@@ -251,9 +257,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_london_g_t_o_shell" kindref="compound">LondonGTOShell</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a16eebeb9da28b1ed74114b2e79a801f6" kindref="member">IntegralScalar</ref> &gt;</type>
-        <definition>enable_if_t&lt;std::is_same&lt;Z, LondonGTOShell&gt;::value, IntegralScalar&gt; GQCP::PrimitiveOverlapIntegralEngine&lt; _Shell &gt;::calculate1D</definition>
+        <definition>enable_if_t&lt; std::is_same&lt; Z, LondonGTOShell &gt;::value, IntegralScalar &gt; GQCP::PrimitiveOverlapIntegralEngine&lt; _Shell &gt;::calculate1D</definition>
         <argsstring>(const complex k1, const double a, const double K, const int i, const double b, const double L, const int j)</argsstring>
         <name>calculate1D</name>
+        <qualifiedname>GQCP::PrimitiveOverlapIntegralEngine::calculate1D</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1a1ffc21109e62d09d3485c62e03677dfd" kindref="member">complex</ref></type>
           <declname>k1</declname>
@@ -393,10 +400,10 @@
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp" line="42" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp" bodystart="43" bodyend="188"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a587b7a75b51ad5fa8724d3614cb93a96" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveOverlapIntegralEngine</scope><name>calculate</name></member>
-      <member refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a48e33652f532b9ccefda0da754d348ea" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveOverlapIntegralEngine</scope><name>calculate</name></member>
-      <member refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a9edc7f130735ba38aa76edbcd65f9de5" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveOverlapIntegralEngine</scope><name>calculate1D</name></member>
-      <member refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a65f4ea11edfb45f12cac951fdd10501f" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveOverlapIntegralEngine</scope><name>calculate1D</name></member>
+      <member refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1af07c309420ed492944c5e9fe00cfe429" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveOverlapIntegralEngine</scope><name>calculate</name></member>
+      <member refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a98caf0864e57060b08d904d0218a433f" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveOverlapIntegralEngine</scope><name>calculate</name></member>
+      <member refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a7f75bdad6c765a1680f3dd124ba2e205" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveOverlapIntegralEngine</scope><name>calculate1D</name></member>
+      <member refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1ae6154f623285a73a64bc204cd2333b1d" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveOverlapIntegralEngine</scope><name>calculate1D</name></member>
       <member refid="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine_1a4ec278364231e8424df004d317e9573c" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveOverlapIntegralEngine</scope><name>Components</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_overlap_integral_engine_1a16eebeb9da28b1ed74114b2e79a801f6" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveOverlapIntegralEngine</scope><name>IntegralScalar</name></member>
       <member refid="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine_1a99dc2b6e86c306c236e071a915f9af5d" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveOverlapIntegralEngine</scope><name>prepareStateForComponent</name></member>

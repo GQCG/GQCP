@@ -1,15 +1,15 @@
 <map id="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/DoublySpinResolvedJacobiRotatable.hpp" name="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/DoublySpinResolvedJacobiRotatable.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="201,5,492,61"/>
-<area shape="rect" id="node2" href="$_jacobi_rotatable_8hpp.html" title=" " alt="" coords="169,109,335,151"/>
-<area shape="rect" id="node8" href="$_u_jacobi_rotation_8hpp.html" title=" " alt="" coords="359,109,526,151"/>
-<area shape="rect" id="node3" href="$_jacobi_rotation_8hpp.html" title=" " alt="" coords="169,199,335,240"/>
-<area shape="rect" id="node4" href="$_eigen_8hpp.html" title=" " alt="" coords="5,288,147,315"/>
-<area shape="rect" id="node6" title=" " alt="" coords="171,288,237,315"/>
-<area shape="rect" id="node7" title=" " alt="" coords="261,288,337,315"/>
-<area shape="rect" id="node5" title=" " alt="" coords="25,363,127,389"/>
-<area shape="rect" id="node9" href="$_spin_resolved_base_8hpp.html" title=" " alt="" coords="515,199,749,240"/>
-<area shape="rect" id="node10" href="$_spin_8hpp.html" title=" " alt="" coords="361,288,564,315"/>
-<area shape="rect" id="node11" title=" " alt="" coords="589,288,675,315"/>
-<area shape="rect" id="node12" title=" " alt="" coords="700,288,756,315"/>
-<area shape="rect" id="node13" title=" " alt="" coords="781,288,843,315"/>
+<area shape="rect" id="node1" title=" " alt="" coords="201,5,492,60"/>
+<area shape="rect" id="node2" href="$_jacobi_rotatable_8hpp.html" title=" " alt="" coords="169,108,335,148"/>
+<area shape="rect" id="node8" href="$_u_jacobi_rotation_8hpp.html" title=" " alt="" coords="359,108,526,148"/>
+<area shape="rect" id="node3" href="$_jacobi_rotation_8hpp.html" title=" " alt="" coords="169,196,335,236"/>
+<area shape="rect" id="node4" href="$_eigen_8hpp.html" title=" " alt="" coords="5,284,147,309"/>
+<area shape="rect" id="node6" title=" " alt="" coords="171,284,237,309"/>
+<area shape="rect" id="node7" title=" " alt="" coords="261,284,337,309"/>
+<area shape="rect" id="node5" title=" " alt="" coords="25,357,127,383"/>
+<area shape="rect" id="node9" href="$_spin_resolved_base_8hpp.html" title=" " alt="" coords="515,196,749,236"/>
+<area shape="rect" id="node10" href="$_spin_8hpp.html" title=" " alt="" coords="361,284,564,309"/>
+<area shape="rect" id="node11" title=" " alt="" coords="589,284,675,309"/>
+<area shape="rect" id="node12" title=" " alt="" coords="700,284,756,309"/>
+<area shape="rect" id="node13" title=" " alt="" coords="781,284,843,309"/>
 </map>

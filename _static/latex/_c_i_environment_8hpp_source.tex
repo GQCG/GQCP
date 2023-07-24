@@ -1,0 +1,57 @@
+\hypertarget{_c_i_environment_8hpp_source}{}\doxysection{CIEnvironment.\+hpp}
+\label{_c_i_environment_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/QCMethod/CI/CIEnvironment.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/QCMethod/CI/CIEnvironment.hpp}}
+\mbox{\hyperlink{_c_i_environment_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_eigenproblem_environment_8hpp}{Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp}}"{}}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00025\ \textcolor{keyword}{namespace\ }CIEnvironment\ \{}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Hamiltonian,\ \textcolor{keyword}{typename}\ ONVBasis>}
+\DoxyCodeLine{00040\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespace_g_q_c_p_1_1_c_i_environment_a304b7b0ff99dbd03933bd214abf8f77c}{Dense}}(\textcolor{keyword}{const}\ Hamiltonian\&\ hamiltonian,\ \textcolor{keyword}{const}\ ONVBasis\&\ onv\_basis)\ -\/>\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{EigenproblemEnvironment<typename\ Hamiltonian::Scalar>}}\ \{}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{using\ }Scalar\ =\ \textcolor{keyword}{typename}\ Hamiltonian::Scalar;\ \ \textcolor{comment}{//\ The\ scalar\ type\ of\ a\ Hamiltonian\ element.}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ dense\ matrix\ representation\ of\ the\ Hamiltonian\ in\ the\ given\ ONV\ basis,\ and\ supply\ it\ to\ an\ `EigenproblemEnvironment`.}}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ H\ =\ onv\_basis.evaluateOperatorDense(hamiltonian);}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_acf84deadaff12d58fc9cf21d46b45787}{EigenproblemEnvironment<Scalar>::Dense}}(H);}
+\DoxyCodeLine{00047\ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Hamiltonian,\ \textcolor{keyword}{typename}\ ONVBasis>}
+\DoxyCodeLine{00063\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{EigenproblemEnvironment<double>}}\ \mbox{\hyperlink{namespace_g_q_c_p_1_1_c_i_environment_aa568afa5012235df56fb621612c44766}{Iterative}}(\textcolor{keyword}{const}\ Hamiltonian\&\ hamiltonian,\ \textcolor{keyword}{const}\ ONVBasis\&\ onv\_basis,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<double>}}\&\ V)\ \{}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ diagonal\ of\ the\ Hamiltonian\ matrix\ representation,\ and\ supply\ a\ matrix-\/vector\ product\ function\ to\ the\ `EigenproblemEnvironment`.}}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ diagonal\ =\ onv\_basis.evaluateOperatorDiagonal(hamiltonian);}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ matvec\_function\ =\ [\&hamiltonian,\ \&onv\_basis](\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<double>}}\&\ \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{x}})\ \{\ \textcolor{keywordflow}{return}\ onv\_basis.evaluateOperatorMatrixVectorProduct(hamiltonian,\ \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{x}});\ \};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a727e721f3027d6da3b35790584f4cf1a}{EigenproblemEnvironment<double>::Iterative}}(matvec\_function,\ diagonal,\ V);}
+\DoxyCodeLine{00070\ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \}\ \ \textcolor{comment}{//\ namespace\ CIEnvironment}}
+\DoxyCodeLine{00074\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

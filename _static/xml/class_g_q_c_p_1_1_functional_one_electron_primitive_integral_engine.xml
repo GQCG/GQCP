@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_functional_one_electron_primitive_integral_engine" kind="class" language="C++" prot="public">
     <compoundname>GQCP::FunctionalOneElectronPrimitiveIntegralEngine</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_base_scalar_primitive_integral_engine" prot="public" virt="non-virtual">GQCP::BaseScalarPrimitiveIntegralEngine</basecompoundref>
@@ -15,6 +15,7 @@
         <definition>using GQCP::FunctionalOneElectronPrimitiveIntegralEngine&lt; _IntegralScalar &gt;::Shell =  GTOShell</definition>
         <argsstring></argsstring>
         <name>Shell</name>
+        <qualifiedname>GQCP::FunctionalOneElectronPrimitiveIntegralEngine::Shell</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -28,6 +29,7 @@
         <definition>using GQCP::FunctionalOneElectronPrimitiveIntegralEngine&lt; _IntegralScalar &gt;::Primitive =  typename Shell::Primitive</definition>
         <argsstring></argsstring>
         <name>Primitive</name>
+        <qualifiedname>GQCP::FunctionalOneElectronPrimitiveIntegralEngine::Primitive</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -41,6 +43,7 @@
         <definition>using GQCP::FunctionalOneElectronPrimitiveIntegralEngine&lt; _IntegralScalar &gt;::IntegralScalar =  _IntegralScalar</definition>
         <argsstring></argsstring>
         <name>IntegralScalar</name>
+        <qualifiedname>GQCP::FunctionalOneElectronPrimitiveIntegralEngine::IntegralScalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -56,6 +59,7 @@
         <definition>std::function&lt;IntegralScalar(const CartesianGTO&amp;, const CartesianGTO&amp;)&gt; GQCP::FunctionalOneElectronPrimitiveIntegralEngine&lt; _IntegralScalar &gt;::function</definition>
         <argsstring></argsstring>
         <name>function</name>
+        <qualifiedname>GQCP::FunctionalOneElectronPrimitiveIntegralEngine::function</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -71,6 +75,7 @@
         <definition>GQCP::FunctionalOneElectronPrimitiveIntegralEngine&lt; _IntegralScalar &gt;::FunctionalOneElectronPrimitiveIntegralEngine</definition>
         <argsstring>(const std::function&lt; IntegralScalar(const CartesianGTO &amp;, const CartesianGTO &amp;)&gt; &amp;function)</argsstring>
         <name>FunctionalOneElectronPrimitiveIntegralEngine</name>
+        <qualifiedname>GQCP::FunctionalOneElectronPrimitiveIntegralEngine::FunctionalOneElectronPrimitiveIntegralEngine</qualifiedname>
         <param>
           <type>const std::function&lt; <ref refid="class_g_q_c_p_1_1_functional_one_electron_primitive_integral_engine_1a20c63b51eb4c8ed4355254fa9b9ecc3b" kindref="member">IntegralScalar</ref>(const <ref refid="class_g_q_c_p_1_1_cartesian_g_t_o" kindref="compound">CartesianGTO</ref> &amp;, const <ref refid="class_g_q_c_p_1_1_cartesian_g_t_o" kindref="compound">CartesianGTO</ref> &amp;)&gt; &amp;</type>
           <declname>function</declname>
@@ -98,6 +103,7 @@
         <definition>IntegralScalar GQCP::FunctionalOneElectronPrimitiveIntegralEngine&lt; _IntegralScalar &gt;::calculate</definition>
         <argsstring>(const CartesianGTO &amp;left, const CartesianGTO &amp;right) const</argsstring>
         <name>calculate</name>
+        <qualifiedname>GQCP::FunctionalOneElectronPrimitiveIntegralEngine::calculate</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_cartesian_g_t_o" kindref="compound">CartesianGTO</ref> &amp;</type>
           <declname>left</declname>

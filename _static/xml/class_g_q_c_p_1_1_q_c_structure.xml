@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_q_c_structure" kind="class" language="C++" prot="public">
     <compoundname>GQCP::QCStructure</compoundname>
     <includes refid="_q_c_structure_8hpp" local="no">QCStructure.hpp</includes>
@@ -18,6 +18,7 @@
         <definition>using GQCP::QCStructure&lt; _QCModel, _Scalar &gt;::QCModel =  _QCModel</definition>
         <argsstring></argsstring>
         <name>QCModel</name>
+        <qualifiedname>GQCP::QCStructure::QCModel</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -31,6 +32,7 @@
         <definition>using GQCP::QCStructure&lt; _QCModel, _Scalar &gt;::Scalar =  _Scalar</definition>
         <argsstring></argsstring>
         <name>Scalar</name>
+        <qualifiedname>GQCP::QCStructure::Scalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -46,6 +48,7 @@
         <definition>std::vector&lt;Scalar&gt; GQCP::QCStructure&lt; _QCModel, _Scalar &gt;::energies</definition>
         <argsstring></argsstring>
         <name>energies</name>
+        <qualifiedname>GQCP::QCStructure::energies</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -59,6 +62,7 @@
         <definition>std::vector&lt;QCModel&gt; GQCP::QCStructure&lt; _QCModel, _Scalar &gt;::model_parameters</definition>
         <argsstring></argsstring>
         <name>model_parameters</name>
+        <qualifiedname>GQCP::QCStructure::model_parameters</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -74,6 +78,7 @@
         <definition>GQCP::QCStructure&lt; _QCModel, _Scalar &gt;::QCStructure</definition>
         <argsstring>(const std::vector&lt; Scalar &gt; &amp;energies, const std::vector&lt; QCModel &gt; &amp;model_parameters)</argsstring>
         <name>QCStructure</name>
+        <qualifiedname>GQCP::QCStructure::QCStructure</qualifiedname>
         <param>
           <type>const std::vector&lt; <ref refid="class_g_q_c_p_1_1_q_c_structure_1afb72e11ca946c8556cc4d1685b2aec84" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>energies</declname>
@@ -113,6 +118,7 @@
         <definition>Scalar GQCP::QCStructure&lt; _QCModel, _Scalar &gt;::energy</definition>
         <argsstring>(const size_t i=0) const</argsstring>
         <name>energy</name>
+        <qualifiedname>GQCP::QCStructure::energy</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>i</declname>
@@ -143,6 +149,7 @@
         <definition>Scalar GQCP::QCStructure&lt; _QCModel, _Scalar &gt;::groundStateEnergy</definition>
         <argsstring>() const</argsstring>
         <name>groundStateEnergy</name>
+        <qualifiedname>GQCP::QCStructure::groundStateEnergy</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -154,11 +161,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/QCStructure.hpp" line="92" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/QCStructure.hpp" bodystart="92" bodyend="92"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_structure_1a77d066e51a876b84b5d78a2b96f7f5b7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_structure_1a13eb903131f8609adeed54d8fbd87aa8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_q_c_structure_1a276213817ea1787072d3aa9f28c0ea84" kindref="member">QCModel</ref> &amp;</type>
-        <definition>const QCModel&amp; GQCP::QCStructure&lt; _QCModel, _Scalar &gt;::parameters</definition>
+        <definition>const QCModel &amp; GQCP::QCStructure&lt; _QCModel, _Scalar &gt;::parameters</definition>
         <argsstring>(const size_t i=0) const</argsstring>
         <name>parameters</name>
+        <qualifiedname>GQCP::QCStructure::parameters</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>i</declname>
@@ -184,11 +192,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/QCStructure.hpp" line="104" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/QCStructure.hpp" bodystart="104" bodyend="104"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_structure_1a38df33d901610edee4e7d0c6a97ce7bf" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_structure_1aa1760e00afe7d479850e623bc93cb60f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_q_c_structure_1a276213817ea1787072d3aa9f28c0ea84" kindref="member">QCModel</ref> &amp;</type>
-        <definition>const QCModel&amp; GQCP::QCStructure&lt; _QCModel, _Scalar &gt;::groundStateParameters</definition>
+        <definition>const QCModel &amp; GQCP::QCStructure&lt; _QCModel, _Scalar &gt;::groundStateParameters</definition>
         <argsstring>() const</argsstring>
         <name>groundStateParameters</name>
+        <qualifiedname>GQCP::QCStructure::groundStateParameters</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -235,9 +244,9 @@
       <member refid="class_g_q_c_p_1_1_q_c_structure_1a7b0d3e54a4c6e5fd5e1c21387b52053c" prot="private" virt="non-virtual"><scope>GQCP::QCStructure</scope><name>energies</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_structure_1a917d86b1a78da0d70ed1390fe4bab7a8" prot="public" virt="non-virtual"><scope>GQCP::QCStructure</scope><name>energy</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_structure_1a5f1a68bdf40e8eec2fefbb893f43a32b" prot="public" virt="non-virtual"><scope>GQCP::QCStructure</scope><name>groundStateEnergy</name></member>
-      <member refid="class_g_q_c_p_1_1_q_c_structure_1a38df33d901610edee4e7d0c6a97ce7bf" prot="public" virt="non-virtual"><scope>GQCP::QCStructure</scope><name>groundStateParameters</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_structure_1aa1760e00afe7d479850e623bc93cb60f" prot="public" virt="non-virtual"><scope>GQCP::QCStructure</scope><name>groundStateParameters</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_structure_1af32afd01b7dd4dc90d490946146b35ef" prot="private" virt="non-virtual"><scope>GQCP::QCStructure</scope><name>model_parameters</name></member>
-      <member refid="class_g_q_c_p_1_1_q_c_structure_1a77d066e51a876b84b5d78a2b96f7f5b7" prot="public" virt="non-virtual"><scope>GQCP::QCStructure</scope><name>parameters</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_structure_1a13eb903131f8609adeed54d8fbd87aa8" prot="public" virt="non-virtual"><scope>GQCP::QCStructure</scope><name>parameters</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_structure_1a276213817ea1787072d3aa9f28c0ea84" prot="public" virt="non-virtual"><scope>GQCP::QCStructure</scope><name>QCModel</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_structure_1af00552d03eb740daaedac7b6c53ae8ff" prot="public" virt="non-virtual"><scope>GQCP::QCStructure</scope><name>QCStructure</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_structure_1afb72e11ca946c8556cc4d1685b2aec84" prot="public" virt="non-virtual"><scope>GQCP::QCStructure</scope><name>Scalar</name></member>

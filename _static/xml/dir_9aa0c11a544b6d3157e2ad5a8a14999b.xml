@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="dir_9aa0c11a544b6d3157e2ad5a8a14999b" kind="dir">
     <compoundname>/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized</compoundname>
     <innerfile refid="_angular_momentum_operator_8cpp">AngularMomentumOperator.cpp</innerfile>

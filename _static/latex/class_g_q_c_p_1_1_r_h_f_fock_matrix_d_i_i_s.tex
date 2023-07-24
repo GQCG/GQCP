@@ -1,4 +1,4 @@
-\hypertarget{class_g_q_c_p_1_1_r_h_f_fock_matrix_d_i_i_s}{}\doxysection{GQCP\+::RHFFock\+Matrix\+DIIS$<$ \+\_\+\+Scalar $>$ Class Template Reference}
+\hypertarget{class_g_q_c_p_1_1_r_h_f_fock_matrix_d_i_i_s}{}\doxysection{GQCP\+::RHFFock\+Matrix\+DIIS\texorpdfstring{$<$}{<} \+\_\+\+Scalar \texorpdfstring{$>$}{>} Class Template Reference}
 \label{class_g_q_c_p_1_1_r_h_f_fock_matrix_d_i_i_s}\index{GQCP::RHFFockMatrixDIIS$<$ \_Scalar $>$@{GQCP::RHFFockMatrixDIIS$<$ \_Scalar $>$}}
 
 
@@ -6,7 +6,7 @@
 
 
 
-Inheritance diagram for GQCP\+::RHFFock\+Matrix\+DIIS$<$ \+\_\+\+Scalar $>$\+:
+Inheritance diagram for GQCP\+::RHFFock\+Matrix\+DIIS\texorpdfstring{$<$}{<} \+\_\+\+Scalar \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -16,7 +16,7 @@ Inheritance diagram for GQCP\+::RHFFock\+Matrix\+DIIS$<$ \+\_\+\+Scalar $>$\+:
 \end{figure}
 
 
-Collaboration diagram for GQCP\+::RHFFock\+Matrix\+DIIS$<$ \+\_\+\+Scalar $>$\+:
+Collaboration diagram for GQCP\+::RHFFock\+Matrix\+DIIS\texorpdfstring{$<$}{<} \+\_\+\+Scalar \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -31,6 +31,11 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_fock_matrix_d_i_i_s_ad7b7cef999d7
 \item 
 using \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_fock_matrix_d_i_i_s_ae425da6514e2dff86569d234684ef8d0}{Environment}} = \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_environment}{RHFSCFEnvironment}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_fock_matrix_d_i_i_s_ad7b7cef999d77ae32f7ac5e33f88734f}{Scalar}} $>$
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_step}{GQCP\+::\+Step$<$ RHFSCFEnvironment$<$ \+\_\+\+Scalar $>$ $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_step_a479d9d1f930d4cabb39879a6e71f4915}{Environment}} = \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_environment}{RHFSCFEnvironment}}$<$ \+\_\+\+Scalar $>$
+\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -40,12 +45,20 @@ std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_fock_matrix_d_i_i_s_a0684
 \item 
 void \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_fock_matrix_d_i_i_s_a3145fad579ae44ca59ec4ba09965cfa8}{execute}} (\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_fock_matrix_d_i_i_s_ae425da6514e2dff86569d234684ef8d0}{Environment}} \&environment) override
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_step}{GQCP\+::\+Step$<$ RHFSCFEnvironment$<$ \+\_\+\+Scalar $>$ $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_step_a013c882b1c3e8c18babbe1a478382cb0}{$\sim$\+Step}} ()=default
+\item 
+virtual std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_step_af2276da3e9eef7f8d2049a8aa255b9fb}{description}} () const=0
+\item 
+virtual void \mbox{\hyperlink{class_g_q_c_p_1_1_step_afc654a62596b3fff0801acb2d993818f}{execute}} (\mbox{\hyperlink{class_g_q_c_p_1_1_step_a479d9d1f930d4cabb39879a6e71f4915}{Environment}} \&environment)=0
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$typename \+\_\+\+Scalar$>$\newline
 class GQCP\+::\+RHFFock\+Matrix\+DIIS$<$ \+\_\+\+Scalar $>$}
-
 An iteration step that accelerates the Fock matrix (expressed in the scalar/\+AO basis) based on a \mbox{\hyperlink{class_g_q_c_p_1_1_d_i_i_s}{DIIS}} accelerator.
 
 
@@ -61,14 +74,14 @@ An iteration step that accelerates the Fock matrix (expressed in the scalar/\+AO
 \index{Environment@{Environment}!GQCP::RHFFockMatrixDIIS$<$ \_Scalar $>$@{GQCP::RHFFockMatrixDIIS$<$ \_Scalar $>$}}
 \doxysubsubsection{\texorpdfstring{Environment}{Environment}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
-using \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_fock_matrix_d_i_i_s}{GQCP\+::\+RHFFock\+Matrix\+DIIS}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_fock_matrix_d_i_i_s_ae425da6514e2dff86569d234684ef8d0}{Environment}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_environment}{RHFSCFEnvironment}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_fock_matrix_d_i_i_s_ad7b7cef999d77ae32f7ac5e33f88734f}{Scalar}}$>$}
+using \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_fock_matrix_d_i_i_s}{GQCP\+::\+RHFFock\+Matrix\+DIIS}}$<$ \+\_\+\+Scalar $>$\+::\+Environment =  \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_environment}{RHFSCFEnvironment}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_fock_matrix_d_i_i_s_ad7b7cef999d77ae32f7ac5e33f88734f}{Scalar}}$>$}
 
 \mbox{\Hypertarget{class_g_q_c_p_1_1_r_h_f_fock_matrix_d_i_i_s_ad7b7cef999d77ae32f7ac5e33f88734f}\label{class_g_q_c_p_1_1_r_h_f_fock_matrix_d_i_i_s_ad7b7cef999d77ae32f7ac5e33f88734f}} 
 \index{GQCP::RHFFockMatrixDIIS$<$ \_Scalar $>$@{GQCP::RHFFockMatrixDIIS$<$ \_Scalar $>$}!Scalar@{Scalar}}
 \index{Scalar@{Scalar}!GQCP::RHFFockMatrixDIIS$<$ \_Scalar $>$@{GQCP::RHFFockMatrixDIIS$<$ \_Scalar $>$}}
 \doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
-using \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_fock_matrix_d_i_i_s}{GQCP\+::\+RHFFock\+Matrix\+DIIS}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_fock_matrix_d_i_i_s_ad7b7cef999d77ae32f7ac5e33f88734f}{Scalar}} =  \+\_\+\+Scalar}
+using \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_fock_matrix_d_i_i_s}{GQCP\+::\+RHFFock\+Matrix\+DIIS}}$<$ \+\_\+\+Scalar $>$\+::\+Scalar =  \+\_\+\+Scalar}
 
 
 
@@ -78,7 +91,7 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_fock_matrix_d_i_i_s}{GQCP\+::\+RH
 \index{RHFFockMatrixDIIS@{RHFFockMatrixDIIS}!GQCP::RHFFockMatrixDIIS$<$ \_Scalar $>$@{GQCP::RHFFockMatrixDIIS$<$ \_Scalar $>$}}
 \doxysubsubsection{\texorpdfstring{RHFFockMatrixDIIS()}{RHFFockMatrixDIIS()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
-\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_fock_matrix_d_i_i_s}{GQCP\+::\+RHFFock\+Matrix\+DIIS}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_fock_matrix_d_i_i_s}{RHFFock\+Matrix\+DIIS}} (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{minimum\+\_\+subspace\+\_\+dimension = {\ttfamily 6},  }\item[{const size\+\_\+t}]{maximum\+\_\+subspace\+\_\+dimension = {\ttfamily 6} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_fock_matrix_d_i_i_s}{GQCP\+::\+RHFFock\+Matrix\+DIIS}}$<$ \+\_\+\+Scalar $>$\+::\+RHFFock\+Matrix\+DIIS (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{minimum\+\_\+subspace\+\_\+dimension = {\ttfamily 6},  }\item[{const size\+\_\+t}]{maximum\+\_\+subspace\+\_\+dimension = {\ttfamily 6} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 \begin{DoxyParams}{Parameters}

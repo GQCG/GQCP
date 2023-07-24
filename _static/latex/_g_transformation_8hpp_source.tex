@@ -1,0 +1,169 @@
+\hypertarget{_g_transformation_8hpp_source}{}\doxysection{GTransformation.\+hpp}
+\label{_g_transformation_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Basis/Transformations/GTransformation.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Basis/Transformations/GTransformation.hpp}}
+\mbox{\hyperlink{_g_transformation_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_g_orbital_rotation_generators_8hpp}{Basis/Transformations/GOrbitalRotationGenerators.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_simple_transformation_8hpp}{Basis/Transformations/SimpleTransformation.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_u_transformation_8hpp}{Basis/Transformations/UTransformation.hpp}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_spin_resolved_8hpp}{QuantumChemical/SpinResolved.hpp}}"{}}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ *\ \ MARK:\ GTransformation\ implementation}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar>}
+\DoxyCodeLine{00042\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{GTransformation}}:}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation}{SimpleTransformation}}<\_Scalar,\ GTransformation<\_Scalar>>\ \{}
+\DoxyCodeLine{00044\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{//\ The\ scalar\ type\ used\ for\ a\ transformation\ coefficient:\ real\ or\ complex.}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_aa5372444af700cc04548803517a225d3}{Scalar}}\ =\ \_Scalar;}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{comment}{//\ The\ number\ of\ alpha\ and\ beta\ orbitals.}}
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved}{SpinResolved<size\_t>}}\ K;}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00056\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Constructors}}
+\DoxyCodeLine{00057\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00064\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_af0a06a95f3ac730b767a26a3b14ab805}{GTransformation}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_ac262d8b59931978058481f1b6bea735e}{T}})\ :}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation}{SimpleTransformation}}<\_Scalar,\ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{GTransformation}}<\_Scalar>>(\mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_ac262d8b59931978058481f1b6bea735e}{T}}),}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ K\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved}{SpinResolved}}<size\_t>::FromEqual(\mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_ac262d8b59931978058481f1b6bea735e}{T}}.\mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_a639513b3b77cdce79434a46e81c4cd0d}{dimension}}()\ /\ 2)\}\ \{\}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00076\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_af71b9f36f524da82d19e7bf740ca91ae}{GTransformation}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_ac262d8b59931978058481f1b6bea735e}{T}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ K\_alpha,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ K\_beta)\ :}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation}{SimpleTransformation}}<\_Scalar,\ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{GTransformation}}<\_Scalar>>(\mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_ac262d8b59931978058481f1b6bea735e}{T}}),}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ K\ \{K\_alpha,\ K\_beta\}\ \{}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_ac262d8b59931978058481f1b6bea735e}{T}}.\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_a37d881f47fe4a016e5549e3ac22e7aea}{dimension}}()\ !=\ K\_alpha\ +\ K\_beta)\ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}GTransformation(const\ SquareMatrix<Scalar>\&,\ const\ size\_t,\ const\ size\_t):\ The\ given\ transformation\ matrix\ is\ not\ compatible\ with\ the\ number\ of\ given\ overbitals."{}});}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00083\ \ \ \ \ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00087\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Named\ constructors}}
+\DoxyCodeLine{00088\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{GTransformation<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_a48d0bdfab758087da1f3e51d02bd1433}{FromRestricted}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{RTransformation<Scalar>}}\&\ r\_transformation)\ \{}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ u\_transformation\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation_ab918e4066139eef58ea5763d6b7cf45a}{GQCP::UTransformation<Scalar>::FromRestricted}}(r\_transformation);}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_abb4719583a6cc5cb1526673712088a43}{GTransformation<Scalar>::FromUnrestricted}}(u\_transformation);}
+\DoxyCodeLine{00101\ \ \ \ \ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{GTransformation<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_abb4719583a6cc5cb1526673712088a43}{FromUnrestricted}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<Scalar>}}\&\ u\_transformation)\ \{}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ goal\ in\ this\ named\ constructor\ is\ to\ build\ up\ the\ general\ coefficient\ matrix\ (2K\ x\ 2K)\ from\ the\ unrestricted\ (K\_sigma\ x\ K\_sigma)\ ones.}}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\_alpha\ =\ u\_transformation.\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_a2bf93e827850f7ccebcd64af4999abb4}{numberOfOrbitals}}();}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\_beta\ =\ u\_transformation.\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_a2bf93e827850f7ccebcd64af4999abb4}{numberOfOrbitals}}();}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ M\ =\ K\_alpha\ +\ K\_beta;}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\ T\_general\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_ae3551bb3ac15b2560846f7a5956d1d90}{SquareMatrix<Scalar>::Zero}}(M);}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ alpha\ |\ \ 0}}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ 0\ \ \ |\ beta}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ T\_general.topLeftCorner(K\_alpha,\ K\_alpha)\ =\ u\_transformation.\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_a644af38c173e77dc21e4dc4306916bd0}{matrix}}();}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ T\_general.bottomRightCorner(K\_beta,\ K\_beta)\ =\ u\_transformation.\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_a644af38c173e77dc21e4dc4306916bd0}{matrix}}();}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{GTransformation<Scalar>}}\ \{T\_general,\ K\_alpha,\ K\_beta\};}
+\DoxyCodeLine{00126\ \ \ \ \ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{GTransformation<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_aae3d672d280d875d34a94fe7a799f195}{Identity}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ K\_alpha,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ K\_beta)\ \{}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{GTransformation<Scalar>}}\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_aa6a5cf30d688d7b21a2605b4a46d2ca9}{SquareMatrix<Scalar>::Identity}}(K\_alpha\ +\ K\_beta),\ K\_alpha,\ K\_beta\};}
+\DoxyCodeLine{00135\ \ \ \ \ \}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00139\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Components}}
+\DoxyCodeLine{00140\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00145\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_abbda56963a4398fd7802891d870feab0}{alpha}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_a644af38c173e77dc21e4dc4306916bd0}{matrix}}().topRows(this-\/>K.\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}());\ \}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00150\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_a8a3e194acf720666b073bbd09abde437}{beta}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_a644af38c173e77dc21e4dc4306916bd0}{matrix}}().bottomRows(this-\/>K.\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}());\ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00157\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_a03511203a8f1a7e67b0b39e14893be4f}{component}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4f}{Spin}}\ sigma)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (sigma)\ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{Spin::alpha}}:\ \{}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_abbda56963a4398fd7802891d870feab0}{alpha}}();}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{Spin::beta}}:\ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation_a8a3e194acf720666b073bbd09abde437}{beta}}();}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00170\ \ \ \ \ \}}
+\DoxyCodeLine{00171\ \};}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00175\ \textcolor{comment}{\ *\ \ MARK:\ BasisTransformableTraits}}
+\DoxyCodeLine{00176\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00181\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00182\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_g_q_c_p_1_1_basis_transformable_traits}{BasisTransformableTraits}}<\mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{GTransformation}}<Scalar>>\ \{}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ the\ transformation\ for\ which\ the\ basis\ transformation\ should\ be\ defined.\ A\ transformation\ matrix\ should\ naturally\ be\ transformable\ with\ itself.}}
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{Transformation}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{GTransformation<Scalar>}};}
+\DoxyCodeLine{00186\ \};}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00190\ \textcolor{comment}{\ *\ \ MARK:\ JacobiRotatableTraits}}
+\DoxyCodeLine{00191\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00196\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00197\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_g_q_c_p_1_1_jacobi_rotatable_traits}{JacobiRotatableTraits}}<\mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{GTransformation}}<Scalar>>\ \{}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ Jacobi\ rotation\ for\ which\ the\ Jacobi\ rotation\ should\ be\ defined.}}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_rotation}{JacobiRotationType}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_rotation}{JacobiRotation}};}
+\DoxyCodeLine{00201\ \};}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00205\ \textcolor{comment}{\ *\ \ MARK:\ OrbitalRotationGeneratorTraits}}
+\DoxyCodeLine{00206\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00211\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00212\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_g_q_c_p_1_1_orbital_rotation_generator_traits}{OrbitalRotationGeneratorTraits}}<\mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{GTransformation}}<Scalar>>\ \{}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ orbital\ rotation\ generators\ associated\ with\ an\ `GTransformation`.}}
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_g_orbital_rotation_generators}{OrbitalRotationGenerators}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_g_orbital_rotation_generators}{GOrbitalRotationGenerators<Scalar>}};}
+\DoxyCodeLine{00216\ \};}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

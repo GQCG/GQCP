@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_r_transformation" kind="class" language="C++" prot="public">
     <compoundname>GQCP::RTransformation</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_simple_transformation" prot="public" virt="non-virtual">GQCP::SimpleTransformation&lt; _Scalar, RTransformation&lt; _Scalar &gt; &gt;</basecompoundref>
@@ -15,6 +15,7 @@
         <definition>using GQCP::RTransformation&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
         <argsstring></argsstring>
         <name>Scalar</name>
+        <qualifiedname>GQCP::RTransformation::Scalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -41,9 +42,19 @@
 </para>
     </detaileddescription>
     <inheritancegraph>
+      <node id="3">
+        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
       <node id="4">
         <label>GQCP::JacobiRotatable&lt; T &gt;</label>
         <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      </node>
+      <node id="1">
+        <label>GQCP::RTransformation&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_r_transformation"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
       </node>
       <node id="2">
         <label>GQCP::SimpleTransformation&lt; _Scalar, RTransformation&lt; _Scalar &gt; &gt;</label>
@@ -51,23 +62,32 @@
         <childnode refid="3" relation="public-inheritance">
         </childnode>
         <childnode refid="4" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="3">
-        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
-        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
-      </node>
-      <node id="1">
-        <label>GQCP::RTransformation&lt; _Scalar &gt;</label>
-        <link refid="class_g_q_c_p_1_1_r_transformation"/>
-        <childnode refid="2" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
+      <node id="7">
+        <label>Eigen::Matrix&lt; double, Dynamic, Dynamic &gt;</label>
+      </node>
+      <node id="3">
+        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
       <node id="4">
         <label>GQCP::JacobiRotatable&lt; T &gt;</label>
         <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      </node>
+      <node id="1">
+        <label>GQCP::RTransformation&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_r_transformation"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>MatrixX&lt; Scalar  &gt;</label>
+        <link refid="class_g_q_c_p_1_1_matrix"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
       </node>
       <node id="2">
         <label>GQCP::SimpleTransformation&lt; _Scalar, RTransformation&lt; _Scalar &gt; &gt;</label>
@@ -76,15 +96,14 @@
         </childnode>
         <childnode refid="4" relation="public-inheritance">
         </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>#T</edgelabel>
+        </childnode>
       </node>
-      <node id="3">
-        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
-        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
-      </node>
-      <node id="1">
-        <label>GQCP::RTransformation&lt; _Scalar &gt;</label>
-        <link refid="class_g_q_c_p_1_1_r_transformation"/>
-        <childnode refid="2" relation="public-inheritance">
+      <node id="5">
+        <label>GQCP::SquareMatrix&lt; Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_square_matrix"/>
+        <childnode refid="6" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
@@ -98,15 +117,16 @@
       <member refid="class_g_q_c_p_1_1_simple_transformation_1a5f36fc890460cc7c7a64eee376261c54" prot="public" virt="non-virtual"><scope>GQCP::RTransformation</scope><name>inverse</name></member>
       <member refid="class_g_q_c_p_1_1_simple_transformation_1a69eb192652259a3c7894b873aba818a1" prot="public" virt="non-virtual"><scope>GQCP::RTransformation</scope><name>isUnitary</name></member>
       <member refid="class_g_q_c_p_1_1_simple_transformation_1a30b9d326d44957602bc7081c692fc719" prot="public" virt="non-virtual"><scope>GQCP::RTransformation</scope><name>JacobiRotationType</name></member>
-      <member refid="class_g_q_c_p_1_1_simple_transformation_1a006ae80a78c72409fad4769058c4e048" prot="public" virt="non-virtual"><scope>GQCP::RTransformation</scope><name>matrix</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_transformation_1a644af38c173e77dc21e4dc4306916bd0" prot="public" virt="non-virtual"><scope>GQCP::RTransformation</scope><name>matrix</name></member>
       <member refid="class_g_q_c_p_1_1_simple_transformation_1a2bf93e827850f7ccebcd64af4999abb4" prot="public" virt="non-virtual"><scope>GQCP::RTransformation</scope><name>numberOfOrbitals</name></member>
       <member refid="class_g_q_c_p_1_1_simple_transformation_1a2cb26d3ddc4f033220363ed7ddb78765" prot="public" virt="non-virtual"><scope>GQCP::RTransformation</scope><name>OrbitalRotationGeneratorType</name></member>
       <member refid="class_g_q_c_p_1_1_simple_transformation_1a66165a4d5eb2217a80196d6d34a27023" prot="public" virt="non-virtual"><scope>GQCP::RTransformation</scope><name>Random</name></member>
       <member refid="class_g_q_c_p_1_1_simple_transformation_1af94648942e1be2a5929462fd48daea27" prot="public" virt="non-virtual"><scope>GQCP::RTransformation</scope><name>RandomUnitary</name></member>
       <member refid="class_g_q_c_p_1_1_basis_transformable_1a2e107bd3cf4d603c003c8cb9357d0094" prot="public" virt="non-virtual" ambiguityscope="GQCP::"><scope>GQCP::RTransformation</scope><name>rotate</name></member>
       <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a11657b774fe75246bef1f7849f9aad72" prot="public" virt="non-virtual" ambiguityscope="GQCP::JacobiRotatable::"><scope>GQCP::RTransformation</scope><name>rotate</name></member>
-      <member refid="class_g_q_c_p_1_1_simple_transformation_1a31eeb20c66eabcc2c2c88599716c0ea9" prot="public" virt="virtual"><scope>GQCP::RTransformation</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_transformation_1a31eeb20c66eabcc2c2c88599716c0ea9" prot="public" virt="non-virtual"><scope>GQCP::RTransformation</scope><name>rotated</name></member>
       <member refid="class_g_q_c_p_1_1_basis_transformable_1ae0af50867dbd06193b64c2bcdd6b51ba" prot="public" virt="virtual" ambiguityscope="GQCP::BasisTransformable::"><scope>GQCP::RTransformation</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1ae518b652e54f43acf2db43300c1d6fc0" prot="public" virt="pure-virtual" ambiguityscope="GQCP::JacobiRotatable::"><scope>GQCP::RTransformation</scope><name>rotated</name></member>
       <member refid="class_g_q_c_p_1_1_r_transformation_1a7d20a7ace4c9b4c39e5ae8023573bf70" prot="public" virt="non-virtual"><scope>GQCP::RTransformation</scope><name>Scalar</name></member>
       <member refid="class_g_q_c_p_1_1_simple_transformation_1ada44eeef314de5b5ad79587480745505" prot="public" virt="non-virtual"><scope>GQCP::RTransformation</scope><name>Self</name></member>
       <member refid="class_g_q_c_p_1_1_simple_transformation_1a5ecd32337e09da059a91ba0a9a5da30e" prot="public" virt="non-virtual"><scope>GQCP::RTransformation</scope><name>SimpleTransformation</name></member>

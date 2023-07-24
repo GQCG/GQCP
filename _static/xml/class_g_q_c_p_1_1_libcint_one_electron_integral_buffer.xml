@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_libcint_one_electron_integral_buffer" kind="class" language="C++" prot="public">
     <compoundname>GQCP::LibcintOneElectronIntegralBuffer</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_base_one_electron_integral_buffer" prot="public" virt="non-virtual">GQCP::BaseOneElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;</basecompoundref>
@@ -20,6 +20,7 @@
         <definition>using GQCP::LibcintOneElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;::IntegralScalar =  _IntegralScalar</definition>
         <argsstring></argsstring>
         <name>IntegralScalar</name>
+        <qualifiedname>GQCP::LibcintOneElectronIntegralBuffer::IntegralScalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -35,6 +36,7 @@
         <definition>constexpr auto GQCP::LibcintOneElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;::N</definition>
         <argsstring></argsstring>
         <name>N</name>
+        <qualifiedname>GQCP::LibcintOneElectronIntegralBuffer::N</qualifiedname>
         <initializer>= _N</initializer>
         <briefdescription>
         </briefdescription>
@@ -51,6 +53,7 @@
         <definition>double GQCP::LibcintOneElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;::scaling_factor</definition>
         <argsstring></argsstring>
         <name>scaling_factor</name>
+        <qualifiedname>GQCP::LibcintOneElectronIntegralBuffer::scaling_factor</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -64,6 +67,7 @@
         <definition>std::vector&lt;IntegralScalar&gt; GQCP::LibcintOneElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;::buffer</definition>
         <argsstring></argsstring>
         <name>buffer</name>
+        <qualifiedname>GQCP::LibcintOneElectronIntegralBuffer::buffer</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -77,6 +81,7 @@
         <definition>int GQCP::LibcintOneElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;::result</definition>
         <argsstring></argsstring>
         <name>result</name>
+        <qualifiedname>GQCP::LibcintOneElectronIntegralBuffer::result</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -92,6 +97,7 @@
         <definition>GQCP::LibcintOneElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;::LibcintOneElectronIntegralBuffer</definition>
         <argsstring>(const std::vector&lt; IntegralScalar &gt; &amp;buffer, const size_t nbf1, const size_t nbf2, const int result, const double scaling_factor=1.0)</argsstring>
         <name>LibcintOneElectronIntegralBuffer</name>
+        <qualifiedname>GQCP::LibcintOneElectronIntegralBuffer::LibcintOneElectronIntegralBuffer</qualifiedname>
         <param>
           <type>const std::vector&lt; <ref refid="class_g_q_c_p_1_1_libcint_one_electron_integral_buffer_1a7f722c70ac54deb13b76a7baab9c18c2" kindref="member">IntegralScalar</ref> &gt; &amp;</type>
           <declname>buffer</declname>
@@ -168,6 +174,7 @@
         <definition>bool GQCP::LibcintOneElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;::areIntegralsAllZero</definition>
         <argsstring>() const override</argsstring>
         <name>areIntegralsAllZero</name>
+        <qualifiedname>GQCP::LibcintOneElectronIntegralBuffer::areIntegralsAllZero</qualifiedname>
         <reimplements refid="class_g_q_c_p_1_1_base_one_electron_integral_buffer_1a5232fce397b298cb104338dcca2f4372">areIntegralsAllZero</reimplements>
         <briefdescription>
         </briefdescription>
@@ -185,6 +192,7 @@
         <definition>IntegralScalar GQCP::LibcintOneElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;::value</definition>
         <argsstring>(const size_t i, const size_t f1, const size_t f2) const override</argsstring>
         <name>value</name>
+        <qualifiedname>GQCP::LibcintOneElectronIntegralBuffer::value</qualifiedname>
         <reimplements refid="class_g_q_c_p_1_1_base_one_electron_integral_buffer_1a7bc13b7b9e41f521fee0b6e42010bf2f">value</reimplements>
         <param>
           <type>const size_t</type>
@@ -261,27 +269,27 @@
 </para>
     </detaileddescription>
     <inheritancegraph>
+      <node id="2">
+        <label>GQCP::BaseOneElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_one_electron_integral_buffer"/>
+      </node>
       <node id="1">
         <label>GQCP::LibcintOneElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;</label>
         <link refid="class_g_q_c_p_1_1_libcint_one_electron_integral_buffer"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
-      </node>
-      <node id="2">
-        <label>GQCP::BaseOneElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;</label>
-        <link refid="class_g_q_c_p_1_1_base_one_electron_integral_buffer"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
+      <node id="2">
+        <label>GQCP::BaseOneElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_one_electron_integral_buffer"/>
+      </node>
       <node id="1">
         <label>GQCP::LibcintOneElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;</label>
         <link refid="class_g_q_c_p_1_1_libcint_one_electron_integral_buffer"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
-      </node>
-      <node id="2">
-        <label>GQCP::BaseOneElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;</label>
-        <link refid="class_g_q_c_p_1_1_base_one_electron_integral_buffer"/>
       </node>
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintOneElectronIntegralBuffer.hpp" line="36" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintOneElectronIntegralBuffer.hpp" bodystart="36" bodyend="87"/>

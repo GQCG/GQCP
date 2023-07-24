@@ -1,0 +1,360 @@
+\hypertarget{_square_matrix_8hpp_source}{}\doxysection{Square\+Matrix.\+hpp}
+\label{_square_matrix_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp}}
+\mbox{\hyperlink{_square_matrix_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_matrix_8hpp}{Mathematical/Representation/Matrix.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{miscellaneous_8hpp}{Utilities/miscellaneous.hpp}}"{}}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <boost/numeric/conversion/converter.hpp>}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <numeric>}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar>}
+\DoxyCodeLine{00038\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix}}:}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX}}<\_Scalar>\ \{}
+\DoxyCodeLine{00040\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ The\ scalar\ type.}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_aaeabfd4080a075f9d6dec0e4487cf3b3}{Scalar}}\ =\ \_Scalar;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ 'this'.}}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Self}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00050\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Constructors}}
+\DoxyCodeLine{00051\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_aeb77a54f205d882662841c0aaab2dbc1}{SquareMatrix}}()\ :}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX}}<\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_aaeabfd4080a075f9d6dec0e4487cf3b3}{Scalar}}>()\ \{\}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00065\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_a3a3e9592b9d14e30e923ebd49f177177}{SquareMatrix}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ dim)\ :}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX}}<\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_aaeabfd4080a075f9d6dec0e4487cf3b3}{Scalar}}>(dim,\ dim)\ \{\}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00074\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_a71c12ab57ae3a136b19c67270a138c02}{SquareMatrix}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ rows,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ cols)\ :}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX}}<\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_aaeabfd4080a075f9d6dec0e4487cf3b3}{Scalar}}>(rows,\ cols)\ \{\}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00083\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_a0ccee967e25408559c5b06c2e8d1b2fd}{SquareMatrix}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<Scalar>}}\&\ M)\ :}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX}}<\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_aaeabfd4080a075f9d6dec0e4487cf3b3}{Scalar}}>(M)\ \{}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ the\ given\ matrix\ is\ square.}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>cols()\ !=\ this-\/>rows())\ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}SquareMatrix::SquareMatrix(const\ MatrixX<Scalar>\&):\ The\ given\ matrix\ is\ not\ square."{}});}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00090\ \ \ \ \ \}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ DerivedExpression>}
+\DoxyCodeLine{00101\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_aade211ea90d7a106a08db23939e20ecc}{SquareMatrix}}(\textcolor{keyword}{const}\ Eigen::MatrixBase<DerivedExpression>\&\ expression)\ :}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Self}}(\mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX}}<\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_aaeabfd4080a075f9d6dec0e4487cf3b3}{Scalar}}>(expression))\ \ \textcolor{comment}{//\ The\ base\ constructor\ returns\ the\ required\ type\ for\ the\ square-\/checking\ constructor.}}
+\DoxyCodeLine{00103\ \ \ \ \ \{\}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00107\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Named\ constructors.}}
+\DoxyCodeLine{00108\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Self}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_af916a1d7dab54e720134c9445f32b2ea}{FromStrictTriangle}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<Scalar>}}\&\ v)\ \{}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ dim\ =\ \mbox{\hyperlink{namespace_g_q_c_p_a1457a824d08dadcac6a081f036d4eaa5}{strictTriangularRootOf}}(v.size());}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Self}}\ A\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_ae3551bb3ac15b2560846f7a5956d1d90}{Self::Zero}}(dim);}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ column\_index\ =\ 0;}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ row\_index\ =\ column\_index\ +\ 1;\ \ \textcolor{comment}{//\ fill\ the\ lower\ triangle}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ vector\_index\ =\ 0;\ vector\_index\ <\ v.size();\ vector\_index++)\ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ A(row\_index,\ column\_index)\ =\ v(vector\_index);}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (row\_index\ ==\ dim\ -\/\ 1)\ \{\ \ \textcolor{comment}{//\ -\/1\ because\ of\ computers}}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ column\_index++;}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ row\_index\ =\ column\_index\ +\ 1;}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ row\_index++;}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ A;}
+\DoxyCodeLine{00133\ \ \ \ \ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Self}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_aa6a5cf30d688d7b21a2605b4a46d2ca9}{Identity}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ dim)\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Self}}\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<Scalar>::Identity}}(dim,\ dim)\};\ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Self}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_a0762291135e1043da5582add757a5240}{PartitionMatrix}}(\textcolor{keyword}{const}\ std::vector<size\_t>\&\ indices,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ M)\ \{}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Self}}\ A\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_ae3551bb3ac15b2560846f7a5956d1d90}{Self::Zero}}(M);}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ index\ :\ indices)\ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ >=\ M)\ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}SquareMatrix::PartitionMatrix(std::vector<size\_t>,\ size\_t):\ index\ is\ larger\ than\ matrix\ dimension"{}});}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ A(index,\ index)\ =\ 1;}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ A;}
+\DoxyCodeLine{00165\ \ \ \ \ \}}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Self}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_afce67055c3293379cc196854bb235e75}{PartitionMatrix}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ start,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ range,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ M)\ \{}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ std::vector<size\_t>\ l(range);}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ std::iota(std::begin(l),\ std::end(l),\ start);}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_a0762291135e1043da5582add757a5240}{PartitionMatrix}}(l,\ M);}
+\DoxyCodeLine{00181\ \ \ \ \ \}}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Self}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_a57533e5025634786577ccc29e183c04c}{Random}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ dim)\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Self}}\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<Scalar>::Random}}(dim,\ dim)\};\ \}}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Self}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_af9a12d2f0b3447800c1743b503233cab}{RandomSymmetric}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ dim)\ \{}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Any\ matrix\ (A\ +\ A.adjoint)\ is\ by\ construction\ symmetric.}}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Self}}\ A\_random\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_a57533e5025634786577ccc29e183c04c}{Self::Random}}(dim);}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ A\_random\ +\ A\_random.adjoint();}
+\DoxyCodeLine{00206\ \ \ \ \ \}}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Self}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_a7b4e7cb4f0a489ff6595054f133f1861}{RandomUnitary}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ dim)\ \{}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ a\ random\ unitary\ matrix\ by\ diagonalizing\ a\ random\ symmetric\ matrix.}}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Self}}\ A\_symmetric\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_af9a12d2f0b3447800c1743b503233cab}{Self::RandomSymmetric}}(dim);}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ Eigen::SelfAdjointEigenSolver<Eigen::Matrix<Scalar,\ Eigen::Dynamic,\ Eigen::Dynamic>>\ unitary\_solver\ \{A\_symmetric\};}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ unitary\_solver.eigenvectors();}
+\DoxyCodeLine{00223\ \ \ \ \ \}}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Self}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_af0b4efec0dffa9a02baf6143c47ee3ed}{SymmetricFromUpperTriangle}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<Scalar>}}\&\ v)\ \{}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ dim\ =\ \mbox{\hyperlink{namespace_g_q_c_p_a1656ae0f118050897b8440752240b85e}{triangularRootOf}}(v.size());}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Self}}\ A\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_ae3551bb3ac15b2560846f7a5956d1d90}{Self::Zero}}(dim);}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ k\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ vector\ index}}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ dim;\ i++)\ \{\ \ \ \ \ \ \textcolor{comment}{//\ row\ index}}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ j\ =\ i;\ j\ <\ dim;\ j++)\ \{\ \ \textcolor{comment}{//\ column\ index}}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ !=\ j)\ \{}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ A(i,\ j)\ =\ v(k);}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ A(j,\ i)\ =\ v(k);}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ A(i,\ i)\ =\ v(k);}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ k++;}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ A;}
+\DoxyCodeLine{00252\ \ \ \ \ \}}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00260\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Self}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_aca7230511fb5f4b03f9125c943fbff3c}{SymmetricFromUpperTriangleWithoutDiagonal}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<Scalar>}}\&\ v)\ \{}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ dim\ =\ 0;}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ d\ =\ 1;\ d\ <\ v.size();\ d++)\ \{}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ dim\ +=\ d;}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Self}}\ A\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_ae3551bb3ac15b2560846f7a5956d1d90}{Self::Zero}}(dim);}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ k\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ vector\ index}}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ dim;\ i++)\ \{\ \ \ \ \ \ \textcolor{comment}{//\ row\ index}}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ j\ =\ i;\ j\ <\ dim;\ j++)\ \{\ \ \textcolor{comment}{//\ column\ index}}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ !=\ j)\ \{}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ A(i,\ j)\ =\ v(k);}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ A(j,\ i)\ =\ v(k);}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ k++;}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ A;}
+\DoxyCodeLine{00281\ \ \ \ \ \}}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ }
+\DoxyCodeLine{00291\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Self}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_ae3551bb3ac15b2560846f7a5956d1d90}{Zero}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ dim)\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Self}}\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<Scalar>::Zero}}(dim,\ dim)\};\ \}}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00294\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00295\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ General\ information}}
+\DoxyCodeLine{00296\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00301\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_a37d881f47fe4a016e5549e3ac22e7aea}{dimension}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{size\_t}\textcolor{keyword}{>}(this-\/>cols());\ \}\ \ \textcolor{comment}{//\ equals\ this-\/>rows()}}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00307\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_a0b63025d8fd5ed7c7cfdb6da82a1f68d}{isSelfAdjoint}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ threshold\ =\ 1.0e-\/08)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ (*this).adjoint().isApprox(*\textcolor{keyword}{this},\ threshold);\ \}}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00313\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_a957455e43a3f0991500024376713cfec}{isHermitian}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ threshold\ =\ 1.0e-\/08)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_a0b63025d8fd5ed7c7cfdb6da82a1f68d}{isSelfAdjoint}}(threshold);\ \}}
+\DoxyCodeLine{00314\ }
+\DoxyCodeLine{00315\ }
+\DoxyCodeLine{00319\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_afeb6926506aceed33af8ad57560bd67d}{isAntiHermitian}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ threshold\ =\ 1.0e-\/08)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ (*this).adjoint().isApprox(-\/*\textcolor{keyword}{this},\ threshold);\ \}}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00321\ }
+\DoxyCodeLine{00325\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_a323cfd30a36adbf412f6f02d8a009cd3}{isSymmetric}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ threshold\ =\ 1.0e-\/08)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ (*this).transpose().isApprox(*\textcolor{keyword}{this},\ threshold);\ \}}
+\DoxyCodeLine{00326\ }
+\DoxyCodeLine{00327\ }
+\DoxyCodeLine{00328\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00329\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Algebraic\ manipulations}}
+\DoxyCodeLine{00330\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00331\ }
+\DoxyCodeLine{00337\ \ \ \ \ std::array<Self,\ 2>\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_ab58bd710203f7eea5af1bedd94c86410}{noPivotLUDecompose}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00338\ }
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ M\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_a37d881f47fe4a016e5549e3ac22e7aea}{dimension}}();}
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Self}}\ L\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_ae3551bb3ac15b2560846f7a5956d1d90}{Self::Zero}}(M);}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Self}}\ U\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_ae3551bb3ac15b2560846f7a5956d1d90}{Self::Zero}}(M);}
+\DoxyCodeLine{00343\ }
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Algorithm\ from\ "{}https://www.geeksforgeeks.org/doolittle-\/algorithm-\/lu-\/decomposition/"{}}}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ M;\ i++)\ \{}
+\DoxyCodeLine{00346\ }
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Systematically\ solve\ for\ the\ entries\ of\ the\ upper\ triangular\ matrix\ U:}}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ U\_ik\ =\ A\_ik\ -\/\ (LU)\_ik}}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ k\ =\ i;\ k\ <\ M;\ k++)\ \{}
+\DoxyCodeLine{00350\ }
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Summation\ of\ L(i,\ j)\ *\ U(j,\ k)}}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sum\ =\ 0.0;}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ j\ =\ 0;\ j\ <\ i;\ j++)\ \{}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sum\ +=\ (L(i,\ j)\ *\ U(j,\ k));}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00356\ }
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Evaluating\ U(i,\ k)}}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ U(i,\ k)\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a1f09036eef26b17fa3be4c02b05baaf0}{operator()}}(i,\ k)\ -\/\ sum;}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00360\ }
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Systematically\ solve\ for\ the\ entries\ of\ the\ lower\ triangular\ matrix\ L:}}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ L\_ik\ =\ (A\_ik\ -\/\ (LU)\_ik)\ /\ U\_kk}}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ k\ =\ i;\ k\ <\ M;\ k++)\ \{}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ ==\ k)\ \{}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ L(i,\ i)\ =\ 1;\ \ \textcolor{comment}{//\ diagonal\ as\ 1}}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00367\ }
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Summation\ of\ L(k,\ j)\ *\ U(j,\ i)}}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sum\ =\ 0.0;}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ j\ =\ 0;\ j\ <\ i;\ j++)\ \{}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sum\ +=\ (L(k,\ j)\ *\ U(j,\ i));}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00373\ }
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Evaluating\ L(k,\ i)}}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ L(k,\ i)\ =\ (this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a1f09036eef26b17fa3be4c02b05baaf0}{operator()}}(k,\ i)\ -\/\ sum)\ /\ U(i,\ i);}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00379\ }
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Test\ if\ the\ decomposition\ was\ stable}}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Self}}\ A\ =\ L\ *\ U;}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (A.isApprox(*\textcolor{keyword}{this}))\ \{}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::array<Self,\ 2>(\{L,\ U\});}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}SquareMatrix<Scalar>::noPivotLUDecompose():\ The\ decomposition\ was\ not\ stable"{}});}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00387\ \ \ \ \ \}}
+\DoxyCodeLine{00388\ }
+\DoxyCodeLine{00389\ }
+\DoxyCodeLine{00403\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_af7a97f3e26ac36e76ed47d27443cf8dc}{pairWiseStrictReduced}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00404\ }
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ dim\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_a37d881f47fe4a016e5549e3ac22e7aea}{dimension}}();}
+\DoxyCodeLine{00406\ }
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<Scalar>}}\ m\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<Scalar>::Zero}}((dim\ *\ (dim\ -\/\ 1)\ /\ 2));\ \ \textcolor{comment}{//\ strictly\ lower\ triangle\ has\ dim(dim-\/1)/2\ parameters}}
+\DoxyCodeLine{00408\ }
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ vector\_index\ =\ 0;}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ q\ =\ 0;\ q\ <\ dim;\ q++)\ \{\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ "{}column\ major"{}\ ordering\ for,\ so\ we\ do\ p\ first,\ then\ q}}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ p\ =\ q\ +\ 1;\ p\ <\ dim;\ p++)\ \{\ \ \textcolor{comment}{//\ strict\ lower\ triangle\ means\ p\ >\ q}}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m(vector\_index)\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a1f09036eef26b17fa3be4c02b05baaf0}{operator()}}(p,\ q);}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vector\_index++;}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00416\ }
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m;}
+\DoxyCodeLine{00418\ \ \ \ \ \}}
+\DoxyCodeLine{00419\ }
+\DoxyCodeLine{00420\ }
+\DoxyCodeLine{00421\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00422\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Permanents}}
+\DoxyCodeLine{00423\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00424\ }
+\DoxyCodeLine{00428\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_ad2771d96e3cff714f68dbdb5c7420021}{calculatePermanentCombinatorial}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00429\ }
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ recursion\ ends\ when\ the\ given\ 'matrix'\ is\ just\ a\ number}}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((this-\/>rows()\ ==\ 1)\ \&\&\ (this-\/>cols()\ ==\ 1))\ \{}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a1f09036eef26b17fa3be4c02b05baaf0}{operator()}}(0,\ 0);}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00434\ }
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ j\ =\ 0;\ \ \textcolor{comment}{//\ develop\ by\ the\ first\ column}}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ value\ =\ 0.0;}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ this-\/>rows();\ i++)\ \{}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \ \ \ \ value\ +=\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a1f09036eef26b17fa3be4c02b05baaf0}{operator()}}(i,\ j)\ *\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}(this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_aaca842a9b055761acb9dee3664fc2364}{calculateMinor}}(i,\ j)).\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_ad2771d96e3cff714f68dbdb5c7420021}{calculatePermanentCombinatorial}}();\ \ \textcolor{comment}{//\ need\ to\ convert\ because\ 'minor'\ is\ a\ base\ function\ and\ isn't\ guaranteed\ to\ be\ square}}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00440\ }
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ value;}
+\DoxyCodeLine{00442\ \ \ \ \ \}}
+\DoxyCodeLine{00443\ }
+\DoxyCodeLine{00444\ }
+\DoxyCodeLine{00450\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_af4bae3858d82278f0a0ada4382b8c9f9}{calculatePermanentRyser}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00451\ }
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ n\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_a37d881f47fe4a016e5549e3ac22e7aea}{dimension}}();}
+\DoxyCodeLine{00453\ }
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Loop\ over\ all\ submatrices\ of\ A}}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ value\ =\ 0.0;\ \ \textcolor{comment}{//\ value\ of\ the\ permanent}}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ number\_of\_submatrices\ =\ boost::numeric::converter<size\_t,\ double>::convert(std::pow(2,\ n));}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ S\ =\ 1;\ S\ <\ number\_of\_submatrices;\ S++)\ \{\ \ \textcolor{comment}{//\ there\ are\ no\ 'chosen\ columns'\ in\ S=0}}
+\DoxyCodeLine{00458\ }
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Generate\ the\ current\ submatrix\ through\ the\ Gray\ code\ of\ S:\ if\ the\ bit\ is\ 1,\ the\ column\ is\ chosen}}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ gray\_code\_value\ =\ \mbox{\hyperlink{namespace_g_q_c_p_a66b68f0876efe8c6a350a8a653216007}{grayCodeOf}}(S);}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ k\ =\ \_\_builtin\_popcountll(gray\_code\_value);\ \ \textcolor{comment}{//\ number\ of\ columns}}
+\DoxyCodeLine{00462\ }
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<Scalar>}}\ X\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<Scalar>::Zero}}(n,\ k);}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ j\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ column\ index\ in\ X}}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (gray\_code\_value\ !=\ 0)\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ loop\ over\ the\ set\ bits\ in\ the\ Gray\ code}}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ index\ =\ \_\_builtin\_ctzll(gray\_code\_value);\ \ \textcolor{comment}{//\ the\ index\ in\ the\ original\ matrix}}
+\DoxyCodeLine{00467\ }
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ X.col(j)\ =\ this-\/>col(index);}
+\DoxyCodeLine{00469\ }
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ gray\_code\_value\ \string^=\ gray\_code\_value\ \&\ -\/gray\_code\_value;\ \ \textcolor{comment}{//\ flip\ the\ first\ set\ bit}}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ j++;}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00473\ }
+\DoxyCodeLine{00474\ }
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ product\ of\ all\ the\ row\ sums\ and\ multiply\ by\ the\ sign}}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ product\_of\_rowsums\ =\ X.array().rowwise().sum().prod();}
+\DoxyCodeLine{00477\ }
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ t\ =\ n\ -\/\ k;\ \ \textcolor{comment}{//\ number\ of\ deleted\ columns}}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ sign\ =\ std::pow(-\/1,\ t);}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \ \ \ \ value\ +=\ sign\ *\ product\_of\_rowsums;}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00482\ }
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ value;}
+\DoxyCodeLine{00484\ \ \ \ \ \}}
+\DoxyCodeLine{00485\ \};}
+\DoxyCodeLine{00486\ }
+\DoxyCodeLine{00487\ }
+\DoxyCodeLine{00488\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

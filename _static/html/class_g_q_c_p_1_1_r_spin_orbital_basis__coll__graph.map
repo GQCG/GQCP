@@ -1,9 +1,10 @@
 <map id="GQCP::RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt;" name="GQCP::RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt;">
-<area shape="rect" id="node1" title=" " alt="" coords="317,721,531,960"/>
-<area shape="rect" id="node2" href="$class_g_q_c_p_1_1_simple_spin_orbital_basis.html" title=" " alt="" coords="287,477,561,672"/>
+<area shape="rect" id="node1" title=" " alt="" coords="441,735,655,973"/>
+<area shape="rect" id="node2" href="$class_g_q_c_p_1_1_simple_spin_orbital_basis.html" title=" " alt="" coords="411,491,685,685"/>
 <area shape="rect" id="node3" href="$class_g_q_c_p_1_1_simple_spinor_basis.html" title=" " alt="" coords="305,204,543,428"/>
 <area shape="rect" id="node4" href="$class_g_q_c_p_1_1_c_r_t_p.html" title=" " alt="" coords="5,20,200,127"/>
 <area shape="rect" id="node5" href="$class_g_q_c_p_1_1_basis_transformable.html" title=" " alt="" coords="224,5,419,141"/>
 <area shape="rect" id="node6" href="$class_g_q_c_p_1_1_jacobi_rotatable.html" title=" " alt="" coords="443,20,613,127"/>
 <area shape="rect" id="node7" href="$struct_g_q_c_p_1_1_basis_transformable_traits.html" title=" " alt="" coords="637,27,832,119"/>
+<area shape="rect" id="node8" href="$class_g_q_c_p_1_1_scalar_basis.html" title=" " alt="" coords="567,204,777,428"/>
 </map>

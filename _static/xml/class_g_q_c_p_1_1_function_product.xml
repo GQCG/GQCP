@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_function_product" kind="class" language="C++" prot="public">
     <compoundname>GQCP::FunctionProduct</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_function" prot="public" virt="non-virtual">GQCP::Function&lt; product_t&lt; T1::OutputType, T2::OutputType &gt;, T1::InputType &gt;</basecompoundref>
@@ -19,6 +19,7 @@
         <definition>using GQCP::FunctionProduct&lt; T1, T2 &gt;::OutputType =  product_t&lt;typename T1::OutputType, typename T2::OutputType&gt;</definition>
         <argsstring></argsstring>
         <name>OutputType</name>
+        <qualifiedname>GQCP::FunctionProduct::OutputType</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -32,6 +33,7 @@
         <definition>using GQCP::FunctionProduct&lt; T1, T2 &gt;::InputType =  typename T1::InputType</definition>
         <argsstring></argsstring>
         <name>InputType</name>
+        <qualifiedname>GQCP::FunctionProduct::InputType</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -47,19 +49,21 @@
         <definition>T1 GQCP::FunctionProduct&lt; T1, T2 &gt;::m_lhs</definition>
         <argsstring></argsstring>
         <name>m_lhs</name>
+        <qualifiedname>GQCP::FunctionProduct::m_lhs</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/Function.hpp" line="55" column="8" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/Function.hpp" bodystart="51" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/Function.hpp" line="55" column="8" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/Function.hpp" bodystart="55" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_g_q_c_p_1_1_function_product_1af58291013a0ee5ab42420661dc6f3265" prot="private" static="no" mutable="no">
         <type>T2</type>
         <definition>T2 GQCP::FunctionProduct&lt; T1, T2 &gt;::m_rhs</definition>
         <argsstring></argsstring>
         <name>m_rhs</name>
+        <qualifiedname>GQCP::FunctionProduct::m_rhs</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -75,6 +79,7 @@
         <definition>GQCP::FunctionProduct&lt; T1, T2 &gt;::FunctionProduct</definition>
         <argsstring>(const T1 &amp;lhs, const T2 &amp;rhs)</argsstring>
         <name>FunctionProduct</name>
+        <qualifiedname>GQCP::FunctionProduct::FunctionProduct</qualifiedname>
         <param>
           <type>const T1 &amp;</type>
           <declname>lhs</declname>
@@ -114,6 +119,7 @@
         <definition>GQCP::FunctionProduct&lt; T1, T2 &gt;::FunctionProduct</definition>
         <argsstring>()=default</argsstring>
         <name>FunctionProduct</name>
+        <qualifiedname>GQCP::FunctionProduct::FunctionProduct</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -128,6 +134,7 @@
         <definition>GQCP::FunctionProduct&lt; T1, T2 &gt;::FunctionProduct</definition>
         <argsstring>(const int zero)</argsstring>
         <name>FunctionProduct</name>
+        <qualifiedname>GQCP::FunctionProduct::FunctionProduct</qualifiedname>
         <param>
           <type>const int</type>
           <declname>zero</declname>
@@ -156,6 +163,7 @@
         <definition>std::string GQCP::FunctionProduct&lt; T1, T2 &gt;::description</definition>
         <argsstring>() const</argsstring>
         <name>description</name>
+        <qualifiedname>GQCP::FunctionProduct::description</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -167,11 +175,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/Function.hpp" line="110" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/Function.hpp" bodystart="110" bodyend="112"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_function_product_1a73e9bbd8365fb2201d6f8877bb452f05" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_function_product_1a9b3e0049361fc6face230a0530dfe1c8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const T1 &amp;</type>
-        <definition>const T1&amp; GQCP::FunctionProduct&lt; T1, T2 &gt;::lhs</definition>
+        <definition>const T1 &amp; GQCP::FunctionProduct&lt; T1, T2 &gt;::lhs</definition>
         <argsstring>() const</argsstring>
         <name>lhs</name>
+        <qualifiedname>GQCP::FunctionProduct::lhs</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -183,11 +192,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/Function.hpp" line="122" column="14" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/Function.hpp" bodystart="122" bodyend="122"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_function_product_1a33861d4eea3910b55da81ced970e792c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_function_product_1a1f83a35247c9a0b0a08ac9be167d0944" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const T2 &amp;</type>
-        <definition>const T2&amp; GQCP::FunctionProduct&lt; T1, T2 &gt;::rhs</definition>
+        <definition>const T2 &amp; GQCP::FunctionProduct&lt; T1, T2 &gt;::rhs</definition>
         <argsstring>() const</argsstring>
         <name>rhs</name>
+        <qualifiedname>GQCP::FunctionProduct::rhs</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -204,6 +214,7 @@
         <definition>OutputType GQCP::FunctionProduct&lt; T1, T2 &gt;::operator()</definition>
         <argsstring>(const InputType &amp;in) const override</argsstring>
         <name>operator()</name>
+        <qualifiedname>GQCP::FunctionProduct::operator()</qualifiedname>
         <reimplements refid="class_g_q_c_p_1_1_function_1a921ee4632b3b07753bb1a9b16df38198">operator()</reimplements>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_function_product_1a0525863c7ef5c615caf20545fc7131a9" kindref="member">InputType</ref> &amp;</type>
@@ -285,12 +296,12 @@
       <member refid="class_g_q_c_p_1_1_function_product_1a54e1ea00ff54f37010c910c5048f98b2" prot="public" virt="non-virtual"><scope>GQCP::FunctionProduct</scope><name>FunctionProduct</name></member>
       <member refid="class_g_q_c_p_1_1_function_product_1a8ee16cb45ce868fd8b0e95c9cc92b868" prot="public" virt="non-virtual"><scope>GQCP::FunctionProduct</scope><name>FunctionProduct</name></member>
       <member refid="class_g_q_c_p_1_1_function_product_1a0525863c7ef5c615caf20545fc7131a9" prot="public" virt="non-virtual"><scope>GQCP::FunctionProduct</scope><name>InputType</name></member>
-      <member refid="class_g_q_c_p_1_1_function_product_1a73e9bbd8365fb2201d6f8877bb452f05" prot="public" virt="non-virtual"><scope>GQCP::FunctionProduct</scope><name>lhs</name></member>
+      <member refid="class_g_q_c_p_1_1_function_product_1a9b3e0049361fc6face230a0530dfe1c8" prot="public" virt="non-virtual"><scope>GQCP::FunctionProduct</scope><name>lhs</name></member>
       <member refid="class_g_q_c_p_1_1_function_product_1acabaeb8c27e915018cf4dfd8f40d65f6" prot="private" virt="non-virtual"><scope>GQCP::FunctionProduct</scope><name>m_lhs</name></member>
       <member refid="class_g_q_c_p_1_1_function_product_1af58291013a0ee5ab42420661dc6f3265" prot="private" virt="non-virtual"><scope>GQCP::FunctionProduct</scope><name>m_rhs</name></member>
       <member refid="class_g_q_c_p_1_1_function_product_1aaf24131ec06e6547a7da905b42e3079d" prot="public" virt="virtual"><scope>GQCP::FunctionProduct</scope><name>operator()</name></member>
       <member refid="class_g_q_c_p_1_1_function_product_1af66184a9532200e98693676ab62c4e5d" prot="public" virt="non-virtual"><scope>GQCP::FunctionProduct</scope><name>OutputType</name></member>
-      <member refid="class_g_q_c_p_1_1_function_product_1a33861d4eea3910b55da81ced970e792c" prot="public" virt="non-virtual"><scope>GQCP::FunctionProduct</scope><name>rhs</name></member>
+      <member refid="class_g_q_c_p_1_1_function_product_1a1f83a35247c9a0b0a08ac9be167d0944" prot="public" virt="non-virtual"><scope>GQCP::FunctionProduct</scope><name>rhs</name></member>
       <member refid="class_g_q_c_p_1_1_function_1a1ee5b9fc5712bcf4f125a7cc3f4a4822" prot="public" virt="virtual"><scope>GQCP::FunctionProduct</scope><name>~Function</name></member>
     </listofallmembers>
   </compounddef>

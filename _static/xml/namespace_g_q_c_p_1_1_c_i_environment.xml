@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="namespace_g_q_c_p_1_1_c_i_environment" kind="namespace" language="C++">
     <compoundname>GQCP::CIEnvironment</compoundname>
       <sectiondef kind="func">
@@ -16,6 +16,7 @@
         <definition>auto GQCP::CIEnvironment::Dense</definition>
         <argsstring>(const Hamiltonian &amp;hamiltonian, const ONVBasis &amp;onv_basis) -&gt; EigenproblemEnvironment&lt; typename Hamiltonian::Scalar &gt;</argsstring>
         <name>Dense</name>
+        <qualifiedname>GQCP::CIEnvironment::Dense</qualifiedname>
         <param>
           <type>const Hamiltonian &amp;</type>
           <declname>hamiltonian</declname>
@@ -70,7 +71,7 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CIEnvironment.hpp" line="40" column="6" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CIEnvironment.hpp" bodystart="40" bodyend="47"/>
       </memberdef>
-      <memberdef kind="function" id="namespace_g_q_c_p_1_1_c_i_environment_1a4c3d06afcdcd7d37ab4185bf369ea7e2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespace_g_q_c_p_1_1_c_i_environment_1aa568afa5012235df56fb621612c44766" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Hamiltonian</type>
@@ -80,9 +81,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="class_g_q_c_p_1_1_eigenproblem_environment" kindref="compound">EigenproblemEnvironment</ref>&lt; double &gt;</type>
-        <definition>EigenproblemEnvironment&lt;double&gt; GQCP::CIEnvironment::Iterative</definition>
+        <definition>EigenproblemEnvironment&lt; double &gt; GQCP::CIEnvironment::Iterative</definition>
         <argsstring>(const Hamiltonian &amp;hamiltonian, const ONVBasis &amp;onv_basis, const MatrixX&lt; double &gt; &amp;V)</argsstring>
         <name>Iterative</name>
+        <qualifiedname>GQCP::CIEnvironment::Iterative</qualifiedname>
         <param>
           <type>const Hamiltonian &amp;</type>
           <declname>hamiltonian</declname>

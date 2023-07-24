@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_r_s_q_one_electron_operator_3_01___function_type_00_01___vectorizer_01_4_01_4" kind="struct" language="C++" prot="public">
     <compoundname>GQCP::OperatorTraits&lt; EvaluableRSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt; &gt;</compoundname>
     <includes refid="_evaluable_r_s_q_one_electron_operator_8hpp" local="no">EvaluableRSQOneElectronOperator.hpp</includes>
@@ -17,6 +17,7 @@
         <definition>using GQCP::OperatorTraits&lt; EvaluableRSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt; &gt;::FunctionType =  _FunctionType</definition>
         <argsstring></argsstring>
         <name>FunctionType</name>
+        <qualifiedname>GQCP::OperatorTraits&lt; EvaluableRSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt; &gt;::FunctionType</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -30,6 +31,7 @@
         <definition>using GQCP::OperatorTraits&lt; EvaluableRSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt; &gt;::OutputType =  typename _FunctionType::OutputType</definition>
         <argsstring></argsstring>
         <name>OutputType</name>
+        <qualifiedname>GQCP::OperatorTraits&lt; EvaluableRSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt; &gt;::OutputType</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -43,6 +45,7 @@
         <definition>using GQCP::OperatorTraits&lt; EvaluableRSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt; &gt;::Vectorizer =  _Vectorizer</definition>
         <argsstring></argsstring>
         <name>Vectorizer</name>
+        <qualifiedname>GQCP::OperatorTraits&lt; EvaluableRSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt; &gt;::Vectorizer</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -56,6 +59,7 @@
         <definition>using GQCP::OperatorTraits&lt; EvaluableRSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt; &gt;::DerivedOperator =  EvaluableRSQOneElectronOperator&lt;FunctionType, Vectorizer&gt;</definition>
         <argsstring></argsstring>
         <name>DerivedOperator</name>
+        <qualifiedname>GQCP::OperatorTraits&lt; EvaluableRSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt; &gt;::DerivedOperator</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -69,6 +73,7 @@
         <definition>using GQCP::OperatorTraits&lt; EvaluableRSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt; &gt;::ScalarOperator =  ScalarEvaluableRSQOneElectronOperator&lt;FunctionType&gt;</definition>
         <argsstring></argsstring>
         <name>ScalarOperator</name>
+        <qualifiedname>GQCP::OperatorTraits&lt; EvaluableRSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt; &gt;::ScalarOperator</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -82,6 +87,7 @@
         <definition>using GQCP::OperatorTraits&lt; EvaluableRSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt; &gt;::EvaluatedOperator =  RSQOneElectronOperator&lt;OutputType, Vectorizer&gt;</definition>
         <argsstring></argsstring>
         <name>EvaluatedOperator</name>
+        <qualifiedname>GQCP::OperatorTraits&lt; EvaluableRSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt; &gt;::EvaluatedOperator</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -95,6 +101,7 @@
         <definition>using GQCP::OperatorTraits&lt; EvaluableRSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt; &gt;::OneDM =  Orbital1DM&lt;OutputType&gt;</definition>
         <argsstring></argsstring>
         <name>OneDM</name>
+        <qualifiedname>GQCP::OperatorTraits&lt; EvaluableRSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt; &gt;::OneDM</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>

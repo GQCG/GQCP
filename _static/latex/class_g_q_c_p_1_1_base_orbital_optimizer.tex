@@ -31,7 +31,7 @@ Collaboration diagram for GQCP\+::Base\+Orbital\+Optimizer\+:
 \item 
 virtual \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_a921777ec77da41074b306bab5834454c}{$\sim$\+Base\+Orbital\+Optimizer}} ()=default
 \item 
-virtual \mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{RTransformation}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_af32721cfe32694b37fd050a608d5a374}{calculate\+New\+Rotation\+Matrix}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian) const =0
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{RTransformation}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_a23b43f7fc59abebfeaaa33d790609103}{calculate\+New\+Rotation\+Matrix}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian) const =0
 \item 
 virtual bool \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_a02599e35214b1c257efb3193c536abf2}{check\+For\+Convergence}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian) const =0
 \item 
@@ -73,11 +73,11 @@ The base class for orbital optimizers. Due to the generality of the nature of th
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_base_orbital_optimizer_af32721cfe32694b37fd050a608d5a374}\label{class_g_q_c_p_1_1_base_orbital_optimizer_af32721cfe32694b37fd050a608d5a374}} 
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_orbital_optimizer_a23b43f7fc59abebfeaaa33d790609103}\label{class_g_q_c_p_1_1_base_orbital_optimizer_a23b43f7fc59abebfeaaa33d790609103}} 
 \index{GQCP::BaseOrbitalOptimizer@{GQCP::BaseOrbitalOptimizer}!calculateNewRotationMatrix@{calculateNewRotationMatrix}}
 \index{calculateNewRotationMatrix@{calculateNewRotationMatrix}!GQCP::BaseOrbitalOptimizer@{GQCP::BaseOrbitalOptimizer}}
 \doxysubsubsection{\texorpdfstring{calculateNewRotationMatrix()}{calculateNewRotationMatrix()}}
-{\footnotesize\ttfamily virtual \mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{RTransformation}}$<$double$>$ GQCP\+::\+Base\+Orbital\+Optimizer\+::calculate\+New\+Rotation\+Matrix (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&}]{sq\+\_\+hamiltonian }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{RTransformation}}$<$ double $>$ GQCP\+::\+Base\+Orbital\+Optimizer\+::calculate\+New\+Rotation\+Matrix (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&}]{sq\+\_\+hamiltonian }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
 
 
 \begin{DoxyParams}{Parameters}
@@ -89,7 +89,7 @@ The unitary transformation that will be used to rotate the current Hamiltonian i
 \end{DoxyReturn}
 
 
-Implemented in \mbox{\hyperlink{class_g_q_c_p_1_1_newton_orbital_optimizer_ac7e61168011a697ef30a239b899e06c5}{GQCP\+::\+Newton\+Orbital\+Optimizer}}, and \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_orbital_optimizer_a7dff6c1818ec2325b7dcf5bdf9451832}{GQCP\+::\+Jacobi\+Orbital\+Optimizer}}.
+Implemented in \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_orbital_optimizer_a7dff6c1818ec2325b7dcf5bdf9451832}{GQCP\+::\+Jacobi\+Orbital\+Optimizer}}, and \mbox{\hyperlink{class_g_q_c_p_1_1_newton_orbital_optimizer_ac7e61168011a697ef30a239b899e06c5}{GQCP\+::\+Newton\+Orbital\+Optimizer}}.
 
 \mbox{\Hypertarget{class_g_q_c_p_1_1_base_orbital_optimizer_a02599e35214b1c257efb3193c536abf2}\label{class_g_q_c_p_1_1_base_orbital_optimizer_a02599e35214b1c257efb3193c536abf2}} 
 \index{GQCP::BaseOrbitalOptimizer@{GQCP::BaseOrbitalOptimizer}!checkForConvergence@{checkForConvergence}}
@@ -107,7 +107,7 @@ if the algorithm is considered to be converged
 \end{DoxyReturn}
 
 
-Implemented in \mbox{\hyperlink{class_g_q_c_p_1_1_newton_orbital_optimizer_ab0623fc9be4cf9c68821c2ea6d012acd}{GQCP\+::\+Newton\+Orbital\+Optimizer}}, and \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_orbital_optimizer_a613899349c56b102563b2fe8dff886a6}{GQCP\+::\+Jacobi\+Orbital\+Optimizer}}.
+Implemented in \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_orbital_optimizer_a613899349c56b102563b2fe8dff886a6}{GQCP\+::\+Jacobi\+Orbital\+Optimizer}}, and \mbox{\hyperlink{class_g_q_c_p_1_1_newton_orbital_optimizer_ab0623fc9be4cf9c68821c2ea6d012acd}{GQCP\+::\+Newton\+Orbital\+Optimizer}}.
 
 \mbox{\Hypertarget{class_g_q_c_p_1_1_base_orbital_optimizer_a053125eead499da4abf2088e75d47353}\label{class_g_q_c_p_1_1_base_orbital_optimizer_a053125eead499da4abf2088e75d47353}} 
 \index{GQCP::BaseOrbitalOptimizer@{GQCP::BaseOrbitalOptimizer}!numberOfIterations@{numberOfIterations}}
@@ -127,7 +127,7 @@ the number of iterations that this optimizer has performed
 Optimize the Hamiltonian by subsequently
 \begin{DoxyItemize}
 \item checking for convergence (see \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_a02599e35214b1c257efb3193c536abf2}{check\+For\+Convergence()}})
-\item rotating the Hamiltonian (and spinor basis) with a newly found rotation matrix (see \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_af32721cfe32694b37fd050a608d5a374}{calculate\+New\+Rotation\+Matrix()}})
+\item rotating the Hamiltonian (and spinor basis) with a newly found rotation matrix (see \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_a23b43f7fc59abebfeaaa33d790609103}{calculate\+New\+Rotation\+Matrix()}})
 \end{DoxyItemize}
 
 
@@ -145,7 +145,7 @@ Optimize the Hamiltonian by subsequently
 
 Prepare this object (i.\+e. the context for the orbital optimization algorithm) to be able to check for convergence 
 
-Implemented in \mbox{\hyperlink{class_g_q_c_p_1_1_newton_orbital_optimizer_a8ea385584daa8b470b2a9bfde1d2712b}{GQCP\+::\+Newton\+Orbital\+Optimizer}}, and \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_orbital_optimizer_a4ae385438afc93d40d1cbadfa031a48f}{GQCP\+::\+Jacobi\+Orbital\+Optimizer}}.
+Implemented in \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_orbital_optimizer_a4ae385438afc93d40d1cbadfa031a48f}{GQCP\+::\+Jacobi\+Orbital\+Optimizer}}, and \mbox{\hyperlink{class_g_q_c_p_1_1_newton_orbital_optimizer_a8ea385584daa8b470b2a9bfde1d2712b}{GQCP\+::\+Newton\+Orbital\+Optimizer}}.
 
 
 

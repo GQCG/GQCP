@@ -1,0 +1,100 @@
+\hypertarget{_q_c_method_2_geminals_2v_a_p1ro_g_8hpp_source}{}\doxysection{v\+AP1ro\+G.\+hpp}
+\label{_q_c_method_2_geminals_2v_a_p1ro_g_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/vAP1roG.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/vAP1roG.hpp}}
+\mbox{\hyperlink{_q_c_method_2_geminals_2v_a_p1ro_g_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}Mathematical/Optimization/LinearEquation/LinearEquationEnvironment.hpp"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_non_linear_equation_environment_8hpp}{Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_q_hamiltonian_8hpp}{Operator/SecondQuantized/SQHamiltonian.hpp}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_q_c_structure_8hpp}{QCMethod/QCStructure.hpp}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_q_c_model_2_geminals_2v_a_p1ro_g_8hpp}{QCModel/Geminals/vAP1roG.hpp}}"{}}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00029\ \textcolor{keyword}{namespace\ }QCMethod\ \{}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g}{vAP1roG}}\ \{}
+\DoxyCodeLine{00036\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ N\_P;\ \ \textcolor{comment}{//\ the\ number\ of\ electron\ pairs}}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ K;\ \ \ \ \textcolor{comment}{//\ the\ number\ of\ spatial\ orbitals}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{RSQHamiltonian<double>}}\ sq\_hamiltonian;\ \ \textcolor{comment}{//\ the\ second-\/quantized\ Hamiltonian\ in\ an\ orthonormal\ basis}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00045\ \textcolor{comment}{\ \ \ \ \ *\ \ CONSTRUCTORS}}
+\DoxyCodeLine{00046\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_a7703579c6e66e4bae3342360212577cd}{vAP1roG}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{RSQHamiltonian<double>}}\&\ sq\_hamiltonian,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ N\_P)\ :}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ N\_P\ \{N\_P\},}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ K\ \{sq\_hamiltonian.numberOfOrbitals()\},\ \ \textcolor{comment}{//\ number\ of\ spatial\ orbitals}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ sq\_hamiltonian\ \{sq\_hamiltonian\}\ \{\}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00059\ \textcolor{comment}{\ \ \ \ \ *\ \ PUBLIC\ METHODS}}
+\DoxyCodeLine{00060\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ NonLinearSolver,\ \textcolor{keyword}{typename}\ LinearSolver>}
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure}{QCStructure<GQCP::QCModel::vAP1roG>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1v_a_p1ro_g_a9e5c4837493afea866104aff5813d2d5}{optimize}}(NonLinearSolver\&\ non\_linear\_solver,\ \mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_environment}{NonLinearEquationEnvironment<double>}}\&\ non\_linear\_environment,\ LinearSolver\&\ linear\_solver)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ vAP1roG\ method's\ responsibility\ is\ to\ try\ to:}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ 1)\ optimize\ the\ geminal\ coefficients}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ 2)\ find\ the\ associated\ Lagrange\ multipliers}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1.\ Optimize\ the\ geminal\ coefficients.}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ non\_linear\_solver.perform(non\_linear\_environment);}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ G\_optimal\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients_a7578fd83b0b36f6f97689e7b2cb9cabf}{AP1roGGeminalCoefficients::FromColumnMajor}}(non\_linear\_environment.\mbox{\hyperlink{class_g_q_c_p_1_1_optimization_environment_adb8d5b6dd10be21c085d1a6855d307db}{variables}}.back(),\ this-\/>N\_P,\ this-\/>K);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2.\ Find\ the\ associated\ Lagrange\ multipliers.}}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ A\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g_af8da613c00b56e12c072a16b5a3bc12f}{QCModel::vAP1roG::calculateMultiplierResponseForceConstant}}(sq\_hamiltonian,\ G\_optimal);\ \ \textcolor{comment}{//\ k\_lambda}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ b\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g_a4a59522e0f5f7749e623e9d807732678}{QCModel::vAP1roG::calculateMultiplierResponseForce}}(sq\_hamiltonian,\ N\_P).\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a15b3ff5297e5c06f5f944f770ad485e3}{asVector}}();\ \ \ \ \ \textcolor{comment}{//\ -\/F\_lambda;\ column-\/major}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ LinearEquationEnvironment<double>\ linear\_environment\ \{A,\ b\};}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ linear\_solver.perform(linear\_environment);}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ lambda\_optimal\_vector\ =\ linear\_environment.x;\ \ \textcolor{comment}{//\ since\ b\ was\ column-\/major,\ so\ is\ this\ vector}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ rows\ =\ this-\/>N\_P;\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ number\ of\ rows\ in\ the\ multiplier\ matrix}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ cols\ =\ this-\/>K\ -\/\ this-\/>N\_P;\ \ \textcolor{comment}{//\ the\ number\ of\ columns\ in\ the\ multiplier\ matrix}}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ orbital\_space\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a22c967bc1d33a75341c86b1ca52b0532}{OrbitalSpace::Implicit}}(\{\{\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ this-\/>N\_P\},\ \{\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}},\ this-\/>K\ -\/\ this-\/>N\_P\}\});}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<double>}}\ lambda\_optimal\_matrix\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a8d4e7b8addc8c2b642764dc46008ef2b}{MatrixX<double>::FromColumnMajorVector}}(lambda\_optimal\_vector,\ rows,\ cols);\ \ \textcolor{comment}{//\ the\ actual\ Lagrange\ multipliers,\ reshaped\ into\ a\ matrix}}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ lambda\_optimal\ =\ orbital\_space.createRepresentableObjectFor<\textcolor{keywordtype}{double}>(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}},\ lambda\_optimal\_matrix);}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ To\ make\ a\ QCStructure,\ we\ need\ the\ electronic\ energy,\ geminal\ coefficients\ and\ Lagrange\ multipliers.}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Furthermore,\ the\ solvers\ only\ find\ the\ ground\ state\ wave\ function\ parameters,\ so\ the\ QCStructure\ only\ needs\ to\ contain\ the\ parameters\ for\ one\ state.}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g}{GQCP::QCModel::vAP1roG}}\ vap1rog\_parameters\ \{G\_optimal,\ lambda\_optimal\};}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ E\_electronic\ =\ vap1rog\_parameters.\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g_a20b7dadcb814eb1b6cb1f35a1a7b9576}{calculateEnergy}}(sq\_hamiltonian);}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure}{QCStructure<GQCP::QCModel::vAP1roG>}}(\{E\_electronic\},\ \{vap1rog\_parameters\});}
+\DoxyCodeLine{00106\ \ \ \ \ \}}
+\DoxyCodeLine{00107\ \};}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \}\ \ \textcolor{comment}{//\ namespace\ QCMethod}}
+\DoxyCodeLine{00111\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

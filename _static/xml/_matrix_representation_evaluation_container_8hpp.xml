@@ -1,73 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="_matrix_representation_evaluation_container_8hpp" kind="file" language="C++">
     <compoundname>MatrixRepresentationEvaluationContainer.hpp</compoundname>
     <includes refid="_square_matrix_8hpp" local="yes">Mathematical/Representation/SquareMatrix.hpp</includes>
     <includes local="no">Eigen/Sparse</includes>
     <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
     <incdepgraph>
-      <node id="11">
-        <label>boost/algorithm/string.hpp</label>
-      </node>
-      <node id="17">
-        <label>functional</label>
-      </node>
-      <node id="5">
-        <label>Utilities/Eigen.hpp</label>
-        <link refid="_eigen_8hpp"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-      <node id="18">
-        <label>iterator</label>
-      </node>
-      <node id="2">
-        <label>Mathematical/Representation/SquareMatrix.hpp</label>
-        <link refid="_square_matrix_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="20" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-      </node>
-      <node id="15">
-        <label>Utilities/miscellaneous.hpp</label>
-        <link refid="miscellaneous_8hpp"/>
-        <childnode refid="16" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-      </node>
-      <node id="21">
-        <label>numeric</label>
-      </node>
-      <node id="19">
-        <label>string</label>
-      </node>
-      <node id="20">
-        <label>boost/numeric/conversion/converter.hpp</label>
-      </node>
-      <node id="12">
-        <label>fstream</label>
-      </node>
-      <node id="22">
-        <label>Eigen/Sparse</label>
-      </node>
-      <node id="6">
-        <label>Eigen/Dense</label>
+      <node id="4">
+        <label>Mathematical/Functions/CartesianDirection.hpp</label>
+        <link refid="_cartesian_direction_8hpp"/>
       </node>
       <node id="3">
         <label>Mathematical/Representation/Matrix.hpp</label>
@@ -89,14 +30,31 @@
         <childnode refid="14" relation="include">
         </childnode>
       </node>
-      <node id="8">
-        <label>Utilities/type_traits.hpp</label>
-        <link refid="type__traits_8hpp"/>
-        <childnode refid="9" relation="include">
+      <node id="1">
+        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp</label>
+        <link refid="_matrix_representation_evaluation_container_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
         </childnode>
       </node>
-      <node id="14">
-        <label>vector</label>
+      <node id="2">
+        <label>Mathematical/Representation/SquareMatrix.hpp</label>
+        <link refid="_square_matrix_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Utilities/Eigen.hpp</label>
+        <link refid="_eigen_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
       </node>
       <node id="7">
         <label>Utilities/aliases.hpp</label>
@@ -106,41 +64,83 @@
         <childnode refid="10" relation="include">
         </childnode>
       </node>
-      <node id="1">
-        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp</label>
-        <link refid="_matrix_representation_evaluation_container_8hpp"/>
-        <childnode refid="2" relation="include">
+      <node id="15">
+        <label>Utilities/miscellaneous.hpp</label>
+        <link refid="miscellaneous_8hpp"/>
+        <childnode refid="16" relation="include">
         </childnode>
-        <childnode refid="22" relation="include">
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
         </childnode>
       </node>
-      <node id="10">
-        <label>cstdlib</label>
+      <node id="8">
+        <label>Utilities/type_traits.hpp</label>
+        <link refid="type__traits_8hpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
       </node>
-      <node id="13">
-        <label>iostream</label>
+      <node id="6">
+        <label>Eigen/Dense</label>
       </node>
-      <node id="9">
-        <label>type_traits</label>
+      <node id="22">
+        <label>Eigen/Sparse</label>
       </node>
       <node id="16">
         <label>algorithm</label>
       </node>
-      <node id="4">
-        <label>Mathematical/Functions/CartesianDirection.hpp</label>
-        <link refid="_cartesian_direction_8hpp"/>
+      <node id="11">
+        <label>boost/algorithm/string.hpp</label>
+      </node>
+      <node id="20">
+        <label>boost/numeric/conversion/converter.hpp</label>
+      </node>
+      <node id="10">
+        <label>cstdlib</label>
+      </node>
+      <node id="12">
+        <label>fstream</label>
+      </node>
+      <node id="17">
+        <label>functional</label>
+      </node>
+      <node id="13">
+        <label>iostream</label>
+      </node>
+      <node id="18">
+        <label>iterator</label>
+      </node>
+      <node id="21">
+        <label>numeric</label>
+      </node>
+      <node id="19">
+        <label>string</label>
+      </node>
+      <node id="9">
+        <label>type_traits</label>
+      </node>
+      <node id="14">
+        <label>vector</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="2">
-        <label>/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</label>
-        <link refid="gqcp_8hpp"/>
-      </node>
       <node id="1">
         <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp</label>
         <link refid="_matrix_representation_evaluation_container_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
+      </node>
+      <node id="2">
+        <label>/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</label>
+        <link refid="gqcp_8hpp"/>
       </node>
     </invincdepgraph>
     <innerclass refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container" prot="public">GQCP::MatrixRepresentationEvaluationContainer</innerclass>
@@ -184,10 +184,10 @@
 <codeline lineno="35" refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container" kindref="compound">MatrixRepresentationEvaluationContainer</ref><sp/>{</highlight></codeline>
 <codeline lineno="36"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>type<sp/>that<sp/>is<sp/>used<sp/>as<sp/>a<sp/>matrix<sp/>representation,<sp/>i.e.<sp/>a<sp/>container<sp/>that<sp/>stores<sp/>the<sp/>matrix<sp/>representation.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="38" refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1a365dc456a44d8f1611150741a43434a6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1a365dc456a44d8f1611150741a43434a6" kindref="member">Matrix</ref><sp/>=<sp/>_Matrix;</highlight></codeline>
+<codeline lineno="38" refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1a365dc456a44d8f1611150741a43434a6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1a365dc456a44d8f1611150741a43434a6" kindref="member">Matrix</ref><sp/>=<sp/>_Matrix;</highlight></codeline>
 <codeline lineno="39"><highlight class="normal"></highlight></codeline>
 <codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>scalar<sp/>type<sp/>of<sp/>one<sp/>of<sp/>the<sp/>matrix<sp/>elements:<sp/>real<sp/>or<sp/>complex.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="41" refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1a5249468abc4206c06b7d2786620a99eb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1a5249468abc4206c06b7d2786620a99eb" kindref="member">Scalar</ref><sp/>=<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix_1a820960c1c3ad2c124d6be1ccd0eec021" kindref="member">Matrix::Scalar</ref>;</highlight></codeline>
+<codeline lineno="41" refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1a5249468abc4206c06b7d2786620a99eb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1a5249468abc4206c06b7d2786620a99eb" kindref="member">Scalar</ref><sp/>=<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix_1a820960c1c3ad2c124d6be1ccd0eec021" kindref="member">Matrix::Scalar</ref>;</highlight></codeline>
 <codeline lineno="42"><highlight class="normal"></highlight></codeline>
 <codeline lineno="43"><highlight class="normal"></highlight></codeline>
 <codeline lineno="44"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
@@ -229,7 +229,7 @@
 <codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="103"><highlight class="normal"></highlight></codeline>
 <codeline lineno="104"><highlight class="normal"></highlight></codeline>
-<codeline lineno="108" refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1a2ec4dee0f5cbae2b7730d647c6729eea" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1a365dc456a44d8f1611150741a43434a6" kindref="member">Matrix</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1a2ec4dee0f5cbae2b7730d647c6729eea" kindref="member">evaluation</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1aa62b8fa69579d4f38fada5f3ef224455" kindref="member">matrix</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="108" refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1ab5ade55d3bdebd17751f9b099165c879" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1a365dc456a44d8f1611150741a43434a6" kindref="member">Matrix</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1ab5ade55d3bdebd17751f9b099165c879" kindref="member">evaluation</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1aa62b8fa69579d4f38fada5f3ef224455" kindref="member">matrix</ref>;<sp/>}</highlight></codeline>
 <codeline lineno="109"><highlight class="normal"></highlight></codeline>
 <codeline lineno="110"><highlight class="normal"></highlight></codeline>
 <codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
@@ -254,7 +254,7 @@
 <codeline lineno="144" refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container" kindref="compound">MatrixRepresentationEvaluationContainer</ref>&lt;<ref refid="namespace_eigen" kindref="compound">Eigen</ref>::SparseMatrix&lt;_Scalar&gt;&gt;<sp/>{</highlight></codeline>
 <codeline lineno="145"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>scalar<sp/>type<sp/>of<sp/>one<sp/>of<sp/>the<sp/>matrix<sp/>elements:<sp/>real<sp/>or<sp/>complex.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="147" refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1af84adab4904d8df12521d2c4372b6713" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1af84adab4904d8df12521d2c4372b6713" kindref="member">Scalar</ref><sp/>=<sp/>_Scalar;</highlight></codeline>
+<codeline lineno="147" refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1af84adab4904d8df12521d2c4372b6713" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1af84adab4904d8df12521d2c4372b6713" kindref="member">Scalar</ref><sp/>=<sp/>_Scalar;</highlight></codeline>
 <codeline lineno="148"><highlight class="normal"></highlight></codeline>
 <codeline lineno="149"><highlight class="normal"></highlight></codeline>
 <codeline lineno="150"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
@@ -288,7 +288,7 @@
 <codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;triplet_vector<sp/>=<sp/>{};</highlight></codeline>
 <codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="205"><highlight class="normal"></highlight></codeline>
-<codeline lineno="211" refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1a3ac69a92687fd2a5641baface452f613" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::SparseMatrix&lt;Scalar&gt;&amp;<sp/><ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1a3ac69a92687fd2a5641baface452f613" kindref="member">evaluation</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1aa62b8fa69579d4f38fada5f3ef224455" kindref="member">matrix</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="211" refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1a259e68375ed316ce9d441f7a09c5d5a6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::SparseMatrix&lt;Scalar&gt;&amp;<sp/><ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1a259e68375ed316ce9d441f7a09c5d5a6" kindref="member">evaluation</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1aa62b8fa69579d4f38fada5f3ef224455" kindref="member">matrix</ref>;<sp/>}</highlight></codeline>
 <codeline lineno="212"><highlight class="normal"></highlight></codeline>
 <codeline lineno="216" refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1a65e10aa30f5e6b00d807c4bfd52bafb4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1a65e10aa30f5e6b00d807c4bfd52bafb4" kindref="member">increment</ref>()<sp/>{<sp/>this-&gt;index++;<sp/>}</highlight></codeline>
 <codeline lineno="217"><highlight class="normal"></highlight></codeline>
@@ -306,7 +306,7 @@
 <codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;matrix.reserve(n);</highlight></codeline>
 <codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="241"><highlight class="normal"></highlight></codeline>
-<codeline lineno="245" refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1a7f6e7eab5fea93a00a34cdb70dcfeae3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Eigen::Triplet&lt;Scalar&gt;&gt;&amp;<sp/><ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1a7f6e7eab5fea93a00a34cdb70dcfeae3" kindref="member">triplets</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>triplet_vector;<sp/>}</highlight></codeline>
+<codeline lineno="245" refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1a21c4a071b4bfedccddfb15ed268010cd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Eigen::Triplet&lt;Scalar&gt;&gt;&amp;<sp/><ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_1a21c4a071b4bfedccddfb15ed268010cd" kindref="member">triplets</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>triplet_vector;<sp/>}</highlight></codeline>
 <codeline lineno="246"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="247"><highlight class="normal"></highlight></codeline>
 <codeline lineno="248"><highlight class="normal"></highlight></codeline>
@@ -314,7 +314,7 @@
 <codeline lineno="255" refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container" kindref="compound">MatrixRepresentationEvaluationContainer</ref>&lt;<ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">VectorX</ref>&lt;_Scalar&gt;&gt;<sp/>{</highlight></codeline>
 <codeline lineno="256"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>scalar<sp/>type<sp/>of<sp/>one<sp/>of<sp/>the<sp/>matrix<sp/>elements:<sp/>real<sp/>or<sp/>complex.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="258" refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_1a58ded81d72b782fc4a2e985bf162ee62" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_1a58ded81d72b782fc4a2e985bf162ee62" kindref="member">Scalar</ref><sp/>=<sp/>_Scalar;</highlight></codeline>
+<codeline lineno="258" refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_1a58ded81d72b782fc4a2e985bf162ee62" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_1a58ded81d72b782fc4a2e985bf162ee62" kindref="member">Scalar</ref><sp/>=<sp/>_Scalar;</highlight></codeline>
 <codeline lineno="259"><highlight class="normal"></highlight></codeline>
 <codeline lineno="260"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="261" refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_1affaf625806ea857f2dcca5491b2633ea" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_1aac052cc33b05c34338e8b2ee46f7c637" kindref="member">index</ref><sp/>=<sp/>0;<sp/><sp/></highlight><highlight class="comment">//<sp/>Current<sp/>position<sp/>of<sp/>the<sp/>iterator<sp/>in<sp/>the<sp/>dimension<sp/>of<sp/>the<sp/>ONV<sp/>basis.</highlight><highlight class="normal"></highlight></codeline>
@@ -350,7 +350,7 @@
 <codeline lineno="300"><highlight class="normal"></highlight></codeline>
 <codeline lineno="307" refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_1aeaca9cc8c580b370adea28b10d94d1a3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_1aeaca9cc8c580b370adea28b10d94d1a3" kindref="member">addRowwise</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>row,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_1a58ded81d72b782fc4a2e985bf162ee62" kindref="member">Scalar</ref><sp/>value)<sp/>{<sp/>this-&gt;matvec(row)<sp/>+=<sp/>value<sp/>*<sp/>this-&gt;nonsequential_double;<sp/>}</highlight></codeline>
 <codeline lineno="308"><highlight class="normal"></highlight></codeline>
-<codeline lineno="312" refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_1a62e78d398c69140de6bbff111b26173b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">VectorX&lt;Scalar&gt;</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_1a62e78d398c69140de6bbff111b26173b" kindref="member">evaluation</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;matvec;<sp/>}</highlight></codeline>
+<codeline lineno="312" refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_1a9be240f053bbfb5de2fa2e4c69886bb0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">VectorX&lt;Scalar&gt;</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_1a9be240f053bbfb5de2fa2e4c69886bb0" kindref="member">evaluation</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;matvec;<sp/>}</highlight></codeline>
 <codeline lineno="313"><highlight class="normal"></highlight></codeline>
 <codeline lineno="317" refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_1ad3c265f959d0df2b4d1f67ab192f06ad" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_1ad3c265f959d0df2b4d1f67ab192f06ad" kindref="member">increment</ref>()<sp/>{</highlight></codeline>
 <codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;matvec(this-&gt;index)<sp/>+=<sp/>this-&gt;sequential_double;</highlight></codeline>

@@ -1,0 +1,125 @@
+\hypertarget{_base_f_q_operator_8hpp_source}{}\doxysection{Base\+FQOperator.\+hpp}
+\label{_base_f_q_operator_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/BaseFQOperator.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/BaseFQOperator.hpp}}
+\mbox{\hyperlink{_base_f_q_operator_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_dense_vectorizer_8hpp}{Mathematical/Representation/DenseVectorizer.hpp}}"{}}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ *\ \ MARK:\ BaseFQOperator\ implementation}}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ \_Scalar,\ \textcolor{keyword}{typename}\ \_Vectorizer>}
+\DoxyCodeLine{00039\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator}{BaseFQOperator}}\ \{}
+\DoxyCodeLine{00040\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ The\ number\ of\ electrons\ related\ to\ this\ operator:\ usually\ 1\ or\ 2.}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_ae56208bbc85e6d9d401fa4540f20a573}{NumberOfElectrons}}\ =\ N;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{comment}{//\ The\ scalar\ representation\ of\ the\ operator:\ real\ or\ complex.}}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}{Scalar}}\ =\ \_Scalar;}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ the\ vectorizer\ that\ relates\ to\ the\ tensor\ structure\ of\ one-\/electron\ operators.\ This\ allows\ for\ a\ distinction\ between\ scalar\ operators\ (such\ as\ the\ kinetic\ energy\ operator),\ vector\ operators\ (such\ as\ the\ spin\ operator)\ and\ matrix/tensor\ operators\ (such\ as\ quadrupole\ and\ multipole\ operators).}}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_a3bf379636691d7d74ea96afc8f5049cf}{Vectorizer}}\ =\ \_Vectorizer;}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00053\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Destructor}}
+\DoxyCodeLine{00054\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_a1f47a08d6dbad212da9370b4d55fd522}{\string~BaseFQOperator}}()\ \{\}}
+\DoxyCodeLine{00057\ \};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00061\ \textcolor{comment}{\ *\ \ MARK:\ BaseScalarFQOperator}}
+\DoxyCodeLine{00062\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00070\ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ \_Scalar>}
+\DoxyCodeLine{00071\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_base_scalar_f_q_operator}{BaseScalarFQOperator}}:}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator}{BaseFQOperator}}<N,\ \_Scalar,\ ScalarVectorizer>\ \{}
+\DoxyCodeLine{00073\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00075\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Vectorizer}}
+\DoxyCodeLine{00076\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{comment}{//\ The\ number\ of\ components\ of\ the\ operator.}}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_base_scalar_f_q_operator_a7bf7164b798fb0becf494a29e8d54eb7}{NumberOfComponents}}\ =\ 1;}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{comment}{//\ The\ vectorizer\ related\ to\ this\ operator.}}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer}{ScalarVectorizer}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_base_scalar_f_q_operator_ad07fca0083a7212821250e3beff14242}{vectorizer}};}
+\DoxyCodeLine{00083\ \};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \textcolor{comment}{//\ Instantiate\ the\ static\ const\ vectorizer.}}
+\DoxyCodeLine{00086\ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ \_Scalar>}
+\DoxyCodeLine{00087\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer}{ScalarVectorizer}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_base_scalar_f_q_operator}{BaseScalarFQOperator<N,\ \_Scalar>::vectorizer}}\ \{\};}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00091\ \textcolor{comment}{\ *\ \ MARK:\ Convenience\ aliases\ for\ one-\/electron\ operators}}
+\DoxyCodeLine{00092\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{comment}{//\ A\ scalar-\/like\ one-\/electron\ operator.}}
+\DoxyCodeLine{00095\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00096\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_base_scalar_f_q_operator}{BaseScalarFQOneElectronOperator}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_base_scalar_f_q_operator}{BaseScalarFQOperator<1,\ Scalar>}};}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \textcolor{comment}{//\ A\ vector-\/like\ one-\/electron\ operator.}}
+\DoxyCodeLine{00099\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00100\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator}{BaseVectorFQOneElectronOperator}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator}{BaseFQOperator<1,\ Scalar,\ VectorVectorizer>}};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{comment}{//\ A\ matrix-\/like\ one-\/electron\ operator.}}
+\DoxyCodeLine{00103\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00104\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator}{BaseMatrixFQOneElectronOperator}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator}{BaseFQOperator<1,\ Scalar,\ MatrixVectorizer>}};}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \textcolor{comment}{//\ A\ tensor-\/like\ one-\/electron\ operator.}}
+\DoxyCodeLine{00107\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar,\ \textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00108\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator}{BaseTensorFQOneElectronOperator}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator}{BaseFQOperator<1,\ Scalar,\ TensorVectorizer<N>}}>;}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00112\ \textcolor{comment}{\ *\ \ MARK:\ Convenience\ aliases\ for\ two-\/electron\ operators}}
+\DoxyCodeLine{00113\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \textcolor{comment}{//\ A\ scalar-\/like\ two-\/electron\ operator.}}
+\DoxyCodeLine{00116\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00117\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_base_scalar_f_q_operator}{BaseScalarFQTwoElectronOperator}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_base_scalar_f_q_operator}{BaseScalarFQOperator<2,\ Scalar>}};}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \textcolor{comment}{//\ A\ vector-\/like\ two-\/electron\ operator.}}
+\DoxyCodeLine{00120\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00121\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator}{BaseVectorFQTwoElectronOperator}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator}{BaseFQOperator<2,\ Scalar,\ VectorVectorizer>}};}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \textcolor{comment}{//\ A\ matrix-\/like\ two-\/electron\ operator.}}
+\DoxyCodeLine{00124\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00125\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator}{BaseMatrixFQTwoElectronOperator}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator}{BaseFQOperator<2,\ Scalar,\ MatrixVectorizer>}};}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \textcolor{comment}{//\ A\ tensor-\/like\ two-\/electron\ operator.}}
+\DoxyCodeLine{00128\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar,\ \textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00129\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator}{BaseTensorFQTwoElectronOperator}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator}{BaseFQOperator<2,\ Scalar,\ TensorVectorizer<N>}}>;}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

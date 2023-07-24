@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_base_vector_primitive_integral_engine" kind="class" language="C++" prot="public" abstract="yes">
     <compoundname>GQCP::BaseVectorPrimitiveIntegralEngine</compoundname>
     <derivedcompoundref refid="class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine" prot="public" virt="non-virtual">GQCP::PrimitiveAngularMomentumIntegralEngine&lt; _Shell &gt;</derivedcompoundref>
@@ -12,6 +12,7 @@
         <definition>CartesianDirection GQCP::BaseVectorPrimitiveIntegralEngine::component</definition>
         <argsstring></argsstring>
         <name>component</name>
+        <qualifiedname>GQCP::BaseVectorPrimitiveIntegralEngine::component</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -27,6 +28,7 @@
         <definition>constexpr size_t GQCP::BaseVectorPrimitiveIntegralEngine::Components</definition>
         <argsstring></argsstring>
         <name>Components</name>
+        <qualifiedname>GQCP::BaseVectorPrimitiveIntegralEngine::Components</qualifiedname>
         <initializer>= 3</initializer>
         <briefdescription>
         </briefdescription>
@@ -43,10 +45,11 @@
         <definition>GQCP::BaseVectorPrimitiveIntegralEngine::BaseVectorPrimitiveIntegralEngine</definition>
         <argsstring>(const CartesianDirection component=CartesianDirection::x)</argsstring>
         <name>BaseVectorPrimitiveIntegralEngine</name>
+        <qualifiedname>GQCP::BaseVectorPrimitiveIntegralEngine::BaseVectorPrimitiveIntegralEngine</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8" kindref="member">CartesianDirection</ref></type>
           <declname>component</declname>
-          <defval>CartesianDirection::x</defval>
+          <defval><ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5" kindref="member">CartesianDirection::x</ref></defval>
         </param>
         <briefdescription>
         </briefdescription>
@@ -73,6 +76,7 @@
         <definition>GQCP::BaseVectorPrimitiveIntegralEngine::~BaseVectorPrimitiveIntegralEngine</definition>
         <argsstring>()=0</argsstring>
         <name>~BaseVectorPrimitiveIntegralEngine</name>
+        <qualifiedname>GQCP::BaseVectorPrimitiveIntegralEngine::~BaseVectorPrimitiveIntegralEngine</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -87,6 +91,7 @@
         <definition>void GQCP::BaseVectorPrimitiveIntegralEngine::prepareStateForComponent</definition>
         <argsstring>(const size_t component)</argsstring>
         <name>prepareStateForComponent</name>
+        <qualifiedname>GQCP::BaseVectorPrimitiveIntegralEngine::prepareStateForComponent</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>component</declname>
@@ -119,15 +124,19 @@
 <para>A base class for integral engines over an operator with three vector components (x, y, z). </para>
     </detaileddescription>
     <inheritancegraph>
-      <node id="3">
-        <label>GQCP::PrimitiveElectronicDipoleIntegralEngine&lt; _Shell &gt;</label>
-        <link refid="class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
+      <node id="1">
+        <label>GQCP::BaseVectorPrimitiveIntegralEngine</label>
+        <link refid="class_g_q_c_p_1_1_base_vector_primitive_integral_engine"/>
       </node>
       <node id="2">
         <label>GQCP::PrimitiveAngularMomentumIntegralEngine&lt; _Shell &gt;</label>
         <link refid="class_g_q_c_p_1_1_primitive_angular_momentum_integral_engine"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>GQCP::PrimitiveElectronicDipoleIntegralEngine&lt; _Shell &gt;</label>
+        <link refid="class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
@@ -136,10 +145,6 @@
         <link refid="class_g_q_c_p_1_1_primitive_linear_momentum_integral_engine"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
-      </node>
-      <node id="1">
-        <label>GQCP::BaseVectorPrimitiveIntegralEngine</label>
-        <link refid="class_g_q_c_p_1_1_base_vector_primitive_integral_engine"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>

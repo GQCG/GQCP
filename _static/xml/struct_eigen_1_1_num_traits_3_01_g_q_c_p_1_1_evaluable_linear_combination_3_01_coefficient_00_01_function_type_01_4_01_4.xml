@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="struct_eigen_1_1_num_traits_3_01_g_q_c_p_1_1_evaluable_linear_combination_3_01_coefficient_00_01_function_type_01_4_01_4" kind="struct" language="C++" prot="public">
     <compoundname>Eigen::NumTraits&lt; GQCP::EvaluableLinearCombination&lt; Coefficient, FunctionType &gt; &gt;</compoundname>
     <basecompoundref prot="public" virt="non-virtual">NumTraits&lt; double &gt;</basecompoundref>
@@ -16,6 +16,7 @@
       <memberdef kind="enum" id="struct_eigen_1_1_num_traits_3_01_g_q_c_p_1_1_evaluable_linear_combination_3_01_coefficient_00_01_function_type_01_4_01_4_1a60334943fdad0b964be53b95945abbd0" prot="public" static="no" strong="no">
         <type></type>
         <name>@0</name>
+        <qualifiedname>Eigen::NumTraits&lt; GQCP::EvaluableLinearCombination&lt; Coefficient, FunctionType &gt; &gt;::@0</qualifiedname>
         <enumvalue id="struct_eigen_1_1_num_traits_3_01_g_q_c_p_1_1_evaluable_linear_combination_3_01_coefficient_00_01_function_type_01_4_01_4_1a60334943fdad0b964be53b95945abbd0a6a2729769ce2fff77eb111857f90aca1" prot="public">
           <name>IsComplex</name>
           <initializer>= 0</initializer>
@@ -78,26 +79,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" line="340" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" bodystart="340" bodyend="348"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" line="341" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" bodystart="341" bodyend="349"/>
       </memberdef>
       <memberdef kind="typedef" id="struct_eigen_1_1_num_traits_3_01_g_q_c_p_1_1_evaluable_linear_combination_3_01_coefficient_00_01_function_type_01_4_01_4_1add70e2489b29fb9fa93e3d5853e97692" prot="public" static="no">
         <type><ref refid="class_g_q_c_p_1_1_evaluable_linear_combination" kindref="compound">GQCP::EvaluableLinearCombination</ref>&lt; Coefficient, FunctionType &gt;</type>
         <definition>using Eigen::NumTraits&lt; GQCP::EvaluableLinearCombination&lt; Coefficient, FunctionType &gt; &gt;::Real =  GQCP::EvaluableLinearCombination&lt;Coefficient, FunctionType&gt;</definition>
         <argsstring></argsstring>
         <name>Real</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" line="336" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" bodystart="336" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="typedef" id="struct_eigen_1_1_num_traits_3_01_g_q_c_p_1_1_evaluable_linear_combination_3_01_coefficient_00_01_function_type_01_4_01_4_1af5fc8eeeae8398d9e5446789f6d2dbb7" prot="public" static="no">
-        <type><ref refid="class_g_q_c_p_1_1_evaluable_linear_combination" kindref="compound">GQCP::EvaluableLinearCombination</ref>&lt; Coefficient, FunctionType &gt;</type>
-        <definition>using Eigen::NumTraits&lt; GQCP::EvaluableLinearCombination&lt; Coefficient, FunctionType &gt; &gt;::NonInteger =  GQCP::EvaluableLinearCombination&lt;Coefficient, FunctionType&gt;</definition>
-        <argsstring></argsstring>
-        <name>NonInteger</name>
+        <qualifiedname>Eigen::NumTraits&lt; GQCP::EvaluableLinearCombination&lt; Coefficient, FunctionType &gt; &gt;::Real</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -106,11 +95,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" line="337" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" bodystart="337" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="struct_eigen_1_1_num_traits_3_01_g_q_c_p_1_1_evaluable_linear_combination_3_01_coefficient_00_01_function_type_01_4_01_4_1af091ce7b1a93d1ad1ebff07dd997bb70" prot="public" static="no">
+      <memberdef kind="typedef" id="struct_eigen_1_1_num_traits_3_01_g_q_c_p_1_1_evaluable_linear_combination_3_01_coefficient_00_01_function_type_01_4_01_4_1af5fc8eeeae8398d9e5446789f6d2dbb7" prot="public" static="no">
         <type><ref refid="class_g_q_c_p_1_1_evaluable_linear_combination" kindref="compound">GQCP::EvaluableLinearCombination</ref>&lt; Coefficient, FunctionType &gt;</type>
-        <definition>using Eigen::NumTraits&lt; GQCP::EvaluableLinearCombination&lt; Coefficient, FunctionType &gt; &gt;::Nested =  GQCP::EvaluableLinearCombination&lt;Coefficient, FunctionType&gt;</definition>
+        <definition>using Eigen::NumTraits&lt; GQCP::EvaluableLinearCombination&lt; Coefficient, FunctionType &gt; &gt;::NonInteger =  GQCP::EvaluableLinearCombination&lt;Coefficient, FunctionType&gt;</definition>
         <argsstring></argsstring>
-        <name>Nested</name>
+        <name>NonInteger</name>
+        <qualifiedname>Eigen::NumTraits&lt; GQCP::EvaluableLinearCombination&lt; Coefficient, FunctionType &gt; &gt;::NonInteger</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -118,6 +108,20 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" line="338" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" bodystart="338" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="struct_eigen_1_1_num_traits_3_01_g_q_c_p_1_1_evaluable_linear_combination_3_01_coefficient_00_01_function_type_01_4_01_4_1af091ce7b1a93d1ad1ebff07dd997bb70" prot="public" static="no">
+        <type><ref refid="class_g_q_c_p_1_1_evaluable_linear_combination" kindref="compound">GQCP::EvaluableLinearCombination</ref>&lt; Coefficient, FunctionType &gt;</type>
+        <definition>using Eigen::NumTraits&lt; GQCP::EvaluableLinearCombination&lt; Coefficient, FunctionType &gt; &gt;::Nested =  GQCP::EvaluableLinearCombination&lt;Coefficient, FunctionType&gt;</definition>
+        <argsstring></argsstring>
+        <name>Nested</name>
+        <qualifiedname>Eigen::NumTraits&lt; GQCP::EvaluableLinearCombination&lt; Coefficient, FunctionType &gt; &gt;::Nested</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" line="339" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" bodystart="339" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -146,7 +150,7 @@
         <label>NumTraits&lt; double &gt;</label>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" line="333" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" bodystart="334" bodyend="349"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" line="334" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" bodystart="335" bodyend="350"/>
     <listofallmembers>
       <member refid="struct_eigen_1_1_num_traits_3_01_g_q_c_p_1_1_evaluable_linear_combination_3_01_coefficient_00_01_function_type_01_4_01_4_1a60334943fdad0b964be53b95945abbd0ad0c796900cb4e0f04032a96777eb8d35" prot="public" virt="non-virtual"><scope>Eigen::NumTraits&lt; GQCP::EvaluableLinearCombination&lt; Coefficient, FunctionType &gt; &gt;</scope><name>AddCost</name></member>
       <member refid="struct_eigen_1_1_num_traits_3_01_g_q_c_p_1_1_evaluable_linear_combination_3_01_coefficient_00_01_function_type_01_4_01_4_1a60334943fdad0b964be53b95945abbd0a6a2729769ce2fff77eb111857f90aca1" prot="public" virt="non-virtual"><scope>Eigen::NumTraits&lt; GQCP::EvaluableLinearCombination&lt; Coefficient, FunctionType &gt; &gt;</scope><name>IsComplex</name></member>

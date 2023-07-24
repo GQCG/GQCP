@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_r_spin_orbital_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4" kind="struct" language="C++" prot="public">
     <compoundname>GQCP::BasisTransformableTraits&lt; RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</compoundname>
     <includes refid="_r_spin_orbital_basis_8hpp" local="no">RSpinOrbitalBasis.hpp</includes>
@@ -17,6 +17,7 @@
         <definition>using GQCP::BasisTransformableTraits&lt; RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;::Transformation =  RTransformation&lt;_ExpansionScalar&gt;</definition>
         <argsstring></argsstring>
         <name>Transformation</name>
+        <qualifiedname>GQCP::BasisTransformableTraits&lt; RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;::Transformation</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>

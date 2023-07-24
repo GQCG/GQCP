@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_libint_one_electron_integral_buffer" kind="class" language="C++" prot="public">
     <compoundname>GQCP::LibintOneElectronIntegralBuffer</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_base_one_electron_integral_buffer" prot="public" virt="non-virtual">GQCP::BaseOneElectronIntegralBuffer&lt; double, _N &gt;</basecompoundref>
@@ -17,6 +17,7 @@
         <definition>using GQCP::LibintOneElectronIntegralBuffer&lt; _N &gt;::IntegralScalar =  double</definition>
         <argsstring></argsstring>
         <name>IntegralScalar</name>
+        <qualifiedname>GQCP::LibintOneElectronIntegralBuffer::IntegralScalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -32,6 +33,7 @@
         <definition>using GQCP::LibintOneElectronIntegralBuffer&lt; _N &gt;::libint2_buffer_t =  LibintInterfacer::libint_target_ptr_vec</definition>
         <argsstring></argsstring>
         <name>libint2_buffer_t</name>
+        <qualifiedname>GQCP::LibintOneElectronIntegralBuffer::libint2_buffer_t</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -47,6 +49,7 @@
         <definition>constexpr auto GQCP::LibintOneElectronIntegralBuffer&lt; _N &gt;::N</definition>
         <argsstring></argsstring>
         <name>N</name>
+        <qualifiedname>GQCP::LibintOneElectronIntegralBuffer::N</qualifiedname>
         <initializer>= _N</initializer>
         <briefdescription>
         </briefdescription>
@@ -63,6 +66,7 @@
         <definition>size_t GQCP::LibintOneElectronIntegralBuffer&lt; _N &gt;::component_offset</definition>
         <argsstring></argsstring>
         <name>component_offset</name>
+        <qualifiedname>GQCP::LibintOneElectronIntegralBuffer::component_offset</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -76,6 +80,7 @@
         <definition>double GQCP::LibintOneElectronIntegralBuffer&lt; _N &gt;::scaling_factor</definition>
         <argsstring></argsstring>
         <name>scaling_factor</name>
+        <qualifiedname>GQCP::LibintOneElectronIntegralBuffer::scaling_factor</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -89,6 +94,7 @@
         <definition>libint2_buffer_t GQCP::LibintOneElectronIntegralBuffer&lt; _N &gt;::libint2_buffer</definition>
         <argsstring></argsstring>
         <name>libint2_buffer</name>
+        <qualifiedname>GQCP::LibintOneElectronIntegralBuffer::libint2_buffer</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -104,6 +110,7 @@
         <definition>GQCP::LibintOneElectronIntegralBuffer&lt; _N &gt;::LibintOneElectronIntegralBuffer</definition>
         <argsstring>(const libint2_buffer_t &amp;libint2_buffer, const size_t nbf1, const size_t nbf2, const size_t component_offset=0, const double scaling_factor=1.0)</argsstring>
         <name>LibintOneElectronIntegralBuffer</name>
+        <qualifiedname>GQCP::LibintOneElectronIntegralBuffer::LibintOneElectronIntegralBuffer</qualifiedname>
         <param>
           <type>const libint2_buffer_t &amp;</type>
           <declname>libint2_buffer</declname>
@@ -181,6 +188,7 @@
         <definition>bool GQCP::LibintOneElectronIntegralBuffer&lt; _N &gt;::areIntegralsAllZero</definition>
         <argsstring>() const override</argsstring>
         <name>areIntegralsAllZero</name>
+        <qualifiedname>GQCP::LibintOneElectronIntegralBuffer::areIntegralsAllZero</qualifiedname>
         <reimplements refid="class_g_q_c_p_1_1_base_one_electron_integral_buffer_1a5232fce397b298cb104338dcca2f4372">areIntegralsAllZero</reimplements>
         <briefdescription>
         </briefdescription>
@@ -198,6 +206,7 @@
         <definition>IntegralScalar GQCP::LibintOneElectronIntegralBuffer&lt; _N &gt;::value</definition>
         <argsstring>(const size_t i, const size_t f1, const size_t f2) const override</argsstring>
         <name>value</name>
+        <qualifiedname>GQCP::LibintOneElectronIntegralBuffer::value</qualifiedname>
         <reimplements refid="class_g_q_c_p_1_1_base_one_electron_integral_buffer_1a7bc13b7b9e41f521fee0b6e42010bf2f">value</reimplements>
         <param>
           <type>const size_t</type>

@@ -1,18 +1,10 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="units_8hpp" kind="file" language="C++">
     <compoundname>units.hpp</compoundname>
     <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
     <includedby refid="_nuclear_framework_8cpp" local="yes">/__w/GQCP/GQCP/gqcp/src/Molecule/NuclearFramework.cpp</includedby>
     <invincdepgraph>
-      <node id="2">
-        <label>/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</label>
-        <link refid="gqcp_8hpp"/>
-      </node>
-      <node id="3">
-        <label>/__w/GQCP/GQCP/gqcp/src/Molecule/NuclearFramework.cpp</label>
-        <link refid="_nuclear_framework_8cpp"/>
-      </node>
       <node id="1">
         <label>/__w/GQCP/GQCP/gqcp/include/Physical/units.hpp</label>
         <link refid="units_8hpp"/>
@@ -20,6 +12,14 @@
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
+      </node>
+      <node id="2">
+        <label>/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</label>
+        <link refid="gqcp_8hpp"/>
+      </node>
+      <node id="3">
+        <label>/__w/GQCP/GQCP/gqcp/src/Molecule/NuclearFramework.cpp</label>
+        <link refid="_nuclear_framework_8cpp"/>
       </node>
     </invincdepgraph>
     <innerclass refid="struct_g_q_c_p_1_1units_1_1constants_1_1_c_o_d_a_t_a2014" prot="public">GQCP::units::constants::CODATA2014</innerclass>
@@ -59,8 +59,8 @@
 <codeline lineno="26"><highlight class="normal"></highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight></codeline>
 <codeline lineno="28" refid="struct_g_q_c_p_1_1units_1_1constants_1_1_c_o_d_a_t_a2014" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_g_q_c_p_1_1units_1_1constants_1_1_c_o_d_a_t_a2014" kindref="compound">CODATA2014</ref><sp/>{</highlight></codeline>
-<codeline lineno="29" refid="struct_g_q_c_p_1_1units_1_1constants_1_1_c_o_d_a_t_a2014_1a333a193dd303f66d6e00c3b36a208304" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_g_q_c_p_1_1units_1_1constants_1_1_c_o_d_a_t_a2014_1a333a193dd303f66d6e00c3b36a208304" kindref="member">angstrom_per_bohr</ref><sp/>=<sp/>0.52917721067;</highlight></codeline>
-<codeline lineno="30" refid="struct_g_q_c_p_1_1units_1_1constants_1_1_c_o_d_a_t_a2014_1a9d4a131eb7ab8bdb75763f67970d74d4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_g_q_c_p_1_1units_1_1constants_1_1_c_o_d_a_t_a2014_1a9d4a131eb7ab8bdb75763f67970d74d4" kindref="member">bohr_per_angstrom</ref><sp/>=<sp/>1<sp/>/<sp/><ref refid="struct_g_q_c_p_1_1units_1_1constants_1_1_c_o_d_a_t_a2014_1a333a193dd303f66d6e00c3b36a208304" kindref="member">angstrom_per_bohr</ref>;</highlight></codeline>
+<codeline lineno="29" refid="struct_g_q_c_p_1_1units_1_1constants_1_1_c_o_d_a_t_a2014_1a333a193dd303f66d6e00c3b36a208304" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_g_q_c_p_1_1units_1_1constants_1_1_c_o_d_a_t_a2014_1a333a193dd303f66d6e00c3b36a208304" kindref="member">angstrom_per_bohr</ref><sp/>=<sp/>0.52917721067;</highlight></codeline>
+<codeline lineno="30" refid="struct_g_q_c_p_1_1units_1_1constants_1_1_c_o_d_a_t_a2014_1a9d4a131eb7ab8bdb75763f67970d74d4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_g_q_c_p_1_1units_1_1constants_1_1_c_o_d_a_t_a2014_1a9d4a131eb7ab8bdb75763f67970d74d4" kindref="member">bohr_per_angstrom</ref><sp/>=<sp/>1<sp/>/<sp/><ref refid="struct_g_q_c_p_1_1units_1_1constants_1_1_c_o_d_a_t_a2014_1a333a193dd303f66d6e00c3b36a208304" kindref="member">angstrom_per_bohr</ref>;</highlight></codeline>
 <codeline lineno="31"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="32"><highlight class="normal"></highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight></codeline>

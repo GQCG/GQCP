@@ -27,7 +27,21 @@ Collaboration diagram for GQCP\+::Electronic\+Quadrupole\+Operator\+:
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_g_q_c_p_1_1_electronic_quadrupole_operator_a54a0c94b11d3c1b094b91de2c1125083}{Base\+Reference\+Dependent\+Operator}} (const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&\mbox{\hyperlink{class_g_q_c_p_1_1_base_reference_dependent_operator_aa303dae66a990df61f90a740d3192036}{reference}}=\mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$\+::Zero())
+\mbox{\hyperlink{class_g_q_c_p_1_1_electronic_quadrupole_operator_a54a0c94b11d3c1b094b91de2c1125083}{Base\+Reference\+Dependent\+Operator}} (const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&\mbox{\hyperlink{class_g_q_c_p_1_1_base_reference_dependent_operator_a705a97851e0bdb89ab7d9e44d9c37ee7}{reference}}=\mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$\+::\+Zero())
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator}{GQCP\+::\+Base\+FQOperator$<$ N, \+\_\+\+Scalar, \+\_\+\+Vectorizer $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_a1f47a08d6dbad212da9370b4d55fd522}{$\sim$\+Base\+FQOperator}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_base_reference_dependent_operator}{GQCP\+::\+Base\+Reference\+Dependent\+Operator}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_base_reference_dependent_operator_a54a0c94b11d3c1b094b91de2c1125083}{Base\+Reference\+Dependent\+Operator}} (const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&\mbox{\hyperlink{class_g_q_c_p_1_1_base_reference_dependent_operator_a705a97851e0bdb89ab7d9e44d9c37ee7}{reference}}=\mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$\+::\+Zero())
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_base_reference_dependent_operator_a67db3a2bf7e00d38db5fcba98dec06ed}{$\sim$\+Base\+Reference\+Dependent\+Operator}} ()=0
+\item 
+const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_base_reference_dependent_operator_a705a97851e0bdb89ab7d9e44d9c37ee7}{reference}} () const
 \end{DoxyCompactItemize}
 \doxysubsection*{Static Public Attributes}
 \begin{DoxyCompactItemize}
@@ -36,7 +50,19 @@ static constexpr size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_quadr
 \item 
 static const \mbox{\hyperlink{namespace_g_q_c_p_a46e9824d60535862f66d9cbd766602d0}{Matrix\+Vectorizer}} \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_quadrupole_operator_a2945519b0b5195849608b5bab54cdd14}{vectorizer}} \{\{3, 3\}\}
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator}{GQCP\+::\+Base\+FQOperator$<$ N, \+\_\+\+Scalar, \+\_\+\+Vectorizer $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_ae56208bbc85e6d9d401fa4540f20a573}{Number\+Of\+Electrons}} = N
+\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
+\doxysubsubsection*{Public Types inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator}{GQCP\+::\+Base\+FQOperator$<$ N, \+\_\+\+Scalar, \+\_\+\+Vectorizer $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}{Scalar}} = \+\_\+\+Scalar
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_a3bf379636691d7d74ea96afc8f5049cf}{Vectorizer}} = \+\_\+\+Vectorizer
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -47,7 +73,7 @@ The (one-\/electron) electronic quadrupole operator.
 \index{GQCP::ElectronicQuadrupoleOperator@{GQCP::ElectronicQuadrupoleOperator}!BaseReferenceDependentOperator@{BaseReferenceDependentOperator}}
 \index{BaseReferenceDependentOperator@{BaseReferenceDependentOperator}!GQCP::ElectronicQuadrupoleOperator@{GQCP::ElectronicQuadrupoleOperator}}
 \doxysubsubsection{\texorpdfstring{BaseReferenceDependentOperator()}{BaseReferenceDependentOperator()}}
-{\footnotesize\ttfamily GQCP\+::\+Base\+Reference\+Dependent\+Operator\+::\+Base\+Reference\+Dependent\+Operator}
+{\footnotesize\ttfamily GQCP\+::\+Base\+Reference\+Dependent\+Operator\+::\+Base\+Reference\+Dependent\+Operator (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&}]{reference = {\ttfamily \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$double,~3$>$\+:\+:Zero()} }\end{DoxyParamCaption})}
 
 Create a {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_base_reference_dependent_operator}{Base\+Reference\+Dependent\+Operator}}} using a point of reference.
 

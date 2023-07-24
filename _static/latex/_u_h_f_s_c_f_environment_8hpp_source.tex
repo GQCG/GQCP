@@ -1,0 +1,148 @@
+\hypertarget{_u_h_f_s_c_f_environment_8hpp_source}{}\doxysection{UHFSCFEnvironment.\+hpp}
+\label{_u_h_f_s_c_f_environment_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFSCFEnvironment.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFSCFEnvironment.hpp}}
+\mbox{\hyperlink{_u_h_f_s_c_f_environment_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_u_transformation_8hpp}{Basis/Transformations/UTransformation.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_u_transformation_component_8hpp}{Basis/Transformations/UTransformationComponent.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_spin_resolved1_d_m_8hpp}{DensityMatrix/SpinResolved1DM.hpp}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_square_matrix_8hpp}{Mathematical/Representation/SquareMatrix.hpp}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_q_hamiltonian_8hpp}{Operator/SecondQuantized/SQHamiltonian.hpp}}"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_u_s_q_one_electron_operator_8hpp}{Operator/SecondQuantized/USQOneElectronOperator.hpp}}"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_q_c_model_2_h_f_2_r_h_f_8hpp}{QCModel/HF/RHF.hpp}}"{}}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <Eigen/Dense>}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ <deque>}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar>}
+\DoxyCodeLine{00045\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment}{UHFSCFEnvironment}}\ \{}
+\DoxyCodeLine{00046\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_afa66e61ff154f8b0fa8bb17ec0825358}{Scalar}}\ =\ \_Scalar;}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved}{SpinResolved<size\_t>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a52cd91e5da87f74541424c64b4abff2b}{N}};\ \ \textcolor{comment}{//\ The\ number\ of\ alpha\ and\ beta\ electrons\ (the\ number\ of\ occupied\ alpha-\/spin-\/orbitals).}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ std::deque<Scalar>\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a4e26f9a73e2b888da19d7ff2296c8335}{electronic\_energies}};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ std::deque<SpinResolved<VectorX<Scalar>>>\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a46da6bdf231994ebcdf4353de69e2e1b}{orbital\_energies}};\ \ \textcolor{comment}{//\ The\ alpha\ and\ beta\ MO\ energies.}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator}{ScalarUSQOneElectronOperator<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a28dd53d0a8c477d4359714d27685fba4}{S}};\ \ \textcolor{comment}{//\ The\ overlap\ operator\ (of\ the\ scalar\ (AO)\ basis).}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ std::deque<UTransformation<Scalar>>\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a882bc4cc1e34b50d23a7db9d4a58d891}{coefficient\_matrices}};\ \ \textcolor{comment}{//\ The\ alpha\ and\ beta\ coefficient\ matrices.}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ std::deque<SpinResolved1DM<Scalar>>\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a4c1ab2a08439f77870ba66e1cb5bbdca}{density\_matrices}};\ \ \textcolor{comment}{//\ Expressed\ in\ the\ scalar\ (AO)\ basis.}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ std::deque<ScalarUSQOneElectronOperator<Scalar>>\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a0f5f070c7bc52ea98ed1d89117104c99}{fock\_matrices}};\ \ \textcolor{comment}{//\ Expressed\ in\ the\ scalar\ (AO)\ basis.}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ std::deque<SpinResolved<VectorX<Scalar>>>\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a93c1f0bb1a00de972b2602acf17cae59}{error\_vectors}};\ \ \textcolor{comment}{//\ Expressed\ in\ the\ scalar\ (AO)\ basis,\ used\ when\ doing\ DIIS\ calculations:\ the\ real\ error\ matrices\ should\ be\ converted\ to\ column-\/major\ error\ vectors\ for\ the\ DIIS\ algorithm\ to\ be\ used\ correctly.}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{USQHamiltonian<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_acf78d41999c4c6470089ec0ef3f84a0b}{sq\_hamiltonian}};\ \ \textcolor{comment}{//\ The\ Hamiltonian\ expressed\ in\ the\ scalar\ (AO)\ basis.}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00072\ \textcolor{comment}{\ \ \ \ \ *\ \ CONSTRUCTORS}}
+\DoxyCodeLine{00073\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00085\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_ae3451ef8114bfd9aecf19c866455dff2}{UHFSCFEnvironment}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ N\_alpha,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ N\_beta,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{USQHamiltonian<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_acf78d41999c4c6470089ec0ef3f84a0b}{sq\_hamiltonian}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator}{ScalarUSQOneElectronOperator<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a28dd53d0a8c477d4359714d27685fba4}{S}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<Scalar>}}\&\ C\_initial)\ :}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a52cd91e5da87f74541424c64b4abff2b}{N}}\ \{N\_alpha,\ N\_beta\},}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a28dd53d0a8c477d4359714d27685fba4}{S}}\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a28dd53d0a8c477d4359714d27685fba4}{S}}\},}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_acf78d41999c4c6470089ec0ef3f84a0b}{sq\_hamiltonian}}\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_acf78d41999c4c6470089ec0ef3f84a0b}{sq\_hamiltonian}}\},}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a882bc4cc1e34b50d23a7db9d4a58d891}{coefficient\_matrices}}\ \{C\_initial\}\ \{\}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00099\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a616b4932eba592e7aafcd1b16fe0f0b1}{UHFSCFEnvironment}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{QCModel::RHF<Scalar>}}\&\ rhf\_parameters,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{USQHamiltonian<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_acf78d41999c4c6470089ec0ef3f84a0b}{sq\_hamiltonian}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator}{ScalarUSQOneElectronOperator<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a28dd53d0a8c477d4359714d27685fba4}{S}})\ :}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment}{UHFSCFEnvironment}}(rhf\_parameters.numberOfElectrons(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4f}{Spin}}::\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{alpha}}),\ rhf\_parameters.numberOfElectrons(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4f}{Spin}}::\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{beta}}),}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_acf78d41999c4c6470089ec0ef3f84a0b}{sq\_hamiltonian}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a28dd53d0a8c477d4359714d27685fba4}{S}},}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_afa66e61ff154f8b0fa8bb17ec0825358}{Scalar}}>::FromEqual(rhf\_parameters.expansion().matrix()))\ \{\}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00106\ \textcolor{comment}{\ \ \ \ \ *\ \ NAMED\ CONSTRUCTORS}}
+\DoxyCodeLine{00107\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment}{UHFSCFEnvironment<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a2b30f32ccbb3da079c76c69f27391e22}{WithCoreGuess}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ N\_alpha,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ N\_beta,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{USQHamiltonian<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_acf78d41999c4c6470089ec0ef3f84a0b}{sq\_hamiltonian}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator}{ScalarUSQOneElectronOperator<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a28dd53d0a8c477d4359714d27685fba4}{S}})\ \{}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ H\_core\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_acf78d41999c4c6470089ec0ef3f84a0b}{sq\_hamiltonian}}.core();\ \ \textcolor{comment}{//\ In\ AO\ basis.}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }MatrixType\ =\ Eigen::Matrix<Scalar,\ Eigen::Dynamic,\ Eigen::Dynamic>;}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType>\ generalized\_eigensolver\_a\ \{H\_core.alpha().parameters(),\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a28dd53d0a8c477d4359714d27685fba4}{S}}.alpha().parameters()\};}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType>\ generalized\_eigensolver\_b\ \{H\_core.beta().parameters(),\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a28dd53d0a8c477d4359714d27685fba4}{S}}.beta().parameters()\};}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation_component}{UTransformationComponent<Scalar>}}\ C\_initial\_a\ \{generalized\_eigensolver\_a.eigenvectors()\};}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation_component}{UTransformationComponent<Scalar>}}\ C\_initial\_b\ \{generalized\_eigensolver\_b.eigenvectors()\};}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<Scalar>}}\ C\_initial\ \{C\_initial\_a,\ C\_initial\_b\};}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment}{UHFSCFEnvironment<Scalar>}}(N\_alpha,\ N\_beta,\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_acf78d41999c4c6470089ec0ef3f84a0b}{sq\_hamiltonian}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a28dd53d0a8c477d4359714d27685fba4}{S}},\ C\_initial);}
+\DoxyCodeLine{00131\ \ \ \ \ \}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Scalar>}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<std::is\_same<Z,\ complex>::value}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment}{UHFSCFEnvironment<complex>}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a55723bc760165d2671ccbf28cb4074f1}{WithComplexlyTransformedCoreGuess}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ N\_alpha,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ N\_beta,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{USQHamiltonian<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_acf78d41999c4c6470089ec0ef3f84a0b}{sq\_hamiltonian}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator}{ScalarUSQOneElectronOperator<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a28dd53d0a8c477d4359714d27685fba4}{S}})\ \{}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ up\ the\ lambda\ function\ used\ to\ transform\ the\ coefficient\ matrix.}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ transformation\_function\ =\ [](\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<complex>}}\ C\_initial)\ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Define\ the\ complex\ constant\ used\ to\ transform\ the\ initial\ coefficient\ matrix.}}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}}\ \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{x}}\ \{0,\ 0.1\};}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add/subtract\ the\ small\ complex\ value\ from\ the\ off-\/diagonal\ elements\ of\ the\ initial\ coefficient\ matrix.}}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ C\_initial.cols();\ i++)\ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ C\_initial(0,\ i)\ +=\ \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{x}};}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ j\ =\ 0;\ j\ <\ C\_initial.rows();\ j++)\ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ C\_initial(j,\ 0)\ -\/=\ \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{x}};}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Return\ the\ updated\ coefficient\ matrix.}}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ C\_initial;}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_aa32768d0e31445fe0896b1643d4595bd}{UHFSCFEnvironment<complex>::WithTransformedCoreGuess}}(N\_alpha,\ N\_beta,\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_acf78d41999c4c6470089ec0ef3f84a0b}{sq\_hamiltonian}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a28dd53d0a8c477d4359714d27685fba4}{S}},\ transformation\_function);}
+\DoxyCodeLine{00165\ \ \ \ \ \}}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Scalar>}
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment}{UHFSCFEnvironment<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_aa32768d0e31445fe0896b1643d4595bd}{WithTransformedCoreGuess}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ N\_alpha,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ N\_beta,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{USQHamiltonian<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_acf78d41999c4c6470089ec0ef3f84a0b}{sq\_hamiltonian}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator}{ScalarUSQOneElectronOperator<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a28dd53d0a8c477d4359714d27685fba4}{S}},\ \textcolor{keyword}{const}\ std::function<Eigen::Matrix<Scalar,\ Eigen::Dynamic,\ Eigen::Dynamic>(\textcolor{keyword}{const}\ Eigen::Matrix<Scalar,\ Eigen::Dynamic,\ Eigen::Dynamic>\&)>\&\ transformation\_function)\ \{}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ H\_core\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_acf78d41999c4c6470089ec0ef3f84a0b}{sq\_hamiltonian}}.core();\ \ \textcolor{comment}{//\ In\ AO\ basis.}}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }MatrixType\ =\ Eigen::Matrix<Scalar,\ Eigen::Dynamic,\ Eigen::Dynamic>;}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType>\ generalized\_eigensolver\_a\ \{H\_core.alpha().parameters(),\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a28dd53d0a8c477d4359714d27685fba4}{S}}.alpha().parameters()\};}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ Eigen::GeneralizedSelfAdjointEigenSolver<MatrixType>\ generalized\_eigensolver\_b\ \{H\_core.beta().parameters(),\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a28dd53d0a8c477d4359714d27685fba4}{S}}.beta().parameters()\};}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ C\_initial\_a\ \{generalized\_eigensolver\_a.eigenvectors()\};}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ C\_initial\_b\ \{generalized\_eigensolver\_b.eigenvectors()\};}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<Scalar>}}\ C\_initial\_complex\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation_component}{UTransformationComponent<Scalar>}}\ \{transformation\_function(C\_initial\_a)\},\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation_component}{UTransformationComponent<Scalar>}}\ \{transformation\_function(C\_initial\_b)\}\};}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment}{UHFSCFEnvironment<Scalar>}}(N\_alpha,\ N\_beta,\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_acf78d41999c4c6470089ec0ef3f84a0b}{sq\_hamiltonian}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a28dd53d0a8c477d4359714d27685fba4}{S}},\ C\_initial\_complex);}
+\DoxyCodeLine{00193\ \ \ \ \ \}}
+\DoxyCodeLine{00194\ \};}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

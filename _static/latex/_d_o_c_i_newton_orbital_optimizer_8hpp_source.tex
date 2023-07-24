@@ -1,0 +1,150 @@
+\hypertarget{_d_o_c_i_newton_orbital_optimizer_8hpp_source}{}\doxysection{DOCINewton\+Orbital\+Optimizer.\+hpp}
+\label{_d_o_c_i_newton_orbital_optimizer_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp}}
+\mbox{\hyperlink{_d_o_c_i_newton_orbital_optimizer_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_r_orbital_rotation_generators_8hpp}{Basis/Transformations/ROrbitalRotationGenerators.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_eigenpair_8hpp}{Mathematical/Optimization/Eigenproblem/Eigenpair.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_eigenproblem_environment_8hpp}{Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}ONVBasis/SeniorityZeroONVBasis.hpp"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_i_8hpp}{QCMethod/CI/CI.hpp}}"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_i_environment_8hpp}{QCMethod/CI/CIEnvironment.hpp}}"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_q_c_method_newton_orbital_optimizer_8hpp}{QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp}}"{}}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_linear_expansion_8hpp}{QCModel/CI/LinearExpansion.hpp}}"{}}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_EigenproblemSolver>}
+\DoxyCodeLine{00049\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer}{DOCINewtonOrbitalOptimizer}}:}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer}{QCMethodNewtonOrbitalOptimizer}}\ \{}
+\DoxyCodeLine{00051\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ Eigenproblem\ solver.}}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_a5c2eb4ac34fa1539192395100d29d795}{EigenproblemSolver}}\ =\ \_EigenproblemSolver;}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ ONV\ basis\ used\ for\ DOCI\ calculations.}}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_a625170c255bd61dc6c90623b93d014f2}{ONVBasis}}\ =\ SeniorityZeroONVBasis;}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//\ The\ Fock\ subspace\ used\ for\ DOCI\ calculations.}}
+\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_a625170c255bd61dc6c90623b93d014f2}{ONVBasis}}\ onv\_basis;}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{comment}{//\ The\ associated\ eigenproblem\ solver\ and\ environment.}}
+\DoxyCodeLine{00064\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{EigenproblemEnvironment<double>}}\ eigenproblem\_environment;}
+\DoxyCodeLine{00065\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_a5c2eb4ac34fa1539192395100d29d795}{EigenproblemSolver}}\ eigenproblem\_solver;}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{comment}{//\ The\ linear\ expansion\ representing\ the\ DOCI\ wave\ function\ model.}}
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{LinearExpansion<double,\ ONVBasis>}}\ ground\_state\_expansion;}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{comment}{//\ The\ number\ of\ requested\ eigenpairs.}}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ number\_of\_requested\_eigenpairs;}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{comment}{//\ The\ eigenpairs\ containing\ the\ eigenvalues\ and\ eigenvectors\ of\ the\ eigenvalue\ problem.}}
+\DoxyCodeLine{00074\ \ \ \ \ std::vector<Eigenpair<double,\ double>>\ m\_eigenpairs;}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00091\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_a9ffa47feaccab9a573a5759a79b2dc3b}{DOCINewtonOrbitalOptimizer}}(\textcolor{keyword}{const}\ SeniorityZeroONVBasis\&\ onv\_basis,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_a5c2eb4ac34fa1539192395100d29d795}{EigenproblemSolver}}\&\ eigenproblem\_solver,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{EigenproblemEnvironment<double>}}\&\ eigenproblem\_environment,\ std::shared\_ptr<BaseHessianModifier>\ \mbox{\hyperlink{class_g_q_c_p_1_1_newton_orbital_optimizer_ad31068b230ffb38e97432624120c4318}{hessian\_modifier}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ number\_of\_requested\_eigenpairs\ =\ 1,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_a641d1bcc0494b20cec91ed4b782ab1f0}{convergence\_threshold}}\ =\ 1.0e-\/08,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_adce91f67cf6314d31a2b73bb54cdd815}{maximum\_number\_of\_iterations}}\ =\ 128)\ :}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ onv\_basis\ \{onv\_basis\},}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ eigenproblem\_solver\ \{eigenproblem\_solver\},}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ eigenproblem\_environment\ \{eigenproblem\_environment\},}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ number\_of\_requested\_eigenpairs\ \{number\_of\_requested\_eigenpairs\},}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer}{QCMethodNewtonOrbitalOptimizer}}(\mbox{\hyperlink{class_g_q_c_p_1_1_newton_orbital_optimizer_ad31068b230ffb38e97432624120c4318}{hessian\_modifier}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_a641d1bcc0494b20cec91ed4b782ab1f0}{convergence\_threshold}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_adce91f67cf6314d31a2b73bb54cdd815}{maximum\_number\_of\_iterations}})\ \{\}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00106\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital1_d_m}{Orbital1DM<double>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_a1347f0050acd726bd4fa6aec9a8755a3}{calculate1DM}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>ground\_state\_expansion.\mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_a942a9a34b540d95eb828b17879da1440}{calculate1DM}}();}
+\DoxyCodeLine{00108\ \ \ \ \ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00114\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital2_d_m}{Orbital2DM<double>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_acf54c23ac09a2206db4361163cda74c7}{calculate2DM}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>ground\_state\_expansion.\mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_a96779d39bbd8962cb102f5b3d569cbc9}{calculate2DM}}();}
+\DoxyCodeLine{00116\ \ \ \ \ \}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00126\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_r_orbital_rotation_generators}{ROrbitalRotationGenerators<double>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_af56a0851bb8e6c905ed957c62d1eb82c}{calculateNewFullOrbitalGenerators}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{RSQHamiltonian<double>}}\&\ sq\_hamiltonian)\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_newton_orbital_optimizer_ad865f9103556c7a422b221dada86d53b}{calculateNewFreeOrbitalGenerators}}(sq\_hamiltonian);\ \ \textcolor{comment}{//\ No\ extra\ step\ necessary.}}
+\DoxyCodeLine{00128\ \ \ \ \ \}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_a9bcdb07e2901f5f39f335a54518aa5b1}{prepareDMCalculation}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{RSQHamiltonian<double>}}\&\ sq\_hamiltonian)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ (Re)create\ the\ eigenproblem\ environment\ in\ the\ current\ orbital\ basis.}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>eigenproblem\_environment.\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a849aa0ad0c9466c531ae2801fc12d8de}{A}}.cols()\ !=\ 0)\ \{\ \ \textcolor{comment}{//\ If\ the\ optimization\ environment\ is\ 'dense'.}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>eigenproblem\_environment\ =\ \mbox{\hyperlink{namespace_g_q_c_p_1_1_c_i_environment_a304b7b0ff99dbd03933bd214abf8f77c}{CIEnvironment::Dense}}(sq\_hamiltonian,\ this-\/>onv\_basis);}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Recreate\ the\ iterative\ eigenproblem\ environment\ with\ the\ previous\ guesses.}}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_a728ec120b0025ec997b6020b7ef588e3}{number\_of\_iterations}}\ !=\ 0)\ \{\ \ \textcolor{comment}{//\ Not\ needed\ when\ we\ haven't\ done\ an\ OO\ iteration.}}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ dim\ =\ this-\/>onv\_basis.dimension();}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<double>}}\ V\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<double>::Zero}}(dim,\ this-\/>number\_of\_requested\_eigenpairs);}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ m\_eigenpairs\ =\ this-\/>eigenproblem\_environment.\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a13adc7214798089577bc2e1705c02fc3}{eigenpairs}}(this-\/>number\_of\_requested\_eigenpairs);}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ this-\/>number\_of\_requested\_eigenpairs;\ i++)\ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ V.col(i)\ =\ m\_eigenpairs[i].eigenvector();}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>eigenproblem\_environment\ =\ \mbox{\hyperlink{namespace_g_q_c_p_1_1_c_i_environment_aa568afa5012235df56fb621612c44766}{CIEnvironment::Iterative}}(sq\_hamiltonian,\ this-\/>onv\_basis,\ V);}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ the\ ground\ state\ expansion\ and\ the\ possibly\ requested\ excited\ states.}}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ this-\/>ground\_state\_expansion\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_c_i}{QCMethod::CI<double,\ ONVBasis>}}(this-\/>onv\_basis,\ this-\/>number\_of\_requested\_eigenpairs).\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_c_i_a3d6315028ff746ee5ac677e6211c7520}{optimize}}(this-\/>eigenproblem\_solver,\ this-\/>eigenproblem\_environment).groundStateParameters();}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ this-\/>m\_eigenpairs\ =\ eigenproblem\_environment.\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a13adc7214798089577bc2e1705c02fc3}{eigenpairs}}(this-\/>number\_of\_requested\_eigenpairs);}
+\DoxyCodeLine{00160\ \ \ \ \ \}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenpair}{Eigenpair<double,\ double>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_aaa3deb0e9ecd93643374fbaf6edb54a0}{eigenpair}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ index\ =\ 0)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_a0334372101297cb9e997d3981442439f}{is\_converged}})\ \{}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>m\_eigenpairs[index];}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::logic\_error(\textcolor{stringliteral}{"{}DOCINewtonOrbitalOptimizer::eigenpair(const\ size\_t):\ You\ are\ trying\ to\ get\ eigenpairs\ but\ the\ orbital\ optimization\ hasn't\ converged\ (yet)."{}});}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00179\ \ \ \ \ \}}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keyword}{const}\ std::vector<Eigenpair<double,\ double>>\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_a331f834230e8128179b4144191afcd39}{eigenpairs}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_a0334372101297cb9e997d3981442439f}{is\_converged}})\ \{}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>m\_eigenpairs;}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::logic\_error(\textcolor{stringliteral}{"{}DOCINewtonOrbitalOptimizer::eigenpairs():\ You\ are\ trying\ to\ get\ eigenpairs\ but\ the\ orbital\ optimization\ hasn't\ converged\ (yet)."{}});}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00191\ \ \ \ \ \}}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00202\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{LinearExpansion<double,\ ONVBasis>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_ae26e569d1b0d8c5dbcb586d29cdf55be}{makeLinearExpansion}}(\textcolor{keywordtype}{size\_t}\ index\ =\ 0)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ >\ this-\/>m\_eigenpairs.size())\ \{}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::logic\_error(\textcolor{stringliteral}{"{}DOCINewtonOrbitalOptimizer::makeLinearExpansion(size\_t):\ Not\ enough\ requested\ m\_eigenpairs\ for\ the\ given\ index."{}});}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{LinearExpansion<double,\ ONVBasis>}}(this-\/>onv\_basis,\ this-\/>m\_eigenpairs[index].eigenvector());}
+\DoxyCodeLine{00208\ \ \ \ \ \}}
+\DoxyCodeLine{00209\ \};}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

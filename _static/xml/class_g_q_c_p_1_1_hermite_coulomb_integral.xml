@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_hermite_coulomb_integral" kind="class" language="C++" prot="public">
     <compoundname>GQCP::HermiteCoulombIntegral</compoundname>
     <includes refid="_hermite_coulomb_integral_8hpp" local="no">HermiteCoulombIntegral.hpp</includes>
@@ -9,6 +9,7 @@
         <definition>double GQCP::HermiteCoulombIntegral::p</definition>
         <argsstring></argsstring>
         <name>p</name>
+        <qualifiedname>GQCP::HermiteCoulombIntegral::p</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -22,6 +23,7 @@
         <definition>Vector&lt;double, 3&gt; GQCP::HermiteCoulombIntegral::P</definition>
         <argsstring></argsstring>
         <name>P</name>
+        <qualifiedname>GQCP::HermiteCoulombIntegral::P</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -35,6 +37,7 @@
         <definition>Vector&lt;double, 3&gt; GQCP::HermiteCoulombIntegral::C</definition>
         <argsstring></argsstring>
         <name>C</name>
+        <qualifiedname>GQCP::HermiteCoulombIntegral::C</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -50,6 +53,7 @@
         <definition>GQCP::HermiteCoulombIntegral::HermiteCoulombIntegral</definition>
         <argsstring>(const double p, const Vector&lt; double, 3 &gt; &amp;P, const Vector&lt; double, 3 &gt; &amp;C)</argsstring>
         <name>HermiteCoulombIntegral</name>
+        <qualifiedname>GQCP::HermiteCoulombIntegral::HermiteCoulombIntegral</qualifiedname>
         <param>
           <type>const double</type>
           <declname>p</declname>
@@ -101,6 +105,7 @@
         <definition>double GQCP::HermiteCoulombIntegral::operator()</definition>
         <argsstring>(const size_t n, const int t, const int u, const int v) const</argsstring>
         <name>operator()</name>
+        <qualifiedname>GQCP::HermiteCoulombIntegral::operator()</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>n</declname>

@@ -1,0 +1,61 @@
+\hypertarget{_minimization_environment_8hpp_source}{}\doxysection{Minimization\+Environment.\+hpp}
+\label{_minimization_environment_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/MinimizationEnvironment.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/MinimizationEnvironment.hpp}}
+\mbox{\hyperlink{_minimization_environment_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_optimization_environment_8hpp}{Mathematical/Optimization/OptimizationEnvironment.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_matrix_8hpp}{Mathematical/Representation/Matrix.hpp}}"{}}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar>}
+\DoxyCodeLine{00034\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_minimization_environment}{MinimizationEnvironment}}:}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_optimization_environment}{OptimizationEnvironment}}<VectorX<\_Scalar>>\ \{}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_minimization_environment_aa802d9ef9b18dc6771c0255dce8a44b1}{Scalar}}\ =\ \_Scalar;}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_ae8a9e0086f5fbab030b1d49b05202054}{VectorFunction<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_minimization_environment_ad30a88c4a9a9d22fca0d633e23bc941b}{gradient\_function}};\ \ \textcolor{comment}{//\ a\ callable\ function\ that\ produces\ the\ gradient\ of\ the\ scalar\ function,\ evaluated\ at\ the\ given\ variables}}
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_afdcf4d963710902cad07f1c683df75bf}{MatrixFunction<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_minimization_environment_a9d0b1034bfa9cef8a28a760be75bf9bc}{hessian\_function}};\ \ \ \textcolor{comment}{//\ a\ callable\ function\ that\ produces\ the\ Hessian\ of\ the\ scalar\ function,\ evaluated\ at\ the\ given\ variables}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ std::deque<double>\ \mbox{\hyperlink{class_g_q_c_p_1_1_minimization_environment_ab451fcecd0855732ad3fbed9575615c7}{function\_values}};\ \ \textcolor{comment}{//\ values\ for\ the\ evaluated\ scalar\ function\ (often\ a\ sort\ of\ 'cost'\ function)}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00050\ \textcolor{comment}{\ \ \ \ \ *\ \ CONSTRUCTORS}}
+\DoxyCodeLine{00051\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_minimization_environment_ad9794645ea2a18324435b5b986764928}{MinimizationEnvironment}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<\_Scalar>}}\&\ initial\_guess,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_ae8a9e0086f5fbab030b1d49b05202054}{VectorFunction<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_minimization_environment_ad30a88c4a9a9d22fca0d633e23bc941b}{gradient\_function}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_afdcf4d963710902cad07f1c683df75bf}{MatrixFunction<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_minimization_environment_a9d0b1034bfa9cef8a28a760be75bf9bc}{hessian\_function}})\ :}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_optimization_environment}{OptimizationEnvironment}}<\mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX}}<\_Scalar>>(initial\_guess),}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_minimization_environment_ad30a88c4a9a9d22fca0d633e23bc941b}{gradient\_function}}\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_minimization_environment_ad30a88c4a9a9d22fca0d633e23bc941b}{gradient\_function}}\},}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_minimization_environment_a9d0b1034bfa9cef8a28a760be75bf9bc}{hessian\_function}}\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_minimization_environment_a9d0b1034bfa9cef8a28a760be75bf9bc}{hessian\_function}}\}\ \{\}}
+\DoxyCodeLine{00064\ \};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

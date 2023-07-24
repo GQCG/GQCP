@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_minimization_environment" kind="class" language="C++" prot="public">
     <compoundname>GQCP::MinimizationEnvironment</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_optimization_environment" prot="public" virt="non-virtual">GQCP::OptimizationEnvironment&lt; VectorX&lt; _Scalar &gt; &gt;</basecompoundref>
@@ -15,6 +15,7 @@
         <definition>using GQCP::MinimizationEnvironment&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
         <argsstring></argsstring>
         <name>Scalar</name>
+        <qualifiedname>GQCP::MinimizationEnvironment::Scalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -30,6 +31,7 @@
         <definition>VectorFunction&lt;Scalar&gt; GQCP::MinimizationEnvironment&lt; _Scalar &gt;::gradient_function</definition>
         <argsstring></argsstring>
         <name>gradient_function</name>
+        <qualifiedname>GQCP::MinimizationEnvironment::gradient_function</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -43,6 +45,7 @@
         <definition>MatrixFunction&lt;Scalar&gt; GQCP::MinimizationEnvironment&lt; _Scalar &gt;::hessian_function</definition>
         <argsstring></argsstring>
         <name>hessian_function</name>
+        <qualifiedname>GQCP::MinimizationEnvironment::hessian_function</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -56,6 +59,7 @@
         <definition>std::deque&lt;double&gt; GQCP::MinimizationEnvironment&lt; _Scalar &gt;::function_values</definition>
         <argsstring></argsstring>
         <name>function_values</name>
+        <qualifiedname>GQCP::MinimizationEnvironment::function_values</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -71,6 +75,7 @@
         <definition>GQCP::MinimizationEnvironment&lt; _Scalar &gt;::MinimizationEnvironment</definition>
         <argsstring>(const VectorX&lt; _Scalar &gt; &amp;initial_guess, const VectorFunction&lt; Scalar &gt; &amp;gradient_function, const MatrixFunction&lt; Scalar &gt; &amp;hessian_function)</argsstring>
         <name>MinimizationEnvironment</name>
+        <qualifiedname>GQCP::MinimizationEnvironment::MinimizationEnvironment</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; _Scalar &gt; &amp;</type>
           <declname>initial_guess</declname>

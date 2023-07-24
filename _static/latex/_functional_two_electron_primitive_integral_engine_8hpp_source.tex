@@ -1,0 +1,72 @@
+\hypertarget{_functional_two_electron_primitive_integral_engine_8hpp_source}{}\doxysection{Functional\+Two\+Electron\+Primitive\+Integral\+Engine.\+hpp}
+\label{_functional_two_electron_primitive_integral_engine_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/FunctionalTwoElectronPrimitiveIntegralEngine.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/FunctionalTwoElectronPrimitiveIntegralEngine.hpp}}
+\mbox{\hyperlink{_functional_two_electron_primitive_integral_engine_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_base_scalar_primitive_integral_engine_8hpp}{Basis/Integrals/Primitive/BaseScalarPrimitiveIntegralEngine.hpp}}"{}}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_g_t_o_shell_8hpp}{Basis/ScalarBasis/GTOShell.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_cartesian_g_t_o_8hpp}{Mathematical/Functions/CartesianGTO.hpp}}"{}}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_IntegralScalar>}
+\DoxyCodeLine{00036\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine}{FunctionalTwoElectronPrimitiveIntegralEngine}}:}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_base_scalar_primitive_integral_engine}{BaseScalarPrimitiveIntegralEngine}}\ \{}
+\DoxyCodeLine{00038\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ shell\ that\ this\ integral\ engine\ is\ related\ to.}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{Shell}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ primitive\ that\ underlies\ the\ type\ of\ shell.}}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine_a57f0d0279413aae5de63748322bce448}{Primitive}}\ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell_acea61a547f79a88268b0cda0ced7befd}{Shell::Primitive}};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{//\ The\ scalar\ representation\ of\ one\ of\ the\ primitive\ integrals.}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine_acc8012becffe7327cfe96f0afa04365b}{IntegralScalar}}\ =\ \_IntegralScalar;}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{comment}{//\ A\ user-\/supplied\ custom\ function\ that\ can\ calculate\ primitive\ integrals\ over\ four\ Cartesian\ GTOs.}}
+\DoxyCodeLine{00051\ \ \ \ \ std::function<\mbox{\hyperlink{class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine_acc8012becffe7327cfe96f0afa04365b}{IntegralScalar}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{CartesianGTO}}\&,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{CartesianGTO}}\&,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{CartesianGTO}}\&,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{CartesianGTO}}\&)>\ function;}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00056\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Constructors}}
+\DoxyCodeLine{00057\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine_a9224161c171f780f25cd80f11547601e}{FunctionalTwoElectronPrimitiveIntegralEngine}}(\textcolor{keyword}{const}\ std::function<\mbox{\hyperlink{class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine_acc8012becffe7327cfe96f0afa04365b}{IntegralScalar}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{CartesianGTO}}\&,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{CartesianGTO}}\&,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{CartesianGTO}}\&,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{CartesianGTO}}\&)>\&\ function)\ :}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ function\ \{function\}\ \{\}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00067\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Integral\ calculation}}
+\DoxyCodeLine{00068\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00080\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine_acc8012becffe7327cfe96f0afa04365b}{IntegralScalar}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine_ac94b5e1362f1a3871ecf62bac3a8180c}{calculate}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{CartesianGTO}}\&\ left1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{CartesianGTO}}\&\ left2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{CartesianGTO}}\&\ right1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{CartesianGTO}}\&\ right2)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>function(left1,\ left2,\ right1,\ right2);\ \}}
+\DoxyCodeLine{00081\ \};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

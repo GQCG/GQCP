@@ -27,15 +27,48 @@ Collaboration diagram for GQCP\+::Diamagnetic\+Operator\+:
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_g_q_c_p_1_1_diamagnetic_operator_aa48ed8f317e97b7fae312bfc001ea2e6}{Diamagnetic\+Operator}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{Homogeneous\+Magnetic\+Field}} \&B, const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&\mbox{\hyperlink{class_g_q_c_p_1_1_base_reference_dependent_operator_aa303dae66a990df61f90a740d3192036}{reference}})
+\mbox{\hyperlink{class_g_q_c_p_1_1_diamagnetic_operator_aa48ed8f317e97b7fae312bfc001ea2e6}{Diamagnetic\+Operator}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{Homogeneous\+Magnetic\+Field}} \&B, const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&\mbox{\hyperlink{class_g_q_c_p_1_1_base_reference_dependent_operator_a705a97851e0bdb89ab7d9e44d9c37ee7}{reference}})
 \item 
 \mbox{\hyperlink{class_g_q_c_p_1_1_diamagnetic_operator_a8696ef0b3d4de908338b927e84d972fb}{Diamagnetic\+Operator}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{Homogeneous\+Magnetic\+Field}} \&B)
 \item 
-const \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{Homogeneous\+Magnetic\+Field}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_diamagnetic_operator_a71556f4587de2a42c765e54f199ec8e8}{magnetic\+Field}} () const
+const \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{Homogeneous\+Magnetic\+Field}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_diamagnetic_operator_ad5b60706732f24e2d2f4728a206e2461}{magnetic\+Field}} () const
 \item 
 \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_quadrupole_operator}{Electronic\+Quadrupole\+Operator}} \mbox{\hyperlink{class_g_q_c_p_1_1_diamagnetic_operator_a2c28a337cf83504a74d46e39e71beed5}{electronic\+Quadrupole}} () const
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator}{GQCP\+::\+Base\+FQOperator$<$ N, \+\_\+\+Scalar, Scalar\+Vectorizer $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_a1f47a08d6dbad212da9370b4d55fd522}{$\sim$\+Base\+FQOperator}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_base_reference_dependent_operator}{GQCP\+::\+Base\+Reference\+Dependent\+Operator}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_base_reference_dependent_operator_a54a0c94b11d3c1b094b91de2c1125083}{Base\+Reference\+Dependent\+Operator}} (const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&\mbox{\hyperlink{class_g_q_c_p_1_1_base_reference_dependent_operator_a705a97851e0bdb89ab7d9e44d9c37ee7}{reference}}=\mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$\+::\+Zero())
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_base_reference_dependent_operator_a67db3a2bf7e00d38db5fcba98dec06ed}{$\sim$\+Base\+Reference\+Dependent\+Operator}} ()=0
+\item 
+const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_base_reference_dependent_operator_a705a97851e0bdb89ab7d9e44d9c37ee7}{reference}} () const
+\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
+\doxysubsubsection*{Public Types inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator}{GQCP\+::\+Base\+FQOperator$<$ N, \+\_\+\+Scalar, Scalar\+Vectorizer $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}{Scalar}} = \+\_\+\+Scalar
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_a3bf379636691d7d74ea96afc8f5049cf}{Vectorizer}} = \mbox{\hyperlink{namespace_g_q_c_p_a6c012317d3e2de845b7ee1a860c61e99}{Scalar\+Vectorizer}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_base_scalar_f_q_operator}{GQCP\+::\+Base\+Scalar\+FQOperator$<$ N, \+\_\+\+Scalar $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_scalar_f_q_operator_a7bf7164b798fb0becf494a29e8d54eb7}{Number\+Of\+Components}} = 1
+\item 
+static const \mbox{\hyperlink{namespace_g_q_c_p_a6c012317d3e2de845b7ee1a860c61e99}{Scalar\+Vectorizer}} \mbox{\hyperlink{class_g_q_c_p_1_1_base_scalar_f_q_operator_ad07fca0083a7212821250e3beff14242}{vectorizer}} \{\}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator}{GQCP\+::\+Base\+FQOperator$<$ N, \+\_\+\+Scalar, Scalar\+Vectorizer $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_ae56208bbc85e6d9d401fa4540f20a573}{Number\+Of\+Electrons}}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -85,11 +118,11 @@ The reference point is chosen to be the gauge origin of the magnetic field.
 \begin{DoxyReturn}{Returns}
 The electronic quadrupole operator that is related to this diamagnetic operator. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_diamagnetic_operator_a71556f4587de2a42c765e54f199ec8e8}\label{class_g_q_c_p_1_1_diamagnetic_operator_a71556f4587de2a42c765e54f199ec8e8}} 
+\mbox{\Hypertarget{class_g_q_c_p_1_1_diamagnetic_operator_ad5b60706732f24e2d2f4728a206e2461}\label{class_g_q_c_p_1_1_diamagnetic_operator_ad5b60706732f24e2d2f4728a206e2461}} 
 \index{GQCP::DiamagneticOperator@{GQCP::DiamagneticOperator}!magneticField@{magneticField}}
 \index{magneticField@{magneticField}!GQCP::DiamagneticOperator@{GQCP::DiamagneticOperator}}
 \doxysubsubsection{\texorpdfstring{magneticField()}{magneticField()}}
-{\footnotesize\ttfamily const \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{Homogeneous\+Magnetic\+Field}}\& GQCP\+::\+Diamagnetic\+Operator\+::magnetic\+Field (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{Homogeneous\+Magnetic\+Field}} \& GQCP\+::\+Diamagnetic\+Operator\+::magnetic\+Field (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \begin{DoxyReturn}{Returns}
 The external, homogeneous magnetic field. 

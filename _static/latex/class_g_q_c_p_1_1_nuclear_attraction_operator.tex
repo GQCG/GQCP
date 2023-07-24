@@ -31,7 +31,42 @@ Collaboration diagram for GQCP\+::Nuclear\+Attraction\+Operator\+:
 \item 
 \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_attraction_operator_aa0e8aca777e43c4686b376eb80850b61}{Base\+Nuclear\+Operator}} (const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} $>$ \&nuclei)
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_base_nuclear_operator}{GQCP\+::\+Base\+Nuclear\+Operator}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_base_nuclear_operator_a94b1c7232e7ff103f31c2346b8d2d96a}{Base\+Nuclear\+Operator}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework}{Nuclear\+Framework}} \&nuclear\+\_\+framework)
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_base_nuclear_operator_aa0e8aca777e43c4686b376eb80850b61}{Base\+Nuclear\+Operator}} (const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} $>$ \&nuclei)
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_base_nuclear_operator_a5ff429963c499ddfca45164e17e734e9}{$\sim$\+Base\+Nuclear\+Operator}} ()=0
+\item 
+const \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework}{Nuclear\+Framework}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_base_nuclear_operator_a7b692bac54528c1353f5eaad288ca43d}{nuclear\+Framework}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator}{GQCP\+::\+Base\+FQOperator$<$ N, \+\_\+\+Scalar, Scalar\+Vectorizer $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_a1f47a08d6dbad212da9370b4d55fd522}{$\sim$\+Base\+FQOperator}} ()
+\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
+\doxysubsubsection*{Public Types inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator}{GQCP\+::\+Base\+FQOperator$<$ N, \+\_\+\+Scalar, Scalar\+Vectorizer $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}{Scalar}} = \+\_\+\+Scalar
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_a3bf379636691d7d74ea96afc8f5049cf}{Vectorizer}} = \mbox{\hyperlink{namespace_g_q_c_p_a6c012317d3e2de845b7ee1a860c61e99}{Scalar\+Vectorizer}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_base_scalar_f_q_operator}{GQCP\+::\+Base\+Scalar\+FQOperator$<$ N, \+\_\+\+Scalar $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_scalar_f_q_operator_a7bf7164b798fb0becf494a29e8d54eb7}{Number\+Of\+Components}} = 1
+\item 
+static const \mbox{\hyperlink{namespace_g_q_c_p_a6c012317d3e2de845b7ee1a860c61e99}{Scalar\+Vectorizer}} \mbox{\hyperlink{class_g_q_c_p_1_1_base_scalar_f_q_operator_ad07fca0083a7212821250e3beff14242}{vectorizer}} \{\}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator}{GQCP\+::\+Base\+FQOperator$<$ N, \+\_\+\+Scalar, Scalar\+Vectorizer $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_ae56208bbc85e6d9d401fa4540f20a573}{Number\+Of\+Electrons}}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -42,7 +77,7 @@ The (one-\/electron) nuclear attraction energy operator.
 \index{GQCP::NuclearAttractionOperator@{GQCP::NuclearAttractionOperator}!BaseNuclearOperator@{BaseNuclearOperator}}
 \index{BaseNuclearOperator@{BaseNuclearOperator}!GQCP::NuclearAttractionOperator@{GQCP::NuclearAttractionOperator}}
 \doxysubsubsection{\texorpdfstring{BaseNuclearOperator()}{BaseNuclearOperator()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily GQCP\+::\+Base\+Nuclear\+Operator\+::\+Base\+Nuclear\+Operator}
+{\footnotesize\ttfamily GQCP\+::\+Base\+Nuclear\+Operator\+::\+Base\+Nuclear\+Operator (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework}{Nuclear\+Framework}} \&}]{nuclear\+\_\+framework }\end{DoxyParamCaption})}
 
 Construct a {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_base_nuclear_operator}{Base\+Nuclear\+Operator}}} from a nuclear framework.
 
@@ -55,7 +90,7 @@ Construct a {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_base_nuclear_operator}
 \index{GQCP::NuclearAttractionOperator@{GQCP::NuclearAttractionOperator}!BaseNuclearOperator@{BaseNuclearOperator}}
 \index{BaseNuclearOperator@{BaseNuclearOperator}!GQCP::NuclearAttractionOperator@{GQCP::NuclearAttractionOperator}}
 \doxysubsubsection{\texorpdfstring{BaseNuclearOperator()}{BaseNuclearOperator()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily GQCP\+::\+Base\+Nuclear\+Operator\+::\+Base\+Nuclear\+Operator}
+{\footnotesize\ttfamily GQCP\+::\+Base\+Nuclear\+Operator\+::\+Base\+Nuclear\+Operator (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}} $>$ \&}]{nuclei }\end{DoxyParamCaption})}
 
 Construct a {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_base_nuclear_operator}{Base\+Nuclear\+Operator}}} from a vector of nuclei.
 

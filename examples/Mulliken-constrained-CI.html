@@ -3,11 +3,12 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Mulliken constrained CI calculations</title>
   
   
@@ -18,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -37,18 +38,20 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
@@ -63,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Getting started" href="../developer-documentation/getting-started.html" />
     <link rel="prev" title="Mean-field calculations in magnetic fields" href="Mean-field-magnetic.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
   
   
@@ -439,8 +442,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="section" id="mulliken-constrained-ci-calculations">
-<h1>Mulliken constrained CI calculations<a class="headerlink" href="#mulliken-constrained-ci-calculations" title="Permalink to this heading">#</a></h1>
+  <section id="mulliken-constrained-ci-calculations">
+<h1>Mulliken constrained CI calculations<a class="headerlink" href="#mulliken-constrained-ci-calculations" title="Permalink to this headline">#</a></h1>
 <p>Approximate methods have a tendancy to distribute populations continuously, even at bond distances approaching infinity. By artificially distributing the population within the molecule, we can model the correct behaviour using full configuration interaction calculations and an appropriate population scheme.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -459,8 +462,8 @@ document.write(`
 </div>
 </div>
 </div>
-<div class="section" id="molecular-setup">
-<h2>Molecular setup<a class="headerlink" href="#molecular-setup" title="Permalink to this heading">#</a></h2>
+<section id="molecular-setup">
+<h2>Molecular setup<a class="headerlink" href="#molecular-setup" title="Permalink to this headline">#</a></h2>
 <p>To clearly show the changing behaviour when the bond distance increases, we will look at $H_2$ at three different bond distances.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -473,16 +476,16 @@ document.write(`
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="constrained-ci-setup">
-<h2>Constrained CI setup<a class="headerlink" href="#constrained-ci-setup" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="constrained-ci-setup">
+<h2>Constrained CI setup<a class="headerlink" href="#constrained-ci-setup" title="Permalink to this headline">#</a></h2>
 <p>In order to make thins as clear as possible, we will start by generating a helper class that will facilitate the calculations. This class will provide us with the necessary tools for two types of calculations: a scan over a series of multiplier values and a more targetted optimization in order to find mu values that lead to pre-defined population values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MullikenConstrainedCI</span><span class="p">:</span>
     
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">molecule</span><span class="p">,</span> <span class="n">basis_set</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        :param molecule:      The molecule required for the calculations.</span>
 <span class="sd">        :param basis_set:     The basis set in which the calculations will take place.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -527,7 +530,7 @@ document.write(`
     <span class="c1"># Next, we will define a couple of methods for this class that will help us later on with our calculations.</span>
     <span class="c1"># We will define a private method that can solve the corresponding full configuration interaction eigenvalue problem.   </span>
     <span class="k">def</span> <span class="nf">_solveCIEigenproblem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hamiltonian</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        A method used to solve a CI eigenproblem.</span>
 
 <span class="sd">        :param hamiltonian:      The SQHamiltonian used for the calculation.</span>
@@ -545,7 +548,7 @@ document.write(`
 
     <span class="c1"># We will define a method that calculates the energy and the population when a specific multiplier is provided.</span>
     <span class="k">def</span> <span class="nf">calculateEnergyAndPopulationAtMultiplier</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">multiplier</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        A method used to calculate the energy and the population at a given multiplier `mu`.</span>
 
 <span class="sd">        :param multiplier:      The multiplier used to modify the Hamiltonian.</span>
@@ -571,7 +574,7 @@ document.write(`
     <span class="c1"># Another approach is that we use a line search algorithm to find the multiplier that leads to a certain population value.</span>
     <span class="c1"># Note that it can be difficult to find these data points, due to the discontinuous behaviour that we expect.</span>
     <span class="k">def</span> <span class="nf">calculateMultiplierAtPopulation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        A method that uses an `optimize_function` to calculate the multiplier value belonging to a specified population value.</span>
 
 <span class="sd">        :param population:               The population value for which we want to find the multiplier.</span>
@@ -593,7 +596,7 @@ document.write(`
     <span class="c1"># In order to guarantee that a correct multiplier value has been found, we perform a check that tells us whether the population corresponding to the calculated mu value leads to the population that we were trying to find.</span>
     <span class="c1"># If this is not the case, a `None` value will be returned. </span>
     <span class="k">def</span> <span class="nf">verifyMultiplierPopulationCombination</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">optimized_mu</span><span class="p">,</span> <span class="n">expected_population</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        A method used to check whether the multiplier found corresponds to the expected population.</span>
 
 <span class="sd">        :param optimized_mu:                      The optimized mu found with an optimization function.</span>
@@ -614,9 +617,9 @@ document.write(`
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="scan-over-a-range-of-lagrange-multipliers">
-<h2>Scan over a range of Lagrange multipliers<a class="headerlink" href="#scan-over-a-range-of-lagrange-multipliers" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="scan-over-a-range-of-lagrange-multipliers">
+<h2>Scan over a range of Lagrange multipliers<a class="headerlink" href="#scan-over-a-range-of-lagrange-multipliers" title="Permalink to this headline">#</a></h2>
 <p>The populations can be influenced by applying a constraint on the Hamiltonian. This constraint can be implemented by modifying the Hamiltonian with the Mulliken operator, multiplied by a potential.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -744,9 +747,9 @@ if (outputEl) {{
 
                         })                };                });            </script>        </div></div></div>
 </div>
-</div>
-<div class="section" id="search-for-multipliers-corresponding-to-population-values">
-<h2>Search for multipliers corresponding to population values<a class="headerlink" href="#search-for-multipliers-corresponding-to-population-values" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="search-for-multipliers-corresponding-to-population-values">
+<h2>Search for multipliers corresponding to population values<a class="headerlink" href="#search-for-multipliers-corresponding-to-population-values" title="Permalink to this headline">#</a></h2>
 <p>For $H_2$ the populations must lie between 0 and 2. We will look for the populatipons in steps of 0.1.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -811,18 +814,18 @@ if (outputEl) {{
 
                         })                };                });            </script>        </div></div></div>
 </div>
-</div>
-</div>
-<div class="section" id="spin-resolved-mulliken-constrained-ci-calculations">
-<h1>Spin resolved Mulliken constrained CI calculations<a class="headerlink" href="#spin-resolved-mulliken-constrained-ci-calculations" title="Permalink to this heading">#</a></h1>
+</section>
+</section>
+<section id="spin-resolved-mulliken-constrained-ci-calculations">
+<h1>Spin resolved Mulliken constrained CI calculations<a class="headerlink" href="#spin-resolved-mulliken-constrained-ci-calculations" title="Permalink to this headline">#</a></h1>
 <p>The previous calculations were used to examine the total population as a function of a single Lagrange multiplier. With a few modifications however, we can perform the same study with a separate multiplier for the $\alpha$- and $\beta$ populations respectively.</p>
-<div class="section" id="spin-resolved-constrained-ci-setup">
-<h2>Spin resolved constrained CI setup<a class="headerlink" href="#spin-resolved-constrained-ci-setup" title="Permalink to this heading">#</a></h2>
+<section id="spin-resolved-constrained-ci-setup">
+<h2>Spin resolved constrained CI setup<a class="headerlink" href="#spin-resolved-constrained-ci-setup" title="Permalink to this headline">#</a></h2>
 <p>We will once again define a helper class that sores the required variabled and methods.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SpinResolvedMullikenConstrainedCI</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    :param molecule:         The molecule used for the calculations.</span>
 <span class="sd">    :param basis_set:        The basis set used for the calculations.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -869,7 +872,7 @@ if (outputEl) {{
     
 
     <span class="k">def</span> <span class="nf">_solveCIEigenproblem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hamiltonian</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        A method used to solve an unrestricted CI eigenproblem.</span>
 
 <span class="sd">        :param hamiltonian:      The USQHamiltonian used for the calculation.</span>
@@ -887,7 +890,7 @@ if (outputEl) {{
         
 
     <span class="k">def</span> <span class="nf">calculateEnergyAndPopulationAtMultiplier</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">multiplier_array</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        A method used to calculate the energy and the population at a given multiplier `mu`.</span>
 
 <span class="sd">        :param multiplier_array:      The multiplier used to modify the Hamiltonian. Must be an array/list that contains an alpha and beta value.</span>
@@ -926,7 +929,7 @@ if (outputEl) {{
 
 
     <span class="k">def</span> <span class="nf">calculateMultiplierAtPopulation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population_array</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        A method that uses an `optimize_function` to calculate the multiplier value belonging to a specified population value.</span>
 
 <span class="sd">        :param population_array:         The population value for which we want to find the multiplier.</span>
@@ -957,7 +960,7 @@ if (outputEl) {{
         
         
     <span class="k">def</span> <span class="nf">verifyMultiplierPopulationCombination</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">optimized_mu</span><span class="p">,</span> <span class="n">expected_population_array</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        A method used to check whether the multiplier found corresponds to the expected population.</span>
 
 <span class="sd">        :param optimized_mu:                            The optimized mu found with an optimization function.</span>
@@ -980,9 +983,9 @@ if (outputEl) {{
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="id1">
-<h2>Scan over a range of Lagrange multipliers<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="id1">
+<h2>Scan over a range of Lagrange multipliers<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
 <p>We can once again perform the same two types of calculations. However, one should take note that because the calculation now takes two variables, the range becomes a grid, as for each $\alpha$-multiplier, wa can enter all possible $\beta$-multipliers.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1083,9 +1086,9 @@ if (outputEl) {{
 
                         })                };                });            </script>        </div></div></div>
 </div>
-</div>
-<div class="section" id="id2">
-<h2>Search for multipliers corresponding to population values<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="id2">
+<h2>Search for multipliers corresponding to population values<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
 <p>As with the scan over multipliers, when searching for specific multiplier values, we must also create a grid out of the populations. Take into account that while the total population range is 0-2, the $\alpha$- and $\beta$-population ranges are each equal to half of that.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1148,8 +1151,8 @@ if (outputEl) {{
 
                         })                };                });            </script>        </div></div></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1177,7 +1180,10 @@ if (outputEl) {{
               
               
                 <footer class="bd-footer-article">
-                  <!-- Previous / next buttons -->
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="Mean-field-magnetic.html"
@@ -1197,7 +1203,10 @@ if (outputEl) {{
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
@@ -1234,7 +1243,7 @@ if (outputEl) {{
             
           </div>
           <footer class="bd-footer-content">
-            <div class="bd-footer-content__inner">
+            
 <div class="bd-footer-content__inner container">
   
   <div class="footer-item">
@@ -1264,7 +1273,7 @@ By The Ghent Quantum Chemistry Group
     
   </div>
   
-</div></div>
+</div>
           </footer>
         
 
@@ -1273,8 +1282,8 @@ By The Ghent Quantum Chemistry Group
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
   </footer>

@@ -1,41 +1,24 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="_electronic_dipole_operator_8cpp" kind="file" language="C++">
     <compoundname>ElectronicDipoleOperator.cpp</compoundname>
     <includes refid="_electronic_dipole_operator_8hpp" local="yes">Operator/FirstQuantized/ElectronicDipoleOperator.hpp</includes>
     <incdepgraph>
-      <node id="18">
-        <label>boost/algorithm/string.hpp</label>
+      <node id="11">
+        <label>Mathematical/Functions/CartesianDirection.hpp</label>
+        <link refid="_cartesian_direction_8hpp"/>
       </node>
-      <node id="3">
-        <label>Operator/FirstQuantized/BaseFQOperator.hpp</label>
-        <link refid="_base_f_q_operator_8hpp"/>
-        <childnode refid="4" relation="include">
+      <node id="4">
+        <label>Mathematical/Representation/DenseVectorizer.hpp</label>
+        <link refid="_dense_vectorizer_8hpp"/>
+        <childnode refid="5" relation="include">
         </childnode>
-      </node>
-      <node id="12">
-        <label>Utilities/Eigen.hpp</label>
-        <link refid="_eigen_8hpp"/>
-        <childnode refid="13" relation="include">
+        <childnode refid="6" relation="include">
         </childnode>
-      </node>
-      <node id="5">
-        <label>stdexcept</label>
-      </node>
-      <node id="8">
-        <label>numeric</label>
-      </node>
-      <node id="19">
-        <label>fstream</label>
-      </node>
-      <node id="9">
-        <label>Operator/FirstQuantized/BaseReferenceDependentOperator.hpp</label>
-        <link refid="_base_reference_dependent_operator_8hpp"/>
-        <childnode refid="10" relation="include">
+        <childnode refid="7" relation="include">
         </childnode>
-      </node>
-      <node id="13">
-        <label>Eigen/Dense</label>
+        <childnode refid="8" relation="include">
+        </childnode>
       </node>
       <node id="10">
         <label>Mathematical/Representation/Matrix.hpp</label>
@@ -57,37 +40,17 @@
         <childnode refid="21" relation="include">
         </childnode>
       </node>
-      <node id="4">
-        <label>Mathematical/Representation/DenseVectorizer.hpp</label>
-        <link refid="_dense_vectorizer_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
+      <node id="3">
+        <label>Operator/FirstQuantized/BaseFQOperator.hpp</label>
+        <link refid="_base_f_q_operator_8hpp"/>
+        <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="15">
-        <label>Utilities/type_traits.hpp</label>
-        <link refid="type__traits_8hpp"/>
-        <childnode refid="16" relation="include">
+      <node id="9">
+        <label>Operator/FirstQuantized/BaseReferenceDependentOperator.hpp</label>
+        <link refid="_base_reference_dependent_operator_8hpp"/>
+        <childnode refid="10" relation="include">
         </childnode>
-      </node>
-      <node id="21">
-        <label>vector</label>
-      </node>
-      <node id="14">
-        <label>Utilities/aliases.hpp</label>
-        <link refid="aliases_8hpp"/>
-        <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-      </node>
-      <node id="6">
-        <label>array</label>
       </node>
       <node id="2">
         <label>Operator/FirstQuantized/ElectronicDipoleOperator.hpp</label>
@@ -97,27 +60,64 @@
         <childnode refid="9" relation="include">
         </childnode>
       </node>
-      <node id="17">
-        <label>cstdlib</label>
+      <node id="12">
+        <label>Utilities/Eigen.hpp</label>
+        <link refid="_eigen_8hpp"/>
+        <childnode refid="13" relation="include">
+        </childnode>
       </node>
-      <node id="20">
-        <label>iostream</label>
+      <node id="14">
+        <label>Utilities/aliases.hpp</label>
+        <link refid="aliases_8hpp"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
       </node>
-      <node id="7">
-        <label>cstddef</label>
-      </node>
-      <node id="16">
-        <label>type_traits</label>
-      </node>
-      <node id="11">
-        <label>Mathematical/Functions/CartesianDirection.hpp</label>
-        <link refid="_cartesian_direction_8hpp"/>
+      <node id="15">
+        <label>Utilities/type_traits.hpp</label>
+        <link refid="type__traits_8hpp"/>
+        <childnode refid="16" relation="include">
+        </childnode>
       </node>
       <node id="1">
         <label>/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/ElectronicDipoleOperator.cpp</label>
         <link refid="_electronic_dipole_operator_8cpp"/>
         <childnode refid="2" relation="include">
         </childnode>
+      </node>
+      <node id="13">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="6">
+        <label>array</label>
+      </node>
+      <node id="18">
+        <label>boost/algorithm/string.hpp</label>
+      </node>
+      <node id="7">
+        <label>cstddef</label>
+      </node>
+      <node id="17">
+        <label>cstdlib</label>
+      </node>
+      <node id="19">
+        <label>fstream</label>
+      </node>
+      <node id="20">
+        <label>iostream</label>
+      </node>
+      <node id="8">
+        <label>numeric</label>
+      </node>
+      <node id="5">
+        <label>stdexcept</label>
+      </node>
+      <node id="16">
+        <label>type_traits</label>
+      </node>
+      <node id="21">
+        <label>vector</label>
       </node>
     </incdepgraph>
     <innernamespace refid="namespace_g_q_c_p">GQCP</innernamespace>

@@ -1,0 +1,126 @@
+\hypertarget{_spin_resolved_base_8hpp_source}{}\doxysection{Spin\+Resolved\+Base.\+hpp}
+\label{_spin_resolved_base_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/QuantumChemical/SpinResolvedBase.hpp}}
+\mbox{\hyperlink{_spin_resolved_base_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_spin_8hpp}{QuantumChemical/Spin.hpp}}"{}}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Of,\ \textcolor{keyword}{typename}\ \_Derived>}
+\DoxyCodeLine{00039\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base}{SpinResolvedBase}}\ \{}
+\DoxyCodeLine{00040\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ the\ alpha-\/\ and\ beta-\/objects.\ The\ name\ 'Of'\ is\ chosen\ for\ a\ natural\ reading\ `SpinResolvedBase<\_Of,\ \_Derived>`.}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{Of}}\ =\ \_Of;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{comment}{//\ The\ type\ that\ derives\ from\ this\ type,\ given\ as\ a\ template\ argument,\ enabling\ CRTP\ and\ compile-\/time\ polymorphism.}}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a6074bc4e9b29958b9fb2ade214182b42}{Derived}}\ =\ \_Derived;}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ 'this'.}}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base}{Self}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base}{SpinResolvedBase<Of,\ Derived>}};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ The\ alpha-\/object.}}
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{Of}}\ m\_alpha;}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//\ The\ beta-\/object.}}
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{Of}}\ m\_beta;}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00061\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Constructors}}
+\DoxyCodeLine{00062\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_ac6430934631d0e81584d742dcb28e524}{SpinResolvedBase}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{Of}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{Of}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}})\ :}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ m\_alpha\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}\},}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ m\_beta\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}\}\ \{\}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00080\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a3830b1d56ee5b6bc0132d1026025ce07}{SpinResolvedBase}}(\textcolor{keyword}{const}\ std::vector<Of>\&\ both)\ :}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base}{SpinResolvedBase}}(both[0],\ both[1])\ \{}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (both.size()\ !=\ 2)\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}SpinResolvedBase(const\ std::vector<Of>\&):\ The\ given\ vector\ does\ not\ have\ exactly\ two\ elements."{}});}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00086\ \ \ \ \ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00094\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a855eff9779b50d5b390b39330d5c69ab}{SpinResolvedBase}}(\textcolor{keyword}{const}\ std::array<Of,\ 2>\&\ both)\ :}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base}{SpinResolvedBase}}(both[0],\ both[1])\ \{\}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00103\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a9fd9984b90c113bc10b86bcfe5631a32}{SpinResolvedBase}}(\textcolor{keyword}{const}\ std::initializer\_list<Of>\&\ both)\ :}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base}{SpinResolvedBase}}(std::vector<\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{Of}}>(both))\ \{\}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00108\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Named\ constructors}}
+\DoxyCodeLine{00109\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a6074bc4e9b29958b9fb2ade214182b42}{Derived}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_ad684026f9ce2481de03ed06267365e46}{FromEqual}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{Of}}\&\ equal)\ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a6074bc4e9b29958b9fb2ade214182b42}{Derived}}\ \{equal,\ equal\};}
+\DoxyCodeLine{00120\ \ \ \ \ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00124\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Accessing\ spin\ components}}
+\DoxyCodeLine{00125\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{Of}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>m\_alpha;\ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00135\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{Of}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a1dfb8ca22ac80e83c47db5b7dc3ddd44}{alpha}}()\ \{\ \textcolor{keywordflow}{return}\ this-\/>m\_alpha;\ \}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{Of}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>m\_beta;\ \}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00145\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{Of}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a9874eb94be81b82ff933f14532cea3c2}{beta}}()\ \{\ \textcolor{keywordflow}{return}\ this-\/>m\_beta;\ \}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{Of}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_abc73c03917a9bc4469007c832b7dc8d0}{component}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4f}{Spin}}\ sigma)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (sigma)\ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{Spin::alpha}}:\ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}();}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{Spin::beta}}:\ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}();}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00167\ \ \ \ \ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00176\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{Of}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a091d5449d9bedc3d2b8c63b1a54dce30}{component}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4f}{Spin}}\ sigma)\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{const\_cast<}\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{Of}}\&\textcolor{keyword}{>}(\textcolor{keyword}{const\_cast<}\textcolor{keyword}{const\ }\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base}{Self}}*\textcolor{keyword}{>}(\textcolor{keyword}{this})-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a091d5449d9bedc3d2b8c63b1a54dce30}{component}}(sigma));\ \}}
+\DoxyCodeLine{00177\ \};}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

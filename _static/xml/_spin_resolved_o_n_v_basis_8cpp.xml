@@ -1,20 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="_spin_resolved_o_n_v_basis_8cpp" kind="file" language="C++">
     <compoundname>SpinResolvedONVBasis.cpp</compoundname>
     <includes local="yes">ONVBasis/SpinResolvedONVBasis.hpp</includes>
     <includes local="no">boost/math/special_functions.hpp</includes>
     <includes local="no">boost/numeric/conversion/converter.hpp</includes>
     <incdepgraph>
-      <node id="3">
-        <label>boost/math/special_functions.hpp</label>
-      </node>
-      <node id="4">
-        <label>boost/numeric/conversion/converter.hpp</label>
-      </node>
-      <node id="2">
-        <label>ONVBasis/SpinResolvedONVBasis.hpp</label>
-      </node>
       <node id="1">
         <label>/__w/GQCP/GQCP/gqcp/src/ONVBasis/SpinResolvedONVBasis.cpp</label>
         <link refid="_spin_resolved_o_n_v_basis_8cpp"/>
@@ -24,6 +15,15 @@
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
+      </node>
+      <node id="2">
+        <label>ONVBasis/SpinResolvedONVBasis.hpp</label>
+      </node>
+      <node id="3">
+        <label>boost/math/special_functions.hpp</label>
+      </node>
+      <node id="4">
+        <label>boost/numeric/conversion/converter.hpp</label>
       </node>
     </incdepgraph>
     <innernamespace refid="namespace_g_q_c_p">GQCP</innernamespace>
@@ -107,7 +107,7 @@
 <codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>K<sp/>=<sp/>g_ab_op.numberOfOrbitals();</highlight></codeline>
 <codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>g_ab<sp/>=<sp/>g_ab_op.parameters();</highlight></codeline>
 <codeline lineno="101"><highlight class="normal"></highlight></codeline>
-<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>SquareMatrix&lt;double&gt;<sp/>t<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_square_matrix_1ae3551bb3ac15b2560846f7a5956d1d90" kindref="member">SquareMatrix&lt;double&gt;::Zero</ref>(K);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>SquareMatrix&lt;double&gt;<sp/>t<sp/>=<sp/>SquareMatrix&lt;double&gt;::Zero(K);</highlight></codeline>
 <codeline lineno="103"><highlight class="normal"></highlight></codeline>
 <codeline lineno="104"><highlight class="normal"></highlight></codeline>
 <codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Construct<sp/>the<sp/>parameters<sp/>of<sp/>the<sp/>one-electron<sp/>partitioning.</highlight><highlight class="normal"></highlight></codeline>
@@ -165,14 +165,14 @@
 <codeline lineno="170"><highlight class="normal"></highlight></codeline>
 <codeline lineno="171"><highlight class="normal"></highlight></codeline>
 <codeline lineno="172"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="173"><highlight class="comment"><sp/><sp/>*<sp/><sp/>MARK:<sp/>Dense<sp/>restricted<sp/>operator<sp/>evaluations</highlight></codeline>
-<codeline lineno="174"><highlight class="comment"><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="comment"><sp/>*<sp/><sp/>MARK:<sp/>Dense<sp/>restricted<sp/>operator<sp/>evaluations</highlight></codeline>
+<codeline lineno="174"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="175"><highlight class="normal"></highlight></codeline>
 <codeline lineno="176"><highlight class="normal"></highlight></codeline>
 <codeline lineno="184"><highlight class="normal">SquareMatrix&lt;double&gt;<sp/>SpinResolvedONVBasis::evaluateOperatorDense(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ScalarRSQOneElectronOperator&lt;double&gt;&amp;<sp/>f)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="185"><highlight class="normal"></highlight></codeline>
 <codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Prepare<sp/>some<sp/>variables.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/>SquareMatrix&lt;double&gt;<sp/>F<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_square_matrix_1ae3551bb3ac15b2560846f7a5956d1d90" kindref="member">SquareMatrix&lt;double&gt;::Zero</ref>(this-&gt;dimension());</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/>SquareMatrix&lt;double&gt;<sp/>F<sp/>=<sp/>SquareMatrix&lt;double&gt;::Zero(this-&gt;dimension());</highlight></codeline>
 <codeline lineno="188"><highlight class="normal"></highlight></codeline>
 <codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>dim_alpha<sp/>=<sp/>this-&gt;<ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6" kindref="member">alpha</ref>().dimension();</highlight></codeline>
 <codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>dim_beta<sp/>=<sp/>this-&gt;<ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5" kindref="member">beta</ref>().dimension();</highlight></codeline>
@@ -188,7 +188,7 @@
 <codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="201"><highlight class="normal"></highlight></codeline>
 <codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Emplace<sp/>the<sp/>alpha-evaluations<sp/>in<sp/>the<sp/>total<sp/>matrix.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>SquareMatrix&lt;double&gt;<sp/>ones<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_square_matrix_1aa6a5cf30d688d7b21a2605b4a46d2ca9" kindref="member">SquareMatrix&lt;double&gt;::Identity</ref>(dim_beta);</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>SquareMatrix&lt;double&gt;<sp/>ones<sp/>=<sp/>SquareMatrix&lt;double&gt;::Identity(dim_beta);</highlight></codeline>
 <codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>F_alpha.cols();<sp/>i++)<sp/>{</highlight></codeline>
 <codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>j<sp/>=<sp/>0;<sp/>j<sp/>&lt;<sp/>F_alpha.cols();<sp/>j++)<sp/>{</highlight></codeline>
 <codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>F.block(i<sp/>*<sp/>dim_beta,<sp/>j<sp/>*<sp/>dim_beta,<sp/>dim_beta,<sp/>dim_beta)<sp/>+=<sp/>F_alpha(i,<sp/>j)<sp/>*<sp/>ones;</highlight></codeline>
@@ -316,7 +316,7 @@
 <codeline lineno="377"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Prepare<sp/>some<sp/>variables.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="378"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>dim_alpha<sp/>=<sp/>this-&gt;<ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6" kindref="member">alpha</ref>().dimension();</highlight></codeline>
 <codeline lineno="379"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>dim_beta<sp/>=<sp/>this-&gt;<ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5" kindref="member">beta</ref>().dimension();</highlight></codeline>
-<codeline lineno="380"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>H<sp/>=<sp/>hamiltonian.hoppingMatrix().matrix();</highlight></codeline>
+<codeline lineno="380"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>H_diag<sp/>=<sp/>hamiltonian.onSiteRepulsionMatrix();</highlight></codeline>
 <codeline lineno="381"><highlight class="normal"></highlight></codeline>
 <codeline lineno="382"><highlight class="normal"></highlight></codeline>
 <codeline lineno="383"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Calculate<sp/>the<sp/>diagonal<sp/>contributions<sp/>resulting<sp/>from<sp/>the<sp/>two-electron<sp/>on-site<sp/>interactions<sp/>by<sp/>iterating<sp/>over<sp/>all<sp/>ONVs.</highlight><highlight class="normal"></highlight></codeline>
@@ -333,7 +333,7 @@
 <codeline lineno="394"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>There<sp/>is<sp/>a<sp/>contribution<sp/>for<sp/>all<sp/>orbital<sp/>indices<sp/>p<sp/>that<sp/>are<sp/>occupied<sp/>both<sp/>in<sp/>the<sp/>alpha-<sp/>and<sp/>beta<sp/>ONV.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="395"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;size_t&gt;<sp/>occupations<sp/>=<sp/>onv_alpha.findMatchingOccupations(onv_beta);</highlight></codeline>
 <codeline lineno="396"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>p<sp/>:<sp/>occupations)<sp/>{</highlight></codeline>
-<codeline lineno="397"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>diagonal(I)<sp/>+=<sp/>H(p,<sp/>p);<sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>two-electron<sp/>(on-site<sp/>repulsion)<sp/>contributions<sp/>are<sp/>on<sp/>the<sp/>diagonal<sp/>of<sp/>the<sp/>hopping<sp/>matrix.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="397"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>diagonal(I)<sp/>+=<sp/>H_diag(p,<sp/>p);<sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>two-electron<sp/>(on-site<sp/>repulsion)<sp/>contributions<sp/>are<sp/>on<sp/>the<sp/>diagonal<sp/>of<sp/>the<sp/>Hubbard<sp/>Hamiltonian<sp/>matrix.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="398"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="399"><highlight class="normal"></highlight></codeline>
 <codeline lineno="400"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(Ib<sp/>&lt;<sp/>dim_beta<sp/>-<sp/>1)<sp/>{<sp/><sp/></highlight><highlight class="comment">//<sp/>Prevent<sp/>the<sp/>last<sp/>permutation<sp/>from<sp/>occurring.</highlight><highlight class="normal"></highlight></codeline>
@@ -354,7 +354,7 @@
 <codeline lineno="415"><highlight class="comment"><sp/>*<sp/><sp/>MARK:<sp/>Restricted<sp/>matrix-vector<sp/>product<sp/>evaluations</highlight></codeline>
 <codeline lineno="416"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="417"><highlight class="normal"></highlight></codeline>
-<codeline lineno="426"><highlight class="normal">VectorX&lt;double&gt;<sp/>SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ScalarRSQOneElectronOperator&lt;double&gt;&amp;<sp/>f,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorX&lt;double&gt;&amp;<sp/><ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5" kindref="member">x</ref>)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="426"><highlight class="normal">VectorX&lt;double&gt;<sp/>SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ScalarRSQOneElectronOperator&lt;double&gt;&amp;<sp/>f,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorX&lt;double&gt;&amp;<sp/>x)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="427"><highlight class="normal"></highlight></codeline>
 <codeline lineno="428"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(f.numberOfOrbitals()<sp/>!=<sp/>this-&gt;alpha().numberOfOrbitals())<sp/>{</highlight></codeline>
 <codeline lineno="429"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(</highlight><highlight class="stringliteral">&quot;SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(const<sp/>ScalarRSQOneElectronOperator&lt;double&gt;&amp;,<sp/>const<sp/>VectorX&lt;double&gt;&amp;):<sp/>The<sp/>number<sp/>of<sp/>orbitals<sp/>of<sp/>the<sp/>spin-resolved<sp/>ONV<sp/>basis<sp/>and<sp/>the<sp/>operator<sp/>are<sp/>incompatible.&quot;</highlight><highlight class="normal">);</highlight></codeline>
@@ -382,28 +382,28 @@
 <codeline lineno="451"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="452"><highlight class="normal"></highlight></codeline>
 <codeline lineno="453"><highlight class="normal"></highlight></codeline>
-<codeline lineno="462"><highlight class="normal">VectorX&lt;double&gt;<sp/>SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ScalarRSQTwoElectronOperator&lt;double&gt;&amp;<sp/>g,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorX&lt;double&gt;&amp;<sp/><ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5" kindref="member">x</ref>)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="462"><highlight class="normal">VectorX&lt;double&gt;<sp/>SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ScalarRSQTwoElectronOperator&lt;double&gt;&amp;<sp/>g,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorX&lt;double&gt;&amp;<sp/>x)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="463"><highlight class="normal"></highlight></codeline>
 <codeline lineno="464"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>We<sp/>choose<sp/>to<sp/>avoid<sp/>code<sp/>duplication<sp/>by<sp/>evaluating<sp/>an<sp/>equivalent<sp/>restricted<sp/>Hamiltonian<sp/>with<sp/>zero-valued<sp/>core<sp/>contributions.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="465"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>zero<sp/>=<sp/>ScalarRSQOneElectronOperator&lt;double&gt;::Zero(g.numberOfOrbitals());</highlight></codeline>
 <codeline lineno="466"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>RSQHamiltonian&lt;double&gt;<sp/>hamiltonian<sp/>{zero,<sp/>g};</highlight></codeline>
 <codeline lineno="467"><highlight class="normal"></highlight></codeline>
-<codeline lineno="468"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;evaluateOperatorMatrixVectorProduct(hamiltonian,<sp/><ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5" kindref="member">x</ref>);</highlight></codeline>
+<codeline lineno="468"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;evaluateOperatorMatrixVectorProduct(hamiltonian,<sp/>x);</highlight></codeline>
 <codeline lineno="469"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="470"><highlight class="normal"></highlight></codeline>
 <codeline lineno="471"><highlight class="normal"></highlight></codeline>
-<codeline lineno="480"><highlight class="normal">VectorX&lt;double&gt;<sp/>SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>RSQHamiltonian&lt;double&gt;&amp;<sp/>hamiltonian,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorX&lt;double&gt;&amp;<sp/><ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5" kindref="member">x</ref>)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="480"><highlight class="normal">VectorX&lt;double&gt;<sp/>SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>RSQHamiltonian&lt;double&gt;&amp;<sp/>hamiltonian,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorX&lt;double&gt;&amp;<sp/>x)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="481"><highlight class="normal"></highlight></codeline>
 <codeline lineno="482"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>We<sp/>can<sp/>avoid<sp/>code<sp/>duplication<sp/>by<sp/>delegating<sp/>this<sp/>method<sp/>to<sp/>the<sp/>evaluation<sp/>of<sp/>an<sp/>unrestricted<sp/>Hamiltonian.<sp/>This<sp/>entails<sp/>a<sp/>small<sp/>speed<sp/>decrease,<sp/>but<sp/>doesn&apos;t<sp/>change<sp/>the<sp/>order<sp/>of<sp/>the<sp/>scaling.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="483"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>h_unrestricted<sp/>=<sp/>ScalarUSQOneElectronOperator&lt;double&gt;::FromRestricted(hamiltonian.core());</highlight></codeline>
 <codeline lineno="484"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>g_unrestricted<sp/>=<sp/>ScalarUSQTwoElectronOperator&lt;double&gt;::FromRestricted(hamiltonian.twoElectron());</highlight></codeline>
 <codeline lineno="485"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>USQHamiltonian&lt;double&gt;<sp/>unrestricted_hamiltonian<sp/>{h_unrestricted,<sp/>g_unrestricted};</highlight></codeline>
 <codeline lineno="486"><highlight class="normal"></highlight></codeline>
-<codeline lineno="487"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;evaluateOperatorMatrixVectorProduct(unrestricted_hamiltonian,<sp/><ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5" kindref="member">x</ref>);</highlight></codeline>
+<codeline lineno="487"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;evaluateOperatorMatrixVectorProduct(unrestricted_hamiltonian,<sp/>x);</highlight></codeline>
 <codeline lineno="488"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="489"><highlight class="normal"></highlight></codeline>
 <codeline lineno="490"><highlight class="normal"></highlight></codeline>
-<codeline lineno="499"><highlight class="normal">VectorX&lt;double&gt;<sp/>SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>HubbardHamiltonian&lt;double&gt;&amp;<sp/>hamiltonian,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorX&lt;double&gt;&amp;<sp/><ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5" kindref="member">x</ref>)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="499"><highlight class="normal">VectorX&lt;double&gt;<sp/>SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>HubbardHamiltonian&lt;double&gt;&amp;<sp/>hamiltonian,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorX&lt;double&gt;&amp;<sp/>x)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="500"><highlight class="normal"></highlight></codeline>
 <codeline lineno="501"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(hamiltonian.numberOfLatticeSites()<sp/>!=<sp/>this-&gt;alpha().numberOfOrbitals())<sp/>{</highlight></codeline>
 <codeline lineno="502"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(</highlight><highlight class="stringliteral">&quot;SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(const<sp/>HubbardHamiltonian&lt;double&gt;&amp;,<sp/>const<sp/>VectorX&lt;double&gt;&amp;):<sp/>The<sp/>number<sp/>of<sp/>spatial<sp/>orbitals<sp/>of<sp/>this<sp/>ONV<sp/>basis<sp/>and<sp/>the<sp/>number<sp/>of<sp/>lattice<sp/>sites<sp/>for<sp/>the<sp/>Hubbard<sp/>Hamiltonian<sp/>are<sp/>incompatible.&quot;</highlight><highlight class="normal">);</highlight></codeline>
@@ -421,7 +421,7 @@
 <codeline lineno="514"><highlight class="normal"></highlight></codeline>
 <codeline lineno="515"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>We<sp/>can<sp/>calculate<sp/>the<sp/>evaluation<sp/>using<sp/>re-mapped<sp/>approach.<sp/>We<sp/>first<sp/>map<sp/>x<sp/>as<sp/>a<sp/>dense<sp/>matrix<sp/>instead<sp/>of<sp/>a<sp/>vector,<sp/>and<sp/>calculate<sp/>an<sp/>initial<sp/>value<sp/>for<sp/>the<sp/>vector<sp/>(from<sp/>the<sp/>diagonal<sp/>two-electron<sp/>evaluations)<sp/>for<sp/>storing<sp/>the<sp/>result.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="516"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Map&lt;const<sp/>Eigen::MatrixXd&gt;<sp/>x_map<sp/>{<ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5" kindref="member">x</ref>.data(),<sp/>dim_beta,<sp/>dim_alpha};</highlight></codeline>
-<codeline lineno="517"><highlight class="normal"><sp/><sp/><sp/><sp/>VectorX&lt;double&gt;<sp/>matvec<sp/>=<sp/>diagonal.cwiseProduct(<ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5" kindref="member">x</ref>);</highlight></codeline>
+<codeline lineno="517"><highlight class="normal"><sp/><sp/><sp/><sp/>VectorX&lt;double&gt;<sp/>matvec<sp/>=<sp/>diagonal.cwiseProduct(x);</highlight></codeline>
 <codeline lineno="518"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Map&lt;Eigen::MatrixXd&gt;<sp/>matvec_map<sp/>{matvec.data(),<sp/>dim_beta,<sp/>dim_alpha};</highlight></codeline>
 <codeline lineno="519"><highlight class="normal"></highlight></codeline>
 <codeline lineno="520"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>contributions<sp/>can<sp/>then<sp/>be<sp/>written<sp/>very<sp/>simply<sp/>as<sp/>matrix-matrix<sp/>multiplications,<sp/>taking<sp/>advantage<sp/>of<sp/>mapped<sp/>matvec<sp/>representation.<sp/>We<sp/>use<sp/>a<sp/>sparse<sp/>multiplication<sp/>in<sp/>order<sp/>to<sp/>reduce<sp/>memory<sp/>and<sp/>speed<sp/>impact.</highlight><highlight class="normal"></highlight></codeline>
@@ -463,7 +463,7 @@
 <codeline lineno="563"><highlight class="normal"></highlight></codeline>
 <codeline lineno="564"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">&amp;<sp/>g_mixed<sp/>=<sp/>hamiltonian.twoElectron().alphaBeta();</highlight></codeline>
 <codeline lineno="565"><highlight class="normal"></highlight></codeline>
-<codeline lineno="566"><highlight class="normal"><sp/><sp/><sp/><sp/>SquareMatrix&lt;double&gt;<sp/>H<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_square_matrix_1ae3551bb3ac15b2560846f7a5956d1d90" kindref="member">SquareMatrix&lt;double&gt;::Zero</ref>(this-&gt;dimension());</highlight></codeline>
+<codeline lineno="566"><highlight class="normal"><sp/><sp/><sp/><sp/>SquareMatrix&lt;double&gt;<sp/>H<sp/>=<sp/>SquareMatrix&lt;double&gt;::Zero(this-&gt;dimension());</highlight></codeline>
 <codeline lineno="567"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>H_a<sp/>=<sp/>this-&gt;<ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6" kindref="member">alpha</ref>().evaluateOperatorDense(alpha_hamiltonian);</highlight></codeline>
 <codeline lineno="568"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>H_b<sp/>=<sp/>this-&gt;<ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5" kindref="member">beta</ref>().evaluateOperatorDense(beta_hamiltonian);</highlight></codeline>
 <codeline lineno="569"><highlight class="normal"></highlight></codeline>
@@ -474,7 +474,7 @@
 <codeline lineno="574"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="575"><highlight class="normal"></highlight></codeline>
 <codeline lineno="576"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>ALPHA<sp/>separated<sp/>evaluations</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="577"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>SquareMatrix&lt;double&gt;<sp/>ones<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_square_matrix_1aa6a5cf30d688d7b21a2605b4a46d2ca9" kindref="member">SquareMatrix&lt;double&gt;::Identity</ref>(dim_beta);</highlight></codeline>
+<codeline lineno="577"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>SquareMatrix&lt;double&gt;<sp/>ones<sp/>=<sp/>SquareMatrix&lt;double&gt;::Identity(dim_beta);</highlight></codeline>
 <codeline lineno="578"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>H_a.cols();<sp/>i++)<sp/>{</highlight></codeline>
 <codeline lineno="579"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j<sp/>=<sp/>0;<sp/>j<sp/>&lt;<sp/>H_a.cols();<sp/>j++)<sp/>{</highlight></codeline>
 <codeline lineno="580"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>H.block(i<sp/>*<sp/>dim_beta,<sp/>j<sp/>*<sp/>dim_beta,<sp/>dim_beta,<sp/>dim_beta)<sp/>+=<sp/>H_a(i,<sp/>j)<sp/>*<sp/>ones;</highlight></codeline>
@@ -599,7 +599,7 @@
 <codeline lineno="706"><highlight class="comment"><sp/>*<sp/><sp/>MARK:<sp/>Unrestricted<sp/>matrix-vector<sp/>product<sp/>evaluations</highlight></codeline>
 <codeline lineno="707"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="708"><highlight class="normal"></highlight></codeline>
-<codeline lineno="717"><highlight class="normal">VectorX&lt;double&gt;<sp/>SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>USQHamiltonian&lt;double&gt;&amp;<sp/>hamiltonian,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorX&lt;double&gt;&amp;<sp/><ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5" kindref="member">x</ref>)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="717"><highlight class="normal">VectorX&lt;double&gt;<sp/>SpinResolvedONVBasis::evaluateOperatorMatrixVectorProduct(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>USQHamiltonian&lt;double&gt;&amp;<sp/>hamiltonian,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorX&lt;double&gt;&amp;<sp/>x)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="718"><highlight class="normal"></highlight></codeline>
 <codeline lineno="719"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(hamiltonian.numberOfOrbitals()<sp/>!=<sp/>this-&gt;alpha().numberOfOrbitals())<sp/>{</highlight></codeline>
 <codeline lineno="720"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(</highlight><highlight class="stringliteral">&quot;SpinResolvedONVBasis::evaluateOperatorDense(const<sp/>USQHamiltonian&lt;double&gt;&amp;):<sp/>The<sp/>number<sp/>of<sp/>orbitals<sp/>of<sp/>this<sp/>ONV<sp/>basis<sp/>and<sp/>the<sp/>given<sp/>Hamiltonian<sp/>are<sp/>incompatible.&quot;</highlight><highlight class="normal">);</highlight></codeline>

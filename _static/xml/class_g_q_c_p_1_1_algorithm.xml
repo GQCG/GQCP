@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_algorithm" kind="class" language="C++" prot="public">
     <compoundname>GQCP::Algorithm</compoundname>
     <includes refid="_algorithm_8hpp" local="no">Algorithm.hpp</includes>
@@ -14,6 +14,7 @@
         <definition>using GQCP::Algorithm&lt; _Environment &gt;::Environment =  _Environment</definition>
         <argsstring></argsstring>
         <name>Environment</name>
+        <qualifiedname>GQCP::Algorithm::Environment</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -29,6 +30,7 @@
         <definition>StepCollection&lt;Environment&gt; GQCP::Algorithm&lt; _Environment &gt;::steps</definition>
         <argsstring></argsstring>
         <name>steps</name>
+        <qualifiedname>GQCP::Algorithm::steps</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -44,6 +46,7 @@
         <definition>GQCP::Algorithm&lt; _Environment &gt;::Algorithm</definition>
         <argsstring>(const StepCollection&lt; Environment &gt; &amp;steps)</argsstring>
         <name>Algorithm</name>
+        <qualifiedname>GQCP::Algorithm::Algorithm</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_step_collection" kindref="compound">StepCollection</ref>&lt; <ref refid="class_g_q_c_p_1_1_algorithm_1ae7d57842d40e6d4595cad18e75056a95" kindref="member">Environment</ref> &gt; &amp;</type>
           <declname>steps</declname>
@@ -71,6 +74,7 @@
         <definition>std::string GQCP::Algorithm&lt; _Environment &gt;::description</definition>
         <argsstring>() const</argsstring>
         <name>description</name>
+        <qualifiedname>GQCP::Algorithm::description</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -87,6 +91,7 @@
         <definition>void GQCP::Algorithm&lt; _Environment &gt;::perform</definition>
         <argsstring>(Environment &amp;environment)</argsstring>
         <name>perform</name>
+        <qualifiedname>GQCP::Algorithm::perform</qualifiedname>
         <param>
           <type><ref refid="class_g_q_c_p_1_1_algorithm_1ae7d57842d40e6d4595cad18e75056a95" kindref="member">Environment</ref> &amp;</type>
           <declname>environment</declname>

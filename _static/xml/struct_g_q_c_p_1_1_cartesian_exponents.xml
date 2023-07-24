@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="struct_g_q_c_p_1_1_cartesian_exponents" kind="struct" language="C++" prot="public">
     <compoundname>GQCP::CartesianExponents</compoundname>
     <includes refid="_cartesian_exponents_8hpp" local="no">CartesianExponents.hpp</includes>
@@ -9,6 +9,7 @@
         <definition>std::array&lt;size_t, 3&gt; GQCP::CartesianExponents::exponents</definition>
         <argsstring></argsstring>
         <name>exponents</name>
+        <qualifiedname>GQCP::CartesianExponents::exponents</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -24,6 +25,7 @@
         <definition>GQCP::CartesianExponents::CartesianExponents</definition>
         <argsstring>(const std::array&lt; size_t, 3 &gt; &amp;array)</argsstring>
         <name>CartesianExponents</name>
+        <qualifiedname>GQCP::CartesianExponents::CartesianExponents</qualifiedname>
         <param>
           <type>const std::array&lt; size_t, 3 &gt; &amp;</type>
           <declname>array</declname>
@@ -51,6 +53,7 @@
         <definition>GQCP::CartesianExponents::CartesianExponents</definition>
         <argsstring>(const size_t x, const size_t y, const size_t z)</argsstring>
         <name>CartesianExponents</name>
+        <qualifiedname>GQCP::CartesianExponents::CartesianExponents</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>x</declname>
@@ -102,6 +105,7 @@
         <definition>GQCP::CartesianExponents::CartesianExponents</definition>
         <argsstring>(const std::vector&lt; size_t &gt; &amp;vector)</argsstring>
         <name>CartesianExponents</name>
+        <qualifiedname>GQCP::CartesianExponents::CartesianExponents</qualifiedname>
         <param>
           <type>const std::vector&lt; size_t &gt; &amp;</type>
           <declname>vector</declname>
@@ -129,6 +133,7 @@
         <definition>bool GQCP::CartesianExponents::operator&lt;</definition>
         <argsstring>(const CartesianExponents &amp;rhs) const</argsstring>
         <name>operator&lt;</name>
+        <qualifiedname>GQCP::CartesianExponents::operator&lt;</qualifiedname>
         <param>
           <type>const <ref refid="struct_g_q_c_p_1_1_cartesian_exponents" kindref="compound">CartesianExponents</ref> &amp;</type>
           <declname>rhs</declname>
@@ -162,6 +167,7 @@ This means that {1, 0, 0}(=x) &lt; {2, 0, 0}(=x^2), and {2, 0, 0}(=x^2) &lt; {1,
         <definition>bool GQCP::CartesianExponents::operator==</definition>
         <argsstring>(const CartesianExponents &amp;rhs) const</argsstring>
         <name>operator==</name>
+        <qualifiedname>GQCP::CartesianExponents::operator==</qualifiedname>
         <param>
           <type>const <ref refid="struct_g_q_c_p_1_1_cartesian_exponents" kindref="compound">CartesianExponents</ref> &amp;</type>
           <declname>rhs</declname>
@@ -191,6 +197,7 @@ This means that {1, 0, 0}(=x) &lt; {2, 0, 0}(=x^2), and {2, 0, 0}(=x^2) &lt; {1,
         <definition>bool GQCP::CartesianExponents::operator!=</definition>
         <argsstring>(const CartesianExponents &amp;rhs) const</argsstring>
         <name>operator!=</name>
+        <qualifiedname>GQCP::CartesianExponents::operator!=</qualifiedname>
         <param>
           <type>const <ref refid="struct_g_q_c_p_1_1_cartesian_exponents" kindref="compound">CartesianExponents</ref> &amp;</type>
           <declname>rhs</declname>
@@ -220,6 +227,7 @@ This means that {1, 0, 0}(=x) &lt; {2, 0, 0}(=x^2), and {2, 0, 0}(=x^2) &lt; {1,
         <definition>size_t GQCP::CartesianExponents::angularMomentum</definition>
         <argsstring>() const</argsstring>
         <name>angularMomentum</name>
+        <qualifiedname>GQCP::CartesianExponents::angularMomentum</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -236,6 +244,7 @@ This means that {1, 0, 0}(=x) &lt; {2, 0, 0}(=x^2), and {2, 0, 0}(=x^2) &lt; {1,
         <definition>std::vector&lt; CartesianExponents &gt; GQCP::CartesianExponents::allPermutations</definition>
         <argsstring>() const</argsstring>
         <name>allPermutations</name>
+        <qualifiedname>GQCP::CartesianExponents::allPermutations</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -247,11 +256,12 @@ This means that {1, 0, 0}(=x) &lt; {2, 0, 0}(=x^2), and {2, 0, 0}(=x^2) &lt; {1,
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianExponents.hpp" line="99" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/CartesianExponents.cpp" bodystart="129" bodyend="144"/>
       </memberdef>
-      <memberdef kind="function" id="struct_g_q_c_p_1_1_cartesian_exponents_1a150724bc37aec10de7ab5a28ca3dbbc5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="struct_g_q_c_p_1_1_cartesian_exponents_1af3f6f108aeeccfdb47bcda95037ee598" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const std::array&lt; size_t, 3 &gt; &amp;</type>
-        <definition>const std::array&lt;size_t, 3&gt;&amp; GQCP::CartesianExponents::asArray</definition>
+        <definition>const std::array&lt; size_t, 3 &gt; &amp; GQCP::CartesianExponents::asArray</definition>
         <argsstring>() const</argsstring>
         <name>asArray</name>
+        <qualifiedname>GQCP::CartesianExponents::asArray</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -268,6 +278,7 @@ This means that {1, 0, 0}(=x) &lt; {2, 0, 0}(=x^2), and {2, 0, 0}(=x^2) &lt; {1,
         <definition>std::string GQCP::CartesianExponents::description</definition>
         <argsstring>() const</argsstring>
         <name>description</name>
+        <qualifiedname>GQCP::CartesianExponents::description</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -284,6 +295,7 @@ This means that {1, 0, 0}(=x) &lt; {2, 0, 0}(=x^2), and {2, 0, 0}(=x^2) &lt; {1,
         <definition>size_t GQCP::CartesianExponents::value</definition>
         <argsstring>(const CartesianDirection direction) const</argsstring>
         <name>value</name>
+        <qualifiedname>GQCP::CartesianExponents::value</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8" kindref="member">CartesianDirection</ref></type>
           <declname>direction</declname>
@@ -324,7 +336,7 @@ This means that {1, 0, 0}(=x) &lt; {2, 0, 0}(=x^2), and {2, 0, 0}(=x^2) &lt; {1,
     <listofallmembers>
       <member refid="struct_g_q_c_p_1_1_cartesian_exponents_1a0a4880e488b1fbdedc160ee5f727c81f" prot="public" virt="non-virtual"><scope>GQCP::CartesianExponents</scope><name>allPermutations</name></member>
       <member refid="struct_g_q_c_p_1_1_cartesian_exponents_1af87af131d9cdc94713c92058f5024105" prot="public" virt="non-virtual"><scope>GQCP::CartesianExponents</scope><name>angularMomentum</name></member>
-      <member refid="struct_g_q_c_p_1_1_cartesian_exponents_1a150724bc37aec10de7ab5a28ca3dbbc5" prot="public" virt="non-virtual"><scope>GQCP::CartesianExponents</scope><name>asArray</name></member>
+      <member refid="struct_g_q_c_p_1_1_cartesian_exponents_1af3f6f108aeeccfdb47bcda95037ee598" prot="public" virt="non-virtual"><scope>GQCP::CartesianExponents</scope><name>asArray</name></member>
       <member refid="struct_g_q_c_p_1_1_cartesian_exponents_1a5b3e6dd7cb8dfe12a6f59a1b2f547a96" prot="public" virt="non-virtual"><scope>GQCP::CartesianExponents</scope><name>CartesianExponents</name></member>
       <member refid="struct_g_q_c_p_1_1_cartesian_exponents_1accb56b28d31a0155f0aa4fba2825093d" prot="public" virt="non-virtual"><scope>GQCP::CartesianExponents</scope><name>CartesianExponents</name></member>
       <member refid="struct_g_q_c_p_1_1_cartesian_exponents_1a1a1c975b171b49a70297a4ce772a65fb" prot="public" virt="non-virtual"><scope>GQCP::CartesianExponents</scope><name>CartesianExponents</name></member>

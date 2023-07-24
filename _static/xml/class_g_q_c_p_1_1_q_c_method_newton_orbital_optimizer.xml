@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer" kind="class" language="C++" prot="public" abstract="yes">
     <compoundname>GQCP::QCMethodNewtonOrbitalOptimizer</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_newton_orbital_optimizer" prot="public" virt="non-virtual">GQCP::NewtonOrbitalOptimizer</basecompoundref>
@@ -12,6 +12,7 @@
         <definition>Orbital1DM&lt;double&gt; GQCP::QCMethodNewtonOrbitalOptimizer::D</definition>
         <argsstring></argsstring>
         <name>D</name>
+        <qualifiedname>GQCP::QCMethodNewtonOrbitalOptimizer::D</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -25,6 +26,7 @@
         <definition>Orbital2DM&lt;double&gt; GQCP::QCMethodNewtonOrbitalOptimizer::d</definition>
         <argsstring></argsstring>
         <name>d</name>
+        <qualifiedname>GQCP::QCMethodNewtonOrbitalOptimizer::d</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -40,6 +42,7 @@
         <definition>virtual GQCP::QCMethodNewtonOrbitalOptimizer::~QCMethodNewtonOrbitalOptimizer</definition>
         <argsstring>()=default</argsstring>
         <name>~QCMethodNewtonOrbitalOptimizer</name>
+        <qualifiedname>GQCP::QCMethodNewtonOrbitalOptimizer::~QCMethodNewtonOrbitalOptimizer</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -49,12 +52,13 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp" line="49" column="13"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a77ccb23d08d84d516aabe4194266f4be" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1aaa0a7c8fb29e59fe541238648a7e394d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
         <type><ref refid="class_g_q_c_p_1_1_orbital1_d_m" kindref="compound">Orbital1DM</ref>&lt; double &gt;</type>
-        <definition>virtual Orbital1DM&lt;double&gt; GQCP::QCMethodNewtonOrbitalOptimizer::calculate1DM</definition>
+        <definition>virtual Orbital1DM&lt; double &gt; GQCP::QCMethodNewtonOrbitalOptimizer::calculate1DM</definition>
         <argsstring>() const =0</argsstring>
         <name>calculate1DM</name>
-        <reimplementedby refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a2f7573760c6a40196c7ca5306caee3e2">calculate1DM</reimplementedby>
+        <qualifiedname>GQCP::QCMethodNewtonOrbitalOptimizer::calculate1DM</qualifiedname>
+        <reimplementedby refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a1347f0050acd726bd4fa6aec9a8755a3">calculate1DM</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_1afdaf6eb8496913f79d26692f65d07317">calculate1DM</reimplementedby>
         <briefdescription>
         </briefdescription>
@@ -67,12 +71,13 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp" line="57" column="24"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a16c4c030ecb92d0b5122c05c3e8fa832" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a98bc4a32c98d24c4b184f878e1def6c6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
         <type><ref refid="class_g_q_c_p_1_1_orbital2_d_m" kindref="compound">Orbital2DM</ref>&lt; double &gt;</type>
-        <definition>virtual Orbital2DM&lt;double&gt; GQCP::QCMethodNewtonOrbitalOptimizer::calculate2DM</definition>
+        <definition>virtual Orbital2DM&lt; double &gt; GQCP::QCMethodNewtonOrbitalOptimizer::calculate2DM</definition>
         <argsstring>() const =0</argsstring>
         <name>calculate2DM</name>
-        <reimplementedby refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1aeb09a05183e230000da396a9a4acb95e">calculate2DM</reimplementedby>
+        <qualifiedname>GQCP::QCMethodNewtonOrbitalOptimizer::calculate2DM</qualifiedname>
+        <reimplementedby refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1acf54c23ac09a2206db4361163cda74c7">calculate2DM</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_1a1931e33efbb95070899b100d8db336a2">calculate2DM</reimplementedby>
         <briefdescription>
         </briefdescription>
@@ -90,6 +95,7 @@
         <definition>virtual void GQCP::QCMethodNewtonOrbitalOptimizer::prepareDMCalculation</definition>
         <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian)=0</argsstring>
         <name>prepareDMCalculation</name>
+        <qualifiedname>GQCP::QCMethodNewtonOrbitalOptimizer::prepareDMCalculation</qualifiedname>
         <reimplementedby refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer_1a9bcdb07e2901f5f39f335a54518aa5b1">prepareDMCalculation</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_1a5c8c974c787553a88daeaf850210229f">prepareDMCalculation</reimplementedby>
         <param>
@@ -110,7 +116,8 @@
         <definition>SquareMatrix&lt; double &gt; GQCP::QCMethodNewtonOrbitalOptimizer::calculateGradientMatrix</definition>
         <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian) const override</argsstring>
         <name>calculateGradientMatrix</name>
-        <reimplements refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a91fddcff45c5d1298e9a6e5676ce4cb9">calculateGradientMatrix</reimplements>
+        <qualifiedname>GQCP::QCMethodNewtonOrbitalOptimizer::calculateGradientMatrix</qualifiedname>
+        <reimplements refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1af865a83b7484498563f3506e5d67afc8">calculateGradientMatrix</reimplements>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
           <declname>sq_hamiltonian</declname>
@@ -140,7 +147,8 @@
         <definition>SquareRankFourTensor&lt; double &gt; GQCP::QCMethodNewtonOrbitalOptimizer::calculateHessianTensor</definition>
         <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian) const override</argsstring>
         <name>calculateHessianTensor</name>
-        <reimplements refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a602cde8c8513bd31d3cae859a3bf31bd">calculateHessianTensor</reimplements>
+        <qualifiedname>GQCP::QCMethodNewtonOrbitalOptimizer::calculateHessianTensor</qualifiedname>
+        <reimplements refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1aa662f91af6c5173d583d07398765cf0e">calculateHessianTensor</reimplements>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
           <declname>sq_hamiltonian</declname>
@@ -170,6 +178,7 @@
         <definition>void GQCP::QCMethodNewtonOrbitalOptimizer::prepareOrbitalDerivativesCalculation</definition>
         <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian) override</argsstring>
         <name>prepareOrbitalDerivativesCalculation</name>
+        <qualifiedname>GQCP::QCMethodNewtonOrbitalOptimizer::prepareOrbitalDerivativesCalculation</qualifiedname>
         <reimplements refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a5726b8a9e0b7477cd9ed7c7faa282018">prepareOrbitalDerivativesCalculation</reimplements>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
@@ -184,11 +193,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp" line="89" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.cpp" bodystart="75" bodyend="81"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a68efaa117f5bc3faa31e7c0b13ad5e10" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a4000ebd4a6b587f381e6169e1c963c98" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_orbital1_d_m" kindref="compound">Orbital1DM</ref>&lt; double &gt; &amp;</type>
-        <definition>const Orbital1DM&lt;double&gt;&amp; GQCP::QCMethodNewtonOrbitalOptimizer::oneDM</definition>
+        <definition>const Orbital1DM&lt; double &gt; &amp; GQCP::QCMethodNewtonOrbitalOptimizer::oneDM</definition>
         <argsstring>() const</argsstring>
         <name>oneDM</name>
+        <qualifiedname>GQCP::QCMethodNewtonOrbitalOptimizer::oneDM</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -200,11 +210,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp" line="97" column="22" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp" bodystart="97" bodyend="97"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a1866e5572df06732205a72736eeb47af" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a5e5906dcacb2c3ce19cbc7da96c01961" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_orbital2_d_m" kindref="compound">Orbital2DM</ref>&lt; double &gt; &amp;</type>
-        <definition>const Orbital2DM&lt;double&gt;&amp; GQCP::QCMethodNewtonOrbitalOptimizer::twoDM</definition>
+        <definition>const Orbital2DM&lt; double &gt; &amp; GQCP::QCMethodNewtonOrbitalOptimizer::twoDM</definition>
         <argsstring>() const</argsstring>
         <name>twoDM</name>
+        <qualifiedname>GQCP::QCMethodNewtonOrbitalOptimizer::twoDM</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -221,6 +232,7 @@
         <definition>GQCP::NewtonOrbitalOptimizer::NewtonOrbitalOptimizer</definition>
         <argsstring>(std::shared_ptr&lt; BaseHessianModifier &gt; hessian_modifier, const double convergence_threshold=1.0e-08, const size_t maximum_number_of_iterations=128)</argsstring>
         <name>NewtonOrbitalOptimizer</name>
+        <qualifiedname>GQCP::QCMethodNewtonOrbitalOptimizer::NewtonOrbitalOptimizer</qualifiedname>
         <param>
           <type>std::shared_ptr&lt; <ref refid="class_g_q_c_p_1_1_base_hessian_modifier" kindref="compound">BaseHessianModifier</ref> &gt;</type>
           <declname>hessian_modifier</declname>
@@ -250,6 +262,22 @@
 <para>An intermediary base class for orbital optimization of quantum chemical methods: they use the 1- and 2-DM to calculate the gradient and Hessian </para>
     </detaileddescription>
     <inheritancegraph>
+      <node id="4">
+        <label>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>GQCP::BaseOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_base_orbital_optimizer"/>
+      </node>
+      <node id="5">
+        <label>GQCP::DOCINewtonOrbitalOptimizer&lt; _EigenproblemSolver &gt;</label>
+        <link refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
       <node id="2">
         <label>GQCP::NewtonOrbitalOptimizer</label>
         <link refid="class_g_q_c_p_1_1_newton_orbital_optimizer"/>
@@ -262,24 +290,23 @@
         <childnode refid="2" relation="public-inheritance">
         </childnode>
       </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="10">
+        <label>GQCP::BasisTransformable&lt; _DerivedDM &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
       <node id="5">
-        <label>GQCP::DOCINewtonOrbitalOptimizer&lt; _EigenproblemSolver &gt;</label>
-        <link refid="class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
+        <label>Eigen::Matrix&lt; double, Dynamic, Dynamic &gt;</label>
       </node>
       <node id="3">
         <label>GQCP::BaseOrbitalOptimizer</label>
         <link refid="class_g_q_c_p_1_1_base_orbital_optimizer"/>
       </node>
-      <node id="4">
-        <label>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</label>
-        <link refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
+      <node id="13">
+        <label>GQCP::CRTP&lt; _Derived &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
       </node>
-    </inheritancegraph>
-    <collaborationgraph>
       <node id="2">
         <label>GQCP::NewtonOrbitalOptimizer</label>
         <link refid="class_g_q_c_p_1_1_newton_orbital_optimizer"/>
@@ -298,31 +325,13 @@
         <childnode refid="2" relation="public-inheritance">
         </childnode>
         <childnode refid="8" relation="usage">
-          <edgelabel>#d</edgelabel>
-        </childnode>
-        <childnode refid="14" relation="usage">
           <edgelabel>#D</edgelabel>
         </childnode>
-      </node>
-      <node id="3">
-        <label>GQCP::BaseOrbitalOptimizer</label>
-        <link refid="class_g_q_c_p_1_1_base_orbital_optimizer"/>
-      </node>
-      <node id="11">
-        <label>GQCP::JacobiRotatable&lt; _DerivedDM &gt;</label>
-        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
-      </node>
-      <node id="14">
-        <label>GQCP::Orbital1DM&lt; double &gt;</label>
-        <link refid="class_g_q_c_p_1_1_orbital1_d_m"/>
-        <childnode refid="15" relation="public-inheritance">
+        <childnode refid="14" relation="usage">
+          <edgelabel>#d</edgelabel>
         </childnode>
       </node>
-      <node id="10">
-        <label>GQCP::BasisTransformable&lt; _DerivedDM &gt;</label>
-        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
-      </node>
-      <node id="15">
+      <node id="9">
         <label>GQCP::Simple1DM&lt; _Scalar, _DerivedDM &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple1_d_m"/>
         <childnode refid="10" relation="public-inheritance">
@@ -332,7 +341,7 @@
         <childnode refid="12" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="9">
+      <node id="15">
         <label>GQCP::Simple2DM&lt; _Scalar, _DerivedDM &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple2_d_m"/>
         <childnode refid="10" relation="public-inheritance">
@@ -342,19 +351,38 @@
         <childnode refid="12" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="5">
-        <label>Eigen::Matrix&lt; double, Dynamic, Dynamic &gt;</label>
+      <node id="11">
+        <label>GQCP::JacobiRotatable&lt; _DerivedDM &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      </node>
+      <node id="4">
+        <label>GQCP::Matrix&lt; double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_matrix"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>MatrixX&lt; double  &gt;</label>
+        <link refid="class_g_q_c_p_1_1_matrix"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>GQCP::Orbital1DM&lt; double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_orbital1_d_m"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>GQCP::Orbital2DM&lt; double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_orbital2_d_m"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
       </node>
       <node id="6">
         <label>GQCP::SquareMatrix&lt; double &gt;</label>
         <link refid="class_g_q_c_p_1_1_square_matrix"/>
         <childnode refid="7" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="8">
-        <label>GQCP::Orbital2DM&lt; double &gt;</label>
-        <link refid="class_g_q_c_p_1_1_orbital2_d_m"/>
-        <childnode refid="9" relation="public-inheritance">
         </childnode>
       </node>
       <node id="12">
@@ -363,34 +391,18 @@
         <childnode refid="13" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="13">
-        <label>GQCP::CRTP&lt; _Derived &gt;</label>
-        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
-      </node>
-      <node id="7">
-        <label>MatrixX&lt; double  &gt;</label>
-        <link refid="class_g_q_c_p_1_1_matrix"/>
-        <childnode refid="5" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="4">
-        <label>GQCP::Matrix&lt; double &gt;</label>
-        <link refid="class_g_q_c_p_1_1_matrix"/>
-        <childnode refid="5" relation="public-inheritance">
-        </childnode>
-      </node>
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp" line="32" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp" bodystart="33" bodyend="103"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1acdc1b258aaac1e14f003163d19cee2c0" prot="public" virt="non-virtual"><scope>GQCP::QCMethodNewtonOrbitalOptimizer</scope><name>BaseOrbitalOptimizer</name></member>
-      <member refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a77ccb23d08d84d516aabe4194266f4be" prot="public" virt="pure-virtual"><scope>GQCP::QCMethodNewtonOrbitalOptimizer</scope><name>calculate1DM</name></member>
-      <member refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a16c4c030ecb92d0b5122c05c3e8fa832" prot="public" virt="pure-virtual"><scope>GQCP::QCMethodNewtonOrbitalOptimizer</scope><name>calculate2DM</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1aaa0a7c8fb29e59fe541238648a7e394d" prot="public" virt="pure-virtual"><scope>GQCP::QCMethodNewtonOrbitalOptimizer</scope><name>calculate1DM</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a98bc4a32c98d24c4b184f878e1def6c6" prot="public" virt="pure-virtual"><scope>GQCP::QCMethodNewtonOrbitalOptimizer</scope><name>calculate2DM</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a4fa16f419c9798ebd459e7f2e2267ae3" prot="public" virt="virtual"><scope>GQCP::QCMethodNewtonOrbitalOptimizer</scope><name>calculateGradientMatrix</name></member>
       <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1afdf8b122a17957cf67dcf4d7ad0df726" prot="public" virt="non-virtual"><scope>GQCP::QCMethodNewtonOrbitalOptimizer</scope><name>calculateGradientVector</name></member>
       <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a3c677c380a02d6ed3bccc718a704b8f8" prot="public" virt="non-virtual"><scope>GQCP::QCMethodNewtonOrbitalOptimizer</scope><name>calculateHessianMatrix</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1ad390e4279a7a14fa78973fcbd4c8b197" prot="public" virt="virtual"><scope>GQCP::QCMethodNewtonOrbitalOptimizer</scope><name>calculateHessianTensor</name></member>
       <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1ad865f9103556c7a422b221dada86d53b" prot="public" virt="non-virtual"><scope>GQCP::QCMethodNewtonOrbitalOptimizer</scope><name>calculateNewFreeOrbitalGenerators</name></member>
-      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1af83988926d235cfc1bce813c7f621225" prot="public" virt="pure-virtual"><scope>GQCP::QCMethodNewtonOrbitalOptimizer</scope><name>calculateNewFullOrbitalGenerators</name></member>
+      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a1838e16ae50e1765c75dc9df7216410b" prot="public" virt="pure-virtual"><scope>GQCP::QCMethodNewtonOrbitalOptimizer</scope><name>calculateNewFullOrbitalGenerators</name></member>
       <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1ac7e61168011a697ef30a239b899e06c5" prot="public" virt="virtual"><scope>GQCP::QCMethodNewtonOrbitalOptimizer</scope><name>calculateNewRotationMatrix</name></member>
       <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1ab0623fc9be4cf9c68821c2ea6d012acd" prot="public" virt="virtual"><scope>GQCP::QCMethodNewtonOrbitalOptimizer</scope><name>checkForConvergence</name></member>
       <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a641d1bcc0494b20cec91ed4b782ab1f0" prot="protected" virt="non-virtual"><scope>GQCP::QCMethodNewtonOrbitalOptimizer</scope><name>convergence_threshold</name></member>
@@ -403,16 +415,15 @@
       <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a0334372101297cb9e997d3981442439f" prot="protected" virt="non-virtual"><scope>GQCP::QCMethodNewtonOrbitalOptimizer</scope><name>is_converged</name></member>
       <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1adce91f67cf6314d31a2b73bb54cdd815" prot="protected" virt="non-virtual"><scope>GQCP::QCMethodNewtonOrbitalOptimizer</scope><name>maximum_number_of_iterations</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a984528ec04ca0ebd0363cf13f3a3d3fb" prot="public" virt="non-virtual"><scope>GQCP::QCMethodNewtonOrbitalOptimizer</scope><name>NewtonOrbitalOptimizer</name></member>
-      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a984528ec04ca0ebd0363cf13f3a3d3fb" prot="public" virt="non-virtual" ambiguityscope="GQCP::NewtonOrbitalOptimizer::"><scope>GQCP::QCMethodNewtonOrbitalOptimizer</scope><name>NewtonOrbitalOptimizer</name></member>
       <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1ad3464e1f18027d579598c62ef854fff6" prot="public" virt="non-virtual"><scope>GQCP::QCMethodNewtonOrbitalOptimizer</scope><name>newtonStepIsWellDefined</name></member>
       <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a728ec120b0025ec997b6020b7ef588e3" prot="protected" virt="non-virtual"><scope>GQCP::QCMethodNewtonOrbitalOptimizer</scope><name>number_of_iterations</name></member>
       <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a053125eead499da4abf2088e75d47353" prot="public" virt="non-virtual"><scope>GQCP::QCMethodNewtonOrbitalOptimizer</scope><name>numberOfIterations</name></member>
-      <member refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a68efaa117f5bc3faa31e7c0b13ad5e10" prot="public" virt="non-virtual"><scope>GQCP::QCMethodNewtonOrbitalOptimizer</scope><name>oneDM</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a4000ebd4a6b587f381e6169e1c963c98" prot="public" virt="non-virtual"><scope>GQCP::QCMethodNewtonOrbitalOptimizer</scope><name>oneDM</name></member>
       <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a2242ce4237417d082a387eab633f18b7" prot="public" virt="non-virtual"><scope>GQCP::QCMethodNewtonOrbitalOptimizer</scope><name>optimize</name></member>
       <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a8ea385584daa8b470b2a9bfde1d2712b" prot="public" virt="virtual"><scope>GQCP::QCMethodNewtonOrbitalOptimizer</scope><name>prepareConvergenceChecking</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a815d7b0854bb6b1b5a2e0ecb2ece412d" prot="public" virt="pure-virtual"><scope>GQCP::QCMethodNewtonOrbitalOptimizer</scope><name>prepareDMCalculation</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a7059d13f4c52ef77baec8567a9e72eb1" prot="public" virt="virtual"><scope>GQCP::QCMethodNewtonOrbitalOptimizer</scope><name>prepareOrbitalDerivativesCalculation</name></member>
-      <member refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a1866e5572df06732205a72736eeb47af" prot="public" virt="non-virtual"><scope>GQCP::QCMethodNewtonOrbitalOptimizer</scope><name>twoDM</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a5e5906dcacb2c3ce19cbc7da96c01961" prot="public" virt="non-virtual"><scope>GQCP::QCMethodNewtonOrbitalOptimizer</scope><name>twoDM</name></member>
       <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a921777ec77da41074b306bab5834454c" prot="public" virt="virtual"><scope>GQCP::QCMethodNewtonOrbitalOptimizer</scope><name>~BaseOrbitalOptimizer</name></member>
       <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1ac524dbf48349206dcc68774489d30a6d" prot="public" virt="virtual"><scope>GQCP::QCMethodNewtonOrbitalOptimizer</scope><name>~NewtonOrbitalOptimizer</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a4a07cc144897f0b68f775f258a747bd1" prot="public" virt="virtual"><scope>GQCP::QCMethodNewtonOrbitalOptimizer</scope><name>~QCMethodNewtonOrbitalOptimizer</name></member>

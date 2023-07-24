@@ -1,0 +1,119 @@
+\hypertarget{_cubic_grid_8hpp_source}{}\doxysection{Cubic\+Grid.\+hpp}
+\label{_cubic_grid_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Grid/CubicGrid.hpp}}
+\mbox{\hyperlink{_cubic_grid_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_function_8hpp}{Mathematical/Functions/Function.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_field_8hpp}{Mathematical/Grid/Field.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_matrix_8hpp}{Mathematical/Representation/Matrix.hpp}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_molecule_8hpp}{Molecule/Molecule.hpp}}"{}}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <numeric>}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid}{CubicGrid}}\ \{}
+\DoxyCodeLine{00039\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Vector<double,\ 3>}}\ m\_origin;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ origin\ of\ the\ grid}}
+\DoxyCodeLine{00041\ \ \ \ \ std::array<size\_t,\ 3>\ numbers\_of\_steps;\ \ \textcolor{comment}{//\ the\ number\ of\ steps\ in\ the\ x,\ y,\ z-\/directions}}
+\DoxyCodeLine{00042\ \ \ \ \ std::array<double,\ 3>\ step\_sizes;\ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ step\ sizes\ in\ the\ x,\ y,\ z-\/directions}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{comment}{//\ CONSTRUCTORS}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid}{CubicGrid}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Vector<double,\ 3>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid_af36ed64729d1efeb87d3f5fe22904414}{origin}},\ \textcolor{keyword}{const}\ std::array<size\_t,\ 3>\&\ numbers\_of\_steps,\ \textcolor{keyword}{const}\ std::array<double,\ 3>\&\ step\_sizes);}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{//\ NAMED\ CONSTRUCTORS}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid}{CubicGrid}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid_a8b6866c5b1234aad9335218be9a81f41}{Centered}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Vector<double,\ 3>}}\&\ point,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ number\_of\_steps,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ step\_size);}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid}{CubicGrid}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid_a73ea4b85450f128003338edf17a31ea3}{ReadCubeFile}}(\textcolor{keyword}{const}\ std::string\&\ filename);}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid}{CubicGrid}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid_a405cda8f9d056f5d1dc1f8b3fb2c5218}{ReadRegularGridFile}}(\textcolor{keyword}{const}\ std::string\&\ filename);}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{comment}{//\ PUBLIC\ METHODS}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ OutputType>}
+\DoxyCodeLine{00101\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_field}{Field<OutputType>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid_a9130af637eeecaf56d016974fc3245e3}{evaluate}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_function}{Function}}<OutputType,\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Vector<double,\ 3>}}>\&\ function)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ std::vector<OutputType>\ values;}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ values.reserve(this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid_a068787c38bbf15233da1646dfef0783d}{numberOfPoints}}());}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid_ace375c620c4f97646710110da215a589}{forEach}}([\&values,\ \&function](\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Vector<double,\ 3>}}\&\ r)\ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ values.push\_back(function(r));}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_field}{Field<OutputType>}}(values);}
+\DoxyCodeLine{00111\ \ \ \ \ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00122\ \ \ \ \ T\ \mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid_a744c8c47067699932684fd052843d592}{integrate}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_field}{Field<T>}}\&\ field)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Using\ field.value(0)\ as\ the\ initial\ value\ makes\ sure\ that\ the\ initialization\ is\ already\ correct:\ e.g.\ when\ a\ Vector\ is\ initialized,\ it\ doesn't\ automatically\ have\ the\ required\ size\ due\ to\ the\ default\ constructor}}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ result\ =\ std::accumulate(field.\mbox{\hyperlink{class_g_q_c_p_1_1_field_a828d6993869541c594465b9583844cf8}{values}}().begin(),\ field.\mbox{\hyperlink{class_g_q_c_p_1_1_field_a828d6993869541c594465b9583844cf8}{values}}().end(),\ field.\mbox{\hyperlink{class_g_q_c_p_1_1_field_a4a7f1e8a8fc1a45c2b82a8424ada5db9}{value}}(0));}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ result\ -\/=\ field.\mbox{\hyperlink{class_g_q_c_p_1_1_field_a4a7f1e8a8fc1a45c2b82a8424ada5db9}{value}}(0);\ \ \textcolor{comment}{//\ subtract\ the\ initial\ value\ of\ result}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ cubic\ grids,\ the\ weight\ of\ each\ point\ is\ the\ voxel\ volume,\ so\ we'll\ have\ to\ multiply\ the\ final\ result\ by\ this.}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result\ *\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid_a9ec68e917323ae9619289d4b105884e6}{voxelVolume}}();}
+\DoxyCodeLine{00130\ \ \ \ \ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid_ace375c620c4f97646710110da215a589}{forEach}}(\textcolor{keyword}{const}\ std::function<\textcolor{keywordtype}{void}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t})>\&\ callback)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid_ace375c620c4f97646710110da215a589}{forEach}}(\textcolor{keyword}{const}\ std::function<\textcolor{keywordtype}{void}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Vector<double,\ 3>}}\&)>\&\ callback)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid_a068787c38bbf15233da1646dfef0783d}{numberOfPoints}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Vector<double,\ 3>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid_af36ed64729d1efeb87d3f5fe22904414}{origin}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>m\_origin;\ \}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00164\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Vector<double,\ 3>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid_a49ac5ed5fe5a762b348b48aece9e2ded}{position}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ j,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ k)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00169\ \ \ \ \ std::vector<Vector<double,\ 3>>\ \mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid_ab50f3b1f20f597e28ad08fb647db77a1}{points}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid_a66ed917d2494c7c22a0dfb0fccae424a}{numbersOfSteps}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ axis)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>numbers\_of\_steps[axis];\ \}}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keyword}{const}\ std::array<size\_t,\ 3>\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid_a3a82f6317b8a07e541ce51159425461b}{numbersOfSteps}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>numbers\_of\_steps;\ \}}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid_a67e977bcd41cf81cd6697f6e07c99f63}{stepSize}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ axis)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>step\_sizes[axis];\ \}}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keyword}{const}\ std::array<double,\ 3>\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid_a1db194f9d99d34d727deed57a9a62b85}{stepSizes}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>step\_sizes;\ \}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid_a1c6b2b73b0818e017800e21f347b1c3b}{totalVolume}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid_a9ec68e917323ae9619289d4b105884e6}{voxelVolume}}()\ *\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid_a068787c38bbf15233da1646dfef0783d}{numberOfPoints}}();\ \}}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid_aa0c7b1914b566432553d564139be2deb}{writeToCubeFile}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_field}{Field<double>}}\&\ scalar\_field,\ \textcolor{keyword}{const}\ std::string\&\ filename,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}}\&\ molecule)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid_a9ec68e917323ae9619289d4b105884e6}{voxelVolume}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00213\ \};}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

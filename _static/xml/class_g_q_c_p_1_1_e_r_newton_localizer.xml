@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_e_r_newton_localizer" kind="class" language="C++" prot="public">
     <compoundname>GQCP::ERNewtonLocalizer</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_newton_orbital_optimizer" prot="public" virt="non-virtual">GQCP::NewtonOrbitalOptimizer</basecompoundref>
@@ -10,6 +10,7 @@
         <definition>OrbitalSpace GQCP::ERNewtonLocalizer::orbital_space</definition>
         <argsstring></argsstring>
         <name>orbital_space</name>
+        <qualifiedname>GQCP::ERNewtonLocalizer::orbital_space</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -25,6 +26,7 @@
         <definition>GQCP::ERNewtonLocalizer::ERNewtonLocalizer</definition>
         <argsstring>(const OrbitalSpace orbital_space, std::shared_ptr&lt; BaseHessianModifier &gt; hessian_modifier, const double convergence_threshold=1.0e-08, const size_t maximum_number_of_iterations=128)</argsstring>
         <name>ERNewtonLocalizer</name>
+        <qualifiedname>GQCP::ERNewtonLocalizer::ERNewtonLocalizer</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref></type>
           <declname>orbital_space</declname>
@@ -90,7 +92,8 @@
         <definition>SquareMatrix&lt; double &gt; GQCP::ERNewtonLocalizer::calculateGradientMatrix</definition>
         <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian) const override</argsstring>
         <name>calculateGradientMatrix</name>
-        <reimplements refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a91fddcff45c5d1298e9a6e5676ce4cb9">calculateGradientMatrix</reimplements>
+        <qualifiedname>GQCP::ERNewtonLocalizer::calculateGradientMatrix</qualifiedname>
+        <reimplements refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1af865a83b7484498563f3506e5d67afc8">calculateGradientMatrix</reimplements>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
           <declname>sq_hamiltonian</declname>
@@ -120,7 +123,8 @@
         <definition>SquareRankFourTensor&lt; double &gt; GQCP::ERNewtonLocalizer::calculateHessianTensor</definition>
         <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian) const override</argsstring>
         <name>calculateHessianTensor</name>
-        <reimplements refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a602cde8c8513bd31d3cae859a3bf31bd">calculateHessianTensor</reimplements>
+        <qualifiedname>GQCP::ERNewtonLocalizer::calculateHessianTensor</qualifiedname>
+        <reimplements refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1aa662f91af6c5173d583d07398765cf0e">calculateHessianTensor</reimplements>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
           <declname>sq_hamiltonian</declname>
@@ -150,7 +154,8 @@
         <definition>ROrbitalRotationGenerators&lt; double &gt; GQCP::ERNewtonLocalizer::calculateNewFullOrbitalGenerators</definition>
         <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian) const override</argsstring>
         <name>calculateNewFullOrbitalGenerators</name>
-        <reimplements refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1af83988926d235cfc1bce813c7f621225">calculateNewFullOrbitalGenerators</reimplements>
+        <qualifiedname>GQCP::ERNewtonLocalizer::calculateNewFullOrbitalGenerators</qualifiedname>
+        <reimplements refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a1838e16ae50e1765c75dc9df7216410b">calculateNewFullOrbitalGenerators</reimplements>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
           <declname>sq_hamiltonian</declname>
@@ -181,6 +186,7 @@
         <definition>void GQCP::ERNewtonLocalizer::prepareOrbitalDerivativesCalculation</definition>
         <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian) override</argsstring>
         <name>prepareOrbitalDerivativesCalculation</name>
+        <qualifiedname>GQCP::ERNewtonLocalizer::prepareOrbitalDerivativesCalculation</qualifiedname>
         <reimplements refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a5726b8a9e0b7477cd9ed7c7faa282018">prepareOrbitalDerivativesCalculation</reimplements>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
@@ -200,6 +206,7 @@
         <definition>double GQCP::ERNewtonLocalizer::calculateGradientMatrixElement</definition>
         <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian, const size_t i, const size_t j) const</argsstring>
         <name>calculateGradientMatrixElement</name>
+        <qualifiedname>GQCP::ERNewtonLocalizer::calculateGradientMatrixElement</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
           <declname>sq_hamiltonian</declname>
@@ -253,6 +260,7 @@
         <definition>double GQCP::ERNewtonLocalizer::calculateHessianTensorElement</definition>
         <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian, const size_t i, const size_t j, const size_t k, const size_t l) const</argsstring>
         <name>calculateHessianTensorElement</name>
+        <qualifiedname>GQCP::ERNewtonLocalizer::calculateHessianTensorElement</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
           <declname>sq_hamiltonian</declname>
@@ -332,11 +340,26 @@
 <para>A class that localizes a set of orthonormal real spatial orbitals according to the maximization of the Edmiston-Ruedenberg localization index formulated as a minimization problem. The minimum is found using subsequent Newton steps. </para>
     </detaileddescription>
     <inheritancegraph>
+      <node id="3">
+        <label>GQCP::BaseOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_base_orbital_optimizer"/>
+      </node>
+      <node id="1">
+        <label>GQCP::ERNewtonLocalizer</label>
+        <link refid="class_g_q_c_p_1_1_e_r_newton_localizer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
       <node id="2">
         <label>GQCP::NewtonOrbitalOptimizer</label>
         <link refid="class_g_q_c_p_1_1_newton_orbital_optimizer"/>
         <childnode refid="3" relation="public-inheritance">
         </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="5">
+        <label>Eigen::Matrix&lt; double, Dynamic, Dynamic &gt;</label>
       </node>
       <node id="3">
         <label>GQCP::BaseOrbitalOptimizer</label>
@@ -348,8 +371,6 @@
         <childnode refid="2" relation="public-inheritance">
         </childnode>
       </node>
-    </inheritancegraph>
-    <collaborationgraph>
       <node id="2">
         <label>GQCP::NewtonOrbitalOptimizer</label>
         <link refid="class_g_q_c_p_1_1_newton_orbital_optimizer"/>
@@ -362,23 +383,10 @@
           <edgelabel>#hessian</edgelabel>
         </childnode>
       </node>
-      <node id="3">
-        <label>GQCP::BaseOrbitalOptimizer</label>
-        <link refid="class_g_q_c_p_1_1_base_orbital_optimizer"/>
-      </node>
-      <node id="1">
-        <label>GQCP::ERNewtonLocalizer</label>
-        <link refid="class_g_q_c_p_1_1_e_r_newton_localizer"/>
-        <childnode refid="2" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="5">
-        <label>Eigen::Matrix&lt; double, Dynamic, Dynamic &gt;</label>
-      </node>
-      <node id="6">
-        <label>GQCP::SquareMatrix&lt; double &gt;</label>
-        <link refid="class_g_q_c_p_1_1_square_matrix"/>
-        <childnode refid="7" relation="public-inheritance">
+      <node id="4">
+        <label>GQCP::Matrix&lt; double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_matrix"/>
+        <childnode refid="5" relation="public-inheritance">
         </childnode>
       </node>
       <node id="7">
@@ -387,10 +395,10 @@
         <childnode refid="5" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="4">
-        <label>GQCP::Matrix&lt; double &gt;</label>
-        <link refid="class_g_q_c_p_1_1_matrix"/>
-        <childnode refid="5" relation="public-inheritance">
+      <node id="6">
+        <label>GQCP::SquareMatrix&lt; double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_square_matrix"/>
+        <childnode refid="7" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

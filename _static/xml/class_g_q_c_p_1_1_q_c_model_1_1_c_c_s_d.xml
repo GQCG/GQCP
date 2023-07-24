@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d" kind="class" language="C++" prot="public">
     <compoundname>GQCP::QCModel::CCSD</compoundname>
     <includes refid="_q_c_model_2_c_c_2_c_c_s_d_8hpp" local="no">CCSD.hpp</includes>
@@ -14,6 +14,7 @@
         <definition>using GQCP::QCModel::CCSD&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
         <argsstring></argsstring>
         <name>Scalar</name>
+        <qualifiedname>GQCP::QCModel::CCSD::Scalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -29,6 +30,7 @@
         <definition>T1Amplitudes&lt;Scalar&gt; GQCP::QCModel::CCSD&lt; _Scalar &gt;::t1</definition>
         <argsstring></argsstring>
         <name>t1</name>
+        <qualifiedname>GQCP::QCModel::CCSD::t1</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -42,6 +44,7 @@
         <definition>T2Amplitudes&lt;Scalar&gt; GQCP::QCModel::CCSD&lt; _Scalar &gt;::t2</definition>
         <argsstring></argsstring>
         <name>t2</name>
+        <qualifiedname>GQCP::QCModel::CCSD::t2</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -57,6 +60,7 @@
         <definition>GQCP::QCModel::CCSD&lt; _Scalar &gt;::CCSD</definition>
         <argsstring>(const T1Amplitudes&lt; Scalar &gt; &amp;t1, const T2Amplitudes&lt; Scalar &gt; &amp;t2)</argsstring>
         <name>CCSD</name>
+        <qualifiedname>GQCP::QCModel::CCSD::CCSD</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_t1_amplitudes" kindref="compound">T1Amplitudes</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1aea495ee04e224bb020850b2067382caa" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>t1</declname>
@@ -92,11 +96,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCSD.hpp" line="58" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCSD.hpp" bodystart="58" bodyend="60"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1a763328cf02394f77ba0a0bcda562331c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1ab1ff82309637b50736756aac40a792dc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_t1_amplitudes" kindref="compound">T1Amplitudes</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1aea495ee04e224bb020850b2067382caa" kindref="member">Scalar</ref> &gt; &amp;</type>
-        <definition>const T1Amplitudes&lt;Scalar&gt;&amp; GQCP::QCModel::CCSD&lt; _Scalar &gt;::t1Amplitudes</definition>
+        <definition>const T1Amplitudes&lt; Scalar &gt; &amp; GQCP::QCModel::CCSD&lt; _Scalar &gt;::t1Amplitudes</definition>
         <argsstring>() const</argsstring>
         <name>t1Amplitudes</name>
+        <qualifiedname>GQCP::QCModel::CCSD::t1Amplitudes</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -108,11 +113,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCSD.hpp" line="633" column="24" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCSD.hpp" bodystart="633" bodyend="633"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1af38619ba8f0685075301ccbba4bfc1b1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1a056eacb39231b4b6bb5049ced7c6809b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_t2_amplitudes" kindref="compound">T2Amplitudes</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1aea495ee04e224bb020850b2067382caa" kindref="member">Scalar</ref> &gt; &amp;</type>
-        <definition>const T2Amplitudes&lt;Scalar&gt;&amp; GQCP::QCModel::CCSD&lt; _Scalar &gt;::t2Amplitudes</definition>
+        <definition>const T2Amplitudes&lt; Scalar &gt; &amp; GQCP::QCModel::CCSD&lt; _Scalar &gt;::t2Amplitudes</definition>
         <argsstring>() const</argsstring>
         <name>t2Amplitudes</name>
+        <qualifiedname>GQCP::QCModel::CCSD::t2Amplitudes</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -131,6 +137,7 @@
         <definition>static Scalar GQCP::QCModel::CCSD&lt; _Scalar &gt;::calculateCorrelationEnergy</definition>
         <argsstring>(const SquareMatrix&lt; Scalar &gt; &amp;f, const SquareRankFourTensor&lt; Scalar &gt; &amp;V_A, const T1Amplitudes&lt; Scalar &gt; &amp;t1, const T2Amplitudes&lt; Scalar &gt; &amp;t2)</argsstring>
         <name>calculateCorrelationEnergy</name>
+        <qualifiedname>GQCP::QCModel::CCSD::calculateCorrelationEnergy</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1aea495ee04e224bb020850b2067382caa" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>f</declname>
@@ -197,6 +204,7 @@
         <definition>static Scalar GQCP::QCModel::CCSD&lt; _Scalar &gt;::calculateT1AmplitudeEquation</definition>
         <argsstring>(const size_t i, const size_t a, const SquareMatrix&lt; Scalar &gt; &amp;f, const SquareRankFourTensor&lt; Scalar &gt; &amp;V_A, const T1Amplitudes&lt; Scalar &gt; &amp;t1, const T2Amplitudes&lt; Scalar &gt; &amp;t2, const ImplicitMatrixSlice&lt; Scalar &gt; &amp;F1, const ImplicitMatrixSlice&lt; Scalar &gt; &amp;F2, const ImplicitMatrixSlice&lt; Scalar &gt; &amp;F3)</argsstring>
         <name>calculateT1AmplitudeEquation</name>
+        <qualifiedname>GQCP::QCModel::CCSD::calculateT1AmplitudeEquation</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>i</declname>
@@ -323,6 +331,7 @@
         <definition>static Scalar GQCP::QCModel::CCSD&lt; _Scalar &gt;::calculateT2AmplitudeEquation</definition>
         <argsstring>(const size_t i, const size_t j, const size_t a, const size_t b, const SquareMatrix&lt; Scalar &gt; &amp;f, const SquareRankFourTensor&lt; Scalar &gt; &amp;V_A, const T1Amplitudes&lt; Scalar &gt; &amp;t1, const T2Amplitudes&lt; Scalar &gt; &amp;t2, const ImplicitRankFourTensorSlice&lt; Scalar &gt; &amp;tau2, const ImplicitMatrixSlice&lt; Scalar &gt; &amp;F1, const ImplicitMatrixSlice&lt; Scalar &gt; &amp;F2, const ImplicitMatrixSlice&lt; Scalar &gt; &amp;F3, const ImplicitRankFourTensorSlice&lt; Scalar &gt; &amp;W1, const ImplicitRankFourTensorSlice&lt; Scalar &gt; &amp;W2, const ImplicitRankFourTensorSlice&lt; Scalar &gt; &amp;W3)</argsstring>
         <name>calculateT2AmplitudeEquation</name>
+        <qualifiedname>GQCP::QCModel::CCSD::calculateT2AmplitudeEquation</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>i</declname>
@@ -516,11 +525,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCSD.hpp" line="202" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCSD.hpp" bodystart="202" bodyend="275"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1a79a97d72236541250020f76706ccc05e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1a3c88aed54c8e1d496c89dae3f4c93c52" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1aea495ee04e224bb020850b2067382caa" kindref="member">Scalar</ref> &gt;</type>
-        <definition>static ImplicitMatrixSlice&lt;Scalar&gt; GQCP::QCModel::CCSD&lt; _Scalar &gt;::calculateF1</definition>
+        <definition>static ImplicitMatrixSlice&lt; Scalar &gt; GQCP::QCModel::CCSD&lt; _Scalar &gt;::calculateF1</definition>
         <argsstring>(const SquareMatrix&lt; Scalar &gt; &amp;f, const SquareRankFourTensor&lt; Scalar &gt; &amp;V_A, const T1Amplitudes&lt; Scalar &gt; &amp;t1, const ImplicitRankFourTensorSlice&lt; Scalar &gt; &amp;tau2_tilde)</argsstring>
         <name>calculateF1</name>
+        <qualifiedname>GQCP::QCModel::CCSD::calculateF1</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1aea495ee04e224bb020850b2067382caa" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>f</declname>
@@ -583,11 +593,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCSD.hpp" line="288" column="32" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCSD.hpp" bodystart="288" bodyend="329"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1af06d9529722e330b7213c877d9a07f91" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1a26e4bf2392d7882980fbf40bc6da1446" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1aea495ee04e224bb020850b2067382caa" kindref="member">Scalar</ref> &gt;</type>
-        <definition>static ImplicitMatrixSlice&lt;Scalar&gt; GQCP::QCModel::CCSD&lt; _Scalar &gt;::calculateF2</definition>
+        <definition>static ImplicitMatrixSlice&lt; Scalar &gt; GQCP::QCModel::CCSD&lt; _Scalar &gt;::calculateF2</definition>
         <argsstring>(const SquareMatrix&lt; Scalar &gt; &amp;f, const SquareRankFourTensor&lt; Scalar &gt; &amp;V_A, const T1Amplitudes&lt; Scalar &gt; &amp;t1, const ImplicitRankFourTensorSlice&lt; Scalar &gt; &amp;tau2_tilde)</argsstring>
         <name>calculateF2</name>
+        <qualifiedname>GQCP::QCModel::CCSD::calculateF2</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1aea495ee04e224bb020850b2067382caa" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>f</declname>
@@ -650,11 +661,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCSD.hpp" line="342" column="32" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCSD.hpp" bodystart="342" bodyend="383"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1a19626470ba134e948942517fb8a84b1c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1a6b4964e6b856b43afa2f8d1e972629d8" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1aea495ee04e224bb020850b2067382caa" kindref="member">Scalar</ref> &gt;</type>
-        <definition>static ImplicitMatrixSlice&lt;Scalar&gt; GQCP::QCModel::CCSD&lt; _Scalar &gt;::calculateF3</definition>
+        <definition>static ImplicitMatrixSlice&lt; Scalar &gt; GQCP::QCModel::CCSD&lt; _Scalar &gt;::calculateF3</definition>
         <argsstring>(const SquareMatrix&lt; Scalar &gt; &amp;f, const SquareRankFourTensor&lt; Scalar &gt; &amp;V_A, const T1Amplitudes&lt; Scalar &gt; &amp;t1)</argsstring>
         <name>calculateF3</name>
+        <qualifiedname>GQCP::QCModel::CCSD::calculateF3</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1aea495ee04e224bb020850b2067382caa" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>f</declname>
@@ -705,11 +717,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCSD.hpp" line="395" column="32" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCSD.hpp" bodystart="395" bodyend="420"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1a50905a2334524a72b33cf3db6dafc468" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1ad680447a74034039a67a6f65b1204745" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1aea495ee04e224bb020850b2067382caa" kindref="member">Scalar</ref> &gt;</type>
-        <definition>static ImplicitRankFourTensorSlice&lt;Scalar&gt; GQCP::QCModel::CCSD&lt; _Scalar &gt;::calculateTau2</definition>
+        <definition>static ImplicitRankFourTensorSlice&lt; Scalar &gt; GQCP::QCModel::CCSD&lt; _Scalar &gt;::calculateTau2</definition>
         <argsstring>(const T1Amplitudes&lt; Scalar &gt; &amp;t1, const T2Amplitudes&lt; Scalar &gt; &amp;t2)</argsstring>
         <name>calculateTau2</name>
+        <qualifiedname>GQCP::QCModel::CCSD::calculateTau2</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_t1_amplitudes" kindref="compound">T1Amplitudes</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1aea495ee04e224bb020850b2067382caa" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>t1</declname>
@@ -748,11 +761,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCSD.hpp" line="431" column="40" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCSD.hpp" bodystart="431" bodyend="449"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1a697684f757e2039b7ece60b92dc320d0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1a63fb0b0ec3e8588c40a0fb73ef245a24" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1aea495ee04e224bb020850b2067382caa" kindref="member">Scalar</ref> &gt;</type>
-        <definition>static ImplicitRankFourTensorSlice&lt;Scalar&gt; GQCP::QCModel::CCSD&lt; _Scalar &gt;::calculateTau2Tilde</definition>
+        <definition>static ImplicitRankFourTensorSlice&lt; Scalar &gt; GQCP::QCModel::CCSD&lt; _Scalar &gt;::calculateTau2Tilde</definition>
         <argsstring>(const T1Amplitudes&lt; Scalar &gt; &amp;t1, const T2Amplitudes&lt; Scalar &gt; &amp;t2)</argsstring>
         <name>calculateTau2Tilde</name>
+        <qualifiedname>GQCP::QCModel::CCSD::calculateTau2Tilde</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_t1_amplitudes" kindref="compound">T1Amplitudes</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1aea495ee04e224bb020850b2067382caa" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>t1</declname>
@@ -791,11 +805,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCSD.hpp" line="460" column="40" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCSD.hpp" bodystart="460" bodyend="478"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1a2bb08df9ea64463c5476eae9090d4374" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1a223d082d6207d45a037be23dff166c1f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1aea495ee04e224bb020850b2067382caa" kindref="member">Scalar</ref> &gt;</type>
-        <definition>static ImplicitRankFourTensorSlice&lt;Scalar&gt; GQCP::QCModel::CCSD&lt; _Scalar &gt;::calculateW1</definition>
+        <definition>static ImplicitRankFourTensorSlice&lt; Scalar &gt; GQCP::QCModel::CCSD&lt; _Scalar &gt;::calculateW1</definition>
         <argsstring>(const SquareRankFourTensor&lt; Scalar &gt; &amp;V_A, const T1Amplitudes&lt; Scalar &gt; &amp;t1, const ImplicitRankFourTensorSlice&lt; Scalar &gt; &amp;tau2)</argsstring>
         <name>calculateW1</name>
+        <qualifiedname>GQCP::QCModel::CCSD::calculateW1</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1aea495ee04e224bb020850b2067382caa" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>V_A</declname>
@@ -846,11 +861,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCSD.hpp" line="490" column="40" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCSD.hpp" bodystart="490" bodyend="525"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1a903f2e2faa0506a031409c9e1701a54b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1a95a7327bff82d7b4cde2c16a6df34590" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1aea495ee04e224bb020850b2067382caa" kindref="member">Scalar</ref> &gt;</type>
-        <definition>static ImplicitRankFourTensorSlice&lt;Scalar&gt; GQCP::QCModel::CCSD&lt; _Scalar &gt;::calculateW2</definition>
+        <definition>static ImplicitRankFourTensorSlice&lt; Scalar &gt; GQCP::QCModel::CCSD&lt; _Scalar &gt;::calculateW2</definition>
         <argsstring>(const SquareRankFourTensor&lt; Scalar &gt; &amp;V_A, const T1Amplitudes&lt; Scalar &gt; &amp;t1, const ImplicitRankFourTensorSlice&lt; Scalar &gt; &amp;tau2)</argsstring>
         <name>calculateW2</name>
+        <qualifiedname>GQCP::QCModel::CCSD::calculateW2</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1aea495ee04e224bb020850b2067382caa" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>V_A</declname>
@@ -901,11 +917,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCSD.hpp" line="537" column="40" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCSD.hpp" bodystart="537" bodyend="572"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1a59447494eb9d8a4b9b50dd9e901e4657" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1a7aff10f296c71c09f68b21c94b094d40" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1aea495ee04e224bb020850b2067382caa" kindref="member">Scalar</ref> &gt;</type>
-        <definition>static ImplicitRankFourTensorSlice&lt;Scalar&gt; GQCP::QCModel::CCSD&lt; _Scalar &gt;::calculateW3</definition>
+        <definition>static ImplicitRankFourTensorSlice&lt; Scalar &gt; GQCP::QCModel::CCSD&lt; _Scalar &gt;::calculateW3</definition>
         <argsstring>(const SquareRankFourTensor&lt; Scalar &gt; &amp;V_A, const T1Amplitudes&lt; Scalar &gt; &amp;t1, const T2Amplitudes&lt; Scalar &gt; &amp;t2)</argsstring>
         <name>calculateW3</name>
+        <qualifiedname>GQCP::QCModel::CCSD::calculateW3</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1aea495ee04e224bb020850b2067382caa" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>V_A</declname>
@@ -981,22 +998,22 @@
     <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCSD.hpp" line="37" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/CCSD.hpp" bodystart="37" bodyend="639"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1abe7ae6c787fc0cefd125b3b79f3c9e2f" prot="public" virt="non-virtual"><scope>GQCP::QCModel::CCSD</scope><name>calculateCorrelationEnergy</name></member>
-      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1a79a97d72236541250020f76706ccc05e" prot="public" virt="non-virtual"><scope>GQCP::QCModel::CCSD</scope><name>calculateF1</name></member>
-      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1af06d9529722e330b7213c877d9a07f91" prot="public" virt="non-virtual"><scope>GQCP::QCModel::CCSD</scope><name>calculateF2</name></member>
-      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1a19626470ba134e948942517fb8a84b1c" prot="public" virt="non-virtual"><scope>GQCP::QCModel::CCSD</scope><name>calculateF3</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1a3c88aed54c8e1d496c89dae3f4c93c52" prot="public" virt="non-virtual"><scope>GQCP::QCModel::CCSD</scope><name>calculateF1</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1a26e4bf2392d7882980fbf40bc6da1446" prot="public" virt="non-virtual"><scope>GQCP::QCModel::CCSD</scope><name>calculateF2</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1a6b4964e6b856b43afa2f8d1e972629d8" prot="public" virt="non-virtual"><scope>GQCP::QCModel::CCSD</scope><name>calculateF3</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1a15b614d4077917a30fa3166b498f9408" prot="public" virt="non-virtual"><scope>GQCP::QCModel::CCSD</scope><name>calculateT1AmplitudeEquation</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1a6003dfd563df4d392e4f5674ba5212f8" prot="public" virt="non-virtual"><scope>GQCP::QCModel::CCSD</scope><name>calculateT2AmplitudeEquation</name></member>
-      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1a50905a2334524a72b33cf3db6dafc468" prot="public" virt="non-virtual"><scope>GQCP::QCModel::CCSD</scope><name>calculateTau2</name></member>
-      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1a697684f757e2039b7ece60b92dc320d0" prot="public" virt="non-virtual"><scope>GQCP::QCModel::CCSD</scope><name>calculateTau2Tilde</name></member>
-      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1a2bb08df9ea64463c5476eae9090d4374" prot="public" virt="non-virtual"><scope>GQCP::QCModel::CCSD</scope><name>calculateW1</name></member>
-      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1a903f2e2faa0506a031409c9e1701a54b" prot="public" virt="non-virtual"><scope>GQCP::QCModel::CCSD</scope><name>calculateW2</name></member>
-      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1a59447494eb9d8a4b9b50dd9e901e4657" prot="public" virt="non-virtual"><scope>GQCP::QCModel::CCSD</scope><name>calculateW3</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1ad680447a74034039a67a6f65b1204745" prot="public" virt="non-virtual"><scope>GQCP::QCModel::CCSD</scope><name>calculateTau2</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1a63fb0b0ec3e8588c40a0fb73ef245a24" prot="public" virt="non-virtual"><scope>GQCP::QCModel::CCSD</scope><name>calculateTau2Tilde</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1a223d082d6207d45a037be23dff166c1f" prot="public" virt="non-virtual"><scope>GQCP::QCModel::CCSD</scope><name>calculateW1</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1a95a7327bff82d7b4cde2c16a6df34590" prot="public" virt="non-virtual"><scope>GQCP::QCModel::CCSD</scope><name>calculateW2</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1a7aff10f296c71c09f68b21c94b094d40" prot="public" virt="non-virtual"><scope>GQCP::QCModel::CCSD</scope><name>calculateW3</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1a5471d6c90e4eeac0cc8387398136da81" prot="public" virt="non-virtual"><scope>GQCP::QCModel::CCSD</scope><name>CCSD</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1aea495ee04e224bb020850b2067382caa" prot="public" virt="non-virtual"><scope>GQCP::QCModel::CCSD</scope><name>Scalar</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1a02f0d0cc5ab984988165f73745ecc5f3" prot="private" virt="non-virtual"><scope>GQCP::QCModel::CCSD</scope><name>t1</name></member>
-      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1a763328cf02394f77ba0a0bcda562331c" prot="public" virt="non-virtual"><scope>GQCP::QCModel::CCSD</scope><name>t1Amplitudes</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1ab1ff82309637b50736756aac40a792dc" prot="public" virt="non-virtual"><scope>GQCP::QCModel::CCSD</scope><name>t1Amplitudes</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1ac71acb088a62c9d4d4c5bb6d378ff5bb" prot="private" virt="non-virtual"><scope>GQCP::QCModel::CCSD</scope><name>t2</name></member>
-      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1af38619ba8f0685075301ccbba4bfc1b1" prot="public" virt="non-virtual"><scope>GQCP::QCModel::CCSD</scope><name>t2Amplitudes</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_model_1_1_c_c_s_d_1a056eacb39231b4b6bb5049ced7c6809b" prot="public" virt="non-virtual"><scope>GQCP::QCModel::CCSD</scope><name>t2Amplitudes</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

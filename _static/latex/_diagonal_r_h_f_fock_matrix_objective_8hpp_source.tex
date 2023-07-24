@@ -1,0 +1,74 @@
+\hypertarget{_diagonal_r_h_f_fock_matrix_objective_8hpp_source}{}\doxysection{Diagonal\+RHFFock\+Matrix\+Objective.\+hpp}
+\label{_diagonal_r_h_f_fock_matrix_objective_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/DiagonalRHFFockMatrixObjective.hpp}}
+\mbox{\hyperlink{_diagonal_r_h_f_fock_matrix_objective_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_q_c_model_2_h_f_2_r_h_f_8hpp}{QCModel/HF/RHF.hpp}}"{}}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar>}
+\DoxyCodeLine{00033\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_diagonal_r_h_f_fock_matrix_objective}{DiagonalRHFFockMatrixObjective}}\ \{}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_diagonal_r_h_f_fock_matrix_objective_aa0b5cbdb243f13461631f8fe044c0ca6}{Scalar}}\ =\ \_Scalar;}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{double}\ precision;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ precision\ with\ which\ the\ diagonality\ of\ the\ Fock\ matrix\ should\ be\ checked.}}
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{RSQHamiltonian<Scalar>}}\ sq\_hamiltonian;\ \ \textcolor{comment}{//\ The\ Hamiltonian\ expressed\ in\ a\ scalar\ basis.}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00046\ \textcolor{comment}{\ \ \ \ \ *\ \ CONSTRUCTORS}}
+\DoxyCodeLine{00047\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_diagonal_r_h_f_fock_matrix_objective_a2834db1b7e827c6b439f806a166f9d0d}{DiagonalRHFFockMatrixObjective}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{RSQHamiltonian<Scalar>}}\&\ sq\_hamiltonian,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ precision\ =\ 1.0e-\/08)\ :}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ precision\ \{precision\},}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ sq\_hamiltonian\ \{sq\_hamiltonian\}\ \{\}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00058\ \textcolor{comment}{\ \ \ \ \ *\ \ PUBLIC\ METHODS}}
+\DoxyCodeLine{00059\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_g_q_c_p_1_1_diagonal_r_h_f_fock_matrix_objective_affeffb9f7ef2675be28117fed2183dc9}{isSatisfiedWith}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{QCModel::RHF<Scalar>}}\&\ rhf\_parameters)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Prepare\ the\ calculation\ of\ the\ Fock\ matrix\ in\ the\ spinor\ basis.}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ N\_P\ =\ rhf\_parameters.\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a95a8eb19e2eaa1f4d590341a4ea2d5c1}{numberOfElectronPairs}}();}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ C\ =\ rhf\_parameters.\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_ad353d1b65666cb769d1608b14e5aa5dc}{expansion}}();}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ D\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a5a25f2213731af14f24851b1c2f3afa9}{QCModel::RHF<Scalar>::calculateScalarBasis1DM}}(C,\ 2\ *\ N\_P);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ Fock\ matrix\ in\ the\ orthonormal\ spinor\ and\ check\ if\ it\ is\ diagonal.}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ F\_orthonormal\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f_a6732d9b47bc1ff44196b1db24aee00a1}{QCModel::RHF<Scalar>::calculateScalarBasisFockMatrix}}(D,\ this-\/>sq\_hamiltonian);\ \ \textcolor{comment}{//\ The\ converged\ Fock\ matrix\ (expressed\ in\ the\ scalar\ orbital\ basis).}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ F\_orthonormal.transform(C);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Now\ in\ the\ orthonormal\ spinor\ basis.}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ F\_orthonormal.parameters().isDiagonal(this-\/>precision);}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+\DoxyCodeLine{00078\ \};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

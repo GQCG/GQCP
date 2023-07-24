@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_hopping_matrix" kind="class" language="C++" prot="public">
     <compoundname>GQCP::HoppingMatrix</compoundname>
     <includes refid="_hopping_matrix_8hpp" local="no">HoppingMatrix.hpp</includes>
@@ -14,6 +14,7 @@
         <definition>using GQCP::HoppingMatrix&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
         <argsstring></argsstring>
         <name>Scalar</name>
+        <qualifiedname>GQCP::HoppingMatrix::Scalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -29,6 +30,7 @@
         <definition>SquareMatrix&lt;Scalar&gt; GQCP::HoppingMatrix&lt; _Scalar &gt;::H</definition>
         <argsstring></argsstring>
         <name>H</name>
+        <qualifiedname>GQCP::HoppingMatrix::H</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -44,6 +46,7 @@
         <definition>GQCP::HoppingMatrix&lt; _Scalar &gt;::HoppingMatrix</definition>
         <argsstring>(const SquareMatrix&lt; Scalar &gt; &amp;H)</argsstring>
         <name>HoppingMatrix</name>
+        <qualifiedname>GQCP::HoppingMatrix::HoppingMatrix</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_hopping_matrix_1a422b1a3dc9cfbe1453b51158881ea5fa" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>H</declname>
@@ -67,17 +70,108 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp" line="55" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp" bodystart="55" bodyend="61"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_hopping_matrix_1af3ce1020d95b1b7be0325e624cf4eb61" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_hopping_matrix_1acb5b4f6d12e5b217c09c52b35ab086a8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t GQCP::HoppingMatrix&lt; _Scalar &gt;::numberOfLatticeSites</definition>
+        <argsstring>() const</argsstring>
+        <name>numberOfLatticeSites</name>
+        <qualifiedname>GQCP::HoppingMatrix::numberOfLatticeSites</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The number of lattice sites corresponding used in this hopping matrix. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp" line="105" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp" bodystart="105" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_hopping_matrix_1a402859288cdbf46fd76002686933b526" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_hopping_matrix_1a422b1a3dc9cfbe1453b51158881ea5fa" kindref="member">Scalar</ref> &gt; &amp;</type>
+        <definition>const SquareMatrix&lt; Scalar &gt; &amp; GQCP::HoppingMatrix&lt; _Scalar &gt;::matrix</definition>
+        <argsstring>() const</argsstring>
+        <name>matrix</name>
+        <qualifiedname>GQCP::HoppingMatrix::matrix</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A read-only reference to the matrix representation of this hopping matrix. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp" line="115" column="24" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp" bodystart="115" bodyend="115"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_hopping_matrix_1aba80d41fff1aed37fc8febc664523dd8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_hopping_matrix_1a422b1a3dc9cfbe1453b51158881ea5fa" kindref="member">Scalar</ref> &gt; &amp;</type>
+        <definition>SquareMatrix&lt; Scalar &gt; &amp; GQCP::HoppingMatrix&lt; _Scalar &gt;::matrix</definition>
+        <argsstring>()</argsstring>
+        <name>matrix</name>
+        <qualifiedname>GQCP::HoppingMatrix::matrix</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A writable reference to the matrix representation of this hopping matrix. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp" line="120" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp" bodystart="120" bodyend="120"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_hopping_matrix_1a38f3d5b41c8560b170cefaef049d75d3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z</type>
             <defval><ref refid="class_g_q_c_p_1_1_hopping_matrix_1a422b1a3dc9cfbe1453b51158881ea5fa" kindref="member">Scalar</ref></defval>
           </param>
         </templateparamlist>
-        <type></type>
-        <definition>GQCP::HoppingMatrix&lt; _Scalar &gt;::HoppingMatrix</definition>
-        <argsstring>(const AdjacencyMatrix &amp;A, const double t, const double U, typename std::enable_if&lt; std::is_same&lt; Z, double &gt;::value &gt;::type *=0)</argsstring>
-        <name>HoppingMatrix</name>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, double &gt;::value, <ref refid="class_g_q_c_p_1_1_hopping_matrix" kindref="compound">HoppingMatrix</ref>&lt; double &gt; &gt;</type>
+        <definition>static enable_if_t&lt; std::is_same&lt; Z, double &gt;::value, HoppingMatrix&lt; double &gt; &gt; GQCP::HoppingMatrix&lt; _Scalar &gt;::Dense</definition>
+        <argsstring>(std::vector&lt; double &gt; &amp;triagonal_data)</argsstring>
+        <name>Dense</name>
+        <qualifiedname>GQCP::HoppingMatrix::Dense</qualifiedname>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;</type>
+          <declname>triagonal_data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Create a hopping matrix from a vector containing the upper triangle.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>csline</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector that contains the upper triangle (in column-major ordering) of the Hubbard hopping matrix.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The hopping matrix that corresponds to the given comma-separated line. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp" line="76" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp" bodystart="76" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_hopping_matrix_1a1f4175755787f746a22b6eae1a30dcb2" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_hopping_matrix_1a422b1a3dc9cfbe1453b51158881ea5fa" kindref="member">Scalar</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, double &gt;::value, <ref refid="class_g_q_c_p_1_1_hopping_matrix" kindref="compound">HoppingMatrix</ref>&lt; double &gt; &gt;</type>
+        <definition>static enable_if_t&lt; std::is_same&lt; Z, double &gt;::value, HoppingMatrix&lt; double &gt; &gt; GQCP::HoppingMatrix&lt; _Scalar &gt;::Homogeneous</definition>
+        <argsstring>(const AdjacencyMatrix &amp;A, const double t)</argsstring>
+        <name>Homogeneous</name>
+        <qualifiedname>GQCP::HoppingMatrix::Homogeneous</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_adjacency_matrix" kindref="compound">AdjacencyMatrix</ref> &amp;</type>
           <declname>A</declname>
@@ -86,18 +180,10 @@
           <type>const double</type>
           <declname>t</declname>
         </param>
-        <param>
-          <type>const double</type>
-          <declname>U</declname>
-        </param>
-        <param>
-          <type>typename std::enable_if&lt; std::is_same&lt; Z, double &gt;::value &gt;::type *</type>
-          <defval>0</defval>
-        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Generate the Hubbard hopping matrix from an adjacency matrix and Hubbard model parameters U and t.</para>
+<para>Generate the Hubbard hopping matrix from an adjacency matrix and Hubbard model parameter t.</para>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>A</parametername>
@@ -111,15 +197,7 @@
 <parametername>t</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The Hubbard parameter t. Note that a positive value for t means a negative neighbour hopping term. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>U</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The Hubbard parameter U.</para>
+<para>The Hubbard parameter t. Note that a positive value for t means a negative neighbour hopping term.</para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -129,131 +207,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp" line="74" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp" bodystart="74" bodyend="76"/>
-      </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_hopping_matrix_1acb5b4f6d12e5b217c09c52b35ab086a8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>size_t</type>
-        <definition>size_t GQCP::HoppingMatrix&lt; _Scalar &gt;::numberOfLatticeSites</definition>
-        <argsstring>() const</argsstring>
-        <name>numberOfLatticeSites</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para><simplesect kind="return"><para>The number of lattice sites corresponding used in this hopping matrix. </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp" line="132" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp" bodystart="132" bodyend="132"/>
-      </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_hopping_matrix_1af894c587dcbd9fae85352c83cd182141" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_hopping_matrix_1a422b1a3dc9cfbe1453b51158881ea5fa" kindref="member">Scalar</ref> &gt; &amp;</type>
-        <definition>const SquareMatrix&lt;Scalar&gt;&amp; GQCP::HoppingMatrix&lt; _Scalar &gt;::matrix</definition>
-        <argsstring>() const</argsstring>
-        <name>matrix</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para><simplesect kind="return"><para>A read-only reference to the matrix representation of this hopping matrix. </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp" line="142" column="24" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp" bodystart="142" bodyend="142"/>
-      </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_hopping_matrix_1af33eefc8ebc1a1cc5846ffc02175ea99" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_hopping_matrix_1a422b1a3dc9cfbe1453b51158881ea5fa" kindref="member">Scalar</ref> &gt; &amp;</type>
-        <definition>SquareMatrix&lt;Scalar&gt;&amp; GQCP::HoppingMatrix&lt; _Scalar &gt;::matrix</definition>
-        <argsstring>()</argsstring>
-        <name>matrix</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para><simplesect kind="return"><para>A writable reference to the matrix representation of this hopping matrix. </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp" line="147" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp" bodystart="147" bodyend="147"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="class_g_q_c_p_1_1_hopping_matrix_1a1a557f7dd9e1cb28a53a638a674d6464" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <templateparamlist>
-          <param>
-            <type>typename Z</type>
-            <defval><ref refid="class_g_q_c_p_1_1_hopping_matrix_1a422b1a3dc9cfbe1453b51158881ea5fa" kindref="member">Scalar</ref></defval>
-          </param>
-        </templateparamlist>
-        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, double &gt;::value, <ref refid="class_g_q_c_p_1_1_hopping_matrix" kindref="compound">HoppingMatrix</ref>&lt; double &gt; &gt;</type>
-        <definition>static enable_if_t&lt;std::is_same&lt;Z, double&gt;::value, HoppingMatrix&lt;double&gt; &gt; GQCP::HoppingMatrix&lt; _Scalar &gt;::FromCSLine</definition>
-        <argsstring>(const std::string &amp;csline)</argsstring>
-        <name>FromCSLine</name>
-        <param>
-          <type>const std::string &amp;</type>
-          <declname>csline</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para>Create a hopping matrix from a comma-separated line.</para>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>csline</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>A comma-separated line that contains the upper triangle (in column-major ordering) of the Hubbard hopping matrix.</para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>The hopping matrix that corresponds to the given comma-separated line. </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp" line="91" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp" bodystart="91" bodyend="109"/>
-      </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_hopping_matrix_1a79cab3d4b8302d57cdd8c0fc115d0c04" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <templateparamlist>
-          <param>
-            <type>typename Z</type>
-            <defval><ref refid="class_g_q_c_p_1_1_hopping_matrix_1a422b1a3dc9cfbe1453b51158881ea5fa" kindref="member">Scalar</ref></defval>
-          </param>
-        </templateparamlist>
-        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, double &gt;::value, <ref refid="class_g_q_c_p_1_1_hopping_matrix" kindref="compound">HoppingMatrix</ref>&lt; double &gt; &gt;</type>
-        <definition>static enable_if_t&lt;std::is_same&lt;Z, double&gt;::value, HoppingMatrix&lt;double&gt; &gt; GQCP::HoppingMatrix&lt; _Scalar &gt;::Random</definition>
-        <argsstring>(const size_t K)</argsstring>
-        <name>Random</name>
-        <param>
-          <type>const size_t</type>
-          <declname>K</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para>Create a random Hopping matrix with elements distributed uniformly in [-1.0, 1.0].</para>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>K</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The number of lattice sites.</para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>A random hopping matrix.</para>
-</simplesect>
-<simplesect kind="note"><para>This method is only available for real scalars. </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp" line="122" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp" bodystart="122" bodyend="122"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp" line="93" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp" bodystart="93" bodyend="95"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -277,16 +231,15 @@
         <link refid="class_g_q_c_p_1_1_hopping_matrix"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp" line="34" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp" bodystart="34" bodyend="148"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp" line="34" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp" bodystart="34" bodyend="121"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_hopping_matrix_1a1a557f7dd9e1cb28a53a638a674d6464" prot="public" virt="non-virtual"><scope>GQCP::HoppingMatrix</scope><name>FromCSLine</name></member>
+      <member refid="class_g_q_c_p_1_1_hopping_matrix_1a38f3d5b41c8560b170cefaef049d75d3" prot="public" virt="non-virtual"><scope>GQCP::HoppingMatrix</scope><name>Dense</name></member>
       <member refid="class_g_q_c_p_1_1_hopping_matrix_1ad3e98f4014c3a9f1fc95f1c901a93345" prot="private" virt="non-virtual"><scope>GQCP::HoppingMatrix</scope><name>H</name></member>
+      <member refid="class_g_q_c_p_1_1_hopping_matrix_1a1f4175755787f746a22b6eae1a30dcb2" prot="public" virt="non-virtual"><scope>GQCP::HoppingMatrix</scope><name>Homogeneous</name></member>
       <member refid="class_g_q_c_p_1_1_hopping_matrix_1a8daeb4c172ded5405bbc91a230dfcbf1" prot="public" virt="non-virtual"><scope>GQCP::HoppingMatrix</scope><name>HoppingMatrix</name></member>
-      <member refid="class_g_q_c_p_1_1_hopping_matrix_1af3ce1020d95b1b7be0325e624cf4eb61" prot="public" virt="non-virtual"><scope>GQCP::HoppingMatrix</scope><name>HoppingMatrix</name></member>
-      <member refid="class_g_q_c_p_1_1_hopping_matrix_1af894c587dcbd9fae85352c83cd182141" prot="public" virt="non-virtual"><scope>GQCP::HoppingMatrix</scope><name>matrix</name></member>
-      <member refid="class_g_q_c_p_1_1_hopping_matrix_1af33eefc8ebc1a1cc5846ffc02175ea99" prot="public" virt="non-virtual"><scope>GQCP::HoppingMatrix</scope><name>matrix</name></member>
+      <member refid="class_g_q_c_p_1_1_hopping_matrix_1a402859288cdbf46fd76002686933b526" prot="public" virt="non-virtual"><scope>GQCP::HoppingMatrix</scope><name>matrix</name></member>
+      <member refid="class_g_q_c_p_1_1_hopping_matrix_1aba80d41fff1aed37fc8febc664523dd8" prot="public" virt="non-virtual"><scope>GQCP::HoppingMatrix</scope><name>matrix</name></member>
       <member refid="class_g_q_c_p_1_1_hopping_matrix_1acb5b4f6d12e5b217c09c52b35ab086a8" prot="public" virt="non-virtual"><scope>GQCP::HoppingMatrix</scope><name>numberOfLatticeSites</name></member>
-      <member refid="class_g_q_c_p_1_1_hopping_matrix_1a79cab3d4b8302d57cdd8c0fc115d0c04" prot="public" virt="non-virtual"><scope>GQCP::HoppingMatrix</scope><name>Random</name></member>
       <member refid="class_g_q_c_p_1_1_hopping_matrix_1a422b1a3dc9cfbe1453b51158881ea5fa" prot="public" virt="non-virtual"><scope>GQCP::HoppingMatrix</scope><name>Scalar</name></member>
     </listofallmembers>
   </compounddef>

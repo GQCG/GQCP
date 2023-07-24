@@ -1,16 +1,10 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="elements_8cpp" kind="file" language="C++">
     <compoundname>elements.cpp</compoundname>
     <includes refid="elements_8hpp" local="yes">Molecule/elements.hpp</includes>
     <includes local="no">boost/bimap.hpp</includes>
     <incdepgraph>
-      <node id="4">
-        <label>boost/bimap.hpp</label>
-      </node>
-      <node id="3">
-        <label>string</label>
-      </node>
       <node id="2">
         <label>Molecule/elements.hpp</label>
         <link refid="elements_8hpp"/>
@@ -24,6 +18,12 @@
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
+      </node>
+      <node id="4">
+        <label>boost/bimap.hpp</label>
+      </node>
+      <node id="3">
+        <label>string</label>
       </node>
     </incdepgraph>
     <innernamespace refid="namespace_g_q_c_p">GQCP</innernamespace>

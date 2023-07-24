@@ -1,0 +1,107 @@
+\hypertarget{_evaluable_g_s_q_one_electron_operator_8hpp_source}{}\doxysection{Evaluable\+GSQOne\+Electron\+Operator.\+hpp}
+\label{_evaluable_g_s_q_one_electron_operator_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableGSQOneElectronOperator.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableGSQOneElectronOperator.hpp}}
+\mbox{\hyperlink{_evaluable_g_s_q_one_electron_operator_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_g1_d_m_8hpp}{DensityMatrix/G1DM.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_evaluable_simple_s_q_one_electron_operator_8hpp}{Operator/SecondQuantized/EvaluableSimpleSQOneElectronOperator.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_g_s_q_one_electron_operator_8hpp}{Operator/SecondQuantized/GSQOneElectronOperator.hpp}}"{}}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_FunctionType,\ \textcolor{keyword}{typename}\ \_Vectorizer>}
+\DoxyCodeLine{00036\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_g_s_q_one_electron_operator}{EvaluableGSQOneElectronOperator}}:}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_simple_s_q_one_electron_operator}{EvaluableSimpleSQOneElectronOperator}}<\_FunctionType,\ \_Vectorizer,\ EvaluableGSQOneElectronOperator<\_FunctionType,\ \_Vectorizer>>\ \{}
+\DoxyCodeLine{00038\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ evaluatable\ function\ that\ is\ used\ as\ a\ matrix\ element\ of\ this\ one-\/electron\ operator.}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_g_s_q_one_electron_operator_ae78188d647cc3eb1f76521fa03285c8d}{FunctionType}}\ =\ \_FunctionType;}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ the\ vectorizer\ that\ relates\ a\ one-\/dimensional\ storage\ of\ matrices\ to\ the\ tensor\ structure\ of\ one-\/electron\ operators.\ This\ allows\ for\ a\ distinction\ between\ scalar\ operators\ (such\ as\ the\ density)\ and\ vector\ operators\ (such\ as\ the\ current\ density\ operator).}}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_g_s_q_one_electron_operator_ace921fd403e89266894d055d2af0ac0a}{Vectorizer}}\ =\ \_Vectorizer;}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00048\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Constructors}}
+\DoxyCodeLine{00049\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{//\ Inherit\ `EvaluableSimpleSQOneElectronOperator`'s\ constructors.}}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_simple_s_q_one_electron_operator}{EvaluableSimpleSQOneElectronOperator}}<\_FunctionType,\ \_Vectorizer,\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_g_s_q_one_electron_operator}{EvaluableGSQOneElectronOperator<\_FunctionType,\ \_Vectorizer>}}>::EvaluableSimpleSQOneElectronOperator;}
+\DoxyCodeLine{00053\ \};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00057\ \textcolor{comment}{\ *\ \ MARK:\ Convenience\ aliases}}
+\DoxyCodeLine{00058\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{comment}{//\ A\ scalar-\/like\ EvaluableGSQOneElectronOperator,\ i.e.\ with\ scalar-\/like\ access.}}
+\DoxyCodeLine{00061\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ FunctionType>}
+\DoxyCodeLine{00062\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_g_s_q_one_electron_operator}{ScalarEvaluableGSQOneElectronOperator}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_g_s_q_one_electron_operator}{EvaluableGSQOneElectronOperator<FunctionType,\ ScalarVectorizer>}};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{comment}{//\ A\ vector-\/like\ EvaluableGSQOneElectronOperator,\ i.e.\ with\ vector-\/like\ access.}}
+\DoxyCodeLine{00065\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ FunctionType>}
+\DoxyCodeLine{00066\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_g_s_q_one_electron_operator}{VectorEvaluableGSQOneElectronOperator}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_g_s_q_one_electron_operator}{EvaluableGSQOneElectronOperator<FunctionType,\ VectorVectorizer>}};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{comment}{//\ A\ matrix-\/like\ EvaluableGSQOneElectronOperator,\ i.e.\ with\ matrix-\/like\ access.}}
+\DoxyCodeLine{00069\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ FunctionType>}
+\DoxyCodeLine{00070\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_g_s_q_one_electron_operator}{MatrixEvaluableGSQOneElectronOperator}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_g_s_q_one_electron_operator}{EvaluableGSQOneElectronOperator<FunctionType,\ MatrixVectorizer>}};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{comment}{//\ A\ tensor-\/like\ EvaluableGSQOneElectronOperator,\ i.e.\ with\ tensor-\/like\ access.}}
+\DoxyCodeLine{00073\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ FunctionType,\ \textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00074\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_g_s_q_one_electron_operator}{TensorEvaluableGSQOneElectronOperator}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_g_s_q_one_electron_operator}{EvaluableGSQOneElectronOperator<FunctionType,\ TensorVectorizer<N>}}>;}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00078\ \textcolor{comment}{\ *\ \ MARK:\ Operator\ traits}}
+\DoxyCodeLine{00079\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00087\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_FunctionType,\ \textcolor{keyword}{typename}\ \_Vectorizer>}
+\DoxyCodeLine{00088\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits}{OperatorTraits}}<\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_g_s_q_one_electron_operator}{EvaluableGSQOneElectronOperator}}<\_FunctionType,\ \_Vectorizer>>\ \{}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ evaluatable\ function\ that\ is\ used\ as\ a\ matrix\ element\ of\ the\ one-\/electron\ operator.}}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_g_s_q_one_electron_operator_3_01___function_type_00_01___vectorizer_01_4_01_4_a2bfb10c273db4559488ca18029545fe7}{FunctionType}}\ =\ \_FunctionType;}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{comment}{//\ The\ return\ type\ of\ the\ `operator()`.}}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_g_s_q_one_electron_operator_3_01___function_type_00_01___vectorizer_01_4_01_4_a900b14ca87c631af3c3bdc2e66cc8890}{OutputType}}\ =\ \textcolor{keyword}{typename}\ \_FunctionType::OutputType;}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ the\ vectorizer\ that\ relates\ a\ one-\/dimensional\ storage\ of\ matrices\ to\ the\ tensor\ structure\ of\ one-\/electron\ operators.\ This\ allows\ for\ a\ distinction\ between\ scalar\ operators\ (such\ as\ the\ kinetic\ energy\ operator),\ vector\ operators\ (such\ as\ the\ spin\ operator)\ and\ matrix/tensor\ operators\ (such\ as\ quadrupole\ and\ multipole\ operators).}}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits_3_01_evaluable_g_s_q_one_electron_operator_3_01___function_type_00_01___vectorizer_01_4_01_4_a23b0888f14ad0e06c6422d36973ce40e}{Vectorizer}}\ =\ \_Vectorizer;}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ the\ operator\ at\ the\ end\ of\ the\ inheritance\ chain\ of\ `SQOperatorStorageBase`.}}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_g_s_q_one_electron_operator}{DerivedOperator}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_g_s_q_one_electron_operator}{EvaluableGSQOneElectronOperator<FunctionType,\ Vectorizer>}};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{comment}{//\ The\ scalar\ version\ of\ the\ type\ of\ the\ operator\ at\ the\ end\ of\ the\ inheritance\ chain\ of\ `SQOperatorStorageBase`.}}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_g_s_q_one_electron_operator}{ScalarOperator}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_g_s_q_one_electron_operator}{ScalarEvaluableGSQOneElectronOperator<FunctionType>}};}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{comment}{//\ The\ type\ that\ represents\ the\ derived\ operator\ after\ its\ evaluation\ at\ a\ point\ in\ space.}}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_g_s_q_one_electron_operator}{EvaluatedOperator}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_g_s_q_one_electron_operator}{GSQOneElectronOperator<OutputType,\ Vectorizer>}};}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{comment}{//\ The\ 1-\/DM\ that\ is\ naturally\ associated\ to\ the\ evaluable\ one-\/electron\ operator.}}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_g1_d_m}{OneDM}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_g1_d_m}{G1DM<OutputType>}};}
+\DoxyCodeLine{00110\ \};}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

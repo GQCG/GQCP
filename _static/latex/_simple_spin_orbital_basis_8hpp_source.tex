@@ -1,0 +1,97 @@
+\hypertarget{_simple_spin_orbital_basis_8hpp_source}{}\doxysection{Simple\+Spin\+Orbital\+Basis.\+hpp}
+\label{_simple_spin_orbital_basis_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinOrbitalBasis.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/SimpleSpinOrbitalBasis.hpp}}
+\mbox{\hyperlink{_simple_spin_orbital_basis_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_scalar_basis_8hpp}{Basis/ScalarBasis/ScalarBasis.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_simple_spinor_basis_8hpp}{Basis/SpinorBasis/SimpleSpinorBasis.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_molecule_8hpp}{Molecule/Molecule.hpp}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_nuclear_framework_8hpp}{Molecule/NuclearFramework.hpp}}"{}}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_ExpansionScalar,\ \textcolor{keyword}{typename}\ \_Shell,\ \textcolor{keyword}{typename}\ \_DerivedSpinOrbitalBasis>}
+\DoxyCodeLine{00038\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spin_orbital_basis}{SimpleSpinOrbitalBasis}}:}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis}{SimpleSpinorBasis}}<\_ExpansionScalar,\ \_DerivedSpinOrbitalBasis>\ \{}
+\DoxyCodeLine{00040\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ The\ scalar\ type\ used\ to\ represent\ an\ expansion\ coefficient\ of\ the\ spin-\/orbitals\ in\ the\ underlying\ scalar\ orbitals:\ real\ or\ complex.}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spin_orbital_basis_a319f74c5446dbd8540e29cf794b3d22b}{ExpansionScalar}}\ =\ \_ExpansionScalar;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ shell\ that\ the\ underlying\ scalar\ basis\ contains.}}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spin_orbital_basis_a461d84956dd760d5f7be2d4c715de2ae}{Shell}}\ =\ \_Shell;}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//\ The\ spin-\/orbital\ basis\ that\ derives\ from\ this\ class,\ enabling\ CRTP\ and\ compile-\/time\ polymorphism.}}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spin_orbital_basis_a1df9d7598f4fac0445ef10d7eff4ec74}{DerivedSpinOrbitalBasis}}\ =\ \_DerivedSpinOrbitalBasis;}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ the\ base\ spinor\ basis.}}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis}{BaseSpinorBasis}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis}{SimpleSpinorBasis<ExpansionScalar,\ DerivedSpinOrbitalBasis>}};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ transformation\ that\ is\ naturally\ related\ to\ the\ derived\ spin-\/orbital\ basis.}}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spin_orbital_basis_ac3b0da5ca443326d3a8829702b504d8a}{Transformation}}\ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_g_q_c_p_1_1_spinor_basis_traits}{SpinorBasisTraits<DerivedSpinOrbitalBasis>::Transformation}};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{//\ The\ underlying\ scalar\ basis\ with\ respect\ to\ which\ the\ basis\ coefficients\ are\ expressed.}}
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{ScalarBasis<Shell>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spin_orbital_basis_ad82e9a3ee9b7b72cb07eea596b80db53}{scalar\_basis}};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00064\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Constructors}}
+\DoxyCodeLine{00065\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spin_orbital_basis_a3db0589ecea68031a220f82e5711d2de}{SimpleSpinOrbitalBasis}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{ScalarBasis<Shell>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spin_orbital_basis_ad82e9a3ee9b7b72cb07eea596b80db53}{scalar\_basis}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spin_orbital_basis_ac3b0da5ca443326d3a8829702b504d8a}{Transformation}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_a9abca647ddeb9772b5c58fe7366204ac}{C}})\ :}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis}{BaseSpinorBasis}}(\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_a9abca647ddeb9772b5c58fe7366204ac}{C}}),}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spin_orbital_basis_ad82e9a3ee9b7b72cb07eea596b80db53}{scalar\_basis}}\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spin_orbital_basis_ad82e9a3ee9b7b72cb07eea596b80db53}{scalar\_basis}}\}\ \{\}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00083\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spin_orbital_basis_af096f847c1c3c17d4c95c0bd7c0805c2}{SimpleSpinOrbitalBasis}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{ScalarBasis<Shell>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spin_orbital_basis_ad82e9a3ee9b7b72cb07eea596b80db53}{scalar\_basis}})\ :}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spin_orbital_basis}{SimpleSpinOrbitalBasis}}(\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spin_orbital_basis_ad82e9a3ee9b7b72cb07eea596b80db53}{scalar\_basis}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spin_orbital_basis_ac3b0da5ca443326d3a8829702b504d8a}{Transformation}}::Identity(\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spin_orbital_basis_ad82e9a3ee9b7b72cb07eea596b80db53}{scalar\_basis}}.numberOfBasisFunctions()))\ \{\}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00095\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spin_orbital_basis_aefeac1ce6c38d836ad6d8bd3fb11212d}{SimpleSpinOrbitalBasis}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework}{NuclearFramework}}\&\ nuclear\_framework,\ \textcolor{keyword}{const}\ std::string\&\ basisset\_name)\ :}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spin_orbital_basis}{SimpleSpinOrbitalBasis}}(\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{ScalarBasis}}<\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spin_orbital_basis_a461d84956dd760d5f7be2d4c715de2ae}{Shell}}>(nuclear\_framework,\ basisset\_name))\ \{\}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00107\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spin_orbital_basis_a3048576f622f5afc8abe21ccb8c1f227}{SimpleSpinOrbitalBasis}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}}\&\ molecule,\ \textcolor{keyword}{const}\ std::string\&\ basisset\_name)\ :}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spin_orbital_basis}{SimpleSpinOrbitalBasis}}(molecule.nuclearFramework(),\ basisset\_name)\ \{\}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Shell>}
+\DoxyCodeLine{00121\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spin_orbital_basis_af84c29a6ca7888ce375dd1381c1e9bc3}{SimpleSpinOrbitalBasis}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}}\&\ molecule,\ \textcolor{keyword}{const}\ std::string\&\ basisset\_name,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{HomogeneousMagneticField}}\&\ B,}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ std::enable\_if<std::is\_same<Z,\ LondonGTOShell>::value>::type*\ =\ 0)\ :}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spin_orbital_basis}{SimpleSpinOrbitalBasis}}(\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{ScalarBasis}}<\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spin_orbital_basis_a461d84956dd760d5f7be2d4c715de2ae}{Shell}}>(molecule.nuclearFramework(),\ basisset\_name,\ B))\ \{\}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00127\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Scalar\ basis}}
+\DoxyCodeLine{00128\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{ScalarBasis<Shell>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spin_orbital_basis_ae4d021b1d29a7f7b6fb6763448f7a137}{scalarBasis}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spin_orbital_basis_ad82e9a3ee9b7b72cb07eea596b80db53}{scalar\_basis}};\ \}}
+\DoxyCodeLine{00134\ \};}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

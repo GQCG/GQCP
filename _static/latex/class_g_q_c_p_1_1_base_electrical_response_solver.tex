@@ -29,9 +29,9 @@ Collaboration diagram for GQCP\+::Base\+Electrical\+Response\+Solver\+:
 \item 
 virtual \mbox{\hyperlink{class_g_q_c_p_1_1_base_electrical_response_solver_ac749b5b8109884a1dfee1e0f0e294118}{$\sim$\+Base\+Electrical\+Response\+Solver}} ()=default
 \item 
-virtual \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_electrical_response_solver_a473fec7ce257c65dc06b24c6e7bfcf63}{calculate\+Parameter\+Response\+Constant}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian) const =0
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_electrical_response_solver_a18ff2cef784f0264d239999edfa2667a}{calculate\+Parameter\+Response\+Constant}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian) const =0
 \item 
-virtual \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ double, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 3 $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_electrical_response_solver_aab5c5eb8bac13beda120aaab8c56f13e}{calculate\+Parameter\+Response\+Force}} (const \mbox{\hyperlink{namespace_g_q_c_p_a937c6a66a78202fc6957b3d807c57e64}{Vector\+RSQOne\+Electron\+Operator}}$<$ double $>$ \&dipole\+\_\+op) const =0
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ double, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 3 $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_electrical_response_solver_a6bfa0b6bdc3a611d92194f2401044756}{calculate\+Parameter\+Response\+Force}} (const \mbox{\hyperlink{namespace_g_q_c_p_a937c6a66a78202fc6957b3d807c57e64}{Vector\+RSQOne\+Electron\+Operator}}$<$ double $>$ \&dipole\+\_\+op) const =0
 \item 
 \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ double, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 3 $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_electrical_response_solver_aefba71f24e5892d19ef34c7493ac73a3}{calculate\+Wave\+Function\+Response}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian, const \mbox{\hyperlink{namespace_g_q_c_p_a937c6a66a78202fc6957b3d807c57e64}{Vector\+RSQOne\+Electron\+Operator}}$<$ double $>$ dipole\+\_\+op) const
 \end{DoxyCompactItemize}
@@ -50,11 +50,11 @@ A class that serves as a base class to solve electrical linear response equation
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_base_electrical_response_solver_a473fec7ce257c65dc06b24c6e7bfcf63}\label{class_g_q_c_p_1_1_base_electrical_response_solver_a473fec7ce257c65dc06b24c6e7bfcf63}} 
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_electrical_response_solver_a18ff2cef784f0264d239999edfa2667a}\label{class_g_q_c_p_1_1_base_electrical_response_solver_a18ff2cef784f0264d239999edfa2667a}} 
 \index{GQCP::BaseElectricalResponseSolver@{GQCP::BaseElectricalResponseSolver}!calculateParameterResponseConstant@{calculateParameterResponseConstant}}
 \index{calculateParameterResponseConstant@{calculateParameterResponseConstant}!GQCP::BaseElectricalResponseSolver@{GQCP::BaseElectricalResponseSolver}}
 \doxysubsubsection{\texorpdfstring{calculateParameterResponseConstant()}{calculateParameterResponseConstant()}}
-{\footnotesize\ttfamily virtual \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$double$>$ GQCP\+::\+Base\+Electrical\+Response\+Solver\+::calculate\+Parameter\+Response\+Constant (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&}]{sq\+\_\+hamiltonian }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ double $>$ GQCP\+::\+Base\+Electrical\+Response\+Solver\+::calculate\+Parameter\+Response\+Constant (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&}]{sq\+\_\+hamiltonian }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
 
 
 \begin{DoxyParams}{Parameters}
@@ -66,13 +66,13 @@ the parameter response constant (k\+\_\+p)
 \end{DoxyReturn}
 
 
-Implemented in \mbox{\hyperlink{class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver_a52d70a8cd2e3e9a0a7d5a8ee7fc38e2e}{GQCP\+::v\+AP1ro\+GElectrical\+Response\+Solver}}, and \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_electrical_response_solver_ae4f6dd9e92efdd47486d432c293caf4c}{GQCP\+::\+RHFElectrical\+Response\+Solver}}.
+Implemented in \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_electrical_response_solver_ae4f6dd9e92efdd47486d432c293caf4c}{GQCP\+::\+RHFElectrical\+Response\+Solver}}, and \mbox{\hyperlink{class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver_a52d70a8cd2e3e9a0a7d5a8ee7fc38e2e}{GQCP\+::v\+AP1ro\+GElectrical\+Response\+Solver}}.
 
-\mbox{\Hypertarget{class_g_q_c_p_1_1_base_electrical_response_solver_aab5c5eb8bac13beda120aaab8c56f13e}\label{class_g_q_c_p_1_1_base_electrical_response_solver_aab5c5eb8bac13beda120aaab8c56f13e}} 
+\mbox{\Hypertarget{class_g_q_c_p_1_1_base_electrical_response_solver_a6bfa0b6bdc3a611d92194f2401044756}\label{class_g_q_c_p_1_1_base_electrical_response_solver_a6bfa0b6bdc3a611d92194f2401044756}} 
 \index{GQCP::BaseElectricalResponseSolver@{GQCP::BaseElectricalResponseSolver}!calculateParameterResponseForce@{calculateParameterResponseForce}}
 \index{calculateParameterResponseForce@{calculateParameterResponseForce}!GQCP::BaseElectricalResponseSolver@{GQCP::BaseElectricalResponseSolver}}
 \doxysubsubsection{\texorpdfstring{calculateParameterResponseForce()}{calculateParameterResponseForce()}}
-{\footnotesize\ttfamily virtual \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$double, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 3$>$ GQCP\+::\+Base\+Electrical\+Response\+Solver\+::calculate\+Parameter\+Response\+Force (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a937c6a66a78202fc6957b3d807c57e64}{Vector\+RSQOne\+Electron\+Operator}}$<$ double $>$ \&}]{dipole\+\_\+op }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ double, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 3 $>$ GQCP\+::\+Base\+Electrical\+Response\+Solver\+::calculate\+Parameter\+Response\+Force (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a937c6a66a78202fc6957b3d807c57e64}{Vector\+RSQOne\+Electron\+Operator}}$<$ double $>$ \&}]{dipole\+\_\+op }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
 
 
 \begin{DoxyParams}{Parameters}
@@ -84,7 +84,7 @@ the parameter response force (F\+\_\+p) as an (Nx3)-\/matrix
 \end{DoxyReturn}
 
 
-Implemented in \mbox{\hyperlink{class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver_a7998371857b99312be11eddfb500862f}{GQCP\+::v\+AP1ro\+GElectrical\+Response\+Solver}}, and \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_electrical_response_solver_a80e820835840cd28d179b7cf25403e7f}{GQCP\+::\+RHFElectrical\+Response\+Solver}}.
+Implemented in \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_electrical_response_solver_a80e820835840cd28d179b7cf25403e7f}{GQCP\+::\+RHFElectrical\+Response\+Solver}}, and \mbox{\hyperlink{class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver_a7998371857b99312be11eddfb500862f}{GQCP\+::v\+AP1ro\+GElectrical\+Response\+Solver}}.
 
 \mbox{\Hypertarget{class_g_q_c_p_1_1_base_electrical_response_solver_aefba71f24e5892d19ef34c7493ac73a3}\label{class_g_q_c_p_1_1_base_electrical_response_solver_aefba71f24e5892d19ef34c7493ac73a3}} 
 \index{GQCP::BaseElectricalResponseSolver@{GQCP::BaseElectricalResponseSolver}!calculateWaveFunctionResponse@{calculateWaveFunctionResponse}}

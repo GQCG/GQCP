@@ -1,4 +1,4 @@
-\hypertarget{class_g_q_c_p_1_1_base_scalar_f_q_operator}{}\doxysection{GQCP\+::Base\+Scalar\+FQOperator$<$ N, \+\_\+\+Scalar $>$ Class Template Reference}
+\hypertarget{class_g_q_c_p_1_1_base_scalar_f_q_operator}{}\doxysection{GQCP\+::Base\+Scalar\+FQOperator\texorpdfstring{$<$}{<} N, \+\_\+\+Scalar \texorpdfstring{$>$}{>} Class Template Reference}
 \label{class_g_q_c_p_1_1_base_scalar_f_q_operator}\index{GQCP::BaseScalarFQOperator$<$ N, \_Scalar $>$@{GQCP::BaseScalarFQOperator$<$ N, \_Scalar $>$}}
 
 
@@ -6,7 +6,7 @@
 
 
 
-Inheritance diagram for GQCP\+::Base\+Scalar\+FQOperator$<$ N, \+\_\+\+Scalar $>$\+:
+Inheritance diagram for GQCP\+::Base\+Scalar\+FQOperator\texorpdfstring{$<$}{<} N, \+\_\+\+Scalar \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -16,7 +16,7 @@ Inheritance diagram for GQCP\+::Base\+Scalar\+FQOperator$<$ N, \+\_\+\+Scalar $>
 \end{figure}
 
 
-Collaboration diagram for GQCP\+::Base\+Scalar\+FQOperator$<$ N, \+\_\+\+Scalar $>$\+:
+Collaboration diagram for GQCP\+::Base\+Scalar\+FQOperator\texorpdfstring{$<$}{<} N, \+\_\+\+Scalar \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -31,13 +31,29 @@ static constexpr size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_scalar_f_q_
 \item 
 static const \mbox{\hyperlink{namespace_g_q_c_p_a6c012317d3e2de845b7ee1a860c61e99}{Scalar\+Vectorizer}} \mbox{\hyperlink{class_g_q_c_p_1_1_base_scalar_f_q_operator_ad07fca0083a7212821250e3beff14242}{vectorizer}} \{\}
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator}{GQCP\+::\+Base\+FQOperator$<$ N, \+\_\+\+Scalar, Scalar\+Vectorizer $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_ae56208bbc85e6d9d401fa4540f20a573}{Number\+Of\+Electrons}}
+\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
+\doxysubsubsection*{Public Types inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator}{GQCP\+::\+Base\+FQOperator$<$ N, \+\_\+\+Scalar, Scalar\+Vectorizer $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}{Scalar}} = \+\_\+\+Scalar
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_a3bf379636691d7d74ea96afc8f5049cf}{Vectorizer}} = \mbox{\hyperlink{namespace_g_q_c_p_a6c012317d3e2de845b7ee1a860c61e99}{Scalar\+Vectorizer}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator}{GQCP\+::\+Base\+FQOperator$<$ N, \+\_\+\+Scalar, Scalar\+Vectorizer $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_a1f47a08d6dbad212da9370b4d55fd522}{$\sim$\+Base\+FQOperator}} ()
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$size\+\_\+t N, typename \+\_\+\+Scalar$>$\newline
 class GQCP\+::\+Base\+Scalar\+FQOperator$<$ N, \+\_\+\+Scalar $>$}
-
 A base class for scalar operators. Since the underlying {\ttfamily Vectorizer} is {\ttfamily Scalar\+Vectorizer}, we\textquotesingle{}re sure -\/at compile time-\/ that the number of components is 1.
 
 
@@ -55,7 +71,7 @@ A base class for scalar operators. Since the underlying {\ttfamily Vectorizer} i
 \index{NumberOfComponents@{NumberOfComponents}!GQCP::BaseScalarFQOperator$<$ N, \_Scalar $>$@{GQCP::BaseScalarFQOperator$<$ N, \_Scalar $>$}}
 \doxysubsubsection{\texorpdfstring{NumberOfComponents}{NumberOfComponents}}
 {\footnotesize\ttfamily template$<$size\+\_\+t N, typename \+\_\+\+Scalar $>$ \\
-constexpr size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_scalar_f_q_operator}{GQCP\+::\+Base\+Scalar\+FQOperator}}$<$ N, \+\_\+\+Scalar $>$\+::Number\+Of\+Components = 1\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+constexpr size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_scalar_f_q_operator}{GQCP\+::\+Base\+Scalar\+FQOperator}}$<$ N, \+\_\+\+Scalar $>$\+::\+Number\+Of\+Components = 1\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
 
 \mbox{\Hypertarget{class_g_q_c_p_1_1_base_scalar_f_q_operator_ad07fca0083a7212821250e3beff14242}\label{class_g_q_c_p_1_1_base_scalar_f_q_operator_ad07fca0083a7212821250e3beff14242}} 
 \index{GQCP::BaseScalarFQOperator$<$ N, \_Scalar $>$@{GQCP::BaseScalarFQOperator$<$ N, \_Scalar $>$}!vectorizer@{vectorizer}}

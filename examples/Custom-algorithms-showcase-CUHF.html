@@ -3,11 +3,12 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Custom algorithms showcase - CUHF</title>
   
   
@@ -18,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -37,18 +38,20 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
@@ -63,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Overlaps between R/U/GHF" href="R-U-GHF-overlaps.html" />
     <link rel="prev" title="UHF SCF" href="UHF-calculations.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
   
   
@@ -430,8 +433,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="section" id="custom-algorithms-showcase-cuhf">
-<h1>Custom algorithms showcase - CUHF<a class="headerlink" href="#custom-algorithms-showcase-cuhf" title="Permalink to this heading">#</a></h1>
+  <section id="custom-algorithms-showcase-cuhf">
+<h1>Custom algorithms showcase - CUHF<a class="headerlink" href="#custom-algorithms-showcase-cuhf" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Force the local gqcpy to be imported</span>
@@ -448,8 +451,8 @@ document.write(`
 </div>
 <p>So, recently, there has been a lot of research in our group concerned with <strong>CUHF</strong>: ‘constrained’ UHF. This is trying to modify UHF SCF with a constraint such that it should convergence to ROHF.</p>
 <p>Since the nature of the proposed algorithms is inherently related to <em>modifying</em> an <em>existing</em> UHF SCF algorithm (plain, DIIS, …) but with a small extra step or two, I think this is an excellent showcase for <code class="docutils literal notranslate"><span class="pre">GQCP</span></code>’s ‘injection’ capabilities`.</p>
-<div class="section" id="molecular-setup">
-<h2>Molecular setup<a class="headerlink" href="#molecular-setup" title="Permalink to this heading">#</a></h2>
+<section id="molecular-setup">
+<h2>Molecular setup<a class="headerlink" href="#molecular-setup" title="Permalink to this headline">#</a></h2>
 <p>Let us start by defining the molecular system under consideration. We’ll take an H3-ring, 1 a.u. apart and in the STO-3G basisset.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -494,9 +497,9 @@ Number of beta electrons: 1
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="the-standard-plain-uhf-scf-algorithm">
-<h2>The standard ‘plain’ UHF SCF algorithm<a class="headerlink" href="#the-standard-plain-uhf-scf-algorithm" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="the-standard-plain-uhf-scf-algorithm">
+<h2>The standard ‘plain’ UHF SCF algorithm<a class="headerlink" href="#the-standard-plain-uhf-scf-algorithm" title="Permalink to this headline">#</a></h2>
 <p>Let’s establish a base line for the algorithms by examining the standard ‘plain’ UHF SCF algorithm. In <code class="docutils literal notranslate"><span class="pre">GQCP</span></code>, we have implemented algorithms and environments:</p>
 <ul class="simple">
 <li><p>an <em>environment</em> acts as a ‘calculation space’, storing intermediate calculations;</p></li>
@@ -574,16 +577,16 @@ UHF C_beta:
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="the-cuhf-scuseria-thesis-algorithm">
-<h2>The CUHF (Scuseria/thesis) algorithm<a class="headerlink" href="#the-cuhf-scuseria-thesis-algorithm" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="the-cuhf-scuseria-thesis-algorithm">
+<h2>The CUHF (Scuseria/thesis) algorithm<a class="headerlink" href="#the-cuhf-scuseria-thesis-algorithm" title="Permalink to this headline">#</a></h2>
 <p>One of the CUHF algorithms described by Scuseria’s group can be found in the PhD thesis by T. Tsuchimochi. Since this algorithm uses a modification of the UHF alpha- and beta-Fock matrices, this is an ideal opportunity to use <code class="docutils literal notranslate"><span class="pre">GQCP</span></code>’s injection capabilities.</p>
 <p>I’ve taken the reference implementation from Xeno’s <a class="reference external" href="https://github.com/GQCG/ghf">ghf</a> repository, and adapted it to <code class="docutils literal notranslate"><span class="pre">GQCP</span></code>.</p>
 <p>We start off by defining a <code class="docutils literal notranslate"><span class="pre">Python</span></code> function that modifies the alpha- and beta- Fock matrices in an <code class="docutils literal notranslate"><span class="pre">UHFSCFEnvironment</span></code>. We then wrap that <code class="docutils literal notranslate"><span class="pre">Python</span></code> function into a special class <code class="docutils literal notranslate"><span class="pre">FunctionalStep_UHFSCFEnvironment</span></code>, which allows for the bridging between <code class="docutils literal notranslate"><span class="pre">Python</span></code> functions and <code class="docutils literal notranslate"><span class="pre">GQCP</span></code>’s Algorithm framework.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">constrain_function_thesis</span><span class="p">(</span><span class="n">environment</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Replace the alpha- and beta- UHF Fock matrices by their constrained counterparts, as explained in the CUHF &#39;thesis&#39; algorithm.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Replace the alpha- and beta- UHF Fock matrices by their constrained counterparts, as explained in the CUHF &#39;thesis&#39; algorithm.&quot;&quot;&quot;</span>
 
     <span class="c1"># Prepare some variables to be used in the algorithm.</span>
     <span class="n">X</span> <span class="o">=</span> <span class="n">spinor_basis</span><span class="o">.</span><span class="n">lowdinOrthonormalization</span><span class="p">()</span><span class="o">.</span><span class="n">alpha</span><span class="o">.</span><span class="n">matrix</span><span class="p">()</span>  <span class="c1"># the transformation matrix TO an orthonormal basis</span>
@@ -755,15 +758,15 @@ CUHF C_beta (thesis):
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="the-cuhf-bultinck-algorithm">
-<h2>The CUHF (Bultinck) algorithm<a class="headerlink" href="#the-cuhf-bultinck-algorithm" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="the-cuhf-bultinck-algorithm">
+<h2>The CUHF (Bultinck) algorithm<a class="headerlink" href="#the-cuhf-bultinck-algorithm" title="Permalink to this headline">#</a></h2>
 <p>A different CUHF algorithm was formulated by P. Bultinck. We’ll use the same injection approach.</p>
 <p>Again, we’ve adapted the algorithm in the <a class="reference external" href="https://github.com/GQCG/ghf">ghf</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">constrain_function_bultinck</span><span class="p">(</span><span class="n">environment</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Replace the alpha- and beta- UHF coefficient matrices by their constrained counterparts, as explained in the CUHF algorithm devised by Patrick Bultinck.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Replace the alpha- and beta- UHF coefficient matrices by their constrained counterparts, as explained in the CUHF algorithm devised by Patrick Bultinck.&quot;&quot;&quot;</span>
 
     <span class="c1"># &#39;Extract&#39; the required ingredients from the environment.</span>
     <span class="n">N_beta</span> <span class="o">=</span> <span class="n">environment</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">beta</span>
@@ -852,14 +855,14 @@ CUHF C_beta (P. Bultinck):
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="bonus-changing-the-thesis-algorithm">
-<h2>Bonus: changing the thesis algorithm<a class="headerlink" href="#bonus-changing-the-thesis-algorithm" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="bonus-changing-the-thesis-algorithm">
+<h2>Bonus: changing the thesis algorithm<a class="headerlink" href="#bonus-changing-the-thesis-algorithm" title="Permalink to this headline">#</a></h2>
 <p>Something seemed peculiar to me about the transformations of the density matrices and operators in the ‘thesis’-inspired CUHF modification. I proceeded by ‘fixing’ these transformation formulas in the following modification.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">constrain_function_thesis_fixed</span><span class="p">(</span><span class="n">environment</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Replace the alpha- and beta- UHF Fock matrices by their constrained counterparts, as explained in the CUHF &#39;thesis&#39; algorithm.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Replace the alpha- and beta- UHF Fock matrices by their constrained counterparts, as explained in the CUHF &#39;thesis&#39; algorithm.&quot;&quot;&quot;</span>
     
     <span class="c1"># Read the relevant intermediates from the environment.</span>
     <span class="n">F</span> <span class="o">=</span> <span class="n">environment</span><span class="o">.</span><span class="n">fock_matrices</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
@@ -995,8 +998,8 @@ CUHF C_beta (thesis):
 </div>
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1024,7 +1027,10 @@ CUHF C_beta (thesis):
               
               
                 <footer class="bd-footer-article">
-                  <!-- Previous / next buttons -->
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="UHF-calculations.html"
@@ -1044,7 +1050,10 @@ CUHF C_beta (thesis):
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
@@ -1072,7 +1081,7 @@ CUHF C_beta (thesis):
             
           </div>
           <footer class="bd-footer-content">
-            <div class="bd-footer-content__inner">
+            
 <div class="bd-footer-content__inner container">
   
   <div class="footer-item">
@@ -1102,7 +1111,7 @@ By The Ghent Quantum Chemistry Group
     
   </div>
   
-</div></div>
+</div>
           </footer>
         
 
@@ -1111,8 +1120,8 @@ By The Ghent Quantum Chemistry Group
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
   </footer>

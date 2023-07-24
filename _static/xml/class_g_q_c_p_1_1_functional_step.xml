@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_functional_step" kind="class" language="C++" prot="public">
     <compoundname>GQCP::FunctionalStep</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_step" prot="public" virt="non-virtual">GQCP::Step&lt; _Environment &gt;</basecompoundref>
@@ -15,6 +15,7 @@
         <definition>using GQCP::FunctionalStep&lt; _Environment &gt;::Environment =  _Environment</definition>
         <argsstring></argsstring>
         <name>Environment</name>
+        <qualifiedname>GQCP::FunctionalStep::Environment</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -28,6 +29,7 @@
         <definition>using GQCP::FunctionalStep&lt; _Environment &gt;::Function =  std::function&lt;void(Environment&amp;)&gt;</definition>
         <argsstring></argsstring>
         <name>Function</name>
+        <qualifiedname>GQCP::FunctionalStep::Function</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -43,6 +45,7 @@
         <definition>std::string GQCP::FunctionalStep&lt; _Environment &gt;::m_description</definition>
         <argsstring></argsstring>
         <name>m_description</name>
+        <qualifiedname>GQCP::FunctionalStep::m_description</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -56,6 +59,7 @@
         <definition>Function GQCP::FunctionalStep&lt; _Environment &gt;::function</definition>
         <argsstring></argsstring>
         <name>function</name>
+        <qualifiedname>GQCP::FunctionalStep::function</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -71,6 +75,7 @@
         <definition>GQCP::FunctionalStep&lt; _Environment &gt;::FunctionalStep</definition>
         <argsstring>(const Function &amp;function, const std::string &amp;description=&quot;A custom functional step.&quot;)</argsstring>
         <name>FunctionalStep</name>
+        <qualifiedname>GQCP::FunctionalStep::FunctionalStep</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_functional_step_1aafa7ad564744c3c164dfd928e943f637" kindref="member">Function</ref> &amp;</type>
           <declname>function</declname>
@@ -104,6 +109,7 @@
         <definition>std::string GQCP::FunctionalStep&lt; _Environment &gt;::description</definition>
         <argsstring>() const override</argsstring>
         <name>description</name>
+        <qualifiedname>GQCP::FunctionalStep::description</qualifiedname>
         <reimplements refid="class_g_q_c_p_1_1_step_1af2276da3e9eef7f8d2049a8aa255b9fb">description</reimplements>
         <briefdescription>
         </briefdescription>
@@ -121,6 +127,7 @@
         <definition>void GQCP::FunctionalStep&lt; _Environment &gt;::execute</definition>
         <argsstring>(Environment &amp;environment) override</argsstring>
         <name>execute</name>
+        <qualifiedname>GQCP::FunctionalStep::execute</qualifiedname>
         <reimplements refid="class_g_q_c_p_1_1_step_1afc654a62596b3fff0801acb2d993818f">execute</reimplements>
         <param>
           <type><ref refid="class_g_q_c_p_1_1_functional_step_1ada2b7f1e0145d18a7a2843f181edf2da" kindref="member">Environment</ref> &amp;</type>
@@ -162,27 +169,27 @@
 </para>
     </detaileddescription>
     <inheritancegraph>
-      <node id="2">
-        <label>GQCP::Step&lt; _Environment &gt;</label>
-        <link refid="class_g_q_c_p_1_1_step"/>
-      </node>
       <node id="1">
         <label>GQCP::FunctionalStep&lt; _Environment &gt;</label>
         <link refid="class_g_q_c_p_1_1_functional_step"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::Step&lt; _Environment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="2">
-        <label>GQCP::Step&lt; _Environment &gt;</label>
-        <link refid="class_g_q_c_p_1_1_step"/>
-      </node>
       <node id="1">
         <label>GQCP::FunctionalStep&lt; _Environment &gt;</label>
         <link refid="class_g_q_c_p_1_1_functional_step"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::Step&lt; _Environment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step"/>
       </node>
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/FunctionalStep.hpp" line="35" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/FunctionalStep.hpp" bodystart="36" bodyend="81"/>

@@ -1,22 +1,10 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="_hermite_coulomb_integral_8cpp" kind="file" language="C++">
     <compoundname>HermiteCoulombIntegral.cpp</compoundname>
     <includes refid="_hermite_coulomb_integral_8hpp" local="yes">Basis/Integrals/Primitive/HermiteCoulombIntegral.hpp</includes>
     <includes refid="_boys_function_8hpp" local="yes">Mathematical/Functions/BoysFunction.hpp</includes>
     <incdepgraph>
-      <node id="11">
-        <label>boost/algorithm/string.hpp</label>
-      </node>
-      <node id="5">
-        <label>Utilities/Eigen.hpp</label>
-        <link refid="_eigen_8hpp"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-      <node id="12">
-        <label>fstream</label>
-      </node>
       <node id="2">
         <label>Basis/Integrals/Primitive/HermiteCoulombIntegral.hpp</label>
         <link refid="_hermite_coulomb_integral_8hpp"/>
@@ -31,8 +19,9 @@
         <childnode refid="18" relation="include">
         </childnode>
       </node>
-      <node id="6">
-        <label>Eigen/Dense</label>
+      <node id="4">
+        <label>Mathematical/Functions/CartesianDirection.hpp</label>
+        <link refid="_cartesian_direction_8hpp"/>
       </node>
       <node id="3">
         <label>Mathematical/Representation/Matrix.hpp</label>
@@ -54,14 +43,11 @@
         <childnode refid="14" relation="include">
         </childnode>
       </node>
-      <node id="8">
-        <label>Utilities/type_traits.hpp</label>
-        <link refid="type__traits_8hpp"/>
-        <childnode refid="9" relation="include">
+      <node id="5">
+        <label>Utilities/Eigen.hpp</label>
+        <link refid="_eigen_8hpp"/>
+        <childnode refid="6" relation="include">
         </childnode>
-      </node>
-      <node id="14">
-        <label>vector</label>
       </node>
       <node id="7">
         <label>Utilities/aliases.hpp</label>
@@ -71,8 +57,19 @@
         <childnode refid="10" relation="include">
         </childnode>
       </node>
-      <node id="10">
-        <label>cstdlib</label>
+      <node id="16">
+        <label>Utilities/complex.hpp</label>
+        <link refid="complex_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Utilities/type_traits.hpp</label>
+        <link refid="type__traits_8hpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
       </node>
       <node id="1">
         <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Primitive/HermiteCoulombIntegral.cpp</label>
@@ -82,29 +79,32 @@
         <childnode refid="15" relation="include">
         </childnode>
       </node>
-      <node id="13">
-        <label>iostream</label>
+      <node id="6">
+        <label>Eigen/Dense</label>
       </node>
-      <node id="18">
-        <label>cstddef</label>
-      </node>
-      <node id="16">
-        <label>Utilities/complex.hpp</label>
-        <link refid="complex_8hpp"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-      </node>
-      <node id="9">
-        <label>type_traits</label>
+      <node id="11">
+        <label>boost/algorithm/string.hpp</label>
       </node>
       <node id="17">
         <label>complex</label>
       </node>
-      <node id="4">
-        <label>Mathematical/Functions/CartesianDirection.hpp</label>
-        <link refid="_cartesian_direction_8hpp"/>
+      <node id="18">
+        <label>cstddef</label>
+      </node>
+      <node id="10">
+        <label>cstdlib</label>
+      </node>
+      <node id="12">
+        <label>fstream</label>
+      </node>
+      <node id="13">
+        <label>iostream</label>
+      </node>
+      <node id="9">
+        <label>type_traits</label>
+      </node>
+      <node id="14">
+        <label>vector</label>
       </node>
     </incdepgraph>
     <innernamespace refid="namespace_g_q_c_p">GQCP</innernamespace>
@@ -174,20 +174,20 @@
 <codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Recurrence<sp/>for<sp/>v.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((t<sp/>==<sp/>0)<sp/>&amp;&amp;<sp/>(u<sp/>==<sp/>0))<sp/>{</highlight></codeline>
 <codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(v<sp/>-<sp/>1)<sp/>*<sp/>this-&gt;operator()(n<sp/>+<sp/>1,<sp/>t,<sp/>u,<sp/>v<sp/>-<sp/>2)<sp/>+</highlight></codeline>
-<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>R_PC(<ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a11d242b501b62c0182e98a9d516335f7" kindref="member">CartesianDirection::z</ref>)<sp/>*<sp/>this-&gt;operator()(n<sp/>+<sp/>1,<sp/>t,<sp/>u,<sp/>v<sp/>-<sp/>1);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>R_PC(CartesianDirection::z)<sp/>*<sp/>this-&gt;operator()(n<sp/>+<sp/>1,<sp/>t,<sp/>u,<sp/>v<sp/>-<sp/>1);</highlight></codeline>
 <codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="77"><highlight class="normal"></highlight></codeline>
 <codeline lineno="78"><highlight class="normal"></highlight></codeline>
 <codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Recurrence<sp/>for<sp/>u.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(t<sp/>==<sp/>0)<sp/>{</highlight></codeline>
 <codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(u<sp/>-<sp/>1)<sp/>*<sp/>this-&gt;operator()(n<sp/>+<sp/>1,<sp/>t,<sp/>u<sp/>-<sp/>2,<sp/>v)<sp/>+</highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>R_PC(<ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a8611d87f8dc5908d04f3d314c7c321b1" kindref="member">CartesianDirection::y</ref>)<sp/>*<sp/>this-&gt;operator()(n<sp/>+<sp/>1,<sp/>t,<sp/>u<sp/>-<sp/>1,<sp/>v);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>R_PC(CartesianDirection::y)<sp/>*<sp/>this-&gt;operator()(n<sp/>+<sp/>1,<sp/>t,<sp/>u<sp/>-<sp/>1,<sp/>v);</highlight></codeline>
 <codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="84"><highlight class="normal"></highlight></codeline>
 <codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Recurrence<sp/>for<sp/>t.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
 <codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(t<sp/>-<sp/>1)<sp/>*<sp/>this-&gt;operator()(n<sp/>+<sp/>1,<sp/>t<sp/>-<sp/>2,<sp/>u,<sp/>v)<sp/>+</highlight></codeline>
-<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>R_PC(<ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5" kindref="member">CartesianDirection::x</ref>)<sp/>*<sp/>this-&gt;operator()(n<sp/>+<sp/>1,<sp/>t<sp/>-<sp/>1,<sp/>u,<sp/>v);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>R_PC(CartesianDirection::x)<sp/>*<sp/>this-&gt;operator()(n<sp/>+<sp/>1,<sp/>t<sp/>-<sp/>1,<sp/>u,<sp/>v);</highlight></codeline>
 <codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="90"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="91"><highlight class="normal"></highlight></codeline>

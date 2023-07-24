@@ -1,0 +1,198 @@
+\hypertarget{_primitive_nuclear_attraction_integral_engine_8hpp_source}{}\doxysection{Primitive\+Nuclear\+Attraction\+Integral\+Engine.\+hpp}
+\label{_primitive_nuclear_attraction_integral_engine_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveNuclearAttractionIntegralEngine.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveNuclearAttractionIntegralEngine.hpp}}
+\mbox{\hyperlink{_primitive_nuclear_attraction_integral_engine_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_base_scalar_primitive_integral_engine_8hpp}{Basis/Integrals/Primitive/BaseScalarPrimitiveIntegralEngine.hpp}}"{}}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_hermite_coulomb_integral_8hpp}{Basis/Integrals/Primitive/HermiteCoulombIntegral.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_london_hermite_coulomb_integral_8hpp}{Basis/Integrals/Primitive/LondonHermiteCoulombIntegral.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_mc_murchie_davidson_coefficient_8hpp}{Basis/Integrals/Primitive/McMurchieDavidsonCoefficient.hpp}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_g_t_o_shell_8hpp}{Basis/ScalarBasis/GTOShell.hpp}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_nuclear_attraction_operator_8hpp}{Operator/FirstQuantized/NuclearAttractionOperator.hpp}}"{}}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <boost/math/constants/constants.hpp>}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Shell>}
+\DoxyCodeLine{00039\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine}{PrimitiveNuclearAttractionIntegralEngine}}:}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_base_scalar_primitive_integral_engine}{BaseScalarPrimitiveIntegralEngine}}\ \{}
+\DoxyCodeLine{00041\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ shell\ that\ this\ integral\ engine\ is\ related\ to.}}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_a4250779f16a3c00b6e5b5699ad465b5a}{Shell}}\ =\ \_Shell;}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ primitive\ that\ underlies\ the\ type\ of\ shell.}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_a4afc2d193bab6338b10e1065c88790c4}{Primitive}}\ =\ \textcolor{keyword}{typename}\ Shell::Primitive;}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{comment}{//\ The\ scalar\ representation\ of\ a\ nuclear\ attraction\ integral.}}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_a0dae55679e2d691cc4c2408d027a2d21}{IntegralScalar}}\ =\ \mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\_t<NuclearAttractionOperator::Scalar,\ typename\ Primitive::OutputType>}};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{//\ The\ nuclear\ attraction\ operator\ that\ this\ engine\ can\ calculate\ integrals\ over.}}
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_attraction_operator}{NuclearAttractionOperator}}\ nuclear\_attraction\_operator;}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00059\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Constructors}}
+\DoxyCodeLine{00060\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00065\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_ae26d808dd3e029c6e37125a45be7276b}{PrimitiveNuclearAttractionIntegralEngine}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_attraction_operator}{NuclearAttractionOperator}}\&\ nuclear\_attraction\_operator)\ :}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ nuclear\_attraction\_operator\ \{nuclear\_attraction\_operator\}\ \{\}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00070\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ CartesianGTO\ integrals}}
+\DoxyCodeLine{00071\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Shell>}
+\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<std::is\_same<Z,\ GTOShell>::value}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_a0dae55679e2d691cc4c2408d027a2d21}{IntegralScalar}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_a1d146e8d439a0f5299eec170094f9bbb}{calculate}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{CartesianGTO}}\&\ left,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{CartesianGTO}}\&\ right)\ \{}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Prepare\ some\ variables.}}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ i\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(left.\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ae362602050de10275e3588dbd229785d}{cartesianExponents}}().\mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents_a311290fc4ae2e2fce7d21d2dbb8c3194}{value}}(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{CartesianDirection::x}}));}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ k\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(left.\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ae362602050de10275e3588dbd229785d}{cartesianExponents}}().\mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents_a311290fc4ae2e2fce7d21d2dbb8c3194}{value}}(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a8611d87f8dc5908d04f3d314c7c321b1}{CartesianDirection::y}}));}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ m\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(left.\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ae362602050de10275e3588dbd229785d}{cartesianExponents}}().\mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents_a311290fc4ae2e2fce7d21d2dbb8c3194}{value}}(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a11d242b501b62c0182e98a9d516335f7}{CartesianDirection::z}}));}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ j\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(right.\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ae362602050de10275e3588dbd229785d}{cartesianExponents}}().\mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents_a311290fc4ae2e2fce7d21d2dbb8c3194}{value}}(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{CartesianDirection::x}}));}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ l\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(right.\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ae362602050de10275e3588dbd229785d}{cartesianExponents}}().\mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents_a311290fc4ae2e2fce7d21d2dbb8c3194}{value}}(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a8611d87f8dc5908d04f3d314c7c321b1}{CartesianDirection::y}}));}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ n\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(right.\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ae362602050de10275e3588dbd229785d}{cartesianExponents}}().\mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents_a311290fc4ae2e2fce7d21d2dbb8c3194}{value}}(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a11d242b501b62c0182e98a9d516335f7}{CartesianDirection::z}}));}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ a\ =\ left.\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ab38b2d462ea81e9755a32d3433642863}{gaussianExponent}}();}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ b\ =\ right.\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ab38b2d462ea81e9755a32d3433642863}{gaussianExponent}}();}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\_x\ =\ left.\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a1e7691184b5896251ea1812e78547ed5}{center}}()(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{CartesianDirection::x}});}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\_y\ =\ left.\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a1e7691184b5896251ea1812e78547ed5}{center}}()(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a8611d87f8dc5908d04f3d314c7c321b1}{CartesianDirection::y}});}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\_z\ =\ left.\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a1e7691184b5896251ea1812e78547ed5}{center}}()(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a11d242b501b62c0182e98a9d516335f7}{CartesianDirection::z}});}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ L\_x\ =\ right.\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a1e7691184b5896251ea1812e78547ed5}{center}}()(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{CartesianDirection::x}});}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ L\_y\ =\ right.\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a1e7691184b5896251ea1812e78547ed5}{center}}()(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a8611d87f8dc5908d04f3d314c7c321b1}{CartesianDirection::y}});}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ L\_z\ =\ right.\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a1e7691184b5896251ea1812e78547ed5}{center}}()(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a11d242b501b62c0182e98a9d516335f7}{CartesianDirection::z}});}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Prepare\ the\ McMurchie-\/Davidson\ coefficients.}}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_mc_murchie_davidson_coefficient}{McMurchieDavidsonCoefficient}}\ E\_x\ \{K\_x,\ a,\ L\_x,\ b\};}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_mc_murchie_davidson_coefficient}{McMurchieDavidsonCoefficient}}\ E\_y\ \{K\_y,\ a,\ L\_y,\ b\};}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_mc_murchie_davidson_coefficient}{McMurchieDavidsonCoefficient}}\ E\_z\ \{K\_z,\ a,\ L\_z,\ b\};}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ p\ =\ a\ +\ b;}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Vector<double,\ 3>}}\ P\ \{E\_x.centerOfMass(),\ E\_y.centerOfMass(),\ E\_z.centerOfMass()\};}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ contributions\ from\ every\ nuclear\ center.}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ total\_integral\ \{0.0\};}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ nuclei\ =\ this-\/>nuclear\_attraction\_operator.\mbox{\hyperlink{class_g_q_c_p_1_1_base_nuclear_operator_a7b692bac54528c1353f5eaad288ca43d}{nuclearFramework}}().\mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework_a653c180ca3c5b45ff912d644c908dfec}{nucleiAsVector}}();}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ nucleus\ :\ nuclei)\ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ integral\ \{0.0\};}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ C\ =\ nucleus.position();}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_hermite_coulomb_integral}{HermiteCoulombIntegral}}\ R\ \{p,\ P,\ C\};}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ t\ =\ 0;\ t\ <=\ i\ +\ j;\ t++)\ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ u\ =\ 0;\ u\ <=\ k\ +\ l;\ u++)\ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ v\ =\ 0;\ v\ <=\ m\ +\ n;\ v++)\ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ the\ contribution\ to\ the\ integral.\ The\ prefactor\ will\ be\ applied\ at\ the\ end.}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ integral\ +=\ E\_x(i,\ j,\ t)\ *\ E\_y(k,\ l,\ u)\ *\ E\_z(m,\ n,\ v)\ *\ R(0,\ t,\ u,\ v);}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ charge\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(nucleus.charge());}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ total\_integral\ +=\ (-\/charge)\ *\ integral;}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 2\ *\ boost::math::constants::pi<double>()\ /\ p\ *\ total\_integral;}
+\DoxyCodeLine{00137\ \ \ \ \ \}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00141\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ London\ CartesianGTO\ integrals}}
+\DoxyCodeLine{00142\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Shell>}
+\DoxyCodeLine{00153\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<std::is\_same<Z,\ LondonGTOShell>::value}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_a0dae55679e2d691cc4c2408d027a2d21}{IntegralScalar}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine_a9ed2bdb1f290a67158282cef71f207f4}{calculate}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o}{LondonCartesianGTO}}\&\ left,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o}{LondonCartesianGTO}}\&\ right)\ \{}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Prepare\ some\ variables.}}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ i\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(left.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_ab6b2dc7fbca5ba89c436254bc6bfeac8}{cartesianGTO}}().\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ae362602050de10275e3588dbd229785d}{cartesianExponents}}().\mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents_a311290fc4ae2e2fce7d21d2dbb8c3194}{value}}(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{CartesianDirection::x}}));}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ k\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(left.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_ab6b2dc7fbca5ba89c436254bc6bfeac8}{cartesianGTO}}().\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ae362602050de10275e3588dbd229785d}{cartesianExponents}}().\mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents_a311290fc4ae2e2fce7d21d2dbb8c3194}{value}}(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a8611d87f8dc5908d04f3d314c7c321b1}{CartesianDirection::y}}));}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ m\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(left.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_ab6b2dc7fbca5ba89c436254bc6bfeac8}{cartesianGTO}}().\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ae362602050de10275e3588dbd229785d}{cartesianExponents}}().\mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents_a311290fc4ae2e2fce7d21d2dbb8c3194}{value}}(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a11d242b501b62c0182e98a9d516335f7}{CartesianDirection::z}}));}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ j\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(right.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_ab6b2dc7fbca5ba89c436254bc6bfeac8}{cartesianGTO}}().\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ae362602050de10275e3588dbd229785d}{cartesianExponents}}().\mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents_a311290fc4ae2e2fce7d21d2dbb8c3194}{value}}(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{CartesianDirection::x}}));}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ l\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(right.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_ab6b2dc7fbca5ba89c436254bc6bfeac8}{cartesianGTO}}().\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ae362602050de10275e3588dbd229785d}{cartesianExponents}}().\mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents_a311290fc4ae2e2fce7d21d2dbb8c3194}{value}}(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a8611d87f8dc5908d04f3d314c7c321b1}{CartesianDirection::y}}));}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ n\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(right.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_ab6b2dc7fbca5ba89c436254bc6bfeac8}{cartesianGTO}}().\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ae362602050de10275e3588dbd229785d}{cartesianExponents}}().\mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents_a311290fc4ae2e2fce7d21d2dbb8c3194}{value}}(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a11d242b501b62c0182e98a9d516335f7}{CartesianDirection::z}}));}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ a\ =\ left.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_ab6b2dc7fbca5ba89c436254bc6bfeac8}{cartesianGTO}}().\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ab38b2d462ea81e9755a32d3433642863}{gaussianExponent}}();}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ b\ =\ right.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_ab6b2dc7fbca5ba89c436254bc6bfeac8}{cartesianGTO}}().\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ab38b2d462ea81e9755a32d3433642863}{gaussianExponent}}();}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\_x\ =\ left.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_ab6b2dc7fbca5ba89c436254bc6bfeac8}{cartesianGTO}}().\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a1e7691184b5896251ea1812e78547ed5}{center}}()(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{CartesianDirection::x}});}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\_y\ =\ left.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_ab6b2dc7fbca5ba89c436254bc6bfeac8}{cartesianGTO}}().\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a1e7691184b5896251ea1812e78547ed5}{center}}()(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a8611d87f8dc5908d04f3d314c7c321b1}{CartesianDirection::y}});}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\_z\ =\ left.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_ab6b2dc7fbca5ba89c436254bc6bfeac8}{cartesianGTO}}().\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a1e7691184b5896251ea1812e78547ed5}{center}}()(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a11d242b501b62c0182e98a9d516335f7}{CartesianDirection::z}});}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ L\_x\ =\ right.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_ab6b2dc7fbca5ba89c436254bc6bfeac8}{cartesianGTO}}().\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a1e7691184b5896251ea1812e78547ed5}{center}}()(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{CartesianDirection::x}});}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ L\_y\ =\ right.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_ab6b2dc7fbca5ba89c436254bc6bfeac8}{cartesianGTO}}().\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a1e7691184b5896251ea1812e78547ed5}{center}}()(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a8611d87f8dc5908d04f3d314c7c321b1}{CartesianDirection::y}});}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ L\_z\ =\ right.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_ab6b2dc7fbca5ba89c436254bc6bfeac8}{cartesianGTO}}().\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a1e7691184b5896251ea1812e78547ed5}{center}}()(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a11d242b501b62c0182e98a9d516335f7}{CartesianDirection::z}});}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Vector<double,\ 3>}}\ k1\ =\ right.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_a41950c00f15c081511681d8ac24eaa47}{kVector}}()\ -\/\ left.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_a41950c00f15c081511681d8ac24eaa47}{kVector}}();\ \ \textcolor{comment}{//\ The\ k-\/vector\ of\ the\ London\ overlap\ distribution.}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Prepare\ the\ McMurchie-\/Davidson\ coefficients.}}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_mc_murchie_davidson_coefficient}{McMurchieDavidsonCoefficient}}\ E\_x\ \{K\_x,\ a,\ L\_x,\ b\};}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_mc_murchie_davidson_coefficient}{McMurchieDavidsonCoefficient}}\ E\_y\ \{K\_y,\ a,\ L\_y,\ b\};}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_mc_murchie_davidson_coefficient}{McMurchieDavidsonCoefficient}}\ E\_z\ \{K\_z,\ a,\ L\_z,\ b\};}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ p\ =\ a\ +\ b;}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Vector<double,\ 3>}}\ P\ \{E\_x.centerOfMass(),\ E\_y.centerOfMass(),\ E\_z.centerOfMass()\};}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ contributions\ from\ every\ nuclear\ center.}}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}}\ total\_integral\ \{\};}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ nuclei\ =\ this-\/>nuclear\_attraction\_operator.\mbox{\hyperlink{class_g_q_c_p_1_1_base_nuclear_operator_a7b692bac54528c1353f5eaad288ca43d}{nuclearFramework}}().\mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework_a653c180ca3c5b45ff912d644c908dfec}{nucleiAsVector}}();}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ nucleus\ :\ nuclei)\ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}}\ integral\ \{\};}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ C\ =\ nucleus.position();}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_london_hermite_coulomb_integral}{LondonHermiteCoulombIntegral}}\ R\_k1\ \{k1,\ p,\ P,\ C\};}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ t\ =\ 0;\ t\ <=\ i\ +\ j;\ t++)\ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ u\ =\ 0;\ u\ <=\ k\ +\ l;\ u++)\ \{}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ v\ =\ 0;\ v\ <=\ m\ +\ n;\ v++)\ \{}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ the\ contribution\ to\ the\ integral.\ The\ prefactor\ will\ be\ applied\ at\ the\ end.}}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ integral\ +=\ E\_x(i,\ j,\ t)\ *\ E\_y(k,\ l,\ u)\ *\ E\_z(m,\ n,\ v)\ *\ R\_k1(0,\ t,\ u,\ v);}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ charge\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(nucleus.charge());}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ total\_integral\ +=\ (-\/charge)\ *\ integral;}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 2\ *\ boost::math::constants::pi<double>()\ /\ p\ *}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::exp(-\/k1.squaredNorm()\ /\ (4\ *\ p))\ *}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ total\_integral;}
+\DoxyCodeLine{00212\ \ \ \ \ \}}
+\DoxyCodeLine{00213\ \};}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

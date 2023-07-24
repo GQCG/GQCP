@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="dir_d404669e0d4bf6387b4b6b921299d848" kind="dir">
     <compoundname>/__w/GQCP/GQCP/gqcp/src</compoundname>
     <innerdir refid="dir_ee01769bfaeb3f33195d6ca712294cb2">/__w/GQCP/GQCP/gqcp/src/Basis</innerdir>

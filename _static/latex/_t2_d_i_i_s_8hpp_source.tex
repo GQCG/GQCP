@@ -1,0 +1,104 @@
+\hypertarget{_t2_d_i_i_s_8hpp_source}{}\doxysection{T2\+DIIS.\+hpp}
+\label{_t2_d_i_i_s_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/QCMethod/CC/T2DIIS.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/QCMethod/CC/T2DIIS.hpp}}
+\mbox{\hyperlink{_t2_d_i_i_s_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_algorithm_2_step_8hpp}{Mathematical/Algorithm/Step.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_d_i_i_s_8hpp}{Mathematical/Optimization/Accelerator/DIIS.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_c_d_amplitudes_update_8hpp}{QCMethod/CC/CCDAmplitudesUpdate.hpp}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_c_d_intermediates_update_8hpp}{QCMethod/CC/CCDIntermediatesUpdate.hpp}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_c_s_d_environment_8hpp}{QCMethod/CC/CCSDEnvironment.hpp}}"{}}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar>}
+\DoxyCodeLine{00039\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_t2_d_i_i_s}{T2DIIS}}:}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_step}{Step}}<CCSDEnvironment<\_Scalar>>\ \{}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{//\ The\ scalar\ type\ used\ to\ represent\ the\ T2\ amplitudes.}}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_t2_d_i_i_s_afe0e1b061f21a2e1e53ab66fae584821}{Scalar}}\ =\ \_Scalar;}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ environment\ that\ this\ iteration\ step\ can\ access.}}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment}{Environment}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment}{CCSDEnvironment<Scalar>}};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{//\ The\ minimum\ number\ of\ T2\ amplitudes\ that\ have\ to\ be\ in\ the\ subspace\ before\ enabling\ DIIS.}}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ minimum\_subspace\_dimension;}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{comment}{//\ The\ maximum\ number\ of\ T2\ amplitues\ that\ can\ be\ handled\ by\ DIIS.}}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ maximum\_subspace\_dimension;}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{//\ The\ DIIS\ accelerator.}}
+\DoxyCodeLine{00058\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_d_i_i_s}{DIIS<Scalar>}}\ diis;}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00063\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Constructors}}
+\DoxyCodeLine{00064\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_t2_d_i_i_s_a7f7c719c76487cdbe41e978a378bcfdb}{T2DIIS}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ minimum\_subspace\_dimension\ =\ 6,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ maximum\_subspace\_dimension\ =\ 6)\ :}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ minimum\_subspace\_dimension\ \{minimum\_subspace\_dimension\},}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ maximum\_subspace\_dimension\ \{maximum\_subspace\_dimension\}\ \{\}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00076\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Conforming\ to\ `Step`.}}
+\DoxyCodeLine{00077\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00082\ \ \ \ \ std::string\ \mbox{\hyperlink{class_g_q_c_p_1_1_t2_d_i_i_s_aea6d5c59a6d05853733d63b24141a8ae}{description}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Calculate\ the\ accelerated\ T2\ amplitudes\ and\ place\ them\ in\ the\ environment\ by\ overwriting\ the\ previous\ T2\ amplitudes."{}};}
+\DoxyCodeLine{00084\ \ \ \ \ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_t2_d_i_i_s_aa210a568a82efbbd41eb6dd0de82cdfa}{execute}}(\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment}{Environment}}\&\ environment)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Don't\ do\ anything\ if\ the\ minimum\ number\ of\ T2\ amplitude\ iterations\ isn't\ satisfied.}}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (environment.\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a9ab250672806f9feb5cea83e66f774a9}{t2\_amplitude\_errors}}.size()\ <\ this-\/>minimum\_subspace\_dimension)\ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Convert\ the\ deques\ in\ the\ environment\ to\ vectors\ that\ can\ be\ accepted\ by\ the\ DIIS\ accelerator.\ The\ total\ number\ of\ elements\ we\ can\ use\ in\ DIIS\ is\ either\ the\ maximum\ subspace\ dimension\ or\ the\ number\ of\ available\ error\ vectors.}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ Include\ the\ possibility\ for\ an\ x-\/iteration\ 'relaxation',\ i.e.\ not\ doing\ DIIS\ for\ x\ iterations\ long.}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ n\ =\ std::min(this-\/>maximum\_subspace\_dimension,\ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a9ab250672806f9feb5cea83e66f774a9}{t2\_amplitude\_errors}}.size());}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<VectorX<Scalar>>\ error\_vectors\ \{environment.\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a9ab250672806f9feb5cea83e66f774a9}{t2\_amplitude\_errors}}.end()\ -\/\ n,\ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a9ab250672806f9feb5cea83e66f774a9}{t2\_amplitude\_errors}}.end()\};\ \ \textcolor{comment}{//\ The\ n-\/th\ last\ error\ vectors.}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<T2Amplitudes<Scalar>>\ t2\_amplitudes\ \{environment.\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a3a005b633746ec034014da148dfae1e5}{t2\_amplitudes}}.end()\ -\/\ n,\ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a3a005b633746ec034014da148dfae1e5}{t2\_amplitudes}}.end()\};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ n-\/th\ last\ T2\ amplitudes.}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ accelerated\ T2\ amplitudes\ and\ place\ them\ in\ the\ environment\ by\ overwriting\ the\ previous\ T2\ amplitudes.}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ t2\_amplitudes\_accelerated\ =\ this-\/>diis.\mbox{\hyperlink{class_g_q_c_p_1_1_d_i_i_s_a60b91c219acac53eab5f3e6f3b32a34d}{accelerate}}(t2\_amplitudes,\ error\_vectors);}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a3a005b633746ec034014da148dfae1e5}{t2\_amplitudes}}.pop\_back();}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a3a005b633746ec034014da148dfae1e5}{t2\_amplitudes}}.push\_back(t2\_amplitudes\_accelerated);}
+\DoxyCodeLine{00111\ \ \ \ \ \}}
+\DoxyCodeLine{00112\ \};}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

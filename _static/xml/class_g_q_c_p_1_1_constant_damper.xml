@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_constant_damper" kind="class" language="C++" prot="public">
     <compoundname>GQCP::ConstantDamper</compoundname>
     <includes refid="_constant_damper_8hpp" local="no">ConstantDamper.hpp</includes>
@@ -9,6 +9,7 @@
         <definition>double GQCP::ConstantDamper::alpha</definition>
         <argsstring></argsstring>
         <name>alpha</name>
+        <qualifiedname>GQCP::ConstantDamper::alpha</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -24,6 +25,7 @@
         <definition>GQCP::ConstantDamper::ConstantDamper</definition>
         <argsstring>(const double alpha)</argsstring>
         <name>ConstantDamper</name>
+        <qualifiedname>GQCP::ConstantDamper::ConstantDamper</qualifiedname>
         <param>
           <type>const double</type>
           <declname>alpha</declname>
@@ -56,6 +58,7 @@
         <definition>Subject GQCP::ConstantDamper::accelerate</definition>
         <argsstring>(const Subject &amp;last, const Subject &amp;next_to_last)</argsstring>
         <name>accelerate</name>
+        <qualifiedname>GQCP::ConstantDamper::accelerate</qualifiedname>
         <param>
           <type>const Subject &amp;</type>
           <declname>last</declname>

@@ -1,0 +1,78 @@
+\hypertarget{_minimization_2_newton_step_update_8hpp_source}{}\doxysection{Newton\+Step\+Update.\+hpp}
+\label{_minimization_2_newton_step_update_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/NewtonStepUpdate.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/NewtonStepUpdate.hpp}}
+\mbox{\hyperlink{_minimization_2_newton_step_update_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_algorithm_2_step_8hpp}{Mathematical/Algorithm/Step.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_minimization_environment_8hpp}{Mathematical/Optimization/Minimization/MinimizationEnvironment.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_non_linear_equation_2_newton_step_update_8hpp}{Mathematical/Optimization/NonLinearEquation/NewtonStepUpdate.hpp}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_non_linear_equation_environment_8hpp}{Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_square_matrix_8hpp}{Mathematical/Representation/SquareMatrix.hpp}}"{}}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00031\ \textcolor{keyword}{namespace\ }Minimization\ \{}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar,\ \textcolor{keyword}{typename}\ \_Environment>}
+\DoxyCodeLine{00041\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_minimization_1_1_newton_step_update}{NewtonStepUpdate}}:}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_step}{Step}}<\_Environment>\ \{}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_minimization_1_1_newton_step_update_a0d85fe6730c6445b905a00963cfe116e}{Scalar}}\ =\ \_Scalar;}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_minimization_1_1_newton_step_update_a23edaea9c5f0af5be6d3677da67b2826}{Environment}}\ =\ \_Environment;}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_same<Scalar,\ typename\ Environment::Scalar>::value,\ \textcolor{stringliteral}{"{}The\ scalar\ type\ must\ match\ that\ of\ the\ environment"{}});}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_base\_of<MinimizationEnvironment<Scalar>,\ \mbox{\hyperlink{class_g_q_c_p_1_1_minimization_1_1_newton_step_update_a23edaea9c5f0af5be6d3677da67b2826}{Environment}}>::value,\ \textcolor{stringliteral}{"{}The\ environment\ type\ must\ derive\ from\ MinimizationEnvironment."{}});}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00053\ \textcolor{comment}{\ \ \ \ \ *\ \ PUBLIC\ OVERRIDDEN\ METHODS}}
+\DoxyCodeLine{00054\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00059\ \ \ \ \ std::string\ \mbox{\hyperlink{class_g_q_c_p_1_1_minimization_1_1_newton_step_update_a9364e58c7624df4f6621f712a929b5f3}{description}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Calculate\ a\ new\ iteration\ of\ the\ variables\ and\ add\ them\ to\ the\ environment."{}};}
+\DoxyCodeLine{00061\ \ \ \ \ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_minimization_1_1_newton_step_update_a74bf63843f2f9eb8753f556b9dec2fee}{execute}}(\mbox{\hyperlink{class_g_q_c_p_1_1_minimization_1_1_newton_step_update_a23edaea9c5f0af5be6d3677da67b2826}{Environment}}\&\ environment)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ the\ non-\/linear\ equation\ Newton\ step\ as\ an\ implementation}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ variables\ =\ environment.variables.back();}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ f\ =\ environment.gradient\_function;}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ J\ =\ environment.hessian\_function;}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_environment}{GQCP::NonLinearEquationEnvironment<Scalar>}}\ non\_linear\_environment\ \{variables,\ f,\ J\};}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update}{GQCP::NonLinearEquation::NewtonStepUpdate<Scalar,\ NonLinearEquationEnvironment<Scalar>}}>().\mbox{\hyperlink{class_g_q_c_p_1_1_minimization_1_1_newton_step_update_a74bf63843f2f9eb8753f556b9dec2fee}{execute}}(non\_linear\_environment);\ \ \textcolor{comment}{//\ this\ adds\ the\ Newton-\/step\ updated\ variables\ to\ the\ non-\/linear\ environment}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ new\_variables\ =\ non\_linear\_environment.variables.back();}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ environment.variables.push\_back(new\_variables);}
+\DoxyCodeLine{00081\ \ \ \ \ \}}
+\DoxyCodeLine{00082\ \};}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \}\ \ \textcolor{comment}{//\ namespace\ Minimization}}
+\DoxyCodeLine{00086\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

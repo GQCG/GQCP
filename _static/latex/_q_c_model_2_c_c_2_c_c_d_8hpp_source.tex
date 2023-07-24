@@ -1,0 +1,304 @@
+\hypertarget{_q_c_model_2_c_c_2_c_c_d_8hpp_source}{}\doxysection{CCD.\+hpp}
+\label{_q_c_model_2_c_c_2_c_c_d_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/QCModel/CC/CCD.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/QCModel/CC/CCD.hpp}}
+\mbox{\hyperlink{_q_c_model_2_c_c_2_c_c_d_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_orbital_space_8hpp}{Basis/SpinorBasis/OrbitalSpace.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_q_hamiltonian_8hpp}{Operator/SecondQuantized/SQHamiltonian.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t2_amplitudes_8hpp}{QCModel/CC/T2Amplitudes.hpp}}"{}}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00027\ \textcolor{keyword}{namespace\ }QCModel\ \{}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar>}
+\DoxyCodeLine{00036\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_c_c_d}{CCD}}\ \{}
+\DoxyCodeLine{00037\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_a40e79b329b95219182ed146ec3a13ea9}{Scalar}}\ =\ \_Scalar;}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes}{T2Amplitudes<Scalar>}}\ t2;\ \ \textcolor{comment}{//\ the\ T2-\/amplitudes}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00047\ \textcolor{comment}{\ \ \ \ \ *\ \ CONSTRUCTORS}}
+\DoxyCodeLine{00048\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_a7c840fc544eadd0b4a7e445633abee04}{CCD}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes}{T2Amplitudes<Scalar>}}\&\ t2)\ :}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ t2\ \{t2\}\ \{\}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00060\ \textcolor{comment}{\ \ \ \ \ *\ \ STATIC\ PUBLIC\ METHODS}}
+\DoxyCodeLine{00061\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_a40e79b329b95219182ed146ec3a13ea9}{Scalar}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_ae63a87d7d2e047d07f58010a3545a8c3}{calculateCorrelationEnergy}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\&\ f,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{SquareRankFourTensor<Scalar>}}\&\ V\_A,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes}{T2Amplitudes<Scalar>}}\&\ t2)\ \{}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ orbital\_space\ =\ t2.\mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes_a15d0734f2885dc55f214a6c8049b380c}{orbitalSpace}}();}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ A\ KISS\ implementation\ of\ the\ CCD\ energy\ correction.}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ implementation\ is\ in\ line\ with\ Crawford2000\ "{}Chapter\ 2:\ An\ Introduction\ to\ Coupled\ Cluster\ Theory\ for\ Computational\ Chemists"{},\ eq.\ [134].}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_a40e79b329b95219182ed146ec3a13ea9}{Scalar}}\ E\ \{\};\ \ \textcolor{comment}{//\ Default\ initialization\ to\ 0.}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ i\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ j\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ a\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ b\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ E\ +=\ 0.25\ *\ V\_A(i,\ j,\ a,\ b)\ *\ t2(i,\ j,\ a,\ b);}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ E;}
+\DoxyCodeLine{00091\ \ \ \ \ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_a40e79b329b95219182ed146ec3a13ea9}{Scalar}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_a3b7c8405c4256985bdc8158eb41e67f9}{calculateT2AmplitudeEquation}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ j,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ a,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ b,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\&\ f,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{SquareRankFourTensor<Scalar>}}\&\ V\_A,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes}{T2Amplitudes<Scalar>}}\&\ t2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{ImplicitMatrixSlice<Scalar>}}\&\ F1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{ImplicitMatrixSlice<Scalar>}}\&\ F2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_rank_four_tensor_slice}{ImplicitRankFourTensorSlice<Scalar>}}\&\ W1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_rank_four_tensor_slice}{ImplicitRankFourTensorSlice<Scalar>}}\&\ W2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_rank_four_tensor_slice}{ImplicitRankFourTensorSlice<Scalar>}}\&\ W3)\ \{}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ orbital\_space\ =\ t2.\mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes_a15d0734f2885dc55f214a6c8049b380c}{orbitalSpace}}();}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ will\ use\ equation\ (2)\ in\ Stanton1991\ by\ putting\ the\ left-\/hand\ term\ (with\ the\ energy\ denominator)\ to\ the\ right.}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_a40e79b329b95219182ed146ec3a13ea9}{Scalar}}\ result\ \{0.0\};\ \ \textcolor{comment}{//\ zero-\/initialize\ the\ scalar\ value\ for\ the\ result}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ contribution\ from\ the\ left-\/hand\ side.}}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ D\_ijab\ =\ f(i,\ i)\ +\ f(j,\ j)\ -\/\ f(a,\ a)\ -\/\ f(b,\ b);}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ result\ -\/=\ t2(i,\ j,\ a,\ b)\ *\ D\_ijab;}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ contribution\ from\ the\ first\ term.}}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ result\ +=\ V\_A(i,\ j,\ a,\ b);}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ contribution\ from\ the\ second\ term.}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ e\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ result\ +=\ t2(i,\ j,\ a,\ e)\ *\ F1(b,\ e);}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ result\ -\/=\ t2(i,\ j,\ b,\ e)\ *\ F1(a,\ e);\ \ \textcolor{comment}{//\ P(ab)\ applied}}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ contribution\ from\ the\ third\ term.}}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ m\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ result\ -\/=\ t2(i,\ m,\ a,\ b)\ *\ F2(m,\ j);}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ result\ +=\ t2(j,\ m,\ a,\ b)\ *\ F2(m,\ i);\ \ \textcolor{comment}{//\ P(ij)\ applied}}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ contribution\ from\ the\ fourth\ term.}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ m\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ +=\ 0.5\ *\ t2(m,\ n,\ a,\ b)\ *\ W1(m,\ n,\ i,\ j);}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ contribution\ from\ the\ fifth\ term.}}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ e\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ f\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ +=\ 0.5\ *\ t2(i,\ j,\ e,\ f)\ *\ W2(a,\ b,\ e,\ f);}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ contribution\ from\ the\ sixth\ term.}}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ m\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ e\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ +=\ t2(i,\ m,\ a,\ e)\ *\ W3(m,\ b,\ e,\ j);}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ -\/=\ t2(j,\ m,\ a,\ e)\ *\ W3(m,\ b,\ e,\ i);\ \ \textcolor{comment}{//\ P(ij)\ applied}}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ -\/=\ t2(i,\ m,\ b,\ e)\ *\ W3(m,\ a,\ e,\ j);\ \ \textcolor{comment}{//\ P(ab)\ applied}}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ +=\ t2(j,\ m,\ b,\ e)\ *\ W3(m,\ a,\ e,\ i);\ \ \textcolor{comment}{//\ P(ij)\ P(ab)\ applied}}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00164\ \ \ \ \ \}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{ImplicitMatrixSlice<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_a0f85caa6a5c07d51003e2b25f53b1845}{calculateF1}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\&\ f,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{SquareRankFourTensor<Scalar>}}\&\ V\_A,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes}{T2Amplitudes<Scalar>}}\&\ t2)\ \{}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ orbital\_space\ =\ t2.\mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes_a15d0734f2885dc55f214a6c8049b380c}{orbitalSpace}}();}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Implement\ the\ formula\ for\ the\ F1-\/intermediate:\ equation\ (3)\ in\ Stanton1993.}}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ F1\ =\ orbital\_space.template\ initializeRepresentableObjectFor<Scalar>(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}});\ \ \textcolor{comment}{//\ zero-\/initialize\ a\ virtual-\/virtual\ object}}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ a\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ e\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_a40e79b329b95219182ed146ec3a13ea9}{Scalar}}\ value\ \{0.0\};\ \ \textcolor{comment}{//\ zero-\/initialize\ the\ scalar\ value\ to\ be\ added}}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ contribution\ from\ the\ first\ term.}}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (a\ !=\ e)\ \{\ \ \textcolor{comment}{//\ (1\ -\/\ delta\_ae)}}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ value\ +=\ f(a,\ e);}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ contribution\ from\ the\ fourth\ term.}}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ m\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ f\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ value\ -\/=\ 0.5\ *\ t2(m,\ n,\ a,\ f)\ *\ V\_A(m,\ n,\ e,\ f);}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ F1(a,\ e)\ =\ value;}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ F1;}
+\DoxyCodeLine{00205\ \ \ \ \ \}}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{ImplicitMatrixSlice<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_af787246f9e56a90eacc24db8f049606e}{calculateF2}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\&\ f,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{SquareRankFourTensor<Scalar>}}\&\ V\_A,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes}{T2Amplitudes<Scalar>}}\&\ t2)\ \{}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ orbital\_space\ =\ t2.\mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes_a15d0734f2885dc55f214a6c8049b380c}{orbitalSpace}}();}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Implement\ the\ formula\ for\ F2\ in\ equation\ (4)\ in\ Stanton1991.}}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ F2\ =\ orbital\_space.template\ initializeRepresentableObjectFor<Scalar>(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}});\ \ \textcolor{comment}{//\ zero-\/initialize\ an\ occupied-\/occupied\ object}}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ m\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ i\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_a40e79b329b95219182ed146ec3a13ea9}{Scalar}}\ value\ \{0.0\};\ \ \textcolor{comment}{//\ zero-\/initialize\ the\ scalar\ value\ to\ be\ added}}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ contribution\ from\ the\ first\ term.}}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\ !=\ i)\ \{\ \ \textcolor{comment}{//\ (1\ -\/\ delta\_mi)}}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ value\ +=\ f(m,\ i);}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ contribution\ from\ the\ fourth\ term.}}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ e\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ f\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ value\ +=\ 0.5\ *\ t2(i,\ n,\ e,\ f)\ *\ V\_A(m,\ n,\ e,\ f);}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ F2(m,\ i)\ =\ value;}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ F2;}
+\DoxyCodeLine{00246\ \ \ \ \ \}}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00257\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_rank_four_tensor_slice}{ImplicitRankFourTensorSlice<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_a554257c3d8270648814fed2412381418}{calculateW1}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{SquareRankFourTensor<Scalar>}}\&\ V\_A,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes}{T2Amplitudes<Scalar>}}\&\ t2)\ \{}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ orbital\_space\ =\ t2.\mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes_a15d0734f2885dc55f214a6c8049b380c}{orbitalSpace}}();}
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Implement\ the\ formula\ for\ W1\ (equation\ 6).}}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ W1\ =\ orbital\_space.template\ initializeRepresentableObjectFor<Scalar>(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}});\ \ \textcolor{comment}{//\ zero-\/initialize\ an\ occupied-\/occupied-\/occupied-\/occupied\ object}}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ m\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ i\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ j\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_a40e79b329b95219182ed146ec3a13ea9}{Scalar}}\ value\ \{0.0\};\ \ \textcolor{comment}{//\ zero-\/initialize\ the\ scalar\ value\ to\ be\ added}}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ contribution\ from\ the\ first\ term.}}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ value\ +=\ V\_A(m,\ n,\ i,\ j);}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ contribution\ from\ the\ third\ term.}}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ e\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ f\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ value\ +=\ 0.25\ *\ t2(i,\ j,\ e,\ f)\ *\ V\_A(m,\ n,\ e,\ f);}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ W1(m,\ n,\ i,\ j)\ =\ value;}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ W1;}
+\DoxyCodeLine{00286\ \ \ \ \ \}}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00297\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_rank_four_tensor_slice}{ImplicitRankFourTensorSlice<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_a135ee877f75cd2aa4666f15ffcf25118}{calculateW2}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{SquareRankFourTensor<Scalar>}}\&\ V\_A,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes}{T2Amplitudes<Scalar>}}\&\ t2)\ \{}
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ orbital\_space\ =\ t2.\mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes_a15d0734f2885dc55f214a6c8049b380c}{orbitalSpace}}();}
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Implement\ the\ formula\ for\ W2\ (equation\ 7).}}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ W2\ =\ orbital\_space.template\ initializeRepresentableObjectFor<Scalar>(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}});\ \ \textcolor{comment}{//\ zero-\/initialize\ a\ virtual-\/virtual-\/virtual-\/virtual\ object}}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ a\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ b\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ e\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ f\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_a40e79b329b95219182ed146ec3a13ea9}{Scalar}}\ value\ \{0.0\};\ \ \textcolor{comment}{//\ zero-\/initialize\ the\ scalar\ value\ to\ be\ added}}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ contribution\ from\ the\ first\ term.}}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ value\ +=\ V\_A(a,\ b,\ e,\ f);}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ contribution\ from\ the\ third\ term.}}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ m\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ value\ +=\ 0.25\ *\ t2(m,\ n,\ a,\ b)\ *\ V\_A(m,\ n,\ e,\ f);}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00318\ }
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ W2(a,\ b,\ e,\ f)\ =\ value;}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00324\ }
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ W2;}
+\DoxyCodeLine{00326\ \ \ \ \ \}}
+\DoxyCodeLine{00327\ }
+\DoxyCodeLine{00328\ }
+\DoxyCodeLine{00337\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_rank_four_tensor_slice}{ImplicitRankFourTensorSlice<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_ae39be7a177f3b78fdb80043e9503aa84}{calculateW3}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{SquareRankFourTensor<Scalar>}}\&\ V\_A,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes}{T2Amplitudes<Scalar>}}\&\ t2)\ \{}
+\DoxyCodeLine{00338\ }
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ orbital\_space\ =\ t2.\mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes_a15d0734f2885dc55f214a6c8049b380c}{orbitalSpace}}();}
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Implement\ the\ formula\ for\ W3\ (equation\ 8).}}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ W3\ =\ orbital\_space.template\ initializeRepresentableObjectFor<Scalar>(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}});\ \ \textcolor{comment}{//\ zero-\/initialize\ an\ occupied-\/virtual-\/virtual-\/occupied\ object}}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ m\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ b\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ e\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ j\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_a40e79b329b95219182ed146ec3a13ea9}{Scalar}}\ value\ \{0.0\};\ \ \textcolor{comment}{//\ zero-\/initialize\ the\ scalar\ value\ to\ be\ added}}
+\DoxyCodeLine{00348\ }
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ contribution\ from\ the\ first\ term.}}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ value\ +=\ V\_A(m,\ b,\ e,\ j);}
+\DoxyCodeLine{00351\ }
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ contribution\ from\ the\ fourth\ term.}}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ f\ :\ orbital\_space.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ value\ -\/=\ 0.5\ *\ t2(j,\ n,\ f,\ b)\ *\ V\_A(m,\ n,\ e,\ f);}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00358\ }
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ W3(m,\ b,\ e,\ j)\ =\ value;}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00364\ }
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ W3;}
+\DoxyCodeLine{00366\ \ \ \ \ \}}
+\DoxyCodeLine{00367\ }
+\DoxyCodeLine{00368\ }
+\DoxyCodeLine{00369\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00370\ \textcolor{comment}{\ \ \ \ \ *\ \ PUBLIC\ METHODS}}
+\DoxyCodeLine{00371\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00372\ }
+\DoxyCodeLine{00376\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes}{T2Amplitudes<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_c_c_d_a4afa22a58f67d03b61801bdcbe3edb98}{t2Amplitudes}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>t2;\ \}}
+\DoxyCodeLine{00377\ \};}
+\DoxyCodeLine{00378\ }
+\DoxyCodeLine{00379\ }
+\DoxyCodeLine{00380\ \}\ \ \textcolor{comment}{//\ namespace\ QCModel}}
+\DoxyCodeLine{00381\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

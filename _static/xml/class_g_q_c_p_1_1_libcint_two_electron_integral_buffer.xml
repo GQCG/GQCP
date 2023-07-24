@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_libcint_two_electron_integral_buffer" kind="class" language="C++" prot="public">
     <compoundname>GQCP::LibcintTwoElectronIntegralBuffer</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer" prot="public" virt="non-virtual">GQCP::BaseTwoElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;</basecompoundref>
@@ -20,6 +20,7 @@
         <definition>using GQCP::LibcintTwoElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;::IntegralScalar =  _IntegralScalar</definition>
         <argsstring></argsstring>
         <name>IntegralScalar</name>
+        <qualifiedname>GQCP::LibcintTwoElectronIntegralBuffer::IntegralScalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -35,6 +36,7 @@
         <definition>constexpr auto GQCP::LibcintTwoElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;::N</definition>
         <argsstring></argsstring>
         <name>N</name>
+        <qualifiedname>GQCP::LibcintTwoElectronIntegralBuffer::N</qualifiedname>
         <initializer>= _N</initializer>
         <briefdescription>
         </briefdescription>
@@ -51,6 +53,7 @@
         <definition>std::vector&lt;IntegralScalar&gt; GQCP::LibcintTwoElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;::buffer</definition>
         <argsstring></argsstring>
         <name>buffer</name>
+        <qualifiedname>GQCP::LibcintTwoElectronIntegralBuffer::buffer</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -64,6 +67,7 @@
         <definition>int GQCP::LibcintTwoElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;::result</definition>
         <argsstring></argsstring>
         <name>result</name>
+        <qualifiedname>GQCP::LibcintTwoElectronIntegralBuffer::result</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -79,6 +83,7 @@
         <definition>GQCP::LibcintTwoElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;::LibcintTwoElectronIntegralBuffer</definition>
         <argsstring>(const std::vector&lt; IntegralScalar &gt; &amp;buffer, const size_t nbf1, const size_t nbf2, const size_t nbf3, const size_t nbf4, const int result)</argsstring>
         <name>LibcintTwoElectronIntegralBuffer</name>
+        <qualifiedname>GQCP::LibcintTwoElectronIntegralBuffer::LibcintTwoElectronIntegralBuffer</qualifiedname>
         <param>
           <type>const std::vector&lt; <ref refid="class_g_q_c_p_1_1_libcint_two_electron_integral_buffer_1ad3442f331beb8aa62d57836a9fcde386" kindref="member">IntegralScalar</ref> &gt; &amp;</type>
           <declname>buffer</declname>
@@ -166,6 +171,7 @@
         <definition>bool GQCP::LibcintTwoElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;::areIntegralsAllZero</definition>
         <argsstring>() const override</argsstring>
         <name>areIntegralsAllZero</name>
+        <qualifiedname>GQCP::LibcintTwoElectronIntegralBuffer::areIntegralsAllZero</qualifiedname>
         <reimplements refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer_1a6ea199f70814102a3a10b76dbd850f90">areIntegralsAllZero</reimplements>
         <briefdescription>
         </briefdescription>
@@ -183,6 +189,7 @@
         <definition>IntegralScalar GQCP::LibcintTwoElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;::value</definition>
         <argsstring>(const size_t i, const size_t f1, const size_t f2, const size_t f3, const size_t f4) const override</argsstring>
         <name>value</name>
+        <qualifiedname>GQCP::LibcintTwoElectronIntegralBuffer::value</qualifiedname>
         <reimplements refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer_1aae389b8ee9a545e84ebdd11a7b81c95a">value</reimplements>
         <param>
           <type>const size_t</type>

@@ -1,0 +1,85 @@
+\hypertarget{_weighted_grid_8hpp_source}{}\doxysection{Weighted\+Grid.\+hpp}
+\label{_weighted_grid_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Grid/WeightedGrid.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Grid/WeightedGrid.hpp}}
+\mbox{\hyperlink{_weighted_grid_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_cubic_grid_8hpp}{Mathematical/Grid/CubicGrid.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_field_8hpp}{Mathematical/Grid/Field.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_array_8hpp}{Mathematical/Representation/Array.hpp}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_matrix_8hpp}{Mathematical/Representation/Matrix.hpp}}"{}}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_weighted_grid}{WeightedGrid}}\ \{}
+\DoxyCodeLine{00034\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_array}{ArrayX<double>}}\ m\_weights;\ \ \textcolor{comment}{//\ a\ 1-\/D\ array\ containing\ the\ weights\ for\ each\ of\ the\ grid\ points}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ std::vector<Vector<double,\ 3>>\ m\_points;\ \ \textcolor{comment}{//\ the\ grid\ points}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ CONSTRUCTORS}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_weighted_grid}{WeightedGrid}}(\textcolor{keyword}{const}\ std::vector<\mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Vector<double,\ 3>}}>\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_weighted_grid_a4366f4b6b86ca6df3fd3842dd4dfeeab}{points}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_array}{ArrayX<double>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_weighted_grid_a2015543a649fcb6920742c1b7c85acee}{weights}});}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ NAMED\ CONSTRUCTORS}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_weighted_grid}{WeightedGrid}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_weighted_grid_a6cbb6a86a514e3f977c64513778cdc4f}{FromCubicGrid}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cubic_grid}{CubicGrid}}\&\ cubic\_grid);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_weighted_grid}{WeightedGrid}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_weighted_grid_a7ad25e7126c94337fa7be78d1a7423fb}{ReadIntegrationGridFile}}(\textcolor{keyword}{const}\ std::string\&\ filename);}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{comment}{//\ PUBLIC\ METHODS}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00087\ \ \ \ \ T\ \mbox{\hyperlink{class_g_q_c_p_1_1_weighted_grid_a18b9f61904e889479af50412896d4d26}{integrate}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_field}{Field<T>}}\&\ field)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ A\ KISS-\/implementation\ of\ integration:\ multiplying\ every\ field\ value\ by\ the\ weight\ of\ the\ associated\ grid\ point.}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ result\ =\ field.\mbox{\hyperlink{class_g_q_c_p_1_1_field_a4a7f1e8a8fc1a45c2b82a8424ada5db9}{value}}(0)\ *\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_weighted_grid_a76f6fe78068d0c735d434b5882d86d07}{weight}}(0);\ \ \textcolor{comment}{//\ this\ makes\ sure\ that\ 'result'\ is\ already\ initialized\ to\ the\ correct\ type,\ e.g.\ when\ a\ Vector\ is\ initialized,\ it\ doesn't\ automatically\ have\ the\ required\ size}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 1;\ i\ <\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_weighted_grid_a86485e11cf5d337ace574c9e552dec13}{size}}();\ i++)\ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ result\ +=\ field.\mbox{\hyperlink{class_g_q_c_p_1_1_field_a4a7f1e8a8fc1a45c2b82a8424ada5db9}{value}}(i)\ *\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_weighted_grid_a76f6fe78068d0c735d434b5882d86d07}{weight}}(i);}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00096\ \ \ \ \ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_weighted_grid_acc56dd9229272143cfdac3b7fc06a0a5}{numberOfPoints}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>m\_points.size();\ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Vector<double,\ 3>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_weighted_grid_a715cf3c0b0e96202183520253482c080}{point}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ index)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>m\_points[index];\ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keyword}{const}\ std::vector<Vector<double,\ 3>>\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_weighted_grid_a4366f4b6b86ca6df3fd3842dd4dfeeab}{points}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>m\_points;\ \}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_weighted_grid_a86485e11cf5d337ace574c9e552dec13}{size}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_weighted_grid_acc56dd9229272143cfdac3b7fc06a0a5}{numberOfPoints}}();\ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_g_q_c_p_1_1_weighted_grid_a76f6fe78068d0c735d434b5882d86d07}{weight}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ index)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>m\_weights(index);\ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_array}{ArrayX<double>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_weighted_grid_a2015543a649fcb6920742c1b7c85acee}{weights}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>m\_weights;\ \};}
+\DoxyCodeLine{00136\ \};}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

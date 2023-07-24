@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_geminal_coefficients_interface" kind="class" language="C++" prot="public" abstract="yes">
     <compoundname>GQCP::GeminalCoefficientsInterface</compoundname>
     <derivedcompoundref refid="class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients" prot="public" virt="non-virtual">GQCP::AP1roGGeminalCoefficients</derivedcompoundref>
@@ -11,6 +11,7 @@
         <definition>virtual GQCP::GeminalCoefficientsInterface::~GeminalCoefficientsInterface</definition>
         <argsstring>()=default</argsstring>
         <name>~GeminalCoefficientsInterface</name>
+        <qualifiedname>GQCP::GeminalCoefficientsInterface::~GeminalCoefficientsInterface</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -24,6 +25,7 @@
         <definition>virtual double GQCP::GeminalCoefficientsInterface::overlap</definition>
         <argsstring>(const SpinUnresolvedONV &amp;onv) const =0</argsstring>
         <name>overlap</name>
+        <qualifiedname>GQCP::GeminalCoefficientsInterface::overlap</qualifiedname>
         <reimplementedby refid="class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients_1a6217bfe7a49d21e50507fb926208f975">overlap</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_1a57b4983a492bc6503a33c711b2174197">overlap</reimplementedby>
         <param>
@@ -55,6 +57,7 @@
         <definition>LinearExpansion&lt; double, SeniorityZeroONVBasis &gt; GQCP::GeminalCoefficientsInterface::toLinearExpansion</definition>
         <argsstring>(const SeniorityZeroONVBasis &amp;onv_basis) const</argsstring>
         <name>toLinearExpansion</name>
+        <qualifiedname>GQCP::GeminalCoefficientsInterface::toLinearExpansion</qualifiedname>
         <param>
           <type>const SeniorityZeroONVBasis &amp;</type>
           <declname>onv_basis</declname>
@@ -96,15 +99,15 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="3">
-        <label>GQCP::APIGGeminalCoefficients</label>
-        <link refid="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
       <node id="2">
         <label>GQCP::AP1roGGeminalCoefficients</label>
         <link refid="class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>GQCP::APIGGeminalCoefficients</label>
+        <link refid="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>

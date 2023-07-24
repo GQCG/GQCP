@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_libint_interfacer" kind="class" language="C++" prot="public">
     <compoundname>GQCP::LibintInterfacer</compoundname>
     <includes refid="_libint_interfacer_8hpp" local="no">LibintInterfacer.hpp</includes>
@@ -10,6 +10,7 @@
         <definition>using GQCP::LibintInterfacer::libint_target_ptr_vec =  libint2::Engine::target_ptr_vec</definition>
         <argsstring></argsstring>
         <name>libint_target_ptr_vec</name>
+        <qualifiedname>GQCP::LibintInterfacer::libint_target_ptr_vec</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -25,6 +26,7 @@
         <definition>GQCP::LibintInterfacer::LibintInterfacer</definition>
         <argsstring>()</argsstring>
         <name>LibintInterfacer</name>
+        <qualifiedname>GQCP::LibintInterfacer::LibintInterfacer</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -39,6 +41,7 @@
         <definition>GQCP::LibintInterfacer::~LibintInterfacer</definition>
         <argsstring>()</argsstring>
         <name>~LibintInterfacer</name>
+        <qualifiedname>GQCP::LibintInterfacer::~LibintInterfacer</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -55,6 +58,7 @@
         <definition>LibintInterfacer &amp; GQCP::LibintInterfacer::get</definition>
         <argsstring>()</argsstring>
         <name>get</name>
+        <qualifiedname>GQCP::LibintInterfacer::get</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -73,6 +77,7 @@
         <definition>GQCP::LibintInterfacer::LibintInterfacer</definition>
         <argsstring>(LibintInterfacer const &amp;libint_communicator)=delete</argsstring>
         <name>LibintInterfacer</name>
+        <qualifiedname>GQCP::LibintInterfacer::LibintInterfacer</qualifiedname>
         <param>
           <type><ref refid="class_g_q_c_p_1_1_libint_interfacer" kindref="compound">LibintInterfacer</ref> const &amp;</type>
           <declname>libint_communicator</declname>
@@ -91,6 +96,7 @@
         <definition>void GQCP::LibintInterfacer::operator=</definition>
         <argsstring>(LibintInterfacer const &amp;libint_communicator)=delete</argsstring>
         <name>operator=</name>
+        <qualifiedname>GQCP::LibintInterfacer::operator=</qualifiedname>
         <param>
           <type><ref refid="class_g_q_c_p_1_1_libint_interfacer" kindref="compound">LibintInterfacer</ref> const &amp;</type>
           <declname>libint_communicator</declname>
@@ -108,6 +114,7 @@
         <definition>libint2::svector&lt; double &gt; GQCP::LibintInterfacer::interface</definition>
         <argsstring>(const std::vector&lt; double &gt; &amp;vector) const</argsstring>
         <name>interface</name>
+        <qualifiedname>GQCP::LibintInterfacer::interface</qualifiedname>
         <param>
           <type>const std::vector&lt; double &gt; &amp;</type>
           <declname>vector</declname>
@@ -138,6 +145,7 @@
         <definition>std::vector&lt; double &gt; GQCP::LibintInterfacer::interface</definition>
         <argsstring>(const libint2::svector&lt; double &gt; &amp;svector) const</argsstring>
         <name>interface</name>
+        <qualifiedname>GQCP::LibintInterfacer::interface</qualifiedname>
         <param>
           <type>const libint2::svector&lt; double &gt; &amp;</type>
           <declname>svector</declname>
@@ -168,6 +176,7 @@
         <definition>libint2::Atom GQCP::LibintInterfacer::interface</definition>
         <argsstring>(const Nucleus &amp;nucleus) const</argsstring>
         <name>interface</name>
+        <qualifiedname>GQCP::LibintInterfacer::interface</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_nucleus" kindref="compound">Nucleus</ref> &amp;</type>
           <declname>nucleus</declname>
@@ -197,6 +206,7 @@
         <definition>std::vector&lt; libint2::Atom &gt; GQCP::LibintInterfacer::interface</definition>
         <argsstring>(const std::vector&lt; Nucleus &gt; &amp;nuclei) const</argsstring>
         <name>interface</name>
+        <qualifiedname>GQCP::LibintInterfacer::interface</qualifiedname>
         <param>
           <type>const std::vector&lt; <ref refid="class_g_q_c_p_1_1_nucleus" kindref="compound">Nucleus</ref> &gt; &amp;</type>
           <declname>nuclei</declname>
@@ -226,6 +236,7 @@
         <definition>libint2::Shell GQCP::LibintInterfacer::interface</definition>
         <argsstring>(const GTOShell &amp;shell) const</argsstring>
         <name>interface</name>
+        <qualifiedname>GQCP::LibintInterfacer::interface</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &amp;</type>
           <declname>shell</declname>
@@ -266,6 +277,7 @@
         <definition>libint2::BasisSet GQCP::LibintInterfacer::interface</definition>
         <argsstring>(const ShellSet&lt; GTOShell &gt; &amp;shellset) const</argsstring>
         <name>interface</name>
+        <qualifiedname>GQCP::LibintInterfacer::interface</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt; &amp;</type>
           <declname>shellset</declname>
@@ -295,6 +307,7 @@
         <definition>std::vector&lt; GTOShell &gt; GQCP::LibintInterfacer::interface</definition>
         <argsstring>(const libint2::Shell &amp;libint_shell, const std::vector&lt; Nucleus &gt; &amp;nuclei, bool undo_renorm=true) const</argsstring>
         <name>interface</name>
+        <qualifiedname>GQCP::LibintInterfacer::interface</qualifiedname>
         <param>
           <type>const libint2::Shell &amp;</type>
           <declname>libint_shell</declname>
@@ -378,6 +391,7 @@ Interface a libint2::Shell to the corresponding list of GQCP::Shells. Note that 
         <definition>std::vector&lt; GTOShell &gt; GQCP::LibintInterfacer::interface</definition>
         <argsstring>(const libint2::BasisSet &amp;libint_basisset, const std::vector&lt; Nucleus &gt; &amp;nuclei) const</argsstring>
         <name>interface</name>
+        <qualifiedname>GQCP::LibintInterfacer::interface</qualifiedname>
         <param>
           <type>const libint2::BasisSet &amp;</type>
           <declname>libint_basisset</declname>
@@ -420,6 +434,7 @@ Interface a libint2::Shell to the corresponding list of GQCP::Shells. Note that 
         <definition>libint2::Engine GQCP::LibintInterfacer::createEngine</definition>
         <argsstring>(const CoulombRepulsionOperator &amp;op, const size_t max_nprim, const size_t max_l) const</argsstring>
         <name>createEngine</name>
+        <qualifiedname>GQCP::LibintInterfacer::createEngine</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" kindref="compound">CoulombRepulsionOperator</ref> &amp;</type>
           <declname>op</declname>
@@ -474,6 +489,7 @@ Interface a libint2::Shell to the corresponding list of GQCP::Shells. Note that 
         <definition>libint2::Engine GQCP::LibintInterfacer::createEngine</definition>
         <argsstring>(const ElectronicDipoleOperator &amp;op, const size_t max_nprim, const size_t max_l) const</argsstring>
         <name>createEngine</name>
+        <qualifiedname>GQCP::LibintInterfacer::createEngine</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_electronic_dipole_operator" kindref="compound">ElectronicDipoleOperator</ref> &amp;</type>
           <declname>op</declname>
@@ -528,6 +544,7 @@ Interface a libint2::Shell to the corresponding list of GQCP::Shells. Note that 
         <definition>libint2::Engine GQCP::LibintInterfacer::createEngine</definition>
         <argsstring>(const KineticOperator &amp;op, const size_t max_nprim, const size_t max_l) const</argsstring>
         <name>createEngine</name>
+        <qualifiedname>GQCP::LibintInterfacer::createEngine</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_kinetic_operator" kindref="compound">KineticOperator</ref> &amp;</type>
           <declname>op</declname>
@@ -582,6 +599,7 @@ Interface a libint2::Shell to the corresponding list of GQCP::Shells. Note that 
         <definition>libint2::Engine GQCP::LibintInterfacer::createEngine</definition>
         <argsstring>(const NuclearAttractionOperator &amp;op, const size_t max_nprim, const size_t max_l) const</argsstring>
         <name>createEngine</name>
+        <qualifiedname>GQCP::LibintInterfacer::createEngine</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_nuclear_attraction_operator" kindref="compound">NuclearAttractionOperator</ref> &amp;</type>
           <declname>op</declname>
@@ -636,6 +654,7 @@ Interface a libint2::Shell to the corresponding list of GQCP::Shells. Note that 
         <definition>libint2::Engine GQCP::LibintInterfacer::createEngine</definition>
         <argsstring>(const OverlapOperator &amp;op, const size_t max_nprim, const size_t max_l) const</argsstring>
         <name>createEngine</name>
+        <qualifiedname>GQCP::LibintInterfacer::createEngine</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_overlap_operator" kindref="compound">OverlapOperator</ref> &amp;</type>
           <declname>op</declname>
@@ -690,6 +709,7 @@ Interface a libint2::Shell to the corresponding list of GQCP::Shells. Note that 
         <definition>size_t GQCP::LibintInterfacer::numberOfShells</definition>
         <argsstring>(const libint2::Shell &amp;libint_shell) const</argsstring>
         <name>numberOfShells</name>
+        <qualifiedname>GQCP::LibintInterfacer::numberOfShells</qualifiedname>
         <param>
           <type>const libint2::Shell &amp;</type>
           <declname>libint_shell</declname>
@@ -730,6 +750,7 @@ Interface a libint2::Shell to the corresponding list of GQCP::Shells. Note that 
         <definition>size_t GQCP::LibintInterfacer::numberOfShells</definition>
         <argsstring>(const libint2::BasisSet &amp;libint_basisset) const</argsstring>
         <name>numberOfShells</name>
+        <qualifiedname>GQCP::LibintInterfacer::numberOfShells</qualifiedname>
         <param>
           <type>const libint2::BasisSet &amp;</type>
           <declname>libint_basisset</declname>
@@ -759,6 +780,7 @@ Interface a libint2::Shell to the corresponding list of GQCP::Shells. Note that 
         <definition>void GQCP::LibintInterfacer::undoRenorm</definition>
         <argsstring>(libint2::Shell &amp;libint_shell) const</argsstring>
         <name>undoRenorm</name>
+        <qualifiedname>GQCP::LibintInterfacer::undoRenorm</qualifiedname>
         <param>
           <type>libint2::Shell &amp;</type>
           <declname>libint_shell</declname>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver" kind="class" language="C++" prot="public">
     <compoundname>GQCP::vAP1roGElectricalResponseSolver</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_base_electrical_response_solver" prot="public" virt="non-virtual">GQCP::BaseElectricalResponseSolver</basecompoundref>
@@ -10,6 +10,7 @@
         <definition>QCModel::vAP1roG GQCP::vAP1roGElectricalResponseSolver::vap1rog</definition>
         <argsstring></argsstring>
         <name>vap1rog</name>
+        <qualifiedname>GQCP::vAP1roGElectricalResponseSolver::vap1rog</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -25,6 +26,7 @@
         <definition>GQCP::vAP1roGElectricalResponseSolver::vAP1roGElectricalResponseSolver</definition>
         <argsstring>(const QCModel::vAP1roG &amp;vap1rog)</argsstring>
         <name>vAP1roGElectricalResponseSolver</name>
+        <qualifiedname>GQCP::vAP1roGElectricalResponseSolver::vAP1roGElectricalResponseSolver</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g" kindref="compound">QCModel::vAP1roG</ref> &amp;</type>
           <declname>vap1rog</declname>
@@ -52,7 +54,8 @@
         <definition>SquareMatrix&lt; double &gt; GQCP::vAP1roGElectricalResponseSolver::calculateParameterResponseConstant</definition>
         <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian) const override</argsstring>
         <name>calculateParameterResponseConstant</name>
-        <reimplements refid="class_g_q_c_p_1_1_base_electrical_response_solver_1a473fec7ce257c65dc06b24c6e7bfcf63">calculateParameterResponseConstant</reimplements>
+        <qualifiedname>GQCP::vAP1roGElectricalResponseSolver::calculateParameterResponseConstant</qualifiedname>
+        <reimplements refid="class_g_q_c_p_1_1_base_electrical_response_solver_1a18ff2cef784f0264d239999edfa2667a">calculateParameterResponseConstant</reimplements>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
           <declname>sq_hamiltonian</declname>
@@ -93,7 +96,8 @@
         <definition>Matrix&lt; double, Dynamic, 3 &gt; GQCP::vAP1roGElectricalResponseSolver::calculateParameterResponseForce</definition>
         <argsstring>(const VectorRSQOneElectronOperator&lt; double &gt; &amp;dipole_op) const override</argsstring>
         <name>calculateParameterResponseForce</name>
-        <reimplements refid="class_g_q_c_p_1_1_base_electrical_response_solver_1aab5c5eb8bac13beda120aaab8c56f13e">calculateParameterResponseForce</reimplements>
+        <qualifiedname>GQCP::vAP1roGElectricalResponseSolver::calculateParameterResponseForce</qualifiedname>
+        <reimplements refid="class_g_q_c_p_1_1_base_electrical_response_solver_1a6bfa0b6bdc3a611d92194f2401044756">calculateParameterResponseForce</reimplements>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1a937c6a66a78202fc6957b3d807c57e64" kindref="member">VectorRSQOneElectronOperator</ref>&lt; double &gt; &amp;</type>
           <declname>dipole_op</declname>
@@ -123,6 +127,7 @@
         <definition>SquareMatrix&lt; double &gt; GQCP::vAP1roGElectricalResponseSolver::calculateMultiplierResponseConstant</definition>
         <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian) const</argsstring>
         <name>calculateMultiplierResponseConstant</name>
+        <qualifiedname>GQCP::vAP1roGElectricalResponseSolver::calculateMultiplierResponseConstant</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
           <declname>sq_hamiltonian</declname>
@@ -152,6 +157,7 @@
         <definition>Matrix&lt; double, Dynamic, 3 &gt; GQCP::vAP1roGElectricalResponseSolver::calculateExplicitMultiplierResponseForce</definition>
         <argsstring>(const VectorRSQOneElectronOperator&lt; double &gt; dipole_op) const</argsstring>
         <name>calculateExplicitMultiplierResponseForce</name>
+        <qualifiedname>GQCP::vAP1roGElectricalResponseSolver::calculateExplicitMultiplierResponseForce</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1a937c6a66a78202fc6957b3d807c57e64" kindref="member">VectorRSQOneElectronOperator</ref>&lt; double &gt;</type>
           <declname>dipole_op</declname>
@@ -181,6 +187,7 @@
         <definition>ImplicitRankFourTensorSlice&lt; double &gt; GQCP::vAP1roGElectricalResponseSolver::calculateImplicitMultiplierResponseForceConstant</definition>
         <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian) const</argsstring>
         <name>calculateImplicitMultiplierResponseForceConstant</name>
+        <qualifiedname>GQCP::vAP1roGElectricalResponseSolver::calculateImplicitMultiplierResponseForceConstant</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
           <declname>sq_hamiltonian</declname>
@@ -210,6 +217,7 @@
         <definition>Matrix&lt; double, Dynamic, 3 &gt; GQCP::vAP1roGElectricalResponseSolver::calculateMultiplierResponseForce</definition>
         <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian, const VectorRSQOneElectronOperator&lt; double &gt; dipole_op, const Matrix&lt; double, Dynamic, 3 &gt; &amp;x) const</argsstring>
         <name>calculateMultiplierResponseForce</name>
+        <qualifiedname>GQCP::vAP1roGElectricalResponseSolver::calculateMultiplierResponseForce</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
           <declname>sq_hamiltonian</declname>
@@ -263,6 +271,7 @@
         <definition>Matrix&lt; double, Dynamic, 3 &gt; GQCP::vAP1roGElectricalResponseSolver::calculateMultiplierResponse</definition>
         <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian, const VectorRSQOneElectronOperator&lt; double &gt; dipole_op, const Matrix&lt; double, Dynamic, 3 &gt; &amp;x) const</argsstring>
         <name>calculateMultiplierResponse</name>
+        <qualifiedname>GQCP::vAP1roGElectricalResponseSolver::calculateMultiplierResponse</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
           <declname>sq_hamiltonian</declname>

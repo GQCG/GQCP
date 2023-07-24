@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_g_mulliken_domain" kind="class" language="C++" prot="public">
     <compoundname>GQCP::GMullikenDomain</compoundname>
     <basecompoundref prot="public" virt="non-virtual">DiscreteDomain</basecompoundref>
@@ -15,21 +15,23 @@
         <definition>using GQCP::GMullikenDomain&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
         <argsstring></argsstring>
         <name>Scalar</name>
+        <qualifiedname>GQCP::GMullikenDomain::Scalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Domain/MullikenDomain/GMullikenDomain.hpp" line="41" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Domain/MullikenDomain/GMullikenDomain.hpp" bodystart="41" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Domain/MullikenDomain/GMullikenDomain.hpp" line="40" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Domain/MullikenDomain/GMullikenDomain.hpp" bodystart="40" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="class_g_q_c_p_1_1_g_mulliken_domain_1a0d02a2043d7b7c266e4bb2e905ad3e67" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_mulliken_domain_1a7eddd7be32b5dfaee22ac1d24d83ec2d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_mulliken_domain_1a188291f6208504cf175d2a37dc4efd0a" kindref="member">Scalar</ref> &gt;</type>
-        <definition>SquareMatrix&lt;Scalar&gt; GQCP::GMullikenDomain&lt; _Scalar &gt;::partitionMatrix</definition>
+        <definition>SquareMatrix&lt; Scalar &gt; GQCP::GMullikenDomain&lt; _Scalar &gt;::partitionMatrix</definition>
         <argsstring>(const GTransformation&lt; Scalar &gt; &amp;C) const</argsstring>
         <name>partitionMatrix</name>
+        <qualifiedname>GQCP::GMullikenDomain::partitionMatrix</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">GTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_mulliken_domain_1a188291f6208504cf175d2a37dc4efd0a" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>C</declname>
@@ -52,13 +54,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Domain/MullikenDomain/GMullikenDomain.hpp" line="52" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Domain/MullikenDomain/GMullikenDomain.hpp" bodystart="52" bodyend="65"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Domain/MullikenDomain/GMullikenDomain.hpp" line="51" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Domain/MullikenDomain/GMullikenDomain.hpp" bodystart="51" bodyend="64"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_g_mulliken_domain_1aed26aa0fef8f3823bff15384979355f9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_g_mulliken_domain_1a82c17a5801bb6a332ee2d948fe2bd2a2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">GTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_mulliken_domain_1a188291f6208504cf175d2a37dc4efd0a" kindref="member">Scalar</ref> &gt;</type>
-        <definition>GTransformation&lt;Scalar&gt; GQCP::GMullikenDomain&lt; _Scalar &gt;::projectionMatrix</definition>
+        <definition>GTransformation&lt; Scalar &gt; GQCP::GMullikenDomain&lt; _Scalar &gt;::projectionMatrix</definition>
         <argsstring>(const GTransformation&lt; Scalar &gt; &amp;C) const</argsstring>
         <name>projectionMatrix</name>
+        <qualifiedname>GQCP::GMullikenDomain::projectionMatrix</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">GTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_g_mulliken_domain_1a188291f6208504cf175d2a37dc4efd0a" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>C</declname>
@@ -83,7 +86,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Domain/MullikenDomain/GMullikenDomain.hpp" line="75" column="21" bodyfile="/__w/GQCP/GQCP/gqcp/include/Domain/MullikenDomain/GMullikenDomain.hpp" bodystart="75" bodyend="75"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Domain/MullikenDomain/GMullikenDomain.hpp" line="74" column="21" bodyfile="/__w/GQCP/GQCP/gqcp/include/Domain/MullikenDomain/GMullikenDomain.hpp" bodystart="74" bodyend="74"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -92,31 +95,31 @@
 <para>A Mulliken partitioned domain as a collection of atomic orbitals. The sites {<computeroutput>i</computeroutput>} that are present in the domain are represented by a set bit at the corresponding indices <computeroutput>i</computeroutput>. </para>
     </detaileddescription>
     <inheritancegraph>
+      <node id="2">
+        <label>DiscreteDomain</label>
+      </node>
       <node id="1">
         <label>GQCP::GMullikenDomain&lt; _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_g_mulliken_domain"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
-      </node>
-      <node id="2">
-        <label>DiscreteDomain</label>
       </node>
     </inheritancegraph>
     <collaborationgraph>
+      <node id="2">
+        <label>DiscreteDomain</label>
+      </node>
       <node id="1">
         <label>GQCP::GMullikenDomain&lt; _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_g_mulliken_domain"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="2">
-        <label>DiscreteDomain</label>
-      </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Domain/MullikenDomain/GMullikenDomain.hpp" line="35" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Domain/MullikenDomain/GMullikenDomain.hpp" bodystart="36" bodyend="76"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Domain/MullikenDomain/GMullikenDomain.hpp" line="34" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Domain/MullikenDomain/GMullikenDomain.hpp" bodystart="35" bodyend="75"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_g_mulliken_domain_1a0d02a2043d7b7c266e4bb2e905ad3e67" prot="public" virt="non-virtual"><scope>GQCP::GMullikenDomain</scope><name>partitionMatrix</name></member>
-      <member refid="class_g_q_c_p_1_1_g_mulliken_domain_1aed26aa0fef8f3823bff15384979355f9" prot="public" virt="non-virtual"><scope>GQCP::GMullikenDomain</scope><name>projectionMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_g_mulliken_domain_1a7eddd7be32b5dfaee22ac1d24d83ec2d" prot="public" virt="non-virtual"><scope>GQCP::GMullikenDomain</scope><name>partitionMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_g_mulliken_domain_1a82c17a5801bb6a332ee2d948fe2bd2a2" prot="public" virt="non-virtual"><scope>GQCP::GMullikenDomain</scope><name>projectionMatrix</name></member>
       <member refid="class_g_q_c_p_1_1_g_mulliken_domain_1a188291f6208504cf175d2a37dc4efd0a" prot="public" virt="non-virtual"><scope>GQCP::GMullikenDomain</scope><name>Scalar</name></member>
     </listofallmembers>
   </compounddef>

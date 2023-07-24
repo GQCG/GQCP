@@ -3,11 +3,12 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Installing GQCP(y)</title>
   
   
@@ -18,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -37,18 +38,20 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
@@ -63,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Using GQCP(y)" href="using-gqcp.html" />
     <link rel="prev" title="The Ghent Quantum Chemistry Package" href="../landing-page.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
   
   
@@ -380,68 +383,68 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <p><img alt="Getting started" src="../_images/getting-started.png" /></p>
-<div class="section" id="installing-gqcp-y">
-<h1>Installing GQCP(y)<a class="headerlink" href="#installing-gqcp-y" title="Permalink to this heading">#</a></h1>
+<section id="installing-gqcp-y">
+<h1>Installing GQCP(y)<a class="headerlink" href="#installing-gqcp-y" title="Permalink to this headline">#</a></h1>
 <p>Before discussing GQCP’s capabilities, let’s make sure you’re all set up to use GQCP. We offer installations through <span class="xref myst">conda</span>, <span class="xref myst">Docker</span> (preferred) and <span class="xref myst">Singularity</span>.</p>
-<div class="section" id="installation-through-conda">
-<h2>Installation through conda<a class="headerlink" href="#installation-through-conda" title="Permalink to this heading">#</a></h2>
+<section id="installation-through-conda">
+<h2>Installation through conda<a class="headerlink" href="#installation-through-conda" title="Permalink to this headline">#</a></h2>
 <p>The quickest way to install GQCP is through conda. The following commands create a conda environment called <code class="docutils literal notranslate"><span class="pre">gqcp</span></code> and installs GQCP and its dependencies in it.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>gqcp
-<span class="nb">source</span><span class="w"> </span>activate<span class="w"> </span>gqcp
-conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>gqcg<span class="w"> </span>-c<span class="w"> </span>intel<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>gqcp
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create --name gqcp
+<span class="nb">source</span> activate gqcp
+conda install -c gqcg -c intel -c conda-forge gqcp
 </pre></div>
 </div>
 <p>Since we (still) depend on Libint’s basissets, after installation, you’ll have to set the <code class="docutils literal notranslate"><span class="pre">LIBINT_DATA_PATH</span></code> environment variable to the folder that contains the libint bases. In a default installation (of Libint’s version v2.6.0), the data path is given by:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">LIBINT_DATA_PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">CONDA_PREFIX</span><span class="si">}</span>/share/libint/2.6.0/basis
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">LIBINT_DATA_PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">CONDA_PREFIX</span><span class="si">}</span>/share/libint/2.6.0/basis
 </pre></div>
 </div>
 <p>You will have to either export this environment variable every time you activate the <code class="docutils literal notranslate"><span class="pre">gqcp</span></code> environment or (better) put this export in your .bashrc or (preferred) <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#saving-environment-variables">add this environment variable to your virtual environment</a>.</p>
-</div>
-<div class="section" id="installation-through-docker">
-<h2>Installation through Docker<a class="headerlink" href="#installation-through-docker" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="installation-through-docker">
+<h2>Installation through Docker<a class="headerlink" href="#installation-through-docker" title="Permalink to this headline">#</a></h2>
 <p>First <a class="reference external" href="https://docs.docker.com/get-docker/">install Docker</a>. Then pull our <code class="docutils literal notranslate"><span class="pre">GQCP</span></code> image to the infrastructure in question</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>pull<span class="w"> </span>gqcg/gqcp
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker pull gqcg/gqcp
 </pre></div>
 </div>
 <p>If you bind the correct ports to the container based on that image</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span><span class="m">8888</span>:8888<span class="w"> </span>-it<span class="w"> </span>gqcg/gqcp
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run -p <span class="m">8888</span>:8888 -it gqcg/gqcp
 </pre></div>
 </div>
 <p>you can set up a Jupyter notebook in the Docker container</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter<span class="w"> </span>notebook<span class="w"> </span>--ip<span class="o">=</span><span class="m">0</span>.0.0.0<span class="w"> </span>--no-browser<span class="w"> </span>--allow-root
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter notebook --ip<span class="o">=</span><span class="m">0</span>.0.0.0 --no-browser --allow-root
 </pre></div>
 </div>
 <p>and access that Jupyter notebook in your local browser by looking in the terminal output for the link that begins with <code class="docutils literal notranslate"><span class="pre">127.0.0.1</span></code></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>To<span class="w"> </span>access<span class="w"> </span>the<span class="w"> </span>notebook,<span class="w"> </span>open<span class="w"> </span>this<span class="w"> </span>file<span class="w"> </span><span class="k">in</span><span class="w"> </span>a<span class="w"> </span>browser:
-<span class="w">        </span>file:///root/.local/share/jupyter/runtime/nbserver-24-open.html
-Or<span class="w"> </span>copy<span class="w"> </span>and<span class="w"> </span>paste<span class="w"> </span>one<span class="w"> </span>of<span class="w"> </span>these<span class="w"> </span>URLs:
-<span class="w">        </span>http://a696331630e9:8888/xxxxxx
-<span class="w">     </span>or<span class="w"> </span>http://127.0.0.1:8888/?xxxxxx
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>To access the notebook, open this file <span class="k">in</span> a browser:
+        file:///root/.local/share/jupyter/runtime/nbserver-24-open.html
+Or copy and paste one of these URLs:
+        http://a696331630e9:8888/xxxxxx
+     or http://127.0.0.1:8888/?xxxxxx
 </pre></div>
 </div>
 <p>and copying that link in your browser.</p>
-</div>
-<div class="section" id="installation-through-singularity">
-<h2>Installation through Singularity<a class="headerlink" href="#installation-through-singularity" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="installation-through-singularity">
+<h2>Installation through Singularity<a class="headerlink" href="#installation-through-singularity" title="Permalink to this headline">#</a></h2>
 <p>For HPC systems, <a class="reference external" href="https://sylabs.io/docs/">singularity</a> offers a more secure fork of Docker. Singularity converts Docker images to Singularity images on the fly. For the <a class="reference external" href="https://www.ugent.be/hpc/en">UGent HPC</a> this translates into first making sure <a class="reference external" href="https://vlaams-supercomputing-centrum-vscdocumentation.readthedocs-hosted.com/en/latest/software/singularity.html">that you are able to download and use Singularity images</a></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span><span class="nv">$VSC_SCRATCH</span>/containers
-mkdir<span class="w"> </span><span class="nv">$VSC_SCRATCH</span>/containers/cache
-mkdir<span class="w"> </span><span class="nv">$VSC_SCRATCH</span>/containers/tmp
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir <span class="nv">$VSC_SCRATCH</span>/containers
+mkdir <span class="nv">$VSC_SCRATCH</span>/containers/cache
+mkdir <span class="nv">$VSC_SCRATCH</span>/containers/tmp
 </pre></div>
 </div>
 <p>then you can pull and convert the Docker image in the scratch space</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">SINGULARITY_CACHEDIR</span><span class="o">=</span><span class="nv">$VSC_SCRATCH</span>/containers/cache<span class="w"> </span><span class="nv">SINGULARITY_TMPDIR</span><span class="o">=</span><span class="nv">$VSC_SCRATCH</span>/containers/tmp<span class="w"> </span><span class="nv">SINGULARITY_PULLFOLDER</span><span class="o">=</span><span class="nv">$VSC_SCRATCH</span>/containers<span class="w"> </span>singularity<span class="w"> </span>pull<span class="w"> </span>docker://gqcg/gqcp
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">SINGULARITY_CACHEDIR</span><span class="o">=</span><span class="nv">$VSC_SCRATCH</span>/containers/cache <span class="nv">SINGULARITY_TMPDIR</span><span class="o">=</span><span class="nv">$VSC_SCRATCH</span>/containers/tmp <span class="nv">SINGULARITY_PULLFOLDER</span><span class="o">=</span><span class="nv">$VSC_SCRATCH</span>/containers singularity pull docker://gqcg/gqcp
 </pre></div>
 </div>
 <blockquote>
 <div><p><strong>Note</strong>: The <code class="docutils literal notranslate"><span class="pre">SINGULARITY_*</span></code> variables used above can also be set user wide in your <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code>.</p>
 </div></blockquote>
 <p>After converting the Docker image to a Singularity file you can shell into the resulting <code class="docutils literal notranslate"><span class="pre">*.sif</span></code></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>singularity<span class="w"> </span>shell<span class="w"> </span><span class="nv">$VSC_SCRATCH</span>/containers/gqcp_latest.sif
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>singularity shell <span class="nv">$VSC_SCRATCH</span>/containers/gqcp_latest.sif
 </pre></div>
 </div>
 <p>You can launch a Jupyter notebook with the following command in the Singularity container</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter<span class="w"> </span>notebook<span class="w"> </span>--ip<span class="o">=</span><span class="m">0</span>.0.0.0<span class="w"> </span>--no-browser<span class="w"> </span>--allow-root
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter notebook --ip<span class="o">=</span><span class="m">0</span>.0.0.0 --no-browser --allow-root
 </pre></div>
 </div>
 <p>Note the node number of the cluster on which you are running the container, e.g.:</p>
@@ -450,15 +453,15 @@ mkdir<span class="w"> </span><span class="nv">$VSC_SCRATCH</span>/containers/tmp
 </pre></div>
 </div>
 <p>and set up an SSH tunnel in a separate terminal, such that you can access that notebook from your local browser</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>-J<span class="w"> </span>vsc<span class="o">{</span>xxxxx<span class="o">}</span>@login.hpc.ugent.be<span class="w"> </span>-L<span class="w"> </span><span class="m">8888</span>:localhost:8888<span class="w"> </span>vsc<span class="o">{</span>xxxxx<span class="o">}</span>@node<span class="o">{</span>nnnn<span class="o">}</span>.<span class="o">{</span>cluster<span class="o">}</span>.os
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh -J vsc<span class="o">{</span>xxxxx<span class="o">}</span>@login.hpc.ugent.be -L <span class="m">8888</span>:localhost:8888 vsc<span class="o">{</span>xxxxx<span class="o">}</span>@node<span class="o">{</span>nnnn<span class="o">}</span>.<span class="o">{</span>cluster<span class="o">}</span>.os
 </pre></div>
 </div>
 <p>where <code class="docutils literal notranslate"><span class="pre">{xxxxx}</span></code> is your vsc number, <code class="docutils literal notranslate"><span class="pre">{nnnn}</span></code> is the node number mentioned above and <code class="docutils literal notranslate"><span class="pre">{cluster}</span></code> is the cluster on which your Jupyter notebook is running. After this tunnel has been set up, you can access your notebook through your local browser by using the <code class="docutils literal notranslate"><span class="pre">127.0.0.1:8888</span></code> link mentioned above:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>http://127.0.0.1:8888/?token<span class="o">=</span>a3bf3b8bbb14618586ff6716bfa8f51886ff14d0f5e2c458
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -486,7 +489,10 @@ mkdir<span class="w"> </span><span class="nv">$VSC_SCRATCH</span>/containers/tmp
               
               
                 <footer class="bd-footer-article">
-                  <!-- Previous / next buttons -->
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="../landing-page.html"
@@ -506,7 +512,10 @@ mkdir<span class="w"> </span><span class="nv">$VSC_SCRATCH</span>/containers/tmp
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
@@ -532,7 +541,7 @@ mkdir<span class="w"> </span><span class="nv">$VSC_SCRATCH</span>/containers/tmp
             
           </div>
           <footer class="bd-footer-content">
-            <div class="bd-footer-content__inner">
+            
 <div class="bd-footer-content__inner container">
   
   <div class="footer-item">
@@ -562,7 +571,7 @@ By The Ghent Quantum Chemistry Group
     
   </div>
   
-</div></div>
+</div>
           </footer>
         
 
@@ -571,8 +580,8 @@ By The Ghent Quantum Chemistry Group
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
   </footer>

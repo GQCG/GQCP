@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_c_c_s_d_energy_calculation" kind="class" language="C++" prot="public">
     <compoundname>GQCP::CCSDEnergyCalculation</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_step" prot="public" virt="non-virtual">GQCP::Step&lt; CCSDEnvironment&lt; _Scalar &gt; &gt;</basecompoundref>
@@ -15,6 +15,7 @@
         <definition>using GQCP::CCSDEnergyCalculation&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
         <argsstring></argsstring>
         <name>Scalar</name>
+        <qualifiedname>GQCP::CCSDEnergyCalculation::Scalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -28,6 +29,7 @@
         <definition>using GQCP::CCSDEnergyCalculation&lt; _Scalar &gt;::Environment =  CCSDEnvironment&lt;Scalar&gt;</definition>
         <argsstring></argsstring>
         <name>Environment</name>
+        <qualifiedname>GQCP::CCSDEnergyCalculation::Environment</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -43,6 +45,7 @@
         <definition>std::string GQCP::CCSDEnergyCalculation&lt; _Scalar &gt;::description</definition>
         <argsstring>() const override</argsstring>
         <name>description</name>
+        <qualifiedname>GQCP::CCSDEnergyCalculation::description</qualifiedname>
         <reimplements refid="class_g_q_c_p_1_1_step_1af2276da3e9eef7f8d2049a8aa255b9fb">description</reimplements>
         <briefdescription>
         </briefdescription>
@@ -60,6 +63,7 @@
         <definition>void GQCP::CCSDEnergyCalculation&lt; _Scalar &gt;::execute</definition>
         <argsstring>(Environment &amp;environment) override</argsstring>
         <name>execute</name>
+        <qualifiedname>GQCP::CCSDEnergyCalculation::execute</qualifiedname>
         <param>
           <type><ref refid="class_g_q_c_p_1_1_c_c_s_d_energy_calculation_1ae948c74d396ea92f33fc17b1ccb8fbfb" kindref="member">Environment</ref> &amp;</type>
           <declname>environment</declname>
@@ -100,27 +104,27 @@
 </para>
     </detaileddescription>
     <inheritancegraph>
-      <node id="2">
-        <label>GQCP::Step&lt; CCSDEnvironment&lt; _Scalar &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_step"/>
-      </node>
       <node id="1">
         <label>GQCP::CCSDEnergyCalculation&lt; _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_c_c_s_d_energy_calculation"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::Step&lt; CCSDEnvironment&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="2">
-        <label>GQCP::Step&lt; CCSDEnvironment&lt; _Scalar &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_step"/>
-      </node>
       <node id="1">
         <label>GQCP::CCSDEnergyCalculation&lt; _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_c_c_s_d_energy_calculation"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::Step&lt; CCSDEnvironment&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step"/>
       </node>
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnergyCalculation.hpp" line="34" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnergyCalculation.hpp" bodystart="35" bodyend="72"/>

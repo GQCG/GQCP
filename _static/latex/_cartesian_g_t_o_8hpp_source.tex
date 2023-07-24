@@ -1,0 +1,92 @@
+\hypertarget{_cartesian_g_t_o_8hpp_source}{}\doxysection{Cartesian\+GTO.\+hpp}
+\label{_cartesian_g_t_o_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp}}
+\mbox{\hyperlink{_cartesian_g_t_o_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_cartesian_exponents_8hpp}{Mathematical/Functions/CartesianExponents.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_evaluable_linear_combination_8hpp}{Mathematical/Functions/EvaluableLinearCombination.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_function_8hpp}{Mathematical/Functions/Function.hpp}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_matrix_8hpp}{Mathematical/Representation/Matrix.hpp}}"{}}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{CartesianGTO}}:}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_function}{Function}}<double,\ Vector<double,\ 3>>\ \{}
+\DoxyCodeLine{00039\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ The\ return\ type\ of\ the\ `operator()`.}}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a1c422903d2a3b2fbe5f04794414a5192}{OutputType}}\ =\ double;}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{//\ The\ input\ type\ of\ the\ `operator()`.}}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{InputType}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Vector<double,\ 3>}};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{double}\ gaussian\_exponent;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ exponent\ of\ the\ exponential}}
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents}{CartesianExponents}}\ cartesian\_exponents;\ \ \textcolor{comment}{//\ exponents\ of\ (x-\/X),\ (y-\/Y),\ (z-\/Z)}}
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Vector<double,\ 3>}}\ m\_center;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ center\ of\ the\ GTO\ (X,\ Y,\ Z)}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{comment}{//\ CONSTRUCTORS}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a1bf3c912ca8f57b29f6d768b53f4ff31}{CartesianGTO}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ gaussian\_exponent,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents}{CartesianExponents}}\&\ cartesian\_exponents,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Vector<double,\ 3>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a1e7691184b5896251ea1812e78547ed5}{center}});}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a1bf3c912ca8f57b29f6d768b53f4ff31}{CartesianGTO}}();}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{comment}{//\ OPERATORS}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ad58879bd9fcc2ebbb6292382548c4d4e}{operator()}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Vector<double,\ 3>}}\&\ r)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a1d2981debed95c7be81c1b8380a7e776}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{CartesianGTO}}\&\ other)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{comment}{//\ STATIC\ PUBLIC\ METHODS}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a59333cb8b8aa5cbc9a319195f8b1480f}{calculateNormalizationFactorComponent}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ gaussian\_exponent,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ cartesian\_exponent);}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_aee5504defedb8cf4ad5ed6fc3bc4c357}{calculateNormalizationFactor}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ gaussian\_exponent,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents}{CartesianExponents}}\&\ cartesian\_exponents);}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{comment}{//\ PUBLIC\ METHODS}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents}{CartesianExponents}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ae362602050de10275e3588dbd229785d}{cartesianExponents}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>cartesian\_exponents;\ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00119\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{EvaluableLinearCombination<double,\ CartesianGTO>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a4ec28499af054375b40ea43fe9a594e8}{calculatePositionDerivative}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8}{CartesianDirection}}\ direction)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00124\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Vector<EvaluableLinearCombination<double,\ CartesianGTO>}},\ 3>\ \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_abafaa4cd7a0dd697290db99c2549bfc7}{calculatePositionGradient}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Vector<double,\ 3>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a1e7691184b5896251ea1812e78547ed5}{center}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>m\_center;\ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00134\ \ \ \ \ std::string\ \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a13b07048f2f30318060dff528cbbad55}{description}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ab38b2d462ea81e9755a32d3433642863}{gaussianExponent}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>gaussian\_exponent;\ \}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a91f6a839c472a31e276893eb54693ca5}{normalizationFactor}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_aee5504defedb8cf4ad5ed6fc3bc4c357}{CartesianGTO::calculateNormalizationFactor}}(this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ab38b2d462ea81e9755a32d3433642863}{gaussianExponent}}(),\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ae362602050de10275e3588dbd229785d}{cartesianExponents}}());\ \}}
+\DoxyCodeLine{00145\ \};}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

@@ -35,9 +35,18 @@ Collaboration diagram for GQCP\+::APIGGeminal\+Coefficients\+:
 \item 
 double \mbox{\hyperlink{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_a4362beaed6824f8bff5181620dc00d83}{operator()}} (const size\+\_\+t i, const size\+\_\+t p) const
 \item 
-const \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ double $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_a793c2fe466d0e10c3fd903bf73b62e49}{as\+Matrix}} () const
+const \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ double $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_a654804df9962a00acd643907d7b15d40}{as\+Matrix}} () const
 \item 
 double \mbox{\hyperlink{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_a57b4983a492bc6503a33c711b2174197}{overlap}} (const Spin\+Unresolved\+ONV \&onv) const override
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_geminal_coefficients_interface}{GQCP\+::\+Geminal\+Coefficients\+Interface}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_geminal_coefficients_interface_a4a009b427c91b6297bcb778e891da5a7}{$\sim$\+Geminal\+Coefficients\+Interface}} ()=default
+\item 
+virtual double \mbox{\hyperlink{class_g_q_c_p_1_1_geminal_coefficients_interface_a3be4021a57bdf21adab08a5a4521eb0f}{overlap}} (const Spin\+Unresolved\+ONV \&onv) const =0
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{Linear\+Expansion}}$<$ double, Seniority\+Zero\+ONVBasis $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_geminal_coefficients_interface_a32797287bde862bf2559f3ac73bc56ec}{to\+Linear\+Expansion}} (const Seniority\+Zero\+ONVBasis \&onv\+\_\+basis) const
 \end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
@@ -91,11 +100,11 @@ Constructor that sets the geminal coefficients to zero
 The default destructor. 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_a793c2fe466d0e10c3fd903bf73b62e49}\label{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_a793c2fe466d0e10c3fd903bf73b62e49}} 
+\mbox{\Hypertarget{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_a654804df9962a00acd643907d7b15d40}\label{class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_a654804df9962a00acd643907d7b15d40}} 
 \index{GQCP::APIGGeminalCoefficients@{GQCP::APIGGeminalCoefficients}!asMatrix@{asMatrix}}
 \index{asMatrix@{asMatrix}!GQCP::APIGGeminalCoefficients@{GQCP::APIGGeminalCoefficients}}
 \doxysubsubsection{\texorpdfstring{asMatrix()}{asMatrix()}}
-{\footnotesize\ttfamily const \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$double$>$\& GQCP\+::\+APIGGeminal\+Coefficients\+::as\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ double $>$ \& GQCP\+::\+APIGGeminal\+Coefficients\+::as\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \begin{DoxyReturn}{Returns}
 the geminal coefficients in matrix form 

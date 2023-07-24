@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_integral_calculator" kind="class" language="C++" prot="public">
     <compoundname>GQCP::IntegralCalculator</compoundname>
     <includes refid="_integral_calculator_8hpp" local="no">IntegralCalculator.hpp</includes>
@@ -22,6 +22,7 @@
         <definition>static auto GQCP::IntegralCalculator::calculate</definition>
         <argsstring>(BaseOneElectronIntegralEngine&lt; Shell, N, IntegralScalar &gt; &amp;engine, const ShellSet&lt; Shell &gt; &amp;left_shell_set, const ShellSet&lt; Shell &gt; &amp;right_shell_set) -&gt; std::array&lt; MatrixX&lt; IntegralScalar &gt;, N &gt;</argsstring>
         <name>calculate</name>
+        <qualifiedname>GQCP::IntegralCalculator::calculate</qualifiedname>
         <param>
           <type><ref refid="class_g_q_c_p_1_1_base_one_electron_integral_engine" kindref="compound">BaseOneElectronIntegralEngine</ref>&lt; Shell, N, IntegralScalar &gt; &amp;</type>
           <declname>engine</declname>
@@ -112,6 +113,7 @@
         <definition>static auto GQCP::IntegralCalculator::calculate</definition>
         <argsstring>(BaseTwoElectronIntegralEngine&lt; Shell, N, IntegralScalar &gt; &amp;engine, const ShellSet&lt; Shell &gt; &amp;left_shell_set, const ShellSet&lt; Shell &gt; &amp;right_shell_set) -&gt; std::array&lt; Tensor&lt; IntegralScalar, 4 &gt;, N &gt;</argsstring>
         <name>calculate</name>
+        <qualifiedname>GQCP::IntegralCalculator::calculate</qualifiedname>
         <param>
           <type><ref refid="class_g_q_c_p_1_1_base_two_electron_integral_engine" kindref="compound">BaseTwoElectronIntegralEngine</ref>&lt; Shell, N, IntegralScalar &gt; &amp;</type>
           <declname>engine</declname>
@@ -184,16 +186,17 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="113" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="113" bodyend="162"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_calculator_1a22ede51fbb3db63443ccfc14bee0a049" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_calculator_1a1e7dd209c9fac23b0f298cac64ac7696" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename FQOneElectronOperator</type>
           </param>
         </templateparamlist>
         <type><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix</ref>&lt; double &gt;</type>
-        <definition>static Matrix&lt;double&gt; GQCP::IntegralCalculator::calculateLibintIntegrals</definition>
+        <definition>static Matrix&lt; double &gt; GQCP::IntegralCalculator::calculateLibintIntegrals</definition>
         <argsstring>(const FQOneElectronOperator &amp;fq_one_op, const ScalarBasis&lt; GTOShell &gt; &amp;left_scalar_basis, const ScalarBasis&lt; GTOShell &gt; &amp;right_scalar_basis)</argsstring>
         <name>calculateLibintIntegrals</name>
+        <qualifiedname>GQCP::IntegralCalculator::calculateLibintIntegrals</qualifiedname>
         <param>
           <type>const FQOneElectronOperator &amp;</type>
           <declname>fq_one_op</declname>
@@ -252,16 +255,17 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="181" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="181" bodyend="195"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_calculator_1a7bd1eea9e12d51c8212b2d5fdaa0df40" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_calculator_1a85f9a357aa012d805d6bd2f9d0f70b72" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename FQOneElectronOperator</type>
           </param>
         </templateparamlist>
         <type><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; double &gt;</type>
-        <definition>static SquareMatrix&lt;double&gt; GQCP::IntegralCalculator::calculateLibintIntegrals</definition>
+        <definition>static SquareMatrix&lt; double &gt; GQCP::IntegralCalculator::calculateLibintIntegrals</definition>
         <argsstring>(const FQOneElectronOperator &amp;fq_one_op, const ScalarBasis&lt; GTOShell &gt; &amp;scalar_basis)</argsstring>
         <name>calculateLibintIntegrals</name>
+        <qualifiedname>GQCP::IntegralCalculator::calculateLibintIntegrals</qualifiedname>
         <param>
           <type>const FQOneElectronOperator &amp;</type>
           <declname>fq_one_op</declname>
@@ -308,11 +312,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="209" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="209" bodyend="212"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_calculator_1ad0b15cb4f0dd307f1a946792384673f2" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_calculator_1adf5dc6a6c2f6a1f6fed869d01cd3ccc8" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>std::array&lt; <ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Matrix</ref>&lt; double &gt;, 3 &gt;</type>
-        <definition>static std::array&lt;Matrix&lt;double&gt;, 3&gt; GQCP::IntegralCalculator::calculateLibintIntegrals</definition>
+        <definition>static std::array&lt; Matrix&lt; double &gt;, 3 &gt; GQCP::IntegralCalculator::calculateLibintIntegrals</definition>
         <argsstring>(const ElectronicDipoleOperator &amp;fq_one_op, const ScalarBasis&lt; GTOShell &gt; &amp;left_scalar_basis, const ScalarBasis&lt; GTOShell &gt; &amp;right_scalar_basis)</argsstring>
         <name>calculateLibintIntegrals</name>
+        <qualifiedname>GQCP::IntegralCalculator::calculateLibintIntegrals</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_electronic_dipole_operator" kindref="compound">ElectronicDipoleOperator</ref> &amp;</type>
           <declname>fq_one_op</declname>
@@ -362,11 +367,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="224" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="224" bodyend="238"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_calculator_1a5bf2580e445a1a802155e0ba352a5a4e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_calculator_1a1c33282395d38bae287e656abe78433e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>std::array&lt; <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; double &gt;, 3 &gt;</type>
-        <definition>static std::array&lt;SquareMatrix&lt;double&gt;, 3&gt; GQCP::IntegralCalculator::calculateLibintIntegrals</definition>
+        <definition>static std::array&lt; SquareMatrix&lt; double &gt;, 3 &gt; GQCP::IntegralCalculator::calculateLibintIntegrals</definition>
         <argsstring>(const ElectronicDipoleOperator &amp;fq_one_op, const ScalarBasis&lt; GTOShell &gt; &amp;scalar_basis)</argsstring>
         <name>calculateLibintIntegrals</name>
+        <qualifiedname>GQCP::IntegralCalculator::calculateLibintIntegrals</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_electronic_dipole_operator" kindref="compound">ElectronicDipoleOperator</ref> &amp;</type>
           <declname>fq_one_op</declname>
@@ -404,11 +410,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="249" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="249" bodyend="259"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_calculator_1a10887381671314dd68e323e62a83226f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_calculator_1a9ea41690d60939e90f4b61825844614d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor</ref>&lt; double &gt;</type>
-        <definition>static SquareRankFourTensor&lt;double&gt; GQCP::IntegralCalculator::calculateLibintIntegrals</definition>
+        <definition>static SquareRankFourTensor&lt; double &gt; GQCP::IntegralCalculator::calculateLibintIntegrals</definition>
         <argsstring>(const CoulombRepulsionOperator &amp;fq_two_op, const ScalarBasis&lt; GTOShell &gt; &amp;scalar_basis)</argsstring>
         <name>calculateLibintIntegrals</name>
+        <qualifiedname>GQCP::IntegralCalculator::calculateLibintIntegrals</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" kindref="compound">CoulombRepulsionOperator</ref> &amp;</type>
           <declname>fq_two_op</declname>
@@ -446,11 +453,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="270" column="33" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="270" bodyend="273"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_calculator_1a7ca1915303a249a751dc46fb4552617f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_calculator_1aa9e254435ea42902c1fdf3e5dfffe4f4" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">Tensor</ref>&lt; double, 4 &gt;</type>
-        <definition>static Tensor&lt;double, 4&gt; GQCP::IntegralCalculator::calculateLibintIntegrals</definition>
+        <definition>static Tensor&lt; double, 4 &gt; GQCP::IntegralCalculator::calculateLibintIntegrals</definition>
         <argsstring>(const CoulombRepulsionOperator &amp;fq_two_op, const ScalarBasis&lt; GTOShell &gt; &amp;left_scalar_basis, const ScalarBasis&lt; GTOShell &gt; &amp;right_scalar_basis)</argsstring>
         <name>calculateLibintIntegrals</name>
+        <qualifiedname>GQCP::IntegralCalculator::calculateLibintIntegrals</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" kindref="compound">CoulombRepulsionOperator</ref> &amp;</type>
           <declname>fq_two_op</declname>
@@ -500,16 +508,17 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="285" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="285" bodyend="299"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_calculator_1aac73e6f31105eac4c38cd187178f9519" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_calculator_1a1327d456f1ad27766dc3bd253dd04e45" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename FQOneElectronOperator</type>
           </param>
         </templateparamlist>
         <type><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; double &gt;</type>
-        <definition>static SquareMatrix&lt;double&gt; GQCP::IntegralCalculator::calculateLibcintIntegrals</definition>
+        <definition>static SquareMatrix&lt; double &gt; GQCP::IntegralCalculator::calculateLibcintIntegrals</definition>
         <argsstring>(const FQOneElectronOperator &amp;fq_one_op, const ScalarBasis&lt; GTOShell &gt; &amp;scalar_basis)</argsstring>
         <name>calculateLibcintIntegrals</name>
+        <qualifiedname>GQCP::IntegralCalculator::calculateLibcintIntegrals</qualifiedname>
         <param>
           <type>const FQOneElectronOperator &amp;</type>
           <declname>fq_one_op</declname>
@@ -558,11 +567,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="320" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="320" bodyend="327"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_calculator_1a96408c2f33740b4790122c63f2ecc965" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_calculator_1a6c446c0cfd41c2718c918ca137855522" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>std::array&lt; <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; double &gt;, 3 &gt;</type>
-        <definition>static std::array&lt;SquareMatrix&lt;double&gt;, 3&gt; GQCP::IntegralCalculator::calculateLibcintIntegrals</definition>
+        <definition>static std::array&lt; SquareMatrix&lt; double &gt;, 3 &gt; GQCP::IntegralCalculator::calculateLibcintIntegrals</definition>
         <argsstring>(const ElectronicDipoleOperator &amp;fq_one_op, const ScalarBasis&lt; GTOShell &gt; &amp;scalar_basis)</argsstring>
         <name>calculateLibcintIntegrals</name>
+        <qualifiedname>GQCP::IntegralCalculator::calculateLibcintIntegrals</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_electronic_dipole_operator" kindref="compound">ElectronicDipoleOperator</ref> &amp;</type>
           <declname>fq_one_op</declname>
@@ -602,11 +612,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" line="340" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralCalculator.hpp" bodystart="340" bodyend="347"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_calculator_1ae24e36b858b4c464ce16b8483df25dda" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_calculator_1aab673a0a89ab22100feb6b17d94c4027" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor</ref>&lt; double &gt;</type>
-        <definition>static SquareRankFourTensor&lt;double&gt; GQCP::IntegralCalculator::calculateLibcintIntegrals</definition>
+        <definition>static SquareRankFourTensor&lt; double &gt; GQCP::IntegralCalculator::calculateLibcintIntegrals</definition>
         <argsstring>(const CoulombRepulsionOperator &amp;fq_op, const ScalarBasis&lt; GTOShell &gt; &amp;scalar_basis)</argsstring>
         <name>calculateLibcintIntegrals</name>
+        <qualifiedname>GQCP::IntegralCalculator::calculateLibcintIntegrals</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" kindref="compound">CoulombRepulsionOperator</ref> &amp;</type>
           <declname>fq_op</declname>
@@ -662,15 +673,15 @@
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_integral_calculator_1ad04f586e4635103bc9f61fc573811eb3" prot="public" virt="non-virtual"><scope>GQCP::IntegralCalculator</scope><name>calculate</name></member>
       <member refid="class_g_q_c_p_1_1_integral_calculator_1aab8c12c103101dad574031123584203a" prot="public" virt="non-virtual"><scope>GQCP::IntegralCalculator</scope><name>calculate</name></member>
-      <member refid="class_g_q_c_p_1_1_integral_calculator_1aac73e6f31105eac4c38cd187178f9519" prot="public" virt="non-virtual"><scope>GQCP::IntegralCalculator</scope><name>calculateLibcintIntegrals</name></member>
-      <member refid="class_g_q_c_p_1_1_integral_calculator_1a96408c2f33740b4790122c63f2ecc965" prot="public" virt="non-virtual"><scope>GQCP::IntegralCalculator</scope><name>calculateLibcintIntegrals</name></member>
-      <member refid="class_g_q_c_p_1_1_integral_calculator_1ae24e36b858b4c464ce16b8483df25dda" prot="public" virt="non-virtual"><scope>GQCP::IntegralCalculator</scope><name>calculateLibcintIntegrals</name></member>
-      <member refid="class_g_q_c_p_1_1_integral_calculator_1a22ede51fbb3db63443ccfc14bee0a049" prot="public" virt="non-virtual"><scope>GQCP::IntegralCalculator</scope><name>calculateLibintIntegrals</name></member>
-      <member refid="class_g_q_c_p_1_1_integral_calculator_1a7bd1eea9e12d51c8212b2d5fdaa0df40" prot="public" virt="non-virtual"><scope>GQCP::IntegralCalculator</scope><name>calculateLibintIntegrals</name></member>
-      <member refid="class_g_q_c_p_1_1_integral_calculator_1ad0b15cb4f0dd307f1a946792384673f2" prot="public" virt="non-virtual"><scope>GQCP::IntegralCalculator</scope><name>calculateLibintIntegrals</name></member>
-      <member refid="class_g_q_c_p_1_1_integral_calculator_1a5bf2580e445a1a802155e0ba352a5a4e" prot="public" virt="non-virtual"><scope>GQCP::IntegralCalculator</scope><name>calculateLibintIntegrals</name></member>
-      <member refid="class_g_q_c_p_1_1_integral_calculator_1a10887381671314dd68e323e62a83226f" prot="public" virt="non-virtual"><scope>GQCP::IntegralCalculator</scope><name>calculateLibintIntegrals</name></member>
-      <member refid="class_g_q_c_p_1_1_integral_calculator_1a7ca1915303a249a751dc46fb4552617f" prot="public" virt="non-virtual"><scope>GQCP::IntegralCalculator</scope><name>calculateLibintIntegrals</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_calculator_1a1327d456f1ad27766dc3bd253dd04e45" prot="public" virt="non-virtual"><scope>GQCP::IntegralCalculator</scope><name>calculateLibcintIntegrals</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_calculator_1a6c446c0cfd41c2718c918ca137855522" prot="public" virt="non-virtual"><scope>GQCP::IntegralCalculator</scope><name>calculateLibcintIntegrals</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_calculator_1aab673a0a89ab22100feb6b17d94c4027" prot="public" virt="non-virtual"><scope>GQCP::IntegralCalculator</scope><name>calculateLibcintIntegrals</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_calculator_1a1e7dd209c9fac23b0f298cac64ac7696" prot="public" virt="non-virtual"><scope>GQCP::IntegralCalculator</scope><name>calculateLibintIntegrals</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_calculator_1a85f9a357aa012d805d6bd2f9d0f70b72" prot="public" virt="non-virtual"><scope>GQCP::IntegralCalculator</scope><name>calculateLibintIntegrals</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_calculator_1adf5dc6a6c2f6a1f6fed869d01cd3ccc8" prot="public" virt="non-virtual"><scope>GQCP::IntegralCalculator</scope><name>calculateLibintIntegrals</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_calculator_1a1c33282395d38bae287e656abe78433e" prot="public" virt="non-virtual"><scope>GQCP::IntegralCalculator</scope><name>calculateLibintIntegrals</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_calculator_1a9ea41690d60939e90f4b61825844614d" prot="public" virt="non-virtual"><scope>GQCP::IntegralCalculator</scope><name>calculateLibintIntegrals</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_calculator_1aa9e254435ea42902c1fdf3e5dfffe4f4" prot="public" virt="non-virtual"><scope>GQCP::IntegralCalculator</scope><name>calculateLibintIntegrals</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

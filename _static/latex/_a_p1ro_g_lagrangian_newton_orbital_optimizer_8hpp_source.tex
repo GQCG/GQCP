@@ -1,0 +1,76 @@
+\hypertarget{_a_p1ro_g_lagrangian_newton_orbital_optimizer_8hpp_source}{}\doxysection{AP1ro\+GLagrangian\+Newton\+Orbital\+Optimizer.\+hpp}
+\label{_a_p1ro_g_lagrangian_newton_orbital_optimizer_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGLagrangianNewtonOrbitalOptimizer.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGLagrangianNewtonOrbitalOptimizer.hpp}}
+\mbox{\hyperlink{_a_p1ro_g_lagrangian_newton_orbital_optimizer_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_implicit_matrix_slice_8hpp}{Mathematical/Representation/ImplicitMatrixSlice.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_q_c_method_newton_orbital_optimizer_8hpp}{QCMethod/OrbitalOptimization/QCMethodNewtonOrbitalOptimizer.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_a_p1ro_g_geminal_coefficients_8hpp}{QCModel/Geminals/AP1roGGeminalCoefficients.hpp}}"{}}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer}{AP1roGLagrangianNewtonOrbitalOptimizer}}:\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer}{QCMethodNewtonOrbitalOptimizer}}\ \{}
+\DoxyCodeLine{00030\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ N\_P;\ \ \textcolor{comment}{//\ the\ number\ of\ electron\ pairs}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{double}\ pse\_convergence\_threshold;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ threshold\ used\ to\ check\ for\ convergence\ on\ the\ geminal\ coefficients}}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ pse\_maximum\_number\_of\_iterations;\ \ \textcolor{comment}{//\ maximum\ number\ of\ Newton\ steps\ that\ may\ be\ used\ to\ achieve\ convergence\ of\ the\ PSEs}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{double}\ E;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ electronic\ energy}}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients}{AP1roGGeminalCoefficients}}\ G;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ current\ geminal\ coefficients}}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{ImplicitMatrixSlice<double>}}\ m\_multipliers;\ \ \textcolor{comment}{//\ the\ current\ Lagrangian\ m\_multipliers}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{comment}{//\ CONSTRUCTORS}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer}{AP1roGLagrangianNewtonOrbitalOptimizer}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ N\_P,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ K,\ std::shared\_ptr<BaseHessianModifier>\ \mbox{\hyperlink{class_g_q_c_p_1_1_newton_orbital_optimizer_ad31068b230ffb38e97432624120c4318}{hessian\_modifier}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ oo\_convergence\_threshold\ =\ 1.0e-\/08,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ oo\_maximum\_number\_of\_iterations\ =\ 128,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ pse\_convergence\_threshold\ =\ 1.0e-\/08,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ pse\_maximum\_number\_of\_iterations\ =\ 128);}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00065\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer}{AP1roGLagrangianNewtonOrbitalOptimizer}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients}{AP1roGGeminalCoefficients}}\&\ G,\ std::shared\_ptr<BaseHessianModifier>\ \mbox{\hyperlink{class_g_q_c_p_1_1_newton_orbital_optimizer_ad31068b230ffb38e97432624120c4318}{hessian\_modifier}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ oo\_convergence\_threshold\ =\ 1.0e-\/08,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ oo\_maximum\_number\_of\_iterations\ =\ 128,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ pse\_convergence\_threshold\ =\ 1.0e-\/08,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ pse\_maximum\_number\_of\_iterations\ =\ 128);}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//\ PUBLIC\ OVERRIDDEN\ METHODS}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_a5c8c974c787553a88daeaf850210229f}{prepareDMCalculation}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{RSQHamiltonian<double>}}\&\ sq\_hamiltonian)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00080\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital1_d_m}{Orbital1DM<double>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_afdaf6eb8496913f79d26692f65d07317}{calculate1DM}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00085\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital2_d_m}{Orbital2DM<double>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_a1931e33efbb95070899b100d8db336a2}{calculate2DM}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00094\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_r_orbital_rotation_generators}{ROrbitalRotationGenerators<double>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_a61ef08393d6a025ffaf3e12a93902511}{calculateNewFullOrbitalGenerators}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{RSQHamiltonian<double>}}\&\ sq\_hamiltonian)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{comment}{//\ PUBLIC\ METHODS}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_a69ab60b9b58343f58660e2bfe8576920}{electronicEnergy}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>E;\ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients}{AP1roGGeminalCoefficients}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_a5f0b7be4a0e78d038f9b685928820632}{geminalCoefficients}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>G;\ \}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{ImplicitMatrixSlice<double>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_af20928ea8100fa1f7d893ee1e9ded08c}{multipliers}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>m\_multipliers;\ \}}
+\DoxyCodeLine{00113\ \};}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

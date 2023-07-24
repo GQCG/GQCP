@@ -1,0 +1,184 @@
+\hypertarget{_u_transformation_8hpp_source}{}\doxysection{UTransformation.\+hpp}
+\label{_u_transformation_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Basis/Transformations/UTransformation.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Basis/Transformations/UTransformation.hpp}}
+\mbox{\hyperlink{_u_transformation_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_r_transformation_8hpp}{Basis/Transformations/RTransformation.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_spin_resolved_basis_transformable_8hpp}{Basis/Transformations/SpinResolvedBasisTransformable.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_spin_resolved_jacobi_rotatable_8hpp}{Basis/Transformations/SpinResolvedJacobiRotatable.hpp}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_u_orbital_rotation_generators_8hpp}{Basis/Transformations/UOrbitalRotationGenerators.hpp}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_u_transformation_component_8hpp}{Basis/Transformations/UTransformationComponent.hpp}}"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_spin_resolved_base_8hpp}{QuantumChemical/SpinResolvedBase.hpp}}"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{complex_8hpp}{Utilities/complex.hpp}}"{}}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ *\ \ MARK:\ UTransformation\ implementation}}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar>}
+\DoxyCodeLine{00043\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation}}:}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base}{SpinResolvedBase}}<UTransformationComponent<\_Scalar>,\ UTransformation<\_Scalar>>,}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_basis_transformable}{SpinResolvedBasisTransformable}}<UTransformation<\_Scalar>>,}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable}{SpinResolvedJacobiRotatable}}<UTransformation<\_Scalar>>\ \{}
+\DoxyCodeLine{00047\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{comment}{//\ The\ scalar\ type\ used\ for\ a\ transformation\ coefficient:\ real\ or\ complex.}}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation_a9a799d48140d4c8f232256403ae42a23}{Scalar}}\ =\ \_Scalar;}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ the\ transformation\ for\ which\ the\ basis\ transformation\ should\ be\ defined.\ A\ transformation\ should\ naturally\ be\ transformable\ with\ itself.}}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{Transformation}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<Scalar>}};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ 'this'.}}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{Self}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<Scalar>}};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{//\ The\ type\ component\ this\ spin\ resolved\ object\ is\ made\ of.}}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation_afe0020816f13d44d1ef0259488538c57}{ComponentType}}\ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base}{SpinResolvedBase<UTransformationComponent<Scalar>}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{Self}}>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a012e7533770449f494a6066c36bd835a}{::Of}};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00063\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Constructors}}
+\DoxyCodeLine{00064\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{comment}{//\ Inherit\ `SpinResolvedBase`'s\ constructors.}}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base}{SpinResolvedBase}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation_component}{UTransformationComponent<Scalar>}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<Scalar>}}>::SpinResolvedBase;}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00071\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Named\ constructors}}
+\DoxyCodeLine{00072\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation_ab918e4066139eef58ea5763d6b7cf45a}{FromRestricted}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{RTransformation<Scalar>}}\&\ T)\ \{}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Wrap\ the\ restricted\ transformation\ in\ the\ correct\ class\ and\ return\ the\ result.}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation_component}{UTransformationComponent<Scalar>}}\ T\_component\ \{T.\mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_a644af38c173e77dc21e4dc4306916bd0}{matrix}}()\};}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_ad684026f9ce2481de03ed06267365e46}{UTransformation<Scalar>::FromEqual}}(T\_component);}
+\DoxyCodeLine{00086\ \ \ \ \ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation_af563f2e3fe15537dfd1426e4968ad46b}{Identity}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ dim\_alpha,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ dim\_beta)\ \{}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ T\_alpha\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_af9eb142b5ae58396440fbb408d029d4c}{UTransformationComponent<Scalar>::Identity}}(dim\_alpha);}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ T\_beta\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_af9eb142b5ae58396440fbb408d029d4c}{UTransformationComponent<Scalar>::Identity}}(dim\_beta);}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<Scalar>}}\ \{T\_alpha,\ T\_beta\};}
+\DoxyCodeLine{00103\ \ \ \ \ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation_a80e1df50b2c6c8969319d9ba543c97c2}{Identity}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ dim)\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation_af563f2e3fe15537dfd1426e4968ad46b}{UTransformation<Scalar>::Identity}}(dim,\ dim);\ \}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation_a01f9e2567886b1ff8183f9588ad1e284}{Random}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ dim)\ \{}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ T\_alpha\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_a66165a4d5eb2217a80196d6d34a27023}{UTransformationComponent<Scalar>::Random}}(dim);}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ T\_beta\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_a66165a4d5eb2217a80196d6d34a27023}{UTransformationComponent<Scalar>::Random}}(dim);}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<Scalar>}}\ \{T\_alpha,\ T\_beta\};}
+\DoxyCodeLine{00129\ \ \ \ \ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation_a04ae4f23f106cf2aedc54b29904ca1a3}{RandomUnitary}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ dim)\ \{}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ T\_alpha\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_af94648942e1be2a5929462fd48daea27}{UTransformationComponent<Scalar>::RandomUnitary}}(dim);}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ T\_beta\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_af94648942e1be2a5929462fd48daea27}{UTransformationComponent<Scalar>::RandomUnitary}}(dim);}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<Scalar>}}\ \{T\_alpha,\ T\_beta\};}
+\DoxyCodeLine{00145\ \ \ \ \ \}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00149\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Linear\ algebraic\ operations}}
+\DoxyCodeLine{00150\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation_af5d7afb90614dcbbb21dac514ac9a562}{isUnitary}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ threshold)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_a69eb192652259a3c7894b873aba818a1}{isUnitary}}(threshold)\ \&\&\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_a69eb192652259a3c7894b873aba818a1}{isUnitary}}(threshold);\ \}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00163\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation_a584dac33b20bbe46072f005a4af26835}{inverse}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ result\ =\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ inverse\ of\ this\ compound\ transformation\ is\ the\ transformation\ where\ the\ alpha-\/\ and\ beta-\/transformations\ are\ inverted.}}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ result.\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}()\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_a5f36fc890460cc7c7a64eee376261c54}{inverse}}();}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ result.beta()\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_a5f36fc890460cc7c7a64eee376261c54}{inverse}}();}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00172\ \ \ \ \ \}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{comment}{//\ Since\ `rotate`\ and\ `rotated`\ are\ both\ defined\ in\ `SpinResolvedBasisTransformable`\ and\ `SpinResolvedJacobiRotatable`,\ we\ have\ to\ explicitly\ enable\ these\ methods\ here.}}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{comment}{//\ Allow\ the\ `rotate`\ method\ from\ `SpinResolvedBasisTransformable`,\ since\ there's\ also\ a\ `rotate`\ from\ `SpinResolvedJacobiRotatable`.}}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_basis_transformable}{SpinResolvedBasisTransformable}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation_a3fc6764af11dd553eba4f81a7eb1d97f}{Self}}>\mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_a2e107bd3cf4d603c003c8cb9357d0094}{::rotate}};}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{comment}{//\ Allow\ the\ `rotated`\ method\ from\ `SpinResolvedBasisTransformable`,\ since\ there's\ also\ a\ `rotated`\ from\ `SpinResolvedJacobiRotatable`.}}
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_basis_transformable}{SpinResolvedBasisTransformable}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation_a3fc6764af11dd553eba4f81a7eb1d97f}{Self}}>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable_aff0df03f6211a4ee332e53c7f917066d}{::rotated}};}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{comment}{//\ Allow\ the\ `rotate`\ method\ from\ `SpinResolvedJacobiRotatable`,\ since\ there's\ also\ a\ `rotate`\ from\ `SpinResolvedBasisTransformable`.}}
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable}{SpinResolvedJacobiRotatable}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation_a3fc6764af11dd553eba4f81a7eb1d97f}{Self}}>\mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_a2e107bd3cf4d603c003c8cb9357d0094}{::rotate}};}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{comment}{//\ Allow\ the\ `rotated`\ method\ from\ `SpinResolvedJacobiRotatable`,\ since\ there's\ also\ a\ `rotated`\ from\ `SpinResolvedBasisTransformable`.}}
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable}{SpinResolvedJacobiRotatable}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation_a3fc6764af11dd553eba4f81a7eb1d97f}{Self}}>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable_aff0df03f6211a4ee332e53c7f917066d}{::rotated}};}
+\DoxyCodeLine{00192\ \};}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00196\ \textcolor{comment}{\ *\ \ MARK:\ BasisTransformableTraits}}
+\DoxyCodeLine{00197\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00202\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00203\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_g_q_c_p_1_1_basis_transformable_traits}{BasisTransformableTraits}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation}}<Scalar>>\ \{}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ the\ transformation\ for\ which\ the\ basis\ transformation\ should\ be\ defined.\ A\ transformation\ matrix\ should\ naturally\ be\ transformable\ with\ itself.}}
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{Transformation}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<Scalar>}};}
+\DoxyCodeLine{00207\ \};}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00211\ \textcolor{comment}{\ *\ \ MARK:\ JacobiRotatableTraits}}
+\DoxyCodeLine{00212\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00217\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00218\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_g_q_c_p_1_1_jacobi_rotatable_traits}{JacobiRotatableTraits}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation}}<Scalar>>\ \{}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ Jacobi\ rotation\ for\ which\ the\ Jacobi\ rotation\ should\ be\ defined.}}
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_u_jacobi_rotation}{JacobiRotationType}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_jacobi_rotation}{UJacobiRotation}};}
+\DoxyCodeLine{00222\ \};}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00226\ \textcolor{comment}{\ *\ \ MARK:\ OrbitalRotationGeneratorTraits}}
+\DoxyCodeLine{00227\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00232\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00233\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_g_q_c_p_1_1_orbital_rotation_generator_traits}{OrbitalRotationGeneratorTraits}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation}}<Scalar>>\ \{}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ orbital\ rotation\ generators\ associated\ with\ a\ `UTransformation`.}}
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_u_orbital_rotation_generators}{OrbitalRotationGenerators}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_orbital_rotation_generators}{UOrbitalRotationGenerators<Scalar>}};}
+\DoxyCodeLine{00237\ \};}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

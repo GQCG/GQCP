@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator" kind="class" language="C++" prot="public">
     <compoundname>GQCP::EvaluableUSQOneElectronOperator</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_spin_resolved_base" prot="public" virt="non-virtual">GQCP::SpinResolvedBase&lt; EvaluableUSQOneElectronOperatorComponent&lt; _FunctionType, _Vectorizer &gt;, EvaluableUSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt; &gt;</basecompoundref>
@@ -18,6 +18,7 @@
         <definition>using GQCP::EvaluableUSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt;::FunctionType =  _FunctionType</definition>
         <argsstring></argsstring>
         <name>FunctionType</name>
+        <qualifiedname>GQCP::EvaluableUSQOneElectronOperator::FunctionType</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -31,6 +32,7 @@
         <definition>using GQCP::EvaluableUSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt;::Vectorizer =  _Vectorizer</definition>
         <argsstring></argsstring>
         <name>Vectorizer</name>
+        <qualifiedname>GQCP::EvaluableUSQOneElectronOperator::Vectorizer</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -44,6 +46,7 @@
         <definition>using GQCP::EvaluableUSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt;::OutputType =  typename _FunctionType::OutputType</definition>
         <argsstring></argsstring>
         <name>OutputType</name>
+        <qualifiedname>GQCP::EvaluableUSQOneElectronOperator::OutputType</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -57,6 +60,7 @@
         <definition>using GQCP::EvaluableUSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt;::InputType =  typename _FunctionType::InputType</definition>
         <argsstring></argsstring>
         <name>InputType</name>
+        <qualifiedname>GQCP::EvaluableUSQOneElectronOperator::InputType</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -67,11 +71,12 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_1a20a4924f3f6b00dec847eb6c3d2bd1a0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_1ab1f1e2339adec3cd557f44b581a86673" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator" kindref="compound">USQOneElectronOperator</ref>&lt; <ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_1aac3af5956ea428bf3409426c43af6197" kindref="member">OutputType</ref>, <ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_1a7d7a3e2ab8e2c6cf35fc36c7156254bb" kindref="member">Vectorizer</ref> &gt;</type>
-        <definition>USQOneElectronOperator&lt;OutputType, Vectorizer&gt; GQCP::EvaluableUSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt;::evaluate</definition>
+        <definition>USQOneElectronOperator&lt; OutputType, Vectorizer &gt; GQCP::EvaluableUSQOneElectronOperator&lt; _FunctionType, _Vectorizer &gt;::evaluate</definition>
         <argsstring>(const InputType &amp;in) const</argsstring>
         <name>evaluate</name>
+        <qualifiedname>GQCP::EvaluableUSQOneElectronOperator::evaluate</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_1ae9bb46256357eb68af6a56637f594eb4" kindref="member">InputType</ref> &amp;</type>
           <declname>in</declname>
@@ -147,14 +152,14 @@
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableUSQOneElectronOperator.hpp" line="36" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableUSQOneElectronOperator.hpp" bodystart="37" bodyend="79"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" prot="public" virt="non-virtual"><scope>GQCP::EvaluableUSQOneElectronOperator</scope><name>alpha</name></member>
-      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ae1f7d908f2044e5fddd333eb5ef40a7c" prot="public" virt="non-virtual"><scope>GQCP::EvaluableUSQOneElectronOperator</scope><name>alpha</name></member>
-      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" prot="public" virt="non-virtual"><scope>GQCP::EvaluableUSQOneElectronOperator</scope><name>beta</name></member>
-      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a072002b440456d996f8807898914f45c" prot="public" virt="non-virtual"><scope>GQCP::EvaluableUSQOneElectronOperator</scope><name>beta</name></member>
-      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a8f13ccdbe2b4db4f070e8eb81796f938" prot="public" virt="non-virtual"><scope>GQCP::EvaluableUSQOneElectronOperator</scope><name>component</name></member>
-      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a4c4f9f34b2517b877bd93d5bd884f855" prot="public" virt="non-virtual"><scope>GQCP::EvaluableUSQOneElectronOperator</scope><name>component</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1accab13c5e8be1be72246ab1fe440cc1a" prot="public" virt="non-virtual"><scope>GQCP::EvaluableUSQOneElectronOperator</scope><name>alpha</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a1dfb8ca22ac80e83c47db5b7dc3ddd44" prot="public" virt="non-virtual"><scope>GQCP::EvaluableUSQOneElectronOperator</scope><name>alpha</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a070d0be1f00ac25b16c623e6679bb0f6" prot="public" virt="non-virtual"><scope>GQCP::EvaluableUSQOneElectronOperator</scope><name>beta</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a9874eb94be81b82ff933f14532cea3c2" prot="public" virt="non-virtual"><scope>GQCP::EvaluableUSQOneElectronOperator</scope><name>beta</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1abc73c03917a9bc4469007c832b7dc8d0" prot="public" virt="non-virtual"><scope>GQCP::EvaluableUSQOneElectronOperator</scope><name>component</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a091d5449d9bedc3d2b8c63b1a54dce30" prot="public" virt="non-virtual"><scope>GQCP::EvaluableUSQOneElectronOperator</scope><name>component</name></member>
       <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a6074bc4e9b29958b9fb2ade214182b42" prot="public" virt="non-virtual"><scope>GQCP::EvaluableUSQOneElectronOperator</scope><name>Derived</name></member>
-      <member refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_1a20a4924f3f6b00dec847eb6c3d2bd1a0" prot="public" virt="non-virtual"><scope>GQCP::EvaluableUSQOneElectronOperator</scope><name>evaluate</name></member>
+      <member refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_1ab1f1e2339adec3cd557f44b581a86673" prot="public" virt="non-virtual"><scope>GQCP::EvaluableUSQOneElectronOperator</scope><name>evaluate</name></member>
       <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ad684026f9ce2481de03ed06267365e46" prot="public" virt="non-virtual"><scope>GQCP::EvaluableUSQOneElectronOperator</scope><name>FromEqual</name></member>
       <member refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_1a987b63fbb733179fd3163b6e61fd7b5d" prot="public" virt="non-virtual"><scope>GQCP::EvaluableUSQOneElectronOperator</scope><name>FunctionType</name></member>
       <member refid="class_g_q_c_p_1_1_evaluable_u_s_q_one_electron_operator_1ae9bb46256357eb68af6a56637f594eb4" prot="public" virt="non-virtual"><scope>GQCP::EvaluableUSQOneElectronOperator</scope><name>InputType</name></member>

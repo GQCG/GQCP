@@ -1,0 +1,64 @@
+\hypertarget{_g_mulliken_domain_8hpp_source}{}\doxysection{GMulliken\+Domain.\+hpp}
+\label{_g_mulliken_domain_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Domain/MullikenDomain/GMullikenDomain.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Domain/MullikenDomain/GMullikenDomain.hpp}}
+\mbox{\hyperlink{_g_mulliken_domain_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_g_transformation_8hpp}{Basis/Transformations/GTransformation.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}Domain/DiscreteDomain.hpp"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_square_matrix_8hpp}{Mathematical/Representation/SquareMatrix.hpp}}"{}}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar>}
+\DoxyCodeLine{00034\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_g_mulliken_domain}{GMullikenDomain}}:}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{public}\ DiscreteDomain\ \{}
+\DoxyCodeLine{00036\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{using\ }DiscreteDomain::DiscreteDomain;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{//\ The\ expansion\ scalar\ type\ used\ for\ a\ Mulliken\ domain:\ real\ or\ complex.}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_g_mulliken_domain_a188291f6208504cf175d2a37dc4efd0a}{Scalar}}\ =\ \_Scalar;}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_g_mulliken_domain_a7eddd7be32b5dfaee22ac1d24d83ec2d}{partitionMatrix}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{GTransformation<Scalar>}}\&\ C)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ M\ =\ C.\mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_a2bf93e827850f7ccebcd64af4999abb4}{numberOfOrbitals}}();}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\ =\ M\ /\ 2;}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ up\ the\ top-\/left\ (alpha)\ and\ bottom-\/right\ (beta)\ blocks\ of\ the\ total\ partition\ matrix.}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\ P\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_ae3551bb3ac15b2560846f7a5956d1d90}{SquareMatrix<Scalar>::Zero}}(M);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ P\_component\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_a0762291135e1043da5582add757a5240}{SquareMatrix<Scalar>::PartitionMatrix}}(this-\/>domain\_indices,\ K);}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ P.topLeftCorner(K,\ K)\ =\ P\_component;}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ P.bottomRightCorner(K,\ K)\ =\ P\_component;}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ P;}
+\DoxyCodeLine{00064\ \ \ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00074\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{GTransformation<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_g_mulliken_domain_a82c17a5801bb6a332ee2d948fe2bd2a2}{projectionMatrix}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{GTransformation<Scalar>}}\&\ C)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_g_transformation}{GTransformation<Scalar>}}\ \{C.\mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_a5f36fc890460cc7c7a64eee376261c54}{inverse}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_a644af38c173e77dc21e4dc4306916bd0}{matrix}}()\ *\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_g_mulliken_domain_a7eddd7be32b5dfaee22ac1d24d83ec2d}{partitionMatrix}}(C)\ *\ C.\mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_a644af38c173e77dc21e4dc4306916bd0}{matrix}}()\};\ \}}
+\DoxyCodeLine{00075\ \};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_u_mulliken_domain" kind="class" language="C++" prot="public">
     <compoundname>GQCP::UMullikenDomain</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_spin_resolved_base" prot="public" virt="non-virtual">GQCP::SpinResolvedBase&lt; UMullikenDomainComponent&lt; _Scalar &gt;, UMullikenDomain&lt; _Scalar &gt; &gt;</basecompoundref>
@@ -15,6 +15,7 @@
         <definition>using GQCP::UMullikenDomain&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
         <argsstring></argsstring>
         <name>Scalar</name>
+        <qualifiedname>GQCP::UMullikenDomain::Scalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -24,10 +25,11 @@
         <location file="/__w/GQCP/GQCP/gqcp/include/Domain/MullikenDomain/UMullikenDomain.hpp" line="40" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Domain/MullikenDomain/UMullikenDomain.hpp" bodystart="40" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_u_mulliken_domain_1a7831e20eeedc5237c10d1b25766b2ba2" prot="public" static="no">
-        <type>typename <ref refid="class_g_q_c_p_1_1_spin_resolved_base" kindref="compound">SpinResolvedBase</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_mulliken_domain_component" kindref="compound">UMullikenDomainComponent</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_mulliken_domain_1a2ad59f2120cc3ad7e49ba06c446c2a62" kindref="member">Scalar</ref> &gt;, <ref refid="class_g_q_c_p_1_1_u_mulliken_domain" kindref="compound">UMullikenDomain</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_mulliken_domain_1a2ad59f2120cc3ad7e49ba06c446c2a62" kindref="member">Scalar</ref> &gt; &gt;::<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a012e7533770449f494a6066c36bd835a" kindref="member">Of</ref></type>
+        <type>typename <ref refid="class_g_q_c_p_1_1_spin_resolved_base" kindref="compound">SpinResolvedBase</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_mulliken_domain_component" kindref="compound">UMullikenDomainComponent</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_mulliken_domain_1a2ad59f2120cc3ad7e49ba06c446c2a62" kindref="member">Scalar</ref> &gt;, <ref refid="class_g_q_c_p_1_1_u_mulliken_domain" kindref="compound">UMullikenDomain</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_mulliken_domain_1a2ad59f2120cc3ad7e49ba06c446c2a62" kindref="member">Scalar</ref> &gt; &gt;<ref refid="class_g_q_c_p_1_1_spin_resolved_base_1a012e7533770449f494a6066c36bd835a" kindref="member">::Of</ref></type>
         <definition>using GQCP::UMullikenDomain&lt; _Scalar &gt;::ComponentType =  typename SpinResolvedBase&lt;UMullikenDomainComponent&lt;Scalar&gt;, UMullikenDomain&lt;Scalar&gt; &gt;::Of</definition>
         <argsstring></argsstring>
         <name>ComponentType</name>
+        <qualifiedname>GQCP::UMullikenDomain::ComponentType</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -38,11 +40,12 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="class_g_q_c_p_1_1_u_mulliken_domain_1a342b2b7ecdea6d0ea43bfc403e467511" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_u_mulliken_domain_1a7a8546b7f603f63f031046a68c3a5864" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_spin_resolved" kindref="compound">SpinResolved</ref>&lt; <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_mulliken_domain_1a2ad59f2120cc3ad7e49ba06c446c2a62" kindref="member">Scalar</ref> &gt; &gt;</type>
-        <definition>SpinResolved&lt;SquareMatrix&lt;Scalar&gt; &gt; GQCP::UMullikenDomain&lt; _Scalar &gt;::partitionMatrix</definition>
+        <definition>SpinResolved&lt; SquareMatrix&lt; Scalar &gt; &gt; GQCP::UMullikenDomain&lt; _Scalar &gt;::partitionMatrix</definition>
         <argsstring>(const UTransformation&lt; Scalar &gt; &amp;C) const</argsstring>
         <name>partitionMatrix</name>
+        <qualifiedname>GQCP::UMullikenDomain::partitionMatrix</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_u_transformation" kindref="compound">UTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_mulliken_domain_1a2ad59f2120cc3ad7e49ba06c446c2a62" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>C</declname>
@@ -58,11 +61,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Domain/MullikenDomain/UMullikenDomain.hpp" line="61" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Domain/MullikenDomain/UMullikenDomain.hpp" bodystart="61" bodyend="64"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_u_mulliken_domain_1abc34787621359847b000ba9021b97c8d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_u_mulliken_domain_1a94ae3813227579bb387413fbfe3f8dd1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_u_transformation" kindref="compound">UTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_mulliken_domain_1a2ad59f2120cc3ad7e49ba06c446c2a62" kindref="member">Scalar</ref> &gt;</type>
-        <definition>UTransformation&lt;Scalar&gt; GQCP::UMullikenDomain&lt; _Scalar &gt;::projectionMatrix</definition>
+        <definition>UTransformation&lt; Scalar &gt; GQCP::UMullikenDomain&lt; _Scalar &gt;::projectionMatrix</definition>
         <argsstring>(const UTransformation&lt; Scalar &gt; &amp;C) const</argsstring>
         <name>projectionMatrix</name>
+        <qualifiedname>GQCP::UMullikenDomain::projectionMatrix</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_u_transformation" kindref="compound">UTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_mulliken_domain_1a2ad59f2120cc3ad7e49ba06c446c2a62" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>C</declname>
@@ -95,43 +99,43 @@
 </para>
     </detaileddescription>
     <inheritancegraph>
-      <node id="2">
-        <label>GQCP::SpinResolvedBase&lt; UMullikenDomainComponent&lt; _Scalar &gt;, UMullikenDomain&lt; _Scalar &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_spin_resolved_base"/>
-      </node>
       <node id="1">
         <label>GQCP::UMullikenDomain&lt; _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_u_mulliken_domain"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::SpinResolvedBase&lt; UMullikenDomainComponent&lt; _Scalar &gt;, UMullikenDomain&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_spin_resolved_base"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="2">
-        <label>GQCP::SpinResolvedBase&lt; UMullikenDomainComponent&lt; _Scalar &gt;, UMullikenDomain&lt; _Scalar &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_spin_resolved_base"/>
-      </node>
       <node id="1">
         <label>GQCP::UMullikenDomain&lt; _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_u_mulliken_domain"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::SpinResolvedBase&lt; UMullikenDomainComponent&lt; _Scalar &gt;, UMullikenDomain&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_spin_resolved_base"/>
       </node>
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Domain/MullikenDomain/UMullikenDomain.hpp" line="36" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Domain/MullikenDomain/UMullikenDomain.hpp" bodystart="37" bodyend="74"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ae525d777321321160dbf3e10158d3599" prot="public" virt="non-virtual"><scope>GQCP::UMullikenDomain</scope><name>alpha</name></member>
-      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ae1f7d908f2044e5fddd333eb5ef40a7c" prot="public" virt="non-virtual"><scope>GQCP::UMullikenDomain</scope><name>alpha</name></member>
-      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a01de2ba3a5e4723aeea6b79e7cd0e1a4" prot="public" virt="non-virtual"><scope>GQCP::UMullikenDomain</scope><name>beta</name></member>
-      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a072002b440456d996f8807898914f45c" prot="public" virt="non-virtual"><scope>GQCP::UMullikenDomain</scope><name>beta</name></member>
-      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a8f13ccdbe2b4db4f070e8eb81796f938" prot="public" virt="non-virtual"><scope>GQCP::UMullikenDomain</scope><name>component</name></member>
-      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a4c4f9f34b2517b877bd93d5bd884f855" prot="public" virt="non-virtual"><scope>GQCP::UMullikenDomain</scope><name>component</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1accab13c5e8be1be72246ab1fe440cc1a" prot="public" virt="non-virtual"><scope>GQCP::UMullikenDomain</scope><name>alpha</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a1dfb8ca22ac80e83c47db5b7dc3ddd44" prot="public" virt="non-virtual"><scope>GQCP::UMullikenDomain</scope><name>alpha</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a070d0be1f00ac25b16c623e6679bb0f6" prot="public" virt="non-virtual"><scope>GQCP::UMullikenDomain</scope><name>beta</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a9874eb94be81b82ff933f14532cea3c2" prot="public" virt="non-virtual"><scope>GQCP::UMullikenDomain</scope><name>beta</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1abc73c03917a9bc4469007c832b7dc8d0" prot="public" virt="non-virtual"><scope>GQCP::UMullikenDomain</scope><name>component</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a091d5449d9bedc3d2b8c63b1a54dce30" prot="public" virt="non-virtual"><scope>GQCP::UMullikenDomain</scope><name>component</name></member>
       <member refid="class_g_q_c_p_1_1_u_mulliken_domain_1a7831e20eeedc5237c10d1b25766b2ba2" prot="public" virt="non-virtual"><scope>GQCP::UMullikenDomain</scope><name>ComponentType</name></member>
       <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a6074bc4e9b29958b9fb2ade214182b42" prot="public" virt="non-virtual"><scope>GQCP::UMullikenDomain</scope><name>Derived</name></member>
       <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ad684026f9ce2481de03ed06267365e46" prot="public" virt="non-virtual"><scope>GQCP::UMullikenDomain</scope><name>FromEqual</name></member>
       <member refid="class_g_q_c_p_1_1_spin_resolved_base_1a012e7533770449f494a6066c36bd835a" prot="public" virt="non-virtual"><scope>GQCP::UMullikenDomain</scope><name>Of</name></member>
-      <member refid="class_g_q_c_p_1_1_u_mulliken_domain_1a342b2b7ecdea6d0ea43bfc403e467511" prot="public" virt="non-virtual"><scope>GQCP::UMullikenDomain</scope><name>partitionMatrix</name></member>
-      <member refid="class_g_q_c_p_1_1_u_mulliken_domain_1abc34787621359847b000ba9021b97c8d" prot="public" virt="non-virtual"><scope>GQCP::UMullikenDomain</scope><name>projectionMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_u_mulliken_domain_1a7a8546b7f603f63f031046a68c3a5864" prot="public" virt="non-virtual"><scope>GQCP::UMullikenDomain</scope><name>partitionMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_u_mulliken_domain_1a94ae3813227579bb387413fbfe3f8dd1" prot="public" virt="non-virtual"><scope>GQCP::UMullikenDomain</scope><name>projectionMatrix</name></member>
       <member refid="class_g_q_c_p_1_1_u_mulliken_domain_1a2ad59f2120cc3ad7e49ba06c446c2a62" prot="public" virt="non-virtual"><scope>GQCP::UMullikenDomain</scope><name>Scalar</name></member>
       <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ac2ecb42d733bb8ddf78fdb011855dcdc" prot="public" virt="non-virtual"><scope>GQCP::UMullikenDomain</scope><name>Self</name></member>
       <member refid="class_g_q_c_p_1_1_spin_resolved_base_1ac6430934631d0e81584d742dcb28e524" prot="public" virt="non-virtual"><scope>GQCP::UMullikenDomain</scope><name>SpinResolvedBase</name></member>

@@ -1,4 +1,4 @@
-\hypertarget{class_g_q_c_p_1_1_hubbard_hamiltonian}{}\doxysection{GQCP\+::Hubbard\+Hamiltonian$<$ \+\_\+\+Scalar $>$ Class Template Reference}
+\hypertarget{class_g_q_c_p_1_1_hubbard_hamiltonian}{}\doxysection{GQCP\+::Hubbard\+Hamiltonian\texorpdfstring{$<$}{<} \+\_\+\+Scalar \texorpdfstring{$>$}{>} Class Template Reference}
 \label{class_g_q_c_p_1_1_hubbard_hamiltonian}\index{GQCP::HubbardHamiltonian$<$ \_Scalar $>$@{GQCP::HubbardHamiltonian$<$ \_Scalar $>$}}
 
 
@@ -6,12 +6,12 @@
 
 
 
-Collaboration diagram for GQCP\+::Hubbard\+Hamiltonian$<$ \+\_\+\+Scalar $>$\+:
+Collaboration diagram for GQCP\+::Hubbard\+Hamiltonian\texorpdfstring{$<$}{<} \+\_\+\+Scalar \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=232pt]{class_g_q_c_p_1_1_hubbard_hamiltonian__coll__graph}
+\includegraphics[width=238pt]{class_g_q_c_p_1_1_hubbard_hamiltonian__coll__graph}
 \end{center}
 \end{figure}
 \doxysubsection*{Public Types}
@@ -22,22 +22,36 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_abe8802aff70d3230a1
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_a65992d8e2607b97c087faf98cd734c89}{Hubbard\+Hamiltonian}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{Hopping\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_abe8802aff70d3230a1133417e9f0c99e}{Scalar}} $>$ \&H)
+\mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_a18ac7345024bf602e6475cefeaede010}{Hubbard\+Hamiltonian}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{Hopping\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_abe8802aff70d3230a1133417e9f0c99e}{Scalar}} $>$ \&H, const \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_abe8802aff70d3230a1133417e9f0c99e}{Scalar}} $>$ \&U, const \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_abe8802aff70d3230a1133417e9f0c99e}{Scalar}} $>$ \&mu)
 \item 
-{\footnotesize template$<$typename Z  = Scalar$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, double $>$\+::value, \mbox{\hyperlink{namespace_g_q_c_p_ac74434aa85c700f6f803449fc115242c}{Scalar\+RSQOne\+Electron\+Operator}}$<$ double $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_af537667dd48780aafdfb162596ddbf7a}{core}} () const
+\mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_ae8dcadda5799eeec4227f63a46623b33}{Hubbard\+Hamiltonian}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{Hopping\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_abe8802aff70d3230a1133417e9f0c99e}{Scalar}} $>$ \&H, const double \&U, const double \&mu=0.\+0)
 \item 
-{\footnotesize template$<$typename Z  = Scalar$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, double $>$\+::value, \mbox{\hyperlink{namespace_g_q_c_p_a57903db44d132d727d392d3533d1e682}{Scalar\+RSQTwo\+Electron\+Operator}}$<$ double $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_a709582017c0488f9280ebc8aa9dafe60}{two\+Electron}} () const
+\mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_a8c3291d1d61a8e1f800c4b8474d570c2}{Hubbard\+Hamiltonian}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{Hopping\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_abe8802aff70d3230a1133417e9f0c99e}{Scalar}} $>$ \&H, const std\+::vector$<$ double $>$ \&U, const std\+::vector$<$ double $>$ \&mu)
 \item 
-const \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{Hopping\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_abe8802aff70d3230a1133417e9f0c99e}{Scalar}} $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_a67eb1916701002d94178b67ebe943782}{hopping\+Matrix}} () const
+{\footnotesize template$<$typename Z  = Scalar$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, double $>$\+::value, \mbox{\hyperlink{namespace_g_q_c_p_ac74434aa85c700f6f803449fc115242c}{Scalar\+RSQOne\+Electron\+Operator}}$<$ double $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_a6215680eda0600ebb4e960cca0b1b5b4}{core}} () const
+\item 
+{\footnotesize template$<$typename Z  = Scalar$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, double $>$\+::value, \mbox{\hyperlink{namespace_g_q_c_p_a57903db44d132d727d392d3533d1e682}{Scalar\+RSQTwo\+Electron\+Operator}}$<$ double $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_a152abebe28d1a44104e79cb4a188db0d}{two\+Electron}} () const
+\item 
+const \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{Hopping\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_abe8802aff70d3230a1133417e9f0c99e}{Scalar}} $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_a1958ed4a3d4654274d127f075c22889c}{hopping\+Matrix}} () const
 \item 
 size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_a33c4b3b4d0aca6159b67495008e7301b}{number\+Of\+Lattice\+Sites}} () const
+\item 
+const \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_abe8802aff70d3230a1133417e9f0c99e}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_a943d6a0421f55f4d4f524f761d93b1ea}{one\+Electron\+Contributions}} () const
+\item 
+const \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_abe8802aff70d3230a1133417e9f0c99e}{Scalar}} $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_a65543eb4335499fa0ff179e5259fc7b4}{on\+Site\+Potential\+Matrix}} () const
+\item 
+const \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_abe8802aff70d3230a1133417e9f0c99e}{Scalar}} $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_a0b84f9b44e200424b987581da6919e09}{on\+Site\+Repulsion\+Matrix}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Z  = Scalar$>$ }\\static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, double $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian}{Hubbard\+Hamiltonian}}$<$ double $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_ae38d89eb51c3118c14f08df67e547e63}{Random}} (const size\+\_\+t K)
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$typename \+\_\+\+Scalar$>$\newline
 class GQCP\+::\+Hubbard\+Hamiltonian$<$ \+\_\+\+Scalar $>$}
-
 The Hubbard model Hamiltonian.
 
 
@@ -53,35 +67,75 @@ The Hubbard model Hamiltonian.
 \index{Scalar@{Scalar}!GQCP::HubbardHamiltonian$<$ \_Scalar $>$@{GQCP::HubbardHamiltonian$<$ \_Scalar $>$}}
 \doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
-using \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian}{GQCP\+::\+Hubbard\+Hamiltonian}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_abe8802aff70d3230a1133417e9f0c99e}{Scalar}} =  \+\_\+\+Scalar}
+using \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian}{GQCP\+::\+Hubbard\+Hamiltonian}}$<$ \+\_\+\+Scalar $>$\+::\+Scalar =  \+\_\+\+Scalar}
 
 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_hubbard_hamiltonian_a65992d8e2607b97c087faf98cd734c89}\label{class_g_q_c_p_1_1_hubbard_hamiltonian_a65992d8e2607b97c087faf98cd734c89}} 
+\mbox{\Hypertarget{class_g_q_c_p_1_1_hubbard_hamiltonian_a18ac7345024bf602e6475cefeaede010}\label{class_g_q_c_p_1_1_hubbard_hamiltonian_a18ac7345024bf602e6475cefeaede010}} 
 \index{GQCP::HubbardHamiltonian$<$ \_Scalar $>$@{GQCP::HubbardHamiltonian$<$ \_Scalar $>$}!HubbardHamiltonian@{HubbardHamiltonian}}
 \index{HubbardHamiltonian@{HubbardHamiltonian}!GQCP::HubbardHamiltonian$<$ \_Scalar $>$@{GQCP::HubbardHamiltonian$<$ \_Scalar $>$}}
-\doxysubsubsection{\texorpdfstring{HubbardHamiltonian()}{HubbardHamiltonian()}}
+\doxysubsubsection{\texorpdfstring{HubbardHamiltonian()}{HubbardHamiltonian()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
-\mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian}{GQCP\+::\+Hubbard\+Hamiltonian}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian}{Hubbard\+Hamiltonian}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{Hopping\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_abe8802aff70d3230a1133417e9f0c99e}{Scalar}} $>$ \&}]{H }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian}{GQCP\+::\+Hubbard\+Hamiltonian}}$<$ \+\_\+\+Scalar $>$\+::\+Hubbard\+Hamiltonian (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{Hopping\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_abe8802aff70d3230a1133417e9f0c99e}{Scalar}} $>$ \&}]{H,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_abe8802aff70d3230a1133417e9f0c99e}{Scalar}} $>$ \&}]{U,  }\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_abe8802aff70d3230a1133417e9f0c99e}{Scalar}} $>$ \&}]{mu }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Create a {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian}{Hubbard\+Hamiltonian}}} from a {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{Hopping\+Matrix}}}.
+Create a Hubbard Hamiltonian matrix from its representation as a {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em H} & The Hopping matrix. \\
+\hline
+{\em U} & The U contributions, represented as a {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}}. \\
+\hline
+{\em mu} & The on-\/site potentials, represented as a {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}}. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_hubbard_hamiltonian_ae8dcadda5799eeec4227f63a46623b33}\label{class_g_q_c_p_1_1_hubbard_hamiltonian_ae8dcadda5799eeec4227f63a46623b33}} 
+\index{GQCP::HubbardHamiltonian$<$ \_Scalar $>$@{GQCP::HubbardHamiltonian$<$ \_Scalar $>$}!HubbardHamiltonian@{HubbardHamiltonian}}
+\index{HubbardHamiltonian@{HubbardHamiltonian}!GQCP::HubbardHamiltonian$<$ \_Scalar $>$@{GQCP::HubbardHamiltonian$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{HubbardHamiltonian()}{HubbardHamiltonian()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian}{GQCP\+::\+Hubbard\+Hamiltonian}}$<$ \+\_\+\+Scalar $>$\+::\+Hubbard\+Hamiltonian (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{Hopping\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_abe8802aff70d3230a1133417e9f0c99e}{Scalar}} $>$ \&}]{H,  }\item[{const double \&}]{U,  }\item[{const double \&}]{mu = {\ttfamily 0.0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Create a {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian}{Hubbard\+Hamiltonian}}} from a {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{Hopping\+Matrix}}} and constant parameters {\ttfamily U}and {\ttfamily mu}.
 
 
 \begin{DoxyParams}{Parameters}
 {\em H} & The Hubbard hopping matrix. \\
 \hline
+{\em U} & The on-\/site repulsion value. \\
+\hline
+{\em mu} & The on-\/site potential. Default is zero. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_hubbard_hamiltonian_a8c3291d1d61a8e1f800c4b8474d570c2}\label{class_g_q_c_p_1_1_hubbard_hamiltonian_a8c3291d1d61a8e1f800c4b8474d570c2}} 
+\index{GQCP::HubbardHamiltonian$<$ \_Scalar $>$@{GQCP::HubbardHamiltonian$<$ \_Scalar $>$}!HubbardHamiltonian@{HubbardHamiltonian}}
+\index{HubbardHamiltonian@{HubbardHamiltonian}!GQCP::HubbardHamiltonian$<$ \_Scalar $>$@{GQCP::HubbardHamiltonian$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{HubbardHamiltonian()}{HubbardHamiltonian()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+\mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian}{GQCP\+::\+Hubbard\+Hamiltonian}}$<$ \+\_\+\+Scalar $>$\+::\+Hubbard\+Hamiltonian (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{Hopping\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_abe8802aff70d3230a1133417e9f0c99e}{Scalar}} $>$ \&}]{H,  }\item[{const std\+::vector$<$ double $>$ \&}]{U,  }\item[{const std\+::vector$<$ double $>$ \&}]{mu }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Create a {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian}{Hubbard\+Hamiltonian}}} from a {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{Hopping\+Matrix}}} and parameters {\ttfamily U}and {\ttfamily mu} for each site as a vector.
+
+
+\begin{DoxyParams}{Parameters}
+{\em H} & The Hubbard hopping matrix. \\
+\hline
+{\em U} & The on-\/site repulsion values as a vector. \\
+\hline
+{\em mu} & The on-\/site potential values as a vector. \\
+\hline
 \end{DoxyParams}
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_hubbard_hamiltonian_af537667dd48780aafdfb162596ddbf7a}\label{class_g_q_c_p_1_1_hubbard_hamiltonian_af537667dd48780aafdfb162596ddbf7a}} 
+\mbox{\Hypertarget{class_g_q_c_p_1_1_hubbard_hamiltonian_a6215680eda0600ebb4e960cca0b1b5b4}\label{class_g_q_c_p_1_1_hubbard_hamiltonian_a6215680eda0600ebb4e960cca0b1b5b4}} 
 \index{GQCP::HubbardHamiltonian$<$ \_Scalar $>$@{GQCP::HubbardHamiltonian$<$ \_Scalar $>$}!core@{core}}
 \index{core@{core}!GQCP::HubbardHamiltonian$<$ \_Scalar $>$@{GQCP::HubbardHamiltonian$<$ \_Scalar $>$}}
 \doxysubsubsection{\texorpdfstring{core()}{core()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
 template$<$typename Z  = Scalar$>$ \\
-\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, double$>$\+::value, \mbox{\hyperlink{namespace_g_q_c_p_ac74434aa85c700f6f803449fc115242c}{Scalar\+RSQOne\+Electron\+Operator}}$<$double$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian}{GQCP\+::\+Hubbard\+Hamiltonian}}$<$ \+\_\+\+Scalar $>$\+::core (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, double $>$\+::value, \mbox{\hyperlink{namespace_g_q_c_p_ac74434aa85c700f6f803449fc115242c}{Scalar\+RSQOne\+Electron\+Operator}}$<$ double $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian}{GQCP\+::\+Hubbard\+Hamiltonian}}$<$ \+\_\+\+Scalar $>$\+::core (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \begin{DoxyReturn}{Returns}
 The core Hamiltonian (i.\+e. resulting from the Hubbard hopping operator) as a one-\/electron operator.
@@ -89,12 +143,12 @@ The core Hamiltonian (i.\+e. resulting from the Hubbard hopping operator) as a o
 \begin{DoxyNote}{Note}
 This method is only available for real scalars. 
 \end{DoxyNote}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_hubbard_hamiltonian_a67eb1916701002d94178b67ebe943782}\label{class_g_q_c_p_1_1_hubbard_hamiltonian_a67eb1916701002d94178b67ebe943782}} 
+\mbox{\Hypertarget{class_g_q_c_p_1_1_hubbard_hamiltonian_a1958ed4a3d4654274d127f075c22889c}\label{class_g_q_c_p_1_1_hubbard_hamiltonian_a1958ed4a3d4654274d127f075c22889c}} 
 \index{GQCP::HubbardHamiltonian$<$ \_Scalar $>$@{GQCP::HubbardHamiltonian$<$ \_Scalar $>$}!hoppingMatrix@{hoppingMatrix}}
 \index{hoppingMatrix@{hoppingMatrix}!GQCP::HubbardHamiltonian$<$ \_Scalar $>$@{GQCP::HubbardHamiltonian$<$ \_Scalar $>$}}
 \doxysubsubsection{\texorpdfstring{hoppingMatrix()}{hoppingMatrix()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
-const \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{Hopping\+Matrix}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_abe8802aff70d3230a1133417e9f0c99e}{Scalar}}$>$\& \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian}{GQCP\+::\+Hubbard\+Hamiltonian}}$<$ \+\_\+\+Scalar $>$\+::hopping\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{Hopping\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_abe8802aff70d3230a1133417e9f0c99e}{Scalar}} $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian}{GQCP\+::\+Hubbard\+Hamiltonian}}$<$ \+\_\+\+Scalar $>$\+::hopping\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \begin{DoxyReturn}{Returns}
 The Hubbard hopping matrix for this Hubbard model Hamiltonian. 
@@ -107,15 +161,68 @@ The Hubbard hopping matrix for this Hubbard model Hamiltonian.
 size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian}{GQCP\+::\+Hubbard\+Hamiltonian}}$<$ \+\_\+\+Scalar $>$\+::number\+Of\+Lattice\+Sites (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \begin{DoxyReturn}{Returns}
-the number of lattice sites corresponding used in this Hubbard model Hamiltonian 
+The number of lattice sites corresponding used in this Hubbard model Hamiltonian. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_hubbard_hamiltonian_a709582017c0488f9280ebc8aa9dafe60}\label{class_g_q_c_p_1_1_hubbard_hamiltonian_a709582017c0488f9280ebc8aa9dafe60}} 
+\mbox{\Hypertarget{class_g_q_c_p_1_1_hubbard_hamiltonian_a943d6a0421f55f4d4f524f761d93b1ea}\label{class_g_q_c_p_1_1_hubbard_hamiltonian_a943d6a0421f55f4d4f524f761d93b1ea}} 
+\index{GQCP::HubbardHamiltonian$<$ \_Scalar $>$@{GQCP::HubbardHamiltonian$<$ \_Scalar $>$}!oneElectronContributions@{oneElectronContributions}}
+\index{oneElectronContributions@{oneElectronContributions}!GQCP::HubbardHamiltonian$<$ \_Scalar $>$@{GQCP::HubbardHamiltonian$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{oneElectronContributions()}{oneElectronContributions()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+const \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_abe8802aff70d3230a1133417e9f0c99e}{Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian}{GQCP\+::\+Hubbard\+Hamiltonian}}$<$ \+\_\+\+Scalar $>$\+::one\+Electron\+Contributions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The one electron parameter contributions of this Hubbard model Hamiltonian. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_hubbard_hamiltonian_a65543eb4335499fa0ff179e5259fc7b4}\label{class_g_q_c_p_1_1_hubbard_hamiltonian_a65543eb4335499fa0ff179e5259fc7b4}} 
+\index{GQCP::HubbardHamiltonian$<$ \_Scalar $>$@{GQCP::HubbardHamiltonian$<$ \_Scalar $>$}!onSitePotentialMatrix@{onSitePotentialMatrix}}
+\index{onSitePotentialMatrix@{onSitePotentialMatrix}!GQCP::HubbardHamiltonian$<$ \_Scalar $>$@{GQCP::HubbardHamiltonian$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{onSitePotentialMatrix()}{onSitePotentialMatrix()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+const \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_abe8802aff70d3230a1133417e9f0c99e}{Scalar}} $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian}{GQCP\+::\+Hubbard\+Hamiltonian}}$<$ \+\_\+\+Scalar $>$\+::on\+Site\+Potential\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The matrix containing the on-\/site potentials for this Hubbard model Hamiltonian. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_hubbard_hamiltonian_a0b84f9b44e200424b987581da6919e09}\label{class_g_q_c_p_1_1_hubbard_hamiltonian_a0b84f9b44e200424b987581da6919e09}} 
+\index{GQCP::HubbardHamiltonian$<$ \_Scalar $>$@{GQCP::HubbardHamiltonian$<$ \_Scalar $>$}!onSiteRepulsionMatrix@{onSiteRepulsionMatrix}}
+\index{onSiteRepulsionMatrix@{onSiteRepulsionMatrix}!GQCP::HubbardHamiltonian$<$ \_Scalar $>$@{GQCP::HubbardHamiltonian$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{onSiteRepulsionMatrix()}{onSiteRepulsionMatrix()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+const \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_abe8802aff70d3230a1133417e9f0c99e}{Scalar}} $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian}{GQCP\+::\+Hubbard\+Hamiltonian}}$<$ \+\_\+\+Scalar $>$\+::on\+Site\+Repulsion\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The matrix containing the on-\/site repulsions for this Hubbard model Hamiltonian. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_hubbard_hamiltonian_ae38d89eb51c3118c14f08df67e547e63}\label{class_g_q_c_p_1_1_hubbard_hamiltonian_ae38d89eb51c3118c14f08df67e547e63}} 
+\index{GQCP::HubbardHamiltonian$<$ \_Scalar $>$@{GQCP::HubbardHamiltonian$<$ \_Scalar $>$}!Random@{Random}}
+\index{Random@{Random}!GQCP::HubbardHamiltonian$<$ \_Scalar $>$@{GQCP::HubbardHamiltonian$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{Random()}{Random()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+template$<$typename Z  = Scalar$>$ \\
+static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, double $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian}{Hubbard\+Hamiltonian}}$<$ double $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian}{GQCP\+::\+Hubbard\+Hamiltonian}}$<$ \+\_\+\+Scalar $>$\+::\+Random (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{K }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Create a random Hubbard Hamiltonian matrix matrix with elements distributed uniformly in \mbox{[}-\/1.\+0, 1.\+0\mbox{]}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em K} & The number of lattice sites.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A random Hubbard Hamiltonian matrix.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This method is only available for real scalars. 
+
+This method always sets the on-\/site potential contributions (mu) to zero. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_hubbard_hamiltonian_a152abebe28d1a44104e79cb4a188db0d}\label{class_g_q_c_p_1_1_hubbard_hamiltonian_a152abebe28d1a44104e79cb4a188db0d}} 
 \index{GQCP::HubbardHamiltonian$<$ \_Scalar $>$@{GQCP::HubbardHamiltonian$<$ \_Scalar $>$}!twoElectron@{twoElectron}}
 \index{twoElectron@{twoElectron}!GQCP::HubbardHamiltonian$<$ \_Scalar $>$@{GQCP::HubbardHamiltonian$<$ \_Scalar $>$}}
 \doxysubsubsection{\texorpdfstring{twoElectron()}{twoElectron()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
 template$<$typename Z  = Scalar$>$ \\
-\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, double$>$\+::value, \mbox{\hyperlink{namespace_g_q_c_p_a57903db44d132d727d392d3533d1e682}{Scalar\+RSQTwo\+Electron\+Operator}}$<$double$>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian}{GQCP\+::\+Hubbard\+Hamiltonian}}$<$ \+\_\+\+Scalar $>$\+::two\+Electron (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, double $>$\+::value, \mbox{\hyperlink{namespace_g_q_c_p_a57903db44d132d727d392d3533d1e682}{Scalar\+RSQTwo\+Electron\+Operator}}$<$ double $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian}{GQCP\+::\+Hubbard\+Hamiltonian}}$<$ \+\_\+\+Scalar $>$\+::two\+Electron (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \begin{DoxyReturn}{Returns}
 The two-\/electron part of the Hamiltonian (resulting from the on-\/site repulsion) as a two-\/electron operator.

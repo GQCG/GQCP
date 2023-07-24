@@ -1,4 +1,4 @@
-\hypertarget{class_g_q_c_p_1_1_minimization_environment}{}\doxysection{GQCP\+::Minimization\+Environment$<$ \+\_\+\+Scalar $>$ Class Template Reference}
+\hypertarget{class_g_q_c_p_1_1_minimization_environment}{}\doxysection{GQCP\+::Minimization\+Environment\texorpdfstring{$<$}{<} \+\_\+\+Scalar \texorpdfstring{$>$}{>} Class Template Reference}
 \label{class_g_q_c_p_1_1_minimization_environment}\index{GQCP::MinimizationEnvironment$<$ \_Scalar $>$@{GQCP::MinimizationEnvironment$<$ \_Scalar $>$}}
 
 
@@ -6,7 +6,7 @@
 
 
 
-Inheritance diagram for GQCP\+::Minimization\+Environment$<$ \+\_\+\+Scalar $>$\+:
+Inheritance diagram for GQCP\+::Minimization\+Environment\texorpdfstring{$<$}{<} \+\_\+\+Scalar \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -16,7 +16,7 @@ Inheritance diagram for GQCP\+::Minimization\+Environment$<$ \+\_\+\+Scalar $>$\
 \end{figure}
 
 
-Collaboration diagram for GQCP\+::Minimization\+Environment$<$ \+\_\+\+Scalar $>$\+:
+Collaboration diagram for GQCP\+::Minimization\+Environment\texorpdfstring{$<$}{<} \+\_\+\+Scalar \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -29,10 +29,22 @@ Collaboration diagram for GQCP\+::Minimization\+Environment$<$ \+\_\+\+Scalar $>
 \item 
 using \mbox{\hyperlink{class_g_q_c_p_1_1_minimization_environment_aa802d9ef9b18dc6771c0255dce8a44b1}{Scalar}} = \+\_\+\+Scalar
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_optimization_environment}{GQCP\+::\+Optimization\+Environment$<$ Vector\+X$<$ \+\_\+\+Scalar $>$ $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_optimization_environment_a062c39234632e01545cca0a90f330991}{Iterate}} = \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ \+\_\+\+Scalar $>$
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_optimization_environment_ab90536bd286710f617a8006c9e08558d}{Scalar}} = typename \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a820960c1c3ad2c124d6be1ccd0eec021}{Iterate\+::\+Scalar}}
+\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{class_g_q_c_p_1_1_minimization_environment_ad9794645ea2a18324435b5b986764928}{Minimization\+Environment}} (const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ \+\_\+\+Scalar $>$ \&initial\+\_\+guess, const \mbox{\hyperlink{namespace_g_q_c_p_ae8a9e0086f5fbab030b1d49b05202054}{Vector\+Function}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_minimization_environment_aa802d9ef9b18dc6771c0255dce8a44b1}{Scalar}} $>$ \&\mbox{\hyperlink{class_g_q_c_p_1_1_minimization_environment_ad30a88c4a9a9d22fca0d633e23bc941b}{gradient\+\_\+function}}, const \mbox{\hyperlink{namespace_g_q_c_p_afdcf4d963710902cad07f1c683df75bf}{Matrix\+Function}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_minimization_environment_aa802d9ef9b18dc6771c0255dce8a44b1}{Scalar}} $>$ \&\mbox{\hyperlink{class_g_q_c_p_1_1_minimization_environment_a9d0b1034bfa9cef8a28a760be75bf9bc}{hessian\+\_\+function}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_optimization_environment}{GQCP\+::\+Optimization\+Environment$<$ Vector\+X$<$ \+\_\+\+Scalar $>$ $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_optimization_environment_a3e1584f77188e87fff296888f667e690}{Optimization\+Environment}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_optimization_environment_a062c39234632e01545cca0a90f330991}{Iterate}} \&initial\+\_\+guess)
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -43,12 +55,16 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_minimization_environment_aa802d9ef9b18d
 \item 
 std\+::deque$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_minimization_environment_ab451fcecd0855732ad3fbed9575615c7}{function\+\_\+values}}
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_optimization_environment}{GQCP\+::\+Optimization\+Environment$<$ Vector\+X$<$ \+\_\+\+Scalar $>$ $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::deque$<$ \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ \+\_\+\+Scalar $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_optimization_environment_adb8d5b6dd10be21c085d1a6855d307db}{variables}}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$typename \+\_\+\+Scalar$>$\newline
 class GQCP\+::\+Minimization\+Environment$<$ \+\_\+\+Scalar $>$}
-
 An environment that can be used to minimize scalar functions.
 
 
@@ -64,7 +80,7 @@ An environment that can be used to minimize scalar functions.
 \index{Scalar@{Scalar}!GQCP::MinimizationEnvironment$<$ \_Scalar $>$@{GQCP::MinimizationEnvironment$<$ \_Scalar $>$}}
 \doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
-using \mbox{\hyperlink{class_g_q_c_p_1_1_minimization_environment}{GQCP\+::\+Minimization\+Environment}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_minimization_environment_aa802d9ef9b18dc6771c0255dce8a44b1}{Scalar}} =  \+\_\+\+Scalar}
+using \mbox{\hyperlink{class_g_q_c_p_1_1_minimization_environment}{GQCP\+::\+Minimization\+Environment}}$<$ \+\_\+\+Scalar $>$\+::\+Scalar =  \+\_\+\+Scalar}
 
 
 
@@ -74,7 +90,7 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_minimization_environment}{GQCP\+::\+Min
 \index{MinimizationEnvironment@{MinimizationEnvironment}!GQCP::MinimizationEnvironment$<$ \_Scalar $>$@{GQCP::MinimizationEnvironment$<$ \_Scalar $>$}}
 \doxysubsubsection{\texorpdfstring{MinimizationEnvironment()}{MinimizationEnvironment()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
-\mbox{\hyperlink{class_g_q_c_p_1_1_minimization_environment}{GQCP\+::\+Minimization\+Environment}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_minimization_environment}{Minimization\+Environment}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ \+\_\+\+Scalar $>$ \&}]{initial\+\_\+guess,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ae8a9e0086f5fbab030b1d49b05202054}{Vector\+Function}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_minimization_environment_aa802d9ef9b18dc6771c0255dce8a44b1}{Scalar}} $>$ \&}]{gradient\+\_\+function,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_afdcf4d963710902cad07f1c683df75bf}{Matrix\+Function}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_minimization_environment_aa802d9ef9b18dc6771c0255dce8a44b1}{Scalar}} $>$ \&}]{hessian\+\_\+function }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{class_g_q_c_p_1_1_minimization_environment}{GQCP\+::\+Minimization\+Environment}}$<$ \+\_\+\+Scalar $>$\+::\+Minimization\+Environment (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ \+\_\+\+Scalar $>$ \&}]{initial\+\_\+guess,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ae8a9e0086f5fbab030b1d49b05202054}{Vector\+Function}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_minimization_environment_aa802d9ef9b18dc6771c0255dce8a44b1}{Scalar}} $>$ \&}]{gradient\+\_\+function,  }\item[{const \mbox{\hyperlink{namespace_g_q_c_p_afdcf4d963710902cad07f1c683df75bf}{Matrix\+Function}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_minimization_environment_aa802d9ef9b18dc6771c0255dce8a44b1}{Scalar}} $>$ \&}]{hessian\+\_\+function }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Initialize the optimization environment with an initial guess
 

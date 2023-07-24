@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine" kind="class" language="C++" prot="public">
     <compoundname>GQCP::PrimitiveElectronicDipoleIntegralEngine</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_base_vector_primitive_integral_engine" prot="public" virt="non-virtual">GQCP::BaseVectorPrimitiveIntegralEngine</basecompoundref>
@@ -15,6 +15,7 @@
         <definition>using GQCP::PrimitiveElectronicDipoleIntegralEngine&lt; _Shell &gt;::Shell =  _Shell</definition>
         <argsstring></argsstring>
         <name>Shell</name>
+        <qualifiedname>GQCP::PrimitiveElectronicDipoleIntegralEngine::Shell</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -28,6 +29,7 @@
         <definition>using GQCP::PrimitiveElectronicDipoleIntegralEngine&lt; _Shell &gt;::Primitive =  typename Shell::Primitive</definition>
         <argsstring></argsstring>
         <name>Primitive</name>
+        <qualifiedname>GQCP::PrimitiveElectronicDipoleIntegralEngine::Primitive</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -41,6 +43,7 @@
         <definition>using GQCP::PrimitiveElectronicDipoleIntegralEngine&lt; _Shell &gt;::IntegralScalar =  product_t&lt;ElectronicDipoleOperator::Scalar, typename Primitive::OutputType&gt;</definition>
         <argsstring></argsstring>
         <name>IntegralScalar</name>
+        <qualifiedname>GQCP::PrimitiveElectronicDipoleIntegralEngine::IntegralScalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -56,6 +59,7 @@
         <definition>ElectronicDipoleOperator GQCP::PrimitiveElectronicDipoleIntegralEngine&lt; _Shell &gt;::dipole_operator</definition>
         <argsstring></argsstring>
         <name>dipole_operator</name>
+        <qualifiedname>GQCP::PrimitiveElectronicDipoleIntegralEngine::dipole_operator</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -71,6 +75,7 @@
         <definition>GQCP::PrimitiveElectronicDipoleIntegralEngine&lt; _Shell &gt;::PrimitiveElectronicDipoleIntegralEngine</definition>
         <argsstring>(const ElectronicDipoleOperator &amp;dipole_operator, const CartesianDirection component=CartesianDirection::x)</argsstring>
         <name>PrimitiveElectronicDipoleIntegralEngine</name>
+        <qualifiedname>GQCP::PrimitiveElectronicDipoleIntegralEngine::PrimitiveElectronicDipoleIntegralEngine</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_electronic_dipole_operator" kindref="compound">ElectronicDipoleOperator</ref> &amp;</type>
           <declname>dipole_operator</declname>
@@ -78,7 +83,7 @@
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8" kindref="member">CartesianDirection</ref></type>
           <declname>component</declname>
-          <defval>CartesianDirection::x</defval>
+          <defval><ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5" kindref="member">CartesianDirection::x</ref></defval>
         </param>
         <briefdescription>
         </briefdescription>
@@ -106,7 +111,7 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicDipoleIntegralEngine.hpp" line="68" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicDipoleIntegralEngine.hpp" bodystart="68" bodyend="70"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine_1aee499112cf39348047bdd0e8a3490fd8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine_1a211b0417b960ecdb055b98a237341d4a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z</type>
@@ -114,9 +119,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine_1a6d068527ae0649205ae9665fe6bef8c7" kindref="member">IntegralScalar</ref> &gt;</type>
-        <definition>enable_if_t&lt;std::is_same&lt;Z, GTOShell&gt;::value, IntegralScalar&gt; GQCP::PrimitiveElectronicDipoleIntegralEngine&lt; _Shell &gt;::calculate</definition>
+        <definition>enable_if_t&lt; std::is_same&lt; Z, GTOShell &gt;::value, IntegralScalar &gt; GQCP::PrimitiveElectronicDipoleIntegralEngine&lt; _Shell &gt;::calculate</definition>
         <argsstring>(const CartesianGTO &amp;left, const CartesianGTO &amp;right)</argsstring>
         <name>calculate</name>
+        <qualifiedname>GQCP::PrimitiveElectronicDipoleIntegralEngine::calculate</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_cartesian_g_t_o" kindref="compound">CartesianGTO</ref> &amp;</type>
           <declname>left</declname>
@@ -154,7 +160,7 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicDipoleIntegralEngine.hpp" line="86" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicDipoleIntegralEngine.hpp" bodystart="86" bodyend="128"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine_1a1ff020ef5df9c9b8b9351fc3dc675ef0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine_1a9c3596d174089faf633bcaf8255336ec" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z</type>
@@ -162,9 +168,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine_1a6d068527ae0649205ae9665fe6bef8c7" kindref="member">IntegralScalar</ref> &gt;</type>
-        <definition>enable_if_t&lt;std::is_same&lt;Z, GTOShell&gt;::value, IntegralScalar&gt; GQCP::PrimitiveElectronicDipoleIntegralEngine&lt; _Shell &gt;::calculate1D</definition>
+        <definition>enable_if_t&lt; std::is_same&lt; Z, GTOShell &gt;::value, IntegralScalar &gt; GQCP::PrimitiveElectronicDipoleIntegralEngine&lt; _Shell &gt;::calculate1D</definition>
         <argsstring>(const double a, const double K, const int i, const double b, const double L, const int j)</argsstring>
         <name>calculate1D</name>
+        <qualifiedname>GQCP::PrimitiveElectronicDipoleIntegralEngine::calculate1D</qualifiedname>
         <param>
           <type>const double</type>
           <declname>a</declname>
@@ -250,7 +257,7 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicDipoleIntegralEngine.hpp" line="143" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicDipoleIntegralEngine.hpp" bodystart="143" bodyend="155"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine_1a42c2dadd7f290be83c9370b837c7bc12" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine_1aed5b01167b66873ef37bde3afe9058f2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z</type>
@@ -258,9 +265,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_london_g_t_o_shell" kindref="compound">LondonGTOShell</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine_1a6d068527ae0649205ae9665fe6bef8c7" kindref="member">IntegralScalar</ref> &gt;</type>
-        <definition>enable_if_t&lt;std::is_same&lt;Z, LondonGTOShell&gt;::value, IntegralScalar&gt; GQCP::PrimitiveElectronicDipoleIntegralEngine&lt; _Shell &gt;::calculate</definition>
+        <definition>enable_if_t&lt; std::is_same&lt; Z, LondonGTOShell &gt;::value, IntegralScalar &gt; GQCP::PrimitiveElectronicDipoleIntegralEngine&lt; _Shell &gt;::calculate</definition>
         <argsstring>(const LondonCartesianGTO &amp;left, const LondonCartesianGTO &amp;right)</argsstring>
         <name>calculate</name>
+        <qualifiedname>GQCP::PrimitiveElectronicDipoleIntegralEngine::calculate</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_london_cartesian_g_t_o" kindref="compound">LondonCartesianGTO</ref> &amp;</type>
           <declname>left</declname>
@@ -298,7 +306,7 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicDipoleIntegralEngine.hpp" line="171" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicDipoleIntegralEngine.hpp" bodystart="171" bodyend="219"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine_1a5f4e7498d0cdd75aaad563543b02f82d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine_1a483f1aa40ed0670269607bfc60eb8418" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z</type>
@@ -306,9 +314,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="class_g_q_c_p_1_1_london_g_t_o_shell" kindref="compound">LondonGTOShell</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine_1a6d068527ae0649205ae9665fe6bef8c7" kindref="member">IntegralScalar</ref> &gt;</type>
-        <definition>enable_if_t&lt;std::is_same&lt;Z, LondonGTOShell&gt;::value, IntegralScalar&gt; GQCP::PrimitiveElectronicDipoleIntegralEngine&lt; _Shell &gt;::calculate1D</definition>
+        <definition>enable_if_t&lt; std::is_same&lt; Z, LondonGTOShell &gt;::value, IntegralScalar &gt; GQCP::PrimitiveElectronicDipoleIntegralEngine&lt; _Shell &gt;::calculate1D</definition>
         <argsstring>(const complex k1, const double a, const double K, const int i, const double b, const double L, const int j)</argsstring>
         <name>calculate1D</name>
+        <qualifiedname>GQCP::PrimitiveElectronicDipoleIntegralEngine::calculate1D</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1a1ffc21109e62d09d3485c62e03677dfd" kindref="member">complex</ref></type>
           <declname>k1</declname>
@@ -425,36 +434,36 @@
 </para>
     </detaileddescription>
     <inheritancegraph>
+      <node id="2">
+        <label>GQCP::BaseVectorPrimitiveIntegralEngine</label>
+        <link refid="class_g_q_c_p_1_1_base_vector_primitive_integral_engine"/>
+      </node>
       <node id="1">
         <label>GQCP::PrimitiveElectronicDipoleIntegralEngine&lt; _Shell &gt;</label>
         <link refid="class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
-      </node>
-      <node id="2">
-        <label>GQCP::BaseVectorPrimitiveIntegralEngine</label>
-        <link refid="class_g_q_c_p_1_1_base_vector_primitive_integral_engine"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
+      <node id="2">
+        <label>GQCP::BaseVectorPrimitiveIntegralEngine</label>
+        <link refid="class_g_q_c_p_1_1_base_vector_primitive_integral_engine"/>
+      </node>
       <node id="1">
         <label>GQCP::PrimitiveElectronicDipoleIntegralEngine&lt; _Shell &gt;</label>
         <link refid="class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
-      </node>
-      <node id="2">
-        <label>GQCP::BaseVectorPrimitiveIntegralEngine</label>
-        <link refid="class_g_q_c_p_1_1_base_vector_primitive_integral_engine"/>
       </node>
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicDipoleIntegralEngine.hpp" line="41" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicDipoleIntegralEngine.hpp" bodystart="42" bodyend="247"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_base_vector_primitive_integral_engine_1aef88dc22cdd5ef0e282aca66812fbe65" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveElectronicDipoleIntegralEngine</scope><name>BaseVectorPrimitiveIntegralEngine</name></member>
-      <member refid="class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine_1aee499112cf39348047bdd0e8a3490fd8" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveElectronicDipoleIntegralEngine</scope><name>calculate</name></member>
-      <member refid="class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine_1a42c2dadd7f290be83c9370b837c7bc12" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveElectronicDipoleIntegralEngine</scope><name>calculate</name></member>
-      <member refid="class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine_1a1ff020ef5df9c9b8b9351fc3dc675ef0" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveElectronicDipoleIntegralEngine</scope><name>calculate1D</name></member>
-      <member refid="class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine_1a5f4e7498d0cdd75aaad563543b02f82d" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveElectronicDipoleIntegralEngine</scope><name>calculate1D</name></member>
+      <member refid="class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine_1a211b0417b960ecdb055b98a237341d4a" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveElectronicDipoleIntegralEngine</scope><name>calculate</name></member>
+      <member refid="class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine_1aed5b01167b66873ef37bde3afe9058f2" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveElectronicDipoleIntegralEngine</scope><name>calculate</name></member>
+      <member refid="class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine_1a9c3596d174089faf633bcaf8255336ec" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveElectronicDipoleIntegralEngine</scope><name>calculate1D</name></member>
+      <member refid="class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine_1a483f1aa40ed0670269607bfc60eb8418" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveElectronicDipoleIntegralEngine</scope><name>calculate1D</name></member>
       <member refid="class_g_q_c_p_1_1_base_vector_primitive_integral_engine_1ae7e8b1f36eaa6edbf7883183a133e9af" prot="protected" virt="non-virtual"><scope>GQCP::PrimitiveElectronicDipoleIntegralEngine</scope><name>component</name></member>
       <member refid="class_g_q_c_p_1_1_base_vector_primitive_integral_engine_1a032301395e9f07b12ca835518ea2b934" prot="public" virt="non-virtual"><scope>GQCP::PrimitiveElectronicDipoleIntegralEngine</scope><name>Components</name></member>
       <member refid="class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine_1af867ec0ab631644cf21925e888502a3e" prot="private" virt="non-virtual"><scope>GQCP::PrimitiveElectronicDipoleIntegralEngine</scope><name>dipole_operator</name></member>

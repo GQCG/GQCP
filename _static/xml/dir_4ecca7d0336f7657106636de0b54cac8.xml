@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="dir_4ecca7d0336f7657106636de0b54cac8" kind="dir">
     <compoundname>/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization</compoundname>
     <innerdir refid="dir_8157544c943da50df17c34acc8562db6">/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/Localization</innerdir>

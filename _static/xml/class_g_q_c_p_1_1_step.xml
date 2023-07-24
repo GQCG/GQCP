@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_step" kind="class" language="C++" prot="public" abstract="yes">
     <compoundname>GQCP::Step</compoundname>
     <derivedcompoundref refid="class_g_q_c_p_1_1_step_collection" prot="public" virt="non-virtual">GQCP::StepCollection&lt; Environment &gt;</derivedcompoundref>
@@ -19,6 +19,7 @@
         <definition>using GQCP::Step&lt; _Environment &gt;::Environment =  _Environment</definition>
         <argsstring></argsstring>
         <name>Environment</name>
+        <qualifiedname>GQCP::Step::Environment</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -34,6 +35,7 @@
         <definition>virtual GQCP::Step&lt; _Environment &gt;::~Step</definition>
         <argsstring>()=default</argsstring>
         <name>~Step</name>
+        <qualifiedname>GQCP::Step::~Step</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -47,6 +49,7 @@
         <definition>virtual std::string GQCP::Step&lt; _Environment &gt;::description</definition>
         <argsstring>() const =0</argsstring>
         <name>description</name>
+        <qualifiedname>GQCP::Step::description</qualifiedname>
         <reimplementedby refid="class_g_q_c_p_1_1_functional_step_1acdbcb74b42d6f390be7c6aa00e05978b">description</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_step_collection_1a4f63e6c1cb7d7de973cbb4212e5ba699">description</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_step_collection_1a4f63e6c1cb7d7de973cbb4212e5ba699">description</reimplementedby>
@@ -104,6 +107,7 @@
         <definition>virtual void GQCP::Step&lt; _Environment &gt;::execute</definition>
         <argsstring>(Environment &amp;environment)=0</argsstring>
         <name>execute</name>
+        <qualifiedname>GQCP::Step::execute</qualifiedname>
         <reimplementedby refid="class_g_q_c_p_1_1_correction_vector_calculation_1a9138ba28606cd23c29460423351a6bfa">execute</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_guess_vector_update_1afecd16ce6a29e4262ce1d6c95f7c0453">execute</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_matrix_vector_product_calculation_1aa6cc1aad0d4b14a29f1d5cab75452a24">execute</reimplementedby>
@@ -113,7 +117,6 @@
         <reimplementedby refid="class_g_q_c_p_1_1_subspace_update_1a36388c3c50344acbc36220c61d82a81a">execute</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_dense_diagonalization_1ab0d0402e1cac158ea3177c7a1bc6740e">execute</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_functional_step_1aa30af9328c3482352d24d15e05156e1d">execute</reimplementedby>
-        <reimplementedby refid="class_g_q_c_p_1_1_step_collection_1a227f70ef9375810de6e45dfbc23fc034">execute</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_step_collection_1a227f70ef9375810de6e45dfbc23fc034">execute</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_minimization_1_1_newton_step_update_1a74bf63843f2f9eb8753f556b9dec2fee">execute</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update_1a78d80e98d2ec9b89724474295c1371a1">execute</reimplementedby>
@@ -163,6 +166,18 @@
 </para>
     </detaileddescription>
     <inheritancegraph>
+      <node id="3">
+        <label>GQCP::FunctionalStep&lt; _Environment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_functional_step"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>GQCP::Minimization::NewtonStepUpdate&lt; _Scalar, _Environment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_minimization_1_1_newton_step_update"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
       <node id="5">
         <label>GQCP::NonLinearEquation::NewtonStepUpdate&lt; _Scalar, _Environment, LinearSolver &gt;</label>
         <link refid="class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update"/>
@@ -173,27 +188,15 @@
         <label>GQCP::Step&lt; _Environment &gt;</label>
         <link refid="class_g_q_c_p_1_1_step"/>
       </node>
-      <node id="2">
-        <label>GQCP::StepCollection&lt; Environment &gt;</label>
-        <link refid="class_g_q_c_p_1_1_step_collection"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="4">
-        <label>GQCP::Minimization::NewtonStepUpdate&lt; _Scalar, _Environment &gt;</label>
-        <link refid="class_g_q_c_p_1_1_minimization_1_1_newton_step_update"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
       <node id="6">
         <label>GQCP::StepCollection&lt; _Environment &gt;</label>
         <link refid="class_g_q_c_p_1_1_step_collection"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="3">
-        <label>GQCP::FunctionalStep&lt; _Environment &gt;</label>
-        <link refid="class_g_q_c_p_1_1_functional_step"/>
+      <node id="2">
+        <label>GQCP::StepCollection&lt; Environment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step_collection"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>

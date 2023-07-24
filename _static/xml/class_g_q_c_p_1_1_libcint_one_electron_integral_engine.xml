@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_libcint_one_electron_integral_engine" kind="class" language="C++" prot="public">
     <compoundname>GQCP::LibcintOneElectronIntegralEngine</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_base_one_electron_integral_engine" prot="public" virt="non-virtual">GQCP::BaseOneElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;</basecompoundref>
@@ -23,6 +23,7 @@
         <definition>using GQCP::LibcintOneElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::Shell =  _Shell</definition>
         <argsstring></argsstring>
         <name>Shell</name>
+        <qualifiedname>GQCP::LibcintOneElectronIntegralEngine::Shell</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -36,6 +37,7 @@
         <definition>using GQCP::LibcintOneElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::IntegralScalar =  _IntegralScalar</definition>
         <argsstring></argsstring>
         <name>IntegralScalar</name>
+        <qualifiedname>GQCP::LibcintOneElectronIntegralEngine::IntegralScalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -51,6 +53,7 @@
         <definition>constexpr auto GQCP::LibcintOneElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::N</definition>
         <argsstring></argsstring>
         <name>N</name>
+        <qualifiedname>GQCP::LibcintOneElectronIntegralEngine::N</qualifiedname>
         <initializer>= _N</initializer>
         <briefdescription>
         </briefdescription>
@@ -67,6 +70,7 @@
         <definition>Libcint1eFunction GQCP::LibcintOneElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::libcint_function</definition>
         <argsstring></argsstring>
         <name>libcint_function</name>
+        <qualifiedname>GQCP::LibcintOneElectronIntegralEngine::libcint_function</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -80,6 +84,7 @@
         <definition>libcint::RawContainer GQCP::LibcintOneElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::libcint_raw_container</definition>
         <argsstring></argsstring>
         <name>libcint_raw_container</name>
+        <qualifiedname>GQCP::LibcintOneElectronIntegralEngine::libcint_raw_container</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -93,6 +98,7 @@
         <definition>ShellSet&lt;Shell&gt; GQCP::LibcintOneElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::shell_set</definition>
         <argsstring></argsstring>
         <name>shell_set</name>
+        <qualifiedname>GQCP::LibcintOneElectronIntegralEngine::shell_set</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -102,10 +108,11 @@
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintOneElectronIntegralEngine.hpp" line="58" column="14" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintOneElectronIntegralEngine.hpp" bodystart="58" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_g_q_c_p_1_1_libcint_one_electron_integral_engine_1a656294edd252e9b502cd32035707fdb5" prot="private" static="no" mutable="no">
-        <type><ref refid="class_g_q_c_p_1_1_base_one_electron_integral_engine_1aebe2d404144f1c0ed72257f6fc7e2620" kindref="member">IntegralScalar</ref></type>
+        <type><ref refid="class_g_q_c_p_1_1_libcint_one_electron_integral_engine_1a8ba4cb44d75256c499c925468722ffa1" kindref="member">IntegralScalar</ref></type>
         <definition>IntegralScalar GQCP::LibcintOneElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::scaling_factor</definition>
         <argsstring></argsstring>
         <name>scaling_factor</name>
+        <qualifiedname>GQCP::LibcintOneElectronIntegralEngine::scaling_factor</qualifiedname>
         <initializer>= 1.0</initializer>
         <briefdescription>
         </briefdescription>
@@ -122,6 +129,7 @@
         <definition>GQCP::LibcintOneElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::LibcintOneElectronIntegralEngine</definition>
         <argsstring>(const ElectronicDipoleOperator &amp;op, const ShellSet&lt; Shell &gt; &amp;shell_set)</argsstring>
         <name>LibcintOneElectronIntegralEngine</name>
+        <qualifiedname>GQCP::LibcintOneElectronIntegralEngine::LibcintOneElectronIntegralEngine</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_electronic_dipole_operator" kindref="compound">ElectronicDipoleOperator</ref> &amp;</type>
           <declname>op</declname>
@@ -147,7 +155,7 @@
 <parametername>shell_set</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the <ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet</ref> whose information should be converted to a RawContainer, which will serve as some kind of &apos;global&apos; data for the libcint engine to use in all its <ref refid="class_g_q_c_p_1_1_libcint_one_electron_integral_engine_1adc39ac2900ad0612daf7ca0a57959e40" kindref="member">calculate()</ref> calls </para>
+<para>the <ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet</ref> whose information should be converted to a RawContainer, which will serve as some kind of &apos;global&apos; data for the libcint engine to use in all its <ref refid="class_g_q_c_p_1_1_libcint_one_electron_integral_engine_1a0af233f78776bbedeab644414f35d1b8" kindref="member">calculate()</ref> calls </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -162,6 +170,7 @@
         <definition>GQCP::LibcintOneElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::LibcintOneElectronIntegralEngine</definition>
         <argsstring>(const KineticOperator &amp;op, const ShellSet&lt; Shell &gt; &amp;shell_set)</argsstring>
         <name>LibcintOneElectronIntegralEngine</name>
+        <qualifiedname>GQCP::LibcintOneElectronIntegralEngine::LibcintOneElectronIntegralEngine</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_kinetic_operator" kindref="compound">KineticOperator</ref> &amp;</type>
           <declname>op</declname>
@@ -187,7 +196,7 @@
 <parametername>shell_set</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the <ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet</ref> whose information should be converted to a RawContainer, which will serve as some kind of &apos;global&apos; data for the libcint engine to use in all its <ref refid="class_g_q_c_p_1_1_libcint_one_electron_integral_engine_1adc39ac2900ad0612daf7ca0a57959e40" kindref="member">calculate()</ref> calls </para>
+<para>the <ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet</ref> whose information should be converted to a RawContainer, which will serve as some kind of &apos;global&apos; data for the libcint engine to use in all its <ref refid="class_g_q_c_p_1_1_libcint_one_electron_integral_engine_1a0af233f78776bbedeab644414f35d1b8" kindref="member">calculate()</ref> calls </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -202,6 +211,7 @@
         <definition>GQCP::LibcintOneElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::LibcintOneElectronIntegralEngine</definition>
         <argsstring>(const NuclearAttractionOperator &amp;op, const ShellSet&lt; Shell &gt; &amp;shell_set)</argsstring>
         <name>LibcintOneElectronIntegralEngine</name>
+        <qualifiedname>GQCP::LibcintOneElectronIntegralEngine::LibcintOneElectronIntegralEngine</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_nuclear_attraction_operator" kindref="compound">NuclearAttractionOperator</ref> &amp;</type>
           <declname>op</declname>
@@ -227,7 +237,7 @@
 <parametername>shell_set</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the <ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet</ref> whose information should be converted to a RawContainer, which will serve as some kind of &apos;global&apos; data for the libcint engine to use in all its <ref refid="class_g_q_c_p_1_1_libcint_one_electron_integral_engine_1adc39ac2900ad0612daf7ca0a57959e40" kindref="member">calculate()</ref> calls </para>
+<para>the <ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet</ref> whose information should be converted to a RawContainer, which will serve as some kind of &apos;global&apos; data for the libcint engine to use in all its <ref refid="class_g_q_c_p_1_1_libcint_one_electron_integral_engine_1a0af233f78776bbedeab644414f35d1b8" kindref="member">calculate()</ref> calls </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -242,6 +252,7 @@
         <definition>GQCP::LibcintOneElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::LibcintOneElectronIntegralEngine</definition>
         <argsstring>(const OverlapOperator &amp;op, const ShellSet&lt; Shell &gt; &amp;shell_set)</argsstring>
         <name>LibcintOneElectronIntegralEngine</name>
+        <qualifiedname>GQCP::LibcintOneElectronIntegralEngine::LibcintOneElectronIntegralEngine</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_overlap_operator" kindref="compound">OverlapOperator</ref> &amp;</type>
           <declname>op</declname>
@@ -267,7 +278,7 @@
 <parametername>shell_set</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the <ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet</ref> whose information should be converted to a RawContainer, which will serve as some kind of &apos;global&apos; data for the libcint engine to use in all its <ref refid="class_g_q_c_p_1_1_libcint_one_electron_integral_engine_1adc39ac2900ad0612daf7ca0a57959e40" kindref="member">calculate()</ref> calls </para>
+<para>the <ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet</ref> whose information should be converted to a RawContainer, which will serve as some kind of &apos;global&apos; data for the libcint engine to use in all its <ref refid="class_g_q_c_p_1_1_libcint_one_electron_integral_engine_1a0af233f78776bbedeab644414f35d1b8" kindref="member">calculate()</ref> calls </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -277,11 +288,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintOneElectronIntegralEngine.hpp" line="112" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintOneElectronIntegralEngine.hpp" bodystart="112" bodyend="115"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_libcint_one_electron_integral_engine_1adc39ac2900ad0612daf7ca0a57959e40" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>std::shared_ptr&lt; <ref refid="class_g_q_c_p_1_1_base_one_electron_integral_buffer" kindref="compound">BaseOneElectronIntegralBuffer</ref>&lt; <ref refid="class_g_q_c_p_1_1_base_one_electron_integral_engine_1aebe2d404144f1c0ed72257f6fc7e2620" kindref="member">IntegralScalar</ref>, <ref refid="class_g_q_c_p_1_1_libcint_one_electron_integral_engine_1a05302a2a8df7b955b1da5e2c3ba24dab" kindref="member">N</ref> &gt; &gt;</type>
-        <definition>std::shared_ptr&lt;BaseOneElectronIntegralBuffer&lt;IntegralScalar, N&gt; &gt; GQCP::LibcintOneElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::calculate</definition>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_libcint_one_electron_integral_engine_1a0af233f78776bbedeab644414f35d1b8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="class_g_q_c_p_1_1_base_one_electron_integral_buffer" kindref="compound">BaseOneElectronIntegralBuffer</ref>&lt; <ref refid="class_g_q_c_p_1_1_libcint_one_electron_integral_engine_1a8ba4cb44d75256c499c925468722ffa1" kindref="member">IntegralScalar</ref>, <ref refid="class_g_q_c_p_1_1_libcint_one_electron_integral_engine_1a05302a2a8df7b955b1da5e2c3ba24dab" kindref="member">N</ref> &gt; &gt;</type>
+        <definition>std::shared_ptr&lt; BaseOneElectronIntegralBuffer&lt; IntegralScalar, N &gt; &gt; GQCP::LibcintOneElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::calculate</definition>
         <argsstring>(const GTOShell &amp;shell1, const GTOShell &amp;shell2) override</argsstring>
         <name>calculate</name>
+        <qualifiedname>GQCP::LibcintOneElectronIntegralEngine::calculate</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &amp;</type>
           <declname>shell1</declname>
@@ -350,7 +362,7 @@
 </simplesect>
 <simplesect kind="note"><para>Libcint1eFunction and Libcint2eFunction need the full libcint data (that is stored in a RawContainer), because the electron electrical dipole function needs to access the &apos;common origin&apos; and the nuclear attraction function needs to know all the nuclei that should be taken into account. We therefore keep the full RawContainer as a member.</para>
 </simplesect>
-<simplesect kind="note"><para>In the overridden <ref refid="class_g_q_c_p_1_1_libcint_one_electron_integral_engine_1adc39ac2900ad0612daf7ca0a57959e40" kindref="member">calculate(const GTOShell&amp;, const GTOShell&amp;)</ref> method, the shell indices that correspond to the RawContainer should also be known, which is why we also keep the <ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet</ref> as a member, for easy retrieval of the shell indices. </para>
+<simplesect kind="note"><para>In the overridden <ref refid="class_g_q_c_p_1_1_libcint_one_electron_integral_engine_1a0af233f78776bbedeab644414f35d1b8" kindref="member">calculate(const GTOShell&amp;, const GTOShell&amp;)</ref> method, the shell indices that correspond to the RawContainer should also be known, which is why we also keep the <ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet</ref> as a member, for easy retrieval of the shell indices. </para>
 </simplesect>
 </para>
     </detaileddescription>
@@ -380,8 +392,8 @@
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintOneElectronIntegralEngine.hpp" line="46" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintOneElectronIntegralEngine.hpp" bodystart="46" bodyend="147"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_libcint_one_electron_integral_engine_1adc39ac2900ad0612daf7ca0a57959e40" prot="public" virt="non-virtual"><scope>GQCP::LibcintOneElectronIntegralEngine</scope><name>calculate</name></member>
-      <member refid="class_g_q_c_p_1_1_base_one_electron_integral_engine_1aa72a849494df30951a5466471fdc246f" prot="public" virt="pure-virtual" ambiguityscope="GQCP::BaseOneElectronIntegralEngine::"><scope>GQCP::LibcintOneElectronIntegralEngine</scope><name>calculate</name></member>
+      <member refid="class_g_q_c_p_1_1_libcint_one_electron_integral_engine_1a0af233f78776bbedeab644414f35d1b8" prot="public" virt="non-virtual"><scope>GQCP::LibcintOneElectronIntegralEngine</scope><name>calculate</name></member>
+      <member refid="class_g_q_c_p_1_1_base_one_electron_integral_engine_1a5ebc73dd256d9d703043250e3a39d6dd" prot="public" virt="pure-virtual" ambiguityscope="GQCP::BaseOneElectronIntegralEngine::"><scope>GQCP::LibcintOneElectronIntegralEngine</scope><name>calculate</name></member>
       <member refid="class_g_q_c_p_1_1_libcint_one_electron_integral_engine_1a8ba4cb44d75256c499c925468722ffa1" prot="public" virt="non-virtual"><scope>GQCP::LibcintOneElectronIntegralEngine</scope><name>IntegralScalar</name></member>
       <member refid="class_g_q_c_p_1_1_libcint_one_electron_integral_engine_1a935b7c5f5444cfd124cebcfe0597ef09" prot="private" virt="non-virtual"><scope>GQCP::LibcintOneElectronIntegralEngine</scope><name>libcint_function</name></member>
       <member refid="class_g_q_c_p_1_1_libcint_one_electron_integral_engine_1a0d52dbaf4512c2abadfeac337d994ac6" prot="private" virt="non-virtual"><scope>GQCP::LibcintOneElectronIntegralEngine</scope><name>libcint_raw_container</name></member>

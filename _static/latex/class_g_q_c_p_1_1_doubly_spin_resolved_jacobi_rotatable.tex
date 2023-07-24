@@ -1,4 +1,4 @@
-\hypertarget{class_g_q_c_p_1_1_doubly_spin_resolved_jacobi_rotatable}{}\doxysection{GQCP\+::Doubly\+Spin\+Resolved\+Jacobi\+Rotatable$<$ T $>$ Class Template Reference}
+\hypertarget{class_g_q_c_p_1_1_doubly_spin_resolved_jacobi_rotatable}{}\doxysection{GQCP\+::Doubly\+Spin\+Resolved\+Jacobi\+Rotatable\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Class Template Reference}
 \label{class_g_q_c_p_1_1_doubly_spin_resolved_jacobi_rotatable}\index{GQCP::DoublySpinResolvedJacobiRotatable$<$ T $>$@{GQCP::DoublySpinResolvedJacobiRotatable$<$ T $>$}}
 
 
@@ -6,7 +6,7 @@
 
 
 
-Inheritance diagram for GQCP\+::Doubly\+Spin\+Resolved\+Jacobi\+Rotatable$<$ T $>$\+:
+Inheritance diagram for GQCP\+::Doubly\+Spin\+Resolved\+Jacobi\+Rotatable\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -16,7 +16,7 @@ Inheritance diagram for GQCP\+::Doubly\+Spin\+Resolved\+Jacobi\+Rotatable$<$ T $
 \end{figure}
 
 
-Collaboration diagram for GQCP\+::Doubly\+Spin\+Resolved\+Jacobi\+Rotatable$<$ T $>$\+:
+Collaboration diagram for GQCP\+::Doubly\+Spin\+Resolved\+Jacobi\+Rotatable\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -29,17 +29,28 @@ Collaboration diagram for GQCP\+::Doubly\+Spin\+Resolved\+Jacobi\+Rotatable$<$ T
 \item 
 using \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_jacobi_rotatable_a22e5277961cb14e1d3b16aa5d6bd5aee}{Jacobi\+Rotation\+Type}} = \mbox{\hyperlink{class_g_q_c_p_1_1_u_jacobi_rotation}{UJacobi\+Rotation}}
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_rotatable}{GQCP\+::\+Jacobi\+Rotatable$<$ T $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_rotatable_a107861c91912a3808817f5845823204f}{Jacobi\+Rotation\+Type}} = typename \mbox{\hyperlink{struct_g_q_c_p_1_1_jacobi_rotatable_traits}{Jacobi\+Rotatable\+Traits}}$<$ T $>$\+::\+Jacobi\+Rotation\+Type
+\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 T \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_jacobi_rotatable_a6d8f51cf240f4a7acc6bc309a84ab563}{rotated}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_jacobi_rotatable_a22e5277961cb14e1d3b16aa5d6bd5aee}{Jacobi\+Rotation\+Type}} \&jacobi\+\_\+rotation) const override
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_rotatable}{GQCP\+::\+Jacobi\+Rotatable$<$ T $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual T \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_rotatable_ae518b652e54f43acf2db43300c1d6fc0}{rotated}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_rotatable_a107861c91912a3808817f5845823204f}{Jacobi\+Rotation\+Type}} \&jacobi\+\_\+rotation) const =0
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_rotatable_a11657b774fe75246bef1f7849f9aad72}{rotate}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_rotatable_a107861c91912a3808817f5845823204f}{Jacobi\+Rotation\+Type}} \&jacobi\+\_\+rotation)
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$typename T$>$\newline
 class GQCP\+::\+Doubly\+Spin\+Resolved\+Jacobi\+Rotatable$<$ T $>$}
-
 An interface that implements conformance to {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_rotatable}{Jacobi\+Rotatable}}} for doubly spin-\/resolved types.
 
 
@@ -55,7 +66,7 @@ An interface that implements conformance to {\ttfamily \mbox{\hyperlink{class_g_
 \index{JacobiRotationType@{JacobiRotationType}!GQCP::DoublySpinResolvedJacobiRotatable$<$ T $>$@{GQCP::DoublySpinResolvedJacobiRotatable$<$ T $>$}}
 \doxysubsubsection{\texorpdfstring{JacobiRotationType}{JacobiRotationType}}
 {\footnotesize\ttfamily template$<$typename T $>$ \\
-using \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_jacobi_rotatable}{GQCP\+::\+Doubly\+Spin\+Resolved\+Jacobi\+Rotatable}}$<$ T $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_jacobi_rotatable_a22e5277961cb14e1d3b16aa5d6bd5aee}{Jacobi\+Rotation\+Type}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_u_jacobi_rotation}{UJacobi\+Rotation}}}
+using \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_jacobi_rotatable}{GQCP\+::\+Doubly\+Spin\+Resolved\+Jacobi\+Rotatable}}$<$ T $>$\+::\+Jacobi\+Rotation\+Type =  \mbox{\hyperlink{class_g_q_c_p_1_1_u_jacobi_rotation}{UJacobi\+Rotation}}}
 
 
 

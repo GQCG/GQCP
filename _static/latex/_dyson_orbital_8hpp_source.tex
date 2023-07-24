@@ -1,0 +1,203 @@
+\hypertarget{_dyson_orbital_8hpp_source}{}\doxysection{Dyson\+Orbital.\+hpp}
+\label{_dyson_orbital_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Processing/Properties/DysonOrbital.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Processing/Properties/DysonOrbital.hpp}}
+\mbox{\hyperlink{_dyson_orbital_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}ONVBasis/SpinResolvedONVBasis.hpp"{}}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_linear_expansion_8hpp}{QCModel/CI/LinearExpansion.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{type__traits_8hpp}{Utilities/type\_traits.hpp}}"{}}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar>}
+\DoxyCodeLine{00034\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_dyson_orbital}{DysonOrbital}}\ \{}
+\DoxyCodeLine{00035\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{comment}{//\ The\ scalar\ type\ used\ for\ a\ single\ parameter:\ real\ or\ complex.}}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_dyson_orbital_ab24fe534fef5bc4f0f5a75a290c5f7d2}{Scalar}}\ =\ \_Scalar;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ The\ Dyson\ amplitudes\ for\ the\ Dyson\ orbital.\ They\ are\ indicated\ as\ <N-\/1|a\_p|N>,\ where\ 'p'\ is\ the\ index\ of\ spinor\ p.}}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<Scalar>}}\ m\_amplitudes;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00047\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Constructors}}
+\DoxyCodeLine{00048\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_dyson_orbital_ad20ca1028404ebbe14abb2500daf1248}{DysonOrbital}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_dyson_orbital_ae74740687f622d0b540a726029c1eb55}{DysonOrbital}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ K)\ :}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ m\_amplitudes\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX}}<\mbox{\hyperlink{class_g_q_c_p_1_1_dyson_orbital_ab24fe534fef5bc4f0f5a75a290c5f7d2}{Scalar}}>::Zero(K)\}\ \{\}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_dyson_orbital_a35dce26692bb4d12ead43e446bc513b4}{DysonOrbital}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_dyson_orbital_ae903be799e9ddeb867e7af776319a95f}{amplitudes}})\ :}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ m\_amplitudes\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_dyson_orbital_ae903be799e9ddeb867e7af776319a95f}{amplitudes}}\}\ \{\}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00073\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Named\ constructors}}
+\DoxyCodeLine{00074\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Scalar>}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<std::is\_same<Z,\ double>::value}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_dyson_orbital}{DysonOrbital<double>}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_dyson_orbital_a386052dfb174429e7ef532d2bdbbae25}{TransitionAmplitudes}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{LinearExpansion<double,\ SpinResolvedONVBasis>}}\&\ linear\_expansion\_J,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{LinearExpansion<double,\ SpinResolvedONVBasis>}}\&\ linear\_expansion\_I)\ \{}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ onv\_basis\_J\ =\ linear\_expansion\_J.\mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_adfbfbb6330dd8c19099cb1927b8561fe}{onvBasis}}();}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ onv\_basis\_I\ =\ linear\_expansion\_I.\mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_adfbfbb6330dd8c19099cb1927b8561fe}{onvBasis}}();}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((onv\_basis\_J.alpha().numberOfElectrons()\ -\/\ onv\_basis\_I.alpha().numberOfElectrons()\ !=\ 0)\ \&\&\ (onv\_basis\_J.beta().numberOfElectrons()\ -\/\ onv\_basis\_I.beta().numberOfElectrons()\ !=\ 1))\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((onv\_basis\_J.alpha().numberOfElectrons()\ -\/\ onv\_basis\_I.alpha().numberOfElectrons()\ !=\ 1)\ \&\&\ (onv\_basis\_J.beta().numberOfElectrons()\ -\/\ onv\_basis\_I.beta().numberOfElectrons()\ !=\ 0))\ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}DysonOrbital::TransitionAmplitudes(LinearExpansion,\ LinearExpansion):\ linear\_expansion\_I\ is\ not\ expressed\ in\ a\ spin-\/resolved\ ONV\ basis\ with\ one\ fewer\ electron\ than\ linear\_expansion\_J."{}});}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initialize\ environment\ variables.}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ 'passive'\ ONV\ basis\ is\ the\ ONV\ basis\ that\ is\ equal\ for\ both\ wave\ functions.}}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ 'target'\ ONV\ basis\ has\ an\ electron\ difference\ of\ one.}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ initialize\ the\ variables\ for\ the\ case\ in\ which\ they\ differ\ in\ one\ beta\ electron,\ if\ this\ isn't\ the\ case,\ we\ will\ update\ it\ later.}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ passive\_onv\_basis\_J\ =\ onv\_basis\_J.alpha();}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ passive\_onv\_basis\_I\ =\ onv\_basis\_I.alpha();}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ target\_onv\_basis\_J\ =\ onv\_basis\_J.beta();}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ target\_onv\_basis\_I\ =\ onv\_basis\_I.beta();}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Mod\ variables\ relate\ to\ the\ modification\ of\ the\ address\ jump\ in\ coefficient\ index\ according\ to\ the\ ordering\ of\ the\ spin\ ONVs.}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ passive\_mod\_J\ =\ target\_onv\_basis\_J.dimension();}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ passive\_mod\_I\ =\ target\_onv\_basis\_I.dimension();}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ target\_mod\ =\ 1;}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ instead\ the\ ONV\ bases\ differ\ by\ one\ alpha\ electron\ we\ re-\/assign\ the\ variables\ to\ match\ the\ algorithm.}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((onv\_basis\_J.alpha().numberOfElectrons()\ -\/\ onv\_basis\_I.alpha().numberOfElectrons()\ ==\ 1)\ \&\&\ (onv\_basis\_J.beta().numberOfElectrons()\ -\/\ onv\_basis\_I.beta().numberOfElectrons()\ ==\ 0))\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ passive\_onv\_basis\_J\ =\ target\_onv\_basis\_J;}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ passive\_onv\_basis\_I\ =\ target\_onv\_basis\_I;}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ target\_onv\_basis\_J\ =\ onv\_basis\_J.alpha();}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ target\_onv\_basis\_I\ =\ onv\_basis\_I.alpha();}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ passive\_mod\_J\ =\ 1;}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ passive\_mod\_I\ =\ 1;}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ target\_mod\ =\ passive\_onv\_basis\_J.dimension();}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ ci\_coeffs\_J\ =\ linear\_expansion\_J.\mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_a6b3479bc3007d2c71d5c9a42fc1e6ddd}{coefficients}}();}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ ci\_coeffs\_I\ =\ linear\_expansion\_I.\mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_a6b3479bc3007d2c71d5c9a42fc1e6ddd}{coefficients}}();}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<double>}}\ dyson\_coeffs\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<double>::Zero}}(onv\_basis\_J.alpha().numberOfOrbitals());}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ actual\ algorithm\ to\ determine\ the\ Dyson\ amplitudes.}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Since\ we\ want\ to\ calculate\ the\ overlap\ between\ two\ wave\ functions,\ the\ ONVs\ should\ have\ an\ equal\ number\ of\ electrons.}}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ therefore\ iterate\ over\ the\ ONVs\ of\ the\ 'target'\ ONV\ basis,\ which\ all\ have\ an\ electron\ more,\ and\ annihilate\ in\ one\ of\ the\ orbitals\ (let\ the\ index\ of\ that\ orbital\ be\ called\ 'p').}}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ By\ calculating\ the\ overlap\ in\ the\ (N-\/1)-\/electron\ ONV\ basis,\ we\ can\ calculate\ the\ contributions\ to\ the\ \ 'p'-\/th\ coefficient\ (i.e.\ the\ Dyson\ amplitude)\ of\ the\ Dyson\ orbital.}}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ SpinUnresolvedONV\ onv\ =\ target\_onv\_basis\_J.constructONVFromAddress(0);}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ Jt\ =\ 0;\ Jt\ <\ target\_onv\_basis\_J.dimension();\ Jt++)\ \{\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Jt\ loops\ over\ addresses\ of\ the\ target\ ONV\ basis.}}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ sign\ =\ -\/1;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Total\ phase\ factor\ of\ all\ the\ annihilations\ that\ have\ occurred.}}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ e\ =\ 0;\ e\ <\ target\_onv\_basis\_J.numberOfElectrons();\ e++)\ \{\ \ \textcolor{comment}{//\ Loop\ over\ electrons\ in\ the\ ONV.}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Annihilate\ on\ the\ corresponding\ orbital,\ to\ make\ sure\ we\ can\ calculate\ overlaps\ in\ the\ (N-\/1)-\/'target'\ ONV\ basis.}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sign\ *=\ -\/1;}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ p\ =\ onv.occupationIndexOf(e);}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ onv.annihilate(p);}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Now,\ we\ calculate\ the\ overlap\ in\ the\ (N-\/1)-\/electron\ 'target'\ ONV\ basis.}}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ In\ order\ to\ access\ the\ correct\ coefficients\ for\ the,\ we\ need\ the\ address\ of\ the\ resulting\ (annihilated)\ ONV\ inside\ the\ 'target'\ (N-\/1)-\/electron\ ONV\ basis.}}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ address\ =\ target\_onv\_basis\_I.addressOf(onv.unsignedRepresentation());}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ coeff\ =\ 0;}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ Jp\ =\ 0;\ Jp\ <\ passive\_onv\_basis\_J.dimension();\ Jp++)\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Jp\ loops\ over\ the\ addresses\ of\ the\ passive\ ONV\ basis.}}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ coeff\ +=\ sign\ *\ ci\_coeffs\_J(Jt\ *\ target\_mod\ +\ Jp\ *\ passive\_mod\_J)\ *\ ci\_coeffs\_I(address\ *\ target\_mod\ +\ Jp\ *\ passive\_mod\_I);\ \ \textcolor{comment}{//\ Access\ the\ indices\ of\ the\ coefficient\ vectors.}}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dyson\_coeffs(p)\ +=\ coeff;}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ onv.create(p);\ \ \textcolor{comment}{//\ Allow\ the\ iteration\ to\ continue\ with\ the\ original\ ONV.}}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Jt\ <\ target\_onv\_basis\_J.dimension()\ -\/\ 1)\ \{\ \ \textcolor{comment}{//\ Prevent\ the\ last\ permutation\ from\ occurring.}}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ target\_onv\_basis\_J.transformONVToNextPermutation(onv);}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \}\ \ \textcolor{comment}{//\ Target\ address\ (Jt)\ loop.}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_dyson_orbital}{DysonOrbital<Scalar>}}(dyson\_coeffs);}
+\DoxyCodeLine{00162\ \ \ \ \ \}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Scalar>}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<std::is\_same<Z,\ double>::value}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_dyson_orbital}{DysonOrbital<double>}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_dyson_orbital_aec84724efa947c72463d92c08e6d51da}{TransitionAmplitudes}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{LinearExpansion<double,\ SpinUnresolvedONVBasis>}}\&\ linear\_expansion\_J,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{LinearExpansion<double,\ SpinUnresolvedONVBasis>}}\&\ linear\_expansion\_I)\ \{}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initialize\ environment\ variables.}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ onv\_basis\_J\ =\ linear\_expansion\_J.\mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_adfbfbb6330dd8c19099cb1927b8561fe}{onvBasis}}();}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ onv\_basis\_I\ =\ linear\_expansion\_I.\mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_adfbfbb6330dd8c19099cb1927b8561fe}{onvBasis}}();}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (onv\_basis\_J.numberOfElectrons()\ -\/\ onv\_basis\_I.numberOfElectrons()\ !=\ 1)\ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}DysonOrbital::TransitionAmplitudes(LinearExpansion,\ LinearExpansion):\ linear\_expansion\_I\ is\ not\ expressed\ in\ a\ spin-\/unresolved\ ONV\ basis\ with\ one\ fewer\ electron\ than\ linear\_expansion\_J."{}});}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ ci\_coeffs\_J\ =\ linear\_expansion\_J.\mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_a6b3479bc3007d2c71d5c9a42fc1e6ddd}{coefficients}}();}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ ci\_coeffs\_I\ =\ linear\_expansion\_I.\mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion_a6b3479bc3007d2c71d5c9a42fc1e6ddd}{coefficients}}();}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<double>}}\ dyson\_coeffs\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<double>::Zero}}(onv\_basis\_J.numberOfOrbitals());}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ actual\ algorithm\ to\ determine\ the\ Dyson\ amplitudes.}}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Since\ we\ want\ to\ calculate\ the\ overlap\ between\ two\ wave\ functions,\ the\ ONVs\ should\ have\ an\ equal\ number\ of\ electrons.}}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ therefore\ iterate\ over\ the\ ONVs\ of\ the\ N-\/electron\ ONV\ basis,\ which\ all\ have\ an\ electron\ more,\ and\ annihilate\ in\ one\ of\ the\ orbitals\ (let\ the\ index\ of\ that\ orbital\ be\ called\ 'p').}}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ By\ calculating\ the\ overlap\ in\ the\ (N-\/1)-\/electron\ ONV\ basis,\ we\ can\ calculate\ the\ contributions\ to\ the\ \ 'p'-\/th\ coefficient\ (i.e.\ the\ Dyson\ amplitude)\ of\ the\ Dyson\ orbital.}}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ SpinUnresolvedONV\ onv\ =\ onv\_basis\_J.constructONVFromAddress(0);}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ coeff\ =\ 0;}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ J\ =\ 0;\ J\ <\ onv\_basis\_J.dimension();\ J++)\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ J\ loops\ over\ addresses\ of\ the\ N-\/electron\ spin-\/unresolved\ ONV\ basis.}}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ sign\ =\ -\/1;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Total\ phase\ factor\ of\ all\ the\ annihilations\ that\ have\ occurred.}}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ e\ =\ 0;\ e\ <\ onv\_basis\_J.numberOfElectrons();\ e++)\ \{\ \ \textcolor{comment}{//\ Loop\ over\ electrons\ in\ the\ ONV.}}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Annihilate\ on\ the\ corresponding\ orbital,\ to\ make\ sure\ we\ can\ calculate\ overlaps\ in\ the\ (N-\/1)-\/electron\ ONV\ basis.}}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sign\ *=\ -\/1;}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ p\ =\ onv.occupationIndexOf(e);}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ onv.annihilate(p);}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Now,\ we\ calculate\ the\ overlap\ in\ the\ (N-\/1)-\/electron\ ONV\ basis.}}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ In\ order\ to\ access\ the\ correct\ coefficients\ for\ the,\ we\ need\ the\ address\ of\ the\ resulting\ (annihilated)\ ONV\ inside\ the\ (N-\/1)-\/electron\ ONV\ basis.}}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ address\ =\ onv\_basis\_I.addressOf(onv.unsignedRepresentation());}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ coeff\ =\ sign\ *\ ci\_coeffs\_J(J)\ *\ ci\_coeffs\_I(address);\ \ \textcolor{comment}{//\ Access\ the\ indices\ of\ the\ coefficient\ vectors.}}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dyson\_coeffs(p)\ +=\ coeff;}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ onv.create(p);\ \ \textcolor{comment}{//\ Allow\ the\ iteration\ to\ continue\ with\ the\ original\ ONV.}}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (J\ <\ onv\_basis\_J.dimension()\ -\/\ 1)\ \{\ \ \textcolor{comment}{//\ Prevent\ the\ last\ permutation\ from\ occurring.}}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ onv\_basis\_J.transformONVToNextPermutation(onv);}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \}\ \ \textcolor{comment}{//\ Loop\ over\ J\ ONVs.}}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_dyson_orbital}{DysonOrbital<Scalar>}}(dyson\_coeffs);}
+\DoxyCodeLine{00222\ \ \ \ \ \}}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00225\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Access}}
+\DoxyCodeLine{00226\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_dyson_orbital_ae903be799e9ddeb867e7af776319a95f}{amplitudes}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>m\_amplitudes;\ \}}
+\DoxyCodeLine{00232\ \};}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

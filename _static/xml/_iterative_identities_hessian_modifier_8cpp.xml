@@ -1,86 +1,25 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="_iterative_identities_hessian_modifier_8cpp" kind="file" language="C++">
     <compoundname>IterativeIdentitiesHessianModifier.cpp</compoundname>
     <includes refid="_iterative_identities_hessian_modifier_8hpp" local="yes">Mathematical/Optimization/Minimization/IterativeIdentitiesHessianModifier.hpp</includes>
     <includes local="no">Eigen/Cholesky</includes>
     <incdepgraph>
-      <node id="13">
-        <label>boost/algorithm/string.hpp</label>
+      <node id="6">
+        <label>Mathematical/Functions/CartesianDirection.hpp</label>
+        <link refid="_cartesian_direction_8hpp"/>
       </node>
-      <node id="19">
-        <label>functional</label>
-      </node>
-      <node id="24">
-        <label>Eigen/Cholesky</label>
-      </node>
-      <node id="7">
-        <label>Utilities/Eigen.hpp</label>
-        <link refid="_eigen_8hpp"/>
-        <childnode refid="8" relation="include">
+      <node id="3">
+        <label>Mathematical/Optimization/Minimization/BaseHessianModifier.hpp</label>
+        <link refid="_base_hessian_modifier_8hpp"/>
+        <childnode refid="4" relation="include">
         </childnode>
-      </node>
-      <node id="20">
-        <label>iterator</label>
-      </node>
-      <node id="4">
-        <label>Mathematical/Representation/SquareMatrix.hpp</label>
-        <link refid="_square_matrix_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-        <childnode refid="22" relation="include">
-        </childnode>
-        <childnode refid="23" relation="include">
-        </childnode>
-      </node>
-      <node id="17">
-        <label>Utilities/miscellaneous.hpp</label>
-        <link refid="miscellaneous_8hpp"/>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="20" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-      </node>
-      <node id="23">
-        <label>numeric</label>
-      </node>
-      <node id="1">
-        <label>/__w/GQCP/GQCP/gqcp/src/Mathematical/Optimization/Minimization/IterativeIdentitiesHessianModifier.cpp</label>
-        <link refid="_iterative_identities_hessian_modifier_8cpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="24" relation="include">
-        </childnode>
-      </node>
-      <node id="21">
-        <label>string</label>
       </node>
       <node id="2">
         <label>Mathematical/Optimization/Minimization/IterativeIdentitiesHessianModifier.hpp</label>
         <link refid="_iterative_identities_hessian_modifier_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
-      </node>
-      <node id="22">
-        <label>boost/numeric/conversion/converter.hpp</label>
-      </node>
-      <node id="14">
-        <label>fstream</label>
-      </node>
-      <node id="8">
-        <label>Eigen/Dense</label>
       </node>
       <node id="5">
         <label>Mathematical/Representation/Matrix.hpp</label>
@@ -102,14 +41,23 @@
         <childnode refid="16" relation="include">
         </childnode>
       </node>
-      <node id="10">
-        <label>Utilities/type_traits.hpp</label>
-        <link refid="type__traits_8hpp"/>
-        <childnode refid="11" relation="include">
+      <node id="4">
+        <label>Mathematical/Representation/SquareMatrix.hpp</label>
+        <link refid="_square_matrix_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
         </childnode>
       </node>
-      <node id="16">
-        <label>vector</label>
+      <node id="7">
+        <label>Utilities/Eigen.hpp</label>
+        <link refid="_eigen_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
       </node>
       <node id="9">
         <label>Utilities/aliases.hpp</label>
@@ -119,27 +67,79 @@
         <childnode refid="12" relation="include">
         </childnode>
       </node>
-      <node id="12">
-        <label>cstdlib</label>
+      <node id="17">
+        <label>Utilities/miscellaneous.hpp</label>
+        <link refid="miscellaneous_8hpp"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
       </node>
-      <node id="15">
-        <label>iostream</label>
+      <node id="10">
+        <label>Utilities/type_traits.hpp</label>
+        <link refid="type__traits_8hpp"/>
+        <childnode refid="11" relation="include">
+        </childnode>
       </node>
-      <node id="11">
-        <label>type_traits</label>
+      <node id="1">
+        <label>/__w/GQCP/GQCP/gqcp/src/Mathematical/Optimization/Minimization/IterativeIdentitiesHessianModifier.cpp</label>
+        <link refid="_iterative_identities_hessian_modifier_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>Eigen/Cholesky</label>
+      </node>
+      <node id="8">
+        <label>Eigen/Dense</label>
       </node>
       <node id="18">
         <label>algorithm</label>
       </node>
-      <node id="3">
-        <label>Mathematical/Optimization/Minimization/BaseHessianModifier.hpp</label>
-        <link refid="_base_hessian_modifier_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
+      <node id="13">
+        <label>boost/algorithm/string.hpp</label>
       </node>
-      <node id="6">
-        <label>Mathematical/Functions/CartesianDirection.hpp</label>
-        <link refid="_cartesian_direction_8hpp"/>
+      <node id="22">
+        <label>boost/numeric/conversion/converter.hpp</label>
+      </node>
+      <node id="12">
+        <label>cstdlib</label>
+      </node>
+      <node id="14">
+        <label>fstream</label>
+      </node>
+      <node id="19">
+        <label>functional</label>
+      </node>
+      <node id="15">
+        <label>iostream</label>
+      </node>
+      <node id="20">
+        <label>iterator</label>
+      </node>
+      <node id="23">
+        <label>numeric</label>
+      </node>
+      <node id="21">
+        <label>string</label>
+      </node>
+      <node id="11">
+        <label>type_traits</label>
+      </node>
+      <node id="16">
+        <label>vector</label>
       </node>
     </incdepgraph>
     <innernamespace refid="namespace_g_q_c_p">GQCP</innernamespace>
@@ -205,10 +205,10 @@
 <codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>((llt_factorizer.compute(modified_hessian),<sp/>llt_factorizer.info()<sp/>!=<sp/>Eigen::Success))<sp/>{<sp/><sp/></highlight><highlight class="comment">//<sp/>comma<sp/>operator<sp/>gets<sp/>value<sp/>of<sp/>last<sp/>expression</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="65"><highlight class="normal"></highlight></codeline>
 <codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Modify<sp/>the<sp/>Hessian<sp/>with<sp/>a<sp/>multiple<sp/>of<sp/>the<sp/>identity<sp/>matrix</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>modified_hessian<sp/>+=<sp/>this-&gt;tau<sp/>*<sp/><ref refid="class_g_q_c_p_1_1_square_matrix_1aa6a5cf30d688d7b21a2605b4a46d2ca9" kindref="member">SquareMatrix&lt;double&gt;::Identity</ref>(dim);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>modified_hessian<sp/>+=<sp/>this-&gt;tau<sp/>*<sp/>SquareMatrix&lt;double&gt;::Identity(dim);</highlight></codeline>
 <codeline lineno="68"><highlight class="normal"></highlight></codeline>
 <codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Update<sp/>the<sp/>scaler</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;tau<sp/>=<sp/>std::max(this-&gt;<ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6" kindref="member">alpha</ref><sp/>*<sp/>this-&gt;tau,<sp/>this-&gt;<ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5" kindref="member">beta</ref>);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;tau<sp/>=<sp/>std::max(this-&gt;alpha<sp/>*<sp/>this-&gt;tau,<sp/>this-&gt;beta);</highlight></codeline>
 <codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="72"><highlight class="normal"></highlight></codeline>
 <codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>modified_hessian;</highlight></codeline>

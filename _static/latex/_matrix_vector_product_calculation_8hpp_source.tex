@@ -1,0 +1,88 @@
+\hypertarget{_matrix_vector_product_calculation_8hpp_source}{}\doxysection{Matrix\+Vector\+Product\+Calculation.\+hpp}
+\label{_matrix_vector_product_calculation_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/MatrixVectorProductCalculation.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/MatrixVectorProductCalculation.hpp}}
+\mbox{\hyperlink{_matrix_vector_product_calculation_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_algorithm_2_step_8hpp}{Mathematical/Algorithm/Step.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_eigenproblem_environment_8hpp}{Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp}}"{}}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_vector_product_calculation}{MatrixVectorProductCalculation}}:}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_step}{Step}}<EigenproblemEnvironment<double>>\ \{}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00038\ \textcolor{comment}{\ \ \ \ \ *\ \ PUBLIC\ OVERRIDDEN\ METHODS}}
+\DoxyCodeLine{00039\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00044\ \ \ \ \ std::string\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_vector_product_calculation_ae5787266b1ab6ab5678066534935c547}{description}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Calculate\ the\ matrix-\/vector\ products\ for\ all\ the\ (new)\ guess\ vectors\ and\ add\ them\ to\ the\ environment."{}};}
+\DoxyCodeLine{00046\ \ \ \ \ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_vector_product_calculation_aa6cc1aad0d4b14a29f1d5cab75452a24}{execute}}(\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{EigenproblemEnvironment<double>}}\&\ environment)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ V\ =\ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a33c85239d26787d391d5036f136bc153}{V}};\ \ \textcolor{comment}{//\ the\ subspace\ of\ guess\ vectors}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ assert((V.transpose()\ *\ V).isApprox(\mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<double>::Identity}}(V.cols(),\ V.cols()),\ 1.0e-\/08));\ \ \textcolor{comment}{//\ make\ sure\ that\ the\ subspace\ vectors\ are\ orthonormal}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ VA\ =\ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_ad1322f5ba8ad32def492dc275f85cb76}{VA}};\ \ \textcolor{comment}{//\ VA\ =\ A\ *\ V\ (implicitly\ calculated\ through\ the\ matrix-\/vector\ product)}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ matvec\ =\ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_aa5d1ac8e9e8a5124ff821328c190cd9e}{matrix\_vector\_product\_function}};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ how\ many\ vectors\ there\ currently\ are\ in\ V\ and\ in\ VA:\ only\ calculate\ the\ expensive\ matrix-\/vector\ product\ for\ 'new'\ vectors.}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ there\ is\ no\ difference,\ no\ matrix-\/vector\ products\ should\ be\ calculated.}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ V\ is\ larger\ than\ VA:}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ -\/\ VA\ should\ be\ expanded}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ -\/\ we\ should\ calculate\ the\ matrix-\/vector\ products\ for\ the\ new\ vectors\ and\ place\ them\ into\ the\ columns\ of\ the\ new\ VA}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ V\ is\ smaller\ than\ VA,\ which\ can\ only\ happen\ after\ a\ subspace\ collapse:}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ -\/\ VA\ should\ shrink}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ -\/\ we\ should\ calculate\ the\ matrix-\/vector\ products\ for\ all\ the\ vectors\ in\ the\ collapsed\ subspace}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ vectors\_in\_V\ =\ V.cols();}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ vectors\_in\_VA\ =\ VA.cols();}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ difference\ =\ vectors\_in\_V\ -\/\ vectors\_in\_VA;}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (difference\ !=\ 0)\ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ VA.conservativeResize(Eigen::NoChange,\ VA.cols()\ +\ difference);\ \ \textcolor{comment}{//\ accounts\ for\ both\ expansion\ and\ shrinking}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ only\ the\ necessary\ matrix-\/vector\ products;\ find\ the\ start\_index\ that\ accounts\ for\ both\ expansion\ and\ shrinking}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ start\_index\ =\ 0;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((difference\ >\ 0)\ \&\&\ (vectors\_in\_VA\ >\ 0))\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ start\_index\ =\ vectors\_in\_VA\ -\/\ 1;\ \ \textcolor{comment}{//\ -\/1\ because\ of\ computers}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ column\_index\ =\ start\_index;\ column\_index\ <\ vectors\_in\_V;\ column\_index++)\ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VA.col(column\_index)\ =\ matvec(V.col(column\_index));}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00089\ \ \ \ \ \}}
+\DoxyCodeLine{00090\ \};}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

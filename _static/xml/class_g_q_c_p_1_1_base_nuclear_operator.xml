@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_base_nuclear_operator" kind="class" language="C++" prot="public" abstract="yes">
     <compoundname>GQCP::BaseNuclearOperator</compoundname>
     <derivedcompoundref refid="class_g_q_c_p_1_1_nuclear_attraction_operator" prot="public" virt="non-virtual">GQCP::NuclearAttractionOperator</derivedcompoundref>
@@ -12,6 +12,7 @@
         <definition>NuclearFramework GQCP::BaseNuclearOperator::nuclear_framework</definition>
         <argsstring></argsstring>
         <name>nuclear_framework</name>
+        <qualifiedname>GQCP::BaseNuclearOperator::nuclear_framework</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -27,6 +28,7 @@
         <definition>GQCP::BaseNuclearOperator::BaseNuclearOperator</definition>
         <argsstring>(const NuclearFramework &amp;nuclear_framework)</argsstring>
         <name>BaseNuclearOperator</name>
+        <qualifiedname>GQCP::BaseNuclearOperator::BaseNuclearOperator</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_nuclear_framework" kindref="compound">NuclearFramework</ref> &amp;</type>
           <declname>nuclear_framework</declname>
@@ -55,6 +57,7 @@
         <definition>GQCP::BaseNuclearOperator::BaseNuclearOperator</definition>
         <argsstring>(const std::vector&lt; Nucleus &gt; &amp;nuclei)</argsstring>
         <name>BaseNuclearOperator</name>
+        <qualifiedname>GQCP::BaseNuclearOperator::BaseNuclearOperator</qualifiedname>
         <param>
           <type>const std::vector&lt; <ref refid="class_g_q_c_p_1_1_nucleus" kindref="compound">Nucleus</ref> &gt; &amp;</type>
           <declname>nuclei</declname>
@@ -83,6 +86,7 @@
         <definition>GQCP::BaseNuclearOperator::~BaseNuclearOperator</definition>
         <argsstring>()=0</argsstring>
         <name>~BaseNuclearOperator</name>
+        <qualifiedname>GQCP::BaseNuclearOperator::~BaseNuclearOperator</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -91,11 +95,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/BaseNuclearOperator.hpp" line="60" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/src/Operator/FirstQuantized/BaseNuclearOperator.cpp" bodystart="51" bodyend="51"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_base_nuclear_operator_1a5bc883585f494a18a575c2e35f9febe1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_base_nuclear_operator_1a7b692bac54528c1353f5eaad288ca43d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_nuclear_framework" kindref="compound">NuclearFramework</ref> &amp;</type>
-        <definition>const NuclearFramework&amp; GQCP::BaseNuclearOperator::nuclearFramework</definition>
+        <definition>const NuclearFramework &amp; GQCP::BaseNuclearOperator::nuclearFramework</definition>
         <argsstring>() const</argsstring>
         <name>nuclearFramework</name>
+        <qualifiedname>GQCP::BaseNuclearOperator::nuclearFramework</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -114,25 +119,25 @@
 <para>A base class/interface used to represent nuclear first-quantized operators. </para>
     </detaileddescription>
     <inheritancegraph>
+      <node id="1">
+        <label>GQCP::BaseNuclearOperator</label>
+        <link refid="class_g_q_c_p_1_1_base_nuclear_operator"/>
+      </node>
       <node id="2">
         <label>GQCP::NuclearAttractionOperator</label>
         <link refid="class_g_q_c_p_1_1_nuclear_attraction_operator"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="4">
-        <label>GQCP::NuclearRepulsionOperator</label>
-        <link refid="class_g_q_c_p_1_1_nuclear_repulsion_operator"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1">
-        <label>GQCP::BaseNuclearOperator</label>
-        <link refid="class_g_q_c_p_1_1_base_nuclear_operator"/>
-      </node>
       <node id="3">
         <label>GQCP::NuclearDipoleOperator</label>
         <link refid="class_g_q_c_p_1_1_nuclear_dipole_operator"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>GQCP::NuclearRepulsionOperator</label>
+        <link refid="class_g_q_c_p_1_1_nuclear_repulsion_operator"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
@@ -148,7 +153,7 @@
       <member refid="class_g_q_c_p_1_1_base_nuclear_operator_1a94b1c7232e7ff103f31c2346b8d2d96a" prot="public" virt="non-virtual"><scope>GQCP::BaseNuclearOperator</scope><name>BaseNuclearOperator</name></member>
       <member refid="class_g_q_c_p_1_1_base_nuclear_operator_1aa0e8aca777e43c4686b376eb80850b61" prot="public" virt="non-virtual"><scope>GQCP::BaseNuclearOperator</scope><name>BaseNuclearOperator</name></member>
       <member refid="class_g_q_c_p_1_1_base_nuclear_operator_1a0fc30081b9ebbc99fbd2dc55885c4148" prot="private" virt="non-virtual"><scope>GQCP::BaseNuclearOperator</scope><name>nuclear_framework</name></member>
-      <member refid="class_g_q_c_p_1_1_base_nuclear_operator_1a5bc883585f494a18a575c2e35f9febe1" prot="public" virt="non-virtual"><scope>GQCP::BaseNuclearOperator</scope><name>nuclearFramework</name></member>
+      <member refid="class_g_q_c_p_1_1_base_nuclear_operator_1a7b692bac54528c1353f5eaad288ca43d" prot="public" virt="non-virtual"><scope>GQCP::BaseNuclearOperator</scope><name>nuclearFramework</name></member>
       <member refid="class_g_q_c_p_1_1_base_nuclear_operator_1a5ff429963c499ddfca45164e17e734e9" prot="public" virt="pure-virtual"><scope>GQCP::BaseNuclearOperator</scope><name>~BaseNuclearOperator</name></member>
     </listofallmembers>
   </compounddef>

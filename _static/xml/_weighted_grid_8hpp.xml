@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="_weighted_grid_8hpp" kind="file" language="C++">
     <compoundname>WeightedGrid.hpp</compoundname>
     <includes refid="_cubic_grid_8hpp" local="yes">Mathematical/Grid/CubicGrid.hpp</includes>
@@ -9,8 +9,55 @@
     <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
     <includedby refid="_weighted_grid_8cpp" local="yes">/__w/GQCP/GQCP/gqcp/src/Mathematical/Grid/WeightedGrid.cpp</includedby>
     <incdepgraph>
-      <node id="14">
-        <label>boost/algorithm/string.hpp</label>
+      <node id="11">
+        <label>Mathematical/Functions/CartesianDirection.hpp</label>
+        <link refid="_cartesian_direction_8hpp"/>
+      </node>
+      <node id="3">
+        <label>Mathematical/Functions/Function.hpp</label>
+        <link refid="_function_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Mathematical/Grid/CubicGrid.hpp</label>
+        <link refid="_cubic_grid_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Mathematical/Grid/Field.hpp</label>
+        <link refid="_field_8hpp"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
       </node>
       <node id="1">
         <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/WeightedGrid.hpp</label>
@@ -24,20 +71,31 @@
         <childnode refid="10" relation="include">
         </childnode>
       </node>
-      <node id="27">
-        <label>iomanip</label>
-      </node>
-      <node id="20">
-        <label>functional</label>
-      </node>
-      <node id="12">
-        <label>Utilities/Eigen.hpp</label>
-        <link refid="_eigen_8hpp"/>
-        <childnode refid="13" relation="include">
+      <node id="30">
+        <label>Mathematical/Representation/Array.hpp</label>
+        <link refid="_array_8hpp"/>
+        <childnode refid="12" relation="include">
         </childnode>
       </node>
-      <node id="21">
-        <label>iterator</label>
+      <node id="10">
+        <label>Mathematical/Representation/Matrix.hpp</label>
+        <link refid="_matrix_8hpp"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
       </node>
       <node id="23">
         <label>Molecule/Molecule.hpp</label>
@@ -45,6 +103,52 @@
         <childnode refid="24" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>Molecule/NuclearFramework.hpp</label>
+        <link refid="_nuclear_framework_8hpp"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>Molecule/Nucleus.hpp</label>
+        <link refid="_nucleus_8hpp"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>Molecule/elements.hpp</label>
+        <link refid="elements_8hpp"/>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>Utilities/Eigen.hpp</label>
+        <link refid="_eigen_8hpp"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Utilities/aliases.hpp</label>
+        <link refid="aliases_8hpp"/>
+        <childnode refid="5" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
@@ -67,160 +171,56 @@
         <childnode refid="17" relation="include">
         </childnode>
       </node>
-      <node id="8">
-        <label>boost/format.hpp</label>
-      </node>
-      <node id="29">
-        <label>numeric</label>
-      </node>
-      <node id="24">
-        <label>Molecule/NuclearFramework.hpp</label>
-        <link refid="_nuclear_framework_8hpp"/>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-      </node>
-      <node id="22">
-        <label>string</label>
-      </node>
-      <node id="2">
-        <label>Mathematical/Grid/CubicGrid.hpp</label>
-        <link refid="_cubic_grid_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="23" relation="include">
-        </childnode>
-        <childnode refid="28" relation="include">
-        </childnode>
-        <childnode refid="20" relation="include">
-        </childnode>
-        <childnode refid="29" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-      <node id="25">
-        <label>Molecule/Nucleus.hpp</label>
-        <link refid="_nucleus_8hpp"/>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="26" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="20" relation="include">
-        </childnode>
-        <childnode refid="27" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-      </node>
-      <node id="15">
-        <label>fstream</label>
-      </node>
-      <node id="30">
-        <label>Mathematical/Representation/Array.hpp</label>
-        <link refid="_array_8hpp"/>
-        <childnode refid="12" relation="include">
-        </childnode>
-      </node>
-      <node id="9">
-        <label>Mathematical/Grid/Field.hpp</label>
-        <link refid="_field_8hpp"/>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="20" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-      </node>
-      <node id="26">
-        <label>Molecule/elements.hpp</label>
-        <link refid="elements_8hpp"/>
-        <childnode refid="22" relation="include">
-        </childnode>
-      </node>
-      <node id="3">
-        <label>Mathematical/Functions/Function.hpp</label>
-        <link refid="_function_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-      </node>
-      <node id="13">
-        <label>Eigen/Dense</label>
-      </node>
-      <node id="10">
-        <label>Mathematical/Representation/Matrix.hpp</label>
-        <link refid="_matrix_8hpp"/>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-      </node>
       <node id="5">
         <label>Utilities/type_traits.hpp</label>
         <link refid="type__traits_8hpp"/>
         <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="17">
-        <label>vector</label>
-      </node>
-      <node id="4">
-        <label>Utilities/aliases.hpp</label>
-        <link refid="aliases_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="28">
-        <label>array</label>
-      </node>
-      <node id="7">
-        <label>cstdlib</label>
-      </node>
-      <node id="16">
-        <label>iostream</label>
-      </node>
-      <node id="6">
-        <label>type_traits</label>
+      <node id="13">
+        <label>Eigen/Dense</label>
       </node>
       <node id="19">
         <label>algorithm</label>
       </node>
-      <node id="11">
-        <label>Mathematical/Functions/CartesianDirection.hpp</label>
-        <link refid="_cartesian_direction_8hpp"/>
+      <node id="28">
+        <label>array</label>
+      </node>
+      <node id="14">
+        <label>boost/algorithm/string.hpp</label>
+      </node>
+      <node id="8">
+        <label>boost/format.hpp</label>
+      </node>
+      <node id="7">
+        <label>cstdlib</label>
+      </node>
+      <node id="15">
+        <label>fstream</label>
+      </node>
+      <node id="20">
+        <label>functional</label>
+      </node>
+      <node id="27">
+        <label>iomanip</label>
+      </node>
+      <node id="16">
+        <label>iostream</label>
+      </node>
+      <node id="21">
+        <label>iterator</label>
+      </node>
+      <node id="29">
+        <label>numeric</label>
+      </node>
+      <node id="22">
+        <label>string</label>
+      </node>
+      <node id="6">
+        <label>type_traits</label>
+      </node>
+      <node id="17">
+        <label>vector</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
@@ -287,7 +287,7 @@
 <codeline lineno="40"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>CONSTRUCTORS</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="42"><highlight class="normal"></highlight></codeline>
-<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_weighted_grid_1a26bf2007ddb831b2080e279ac2ace2a9" kindref="member">WeightedGrid</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;<ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Vector&lt;double, 3&gt;</ref>&gt;&amp;<sp/><ref refid="class_g_q_c_p_1_1_weighted_grid_1a523ad38f4ca986b43f0a22657778553e" kindref="member">points</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_array" kindref="compound">ArrayX&lt;double&gt;</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_weighted_grid_1ac1fe01b1fb3bc3afc747e6f8982f6173" kindref="member">weights</ref>);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_weighted_grid" kindref="compound">WeightedGrid</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;<ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Vector&lt;double, 3&gt;</ref>&gt;&amp;<sp/><ref refid="class_g_q_c_p_1_1_weighted_grid_1a4366f4b6b86ca6df3fd3842dd4dfeeab" kindref="member">points</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_array" kindref="compound">ArrayX&lt;double&gt;</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_weighted_grid_1a2015543a649fcb6920742c1b7c85acee" kindref="member">weights</ref>);</highlight></codeline>
 <codeline lineno="50"><highlight class="normal"></highlight></codeline>
 <codeline lineno="51"><highlight class="normal"></highlight></codeline>
 <codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>NAMED<sp/>CONSTRUCTORS</highlight><highlight class="normal"></highlight></codeline>
@@ -303,9 +303,9 @@
 <codeline lineno="87" refid="class_g_q_c_p_1_1_weighted_grid_1a18b9f61904e889479af50412896d4d26" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>T<sp/><ref refid="class_g_q_c_p_1_1_weighted_grid_1a18b9f61904e889479af50412896d4d26" kindref="member">integrate</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_field" kindref="compound">Field&lt;T&gt;</ref>&amp;<sp/>field)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="88"><highlight class="normal"></highlight></codeline>
 <codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>A<sp/>KISS-implementation<sp/>of<sp/>integration:<sp/>multiplying<sp/>every<sp/>field<sp/>value<sp/>by<sp/>the<sp/>weight<sp/>of<sp/>the<sp/>associated<sp/>grid<sp/>point.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>result<sp/>=<sp/>field.<ref refid="class_g_q_c_p_1_1_field_1a81765d874f7d2801409ef47f8368b589" kindref="member">value</ref>(0)<sp/>*<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_weighted_grid_1a76f6fe78068d0c735d434b5882d86d07" kindref="member">weight</ref>(0);<sp/><sp/></highlight><highlight class="comment">//<sp/>this<sp/>makes<sp/>sure<sp/>that<sp/>&apos;result&apos;<sp/>is<sp/>already<sp/>initialized<sp/>to<sp/>the<sp/>correct<sp/>type,<sp/>e.g.<sp/>when<sp/>a<sp/>Vector<sp/>is<sp/>initialized,<sp/>it<sp/>doesn&apos;t<sp/>automatically<sp/>have<sp/>the<sp/>required<sp/>size</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>result<sp/>=<sp/>field.<ref refid="class_g_q_c_p_1_1_field_1a4a7f1e8a8fc1a45c2b82a8424ada5db9" kindref="member">value</ref>(0)<sp/>*<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_weighted_grid_1a76f6fe78068d0c735d434b5882d86d07" kindref="member">weight</ref>(0);<sp/><sp/></highlight><highlight class="comment">//<sp/>this<sp/>makes<sp/>sure<sp/>that<sp/>&apos;result&apos;<sp/>is<sp/>already<sp/>initialized<sp/>to<sp/>the<sp/>correct<sp/>type,<sp/>e.g.<sp/>when<sp/>a<sp/>Vector<sp/>is<sp/>initialized,<sp/>it<sp/>doesn&apos;t<sp/>automatically<sp/>have<sp/>the<sp/>required<sp/>size</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>1;<sp/>i<sp/>&lt;<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_weighted_grid_1a86485e11cf5d337ace574c9e552dec13" kindref="member">size</ref>();<sp/>i++)<sp/>{</highlight></codeline>
-<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result<sp/>+=<sp/>field.<ref refid="class_g_q_c_p_1_1_field_1a81765d874f7d2801409ef47f8368b589" kindref="member">value</ref>(i)<sp/>*<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_weighted_grid_1a76f6fe78068d0c735d434b5882d86d07" kindref="member">weight</ref>(i);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result<sp/>+=<sp/>field.<ref refid="class_g_q_c_p_1_1_field_1a4a7f1e8a8fc1a45c2b82a8424ada5db9" kindref="member">value</ref>(i)<sp/>*<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_weighted_grid_1a76f6fe78068d0c735d434b5882d86d07" kindref="member">weight</ref>(i);</highlight></codeline>
 <codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="94"><highlight class="normal"></highlight></codeline>
 <codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>result;</highlight></codeline>
@@ -314,15 +314,15 @@
 <codeline lineno="98"><highlight class="normal"></highlight></codeline>
 <codeline lineno="102" refid="class_g_q_c_p_1_1_weighted_grid_1acc56dd9229272143cfdac3b7fc06a0a5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_weighted_grid_1acc56dd9229272143cfdac3b7fc06a0a5" kindref="member">numberOfPoints</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;m_points.size();<sp/>}</highlight></codeline>
 <codeline lineno="103"><highlight class="normal"></highlight></codeline>
-<codeline lineno="111" refid="class_g_q_c_p_1_1_weighted_grid_1ae9119bf9620f3c38b2b52d6e98304f72" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Vector&lt;double, 3&gt;</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_weighted_grid_1ae9119bf9620f3c38b2b52d6e98304f72" kindref="member">point</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>index)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;m_points[index];<sp/>}</highlight></codeline>
+<codeline lineno="111" refid="class_g_q_c_p_1_1_weighted_grid_1a715cf3c0b0e96202183520253482c080" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Vector&lt;double, 3&gt;</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_weighted_grid_1a715cf3c0b0e96202183520253482c080" kindref="member">point</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>index)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;m_points[index];<sp/>}</highlight></codeline>
 <codeline lineno="112"><highlight class="normal"></highlight></codeline>
-<codeline lineno="116" refid="class_g_q_c_p_1_1_weighted_grid_1a523ad38f4ca986b43f0a22657778553e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Vector&lt;double,<sp/>3&gt;&gt;&amp;<sp/><ref refid="class_g_q_c_p_1_1_weighted_grid_1a523ad38f4ca986b43f0a22657778553e" kindref="member">points</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;m_points;<sp/>}</highlight></codeline>
+<codeline lineno="116" refid="class_g_q_c_p_1_1_weighted_grid_1a4366f4b6b86ca6df3fd3842dd4dfeeab" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Vector&lt;double,<sp/>3&gt;&gt;&amp;<sp/><ref refid="class_g_q_c_p_1_1_weighted_grid_1a4366f4b6b86ca6df3fd3842dd4dfeeab" kindref="member">points</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;m_points;<sp/>}</highlight></codeline>
 <codeline lineno="117"><highlight class="normal"></highlight></codeline>
 <codeline lineno="121" refid="class_g_q_c_p_1_1_weighted_grid_1a86485e11cf5d337ace574c9e552dec13" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_weighted_grid_1a86485e11cf5d337ace574c9e552dec13" kindref="member">size</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_weighted_grid_1acc56dd9229272143cfdac3b7fc06a0a5" kindref="member">numberOfPoints</ref>();<sp/>}</highlight></codeline>
 <codeline lineno="122"><highlight class="normal"></highlight></codeline>
 <codeline lineno="130" refid="class_g_q_c_p_1_1_weighted_grid_1a76f6fe78068d0c735d434b5882d86d07" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_weighted_grid_1a76f6fe78068d0c735d434b5882d86d07" kindref="member">weight</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>index)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;m_weights(index);<sp/>}</highlight></codeline>
 <codeline lineno="131"><highlight class="normal"></highlight></codeline>
-<codeline lineno="135" refid="class_g_q_c_p_1_1_weighted_grid_1ac1fe01b1fb3bc3afc747e6f8982f6173" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_array" kindref="compound">ArrayX&lt;double&gt;</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_weighted_grid_1ac1fe01b1fb3bc3afc747e6f8982f6173" kindref="member">weights</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;m_weights;<sp/>};</highlight></codeline>
+<codeline lineno="135" refid="class_g_q_c_p_1_1_weighted_grid_1a2015543a649fcb6920742c1b7c85acee" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_array" kindref="compound">ArrayX&lt;double&gt;</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_weighted_grid_1a2015543a649fcb6920742c1b7c85acee" kindref="member">weights</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;m_weights;<sp/>};</highlight></codeline>
 <codeline lineno="136"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="137"><highlight class="normal"></highlight></codeline>
 <codeline lineno="138"><highlight class="normal"></highlight></codeline>

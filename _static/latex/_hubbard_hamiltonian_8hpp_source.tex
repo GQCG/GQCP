@@ -1,0 +1,186 @@
+\hypertarget{_hubbard_hamiltonian_8hpp_source}{}\doxysection{Hubbard\+Hamiltonian.\+hpp}
+\label{_hubbard_hamiltonian_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp}}
+\mbox{\hyperlink{_hubbard_hamiltonian_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_square_matrix_8hpp}{Mathematical/Representation/SquareMatrix.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_hopping_matrix_8hpp}{Operator/SecondQuantized/ModelHamiltonian/HoppingMatrix.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_r_s_q_one_electron_operator_8hpp}{Operator/SecondQuantized/RSQOneElectronOperator.hpp}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_r_s_q_two_electron_operator_8hpp}{Operator/SecondQuantized/RSQTwoElectronOperator.hpp}}"{}}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar>}
+\DoxyCodeLine{00036\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian}{HubbardHamiltonian}}\ \{}
+\DoxyCodeLine{00037\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//\ The\ scalar\ type\ for\ a\ Hubbard\ Hamiltonian\ matrix\ element.}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_abe8802aff70d3230a1133417e9f0c99e}{Scalar}}\ =\ \_Scalar;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{//\ The\ Hubbard\ Hamiltonian\ matrix.}}
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{HoppingMatrix<Scalar>}}\ hopping\_matrix;}
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\ U\_matrix;}
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\ mu\_matrix;}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00051\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Constructors}}
+\DoxyCodeLine{00052\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_a18ac7345024bf602e6475cefeaede010}{HubbardHamiltonian}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{HoppingMatrix<Scalar>}}\&\ H,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\&\ U,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\&\ mu)\ :}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ hopping\_matrix\ \{H\},}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ U\_matrix\ \{U\},}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ mu\_matrix\ \{mu\}\ \{}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\ total\ =\ this-\/>hopping\_matrix.\mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix_a402859288cdbf46fd76002686933b526}{matrix}}()\ +\ this-\/>U\_matrix\ +\ this-\/>mu\_matrix;}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!total.\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_a957455e43a3f0991500024376713cfec}{isHermitian}}())\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}HubbardHamiltonian::HubbardHamiltonian(const\ HoppingMatrix<Scalar>\&,\ const\ SquareMatrix<Scalar>\&,\ const\ SquareMatrix<Scalar>\&):\ The\ total\ Hubbard\ Hamiltonian\ matrix\ must\ be\ Hermitian."{}});}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00071\ \ \ \ \ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00081\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_ae8dcadda5799eeec4227f63a46623b33}{HubbardHamiltonian}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{HoppingMatrix<Scalar>}}\&\ H,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\&\ U,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\&\ mu\ =\ 0.0)\ :}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ hopping\_matrix\ \{H\},}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ U\_matrix\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix}}<double>::Identity(H.matrix().dimension())\},}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ mu\_matrix\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix}}<double>::Identity(H.matrix().dimension())\}\ \{}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Fill\ in\ the\ on-\/site\ repulsion\ on\ the\ diagonal.}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ H.\mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix_a402859288cdbf46fd76002686933b526}{matrix}}().dimension();\ i++)\ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>U\_matrix(i,\ i)\ *=\ U;}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>mu\_matrix(i,\ i)\ *=\ mu;}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00101\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_a8c3291d1d61a8e1f800c4b8474d570c2}{HubbardHamiltonian}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{HoppingMatrix<Scalar>}}\&\ H,\ \textcolor{keyword}{const}\ std::vector<double>\&\ U,\ \textcolor{keyword}{const}\ std::vector<double>\&\ mu)\ :}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ hopping\_matrix\ \{H\},}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ U\_matrix\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix}}<double>::Identity(H.matrix().dimension())\},}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ mu\_matrix\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix}}<double>::Identity(H.matrix().dimension())\}\ \{}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Fill\ in\ the\ given\ vectors.}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ U.size();\ i++)\ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>U\_matrix(i,\ i)\ *=\ U[i];}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>mu\_matrix(i,\ i)\ *=\ mu[i];}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \ \ \ \ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00115\ \textcolor{comment}{\ \ \ \ \ *\ MARK:\ Named\ constructors}}
+\DoxyCodeLine{00116\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Scalar>}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<std::is\_same<Z,\ double>::value}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian}{HubbardHamiltonian<double>}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_ae38d89eb51c3118c14f08df67e547e63}{Random}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ K)\ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ prepare\ the\ empty\ matrices.}}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ mu\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_ae3551bb3ac15b2560846f7a5956d1d90}{SquareMatrix<double>::Zero}}(K);}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ hopping\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_ae3551bb3ac15b2560846f7a5956d1d90}{SquareMatrix<double>::Zero}}(K);}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ U\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_ae3551bb3ac15b2560846f7a5956d1d90}{SquareMatrix<double>::Zero}}(K);}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Generate\ a\ random\ matrix.}}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ hopping\_plus\_u\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_af9a12d2f0b3447800c1743b503233cab}{SquareMatrix<double>::RandomSymmetric}}(K);}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Distribute\ the\ random\ matrix\ values\ correctly\ between\ the\ component\ matrices.}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ p\ =\ 0;\ p\ <\ K;\ p++)\ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ q\ =\ p;\ q\ <\ K;\ q++)\ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (p\ !=\ q)\ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hopping(p,\ q)\ =\ hopping\_plus\_u(p,\ q);}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hopping(q,\ p)\ =\ hopping\_plus\_u(q,\ p);}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (p\ ==\ q)\ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ U(p,\ q)\ =\ hopping\_plus\_u(p,\ q);}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian}{HubbardHamiltonian}}\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{HoppingMatrix<double>}}\ \{hopping\},\ U,\ mu\};}
+\DoxyCodeLine{00151\ \ \ \ \ \}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00155\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Integral\ access}}
+\DoxyCodeLine{00156\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Scalar>}
+\DoxyCodeLine{00164\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<std::is\_same<Z,\ double>::value}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_one_electron_operator}{ScalarRSQOneElectronOperator<double>}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_a6215680eda0600ebb4e960cca0b1b5b4}{core}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Prepare\ some\ variables.}}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_a33c4b3b4d0aca6159b67495008e7301b}{numberOfLatticeSites}}();}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ H\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_a943d6a0421f55f4d4f524f761d93b1ea}{oneElectronContributions}}();}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ h\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_aae57f5b84d06fde585c7597e2b6e225b}{ScalarRSQOneElectronOperator<double>::Zero}}(K);}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ one-\/electron\ hopping\ terms\ can\ be\ found\ on\ the\ off-\/diagonal\ elements\ of\ the\ hopping\ matrix.}}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ p\ =\ 0;\ p\ <\ K;\ p++)\ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ q\ =\ p;\ q\ <\ K;\ q++)\ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ h.parameters()(p,\ q)\ =\ H(p,\ q);}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ h.parameters()(q,\ p)\ =\ H(q,\ p);}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ h;}
+\DoxyCodeLine{00180\ \ \ \ \ \}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Scalar>}
+\DoxyCodeLine{00189\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<std::is\_same<Z,\ double>::value}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_two_electron_operator}{ScalarRSQTwoElectronOperator<double>}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_a152abebe28d1a44104e79cb4a188db0d}{twoElectron}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_a33c4b3b4d0aca6159b67495008e7301b}{numberOfLatticeSites}}();}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ H\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_a0b84f9b44e200424b987581da6919e09}{onSiteRepulsionMatrix}}();}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{SquareRankFourTensor<double>}}\ g\_par\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor_ac8d9dac01c85a4f11aa67c7efa877e04}{SquareRankFourTensor<double>::Zero}}(K);}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ two-\/electron\ on-\/site\ repulsion\ is\ found\ on\ the\ diagonal\ of\ the\ hopping\ matrix.}}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ p\ =\ 0;\ p\ <\ K;\ p++)\ \{}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ g\_par(p,\ p,\ p,\ p)\ =\ H(p,\ p);}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_two_electron_operator}{ScalarRSQTwoElectronOperator<double>}}\ \{g\_par\};}
+\DoxyCodeLine{00201\ \ \ \ \ \}}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00205\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ General\ information}}
+\DoxyCodeLine{00206\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{HoppingMatrix<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_a1958ed4a3d4654274d127f075c22889c}{hoppingMatrix}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>hopping\_matrix;\ \}}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_a33c4b3b4d0aca6159b67495008e7301b}{numberOfLatticeSites}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>hopping\_matrix.\mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix_a402859288cdbf46fd76002686933b526}{matrix}}().\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_a37d881f47fe4a016e5549e3ac22e7aea}{dimension}}();\ \}}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_a943d6a0421f55f4d4f524f761d93b1ea}{oneElectronContributions}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>hopping\_matrix.\mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix_a402859288cdbf46fd76002686933b526}{matrix}}()\ +\ this-\/>mu\_matrix;}
+\DoxyCodeLine{00225\ \ \ \ \ \}}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_a65543eb4335499fa0ff179e5259fc7b4}{onSitePotentialMatrix}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>mu\_matrix;\ \}}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00237\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_hubbard_hamiltonian_a0b84f9b44e200424b987581da6919e09}{onSiteRepulsionMatrix}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>U\_matrix;\ \}}
+\DoxyCodeLine{00238\ \};}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

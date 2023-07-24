@@ -1,0 +1,99 @@
+\hypertarget{_consecutive_iterates_norm_convergence_8hpp_source}{}\doxysection{Consecutive\+Iterates\+Norm\+Convergence.\+hpp}
+\label{_consecutive_iterates_norm_convergence_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp}}
+\mbox{\hyperlink{_consecutive_iterates_norm_convergence_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_convergence_criterion_8hpp}{Mathematical/Algorithm/ConvergenceCriterion.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{complex_8hpp}{Utilities/complex.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{type__traits_8hpp}{Utilities/type\_traits.hpp}}"{}}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <deque>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Iterate,\ \textcolor{keyword}{typename}\ \_Environment>}
+\DoxyCodeLine{00039\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence}{ConsecutiveIteratesNormConvergence}}:}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_convergence_criterion}{ConvergenceCriterion}}<\_Environment>\ \{}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_a89ec3d0f315128d7abb0d7a39a6b2f1e}{Iterate}}\ =\ \_Iterate;}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_a467bffa868b422a79cb56d6d3c0180c1}{Scalar}}\ =\ \textcolor{keyword}{typename}\ Iterate::Scalar;}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_ad92e2a91dcc2370791b40284ed3d30e5}{Environment}}\ =\ \_Environment;}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_same<Scalar,\ typename\ Environment::Scalar>::value,\ \textcolor{stringliteral}{"{}The\ scalar\ types\ of\ the\ iterate\ and\ environment\ must\ match."{}});}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{double}\ m\_threshold;\ \ \textcolor{comment}{//\ the\ threshold\ that\ is\ used\ in\ comparing\ the\ iterates}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ std::string\ iterate\_description;\ \ \textcolor{comment}{//\ the\ description\ of\ the\ the\ iterates\ that\ are\ compared}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ std::function<std::deque<Iterate>(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_ad92e2a91dcc2370791b40284ed3d30e5}{Environment}}\&)>\ extractor;\ \ \textcolor{comment}{//\ a\ function\ that\ can\ extract\ the\ correct\ iterates\ from\ the\ environment,\ as\ it's\ not\ mandatory\ to\ check\ convergence\ on\ the\ variables,\ but\ any\ iterate\ (whose\ .norm()\ can\ be\ calculated)\ can\ in\ principle\ be\ used}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00059\ \textcolor{comment}{\ \ \ \ \ *\ \ CONSTRUCTORS}}
+\DoxyCodeLine{00060\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00067\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_a9d2d34a40f6f284a9f0b91c068e499db}{ConsecutiveIteratesNormConvergence}}(}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_affe980b772bae2019d82987d5c04487d}{threshold}}\ =\ 1.0e-\/08,\ \textcolor{keyword}{const}\ std::function<std::deque<Iterate>(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_ad92e2a91dcc2370791b40284ed3d30e5}{Environment}}\&)>\ extractor\ =\ [](\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_ad92e2a91dcc2370791b40284ed3d30e5}{Environment}}\&\ environment)\ \{\ \textcolor{keywordflow}{return}\ environment.variables;\ \},\ \textcolor{keyword}{const}\ std::string\&\ iterate\_description\ =\ \textcolor{stringliteral}{"{}a\ general\ iterate"{}})\ :}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ m\_threshold\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_affe980b772bae2019d82987d5c04487d}{threshold}}\},}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ extractor\ \{extractor\},}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ iterate\_description\ \{iterate\_description\}\ \{\}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00075\ \textcolor{comment}{\ \ \ \ \ *\ \ PUBLIC\ OVERRIDDEN\ METHODS}}
+\DoxyCodeLine{00076\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00081\ \ \ \ \ std::string\ \mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_ac4551544623997fd2a585830d238ecf9}{description}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (boost::format(\textcolor{stringliteral}{"{}A\ convergence\ criterion\ that\ checks\ if\ the\ norm\ of\ the\ difference\ of\ two\ iterates\ (\%s)\ is\ converged,\ with\ a\ tolerance\ of\ \%.2e."{}})\ \%\ this-\/>iterate\_description\ \%\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_affe980b772bae2019d82987d5c04487d}{threshold}}()).str();}
+\DoxyCodeLine{00083\ \ \ \ \ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_a0be253e3c3a65055a4e2bdba68c34e54}{isFulfilled}}(\mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_ad92e2a91dcc2370791b40284ed3d30e5}{Environment}}\&\ environment)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ iterates\ =\ this-\/>extractor(environment);}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (iterates.size()\ <\ 2)\ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \ \textcolor{comment}{//\ we\ can't\ calculate\ convergence}}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ the\ two\ most\ recent\ density\ matrices\ and\ compare\ the\ norm\ of\ their\ difference}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ second\_to\_last\_it\ =\ iterates.end()\ -\/\ 2;\ \ \textcolor{comment}{//\ 'it'\ for\ 'iterator'}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ previous\ =\ *second\_to\_last\_it;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Dereference\ the\ iterator.}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ current\ =\ iterates.back();}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (std::real((current\ -\/\ previous).norm())\ <=\ this-\/>m\_threshold);}
+\DoxyCodeLine{00105\ \ \ \ \ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_affe980b772bae2019d82987d5c04487d}{threshold}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>m\_threshold;\ \}}
+\DoxyCodeLine{00112\ \};}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

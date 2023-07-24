@@ -1,0 +1,133 @@
+\hypertarget{_orbital_space_8hpp_source}{}\doxysection{Orbital\+Space.\+hpp}
+\label{_orbital_space_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp}}
+\mbox{\hyperlink{_orbital_space_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_occupation_type_8hpp}{Basis/SpinorBasis/OccupationType.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_implicit_matrix_slice_8hpp}{Mathematical/Representation/ImplicitMatrixSlice.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_implicit_rank_four_tensor_slice_8hpp}{Mathematical/Representation/ImplicitRankFourTensorSlice.hpp}}"{}}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <cstdlib>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{OrbitalSpace}}\ \{}
+\DoxyCodeLine{00041\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00042\ \ \ \ \ std::vector<size\_t>\ occupied\_indices;\ \ \textcolor{comment}{//\ the\ indices\ of\ the\ orbitals\ that\ are\ considered\ occupied\ by\ the\ electrons}}
+\DoxyCodeLine{00043\ \ \ \ \ std::vector<size\_t>\ active\_indices;\ \ \ \ \textcolor{comment}{//\ the\ indices\ of\ the\ orbitals\ that\ are\ considered\ 'active',\ i.e.\ those\ spinor\ indices\ that\ are\ occupied\ in\ some\ set\ of\ configurations\ but\ not\ in\ others}}
+\DoxyCodeLine{00044\ \ \ \ \ std::vector<size\_t>\ virtual\_indices;\ \ \ \textcolor{comment}{//\ the\ indices\ of\ the\ orbitals\ that\ are\ considered\ virtual\ (i.e.\ unoccupied)\ by\ the\ electrons}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ std::vector<size\_t>\ all\_indices;}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{comment}{//\ CONSTRUCTORS}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{OrbitalSpace}}(\textcolor{keyword}{const}\ std::vector<size\_t>\&\ occupied\_indices,\ \textcolor{keyword}{const}\ std::vector<size\_t>\&\ active\_indices,\ \textcolor{keyword}{const}\ std::vector<size\_t>\&\ virtual\_indices);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{OrbitalSpace}}(\textcolor{keyword}{const}\ std::vector<size\_t>\&\ occupied\_indices,\ \textcolor{keyword}{const}\ std::vector<size\_t>\&\ virtual\_indices);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{comment}{//\ NAMED\ CONSTRUCTORS}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{OrbitalSpace}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a22c967bc1d33a75341c86b1ca52b0532}{Implicit}}(\textcolor{keyword}{const}\ std::map<OccupationType,\ size\_t>\&\ occupation\_type\_numbers);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{comment}{//\ PUBLIC\ METHODS}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00102\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{ImplicitMatrixSlice<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_aabe4ddf0895d9cfc3e0a87387b713554}{createRepresentableObjectFor}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{OccupationType}}\ row\_type,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{OccupationType}}\ column\_type,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<Scalar>}}\&\ M)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Prepare\ the\ necessary\ members\ for\ ImplicitMatrixSlice.}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ row\_indices\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a0a401c9945db2d1a81d1bd9a609805a4}{indices}}(row\_type);}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ column\_indices\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a0a401c9945db2d1a81d1bd9a609805a4}{indices}}(column\_type);}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_ac2a8600cf5ace10e85ed82e9f254eb0b}{ImplicitMatrixSlice<Scalar>::FromIndices}}(row\_indices,\ column\_indices,\ M);}
+\DoxyCodeLine{00109\ \ \ \ \ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00130\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_rank_four_tensor_slice}{ImplicitRankFourTensorSlice<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a1c9dadc1e1406e0db42aa85cb30d65d9}{createRepresentableObjectFor}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{OccupationType}}\ axis1\_type,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{OccupationType}}\ axis2\_type,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{OccupationType}}\ axis3\_type,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{OccupationType}}\ axis4\_type,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor<Scalar,\ 4>}}\&\ T)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Prepare\ the\ necessary\ members\ for\ ImplicitRankFourTensor.}}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ axis1\_indices\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a0a401c9945db2d1a81d1bd9a609805a4}{indices}}(axis1\_type);}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ axis2\_indices\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a0a401c9945db2d1a81d1bd9a609805a4}{indices}}(axis2\_type);}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ axis3\_indices\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a0a401c9945db2d1a81d1bd9a609805a4}{indices}}(axis3\_type);}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ axis4\_indices\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a0a401c9945db2d1a81d1bd9a609805a4}{indices}}(axis4\_type);}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_a4cb7b8dc2caacb2a5cb2e3e73e91f2b9}{ImplicitRankFourTensorSlice<Scalar>::FromIndices}}(axis1\_indices,\ axis2\_indices,\ axis3\_indices,\ axis4\_indices,\ T);}
+\DoxyCodeLine{00139\ \ \ \ \ \}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00145\ \ \ \ \ std::string\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_af55bd0e3e8eafebeb497533a33e11754}{description}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keyword}{const}\ std::vector<size\_t>\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a0a401c9945db2d1a81d1bd9a609805a4}{indices}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>all\_indices;\ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keyword}{const}\ std::vector<size\_t>\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a0a401c9945db2d1a81d1bd9a609805a4}{indices}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{OccupationType}}\ type)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00173\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{ImplicitMatrixSlice<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a510fc684cc5b32892691e6165a85de2b}{initializeRepresentableObjectFor}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{OccupationType}}\ row\_type,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{OccupationType}}\ column\_type)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Prepare\ the\ necessary\ members\ for\ the\ other\ method.}}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ rows\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a6749db783d556c8d21e52e2a72ea329f}{numberOfOrbitals}}(row\_type);}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ columns\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a6749db783d556c8d21e52e2a72ea329f}{numberOfOrbitals}}(column\_type);}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<Scalar>}}\ M\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<Scalar>::Zero}}(rows,\ columns);}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>createRepresentableObjectFor<Scalar>(row\_type,\ column\_type,\ M);}
+\DoxyCodeLine{00182\ \ \ \ \ \}}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00201\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_rank_four_tensor_slice}{ImplicitRankFourTensorSlice<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a596167c56d37973163d0495d2cb899b5}{initializeRepresentableObjectFor}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{OccupationType}}\ axis1\_type,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{OccupationType}}\ axis2\_type,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{OccupationType}}\ axis3\_type,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{OccupationType}}\ axis4\_type)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Prepare\ the\ necessary\ members\ for\ the\ other\ method.}}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ axis1\_dimension\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{long}\textcolor{keyword}{>}(this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a6749db783d556c8d21e52e2a72ea329f}{numberOfOrbitals}}(axis1\_type));\ \ \textcolor{comment}{//\ need\ static\_cast\ for\ Tensor}}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ axis2\_dimension\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{long}\textcolor{keyword}{>}(this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a6749db783d556c8d21e52e2a72ea329f}{numberOfOrbitals}}(axis2\_type));}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ axis3\_dimension\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{long}\textcolor{keyword}{>}(this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a6749db783d556c8d21e52e2a72ea329f}{numberOfOrbitals}}(axis3\_type));}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ axis4\_dimension\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{long}\textcolor{keyword}{>}(this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a6749db783d556c8d21e52e2a72ea329f}{numberOfOrbitals}}(axis4\_type));}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor<Scalar,\ 4>}}\ T\ \{axis1\_dimension,\ axis2\_dimension,\ axis3\_dimension,\ axis4\_dimension\};}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ T.setZero();}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_aabe4ddf0895d9cfc3e0a87387b713554}{createRepresentableObjectFor}}(axis1\_type,\ axis2\_type,\ axis3\_type,\ axis4\_type,\ T);}
+\DoxyCodeLine{00213\ \ \ \ \ \}}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00222\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a6b56ebfb1e6121780b9874ebd9df4ec0}{isIndex}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{OccupationType}}\ type,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ p)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00230\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a0db283ce4ba51869f4bce2c7db121ed4}{numberOfExcitations}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{OccupationType}}\ from,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{OccupationType}}\ to)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00235\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a6749db783d556c8d21e52e2a72ea329f}{numberOfOrbitals}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a0a401c9945db2d1a81d1bd9a609805a4}{indices}}().size();\ \}}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a373451b0fd61fb610e876948084130c6}{numberOfOrbitals}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{OccupationType}}\ type)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a0a401c9945db2d1a81d1bd9a609805a4}{indices}}(type).size();\ \}}
+\DoxyCodeLine{00243\ \};}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

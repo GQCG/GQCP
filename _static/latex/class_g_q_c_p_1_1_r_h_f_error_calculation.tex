@@ -1,4 +1,4 @@
-\hypertarget{class_g_q_c_p_1_1_r_h_f_error_calculation}{}\doxysection{GQCP\+::RHFError\+Calculation$<$ \+\_\+\+Scalar $>$ Class Template Reference}
+\hypertarget{class_g_q_c_p_1_1_r_h_f_error_calculation}{}\doxysection{GQCP\+::RHFError\+Calculation\texorpdfstring{$<$}{<} \+\_\+\+Scalar \texorpdfstring{$>$}{>} Class Template Reference}
 \label{class_g_q_c_p_1_1_r_h_f_error_calculation}\index{GQCP::RHFErrorCalculation$<$ \_Scalar $>$@{GQCP::RHFErrorCalculation$<$ \_Scalar $>$}}
 
 
@@ -6,7 +6,7 @@
 
 
 
-Inheritance diagram for GQCP\+::RHFError\+Calculation$<$ \+\_\+\+Scalar $>$\+:
+Inheritance diagram for GQCP\+::RHFError\+Calculation\texorpdfstring{$<$}{<} \+\_\+\+Scalar \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -16,7 +16,7 @@ Inheritance diagram for GQCP\+::RHFError\+Calculation$<$ \+\_\+\+Scalar $>$\+:
 \end{figure}
 
 
-Collaboration diagram for GQCP\+::RHFError\+Calculation$<$ \+\_\+\+Scalar $>$\+:
+Collaboration diagram for GQCP\+::RHFError\+Calculation\texorpdfstring{$<$}{<} \+\_\+\+Scalar \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -31,6 +31,11 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_error_calculation_a9e64c091e566a1
 \item 
 using \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_error_calculation_ae429959fc4bd2e03830093b38d98c47a}{Environment}} = \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_environment}{RHFSCFEnvironment}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_error_calculation_a9e64c091e566a1a9a8c77ec9a4302e80}{Scalar}} $>$
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_step}{GQCP\+::\+Step$<$ RHFSCFEnvironment$<$ \+\_\+\+Scalar $>$ $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_step_a479d9d1f930d4cabb39879a6e71f4915}{Environment}} = \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_environment}{RHFSCFEnvironment}}$<$ \+\_\+\+Scalar $>$
+\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -38,12 +43,20 @@ std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_error_calculation_ab792c7
 \item 
 void \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_error_calculation_a7c13f68d1aaf935a2b271cbfc8127df0}{execute}} (\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_error_calculation_ae429959fc4bd2e03830093b38d98c47a}{Environment}} \&environment) override
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_step}{GQCP\+::\+Step$<$ RHFSCFEnvironment$<$ \+\_\+\+Scalar $>$ $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_step_a013c882b1c3e8c18babbe1a478382cb0}{$\sim$\+Step}} ()=default
+\item 
+virtual std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_step_af2276da3e9eef7f8d2049a8aa255b9fb}{description}} () const=0
+\item 
+virtual void \mbox{\hyperlink{class_g_q_c_p_1_1_step_afc654a62596b3fff0801acb2d993818f}{execute}} (\mbox{\hyperlink{class_g_q_c_p_1_1_step_a479d9d1f930d4cabb39879a6e71f4915}{Environment}} \&environment)=0
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$typename \+\_\+\+Scalar$>$\newline
 class GQCP\+::\+RHFError\+Calculation$<$ \+\_\+\+Scalar $>$}
-
 An iteration step that calculates the error matrix from the Fock and density matrices (expressed in the scalar/\+AO basis).
 
 
@@ -59,14 +72,14 @@ An iteration step that calculates the error matrix from the Fock and density mat
 \index{Environment@{Environment}!GQCP::RHFErrorCalculation$<$ \_Scalar $>$@{GQCP::RHFErrorCalculation$<$ \_Scalar $>$}}
 \doxysubsubsection{\texorpdfstring{Environment}{Environment}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
-using \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_error_calculation}{GQCP\+::\+RHFError\+Calculation}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_error_calculation_ae429959fc4bd2e03830093b38d98c47a}{Environment}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_environment}{RHFSCFEnvironment}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_error_calculation_a9e64c091e566a1a9a8c77ec9a4302e80}{Scalar}}$>$}
+using \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_error_calculation}{GQCP\+::\+RHFError\+Calculation}}$<$ \+\_\+\+Scalar $>$\+::\+Environment =  \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_environment}{RHFSCFEnvironment}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_error_calculation_a9e64c091e566a1a9a8c77ec9a4302e80}{Scalar}}$>$}
 
 \mbox{\Hypertarget{class_g_q_c_p_1_1_r_h_f_error_calculation_a9e64c091e566a1a9a8c77ec9a4302e80}\label{class_g_q_c_p_1_1_r_h_f_error_calculation_a9e64c091e566a1a9a8c77ec9a4302e80}} 
 \index{GQCP::RHFErrorCalculation$<$ \_Scalar $>$@{GQCP::RHFErrorCalculation$<$ \_Scalar $>$}!Scalar@{Scalar}}
 \index{Scalar@{Scalar}!GQCP::RHFErrorCalculation$<$ \_Scalar $>$@{GQCP::RHFErrorCalculation$<$ \_Scalar $>$}}
 \doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
-using \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_error_calculation}{GQCP\+::\+RHFError\+Calculation}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_error_calculation_a9e64c091e566a1a9a8c77ec9a4302e80}{Scalar}} =  \+\_\+\+Scalar}
+using \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_error_calculation}{GQCP\+::\+RHFError\+Calculation}}$<$ \+\_\+\+Scalar $>$\+::\+Scalar =  \+\_\+\+Scalar}
 
 
 

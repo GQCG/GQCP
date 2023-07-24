@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_square_rank_four_tensor" kind="class" language="C++" prot="public">
     <compoundname>GQCP::SquareRankFourTensor</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_tensor" prot="public" virt="non-virtual">GQCP::Tensor&lt; _Scalar, 4 &gt;</basecompoundref>
@@ -15,6 +15,7 @@
         <definition>using GQCP::SquareRankFourTensor&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
         <argsstring></argsstring>
         <name>Scalar</name>
+        <qualifiedname>GQCP::SquareRankFourTensor::Scalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -28,6 +29,7 @@
         <definition>using GQCP::SquareRankFourTensor&lt; _Scalar &gt;::Base =  Tensor&lt;Scalar, 4&gt;</definition>
         <argsstring></argsstring>
         <name>Base</name>
+        <qualifiedname>GQCP::SquareRankFourTensor::Base</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -41,6 +43,7 @@
         <definition>using GQCP::SquareRankFourTensor&lt; _Scalar &gt;::Self =  SquareRankFourTensor&lt;Scalar&gt;</definition>
         <argsstring></argsstring>
         <name>Self</name>
+        <qualifiedname>GQCP::SquareRankFourTensor::Self</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -56,6 +59,7 @@
         <definition>GQCP::SquareRankFourTensor&lt; _Scalar &gt;::SquareRankFourTensor</definition>
         <argsstring>()</argsstring>
         <name>SquareRankFourTensor</name>
+        <qualifiedname>GQCP::SquareRankFourTensor::SquareRankFourTensor</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -70,6 +74,7 @@
         <definition>GQCP::SquareRankFourTensor&lt; _Scalar &gt;::SquareRankFourTensor</definition>
         <argsstring>(const size_t dim)</argsstring>
         <name>SquareRankFourTensor</name>
+        <qualifiedname>GQCP::SquareRankFourTensor::SquareRankFourTensor</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>dim</declname>
@@ -98,6 +103,7 @@
         <definition>GQCP::SquareRankFourTensor&lt; _Scalar &gt;::SquareRankFourTensor</definition>
         <argsstring>(const Base &amp;tensor)</argsstring>
         <name>SquareRankFourTensor</name>
+        <qualifiedname>GQCP::SquareRankFourTensor::SquareRankFourTensor</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_square_rank_four_tensor_1adf256320409b3cb071a75f236c342d77" kindref="member">Base</ref> &amp;</type>
           <declname>tensor</declname>
@@ -136,6 +142,7 @@
         <definition>GQCP::SquareRankFourTensor&lt; _Scalar &gt;::SquareRankFourTensor</definition>
         <argsstring>(const Eigen::TensorBase&lt; ExpDerived, AccessLevel &gt; &amp;exp)</argsstring>
         <name>SquareRankFourTensor</name>
+        <qualifiedname>GQCP::SquareRankFourTensor::SquareRankFourTensor</qualifiedname>
         <param>
           <type>const Eigen::TensorBase&lt; ExpDerived, AccessLevel &gt; &amp;</type>
           <declname>exp</declname>
@@ -176,7 +183,7 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareRankFourTensor.hpp" line="90" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareRankFourTensor.hpp" bodystart="90" bodyend="91"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_square_rank_four_tensor_1a43265946ffddd810e5380feb8806edc2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_square_rank_four_tensor_1a4517ba2d2676bbd03bb6e63bc68c107b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename ExpDerived</type>
@@ -188,9 +195,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="class_g_q_c_p_1_1_square_rank_four_tensor_1af3a3a80accceb217ab0cfd42a13f9ed2" kindref="member">Self</ref> &amp;</type>
-        <definition>Self&amp; GQCP::SquareRankFourTensor&lt; _Scalar &gt;::operator=</definition>
+        <definition>Self &amp; GQCP::SquareRankFourTensor&lt; _Scalar &gt;::operator=</definition>
         <argsstring>(const Eigen::TensorBase&lt; ExpDerived, AccessLevel &gt; &amp;exp)</argsstring>
         <name>operator=</name>
+        <qualifiedname>GQCP::SquareRankFourTensor::operator=</qualifiedname>
         <param>
           <type>const Eigen::TensorBase&lt; ExpDerived, AccessLevel &gt; &amp;</type>
           <declname>exp</declname>
@@ -236,6 +244,7 @@
         <definition>size_t GQCP::SquareRankFourTensor&lt; _Scalar &gt;::dimension</definition>
         <argsstring>() const</argsstring>
         <name>dimension</name>
+        <qualifiedname>GQCP::SquareRankFourTensor::dimension</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -247,11 +256,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareRankFourTensor.hpp" line="209" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareRankFourTensor.hpp" bodystart="209" bodyend="209"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_square_rank_four_tensor_1afaab91c4c43e216d1e0c1d7c2d45a746" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_square_rank_four_tensor_1a3afe6bce284bb1b7825165ab45875b18" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; double &gt;</type>
-        <definition>SquareMatrix&lt;double&gt; GQCP::SquareRankFourTensor&lt; _Scalar &gt;::pairWiseStrictReduced</definition>
+        <definition>SquareMatrix&lt; double &gt; GQCP::SquareRankFourTensor&lt; _Scalar &gt;::pairWiseStrictReduced</definition>
         <argsstring>() const</argsstring>
         <name>pairWiseStrictReduced</name>
+        <qualifiedname>GQCP::SquareRankFourTensor::pairWiseStrictReduced</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -274,6 +284,7 @@ The matrix indices (m,n) come from the tensor indices (i,j,k,l) and are such tha
         <definition>static Self GQCP::SquareRankFourTensor&lt; _Scalar &gt;::FromFile</definition>
         <argsstring>(const std::string &amp;filename, size_t dim)</argsstring>
         <name>FromFile</name>
+        <qualifiedname>GQCP::SquareRankFourTensor::FromFile</qualifiedname>
         <param>
           <type>const std::string &amp;</type>
           <declname>filename</declname>
@@ -314,6 +325,7 @@ The matrix indices (m,n) come from the tensor indices (i,j,k,l) and are such tha
         <definition>static Self GQCP::SquareRankFourTensor&lt; _Scalar &gt;::Zero</definition>
         <argsstring>(const size_t dim)</argsstring>
         <name>Zero</name>
+        <qualifiedname>GQCP::SquareRankFourTensor::Zero</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>dim</declname>
@@ -344,6 +356,7 @@ The matrix indices (m,n) come from the tensor indices (i,j,k,l) and are such tha
         <definition>static Self GQCP::SquareRankFourTensor&lt; _Scalar &gt;::Random</definition>
         <argsstring>(const size_t dim)</argsstring>
         <name>Random</name>
+        <qualifiedname>GQCP::SquareRankFourTensor::Random</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>dim</declname>
@@ -386,11 +399,8 @@ The matrix indices (m,n) come from the tensor indices (i,j,k,l) and are such tha
 </para>
     </detaileddescription>
     <inheritancegraph>
-      <node id="2">
-        <label>GQCP::Tensor&lt; _Scalar, 4 &gt;</label>
-        <link refid="class_g_q_c_p_1_1_tensor"/>
-        <childnode refid="3" relation="public-inheritance">
-        </childnode>
+      <node id="3">
+        <label>Eigen::Tensor&lt; _Scalar, _Rank &gt;</label>
       </node>
       <node id="1">
         <label>GQCP::SquareRankFourTensor&lt; _Scalar &gt;</label>
@@ -398,16 +408,16 @@ The matrix indices (m,n) come from the tensor indices (i,j,k,l) and are such tha
         <childnode refid="2" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="3">
-        <label>Eigen::Tensor&lt; _Scalar, _Rank &gt;</label>
+      <node id="2">
+        <label>GQCP::Tensor&lt; _Scalar, 4 &gt;</label>
+        <link refid="class_g_q_c_p_1_1_tensor"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="2">
-        <label>GQCP::Tensor&lt; _Scalar, 4 &gt;</label>
-        <link refid="class_g_q_c_p_1_1_tensor"/>
-        <childnode refid="3" relation="public-inheritance">
-        </childnode>
+      <node id="3">
+        <label>Eigen::Tensor&lt; _Scalar, _Rank &gt;</label>
       </node>
       <node id="1">
         <label>GQCP::SquareRankFourTensor&lt; _Scalar &gt;</label>
@@ -415,34 +425,37 @@ The matrix indices (m,n) come from the tensor indices (i,j,k,l) and are such tha
         <childnode refid="2" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="3">
-        <label>Eigen::Tensor&lt; _Scalar, _Rank &gt;</label>
+      <node id="2">
+        <label>GQCP::Tensor&lt; _Scalar, 4 &gt;</label>
+        <link refid="class_g_q_c_p_1_1_tensor"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
       </node>
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareRankFourTensor.hpp" line="36" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareRankFourTensor.hpp" bodystart="36" bodyend="247"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_tensor_1a27c1c038c06c561f87d788f96d80a7db" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>addBlock</name></member>
-      <member refid="class_g_q_c_p_1_1_tensor_1afaef2cb55ae37ca6174f956614e32411" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>addBlock</name></member>
-      <member refid="class_g_q_c_p_1_1_tensor_1a0b8ef475882c562f666abfbe3701bcf4" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>asMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a5c7fda06e3a53969768880fec8477e8c" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>addBlock</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1ac3e2203847759b0411a7a959838e309a" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>addBlock</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1ab0e5ba6f1b1fe279289bb98772e3e387" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>asMatrix</name></member>
       <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1adf256320409b3cb071a75f236c342d77" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>Base</name></member>
       <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1aa3537155a1ab4f7207232610ddeae5f9" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>dimension</name></member>
-      <member refid="class_g_q_c_p_1_1_tensor_1a0c215565584084203d6dfe127388627a" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>Eigen</name></member>
-      <member refid="class_g_q_c_p_1_1_tensor_1a65b3e312701a619764a36cb9e5b77247" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>Eigen</name></member>
-      <member refid="class_g_q_c_p_1_1_tensor_1a7f3fc273d404b00111e250639592e310" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>einsum</name></member>
-      <member refid="class_g_q_c_p_1_1_tensor_1afbf2116f91e93cce546be34cfbe362c6" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>einsum</name></member>
-      <member refid="class_g_q_c_p_1_1_tensor_1ab0aac5a7270d58bb2739787076f320cf" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>einsum</name></member>
-      <member refid="class_g_q_c_p_1_1_tensor_1a4f661c1441222dccb0b170cdcc04a744" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>FromBlock</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a1975212d179fc9fee2020d1cdf835c88" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>Eigen</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1abb190f852fb6363020292ffdd661a159" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>Eigen</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a3fd4b9da869c1904198751255521699c" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>einsum</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a2e625a0f5f694c035a6171c1006cbf69" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>einsum</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a883e0b2e73e9579c7fdeefa625741afa" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>einsum</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a838f8fafc54c04eb1d9e9e04698e5ff0" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>FromBlock</name></member>
       <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1a3d43828d2fa60cdb902529d56a34c21c" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>FromFile</name></member>
       <member refid="class_g_q_c_p_1_1_tensor_1a0fbb66c2ec178b7c21441ef6aaf3362d" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>hasEqualDimensionsAs</name></member>
-      <member refid="class_g_q_c_p_1_1_tensor_1aedf5e3a286be6c44e3209f722cd42d14" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>isApprox</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a6f031658f7e1bb111fa29234f85b3eab" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>isApprox</name></member>
       <member refid="class_g_q_c_p_1_1_tensor_1a9e3aeb7907fbbfb2fce357af8426f234" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>numberOfElements</name></member>
-      <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1a43265946ffddd810e5380feb8806edc2" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>operator=</name></member>
-      <member refid="class_g_q_c_p_1_1_tensor_1a6a4c62ac97e943c971985487edde42c9" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>pairWiseReduced</name></member>
-      <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1afaab91c4c43e216d1e0c1d7c2d45a746" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>pairWiseStrictReduced</name></member>
-      <member refid="class_g_q_c_p_1_1_tensor_1a4f8e729069fe9fab701b03ce4e4eaa4b" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>print</name></member>
+      <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1a4517ba2d2676bbd03bb6e63bc68c107b" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>operator=</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a6f42f7296a3da003d3713e42c6d93e18" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>pairWiseReduced</name></member>
+      <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1a3afe6bce284bb1b7825165ab45875b18" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>pairWiseStrictReduced</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a0842ff636779da8fb3c947707c438265" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>print</name></member>
       <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1a52e4cca8048c3e51977fa460f5715d76" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>Random</name></member>
       <member refid="class_g_q_c_p_1_1_tensor_1a776e6ece53ccfc888aa36aef2f998985" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>Rank</name></member>
-      <member refid="class_g_q_c_p_1_1_tensor_1ad617715dde3cdf405c91fc7e2ab4bba5" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>reshape</name></member>
+      <member refid="class_g_q_c_p_1_1_tensor_1a0c6235577d215b4ecdff6ba9b5981ea7" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>reshape</name></member>
       <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1ac9c0e565ff801e4127477353bd3e7a19" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>Scalar</name></member>
       <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1af3a3a80accceb217ab0cfd42a13f9ed2" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>Self</name></member>
       <member refid="class_g_q_c_p_1_1_square_rank_four_tensor_1a69d281a8471cddd9cfacb64a15330769" prot="public" virt="non-virtual"><scope>GQCP::SquareRankFourTensor</scope><name>SquareRankFourTensor</name></member>

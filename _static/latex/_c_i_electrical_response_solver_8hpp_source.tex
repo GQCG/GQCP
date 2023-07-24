@@ -1,0 +1,95 @@
+\hypertarget{_c_i_electrical_response_solver_8hpp_source}{}\doxysection{CIElectrical\+Response\+Solver.\+hpp}
+\label{_c_i_electrical_response_solver_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Processing/Properties/CIElectricalResponseSolver.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Processing/Properties/CIElectricalResponseSolver.hpp}}
+\mbox{\hyperlink{_c_i_electrical_response_solver_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ //\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ //}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ //\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ //}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ //\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ //\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ //\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ //\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ //}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ //\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ //\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ //\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ //\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ //}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ //\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ //\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ \#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ \#include\ "{}Processing/Properties/BaseElectricalResponseSolver.hpp"{}}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ \#include\ "{}QCModel/CI/LinearExpansion.hpp"{}}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ namespace\ GQCP\ \{}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ /**}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ \ *\ \ A\ class\ whose\ instances\ can\ solve\ the\ response\ equations\ for\ CI.}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ \ */}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ template\ <typename\ \_ONVBasis>}}
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ class\ CIElectricalResponseSolver:\ public\ BaseElectricalResponseSolver\ \{}}
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ public:}}
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ \ \ \ \ using\ ONVBasis\ =\ \_ONVBasis;}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{comment}{//\ private:}}
+\DoxyCodeLine{00037\ \textcolor{comment}{//\ \ \ \ \ LinearExpansion<ONVBasis>\ linear\_expansion;\ \ //\ the\ CI\ linear\ expansion}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{comment}{//\ public:}}
+\DoxyCodeLine{00041\ \textcolor{comment}{//\ \ \ \ \ //\ CONSTRUCTORS}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{comment}{//\ \ \ \ \ /**}}
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ \ \ \ \ \ *\ \ @param\ linear\_expansion\ \ \ \ \ \ \ \ \ \ \ \ \ the\ CI\ linear\ expansion}}
+\DoxyCodeLine{00045\ \textcolor{comment}{//\ \ \ \ \ \ */}}
+\DoxyCodeLine{00046\ \textcolor{comment}{//\ \ \ \ \ CIElectricalResponseSolver(const\ LinearExpansion<ONVBasis>\&\ linear\_expansion)\ :}}
+\DoxyCodeLine{00047\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ linear\_expansion\ \{linear\_expansion\}\ \{\}}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{comment}{//\ \ \ \ \ //\ PUBLIC\ OVERRIDDEN\ METHODS}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{comment}{//\ \ \ \ \ /**}}
+\DoxyCodeLine{00053\ \textcolor{comment}{//\ \ \ \ \ \ *\ \ @param\ sq\_hamiltonian\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ the\ Hamiltonian\ expressed\ in\ an\ orthonormal\ orbital\ basis}}
+\DoxyCodeLine{00054\ \textcolor{comment}{//\ \ \ \ \ \ *}}
+\DoxyCodeLine{00055\ \textcolor{comment}{//\ \ \ \ \ \ *\ \ @return\ the\ parameter\ response\ constant\ (k\_p),\ i.e.\ the\ second-\/order\ parameter\ partial\ derivative\ of\ the\ CI\ energy\ function}}
+\DoxyCodeLine{00056\ \textcolor{comment}{//\ \ \ \ \ \ */}}
+\DoxyCodeLine{00057\ \textcolor{comment}{//\ \ \ \ \ //\ SquareMatrix<double>\ calculateParameterResponseConstant(const\ RSQHamiltonian<double>\&\ sq\_hamiltonian)\ const\ override\ \{}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{comment}{//\ \ \ \ \ //\ \ \ \ \ //\ k\_p\ for\ CI\ models\ is\ just\ the\ electronic\ Hamiltonian\ evaluated\ in\ the\ ONV\ basis}}
+\DoxyCodeLine{00060\ \textcolor{comment}{//\ \ \ \ \ //\ \ \ \ \ return\ 2\ *\ this-\/>linear\_expansion.onvBasis().evaluateOperatorDense(sq\_hamiltonian,\ true);\ \ //\ true:\ need\ to\ calculate\ diagonal\ values\ as\ well}}
+\DoxyCodeLine{00061\ \textcolor{comment}{//\ \ \ \ \ //\ \}}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{comment}{//\ \ \ \ \ /**}}
+\DoxyCodeLine{00064\ \textcolor{comment}{//\ \ \ \ \ \ *\ \ @param\ dipole\_op\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ the\ dipole\ integrals\ in\ an\ orthonormal\ orbital\ basis}}
+\DoxyCodeLine{00065\ \textcolor{comment}{//\ \ \ \ \ \ *}}
+\DoxyCodeLine{00066\ \textcolor{comment}{//\ \ \ \ \ \ *\ \ @return\ the\ parameter\ response\ force\ (F\_p),\ i.e.\ the\ first-\/order\ parameter\ partial\ derivative\ of\ the\ perturbation\ derivative\ of\ the\ CI\ energy\ function}}
+\DoxyCodeLine{00067\ \textcolor{comment}{//\ \ \ \ \ \ */}}
+\DoxyCodeLine{00068\ \textcolor{comment}{//\ \ \ \ \ Matrix<double,\ Dynamic,\ 3>\ calculateParameterResponseForce(const\ VectorRSQOneElectronOperator<double>\&\ dipole\_op)\ const\ override\ \{}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ //\ Prepare\ some\ variables.}}
+\DoxyCodeLine{00071\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ const\ auto\ dim\ =\ this-\/>linear\_expansion.onvBasis().dimension();}}
+\DoxyCodeLine{00072\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ const\ auto\&\ c\ =\ this-\/>linear\_expansion.coefficients();}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ //\ F\_p\ for\ CI\ is\ related\ to\ the\ matrix-\/vector\ product\ of\ the\ total\ dipole\ operator\ and\ the\ CI\ expansion.}}
+\DoxyCodeLine{00075\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ Matrix<double,\ Dynamic,\ 3>\ F\_p\ =\ Matrix<double,\ Dynamic,\ 3>::Zero(dim,\ 3);}}
+\DoxyCodeLine{00076\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ for\ (size\_t\ m\ =\ 0;\ m\ <\ 3;\ m++)\ \{\ \ //\ m\ loops\ over\ the\ components\ of\ the\ electrical\ dipole}}
+\DoxyCodeLine{00077\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ const\ auto\&\ mu\_m\ =\ dipole\_op[m];}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ //\ Calculate\ the\ matrix-\/vector\ product\ of\ the\ dipole\ operator\ and\ the\ CI\ expansion.}}
+\DoxyCodeLine{00080\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ const\ auto\ diagonal\ =\ this-\/>linear\_expansion.onvBasis().evaluateOperatorDiagonal(mu\_m);}}
+\DoxyCodeLine{00081\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ F\_p.col(m)\ =\ -\/2\ *\ this-\/>linear\_expansion.onvBasis().evaluateOperatorMatrixVectorProduct(mu\_m,\ c,\ diagonal);}}
+\DoxyCodeLine{00082\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ return\ F\_p;}}
+\DoxyCodeLine{00085\ \textcolor{comment}{//\ \ \ \ \ \}}}
+\DoxyCodeLine{00086\ \textcolor{comment}{//\ \};}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{comment}{//\ \}\ \ //\ namespace\ GQCP}}
+
+\end{DoxyCode}

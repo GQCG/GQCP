@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_q_c_method_1_1_a_p1ro_g" kind="class" language="C++" prot="public">
     <compoundname>GQCP::QCMethod::AP1roG</compoundname>
     <includes refid="_q_c_method_2_geminals_2_a_p1ro_g_8hpp" local="no">AP1roG.hpp</includes>
@@ -9,6 +9,7 @@
         <definition>size_t GQCP::QCMethod::AP1roG::N_P</definition>
         <argsstring></argsstring>
         <name>N_P</name>
+        <qualifiedname>GQCP::QCMethod::AP1roG::N_P</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -22,6 +23,7 @@
         <definition>size_t GQCP::QCMethod::AP1roG::K</definition>
         <argsstring></argsstring>
         <name>K</name>
+        <qualifiedname>GQCP::QCMethod::AP1roG::K</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -35,6 +37,7 @@
         <definition>RSQHamiltonian&lt;double&gt; GQCP::QCMethod::AP1roG::sq_hamiltonian</definition>
         <argsstring></argsstring>
         <name>sq_hamiltonian</name>
+        <qualifiedname>GQCP::QCMethod::AP1roG::sq_hamiltonian</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -50,6 +53,7 @@
         <definition>GQCP::QCMethod::AP1roG::AP1roG</definition>
         <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian, const size_t N_P)</argsstring>
         <name>AP1roG</name>
+        <qualifiedname>GQCP::QCMethod::AP1roG::AP1roG</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
           <declname>sq_hamiltonian</declname>
@@ -84,16 +88,17 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roG.hpp" line="53" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roG.hpp" bodystart="53" bodyend="56"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_method_1_1_a_p1ro_g_1a7455de6cb0042350c79c337cd6904d3d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_method_1_1_a_p1ro_g_1a981868b6e84d3a5553a96fc501620dda" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Solver</type>
           </param>
         </templateparamlist>
         <type><ref refid="class_g_q_c_p_1_1_q_c_structure" kindref="compound">QCStructure</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g" kindref="compound">GQCP::QCModel::AP1roG</ref> &gt;</type>
-        <definition>QCStructure&lt;GQCP::QCModel::AP1roG&gt; GQCP::QCMethod::AP1roG::optimize</definition>
+        <definition>QCStructure&lt; GQCP::QCModel::AP1roG &gt; GQCP::QCMethod::AP1roG::optimize</definition>
         <argsstring>(Solver &amp;solver, NonLinearEquationEnvironment&lt; double &gt; &amp;environment) const</argsstring>
         <name>optimize</name>
+        <qualifiedname>GQCP::QCMethod::AP1roG::optimize</qualifiedname>
         <param>
           <type>Solver &amp;</type>
           <declname>solver</declname>
@@ -155,7 +160,7 @@
       <member refid="class_g_q_c_p_1_1_q_c_method_1_1_a_p1ro_g_1aad0b1e7f6bd342533f1e384c4f5ecb0f" prot="public" virt="non-virtual"><scope>GQCP::QCMethod::AP1roG</scope><name>AP1roG</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_method_1_1_a_p1ro_g_1a96b5e69554e64a34eb4e83124126ea52" prot="private" virt="non-virtual"><scope>GQCP::QCMethod::AP1roG</scope><name>K</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_method_1_1_a_p1ro_g_1a8be7189eb9995452f9eaf5764f23feda" prot="private" virt="non-virtual"><scope>GQCP::QCMethod::AP1roG</scope><name>N_P</name></member>
-      <member refid="class_g_q_c_p_1_1_q_c_method_1_1_a_p1ro_g_1a7455de6cb0042350c79c337cd6904d3d" prot="public" virt="non-virtual"><scope>GQCP::QCMethod::AP1roG</scope><name>optimize</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_method_1_1_a_p1ro_g_1a981868b6e84d3a5553a96fc501620dda" prot="public" virt="non-virtual"><scope>GQCP::QCMethod::AP1roG</scope><name>optimize</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_method_1_1_a_p1ro_g_1abe255061983d845b1fc861e198260c52" prot="private" virt="non-virtual"><scope>GQCP::QCMethod::AP1roG</scope><name>sq_hamiltonian</name></member>
     </listofallmembers>
   </compounddef>

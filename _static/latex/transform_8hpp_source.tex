@@ -1,0 +1,74 @@
+\hypertarget{transform_8hpp_source}{}\doxysection{transform.\+hpp}
+\label{transform_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Basis/Transformations/transform.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Basis/Transformations/transform.hpp}}
+\mbox{\hyperlink{transform_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_r_spin_orbital_basis_8hpp}{Basis/SpinorBasis/RSpinOrbitalBasis.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_u_spin_orbital_basis_8hpp}{Basis/SpinorBasis/USpinOrbitalBasis.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_q_hamiltonian_8hpp}{Operator/SecondQuantized/SQHamiltonian.hpp}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_spin_8hpp}{QuantumChemical/Spin.hpp}}"{}}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ *\ \ MARK:\ Transformations}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ TransformationType,\ \textcolor{keyword}{typename}\ TransformableType>}
+\DoxyCodeLine{00044\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_g_q_c_p_afed89df1a3e5cf5d125edc3e66e81f06}{transform}}(\textcolor{keyword}{const}\ TransformationType\&\ T,\ TransformableType\&\ transformable)\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ transformable.transform(T);}
+\DoxyCodeLine{00046\ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ TransformationType,\ \textcolor{keyword}{typename}\ First,\ \textcolor{keyword}{typename}...\ Others>}
+\DoxyCodeLine{00061\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_g_q_c_p_afed89df1a3e5cf5d125edc3e66e81f06}{transform}}(\textcolor{keyword}{const}\ TransformationType\&\ T,\ First\&\ first,\ Others\&...\ others)\ \{}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{comment}{//\ Transform\ the\ first\ object,\ and\ forward\ the\ remaining\ objects.}}
+\DoxyCodeLine{00064\ \ \ \ \ first.transform(T);}
+\DoxyCodeLine{00065\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_afed89df1a3e5cf5d125edc3e66e81f06}{transform}}(T,\ others...);}
+\DoxyCodeLine{00066\ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00070\ \textcolor{comment}{\ *\ \ MARK:\ Rotations}}
+\DoxyCodeLine{00071\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00082\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ RotationType,\ \textcolor{keyword}{typename}\ RotatableType>}
+\DoxyCodeLine{00083\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_g_q_c_p_a7e2cfaf86b5e620b806f34f3827f7a02}{rotate}}(\textcolor{keyword}{const}\ RotationType\&\ U,\ RotatableType\&\ rotatable)\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ rotatable.rotate(U);}
+\DoxyCodeLine{00085\ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00099\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ RotationType,\ \textcolor{keyword}{typename}\ First,\ \textcolor{keyword}{typename}...\ Others>}
+\DoxyCodeLine{00100\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_g_q_c_p_a7e2cfaf86b5e620b806f34f3827f7a02}{rotate}}(\textcolor{keyword}{const}\ RotationType\&\ U,\ First\&\ first,\ Others\&...\ others)\ \{}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{comment}{//\ Rotate\ the\ first\ object,\ and\ forward\ the\ remaining\ objects.}}
+\DoxyCodeLine{00103\ \ \ \ \ first.rotate(U);}
+\DoxyCodeLine{00104\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a7e2cfaf86b5e620b806f34f3827f7a02}{rotate}}(U,\ others...);}
+\DoxyCodeLine{00105\ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

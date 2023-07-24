@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_orbital_space" kind="class" language="C++" prot="public">
     <compoundname>GQCP::OrbitalSpace</compoundname>
     <includes refid="_orbital_space_8hpp" local="no">OrbitalSpace.hpp</includes>
@@ -9,6 +9,7 @@
         <definition>std::vector&lt;size_t&gt; GQCP::OrbitalSpace::occupied_indices</definition>
         <argsstring></argsstring>
         <name>occupied_indices</name>
+        <qualifiedname>GQCP::OrbitalSpace::occupied_indices</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -22,6 +23,7 @@
         <definition>std::vector&lt;size_t&gt; GQCP::OrbitalSpace::active_indices</definition>
         <argsstring></argsstring>
         <name>active_indices</name>
+        <qualifiedname>GQCP::OrbitalSpace::active_indices</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -35,6 +37,7 @@
         <definition>std::vector&lt;size_t&gt; GQCP::OrbitalSpace::virtual_indices</definition>
         <argsstring></argsstring>
         <name>virtual_indices</name>
+        <qualifiedname>GQCP::OrbitalSpace::virtual_indices</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -48,6 +51,7 @@
         <definition>std::vector&lt;size_t&gt; GQCP::OrbitalSpace::all_indices</definition>
         <argsstring></argsstring>
         <name>all_indices</name>
+        <qualifiedname>GQCP::OrbitalSpace::all_indices</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -63,6 +67,7 @@
         <definition>GQCP::OrbitalSpace::OrbitalSpace</definition>
         <argsstring>(const std::vector&lt; size_t &gt; &amp;occupied_indices, const std::vector&lt; size_t &gt; &amp;active_indices, const std::vector&lt; size_t &gt; &amp;virtual_indices)</argsstring>
         <name>OrbitalSpace</name>
+        <qualifiedname>GQCP::OrbitalSpace::OrbitalSpace</qualifiedname>
         <param>
           <type>const std::vector&lt; size_t &gt; &amp;</type>
           <declname>occupied_indices</declname>
@@ -115,6 +120,7 @@
         <definition>GQCP::OrbitalSpace::OrbitalSpace</definition>
         <argsstring>(const std::vector&lt; size_t &gt; &amp;occupied_indices, const std::vector&lt; size_t &gt; &amp;virtual_indices)</argsstring>
         <name>OrbitalSpace</name>
+        <qualifiedname>GQCP::OrbitalSpace::OrbitalSpace</qualifiedname>
         <param>
           <type>const std::vector&lt; size_t &gt; &amp;</type>
           <declname>occupied_indices</declname>
@@ -170,16 +176,17 @@ Construct an orbital space from occupied and virtual indices.</para>
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp" line="69" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/SpinorBasis/OrbitalSpace.cpp" bodystart="59" bodyend="60"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_orbital_space_1acb89ad14bcf5209d3a865bd3f4fa459d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_orbital_space_1aabe4ddf0895d9cfc3e0a87387b713554" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Scalar</type>
           </param>
         </templateparamlist>
         <type><ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice</ref>&lt; Scalar &gt;</type>
-        <definition>ImplicitMatrixSlice&lt;Scalar&gt; GQCP::OrbitalSpace::createRepresentableObjectFor</definition>
+        <definition>ImplicitMatrixSlice&lt; Scalar &gt; GQCP::OrbitalSpace::createRepresentableObjectFor</definition>
         <argsstring>(const OccupationType row_type, const OccupationType column_type, const MatrixX&lt; Scalar &gt; &amp;M) const</argsstring>
         <name>createRepresentableObjectFor</name>
+        <qualifiedname>GQCP::OrbitalSpace::createRepresentableObjectFor</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref></type>
           <declname>row_type</declname>
@@ -240,16 +247,17 @@ Construct an orbital space from occupied and virtual indices.</para>
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp" line="102" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp" bodystart="102" bodyend="109"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_orbital_space_1a11e108ce916d6b9f43e0978ee35dc35f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_orbital_space_1a1c9dadc1e1406e0db42aa85cb30d65d9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Scalar</type>
           </param>
         </templateparamlist>
         <type><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; Scalar &gt;</type>
-        <definition>ImplicitRankFourTensorSlice&lt;Scalar&gt; GQCP::OrbitalSpace::createRepresentableObjectFor</definition>
+        <definition>ImplicitRankFourTensorSlice&lt; Scalar &gt; GQCP::OrbitalSpace::createRepresentableObjectFor</definition>
         <argsstring>(const OccupationType axis1_type, const OccupationType axis2_type, const OccupationType axis3_type, const OccupationType axis4_type, const Tensor&lt; Scalar, 4 &gt; &amp;T) const</argsstring>
         <name>createRepresentableObjectFor</name>
+        <qualifiedname>GQCP::OrbitalSpace::createRepresentableObjectFor</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref></type>
           <declname>axis1_type</declname>
@@ -339,6 +347,7 @@ Construct an orbital space from occupied and virtual indices.</para>
         <definition>std::string GQCP::OrbitalSpace::description</definition>
         <argsstring>() const</argsstring>
         <name>description</name>
+        <qualifiedname>GQCP::OrbitalSpace::description</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -350,11 +359,12 @@ Construct an orbital space from occupied and virtual indices.</para>
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp" line="145" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/SpinorBasis/OrbitalSpace.cpp" bodystart="119" bodyend="139"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_orbital_space_1ade818f11cda64633a2d021d2aa7b8239" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_orbital_space_1a0a401c9945db2d1a81d1bd9a609805a4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const std::vector&lt; size_t &gt; &amp;</type>
-        <definition>const std::vector&lt;size_t&gt;&amp; GQCP::OrbitalSpace::indices</definition>
+        <definition>const std::vector&lt; size_t &gt; &amp; GQCP::OrbitalSpace::indices</definition>
         <argsstring>() const</argsstring>
         <name>indices</name>
+        <qualifiedname>GQCP::OrbitalSpace::indices</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -371,6 +381,7 @@ Construct an orbital space from occupied and virtual indices.</para>
         <definition>const std::vector&lt; size_t &gt; &amp; GQCP::OrbitalSpace::indices</definition>
         <argsstring>(const OccupationType type) const</argsstring>
         <name>indices</name>
+        <qualifiedname>GQCP::OrbitalSpace::indices</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref></type>
           <declname>type</declname>
@@ -395,16 +406,17 @@ Construct an orbital space from occupied and virtual indices.</para>
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp" line="157" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/src/Basis/SpinorBasis/OrbitalSpace.cpp" bodystart="147" bodyend="165"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_orbital_space_1a94054746984d5264a8db8be75ec36515" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_orbital_space_1a510fc684cc5b32892691e6165a85de2b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Scalar</type>
           </param>
         </templateparamlist>
         <type><ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice</ref>&lt; Scalar &gt;</type>
-        <definition>ImplicitMatrixSlice&lt;Scalar&gt; GQCP::OrbitalSpace::initializeRepresentableObjectFor</definition>
+        <definition>ImplicitMatrixSlice&lt; Scalar &gt; GQCP::OrbitalSpace::initializeRepresentableObjectFor</definition>
         <argsstring>(const OccupationType row_type, const OccupationType column_type) const</argsstring>
         <name>initializeRepresentableObjectFor</name>
+        <qualifiedname>GQCP::OrbitalSpace::initializeRepresentableObjectFor</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref></type>
           <declname>row_type</declname>
@@ -453,16 +465,17 @@ Construct an orbital space from occupied and virtual indices.</para>
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp" line="173" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/OrbitalSpace.hpp" bodystart="173" bodyend="182"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_orbital_space_1ae0715f30727c67afad1a406b77d04e3f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_orbital_space_1a596167c56d37973163d0495d2cb899b5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Scalar</type>
           </param>
         </templateparamlist>
         <type><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; Scalar &gt;</type>
-        <definition>ImplicitRankFourTensorSlice&lt;Scalar&gt; GQCP::OrbitalSpace::initializeRepresentableObjectFor</definition>
+        <definition>ImplicitRankFourTensorSlice&lt; Scalar &gt; GQCP::OrbitalSpace::initializeRepresentableObjectFor</definition>
         <argsstring>(const OccupationType axis1_type, const OccupationType axis2_type, const OccupationType axis3_type, const OccupationType axis4_type) const</argsstring>
         <name>initializeRepresentableObjectFor</name>
+        <qualifiedname>GQCP::OrbitalSpace::initializeRepresentableObjectFor</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref></type>
           <declname>axis1_type</declname>
@@ -540,6 +553,7 @@ Construct an orbital space from occupied and virtual indices.</para>
         <definition>bool GQCP::OrbitalSpace::isIndex</definition>
         <argsstring>(const OccupationType type, const size_t p) const</argsstring>
         <name>isIndex</name>
+        <qualifiedname>GQCP::OrbitalSpace::isIndex</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref></type>
           <declname>type</declname>
@@ -581,6 +595,7 @@ Construct an orbital space from occupied and virtual indices.</para>
         <definition>size_t GQCP::OrbitalSpace::numberOfExcitations</definition>
         <argsstring>(const OccupationType from, const OccupationType to) const</argsstring>
         <name>numberOfExcitations</name>
+        <qualifiedname>GQCP::OrbitalSpace::numberOfExcitations</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref></type>
           <declname>from</declname>
@@ -622,6 +637,7 @@ Construct an orbital space from occupied and virtual indices.</para>
         <definition>size_t GQCP::OrbitalSpace::numberOfOrbitals</definition>
         <argsstring>() const</argsstring>
         <name>numberOfOrbitals</name>
+        <qualifiedname>GQCP::OrbitalSpace::numberOfOrbitals</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -638,6 +654,7 @@ Construct an orbital space from occupied and virtual indices.</para>
         <definition>size_t GQCP::OrbitalSpace::numberOfOrbitals</definition>
         <argsstring>(const OccupationType type) const</argsstring>
         <name>numberOfOrbitals</name>
+        <qualifiedname>GQCP::OrbitalSpace::numberOfOrbitals</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref></type>
           <declname>type</declname>
@@ -669,6 +686,7 @@ Construct an orbital space from occupied and virtual indices.</para>
         <definition>OrbitalSpace GQCP::OrbitalSpace::Implicit</definition>
         <argsstring>(const std::map&lt; OccupationType, size_t &gt; &amp;occupation_type_numbers)</argsstring>
         <name>Implicit</name>
+        <qualifiedname>GQCP::OrbitalSpace::Implicit</qualifiedname>
         <param>
           <type>const std::map&lt; <ref refid="namespace_g_q_c_p_1a3030f130c450e7134eb0670b39ab246b" kindref="member">OccupationType</ref>, size_t &gt; &amp;</type>
           <declname>occupation_type_numbers</declname>
@@ -715,14 +733,14 @@ Construct an orbital space from occupied and virtual indices.</para>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_orbital_space_1a42b3114390f136a8069157ff3bb8ba70" prot="private" virt="non-virtual"><scope>GQCP::OrbitalSpace</scope><name>active_indices</name></member>
       <member refid="class_g_q_c_p_1_1_orbital_space_1ab335e2f39248ffc29b06a3dcb3d62803" prot="private" virt="non-virtual"><scope>GQCP::OrbitalSpace</scope><name>all_indices</name></member>
-      <member refid="class_g_q_c_p_1_1_orbital_space_1acb89ad14bcf5209d3a865bd3f4fa459d" prot="public" virt="non-virtual"><scope>GQCP::OrbitalSpace</scope><name>createRepresentableObjectFor</name></member>
-      <member refid="class_g_q_c_p_1_1_orbital_space_1a11e108ce916d6b9f43e0978ee35dc35f" prot="public" virt="non-virtual"><scope>GQCP::OrbitalSpace</scope><name>createRepresentableObjectFor</name></member>
+      <member refid="class_g_q_c_p_1_1_orbital_space_1aabe4ddf0895d9cfc3e0a87387b713554" prot="public" virt="non-virtual"><scope>GQCP::OrbitalSpace</scope><name>createRepresentableObjectFor</name></member>
+      <member refid="class_g_q_c_p_1_1_orbital_space_1a1c9dadc1e1406e0db42aa85cb30d65d9" prot="public" virt="non-virtual"><scope>GQCP::OrbitalSpace</scope><name>createRepresentableObjectFor</name></member>
       <member refid="class_g_q_c_p_1_1_orbital_space_1af55bd0e3e8eafebeb497533a33e11754" prot="public" virt="non-virtual"><scope>GQCP::OrbitalSpace</scope><name>description</name></member>
       <member refid="class_g_q_c_p_1_1_orbital_space_1a22c967bc1d33a75341c86b1ca52b0532" prot="public" virt="non-virtual"><scope>GQCP::OrbitalSpace</scope><name>Implicit</name></member>
-      <member refid="class_g_q_c_p_1_1_orbital_space_1ade818f11cda64633a2d021d2aa7b8239" prot="public" virt="non-virtual"><scope>GQCP::OrbitalSpace</scope><name>indices</name></member>
+      <member refid="class_g_q_c_p_1_1_orbital_space_1a0a401c9945db2d1a81d1bd9a609805a4" prot="public" virt="non-virtual"><scope>GQCP::OrbitalSpace</scope><name>indices</name></member>
       <member refid="class_g_q_c_p_1_1_orbital_space_1a5f723800aca1fd0a2064798e2cb190cc" prot="public" virt="non-virtual"><scope>GQCP::OrbitalSpace</scope><name>indices</name></member>
-      <member refid="class_g_q_c_p_1_1_orbital_space_1a94054746984d5264a8db8be75ec36515" prot="public" virt="non-virtual"><scope>GQCP::OrbitalSpace</scope><name>initializeRepresentableObjectFor</name></member>
-      <member refid="class_g_q_c_p_1_1_orbital_space_1ae0715f30727c67afad1a406b77d04e3f" prot="public" virt="non-virtual"><scope>GQCP::OrbitalSpace</scope><name>initializeRepresentableObjectFor</name></member>
+      <member refid="class_g_q_c_p_1_1_orbital_space_1a510fc684cc5b32892691e6165a85de2b" prot="public" virt="non-virtual"><scope>GQCP::OrbitalSpace</scope><name>initializeRepresentableObjectFor</name></member>
+      <member refid="class_g_q_c_p_1_1_orbital_space_1a596167c56d37973163d0495d2cb899b5" prot="public" virt="non-virtual"><scope>GQCP::OrbitalSpace</scope><name>initializeRepresentableObjectFor</name></member>
       <member refid="class_g_q_c_p_1_1_orbital_space_1a6b56ebfb1e6121780b9874ebd9df4ec0" prot="public" virt="non-virtual"><scope>GQCP::OrbitalSpace</scope><name>isIndex</name></member>
       <member refid="class_g_q_c_p_1_1_orbital_space_1a0db283ce4ba51869f4bce2c7db121ed4" prot="public" virt="non-virtual"><scope>GQCP::OrbitalSpace</scope><name>numberOfExcitations</name></member>
       <member refid="class_g_q_c_p_1_1_orbital_space_1a6749db783d556c8d21e52e2a72ea329f" prot="public" virt="non-virtual"><scope>GQCP::OrbitalSpace</scope><name>numberOfOrbitals</name></member>

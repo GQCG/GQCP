@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_london_hermite_coulomb_integral" kind="class" language="C++" prot="public">
     <compoundname>GQCP::LondonHermiteCoulombIntegral</compoundname>
     <includes refid="_london_hermite_coulomb_integral_8hpp" local="no">LondonHermiteCoulombIntegral.hpp</includes>
@@ -9,6 +9,7 @@
         <definition>double GQCP::LondonHermiteCoulombIntegral::p</definition>
         <argsstring></argsstring>
         <name>p</name>
+        <qualifiedname>GQCP::LondonHermiteCoulombIntegral::p</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -22,6 +23,7 @@
         <definition>Vector&lt;double, 3&gt; GQCP::LondonHermiteCoulombIntegral::k1</definition>
         <argsstring></argsstring>
         <name>k1</name>
+        <qualifiedname>GQCP::LondonHermiteCoulombIntegral::k1</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -35,6 +37,7 @@
         <definition>Vector&lt;double, 3&gt; GQCP::LondonHermiteCoulombIntegral::P</definition>
         <argsstring></argsstring>
         <name>P</name>
+        <qualifiedname>GQCP::LondonHermiteCoulombIntegral::P</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -48,6 +51,7 @@
         <definition>Vector&lt;double, 3&gt; GQCP::LondonHermiteCoulombIntegral::C</definition>
         <argsstring></argsstring>
         <name>C</name>
+        <qualifiedname>GQCP::LondonHermiteCoulombIntegral::C</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -63,6 +67,7 @@
         <definition>GQCP::LondonHermiteCoulombIntegral::LondonHermiteCoulombIntegral</definition>
         <argsstring>(const Vector&lt; double, 3 &gt; &amp;k1, const double p, const Vector&lt; double, 3 &gt; &amp;P, const Vector&lt; double, 3 &gt; &amp;C)</argsstring>
         <name>LondonHermiteCoulombIntegral</name>
+        <qualifiedname>GQCP::LondonHermiteCoulombIntegral::LondonHermiteCoulombIntegral</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &amp;</type>
           <declname>k1</declname>
@@ -126,6 +131,7 @@
         <definition>complex GQCP::LondonHermiteCoulombIntegral::operator()</definition>
         <argsstring>(const size_t n, const int t, const int u, const int v) const</argsstring>
         <name>operator()</name>
+        <qualifiedname>GQCP::LondonHermiteCoulombIntegral::operator()</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>n</declname>

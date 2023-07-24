@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_base_f_q_operator" kind="class" language="C++" prot="public">
     <compoundname>GQCP::BaseFQOperator</compoundname>
     <derivedcompoundref refid="class_g_q_c_p_1_1_angular_momentum_operator" prot="public" virt="non-virtual">GQCP::AngularMomentumOperator</derivedcompoundref>
@@ -28,6 +28,7 @@
         <definition>using GQCP::BaseFQOperator&lt; N, _Scalar, _Vectorizer &gt;::Scalar =  _Scalar</definition>
         <argsstring></argsstring>
         <name>Scalar</name>
+        <qualifiedname>GQCP::BaseFQOperator::Scalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -41,6 +42,7 @@
         <definition>using GQCP::BaseFQOperator&lt; N, _Scalar, _Vectorizer &gt;::Vectorizer =  _Vectorizer</definition>
         <argsstring></argsstring>
         <name>Vectorizer</name>
+        <qualifiedname>GQCP::BaseFQOperator::Vectorizer</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -56,6 +58,7 @@
         <definition>constexpr auto GQCP::BaseFQOperator&lt; N, _Scalar, _Vectorizer &gt;::NumberOfElectrons</definition>
         <argsstring></argsstring>
         <name>NumberOfElectrons</name>
+        <qualifiedname>GQCP::BaseFQOperator::NumberOfElectrons</qualifiedname>
         <initializer>= N</initializer>
         <briefdescription>
         </briefdescription>
@@ -72,6 +75,7 @@
         <definition>virtual GQCP::BaseFQOperator&lt; N, _Scalar, _Vectorizer &gt;::~BaseFQOperator</definition>
         <argsstring>()</argsstring>
         <name>~BaseFQOperator</name>
+        <qualifiedname>GQCP::BaseFQOperator::~BaseFQOperator</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -113,21 +117,9 @@
 </para>
     </detaileddescription>
     <inheritancegraph>
-      <node id="4">
-        <label>GQCP::ElectronicDipoleOperator&lt; double &gt;</label>
-        <link refid="class_g_q_c_p_1_1_electronic_dipole_operator"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="3">
-        <label>GQCP::CurrentDensityOperator&lt; complex &gt;</label>
-        <link refid="class_g_q_c_p_1_1_current_density_operator"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="6">
-        <label>GQCP::ElectronicSpinOperator&lt; complex &gt;</label>
-        <link refid="class_g_q_c_p_1_1_electronic_spin_operator"/>
+      <node id="2">
+        <label>GQCP::AngularMomentumOperator&lt; complex &gt;</label>
+        <link refid="class_g_q_c_p_1_1_angular_momentum_operator"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
@@ -135,9 +127,15 @@
         <label>GQCP::BaseFQOperator&lt; N, _Scalar, _Vectorizer &gt;</label>
         <link refid="class_g_q_c_p_1_1_base_f_q_operator"/>
       </node>
-      <node id="7">
-        <label>GQCP::LinearMomentumOperator&lt; complex &gt;</label>
-        <link refid="class_g_q_c_p_1_1_linear_momentum_operator"/>
+      <node id="3">
+        <label>GQCP::CurrentDensityOperator&lt; complex &gt;</label>
+        <link refid="class_g_q_c_p_1_1_current_density_operator"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>GQCP::ElectronicDipoleOperator&lt; double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_electronic_dipole_operator"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
@@ -147,9 +145,15 @@
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="2">
-        <label>GQCP::AngularMomentumOperator&lt; complex &gt;</label>
-        <link refid="class_g_q_c_p_1_1_angular_momentum_operator"/>
+      <node id="6">
+        <label>GQCP::ElectronicSpinOperator&lt; complex &gt;</label>
+        <link refid="class_g_q_c_p_1_1_electronic_spin_operator"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>GQCP::LinearMomentumOperator&lt; complex &gt;</label>
+        <link refid="class_g_q_c_p_1_1_linear_momentum_operator"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>

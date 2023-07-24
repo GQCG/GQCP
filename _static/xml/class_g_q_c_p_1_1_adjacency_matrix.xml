@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_adjacency_matrix" kind="class" language="C++" prot="public">
     <compoundname>GQCP::AdjacencyMatrix</compoundname>
     <includes refid="_adjacency_matrix_8hpp" local="no">AdjacencyMatrix.hpp</includes>
@@ -9,6 +9,7 @@
         <definition>SquareMatrix&lt;size_t&gt; GQCP::AdjacencyMatrix::A</definition>
         <argsstring></argsstring>
         <name>A</name>
+        <qualifiedname>GQCP::AdjacencyMatrix::A</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -24,6 +25,7 @@
         <definition>GQCP::AdjacencyMatrix::AdjacencyMatrix</definition>
         <argsstring>(const SquareMatrix&lt; size_t &gt; &amp;A)</argsstring>
         <name>AdjacencyMatrix</name>
+        <qualifiedname>GQCP::AdjacencyMatrix::AdjacencyMatrix</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; size_t &gt; &amp;</type>
           <declname>A</declname>
@@ -47,11 +49,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.hpp" line="46" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.cpp" bodystart="33" bodyend="53"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_adjacency_matrix_1ad631fd090e551662a6572a622b67ea31" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_adjacency_matrix_1abe4b3b5ca0a30f000f93e40abfa32cbd" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; size_t &gt; &amp;</type>
-        <definition>const SquareMatrix&lt;size_t&gt;&amp; GQCP::AdjacencyMatrix::matrix</definition>
+        <definition>const SquareMatrix&lt; size_t &gt; &amp; GQCP::AdjacencyMatrix::matrix</definition>
         <argsstring>() const</argsstring>
         <name>matrix</name>
+        <qualifiedname>GQCP::AdjacencyMatrix::matrix</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -63,11 +66,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.hpp" line="75" column="24" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/ModelHamiltonian/AdjacencyMatrix.hpp" bodystart="75" bodyend="75"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_adjacency_matrix_1aba3952092aaea7e68c30cc8a2e65b99c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_adjacency_matrix_1af8cbf2dfa40de97759bdae4ba33e9e4c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; size_t &gt; &amp;</type>
-        <definition>SquareMatrix&lt;size_t&gt;&amp; GQCP::AdjacencyMatrix::matrix</definition>
+        <definition>SquareMatrix&lt; size_t &gt; &amp; GQCP::AdjacencyMatrix::matrix</definition>
         <argsstring>()</argsstring>
         <name>matrix</name>
+        <qualifiedname>GQCP::AdjacencyMatrix::matrix</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -86,6 +90,7 @@
         <definition>AdjacencyMatrix GQCP::AdjacencyMatrix::Cyclic</definition>
         <argsstring>(const size_t n)</argsstring>
         <name>Cyclic</name>
+        <qualifiedname>GQCP::AdjacencyMatrix::Cyclic</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>n</declname>
@@ -115,6 +120,7 @@
         <definition>AdjacencyMatrix GQCP::AdjacencyMatrix::Linear</definition>
         <argsstring>(const size_t n)</argsstring>
         <name>Linear</name>
+        <qualifiedname>GQCP::AdjacencyMatrix::Linear</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>n</declname>
@@ -157,8 +163,8 @@
       <member refid="class_g_q_c_p_1_1_adjacency_matrix_1ad11ff9daab3cb7993f8c444de32336dc" prot="public" virt="non-virtual"><scope>GQCP::AdjacencyMatrix</scope><name>AdjacencyMatrix</name></member>
       <member refid="class_g_q_c_p_1_1_adjacency_matrix_1a9842a7431178b39e4cc171c6545f83c8" prot="public" virt="non-virtual"><scope>GQCP::AdjacencyMatrix</scope><name>Cyclic</name></member>
       <member refid="class_g_q_c_p_1_1_adjacency_matrix_1a1eb42859809cc2046b18e79d32883fff" prot="public" virt="non-virtual"><scope>GQCP::AdjacencyMatrix</scope><name>Linear</name></member>
-      <member refid="class_g_q_c_p_1_1_adjacency_matrix_1ad631fd090e551662a6572a622b67ea31" prot="public" virt="non-virtual"><scope>GQCP::AdjacencyMatrix</scope><name>matrix</name></member>
-      <member refid="class_g_q_c_p_1_1_adjacency_matrix_1aba3952092aaea7e68c30cc8a2e65b99c" prot="public" virt="non-virtual"><scope>GQCP::AdjacencyMatrix</scope><name>matrix</name></member>
+      <member refid="class_g_q_c_p_1_1_adjacency_matrix_1abe4b3b5ca0a30f000f93e40abfa32cbd" prot="public" virt="non-virtual"><scope>GQCP::AdjacencyMatrix</scope><name>matrix</name></member>
+      <member refid="class_g_q_c_p_1_1_adjacency_matrix_1af8cbf2dfa40de97759bdae4ba33e9e4c" prot="public" virt="non-virtual"><scope>GQCP::AdjacencyMatrix</scope><name>matrix</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

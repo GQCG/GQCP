@@ -1,4 +1,4 @@
-\hypertarget{class_g_q_c_p_1_1_c_c_d_intermediates_update}{}\doxysection{GQCP\+::CCDIntermediates\+Update$<$ \+\_\+\+Scalar $>$ Class Template Reference}
+\hypertarget{class_g_q_c_p_1_1_c_c_d_intermediates_update}{}\doxysection{GQCP\+::CCDIntermediates\+Update\texorpdfstring{$<$}{<} \+\_\+\+Scalar \texorpdfstring{$>$}{>} Class Template Reference}
 \label{class_g_q_c_p_1_1_c_c_d_intermediates_update}\index{GQCP::CCDIntermediatesUpdate$<$ \_Scalar $>$@{GQCP::CCDIntermediatesUpdate$<$ \_Scalar $>$}}
 
 
@@ -6,7 +6,7 @@
 
 
 
-Inheritance diagram for GQCP\+::CCDIntermediates\+Update$<$ \+\_\+\+Scalar $>$\+:
+Inheritance diagram for GQCP\+::CCDIntermediates\+Update\texorpdfstring{$<$}{<} \+\_\+\+Scalar \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -16,7 +16,7 @@ Inheritance diagram for GQCP\+::CCDIntermediates\+Update$<$ \+\_\+\+Scalar $>$\+
 \end{figure}
 
 
-Collaboration diagram for GQCP\+::CCDIntermediates\+Update$<$ \+\_\+\+Scalar $>$\+:
+Collaboration diagram for GQCP\+::CCDIntermediates\+Update\texorpdfstring{$<$}{<} \+\_\+\+Scalar \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -31,6 +31,11 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_intermediates_update_ae819cc38f90
 \item 
 using \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_intermediates_update_ada278ee3ca60d385902862be256336a9}{Environment}} = \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment}{CCSDEnvironment}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_intermediates_update_ae819cc38f90d5f808990e10127b3ccd6}{Scalar}} $>$
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_step}{GQCP\+::\+Step$<$ CCSDEnvironment$<$ \+\_\+\+Scalar $>$ $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_step_a479d9d1f930d4cabb39879a6e71f4915}{Environment}} = \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment}{CCSDEnvironment}}$<$ \+\_\+\+Scalar $>$
+\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -38,12 +43,20 @@ std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_intermediates_update_a25c
 \item 
 void \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_intermediates_update_a3eceef76249a2b0acdb2f1d966389629}{execute}} (\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_intermediates_update_ada278ee3ca60d385902862be256336a9}{Environment}} \&environment) override
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_step}{GQCP\+::\+Step$<$ CCSDEnvironment$<$ \+\_\+\+Scalar $>$ $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_step_a013c882b1c3e8c18babbe1a478382cb0}{$\sim$\+Step}} ()=default
+\item 
+virtual std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_step_af2276da3e9eef7f8d2049a8aa255b9fb}{description}} () const=0
+\item 
+virtual void \mbox{\hyperlink{class_g_q_c_p_1_1_step_afc654a62596b3fff0801acb2d993818f}{execute}} (\mbox{\hyperlink{class_g_q_c_p_1_1_step_a479d9d1f930d4cabb39879a6e71f4915}{Environment}} \&environment)=0
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$typename \+\_\+\+Scalar$>$\newline
 class GQCP\+::\+CCDIntermediates\+Update$<$ \+\_\+\+Scalar $>$}
-
 An iteration step that calculates the current CCD intermediates as described in Stanton1991.
 
 
@@ -59,14 +72,14 @@ An iteration step that calculates the current CCD intermediates as described in 
 \index{Environment@{Environment}!GQCP::CCDIntermediatesUpdate$<$ \_Scalar $>$@{GQCP::CCDIntermediatesUpdate$<$ \_Scalar $>$}}
 \doxysubsubsection{\texorpdfstring{Environment}{Environment}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
-using \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_intermediates_update}{GQCP\+::\+CCDIntermediates\+Update}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_intermediates_update_ada278ee3ca60d385902862be256336a9}{Environment}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment}{CCSDEnvironment}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_intermediates_update_ae819cc38f90d5f808990e10127b3ccd6}{Scalar}}$>$}
+using \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_intermediates_update}{GQCP\+::\+CCDIntermediates\+Update}}$<$ \+\_\+\+Scalar $>$\+::\+Environment =  \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment}{CCSDEnvironment}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_intermediates_update_ae819cc38f90d5f808990e10127b3ccd6}{Scalar}}$>$}
 
 \mbox{\Hypertarget{class_g_q_c_p_1_1_c_c_d_intermediates_update_ae819cc38f90d5f808990e10127b3ccd6}\label{class_g_q_c_p_1_1_c_c_d_intermediates_update_ae819cc38f90d5f808990e10127b3ccd6}} 
 \index{GQCP::CCDIntermediatesUpdate$<$ \_Scalar $>$@{GQCP::CCDIntermediatesUpdate$<$ \_Scalar $>$}!Scalar@{Scalar}}
 \index{Scalar@{Scalar}!GQCP::CCDIntermediatesUpdate$<$ \_Scalar $>$@{GQCP::CCDIntermediatesUpdate$<$ \_Scalar $>$}}
 \doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
-using \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_intermediates_update}{GQCP\+::\+CCDIntermediates\+Update}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_intermediates_update_ae819cc38f90d5f808990e10127b3ccd6}{Scalar}} =  \+\_\+\+Scalar}
+using \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_intermediates_update}{GQCP\+::\+CCDIntermediates\+Update}}$<$ \+\_\+\+Scalar $>$\+::\+Scalar =  \+\_\+\+Scalar}
 
 
 

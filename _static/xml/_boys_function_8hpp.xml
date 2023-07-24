@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="_boys_function_8hpp" kind="file" language="C++">
     <compoundname>BoysFunction.hpp</compoundname>
     <includes refid="complex_8hpp" local="yes">Utilities/complex.hpp</includes>
@@ -18,15 +18,6 @@
         <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="3">
-        <label>Utilities/type_traits.hpp</label>
-        <link refid="type__traits_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
-      <node id="6">
-        <label>cstddef</label>
-      </node>
       <node id="2">
         <label>Utilities/complex.hpp</label>
         <link refid="complex_8hpp"/>
@@ -35,11 +26,20 @@
         <childnode refid="5" relation="include">
         </childnode>
       </node>
-      <node id="4">
-        <label>type_traits</label>
+      <node id="3">
+        <label>Utilities/type_traits.hpp</label>
+        <link refid="type__traits_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
       </node>
       <node id="5">
         <label>complex</label>
+      </node>
+      <node id="6">
+        <label>cstddef</label>
+      </node>
+      <node id="4">
+        <label>type_traits</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
@@ -57,21 +57,21 @@
         <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="3">
-        <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Primitive/DoubleLondonHermiteCoulombIntegral.cpp</label>
-        <link refid="_double_london_hermite_coulomb_integral_8cpp"/>
-      </node>
       <node id="2">
         <label>/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</label>
         <link refid="gqcp_8hpp"/>
       </node>
-      <node id="5">
-        <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Primitive/LondonHermiteCoulombIntegral.cpp</label>
-        <link refid="_london_hermite_coulomb_integral_8cpp"/>
+      <node id="3">
+        <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Primitive/DoubleLondonHermiteCoulombIntegral.cpp</label>
+        <link refid="_double_london_hermite_coulomb_integral_8cpp"/>
       </node>
       <node id="4">
         <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Primitive/HermiteCoulombIntegral.cpp</label>
         <link refid="_hermite_coulomb_integral_8cpp"/>
+      </node>
+      <node id="5">
+        <label>/__w/GQCP/GQCP/gqcp/src/Basis/Integrals/Primitive/LondonHermiteCoulombIntegral.cpp</label>
+        <link refid="_london_hermite_coulomb_integral_8cpp"/>
       </node>
       <node id="6">
         <label>/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/BoysFunction.cpp</label>

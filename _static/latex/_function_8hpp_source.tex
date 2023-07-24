@@ -1,0 +1,159 @@
+\hypertarget{_function_8hpp_source}{}\doxysection{Function.\+hpp}
+\label{_function_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Functions/Function.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Functions/Function.hpp}}
+\mbox{\hyperlink{_function_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{aliases_8hpp}{Utilities/aliases.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{type__traits_8hpp}{Utilities/type\_traits.hpp}}"{}}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <boost/format.hpp>}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ *\ \ MARK:\ Forward\ declarations}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00033\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ OutputType,\ \textcolor{keyword}{typename}\ InputType>}
+\DoxyCodeLine{00034\ \textcolor{keyword}{class\ }Function;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00038\ \textcolor{comment}{\ *\ \ MARK:\ `FunctionProduct`\ implementation}}
+\DoxyCodeLine{00039\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T1,\ \textcolor{keyword}{typename}\ T2\ =\ T1>}
+\DoxyCodeLine{00048\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_function_product}{FunctionProduct}}:}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_function}{Function}}<product\_t<typename\ T1::OutputType,\ typename\ T2::OutputType>,\ typename\ T1::InputType>\ \{}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{static\_assert}(std::is\_same<typename\ T1::InputType,\ typename\ T2::InputType>::value,\ \textcolor{stringliteral}{"{}FunctionProduct:\ T1\ and\ T2\ should\ have\ the\ same\ InputType."{}});}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{comment}{//\ The\ left-\/hand\ side\ of\ the\ product.}}
+\DoxyCodeLine{00055\ \ \ \ \ T1\ m\_lhs;}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{//\ The\ right-\/hand\ side\ of\ the\ product.}}
+\DoxyCodeLine{00058\ \ \ \ \ T2\ m\_rhs;}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{comment}{//\ The\ combined\ output\ type\ of\ the\ `operator()`.}}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_function_product_af66184a9532200e98693676ab62c4e5d}{OutputType}}\ =\ \mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\_t<typename\ T1::OutputType,\ typename\ T2::OutputType>}};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{comment}{//\ The\ input\ type\ of\ the\ `operator()`.}}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_function_product_a0525863c7ef5c615caf20545fc7131a9}{InputType}}\ =\ \textcolor{keyword}{typename}\ T1::InputType;\ \ \textcolor{comment}{//\ Due\ to\ the\ `static\_assert`,\ this\ is\ equal\ to\ `T2::InputType`.}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00071\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Constructors}}
+\DoxyCodeLine{00072\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00078\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_function_product_a8e7d14795688ff37d72ec5ddba158431}{FunctionProduct}}(\textcolor{keyword}{const}\ T1\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_function_product_a9b3e0049361fc6face230a0530dfe1c8}{lhs}},\ \textcolor{keyword}{const}\ T2\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_function_product_a1f83a35247c9a0b0a08ac9be167d0944}{rhs}})\ :}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ m\_lhs\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_function_product_a9b3e0049361fc6face230a0530dfe1c8}{lhs}}\},}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ m\_rhs\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_function_product_a1f83a35247c9a0b0a08ac9be167d0944}{rhs}}\}\ \{\}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00086\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_function_product_a54e1ea00ff54f37010c910c5048f98b2}{FunctionProduct}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00094\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_function_product_a8ee16cb45ce868fd8b0e95c9cc92b868}{FunctionProduct}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ zero)\ :}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_function_product}{FunctionProduct}}()\ \{}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (zero\ !=\ 0)\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}FunctionProduct(const\ int):\ Can't\ convert\ a\ non-\/zero\ integer\ to\ a\ 'zero'\ instance."{}});}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00100\ \ \ \ \ \}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00104\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ General\ information}}
+\DoxyCodeLine{00105\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00110\ \ \ \ \ std::string\ \mbox{\hyperlink{class_g_q_c_p_1_1_function_product_af6aaf1c4137444d38a32c9715d7ef71a}{description}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (boost::format(\textcolor{stringliteral}{"{}((\%s)\ *\ (\%s))"{}})\ \%\ this-\/>m\_lhs.description()\ \%\ this-\/>m\_rhs.description()).str();}
+\DoxyCodeLine{00112\ \ \ \ \ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00116\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Access}}
+\DoxyCodeLine{00117\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keyword}{const}\ T1\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_function_product_a9b3e0049361fc6face230a0530dfe1c8}{lhs}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>m\_lhs;\ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keyword}{const}\ T2\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_function_product_a1f83a35247c9a0b0a08ac9be167d0944}{rhs}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>m\_rhs;\ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00136\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_function_product_af66184a9532200e98693676ab62c4e5d}{OutputType}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_function_product_aaf24131ec06e6547a7da905b42e3079d}{operator()}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_function_product_a0525863c7ef5c615caf20545fc7131a9}{InputType}}\&\ in)\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>m\_lhs(in)\ *\ this-\/>m\_rhs(in);}
+\DoxyCodeLine{00138\ \ \ \ \ \}}
+\DoxyCodeLine{00139\ \};}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00143\ \textcolor{comment}{\ *\ \ MARK:\ `Function`\ implementation}}
+\DoxyCodeLine{00144\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00152\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_OutputType,\ \textcolor{keyword}{typename}\ \_InputType>}
+\DoxyCodeLine{00153\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_function}{Function}}\ \{}
+\DoxyCodeLine{00154\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{comment}{//\ The\ return\ type\ of\ the\ `operator()`.}}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_function_a2cbcbd73dd55c98bc28e7fadc549b171}{OutputType}}\ =\ \_OutputType;}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{comment}{//\ The\ input\ type\ of\ the\ `operator()`.}}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_function_aaf1d2fa66a3fa43919c1ef676ff2990f}{InputType}}\ =\ \_InputType;}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00164\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Destructor}}
+\DoxyCodeLine{00165\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_g_q_c_p_1_1_function_a1ee5b9fc5712bcf4f125a7cc3f4a4822}{\string~Function}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00174\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ `Function`\ behavior}}
+\DoxyCodeLine{00175\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_g_q_c_p_1_1_function_a2cbcbd73dd55c98bc28e7fadc549b171}{OutputType}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_function_a921ee4632b3b07753bb1a9b16df38198}{operator()}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_function_aaf1d2fa66a3fa43919c1ef676ff2990f}{InputType}}\&\ in)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00185\ \};}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00189\ \textcolor{comment}{\ *\ \ MARK:\ Aliases\ related\ to\ `Function`.}}
+\DoxyCodeLine{00190\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00195\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00196\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_g_q_c_p_a87cc0b2adf737c5194d7a791bd4cb513}{IsFunction}}\ =\ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<std::is\_base\_of<Function<typename\ T::OutputType,\ typename\ T::InputType>}},\ T>::value>;}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00207\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ F1,\ \textcolor{keyword}{typename}\ F2,\ \textcolor{keyword}{typename}\ =\ IsFunction<F1>,\ \textcolor{keyword}{typename}\ =\ IsFunction<F2>>}
+\DoxyCodeLine{00208\ \mbox{\hyperlink{class_g_q_c_p_1_1_function_product}{FunctionProduct<F1,\ F2>}}\ \mbox{\hyperlink{namespace_g_q_c_p_aaf93382e390ab19411954b62aa1f2e5a}{operator*}}(\textcolor{keyword}{const}\ F1\&\ lhs,\ \textcolor{keyword}{const}\ F2\&\ rhs)\ \{}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_function_product}{FunctionProduct<F1,\ F2>}}(lhs,\ rhs);}
+\DoxyCodeLine{00211\ \}}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

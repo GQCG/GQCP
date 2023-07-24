@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_cartesian_g_t_o" kind="class" language="C++" prot="public">
     <compoundname>GQCP::CartesianGTO</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_function" prot="public" virt="non-virtual">GQCP::Function&lt; double, Vector&lt; double, 3 &gt; &gt;</basecompoundref>
@@ -10,6 +10,7 @@
         <definition>using GQCP::CartesianGTO::OutputType =  double</definition>
         <argsstring></argsstring>
         <name>OutputType</name>
+        <qualifiedname>GQCP::CartesianGTO::OutputType</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -23,6 +24,7 @@
         <definition>using GQCP::CartesianGTO::InputType =  Vector&lt;double, 3&gt;</definition>
         <argsstring></argsstring>
         <name>InputType</name>
+        <qualifiedname>GQCP::CartesianGTO::InputType</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -38,6 +40,7 @@
         <definition>double GQCP::CartesianGTO::gaussian_exponent</definition>
         <argsstring></argsstring>
         <name>gaussian_exponent</name>
+        <qualifiedname>GQCP::CartesianGTO::gaussian_exponent</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -51,6 +54,7 @@
         <definition>CartesianExponents GQCP::CartesianGTO::cartesian_exponents</definition>
         <argsstring></argsstring>
         <name>cartesian_exponents</name>
+        <qualifiedname>GQCP::CartesianGTO::cartesian_exponents</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -64,6 +68,7 @@
         <definition>Vector&lt;double, 3&gt; GQCP::CartesianGTO::m_center</definition>
         <argsstring></argsstring>
         <name>m_center</name>
+        <qualifiedname>GQCP::CartesianGTO::m_center</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -79,6 +84,7 @@
         <definition>GQCP::CartesianGTO::CartesianGTO</definition>
         <argsstring>(const double gaussian_exponent, const CartesianExponents &amp;cartesian_exponents, const Vector&lt; double, 3 &gt; &amp;center)</argsstring>
         <name>CartesianGTO</name>
+        <qualifiedname>GQCP::CartesianGTO::CartesianGTO</qualifiedname>
         <param>
           <type>const double</type>
           <declname>gaussian_exponent</declname>
@@ -131,6 +137,7 @@
         <definition>GQCP::CartesianGTO::CartesianGTO</definition>
         <argsstring>()</argsstring>
         <name>CartesianGTO</name>
+        <qualifiedname>GQCP::CartesianGTO::CartesianGTO</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -145,6 +152,7 @@
         <definition>double GQCP::CartesianGTO::operator()</definition>
         <argsstring>(const Vector&lt; double, 3 &gt; &amp;r) const override</argsstring>
         <name>operator()</name>
+        <qualifiedname>GQCP::CartesianGTO::operator()</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &amp;</type>
           <declname>r</declname>
@@ -174,6 +182,7 @@
         <definition>bool GQCP::CartesianGTO::operator==</definition>
         <argsstring>(const CartesianGTO &amp;other) const</argsstring>
         <name>operator==</name>
+        <qualifiedname>GQCP::CartesianGTO::operator==</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_cartesian_g_t_o" kindref="compound">CartesianGTO</ref> &amp;</type>
           <declname>other</declname>
@@ -198,11 +207,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" line="85" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/CartesianGTO.cpp" bodystart="86" bodyend="90"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_cartesian_g_t_o_1af66a81bb7e711485be77a82a1521256b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_cartesian_g_t_o_1ae362602050de10275e3588dbd229785d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="struct_g_q_c_p_1_1_cartesian_exponents" kindref="compound">CartesianExponents</ref> &amp;</type>
-        <definition>const CartesianExponents&amp; GQCP::CartesianGTO::cartesianExponents</definition>
+        <definition>const CartesianExponents &amp; GQCP::CartesianGTO::cartesianExponents</definition>
         <argsstring>() const</argsstring>
         <name>cartesianExponents</name>
+        <qualifiedname>GQCP::CartesianGTO::cartesianExponents</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -219,6 +229,7 @@
         <definition>EvaluableLinearCombination&lt; double, CartesianGTO &gt; GQCP::CartesianGTO::calculatePositionDerivative</definition>
         <argsstring>(const CartesianDirection direction) const</argsstring>
         <name>calculatePositionDerivative</name>
+        <qualifiedname>GQCP::CartesianGTO::calculatePositionDerivative</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8" kindref="member">CartesianDirection</ref></type>
           <declname>direction</declname>
@@ -248,6 +259,7 @@
         <definition>Vector&lt; EvaluableLinearCombination&lt; double, CartesianGTO &gt;, 3 &gt; GQCP::CartesianGTO::calculatePositionGradient</definition>
         <argsstring>() const</argsstring>
         <name>calculatePositionGradient</name>
+        <qualifiedname>GQCP::CartesianGTO::calculatePositionGradient</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -259,11 +271,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" line="124" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/CartesianGTO.cpp" bodystart="175" bodyend="184"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_cartesian_g_t_o_1a0f476bac29a54dc64576169edf3cefe3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_cartesian_g_t_o_1a1e7691184b5896251ea1812e78547ed5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &amp;</type>
-        <definition>const Vector&lt;double, 3&gt;&amp; GQCP::CartesianGTO::center</definition>
+        <definition>const Vector&lt; double, 3 &gt; &amp; GQCP::CartesianGTO::center</definition>
         <argsstring>() const</argsstring>
         <name>center</name>
+        <qualifiedname>GQCP::CartesianGTO::center</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -280,6 +293,7 @@
         <definition>std::string GQCP::CartesianGTO::description</definition>
         <argsstring>() const</argsstring>
         <name>description</name>
+        <qualifiedname>GQCP::CartesianGTO::description</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -296,6 +310,7 @@
         <definition>double GQCP::CartesianGTO::gaussianExponent</definition>
         <argsstring>() const</argsstring>
         <name>gaussianExponent</name>
+        <qualifiedname>GQCP::CartesianGTO::gaussianExponent</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -312,6 +327,7 @@
         <definition>double GQCP::CartesianGTO::normalizationFactor</definition>
         <argsstring>() const</argsstring>
         <name>normalizationFactor</name>
+        <qualifiedname>GQCP::CartesianGTO::normalizationFactor</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -330,6 +346,7 @@
         <definition>double GQCP::CartesianGTO::calculateNormalizationFactorComponent</definition>
         <argsstring>(const double gaussian_exponent, const size_t cartesian_exponent)</argsstring>
         <name>calculateNormalizationFactorComponent</name>
+        <qualifiedname>GQCP::CartesianGTO::calculateNormalizationFactorComponent</qualifiedname>
         <param>
           <type>const double</type>
           <declname>gaussian_exponent</declname>
@@ -371,6 +388,7 @@
         <definition>double GQCP::CartesianGTO::calculateNormalizationFactor</definition>
         <argsstring>(const double gaussian_exponent, const CartesianExponents &amp;cartesian_exponents)</argsstring>
         <name>calculateNormalizationFactor</name>
+        <qualifiedname>GQCP::CartesianGTO::calculateNormalizationFactor</qualifiedname>
         <param>
           <type>const double</type>
           <declname>gaussian_exponent</declname>
@@ -421,27 +439,27 @@
 </para>
     </detaileddescription>
     <inheritancegraph>
+      <node id="2">
+        <label>GQCP::Function&lt; double, Vector&lt; double, 3 &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_function"/>
+      </node>
       <node id="1">
         <label>GQCP::CartesianGTO</label>
         <link refid="class_g_q_c_p_1_1_cartesian_g_t_o"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
-      </node>
-      <node id="2">
-        <label>GQCP::Function&lt; double, Vector&lt; double, 3 &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_function"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
+      <node id="2">
+        <label>GQCP::Function&lt; double, Vector&lt; double, 3 &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_function"/>
+      </node>
       <node id="1">
         <label>GQCP::CartesianGTO</label>
         <link refid="class_g_q_c_p_1_1_cartesian_g_t_o"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
-      </node>
-      <node id="2">
-        <label>GQCP::Function&lt; double, Vector&lt; double, 3 &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_function"/>
       </node>
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" line="37" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/CartesianGTO.hpp" bodystart="38" bodyend="145"/>
@@ -451,10 +469,10 @@
       <member refid="class_g_q_c_p_1_1_cartesian_g_t_o_1a4ec28499af054375b40ea43fe9a594e8" prot="public" virt="non-virtual"><scope>GQCP::CartesianGTO</scope><name>calculatePositionDerivative</name></member>
       <member refid="class_g_q_c_p_1_1_cartesian_g_t_o_1abafaa4cd7a0dd697290db99c2549bfc7" prot="public" virt="non-virtual"><scope>GQCP::CartesianGTO</scope><name>calculatePositionGradient</name></member>
       <member refid="class_g_q_c_p_1_1_cartesian_g_t_o_1a67d89e6da4dc7b0a2db92927e26bef76" prot="private" virt="non-virtual"><scope>GQCP::CartesianGTO</scope><name>cartesian_exponents</name></member>
-      <member refid="class_g_q_c_p_1_1_cartesian_g_t_o_1af66a81bb7e711485be77a82a1521256b" prot="public" virt="non-virtual"><scope>GQCP::CartesianGTO</scope><name>cartesianExponents</name></member>
+      <member refid="class_g_q_c_p_1_1_cartesian_g_t_o_1ae362602050de10275e3588dbd229785d" prot="public" virt="non-virtual"><scope>GQCP::CartesianGTO</scope><name>cartesianExponents</name></member>
       <member refid="class_g_q_c_p_1_1_cartesian_g_t_o_1a0194c2b46fbc9003f41cc2ed5a32e179" prot="public" virt="non-virtual"><scope>GQCP::CartesianGTO</scope><name>CartesianGTO</name></member>
       <member refid="class_g_q_c_p_1_1_cartesian_g_t_o_1a1bf3c912ca8f57b29f6d768b53f4ff31" prot="public" virt="non-virtual"><scope>GQCP::CartesianGTO</scope><name>CartesianGTO</name></member>
-      <member refid="class_g_q_c_p_1_1_cartesian_g_t_o_1a0f476bac29a54dc64576169edf3cefe3" prot="public" virt="non-virtual"><scope>GQCP::CartesianGTO</scope><name>center</name></member>
+      <member refid="class_g_q_c_p_1_1_cartesian_g_t_o_1a1e7691184b5896251ea1812e78547ed5" prot="public" virt="non-virtual"><scope>GQCP::CartesianGTO</scope><name>center</name></member>
       <member refid="class_g_q_c_p_1_1_cartesian_g_t_o_1a13b07048f2f30318060dff528cbbad55" prot="public" virt="non-virtual"><scope>GQCP::CartesianGTO</scope><name>description</name></member>
       <member refid="class_g_q_c_p_1_1_cartesian_g_t_o_1a4310ad95283175f2b01ea8910ca65458" prot="private" virt="non-virtual"><scope>GQCP::CartesianGTO</scope><name>gaussian_exponent</name></member>
       <member refid="class_g_q_c_p_1_1_cartesian_g_t_o_1ab38b2d462ea81e9755a32d3433642863" prot="public" virt="non-virtual"><scope>GQCP::CartesianGTO</scope><name>gaussianExponent</name></member>

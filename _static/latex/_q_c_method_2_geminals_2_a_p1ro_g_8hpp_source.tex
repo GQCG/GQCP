@@ -1,0 +1,81 @@
+\hypertarget{_q_c_method_2_geminals_2_a_p1ro_g_8hpp_source}{}\doxysection{AP1ro\+G.\+hpp}
+\label{_q_c_method_2_geminals_2_a_p1ro_g_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roG.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roG.hpp}}
+\mbox{\hyperlink{_q_c_method_2_geminals_2_a_p1ro_g_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_non_linear_equation_environment_8hpp}{Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_q_hamiltonian_8hpp}{Operator/SecondQuantized/SQHamiltonian.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_q_c_structure_8hpp}{QCMethod/QCStructure.hpp}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_q_c_model_2_geminals_2_a_p1ro_g_8hpp}{QCModel/Geminals/AP1roG.hpp}}"{}}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00028\ \textcolor{keyword}{namespace\ }QCMethod\ \{}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_a_p1ro_g}{AP1roG}}\ \{}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ N\_P;\ \ \textcolor{comment}{//\ the\ number\ of\ electron\ pairs}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ K;\ \ \ \ \textcolor{comment}{//\ the\ number\ of\ spatial\ orbitals}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{RSQHamiltonian<double>}}\ sq\_hamiltonian;\ \ \textcolor{comment}{//\ the\ second-\/quantized\ Hamiltonian\ in\ an\ orthonormal\ basis}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00046\ \textcolor{comment}{\ \ \ \ \ *\ \ CONSTRUCTORS}}
+\DoxyCodeLine{00047\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_a_p1ro_g_aad0b1e7f6bd342533f1e384c4f5ecb0f}{AP1roG}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{RSQHamiltonian<double>}}\&\ sq\_hamiltonian,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ N\_P)\ :}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ N\_P\ \{N\_P\},}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ K\ \{sq\_hamiltonian.numberOfOrbitals()\},\ \ \textcolor{comment}{//\ number\ of\ spatial\ orbitals}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ sq\_hamiltonian\ \{sq\_hamiltonian\}\ \{\}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00060\ \textcolor{comment}{\ \ \ \ \ *\ \ PUBLIC\ METHODS}}
+\DoxyCodeLine{00061\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Solver>}
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure}{QCStructure<GQCP::QCModel::AP1roG>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_a_p1ro_g_a981868b6e84d3a5553a96fc501620dda}{optimize}}(Solver\&\ solver,\ \mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_environment}{NonLinearEquationEnvironment<double>}}\&\ environment)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ AP1roG\ method's\ responsibility\ is\ to\ try\ to\ optimize\ the\ parameters\ of\ its\ method,\ given\ a\ solver\ and\ associated\ environment.}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ solver.perform(environment);}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ To\ make\ a\ QCStructure,\ we\ need\ the\ electronic\ energy,\ geminal\ coefficients\ and\ number\ of\ electrons.}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Furthermore,\ the\ solvers\ only\ find\ the\ ground\ state\ wave\ function\ parameters,\ so\ the\ QCStructure\ only\ needs\ to\ contain\ the\ parameters\ for\ one\ state.}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ G\_optimal\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients_a7578fd83b0b36f6f97689e7b2cb9cabf}{AP1roGGeminalCoefficients::FromColumnMajor}}(environment.\mbox{\hyperlink{class_g_q_c_p_1_1_optimization_environment_adb8d5b6dd10be21c085d1a6855d307db}{variables}}.back(),\ this-\/>N\_P,\ this-\/>K);}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g}{GQCP::QCModel::AP1roG}}\ ap1rog\_parameters\ \{G\_optimal\};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ E\_electronic\ =\ ap1rog\_parameters.\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_a09afa5a4f60c4f631c58aefd7ecc6330}{calculateEnergy}}(sq\_hamiltonian);}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure}{QCStructure<GQCP::QCModel::AP1roG>}}(\{E\_electronic\},\ \{ap1rog\_parameters\});}
+\DoxyCodeLine{00085\ \ \ \ \ \}}
+\DoxyCodeLine{00086\ \};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \}\ \ \textcolor{comment}{//\ namespace\ QCMethod}}
+\DoxyCodeLine{00090\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

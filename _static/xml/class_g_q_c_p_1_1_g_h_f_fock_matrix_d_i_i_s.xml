@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_g_h_f_fock_matrix_d_i_i_s" kind="class" language="C++" prot="public">
     <compoundname>GQCP::GHFFockMatrixDIIS</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_step" prot="public" virt="non-virtual">GQCP::Step&lt; GHFSCFEnvironment&lt; _Scalar &gt; &gt;</basecompoundref>
@@ -15,6 +15,7 @@
         <definition>using GQCP::GHFFockMatrixDIIS&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
         <argsstring></argsstring>
         <name>Scalar</name>
+        <qualifiedname>GQCP::GHFFockMatrixDIIS::Scalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -28,6 +29,7 @@
         <definition>using GQCP::GHFFockMatrixDIIS&lt; _Scalar &gt;::Environment =  GHFSCFEnvironment&lt;Scalar&gt;</definition>
         <argsstring></argsstring>
         <name>Environment</name>
+        <qualifiedname>GQCP::GHFFockMatrixDIIS::Environment</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -43,6 +45,7 @@
         <definition>size_t GQCP::GHFFockMatrixDIIS&lt; _Scalar &gt;::minimum_subspace_dimension</definition>
         <argsstring></argsstring>
         <name>minimum_subspace_dimension</name>
+        <qualifiedname>GQCP::GHFFockMatrixDIIS::minimum_subspace_dimension</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -56,6 +59,7 @@
         <definition>size_t GQCP::GHFFockMatrixDIIS&lt; _Scalar &gt;::maximum_subspace_dimension</definition>
         <argsstring></argsstring>
         <name>maximum_subspace_dimension</name>
+        <qualifiedname>GQCP::GHFFockMatrixDIIS::maximum_subspace_dimension</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -69,6 +73,7 @@
         <definition>DIIS&lt;Scalar&gt; GQCP::GHFFockMatrixDIIS&lt; _Scalar &gt;::diis</definition>
         <argsstring></argsstring>
         <name>diis</name>
+        <qualifiedname>GQCP::GHFFockMatrixDIIS::diis</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -84,6 +89,7 @@
         <definition>GQCP::GHFFockMatrixDIIS&lt; _Scalar &gt;::GHFFockMatrixDIIS</definition>
         <argsstring>(const size_t minimum_subspace_dimension=6, const size_t maximum_subspace_dimension=6)</argsstring>
         <name>GHFFockMatrixDIIS</name>
+        <qualifiedname>GQCP::GHFFockMatrixDIIS::GHFFockMatrixDIIS</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>minimum_subspace_dimension</declname>
@@ -125,6 +131,7 @@
         <definition>std::string GQCP::GHFFockMatrixDIIS&lt; _Scalar &gt;::description</definition>
         <argsstring>() const override</argsstring>
         <name>description</name>
+        <qualifiedname>GQCP::GHFFockMatrixDIIS::description</qualifiedname>
         <reimplements refid="class_g_q_c_p_1_1_step_1af2276da3e9eef7f8d2049a8aa255b9fb">description</reimplements>
         <briefdescription>
         </briefdescription>
@@ -142,6 +149,7 @@
         <definition>void GQCP::GHFFockMatrixDIIS&lt; _Scalar &gt;::execute</definition>
         <argsstring>(Environment &amp;environment) override</argsstring>
         <name>execute</name>
+        <qualifiedname>GQCP::GHFFockMatrixDIIS::execute</qualifiedname>
         <param>
           <type><ref refid="class_g_q_c_p_1_1_g_h_f_fock_matrix_d_i_i_s_1a549a50fdbeac9bb2189407ee9cd276dc" kindref="member">Environment</ref> &amp;</type>
           <declname>environment</declname>

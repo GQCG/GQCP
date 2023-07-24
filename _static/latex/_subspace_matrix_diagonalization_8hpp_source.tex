@@ -1,0 +1,83 @@
+\hypertarget{_subspace_matrix_diagonalization_8hpp_source}{}\doxysection{Subspace\+Matrix\+Diagonalization.\+hpp}
+\label{_subspace_matrix_diagonalization_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceMatrixDiagonalization.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceMatrixDiagonalization.hpp}}
+\mbox{\hyperlink{_subspace_matrix_diagonalization_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_algorithm_2_step_8hpp}{Mathematical/Algorithm/Step.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_eigenproblem_environment_8hpp}{Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_eigenproblem_solver_8hpp}{Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp}}"{}}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_subspace_matrix_diagonalization}{SubspaceMatrixDiagonalization}}:}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_step}{Step}}<EigenproblemEnvironment<double>>\ \{}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ number\_of\_requested\_eigenpairs;}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00043\ \textcolor{comment}{\ \ \ \ \ *\ \ CONSTRUCTORS}}
+\DoxyCodeLine{00044\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_subspace_matrix_diagonalization_abd0329999c90d0f1828c02be9817a20e}{SubspaceMatrixDiagonalization}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ number\_of\_requested\_eigenpairs\ =\ 1)\ :}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ number\_of\_requested\_eigenpairs\ \{number\_of\_requested\_eigenpairs\}\ \{\}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00054\ \textcolor{comment}{\ \ \ \ \ *\ \ PUBLIC\ OVERRIDDEN\ METHODS}}
+\DoxyCodeLine{00055\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00060\ \ \ \ \ std::string\ \mbox{\hyperlink{class_g_q_c_p_1_1_subspace_matrix_diagonalization_a4874cd13941a8fdf1984df8241ee89c0}{description}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Diagonalize\ the\ subspace\ matrix,\ i.e.\ the\ projection\ of\ the\ matrix\ A\ onto\ the\ subspace\ spanned\ by\ the\ vectors\ in\ V,\ and\ write\ its\ eigenvalues\ and\ eigenvectors\ to\ the\ environment."{}};}
+\DoxyCodeLine{00062\ \ \ \ \ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_subspace_matrix_diagonalization_a3b4ccc43b4cf2deb911aa16f92881115}{execute}}(\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{EigenproblemEnvironment<double>}}\&\ environment)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Diagonalize\ the\ subspace\ matrix\ and\ find\ the\ r\ (this-\/>number\_of\_requested\_eigenpairs)\ lowest\ eigenpairs}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Lambda\ contains\ the\ requested\ number\ of\ eigenvalues,\ Z\ contains\ the\ corresponding\ eigenvectors}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Z\ is\ a\ (subspace\_dimension\ x\ number\_of\_requested\_eigenpairs)-\/\ matrix}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ our\ own\ dense\ diagonalization\ algorithm\ to\ find\ the\ number\ of\ requested\ eigenpairs}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ S\ =\ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_abf4e241d51681616cb4b6ed28a6d4026}{S}};}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ dense\_environment\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_acf84deadaff12d58fc9cf21d46b45787}{EigenproblemEnvironment<double>::Dense}}(S);}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ dense\_diagonalizer\ =\ EigenproblemSolver::Dense<double>();}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ dense\_diagonalizer.perform(dense\_environment);}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_ab9d9ff337078f8cdd90cc166f89d7cbe}{Lambda}}\ =\ dense\_environment.eigenvalues.head(this-\/>number\_of\_requested\_eigenpairs);\ \ \textcolor{comment}{//\ the\ (requested\ number\ of)\ eigenvalues\ of\ the\ subspace\ matrix\ S}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a32a61251a3de42f08c34013bd764a9bc}{eigenvalues}}\ =\ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_ab9d9ff337078f8cdd90cc166f89d7cbe}{Lambda}};}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a7f53eede93b4b59a2bdfb50dfb7bd810}{Z}}\ =\ dense\_environment.eigenvectors.topLeftCorner(S.cols(),\ this-\/>number\_of\_requested\_eigenpairs);\ \ \textcolor{comment}{//\ the\ (requested\ number\ of)\ eigenvectors\ of\ the\ subspace\ matrix\ S}}
+\DoxyCodeLine{00087\ \ \ \ \ \}}
+\DoxyCodeLine{00088\ \};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

@@ -1,0 +1,206 @@
+\hypertarget{_simple2_d_m_8hpp_source}{}\doxysection{Simple2\+DM.\+hpp}
+\label{_simple2_d_m_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/DensityMatrix/Simple2DM.hpp}}
+\mbox{\hyperlink{_simple2_d_m_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_basis_transformable_8hpp}{Basis/Transformations/BasisTransformable.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_jacobi_rotatable_8hpp}{Basis/Transformations/JacobiRotatable.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_density_matrix_traits_8hpp}{DensityMatrix/DensityMatrixTraits.hpp}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_vector_space_arithmetic_8hpp}{Mathematical/Functions/VectorSpaceArithmetic.hpp}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_square_rank_four_tensor_8hpp}{Mathematical/Representation/SquareRankFourTensor.hpp}}"{}}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ *\ \ MARK:\ `Simple2DM`\ implementation}}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar,\ \textcolor{keyword}{typename}\ \_DerivedDM>}
+\DoxyCodeLine{00044\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m}{Simple2DM}}:}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable}{BasisTransformable}}<\_DerivedDM>,}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_rotatable}{JacobiRotatable}}<\_DerivedDM>,}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_vector_space_arithmetic}{VectorSpaceArithmetic}}<\_DerivedDM,\ \_Scalar>\ \{}
+\DoxyCodeLine{00048\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{//\ The\ scalar\ type\ used\ for\ a\ density\ matrix\ element:\ real\ or\ complex.}}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_a8e32575a4c64db611c4830d54aef8b07}{Scalar}}\ =\ \_Scalar;}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ the\ density\ matrix\ that\ derives\ from\ this\ class,\ enabling\ CRTP\ and\ compile-\/time\ polymorphism.}}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_a93bdb5f040f6bf30738d5f85d06de515}{DerivedDM}}\ =\ \_DerivedDM;}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ 'this'.}}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m}{Self}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m}{Simple2DM<Scalar,\ DerivedDM>}};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ the\ one-\/electron\ density\ matrix\ that\ is\ naturally\ related\ to\ the\ derived\ 2-\/DM.}}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_aed1f55de7a9d98b0840235518c9936b9}{OneDM}}\ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_g_q_c_p_1_1_density_matrix_traits}{DensityMatrixTraits<DerivedDM>::OneDM}};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ transformation\ that\ is\ naturally\ associated\ to\ the\ derived\ 2-\/DM.}}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_aba11548e39f9172a41286b4bab30bfbf}{Transformation}}\ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_g_q_c_p_1_1_density_matrix_traits}{DensityMatrixTraits<DerivedDM>::Transformation}};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{comment}{//\ The\ matrix\ representation\ of\ this\ two-\/electron\ density\ matrix.}}
+\DoxyCodeLine{00067\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{SquareRankFourTensor<Scalar>}}\ d;}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00072\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Constructors}}
+\DoxyCodeLine{00073\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00080\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_a1d060aeddc9190dde803c35abdcc3a7b}{Simple2DM}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{SquareRankFourTensor<Scalar>}}\&\ d)\ :}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ d\ \{d\}\ \{\}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00087\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_a3ab74c809c6d59a4644a0961bd07c95f}{Simple2DM}}()\ :}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m}{Simple2DM}}(\mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{SquareRankFourTensor}}<\mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_a8e32575a4c64db611c4830d54aef8b07}{Scalar}}>::Zero(0))\ \{\}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00092\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Access}}
+\DoxyCodeLine{00093\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{SquareRankFourTensor<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_adf65dbdb4eccf2b2e99ebd6857168214}{tensor}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>d;\ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00103\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{SquareRankFourTensor<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_a0fa0f77f2f059c5d8d243c525163bc59}{tensor}}()\ \{\ \textcolor{keywordflow}{return}\ this-\/>d;\ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00107\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ General\ information}}
+\DoxyCodeLine{00108\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_a9294ffe2b798149a40916f8750e511c7}{numberOfOrbitals}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_adf65dbdb4eccf2b2e99ebd6857168214}{tensor}}().\mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor_aa3537155a1ab4f7207232610ddeae5f9}{dimension}}();\ \}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00117\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Contractions}}
+\DoxyCodeLine{00118\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00123\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_aed1f55de7a9d98b0840235518c9936b9}{OneDM}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_aa0174297056f19cd441279cb3f1f4b20}{reduce}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ when\ Eigen3\ releases\ tensor.trace(),\ use\ it\ to\ implement\ the\ reduction.}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_a9294ffe2b798149a40916f8750e511c7}{numberOfOrbitals}}();}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\ D\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_ae3551bb3ac15b2560846f7a5956d1d90}{SquareMatrix<Scalar>::Zero}}(K);}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ p\ =\ 0;\ p\ <\ K;\ p++)\ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ q\ =\ 0;\ q\ <\ K;\ q++)\ \{}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ r\ =\ 0;\ r\ <\ K;\ r++)\ \{}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ D(p,\ q)\ +=\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_adf65dbdb4eccf2b2e99ebd6857168214}{tensor}}()(p,\ q,\ r,\ r);}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_aed1f55de7a9d98b0840235518c9936b9}{OneDM}}(D);}
+\DoxyCodeLine{00139\ \ \ \ \ \}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00145\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_a8e32575a4c64db611c4830d54aef8b07}{Scalar}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_a9f69bac123516579adcd3a106e032208}{trace}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ when\ Eigen3\ releases\ tensor.trace(),\ use\ it\ to\ implement\ the\ trace}}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_a9294ffe2b798149a40916f8750e511c7}{numberOfOrbitals}}();}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_a8e32575a4c64db611c4830d54aef8b07}{Scalar}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_a9f69bac123516579adcd3a106e032208}{trace}}\ \{\};}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ p\ =\ 0;\ p\ <\ K;\ p++)\ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ q\ =\ 0;\ q\ <\ K;\ q++)\ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_a9f69bac123516579adcd3a106e032208}{trace}}\ +=\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_adf65dbdb4eccf2b2e99ebd6857168214}{tensor}}()(p,\ p,\ q,\ q);}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_a9f69bac123516579adcd3a106e032208}{trace}};}
+\DoxyCodeLine{00158\ \ \ \ \ \}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00162\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Conforming\ to\ `VectorSpaceArithmetic`}}
+\DoxyCodeLine{00163\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00168\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_a93bdb5f040f6bf30738d5f85d06de515}{DerivedDM}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_ab0708da3e127b927930dc53e30394065}{operator+=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_a93bdb5f040f6bf30738d5f85d06de515}{DerivedDM}}\&\ rhs)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_adf65dbdb4eccf2b2e99ebd6857168214}{tensor}}().\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a1975212d179fc9fee2020d1cdf835c88}{Eigen}}()\ +=\ rhs.tensor().Eigen();}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_a93bdb5f040f6bf30738d5f85d06de515}{DerivedDM}}\&\textcolor{keyword}{>}(*this);}
+\DoxyCodeLine{00171\ \ \ \ \ \}}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00177\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_a93bdb5f040f6bf30738d5f85d06de515}{DerivedDM}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_a276dab10c3ae1beed6f89d2122cebf54}{operator*=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_a8e32575a4c64db611c4830d54aef8b07}{Scalar}}\&\ a)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_adf65dbdb4eccf2b2e99ebd6857168214}{tensor}}()\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_adf65dbdb4eccf2b2e99ebd6857168214}{tensor}}().\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a1975212d179fc9fee2020d1cdf835c88}{Eigen}}()\ *\ a;\ \ \textcolor{comment}{//\ A\ compiler\ error\ occurs\ when\ writing\ "{}this-\/>tensor().Eigen()\ *=\ a"{}.}}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_a93bdb5f040f6bf30738d5f85d06de515}{DerivedDM}}\&\textcolor{keyword}{>}(*this);}
+\DoxyCodeLine{00180\ \ \ \ \ \}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00184\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Conforming\ to\ `BasisTransformable`}}
+\DoxyCodeLine{00185\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00194\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_a93bdb5f040f6bf30738d5f85d06de515}{DerivedDM}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_aba6f33b2d67fc36483b2ed3d75c6e2dc}{transformed}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_aba11548e39f9172a41286b4bab30bfbf}{Transformation}}\&\ T)\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ transformation\ formulas\ for\ two-\/electron\ operators\ and\ 2-\/DMs\ are\ similar,\ but\ not\ quite\ the\ same.\ Instead\ of\ using\ T,\ the\ transformation\ formula\ for\ the\ 2-\/DM\ uses\ T\_inverse\_transpose.\ See\ also\ (https://gqcg-\/res.github.io/knowdes/spinor-\/transformations.html).}}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Since\ we're\ only\ getting\ T\ as\ a\ matrix,\ we\ should\ convert\ it\ to\ an\ appropriate\ tensor\ to\ perform\ contractions.}}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Although\ not\ a\ necessity\ for\ the\ einsum\ implementation,\ it\ makes\ it\ a\ lot\ easier\ to\ follow\ the\ formulas.}}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{GQCP::SquareMatrix<Scalar>}}\ T\_related\ =\ T.matrix().transpose().inverse();}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{GQCP::Tensor<Scalar,\ 2>}}\ T\_related\_tensor\ =\ Eigen::TensorMap<Eigen::Tensor<const\ Scalar,\ 2>>(T\_related.data(),\ T\_related.rows(),\ T\_related.cols());}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ calculate\ the\ conjugate\ as\ a\ tensor\ as\ well.}}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{GQCP::Tensor<Scalar,\ 2>}}\ T\_related\_conjugate\ =\ T\_related\_tensor.conjugate();}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ will\ have\ to\ do\ four\ single\ contractions}}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ d(T\ U\ V\ W)\ \ T\string^*(V\ R)\ -\/>\ a(T\ U\ R\ W)}}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ a(T\ U\ R\ W)\ \ T(W\ S)\ -\/>\ b(T\ U\ R\ S)}}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ temp\_1\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_adf65dbdb4eccf2b2e99ebd6857168214}{tensor}}().template\ einsum<1>(\textcolor{stringliteral}{"{}TUVW,VR-\/>TURW"{}},\ T\_related\_conjugate).template\ einsum<1>(\textcolor{stringliteral}{"{}TURW,WS-\/>TURS"{}},\ T\_related\_tensor);}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ T(U\ Q)\ \ b(T\ U\ R\ S)\ -\/>\ c(T\ Q\ R\ S)}}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ temp\_2\ =\ T\_related\_tensor.template\ einsum<1>(\textcolor{stringliteral}{"{}UQ,TURS-\/>TQRS"{}},\ temp\_1);}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ T\string^*(T\ P)\ \ c(T\ Q\ R\ S)\ -\/>\ d'(P\ Q\ R\ S)}}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_aba6f33b2d67fc36483b2ed3d75c6e2dc}{transformed}}\ =\ T\_related\_conjugate.template\ einsum<1>(\textcolor{stringliteral}{"{}TP,TQRS-\/>PQRS"{}},\ temp\_2);}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_a93bdb5f040f6bf30738d5f85d06de515}{DerivedDM}}\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_aba6f33b2d67fc36483b2ed3d75c6e2dc}{transformed}}\};}
+\DoxyCodeLine{00218\ \ \ \ \ \}}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{comment}{//\ Allow\ the\ `rotate`\ method\ from\ `BasisTransformable`,\ since\ there's\ also\ a\ `rotate`\ from\ `JacobiRotatable`.}}
+\DoxyCodeLine{00222\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable}{BasisTransformable}}<\mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_a93bdb5f040f6bf30738d5f85d06de515}{DerivedDM}}>\mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_a2e107bd3cf4d603c003c8cb9357d0094}{::rotate}};}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \ \ \ \ \textcolor{comment}{//\ Allow\ the\ `rotated`\ method\ from\ `BasisTransformable`,\ since\ there's\ also\ a\ `rotated`\ from\ `JacobiRotatable`.}}
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable}{BasisTransformable}}<\mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_a93bdb5f040f6bf30738d5f85d06de515}{DerivedDM}}>\mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_afa2372a0996cdbb192187d0ab8f72866}{::rotated}};}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00229\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Conforming\ to\ `JacobiRotatable`}}
+\DoxyCodeLine{00230\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00239\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_a93bdb5f040f6bf30738d5f85d06de515}{DerivedDM}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_afa2372a0996cdbb192187d0ab8f72866}{rotated}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_rotation}{JacobiRotation}}\&\ jacobi\_rotation)\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ While\ waiting\ for\ an\ analogous\ Eigen::Tensor\ Jacobi\ module,\ we\ implement\ this\ rotation\ by\ constructing\ a\ Jacobi\ rotation\ matrix\ and\ then\ simply\ doing\ a\ rotation\ with\ it.}}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ J\ =\ Transformation::FromJacobi(jacobi\_rotation,\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_a9294ffe2b798149a40916f8750e511c7}{numberOfOrbitals}}());}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_afa2372a0996cdbb192187d0ab8f72866}{rotated}}(J);}
+\DoxyCodeLine{00244\ \ \ \ \ \}}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \ \ \ \ \textcolor{comment}{//\ Allow\ the\ `rotate`\ method\ from\ `JacobiRotatable`,\ since\ there's\ also\ a\ `rotate`\ from\ `BasisTransformable`.}}
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_rotatable}{JacobiRotatable}}<\mbox{\hyperlink{class_g_q_c_p_1_1_simple2_d_m_a93bdb5f040f6bf30738d5f85d06de515}{DerivedDM}}>\mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_a2e107bd3cf4d603c003c8cb9357d0094}{::rotate}};}
+\DoxyCodeLine{00248\ \};}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

@@ -3,11 +3,12 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Calculating the RHF dipole moment</title>
   
   
@@ -18,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -37,18 +38,20 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
@@ -63,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="UHF SCF" href="UHF-calculations.html" />
     <link rel="prev" title="Spinor bases" href="Spinor-bases.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
   
   
@@ -429,11 +432,11 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="section" id="calculating-the-rhf-dipole-moment">
-<h1>Calculating the RHF dipole moment<a class="headerlink" href="#calculating-the-rhf-dipole-moment" title="Permalink to this heading">#</a></h1>
+  <section id="calculating-the-rhf-dipole-moment">
+<h1>Calculating the RHF dipole moment<a class="headerlink" href="#calculating-the-rhf-dipole-moment" title="Permalink to this headline">#</a></h1>
 <p>In this example, we will calculate the (permanent) electronic dipole moment for H2 with an STO-3G basisset at the RHF level of theory.</p>
-<div class="section" id="setting-up-the-molecular-hamiltonian">
-<h2>Setting up the molecular Hamiltonian<a class="headerlink" href="#setting-up-the-molecular-hamiltonian" title="Permalink to this heading">#</a></h2>
+<section id="setting-up-the-molecular-hamiltonian">
+<h2>Setting up the molecular Hamiltonian<a class="headerlink" href="#setting-up-the-molecular-hamiltonian" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Force the local gqcpy to be imported</span>
@@ -521,9 +524,9 @@ document.write(`
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="solving-the-rhf-scf-equations">
-<h2>Solving the RHF SCF equations<a class="headerlink" href="#solving-the-rhf-scf-equations" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="solving-the-rhf-scf-equations">
+<h2>Solving the RHF SCF equations<a class="headerlink" href="#solving-the-rhf-scf-equations" title="Permalink to this headline">#</a></h2>
 <p>In order to solve the RHF SCF equations, we have to set up a solver and its associated environment.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -564,9 +567,9 @@ document.write(`
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="calculating-the-rhf-dipole-moment-in-the-scalar-ao-basis">
-<h2>Calculating the RHF dipole moment in the scalar/AO basis<a class="headerlink" href="#calculating-the-rhf-dipole-moment-in-the-scalar-ao-basis" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="calculating-the-rhf-dipole-moment-in-the-scalar-ao-basis">
+<h2>Calculating the RHF dipole moment in the scalar/AO basis<a class="headerlink" href="#calculating-the-rhf-dipole-moment-in-the-scalar-ao-basis" title="Permalink to this headline">#</a></h2>
 <p>Since the RHF parameters are variationally determined, we may calculate the electronic dipole moment as the expectation value of the electronic dipole operator. The associated second-quantized operator can be obtained as follows:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -622,9 +625,9 @@ document.write(`
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="calculating-the-rhf-dipole-moment-in-the-canonical-rhf-basis">
-<h2>Calculating the RHF dipole moment in the canonical RHF basis<a class="headerlink" href="#calculating-the-rhf-dipole-moment-in-the-canonical-rhf-basis" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="calculating-the-rhf-dipole-moment-in-the-canonical-rhf-basis">
+<h2>Calculating the RHF dipole moment in the canonical RHF basis<a class="headerlink" href="#calculating-the-rhf-dipole-moment-in-the-canonical-rhf-basis" title="Permalink to this headline">#</a></h2>
 <p>We might as well have calculated the second-quantized representation of the dipole operator in the canonical RHF spinor basis. In order to do so, we first transform the spinor basis and only then quantize the dipole operator.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -679,8 +682,8 @@ document.write(`
 </div>
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -708,7 +711,10 @@ document.write(`
               
               
                 <footer class="bd-footer-article">
-                  <!-- Previous / next buttons -->
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="Spinor-bases.html"
@@ -728,7 +734,10 @@ document.write(`
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
@@ -755,7 +764,7 @@ document.write(`
             
           </div>
           <footer class="bd-footer-content">
-            <div class="bd-footer-content__inner">
+            
 <div class="bd-footer-content__inner container">
   
   <div class="footer-item">
@@ -785,7 +794,7 @@ By The Ghent Quantum Chemistry Group
     
   </div>
   
-</div></div>
+</div>
           </footer>
         
 
@@ -794,8 +803,8 @@ By The Ghent Quantum Chemistry Group
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
   </footer>

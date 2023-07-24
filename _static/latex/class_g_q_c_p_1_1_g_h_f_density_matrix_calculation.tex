@@ -1,4 +1,4 @@
-\hypertarget{class_g_q_c_p_1_1_g_h_f_density_matrix_calculation}{}\doxysection{GQCP\+::GHFDensity\+Matrix\+Calculation$<$ \+\_\+\+Scalar $>$ Class Template Reference}
+\hypertarget{class_g_q_c_p_1_1_g_h_f_density_matrix_calculation}{}\doxysection{GQCP\+::GHFDensity\+Matrix\+Calculation\texorpdfstring{$<$}{<} \+\_\+\+Scalar \texorpdfstring{$>$}{>} Class Template Reference}
 \label{class_g_q_c_p_1_1_g_h_f_density_matrix_calculation}\index{GQCP::GHFDensityMatrixCalculation$<$ \_Scalar $>$@{GQCP::GHFDensityMatrixCalculation$<$ \_Scalar $>$}}
 
 
@@ -6,7 +6,7 @@
 
 
 
-Inheritance diagram for GQCP\+::GHFDensity\+Matrix\+Calculation$<$ \+\_\+\+Scalar $>$\+:
+Inheritance diagram for GQCP\+::GHFDensity\+Matrix\+Calculation\texorpdfstring{$<$}{<} \+\_\+\+Scalar \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -16,7 +16,7 @@ Inheritance diagram for GQCP\+::GHFDensity\+Matrix\+Calculation$<$ \+\_\+\+Scala
 \end{figure}
 
 
-Collaboration diagram for GQCP\+::GHFDensity\+Matrix\+Calculation$<$ \+\_\+\+Scalar $>$\+:
+Collaboration diagram for GQCP\+::GHFDensity\+Matrix\+Calculation\texorpdfstring{$<$}{<} \+\_\+\+Scalar \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -31,6 +31,11 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_g_h_f_density_matrix_calculation_aaff55
 \item 
 using \mbox{\hyperlink{class_g_q_c_p_1_1_g_h_f_density_matrix_calculation_a641bdae01cb72a14db8ec2752066023f}{Environment}} = \mbox{\hyperlink{class_g_q_c_p_1_1_g_h_f_s_c_f_environment}{GHFSCFEnvironment}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_h_f_density_matrix_calculation_aaff55fe9053c89464fbc33fd61cdb302}{Scalar}} $>$
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_step}{GQCP\+::\+Step$<$ GHFSCFEnvironment$<$ \+\_\+\+Scalar $>$ $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_step_a479d9d1f930d4cabb39879a6e71f4915}{Environment}} = \mbox{\hyperlink{class_g_q_c_p_1_1_g_h_f_s_c_f_environment}{GHFSCFEnvironment}}$<$ \+\_\+\+Scalar $>$
+\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -38,12 +43,20 @@ std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_g_h_f_density_matrix_calculatio
 \item 
 void \mbox{\hyperlink{class_g_q_c_p_1_1_g_h_f_density_matrix_calculation_add69f8b168fcfbec457af735bdecd2c5}{execute}} (\mbox{\hyperlink{class_g_q_c_p_1_1_g_h_f_density_matrix_calculation_a641bdae01cb72a14db8ec2752066023f}{Environment}} \&environment) override
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_step}{GQCP\+::\+Step$<$ GHFSCFEnvironment$<$ \+\_\+\+Scalar $>$ $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_step_a013c882b1c3e8c18babbe1a478382cb0}{$\sim$\+Step}} ()=default
+\item 
+virtual std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_step_af2276da3e9eef7f8d2049a8aa255b9fb}{description}} () const=0
+\item 
+virtual void \mbox{\hyperlink{class_g_q_c_p_1_1_step_afc654a62596b3fff0801acb2d993818f}{execute}} (\mbox{\hyperlink{class_g_q_c_p_1_1_step_a479d9d1f930d4cabb39879a6e71f4915}{Environment}} \&environment)=0
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$typename \+\_\+\+Scalar$>$\newline
 class GQCP\+::\+GHFDensity\+Matrix\+Calculation$<$ \+\_\+\+Scalar $>$}
-
 An iteration step that calculates the current density matrix (expressed in the scalar/\+AO basis) from the current coefficient matrix.
 
 
@@ -59,14 +72,14 @@ An iteration step that calculates the current density matrix (expressed in the s
 \index{Environment@{Environment}!GQCP::GHFDensityMatrixCalculation$<$ \_Scalar $>$@{GQCP::GHFDensityMatrixCalculation$<$ \_Scalar $>$}}
 \doxysubsubsection{\texorpdfstring{Environment}{Environment}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
-using \mbox{\hyperlink{class_g_q_c_p_1_1_g_h_f_density_matrix_calculation}{GQCP\+::\+GHFDensity\+Matrix\+Calculation}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_g_h_f_density_matrix_calculation_a641bdae01cb72a14db8ec2752066023f}{Environment}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_g_h_f_s_c_f_environment}{GHFSCFEnvironment}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_g_h_f_density_matrix_calculation_aaff55fe9053c89464fbc33fd61cdb302}{Scalar}}$>$}
+using \mbox{\hyperlink{class_g_q_c_p_1_1_g_h_f_density_matrix_calculation}{GQCP\+::\+GHFDensity\+Matrix\+Calculation}}$<$ \+\_\+\+Scalar $>$\+::\+Environment =  \mbox{\hyperlink{class_g_q_c_p_1_1_g_h_f_s_c_f_environment}{GHFSCFEnvironment}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_g_h_f_density_matrix_calculation_aaff55fe9053c89464fbc33fd61cdb302}{Scalar}}$>$}
 
 \mbox{\Hypertarget{class_g_q_c_p_1_1_g_h_f_density_matrix_calculation_aaff55fe9053c89464fbc33fd61cdb302}\label{class_g_q_c_p_1_1_g_h_f_density_matrix_calculation_aaff55fe9053c89464fbc33fd61cdb302}} 
 \index{GQCP::GHFDensityMatrixCalculation$<$ \_Scalar $>$@{GQCP::GHFDensityMatrixCalculation$<$ \_Scalar $>$}!Scalar@{Scalar}}
 \index{Scalar@{Scalar}!GQCP::GHFDensityMatrixCalculation$<$ \_Scalar $>$@{GQCP::GHFDensityMatrixCalculation$<$ \_Scalar $>$}}
 \doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
-using \mbox{\hyperlink{class_g_q_c_p_1_1_g_h_f_density_matrix_calculation}{GQCP\+::\+GHFDensity\+Matrix\+Calculation}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_g_h_f_density_matrix_calculation_aaff55fe9053c89464fbc33fd61cdb302}{Scalar}} =  \+\_\+\+Scalar}
+using \mbox{\hyperlink{class_g_q_c_p_1_1_g_h_f_density_matrix_calculation}{GQCP\+::\+GHFDensity\+Matrix\+Calculation}}$<$ \+\_\+\+Scalar $>$\+::\+Scalar =  \+\_\+\+Scalar}
 
 
 

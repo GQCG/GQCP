@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_non_linear_equation_environment" kind="class" language="C++" prot="public">
     <compoundname>GQCP::NonLinearEquationEnvironment</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_optimization_environment" prot="public" virt="non-virtual">GQCP::OptimizationEnvironment&lt; VectorX&lt; _Scalar &gt; &gt;</basecompoundref>
@@ -15,6 +15,7 @@
         <definition>using GQCP::NonLinearEquationEnvironment&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
         <argsstring></argsstring>
         <name>Scalar</name>
+        <qualifiedname>GQCP::NonLinearEquationEnvironment::Scalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -30,6 +31,7 @@
         <definition>VectorFunction&lt;Scalar&gt; GQCP::NonLinearEquationEnvironment&lt; _Scalar &gt;::f</definition>
         <argsstring></argsstring>
         <name>f</name>
+        <qualifiedname>GQCP::NonLinearEquationEnvironment::f</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -43,6 +45,7 @@
         <definition>MatrixFunction&lt;Scalar&gt; GQCP::NonLinearEquationEnvironment&lt; _Scalar &gt;::J</definition>
         <argsstring></argsstring>
         <name>J</name>
+        <qualifiedname>GQCP::NonLinearEquationEnvironment::J</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -58,6 +61,7 @@
         <definition>GQCP::NonLinearEquationEnvironment&lt; _Scalar &gt;::NonLinearEquationEnvironment</definition>
         <argsstring>(const VectorX&lt; _Scalar &gt; &amp;initial_guess, const VectorFunction&lt; Scalar &gt; &amp;f, const MatrixFunction&lt; Scalar &gt; &amp;J)</argsstring>
         <name>NonLinearEquationEnvironment</name>
+        <qualifiedname>GQCP::NonLinearEquationEnvironment::NonLinearEquationEnvironment</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; _Scalar &gt; &amp;</type>
           <declname>initial_guess</declname>

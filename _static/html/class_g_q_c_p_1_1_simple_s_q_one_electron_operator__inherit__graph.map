@@ -1,7 +1,8 @@
 <map id="GQCP::SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt;" name="GQCP::SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt;">
 <area shape="rect" id="node1" title=" " alt="" coords="385,777,619,972"/>
-<area shape="rect" id="node8" href="$class_g_q_c_p_1_1_g_s_q_one_electron_operator.html" title=" " alt="" coords="257,1027,491,1119"/>
-<area shape="rect" id="node9" href="$class_g_q_c_p_1_1_r_s_q_one_electron_operator.html" title=" " alt="" coords="516,1020,747,1127"/>
+<area shape="rect" id="node8" href="$class_g_q_c_p_1_1_g_s_q_one_electron_operator.html" title=" " alt="" coords="127,1027,362,1119"/>
+<area shape="rect" id="node9" href="$class_g_q_c_p_1_1_r_s_q_one_electron_operator.html" title=" " alt="" coords="387,1020,617,1127"/>
+<area shape="rect" id="node10" href="$class_g_q_c_p_1_1_u_s_q_one_electron_operator_component.html" title=" " alt="" coords="641,1027,888,1119"/>
 <area shape="rect" id="node2" href="$class_g_q_c_p_1_1_s_q_operator_storage.html" title=" " alt="" coords="114,564,381,729"/>
 <area shape="rect" id="node3" href="$class_g_q_c_p_1_1_s_q_operator_storage_base.html" title=" " alt="" coords="5,145,241,516"/>
 <area shape="rect" id="node4" href="$class_g_q_c_p_1_1_vector_space_arithmetic.html" title=" " alt="" coords="265,263,480,399"/>

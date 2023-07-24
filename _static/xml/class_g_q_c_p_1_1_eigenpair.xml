@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_eigenpair" kind="class" language="C++" prot="public">
     <compoundname>GQCP::Eigenpair</compoundname>
     <includes refid="_eigenpair_8hpp" local="no">Eigenpair.hpp</includes>
@@ -17,6 +17,7 @@
         <definition>using GQCP::Eigenpair&lt; _EigenvalueScalar, _EigenvectorScalar &gt;::EigenvalueScalar =  _EigenvalueScalar</definition>
         <argsstring></argsstring>
         <name>EigenvalueScalar</name>
+        <qualifiedname>GQCP::Eigenpair::EigenvalueScalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -30,6 +31,7 @@
         <definition>using GQCP::Eigenpair&lt; _EigenvalueScalar, _EigenvectorScalar &gt;::EigenvectorScalar =  _EigenvectorScalar</definition>
         <argsstring></argsstring>
         <name>EigenvectorScalar</name>
+        <qualifiedname>GQCP::Eigenpair::EigenvectorScalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -45,6 +47,7 @@
         <definition>EigenvalueScalar GQCP::Eigenpair&lt; _EigenvalueScalar, _EigenvectorScalar &gt;::m_eigenvalue</definition>
         <argsstring></argsstring>
         <name>m_eigenvalue</name>
+        <qualifiedname>GQCP::Eigenpair::m_eigenvalue</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -58,6 +61,7 @@
         <definition>VectorX&lt;EigenvectorScalar&gt; GQCP::Eigenpair&lt; _EigenvalueScalar, _EigenvectorScalar &gt;::m_eigenvector</definition>
         <argsstring></argsstring>
         <name>m_eigenvector</name>
+        <qualifiedname>GQCP::Eigenpair::m_eigenvector</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -73,6 +77,7 @@
         <definition>GQCP::Eigenpair&lt; _EigenvalueScalar, _EigenvectorScalar &gt;::Eigenpair</definition>
         <argsstring>(const EigenvalueScalar eigenvalue, const VectorX&lt; EigenvectorScalar &gt; &amp;eigenvector)</argsstring>
         <name>Eigenpair</name>
+        <qualifiedname>GQCP::Eigenpair::Eigenpair</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_eigenpair_1a7b220ee5a33a55cdd294d9beb4fb0e01" kindref="member">EigenvalueScalar</ref></type>
           <declname>eigenvalue</declname>
@@ -112,6 +117,7 @@
         <definition>GQCP::Eigenpair&lt; _EigenvalueScalar, _EigenvectorScalar &gt;::Eigenpair</definition>
         <argsstring>(const size_t dimension=1)</argsstring>
         <name>Eigenpair</name>
+        <qualifiedname>GQCP::Eigenpair::Eigenpair</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>dimension</declname>
@@ -141,6 +147,7 @@
         <definition>EigenvalueScalar GQCP::Eigenpair&lt; _EigenvalueScalar, _EigenvectorScalar &gt;::eigenvalue</definition>
         <argsstring>() const</argsstring>
         <name>eigenvalue</name>
+        <qualifiedname>GQCP::Eigenpair::eigenvalue</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -152,11 +159,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Eigenpair.hpp" line="74" column="22" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Eigenpair.hpp" bodystart="74" bodyend="74"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_eigenpair_1a7aca8aadc64511b3022862be4a4af821" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_eigenpair_1ac41a28815e8f01b170420a0e43ee3356" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; <ref refid="class_g_q_c_p_1_1_eigenpair_1a4ecde4ec631cfbb101c274ce7144b84c" kindref="member">EigenvectorScalar</ref> &gt; &amp;</type>
-        <definition>const VectorX&lt;EigenvectorScalar&gt;&amp; GQCP::Eigenpair&lt; _EigenvalueScalar, _EigenvectorScalar &gt;::eigenvector</definition>
+        <definition>const VectorX&lt; EigenvectorScalar &gt; &amp; GQCP::Eigenpair&lt; _EigenvalueScalar, _EigenvectorScalar &gt;::eigenvector</definition>
         <argsstring>() const</argsstring>
         <name>eigenvector</name>
+        <qualifiedname>GQCP::Eigenpair::eigenvector</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -174,6 +182,7 @@
         <definition>bool GQCP::Eigenpair&lt; _EigenvalueScalar, _EigenvectorScalar &gt;::isEqualTo</definition>
         <argsstring>(const Eigenpair &amp;other, const double tolerance=1.0e-08) const</argsstring>
         <name>isEqualTo</name>
+        <qualifiedname>GQCP::Eigenpair::isEqualTo</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_eigenpair" kindref="compound">Eigenpair</ref> &amp;</type>
           <declname>other</declname>
@@ -248,7 +257,7 @@
       <member refid="class_g_q_c_p_1_1_eigenpair_1a05edc2884c967e8602498cf32519b743" prot="public" virt="non-virtual"><scope>GQCP::Eigenpair</scope><name>Eigenpair</name></member>
       <member refid="class_g_q_c_p_1_1_eigenpair_1ad048e1d83e56c45b824dcac4bd80cd73" prot="public" virt="non-virtual"><scope>GQCP::Eigenpair</scope><name>eigenvalue</name></member>
       <member refid="class_g_q_c_p_1_1_eigenpair_1a7b220ee5a33a55cdd294d9beb4fb0e01" prot="public" virt="non-virtual"><scope>GQCP::Eigenpair</scope><name>EigenvalueScalar</name></member>
-      <member refid="class_g_q_c_p_1_1_eigenpair_1a7aca8aadc64511b3022862be4a4af821" prot="public" virt="non-virtual"><scope>GQCP::Eigenpair</scope><name>eigenvector</name></member>
+      <member refid="class_g_q_c_p_1_1_eigenpair_1ac41a28815e8f01b170420a0e43ee3356" prot="public" virt="non-virtual"><scope>GQCP::Eigenpair</scope><name>eigenvector</name></member>
       <member refid="class_g_q_c_p_1_1_eigenpair_1a4ecde4ec631cfbb101c274ce7144b84c" prot="public" virt="non-virtual"><scope>GQCP::Eigenpair</scope><name>EigenvectorScalar</name></member>
       <member refid="class_g_q_c_p_1_1_eigenpair_1afa739b129f094e4d8e57f4909bc409f6" prot="public" virt="non-virtual"><scope>GQCP::Eigenpair</scope><name>isEqualTo</name></member>
       <member refid="class_g_q_c_p_1_1_eigenpair_1a70c117c8cb533a70fecf02b5cf97159c" prot="private" virt="non-virtual"><scope>GQCP::Eigenpair</scope><name>m_eigenvalue</name></member>

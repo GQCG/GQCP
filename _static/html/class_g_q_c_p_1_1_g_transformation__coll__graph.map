@@ -1,6 +1,9 @@
 <map id="GQCP::GTransformation&lt; _Scalar &gt;" name="GQCP::GTransformation&lt; _Scalar &gt;">
-<area shape="rect" id="node1" title=" " alt="" coords="127,549,302,744"/>
-<area shape="rect" id="node2" href="$class_g_q_c_p_1_1_simple_transformation.html" title=" " alt="" coords="109,189,320,501"/>
-<area shape="rect" id="node3" href="$class_g_q_c_p_1_1_basis_transformable.html" title=" " alt="" coords="5,5,200,141"/>
-<area shape="rect" id="node4" href="$class_g_q_c_p_1_1_jacobi_rotatable.html" title=" " alt="" coords="225,27,431,119"/>
+<area shape="rect" id="node1" title=" " alt="" coords="241,1420,415,1615"/>
+<area shape="rect" id="node2" href="$class_g_q_c_p_1_1_simple_transformation.html" title=" " alt="" coords="223,1059,433,1371"/>
+<area shape="rect" id="node3" href="$class_g_q_c_p_1_1_basis_transformable.html" title=" " alt="" coords="5,706,200,842"/>
+<area shape="rect" id="node4" href="$class_g_q_c_p_1_1_jacobi_rotatable.html" title=" " alt="" coords="225,728,431,820"/>
+<area shape="rect" id="node5" href="$class_g_q_c_p_1_1_square_matrix.html" title=" " alt="" coords="456,552,725,996"/>
+<area shape="rect" id="node6" href="$class_g_q_c_p_1_1_matrix.html" title=" " alt="" coords="466,147,715,503"/>
+<area shape="rect" id="node7" title=" " alt="" coords="505,5,676,97"/>
 </map>

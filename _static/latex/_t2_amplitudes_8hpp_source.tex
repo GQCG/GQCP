@@ -1,0 +1,150 @@
+\hypertarget{_t2_amplitudes_8hpp_source}{}\doxysection{T2\+Amplitudes.\+hpp}
+\label{_t2_amplitudes_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp}}
+\mbox{\hyperlink{_t2_amplitudes_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_orbital_space_8hpp}{Basis/SpinorBasis/OrbitalSpace.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_vector_space_arithmetic_8hpp}{Mathematical/Functions/VectorSpaceArithmetic.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_implicit_rank_four_tensor_slice_8hpp}{Mathematical/Representation/ImplicitRankFourTensorSlice.hpp}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_q_hamiltonian_8hpp}{Operator/SecondQuantized/SQHamiltonian.hpp}}"{}}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar>}
+\DoxyCodeLine{00038\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes}{T2Amplitudes}}:}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_vector_space_arithmetic}{VectorSpaceArithmetic}}<T2Amplitudes<\_Scalar>,\ \_Scalar>\ \{}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{comment}{//\ The\ scalar\ type\ that\ represents\ one\ of\ the\ amplitudes.}}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes_aa92c680ab582739af243ff2ed843ad45}{Scalar}}\ =\ \_Scalar;}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ 'this'.}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes}{Self}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes}{T2Amplitudes<Scalar>}};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{//\ The\ orbital\ space\ which\ encapsulates\ the\ occupied-\/virtual\ separation.}}
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{OrbitalSpace}}\ orbital\_space;}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ The\ T2-\/amplitudes\ as\ an\ implicit\ tensor,\ implementing\ intuitive\ operator(i,j,a,b)\ calls.}}
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_rank_four_tensor_slice}{ImplicitRankFourTensorSlice<Scalar>}}\ t;}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00058\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Constructors}}
+\DoxyCodeLine{00059\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00067\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes_a562bee708a1bd35d43f4ad406f511e73}{T2Amplitudes}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_rank_four_tensor_slice}{ImplicitRankFourTensorSlice<Scalar>}}\&\ t,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{OrbitalSpace}}\&\ orbital\_space)\ :}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ orbital\_space\ \{orbital\_space\},}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ t\ \{t\}\ \{\}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes_a3231734ad7a906703c03a34427866e3d}{T2Amplitudes}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_rank_four_tensor_slice}{ImplicitRankFourTensorSlice<Scalar>}}\&\ t,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ M)\ :}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes}{T2Amplitudes}}(t,\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{OrbitalSpace}}::Implicit(\{\{\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ N\},\ \{\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}},\ M\ -\/\ N\}\}))\ \{\}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00084\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Named\ constructors}}
+\DoxyCodeLine{00085\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes}{T2Amplitudes<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes_a629dbb366ec07607636132fa4739d93f}{Perturbative}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\&\ f,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{SquareRankFourTensor<Scalar>}}\&\ V\_A,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{OrbitalSpace}}\&\ orbital\_space)\ \{}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Zero-\/initialize\ a\ tensor\ representation\ for\ the\ (occupied-\/occupied-\/virtual-\/virtual)\ T2-\/amplitudes\ t\_\{ij\}\string^\{ab\}.}}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ t2\ =\ orbital\_space.\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a510fc684cc5b32892691e6165a85de2b}{initializeRepresentableObjectFor}}<\mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes_aa92c680ab582739af243ff2ed843ad45}{Scalar}}>(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}});}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Provide\ the\ perturbative\ T2-\/amplitudes,\ by\ setting\ the\ RHS\ amplitudes\ in\ Stanton1991,\ equation\ (2)\ to\ zero.}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ i\ :\ orbital\_space.\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a0a401c9945db2d1a81d1bd9a609805a4}{indices}}(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ j\ :\ orbital\_space.\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a0a401c9945db2d1a81d1bd9a609805a4}{indices}}(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ a\ :\ orbital\_space.\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a0a401c9945db2d1a81d1bd9a609805a4}{indices}}(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ b\ :\ orbital\_space.\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a0a401c9945db2d1a81d1bd9a609805a4}{indices}}(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ denominator\ =\ f(i,\ i)\ +\ f(j,\ j)\ -\/\ f(a,\ a)\ -\/\ f(b,\ b);}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ t2(i,\ j,\ a,\ b)\ =\ V\_A(i,\ j,\ a,\ b)\ /\ denominator;}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes}{T2Amplitudes<Scalar>}}(t2,\ orbital\_space);}
+\DoxyCodeLine{00116\ \ \ \ \ \}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00120\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Access}}
+\DoxyCodeLine{00121\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00133\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes_aa92c680ab582739af243ff2ed843ad45}{Scalar}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes_a72b3745d781ae7986c45f4e348906b89}{operator()}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ j,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ a,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ b)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>t(i,\ j,\ a,\ b);\ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00145\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes_aa92c680ab582739af243ff2ed843ad45}{Scalar}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes_ac7d5b263c4cdb8b516bc6b8756ba89fd}{operator()}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ j,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ a,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ b)\ \{\ \textcolor{keywordflow}{return}\ this-\/>t(i,\ j,\ a,\ b);\ \}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_rank_four_tensor_slice}{ImplicitRankFourTensorSlice<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes_ab2708c2264c654264bb0a81bbe44fbf6}{asImplicitRankFourTensorSlice}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>t;\ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{OrbitalSpace}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes_a15d0734f2885dc55f214a6c8049b380c}{orbitalSpace}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>orbital\_space;\ \}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00159\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Linear\ algebra}}
+\DoxyCodeLine{00160\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00165\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes_aa92c680ab582739af243ff2ed843ad45}{Scalar}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes_a0ba7fd37b05a3d653b15a148a675d000}{norm}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes_ab2708c2264c654264bb0a81bbe44fbf6}{asImplicitRankFourTensorSlice}}().\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_a6988f4ab938598107fac007f8488d42f}{asMatrix}}().norm();\ \}}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00169\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Vector\ space\ arithmetic}}
+\DoxyCodeLine{00170\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00175\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes}{Self}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes_a1bad3da44f2a56ab9844d95416ef8cb9}{operator+=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes}{Self}}\&\ rhs)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Prepare\ some\ variables.}}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ index\_maps\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes_ab2708c2264c654264bb0a81bbe44fbf6}{asImplicitRankFourTensorSlice}}().\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_adb5b972ca981e761f89dbaaa0ca52835}{indexMaps}}();}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ the\ tensor\ representations.}}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor<Scalar,\ 4>}}\ t\_sum\_dense\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes_ab2708c2264c654264bb0a81bbe44fbf6}{asImplicitRankFourTensorSlice}}().\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_a5699092acae382bfb591ad0ab4bbacf4}{asTensor}}().\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a1975212d179fc9fee2020d1cdf835c88}{Eigen}}()\ +\ rhs.\mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes_ab2708c2264c654264bb0a81bbe44fbf6}{asImplicitRankFourTensorSlice}}().\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_a5699092acae382bfb591ad0ab4bbacf4}{asTensor}}().\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a1975212d179fc9fee2020d1cdf835c88}{Eigen}}();}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_rank_four_tensor_slice}{ImplicitRankFourTensorSlice<Scalar>}}\ t\_sum\_slice\ \{index\_maps,\ t\_sum\_dense\};}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ this-\/>t\ =\ t\_sum\_slice;}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00187\ \ \ \ \ \}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00193\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes}{Self}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes_aeb24114c65744ed5323bde446ecbab6c}{operator*=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes_aa92c680ab582739af243ff2ed843ad45}{Scalar}}\&\ a)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Prepare\ some\ variables.}}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ index\_maps\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes_ab2708c2264c654264bb0a81bbe44fbf6}{asImplicitRankFourTensorSlice}}().\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_adb5b972ca981e761f89dbaaa0ca52835}{indexMaps}}();}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Multiply\ the\ tensor\ representation.}}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor<Scalar,\ 4>}}\ t\_multiplied\_dense\ =\ a\ *\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes_ab2708c2264c654264bb0a81bbe44fbf6}{asImplicitRankFourTensorSlice}}().\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_a5699092acae382bfb591ad0ab4bbacf4}{asTensor}}().\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a1975212d179fc9fee2020d1cdf835c88}{Eigen}}();}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_rank_four_tensor_slice}{ImplicitRankFourTensorSlice<Scalar>}}\ t\_multiplied\_slice\ \{index\_maps,\ t\_multiplied\_dense\};}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ this-\/>t\ =\ t\_multiplied\_slice;}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00205\ \ \ \ \ \}}
+\DoxyCodeLine{00206\ \};}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

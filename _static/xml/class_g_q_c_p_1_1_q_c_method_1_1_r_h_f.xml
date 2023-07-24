@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_q_c_method_1_1_r_h_f" kind="class" language="C++" prot="public">
     <compoundname>GQCP::QCMethod::RHF</compoundname>
     <includes refid="_q_c_method_2_h_f_2_r_h_f_2_r_h_f_8hpp" local="no">RHF.hpp</includes>
@@ -14,6 +14,7 @@
         <definition>using GQCP::QCMethod::RHF&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
         <argsstring></argsstring>
         <name>Scalar</name>
+        <qualifiedname>GQCP::QCMethod::RHF::Scalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -24,7 +25,7 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_method_1_1_r_h_f_1a40c99d66b008157929a3956f81e6ab05" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_method_1_1_r_h_f_1af0b5372f95955939174be17c324f275a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename QCObjective</type>
@@ -34,9 +35,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="class_g_q_c_p_1_1_q_c_structure" kindref="compound">QCStructure</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">QCModel::RHF</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_method_1_1_r_h_f_1aab5839dc5e28e1c3baed01c019a645db" kindref="member">Scalar</ref> &gt;, <ref refid="class_g_q_c_p_1_1_q_c_method_1_1_r_h_f_1aab5839dc5e28e1c3baed01c019a645db" kindref="member">Scalar</ref> &gt;</type>
-        <definition>QCStructure&lt;QCModel::RHF&lt;Scalar&gt;, Scalar&gt; GQCP::QCMethod::RHF&lt; _Scalar &gt;::optimize</definition>
+        <definition>QCStructure&lt; QCModel::RHF&lt; Scalar &gt;, Scalar &gt; GQCP::QCMethod::RHF&lt; _Scalar &gt;::optimize</definition>
         <argsstring>(const QCObjective &amp;objective, Solver &amp;solver, RHFSCFEnvironment&lt; Scalar &gt; &amp;environment) const</argsstring>
         <name>optimize</name>
+        <qualifiedname>GQCP::QCMethod::RHF::optimize</qualifiedname>
         <param>
           <type>const QCObjective &amp;</type>
           <declname>objective</declname>
@@ -125,7 +127,7 @@
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHF.hpp" line="40" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHF.hpp" bodystart="40" bodyend="82"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_q_c_method_1_1_r_h_f_1a40c99d66b008157929a3956f81e6ab05" prot="public" virt="non-virtual"><scope>GQCP::QCMethod::RHF</scope><name>optimize</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_method_1_1_r_h_f_1af0b5372f95955939174be17c324f275a" prot="public" virt="non-virtual"><scope>GQCP::QCMethod::RHF</scope><name>optimize</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_method_1_1_r_h_f_1aab5839dc5e28e1c3baed01c019a645db" prot="public" virt="non-virtual"><scope>GQCP::QCMethod::RHF</scope><name>Scalar</name></member>
     </listofallmembers>
   </compounddef>

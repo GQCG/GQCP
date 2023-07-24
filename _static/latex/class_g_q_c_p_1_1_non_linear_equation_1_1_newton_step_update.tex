@@ -1,4 +1,4 @@
-\hypertarget{class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update}{}\doxysection{GQCP\+::Non\+Linear\+Equation\+::Newton\+Step\+Update$<$ \+\_\+\+Scalar, \+\_\+\+Environment, Linear\+Solver $>$ Class Template Reference}
+\hypertarget{class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update}{}\doxysection{GQCP\+::Non\+Linear\+Equation\+::Newton\+Step\+Update\texorpdfstring{$<$}{<} \+\_\+\+Scalar, \+\_\+\+Environment, Linear\+Solver \texorpdfstring{$>$}{>} Class Template Reference}
 \label{class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update}\index{GQCP::NonLinearEquation::NewtonStepUpdate$<$ \_Scalar, \_Environment, LinearSolver $>$@{GQCP::NonLinearEquation::NewtonStepUpdate$<$ \_Scalar, \_Environment, LinearSolver $>$}}
 
 
@@ -6,7 +6,7 @@
 
 
 
-Inheritance diagram for GQCP\+::Non\+Linear\+Equation\+::Newton\+Step\+Update$<$ \+\_\+\+Scalar, \+\_\+\+Environment, Linear\+Solver $>$\+:
+Inheritance diagram for GQCP\+::Non\+Linear\+Equation\+::Newton\+Step\+Update\texorpdfstring{$<$}{<} \+\_\+\+Scalar, \+\_\+\+Environment, Linear\+Solver \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -16,7 +16,7 @@ Inheritance diagram for GQCP\+::Non\+Linear\+Equation\+::Newton\+Step\+Update$<$
 \end{figure}
 
 
-Collaboration diagram for GQCP\+::Non\+Linear\+Equation\+::Newton\+Step\+Update$<$ \+\_\+\+Scalar, \+\_\+\+Environment, Linear\+Solver $>$\+:
+Collaboration diagram for GQCP\+::Non\+Linear\+Equation\+::Newton\+Step\+Update\texorpdfstring{$<$}{<} \+\_\+\+Scalar, \+\_\+\+Environment, Linear\+Solver \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -31,21 +31,34 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_upd
 \item 
 using \mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update_a5934bc339e52c5b46608cfd820e812d0}{Environment}} = \+\_\+\+Environment
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_step}{GQCP\+::\+Step$<$ \+\_\+\+Environment $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_step_a479d9d1f930d4cabb39879a6e71f4915}{Environment}} = \+\_\+\+Environment
+\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update_af82f0ceef12307f4a1da8e4162518016}{Newton\+Step\+Update}} (const Linear\+Solver \&linear\+\_\+solver=Linear\+Equation\+Solver$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update_a92d938b716a2e84f5114e283ce273be7}{Scalar}} $>$\+::Col\+Piv\+Householder\+QR())
+\mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update_af82f0ceef12307f4a1da8e4162518016}{Newton\+Step\+Update}} (const Linear\+Solver \&linear\+\_\+solver=Linear\+Equation\+Solver$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update_a92d938b716a2e84f5114e283ce273be7}{Scalar}} $>$\+::\+Col\+Piv\+Householder\+QR())
 \item 
 std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update_a719c5657ab1eaa89adbe008e9516c618}{description}} () const override
 \item 
-void \mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update_a78d80e98d2ec9b89724474295c1371a1}{execute}} (\mbox{\hyperlink{class_g_q_c_p_1_1_step_a479d9d1f930d4cabb39879a6e71f4915}{Environment}} \&environment) override
+void \mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update_a78d80e98d2ec9b89724474295c1371a1}{execute}} (\mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update_a5934bc339e52c5b46608cfd820e812d0}{Environment}} \&environment) override
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_step}{GQCP\+::\+Step$<$ \+\_\+\+Environment $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_step_a013c882b1c3e8c18babbe1a478382cb0}{$\sim$\+Step}} ()=default
+\item 
+virtual std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_step_af2276da3e9eef7f8d2049a8aa255b9fb}{description}} () const =0
+\item 
+virtual void \mbox{\hyperlink{class_g_q_c_p_1_1_step_afc654a62596b3fff0801acb2d993818f}{execute}} (\mbox{\hyperlink{class_g_q_c_p_1_1_step_a479d9d1f930d4cabb39879a6e71f4915}{Environment}} \&environment)=0
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$typename \+\_\+\+Scalar, typename \+\_\+\+Environment, typename Linear\+Solver = decltype(\+Linear\+Equation\+Solver$<$\+\_\+\+Scalar$>$\+::\+Col\+Piv\+Householder\+QR())$>$\newline
 class GQCP\+::\+Non\+Linear\+Equation\+::\+Newton\+Step\+Update$<$ \+\_\+\+Scalar, \+\_\+\+Environment, Linear\+Solver $>$}
-
 An iteration step that produces updated variables according to a Newton step.
 
 
@@ -65,14 +78,14 @@ An iteration step that produces updated variables according to a Newton step.
 \index{Environment@{Environment}!GQCP::NonLinearEquation::NewtonStepUpdate$<$ \_Scalar, \_Environment, LinearSolver $>$@{GQCP::NonLinearEquation::NewtonStepUpdate$<$ \_Scalar, \_Environment, LinearSolver $>$}}
 \doxysubsubsection{\texorpdfstring{Environment}{Environment}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Environment , typename Linear\+Solver  = decltype(\+Linear\+Equation\+Solver$<$\+\_\+\+Scalar$>$\+::\+Col\+Piv\+Householder\+QR())$>$ \\
-using \mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update}{GQCP\+::\+Non\+Linear\+Equation\+::\+Newton\+Step\+Update}}$<$ \+\_\+\+Scalar, \+\_\+\+Environment, Linear\+Solver $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_step_a479d9d1f930d4cabb39879a6e71f4915}{Environment}} =  \+\_\+\+Environment}
+using \mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update}{GQCP\+::\+Non\+Linear\+Equation\+::\+Newton\+Step\+Update}}$<$ \+\_\+\+Scalar, \+\_\+\+Environment, Linear\+Solver $>$\+::\+Environment =  \+\_\+\+Environment}
 
 \mbox{\Hypertarget{class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update_a92d938b716a2e84f5114e283ce273be7}\label{class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update_a92d938b716a2e84f5114e283ce273be7}} 
 \index{GQCP::NonLinearEquation::NewtonStepUpdate$<$ \_Scalar, \_Environment, LinearSolver $>$@{GQCP::NonLinearEquation::NewtonStepUpdate$<$ \_Scalar, \_Environment, LinearSolver $>$}!Scalar@{Scalar}}
 \index{Scalar@{Scalar}!GQCP::NonLinearEquation::NewtonStepUpdate$<$ \_Scalar, \_Environment, LinearSolver $>$@{GQCP::NonLinearEquation::NewtonStepUpdate$<$ \_Scalar, \_Environment, LinearSolver $>$}}
 \doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Environment , typename Linear\+Solver  = decltype(\+Linear\+Equation\+Solver$<$\+\_\+\+Scalar$>$\+::\+Col\+Piv\+Householder\+QR())$>$ \\
-using \mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update}{GQCP\+::\+Non\+Linear\+Equation\+::\+Newton\+Step\+Update}}$<$ \+\_\+\+Scalar, \+\_\+\+Environment, Linear\+Solver $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update_a92d938b716a2e84f5114e283ce273be7}{Scalar}} =  \+\_\+\+Scalar}
+using \mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update}{GQCP\+::\+Non\+Linear\+Equation\+::\+Newton\+Step\+Update}}$<$ \+\_\+\+Scalar, \+\_\+\+Environment, Linear\+Solver $>$\+::\+Scalar =  \+\_\+\+Scalar}
 
 
 
@@ -82,7 +95,7 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_upd
 \index{NewtonStepUpdate@{NewtonStepUpdate}!GQCP::NonLinearEquation::NewtonStepUpdate$<$ \_Scalar, \_Environment, LinearSolver $>$@{GQCP::NonLinearEquation::NewtonStepUpdate$<$ \_Scalar, \_Environment, LinearSolver $>$}}
 \doxysubsubsection{\texorpdfstring{NewtonStepUpdate()}{NewtonStepUpdate()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Environment , typename Linear\+Solver  = decltype(\+Linear\+Equation\+Solver$<$\+\_\+\+Scalar$>$\+::\+Col\+Piv\+Householder\+QR())$>$ \\
-\mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update}{GQCP\+::\+Non\+Linear\+Equation\+::\+Newton\+Step\+Update}}$<$ \+\_\+\+Scalar, \+\_\+\+Environment, Linear\+Solver $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update}{Newton\+Step\+Update}} (\begin{DoxyParamCaption}\item[{const Linear\+Solver \&}]{linear\+\_\+solver = {\ttfamily LinearEquationSolver$<$\mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update_a92d938b716a2e84f5114e283ce273be7}{Scalar}}$>$\+:\+:ColPivHouseholderQR()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update}{GQCP\+::\+Non\+Linear\+Equation\+::\+Newton\+Step\+Update}}$<$ \+\_\+\+Scalar, \+\_\+\+Environment, Linear\+Solver $>$\+::\+Newton\+Step\+Update (\begin{DoxyParamCaption}\item[{const Linear\+Solver \&}]{linear\+\_\+solver = {\ttfamily LinearEquationSolver$<$\mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update_a92d938b716a2e84f5114e283ce273be7}{Scalar}}$>$\+:\+:ColPivHouseholderQR()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 \begin{DoxyParams}{Parameters}
@@ -111,7 +124,7 @@ Implements \mbox{\hyperlink{class_g_q_c_p_1_1_step_af2276da3e9eef7f8d2049a8aa255
 \index{execute@{execute}!GQCP::NonLinearEquation::NewtonStepUpdate$<$ \_Scalar, \_Environment, LinearSolver $>$@{GQCP::NonLinearEquation::NewtonStepUpdate$<$ \_Scalar, \_Environment, LinearSolver $>$}}
 \doxysubsubsection{\texorpdfstring{execute()}{execute()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , typename \+\_\+\+Environment , typename Linear\+Solver  = decltype(\+Linear\+Equation\+Solver$<$\+\_\+\+Scalar$>$\+::\+Col\+Piv\+Householder\+QR())$>$ \\
-void \mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update}{GQCP\+::\+Non\+Linear\+Equation\+::\+Newton\+Step\+Update}}$<$ \+\_\+\+Scalar, \+\_\+\+Environment, Linear\+Solver $>$\+::execute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_g_q_c_p_1_1_step_a479d9d1f930d4cabb39879a6e71f4915}{Environment}} \&}]{environment }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+void \mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update}{GQCP\+::\+Non\+Linear\+Equation\+::\+Newton\+Step\+Update}}$<$ \+\_\+\+Scalar, \+\_\+\+Environment, Linear\+Solver $>$\+::execute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_1_1_newton_step_update_a5934bc339e52c5b46608cfd820e812d0}{Environment}} \&}]{environment }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
 
 Calculate a new iteration of the variables and add them to the environment.
 

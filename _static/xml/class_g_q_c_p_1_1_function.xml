@@ -1,9 +1,10 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_function" kind="class" language="C++" prot="public" abstract="yes">
     <compoundname>GQCP::Function</compoundname>
-    <derivedcompoundref refid="class_g_q_c_p_1_1_evaluable_linear_combination" prot="public" virt="non-virtual">GQCP::EvaluableLinearCombination&lt; Scalar, BasisFunctionDerivative &gt;</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_evaluable_linear_combination" prot="public" virt="non-virtual">GQCP::EvaluableLinearCombination&lt; _Scalar, _BasisFunction &gt;</derivedcompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_evaluable_linear_combination" prot="public" virt="non-virtual">GQCP::EvaluableLinearCombination&lt; Scalar, BasisFunction &gt;</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_evaluable_linear_combination" prot="public" virt="non-virtual">GQCP::EvaluableLinearCombination&lt; Scalar, BasisFunctionDerivative &gt;</derivedcompoundref>
     <includes refid="_function_8hpp" local="no">Function.hpp</includes>
     <templateparamlist>
       <param>
@@ -19,6 +20,7 @@
         <definition>using GQCP::Function&lt; _OutputType, _InputType &gt;::OutputType =  _OutputType</definition>
         <argsstring></argsstring>
         <name>OutputType</name>
+        <qualifiedname>GQCP::Function::OutputType</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -32,6 +34,7 @@
         <definition>using GQCP::Function&lt; _OutputType, _InputType &gt;::InputType =  _InputType</definition>
         <argsstring></argsstring>
         <name>InputType</name>
+        <qualifiedname>GQCP::Function::InputType</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -47,6 +50,7 @@
         <definition>virtual GQCP::Function&lt; _OutputType, _InputType &gt;::~Function</definition>
         <argsstring>()=default</argsstring>
         <name>~Function</name>
+        <qualifiedname>GQCP::Function::~Function</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -61,8 +65,7 @@
         <definition>virtual OutputType GQCP::Function&lt; _OutputType, _InputType &gt;::operator()</definition>
         <argsstring>(const InputType &amp;in) const =0</argsstring>
         <name>operator()</name>
-        <reimplementedby refid="class_g_q_c_p_1_1_evaluable_linear_combination_1a5c09be16f8ced29d9243f6da9877fffe">operator()</reimplementedby>
-        <reimplementedby refid="class_g_q_c_p_1_1_evaluable_linear_combination_1a5c09be16f8ced29d9243f6da9877fffe">operator()</reimplementedby>
+        <qualifiedname>GQCP::Function::operator()</qualifiedname>
         <reimplementedby refid="class_g_q_c_p_1_1_function_product_1aaf24131ec06e6547a7da905b42e3079d">operator()</reimplementedby>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_function_1aaf1d2fa66a3fa43919c1ef676ff2990f" kindref="member">InputType</ref> &amp;</type>
@@ -114,21 +117,27 @@
 </para>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1">
-        <label>GQCP::Function&lt; _OutputType, _InputType &gt;</label>
-        <link refid="class_g_q_c_p_1_1_function"/>
-      </node>
       <node id="3">
         <label>GQCP::EvaluableLinearCombination&lt; Scalar, BasisFunction &gt;</label>
         <link refid="class_g_q_c_p_1_1_evaluable_linear_combination"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="2">
+      <node id="4">
         <label>GQCP::EvaluableLinearCombination&lt; Scalar, BasisFunctionDerivative &gt;</label>
         <link refid="class_g_q_c_p_1_1_evaluable_linear_combination"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::EvaluableLinearCombination&lt; _Scalar, _BasisFunction &gt;</label>
+        <link refid="class_g_q_c_p_1_1_evaluable_linear_combination"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>GQCP::Function&lt; _OutputType, _InputType &gt;</label>
+        <link refid="class_g_q_c_p_1_1_function"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable" kind="class" language="C++" prot="public">
     <compoundname>GQCP::SpinResolvedJacobiRotatable</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_jacobi_rotatable" prot="public" virt="non-virtual">GQCP::JacobiRotatable&lt; T &gt;</basecompoundref>
@@ -17,6 +17,7 @@
         <definition>using GQCP::SpinResolvedJacobiRotatable&lt; T &gt;::JacobiRotationType =  UJacobiRotation</definition>
         <argsstring></argsstring>
         <name>JacobiRotationType</name>
+        <qualifiedname>GQCP::SpinResolvedJacobiRotatable::JacobiRotationType</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -27,14 +28,14 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable_1aff0df03f6211a4ee332e53c7f917066d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable_1aff0df03f6211a4ee332e53c7f917066d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>T</type>
         <definition>T GQCP::SpinResolvedJacobiRotatable&lt; T &gt;::rotated</definition>
         <argsstring>(const JacobiRotationType &amp;jacobi_rotation) const override</argsstring>
         <name>rotated</name>
-        <reimplements refid="class_g_q_c_p_1_1_jacobi_rotatable_1ae518b652e54f43acf2db43300c1d6fc0">rotated</reimplements>
+        <qualifiedname>GQCP::SpinResolvedJacobiRotatable::rotated</qualifiedname>
         <param>
-          <type>const <ref refid="class_g_q_c_p_1_1_jacobi_rotatable_1a107861c91912a3808817f5845823204f" kindref="member">JacobiRotationType</ref> &amp;</type>
+          <type>const <ref refid="class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable_1a85f229e1b026703e0355e371ebd5622b" kindref="member">JacobiRotationType</ref> &amp;</type>
           <declname>jacobi_rotation</declname>
         </param>
         <briefdescription>
@@ -75,26 +76,26 @@
 </para>
     </detaileddescription>
     <inheritancegraph>
+      <node id="2">
+        <label>GQCP::JacobiRotatable&lt; T &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      </node>
+      <node id="1">
+        <label>GQCP::SpinResolvedJacobiRotatable&lt; T &gt;</label>
+        <link refid="class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
       <node id="3">
         <label>GQCP::USQOneElectronOperator&lt; Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="2">
-        <label>GQCP::JacobiRotatable&lt; T &gt;</label>
-        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
-      </node>
       <node id="4">
         <label>GQCP::UTransformation&lt; Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_u_transformation"/>
         <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1">
-        <label>GQCP::SpinResolvedJacobiRotatable&lt; T &gt;</label>
-        <link refid="class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable"/>
-        <childnode refid="2" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
@@ -114,7 +115,8 @@
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable_1a85f229e1b026703e0355e371ebd5622b" prot="public" virt="non-virtual"><scope>GQCP::SpinResolvedJacobiRotatable</scope><name>JacobiRotationType</name></member>
       <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a11657b774fe75246bef1f7849f9aad72" prot="public" virt="non-virtual"><scope>GQCP::SpinResolvedJacobiRotatable</scope><name>rotate</name></member>
-      <member refid="class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable_1aff0df03f6211a4ee332e53c7f917066d" prot="public" virt="virtual"><scope>GQCP::SpinResolvedJacobiRotatable</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable_1aff0df03f6211a4ee332e53c7f917066d" prot="public" virt="non-virtual"><scope>GQCP::SpinResolvedJacobiRotatable</scope><name>rotated</name></member>
+      <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1ae518b652e54f43acf2db43300c1d6fc0" prot="public" virt="pure-virtual" ambiguityscope="GQCP::JacobiRotatable::"><scope>GQCP::SpinResolvedJacobiRotatable</scope><name>rotated</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

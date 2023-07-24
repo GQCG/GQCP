@@ -3,11 +3,12 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Following internal instabilities in GHF</title>
   
   
@@ -18,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -37,18 +38,20 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
@@ -63,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="ONV path manipulation" href="ONVPath.html" />
     <link rel="prev" title="Checking the Hartree-Fock Stability conditions" href="HF-Stability.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
   
   
@@ -432,10 +435,10 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="section" id="following-internal-instabilities-in-ghf">
-<h1>Following internal instabilities in GHF<a class="headerlink" href="#following-internal-instabilities-in-ghf" title="Permalink to this heading">#</a></h1>
-<div class="section" id="import-gqcpy-and-numpy">
-<h2>Import gqcpy and numpy<a class="headerlink" href="#import-gqcpy-and-numpy" title="Permalink to this heading">#</a></h2>
+  <section id="following-internal-instabilities-in-ghf">
+<h1>Following internal instabilities in GHF<a class="headerlink" href="#following-internal-instabilities-in-ghf" title="Permalink to this headline">#</a></h1>
+<section id="import-gqcpy-and-numpy">
+<h2>Import gqcpy and numpy<a class="headerlink" href="#import-gqcpy-and-numpy" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Force the local gqcpy to be imported</span>
@@ -449,9 +452,9 @@ document.write(`
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="define-a-function-to-perform-a-ghf-calculation">
-<h2>Define a function to perform a GHF calculation<a class="headerlink" href="#define-a-function-to-perform-a-ghf-calculation" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="define-a-function-to-perform-a-ghf-calculation">
+<h2>Define a function to perform a GHF calculation<a class="headerlink" href="#define-a-function-to-perform-a-ghf-calculation" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">GHF_calculation</span><span class="p">(</span><span class="n">molecule</span><span class="p">,</span> <span class="n">basis_set</span><span class="o">=</span><span class="s1">&#39;STO-3G&#39;</span><span class="p">,</span> <span class="n">guess</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -478,9 +481,9 @@ document.write(`
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="create-a-molecule-and-run-the-initial-ghf-calculation">
-<h2>Create a molecule and run the initial GHF calculation<a class="headerlink" href="#create-a-molecule-and-run-the-initial-ghf-calculation" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="create-a-molecule-and-run-the-initial-ghf-calculation">
+<h2>Create a molecule and run the initial GHF calculation<a class="headerlink" href="#create-a-molecule-and-run-the-initial-ghf-calculation" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">H3</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">Molecule</span><span class="o">.</span><span class="n">HRingFromDistance</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mf">1.889</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
@@ -500,9 +503,9 @@ document.write(`
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="run-a-stability-check">
-<h2>Run a stability check<a class="headerlink" href="#run-a-stability-check" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="run-a-stability-check">
+<h2>Run a stability check<a class="headerlink" href="#run-a-stability-check" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">generalized_basis</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">GSpinorBasis_d</span><span class="p">(</span><span class="n">H3</span><span class="p">,</span> <span class="s1">&#39;STO-3G&#39;</span><span class="p">)</span>
@@ -526,9 +529,9 @@ The real valued GHF wavefunction contains a real-&gt;complex external instabilit
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="follow-the-internal-instability">
-<h2>Follow the internal instability<a class="headerlink" href="#follow-the-internal-instability" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="follow-the-internal-instability">
+<h2>Follow the internal instability<a class="headerlink" href="#follow-the-internal-instability" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculateNewGuess</span><span class="p">(</span><span class="n">GHF_stability_matrices</span><span class="p">,</span> <span class="n">GHF_QC_Model</span><span class="p">):</span>
@@ -560,9 +563,9 @@ The real valued GHF wavefunction contains a real-&gt;complex external instabilit
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="set-up-a-new-guess-by-rotating-the-old-one-to-the-lowest-eigenvector-of-the-hessian">
-<h2>Set up a new guess by rotating the old one to the lowest eigenvector of the Hessian<a class="headerlink" href="#set-up-a-new-guess-by-rotating-the-old-one-to-the-lowest-eigenvector-of-the-hessian" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="set-up-a-new-guess-by-rotating-the-old-one-to-the-lowest-eigenvector-of-the-hessian">
+<h2>Set up a new guess by rotating the old one to the lowest eigenvector of the Hessian<a class="headerlink" href="#set-up-a-new-guess-by-rotating-the-old-one-to-the-lowest-eigenvector-of-the-hessian" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_guess</span> <span class="o">=</span> <span class="n">calculateNewGuess</span><span class="p">(</span><span class="n">generalized_stability_matrices</span><span class="p">,</span> <span class="n">GHF_model</span><span class="p">)</span>
@@ -570,9 +573,9 @@ The real valued GHF wavefunction contains a real-&gt;complex external instabilit
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="run-a-calculation-with-the-new-guess-and-check-stability">
-<h2>Run a calculation with the new guess and check stability<a class="headerlink" href="#run-a-calculation-with-the-new-guess-and-check-stability" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="run-a-calculation-with-the-new-guess-and-check-stability">
+<h2>Run a calculation with the new guess and check stability<a class="headerlink" href="#run-a-calculation-with-the-new-guess-and-check-stability" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">GHF_model_rotated</span> <span class="o">=</span> <span class="n">GHF_calculation</span><span class="p">(</span><span class="n">H3</span><span class="p">,</span> <span class="n">guess</span><span class="o">=</span><span class="n">new_guess</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span><span class="p">()</span>
@@ -608,8 +611,8 @@ The real valued GHF wavefunction is externally stable.
 </div>
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -637,7 +640,10 @@ The real valued GHF wavefunction is externally stable.
               
               
                 <footer class="bd-footer-article">
-                  <!-- Previous / next buttons -->
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="HF-Stability.html"
@@ -657,7 +663,10 @@ The real valued GHF wavefunction is externally stable.
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
@@ -687,7 +696,7 @@ The real valued GHF wavefunction is externally stable.
             
           </div>
           <footer class="bd-footer-content">
-            <div class="bd-footer-content__inner">
+            
 <div class="bd-footer-content__inner container">
   
   <div class="footer-item">
@@ -717,7 +726,7 @@ By The Ghent Quantum Chemistry Group
     
   </div>
   
-</div></div>
+</div>
           </footer>
         
 
@@ -726,8 +735,8 @@ By The Ghent Quantum Chemistry Group
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
   </footer>

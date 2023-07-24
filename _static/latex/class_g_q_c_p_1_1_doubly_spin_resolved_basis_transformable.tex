@@ -1,4 +1,4 @@
-\hypertarget{class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformable}{}\doxysection{GQCP\+::Doubly\+Spin\+Resolved\+Basis\+Transformable$<$ Type $>$ Class Template Reference}
+\hypertarget{class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformable}{}\doxysection{GQCP\+::Doubly\+Spin\+Resolved\+Basis\+Transformable\texorpdfstring{$<$}{<} Type \texorpdfstring{$>$}{>} Class Template Reference}
 \label{class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformable}\index{GQCP::DoublySpinResolvedBasisTransformable$<$ Type $>$@{GQCP::DoublySpinResolvedBasisTransformable$<$ Type $>$}}
 
 
@@ -6,7 +6,7 @@
 
 
 
-Inheritance diagram for GQCP\+::Doubly\+Spin\+Resolved\+Basis\+Transformable$<$ Type $>$\+:
+Inheritance diagram for GQCP\+::Doubly\+Spin\+Resolved\+Basis\+Transformable\texorpdfstring{$<$}{<} Type \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -16,7 +16,7 @@ Inheritance diagram for GQCP\+::Doubly\+Spin\+Resolved\+Basis\+Transformable$<$ 
 \end{figure}
 
 
-Collaboration diagram for GQCP\+::Doubly\+Spin\+Resolved\+Basis\+Transformable$<$ Type $>$\+:
+Collaboration diagram for GQCP\+::Doubly\+Spin\+Resolved\+Basis\+Transformable\texorpdfstring{$<$}{<} Type \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -27,19 +27,34 @@ Collaboration diagram for GQCP\+::Doubly\+Spin\+Resolved\+Basis\+Transformable$<
 \doxysubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-using \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformable_a1be0aa8993c5cbb96da09e91aa2de3eb}{Transformation}} = typename \mbox{\hyperlink{struct_g_q_c_p_1_1_basis_transformable_traits}{Basis\+Transformable\+Traits}}$<$ Type $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_a701f799aca6ea8311782e82685851f72}{Transformation}}
+using \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformable_a1be0aa8993c5cbb96da09e91aa2de3eb}{Transformation}} = typename \mbox{\hyperlink{struct_g_q_c_p_1_1_basis_transformable_traits}{Basis\+Transformable\+Traits}}$<$ Type $>$\+::\+Transformation
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable}{GQCP\+::\+Basis\+Transformable$<$ Type $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_a701f799aca6ea8311782e82685851f72}{Transformation}} = typename \mbox{\hyperlink{struct_g_q_c_p_1_1_basis_transformable_traits}{Basis\+Transformable\+Traits}}$<$ Type $>$\+::\+Transformation
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-Type \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformable_a537698d7d018a1c0ff31509bc227bfa8}{transformed}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_a701f799aca6ea8311782e82685851f72}{Transformation}} \&T) const override
+Type \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformable_a537698d7d018a1c0ff31509bc227bfa8}{transformed}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformable_a1be0aa8993c5cbb96da09e91aa2de3eb}{Transformation}} \&T) const override
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable}{GQCP\+::\+Basis\+Transformable$<$ Type $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual Type \mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_a3c511224fd132184fb2e01579754850d}{transformed}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_a701f799aca6ea8311782e82685851f72}{Transformation}} \&T) const =0
+\item 
+virtual void \mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_aa55d3cf1b186ac2ec926e97a7b6d645f}{transform}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_a701f799aca6ea8311782e82685851f72}{Transformation}} \&T)
+\item 
+virtual Type \mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_ae0af50867dbd06193b64c2bcdd6b51ba}{rotated}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_a701f799aca6ea8311782e82685851f72}{Transformation}} \&U) const
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_a2e107bd3cf4d603c003c8cb9357d0094}{rotate}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_a701f799aca6ea8311782e82685851f72}{Transformation}} \&U)
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$typename Type$>$\newline
 class GQCP\+::\+Doubly\+Spin\+Resolved\+Basis\+Transformable$<$ Type $>$}
-
 An interface that implements conformance to {\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable}{Basis\+Transformable}}} for doubly spin-\/resolved types.
 
 
@@ -55,7 +70,7 @@ An interface that implements conformance to {\ttfamily \mbox{\hyperlink{class_g_
 \index{Transformation@{Transformation}!GQCP::DoublySpinResolvedBasisTransformable$<$ Type $>$@{GQCP::DoublySpinResolvedBasisTransformable$<$ Type $>$}}
 \doxysubsubsection{\texorpdfstring{Transformation}{Transformation}}
 {\footnotesize\ttfamily template$<$typename Type $>$ \\
-using \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformable}{GQCP\+::\+Doubly\+Spin\+Resolved\+Basis\+Transformable}}$<$ Type $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_a701f799aca6ea8311782e82685851f72}{Transformation}} =  typename \mbox{\hyperlink{struct_g_q_c_p_1_1_basis_transformable_traits}{Basis\+Transformable\+Traits}}$<$Type$>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_a701f799aca6ea8311782e82685851f72}{Transformation}}}
+using \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformable}{GQCP\+::\+Doubly\+Spin\+Resolved\+Basis\+Transformable}}$<$ Type $>$\+::\+Transformation =  typename \mbox{\hyperlink{struct_g_q_c_p_1_1_basis_transformable_traits}{Basis\+Transformable\+Traits}}$<$Type$>$\+::\+Transformation}
 
 
 
@@ -65,7 +80,7 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformabl
 \index{transformed@{transformed}!GQCP::DoublySpinResolvedBasisTransformable$<$ Type $>$@{GQCP::DoublySpinResolvedBasisTransformable$<$ Type $>$}}
 \doxysubsubsection{\texorpdfstring{transformed()}{transformed()}}
 {\footnotesize\ttfamily template$<$typename Type $>$ \\
-Type \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformable}{GQCP\+::\+Doubly\+Spin\+Resolved\+Basis\+Transformable}}$<$ Type $>$\+::transformed (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_a701f799aca6ea8311782e82685851f72}{Transformation}} \&}]{T }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+Type \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformable}{GQCP\+::\+Doubly\+Spin\+Resolved\+Basis\+Transformable}}$<$ Type $>$\+::transformed (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformable_a1be0aa8993c5cbb96da09e91aa2de3eb}{Transformation}} \&}]{T }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
 
 Apply the basis transformation and return the result.
 

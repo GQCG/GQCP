@@ -1,0 +1,62 @@
+\hypertarget{_minimizer_8hpp_source}{}\doxysection{Minimizer.\+hpp}
+\label{_minimizer_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/Minimizer.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/Minimizer.hpp}}
+\mbox{\hyperlink{_minimizer_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_iterative_algorithm_8hpp}{Mathematical/Algorithm/IterativeAlgorithm.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_consecutive_iterates_norm_convergence_8hpp}{Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_minimization_environment_8hpp}{Mathematical/Optimization/Minimization/MinimizationEnvironment.hpp}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_minimization_2_newton_step_update_8hpp}{Mathematical/Optimization/Minimization/NewtonStepUpdate.hpp}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_optimization_environment_8hpp}{Mathematical/Optimization/OptimizationEnvironment.hpp}}"{}}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar>}
+\DoxyCodeLine{00037\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_minimizer}{Minimizer}}\ \{}
+\DoxyCodeLine{00038\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_minimizer_ab04f2a789fa9e06a14b56c8da6450946}{Scalar}}\ =\ \_Scalar;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00044\ \textcolor{comment}{\ \ \ \ \ *\ STATIC\ PUBLIC\ METHODS}}
+\DoxyCodeLine{00045\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{IterativeAlgorithm<MinimizationEnvironment<Scalar>}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_minimizer_a3060f1f7db6a4e17c42bf8ff5ee9d6b0}{Newton}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ threshold\ =\ 1.0e-\/08,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ maximum\_number\_of\_iterations\ =\ 128)\ \{}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ the\ iteration\ cycle\ that\ effectively\ 'defines'\ a\ Newton-\/step\ minimizer}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection}{StepCollection<MinimizationEnvironment<Scalar>}}>\ newton\_cycle\ \{\};}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ newton\_cycle.\mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_ae642fc19be01a8aadebeaed0aef863b9}{add}}(\mbox{\hyperlink{class_g_q_c_p_1_1_minimization_1_1_newton_step_update}{GQCP::Minimization::NewtonStepUpdate}}<\mbox{\hyperlink{class_g_q_c_p_1_1_minimizer_ab04f2a789fa9e06a14b56c8da6450946}{Scalar}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_minimization_environment}{MinimizationEnvironment<Scalar>}}>());}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ a\ convergence\ criterion\ on\ the\ norm\ of\ subsequent\ iterations\ of\ variables}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence}{ConsecutiveIteratesNormConvergence<VectorX<Scalar>}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_minimization_environment}{MinimizationEnvironment<Scalar>}}>\ convergence\_criterion\ \{threshold\};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{IterativeAlgorithm<MinimizationEnvironment<Scalar>}}>(newton\_cycle,\ convergence\_criterion,\ maximum\_number\_of\_iterations);}
+\DoxyCodeLine{00063\ \ \ \ \ \}}
+\DoxyCodeLine{00064\ \};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

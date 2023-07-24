@@ -1,4 +1,4 @@
-\hypertarget{class_g_q_c_p_1_1_u_h_f_fock_matrix_calculation}{}\doxysection{GQCP\+::UHFFock\+Matrix\+Calculation$<$ \+\_\+\+Scalar $>$ Class Template Reference}
+\hypertarget{class_g_q_c_p_1_1_u_h_f_fock_matrix_calculation}{}\doxysection{GQCP\+::UHFFock\+Matrix\+Calculation\texorpdfstring{$<$}{<} \+\_\+\+Scalar \texorpdfstring{$>$}{>} Class Template Reference}
 \label{class_g_q_c_p_1_1_u_h_f_fock_matrix_calculation}\index{GQCP::UHFFockMatrixCalculation$<$ \_Scalar $>$@{GQCP::UHFFockMatrixCalculation$<$ \_Scalar $>$}}
 
 
@@ -6,7 +6,7 @@
 
 
 
-Inheritance diagram for GQCP\+::UHFFock\+Matrix\+Calculation$<$ \+\_\+\+Scalar $>$\+:
+Inheritance diagram for GQCP\+::UHFFock\+Matrix\+Calculation\texorpdfstring{$<$}{<} \+\_\+\+Scalar \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -16,7 +16,7 @@ Inheritance diagram for GQCP\+::UHFFock\+Matrix\+Calculation$<$ \+\_\+\+Scalar $
 \end{figure}
 
 
-Collaboration diagram for GQCP\+::UHFFock\+Matrix\+Calculation$<$ \+\_\+\+Scalar $>$\+:
+Collaboration diagram for GQCP\+::UHFFock\+Matrix\+Calculation\texorpdfstring{$<$}{<} \+\_\+\+Scalar \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -31,6 +31,11 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_fock_matrix_calculation_a611e8f27
 \item 
 using \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_fock_matrix_calculation_ad8320c9ae94bf4b764f2eedef92e425c}{Environment}} = \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment}{UHFSCFEnvironment}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_fock_matrix_calculation_a611e8f271e418f05c8dbf6f0ac344e79}{Scalar}} $>$
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_step}{GQCP\+::\+Step$<$ UHFSCFEnvironment$<$ \+\_\+\+Scalar $>$ $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_step_a479d9d1f930d4cabb39879a6e71f4915}{Environment}} = \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment}{UHFSCFEnvironment}}$<$ \+\_\+\+Scalar $>$
+\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -38,12 +43,20 @@ std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_fock_matrix_calculation_a
 \item 
 void \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_fock_matrix_calculation_a3477f32fa104205808148d9dd5e156fa}{execute}} (\mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_fock_matrix_calculation_ad8320c9ae94bf4b764f2eedef92e425c}{Environment}} \&environment) override
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_step}{GQCP\+::\+Step$<$ UHFSCFEnvironment$<$ \+\_\+\+Scalar $>$ $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_step_a013c882b1c3e8c18babbe1a478382cb0}{$\sim$\+Step}} ()=default
+\item 
+virtual std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_step_af2276da3e9eef7f8d2049a8aa255b9fb}{description}} () const=0
+\item 
+virtual void \mbox{\hyperlink{class_g_q_c_p_1_1_step_afc654a62596b3fff0801acb2d993818f}{execute}} (\mbox{\hyperlink{class_g_q_c_p_1_1_step_a479d9d1f930d4cabb39879a6e71f4915}{Environment}} \&environment)=0
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$typename \+\_\+\+Scalar$>$\newline
 class GQCP\+::\+UHFFock\+Matrix\+Calculation$<$ \+\_\+\+Scalar $>$}
-
 An iteration step that calculates the current UHF Fock matrices (expressed in the scalar/\+AO basis) from the current density matrices.
 
 
@@ -59,14 +72,14 @@ An iteration step that calculates the current UHF Fock matrices (expressed in th
 \index{Environment@{Environment}!GQCP::UHFFockMatrixCalculation$<$ \_Scalar $>$@{GQCP::UHFFockMatrixCalculation$<$ \_Scalar $>$}}
 \doxysubsubsection{\texorpdfstring{Environment}{Environment}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
-using \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_fock_matrix_calculation}{GQCP\+::\+UHFFock\+Matrix\+Calculation}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_fock_matrix_calculation_ad8320c9ae94bf4b764f2eedef92e425c}{Environment}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment}{UHFSCFEnvironment}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_fock_matrix_calculation_a611e8f271e418f05c8dbf6f0ac344e79}{Scalar}}$>$}
+using \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_fock_matrix_calculation}{GQCP\+::\+UHFFock\+Matrix\+Calculation}}$<$ \+\_\+\+Scalar $>$\+::\+Environment =  \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment}{UHFSCFEnvironment}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_fock_matrix_calculation_a611e8f271e418f05c8dbf6f0ac344e79}{Scalar}}$>$}
 
 \mbox{\Hypertarget{class_g_q_c_p_1_1_u_h_f_fock_matrix_calculation_a611e8f271e418f05c8dbf6f0ac344e79}\label{class_g_q_c_p_1_1_u_h_f_fock_matrix_calculation_a611e8f271e418f05c8dbf6f0ac344e79}} 
 \index{GQCP::UHFFockMatrixCalculation$<$ \_Scalar $>$@{GQCP::UHFFockMatrixCalculation$<$ \_Scalar $>$}!Scalar@{Scalar}}
 \index{Scalar@{Scalar}!GQCP::UHFFockMatrixCalculation$<$ \_Scalar $>$@{GQCP::UHFFockMatrixCalculation$<$ \_Scalar $>$}}
 \doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
-using \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_fock_matrix_calculation}{GQCP\+::\+UHFFock\+Matrix\+Calculation}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_fock_matrix_calculation_a611e8f271e418f05c8dbf6f0ac344e79}{Scalar}} =  \+\_\+\+Scalar}
+using \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_fock_matrix_calculation}{GQCP\+::\+UHFFock\+Matrix\+Calculation}}$<$ \+\_\+\+Scalar $>$\+::\+Scalar =  \+\_\+\+Scalar}
 
 
 

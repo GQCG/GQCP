@@ -3,11 +3,12 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>GQCP devops</title>
   
   
@@ -18,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -37,18 +38,20 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
@@ -63,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Troubleshooting guide" href="../miscellaneous/troubleshooting.html" />
     <link rel="prev" title="Manipulating ONVs and their addresses" href="ONV-path-manipulation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
   
   
@@ -383,21 +386,21 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="section" id="gqcp-devops">
-<h1>GQCP devops<a class="headerlink" href="#gqcp-devops" title="Permalink to this heading">#</a></h1>
+  <section id="gqcp-devops">
+<h1>GQCP devops<a class="headerlink" href="#gqcp-devops" title="Permalink to this headline">#</a></h1>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/DevOps">DevOps</a> aims to shorten the development life cycle by providing support for continuous <a class="reference external" href="https://en.wikipedia.org/wiki/Continuous_integration">integration</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Continuous_delivery">delivery</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Continuous_deployment">deployment</a>.</p>
-<div class="section" id="integration-github">
-<h2>Integration: Github<a class="headerlink" href="#integration-github" title="Permalink to this heading">#</a></h2>
+<section id="integration-github">
+<h2>Integration: Github<a class="headerlink" href="#integration-github" title="Permalink to this headline">#</a></h2>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/GitHub">Github</a> provides hosting of Git repo’s together with collaborative features such as bug tracking, feature requests, task management and project management.</p>
-</div>
-<div class="section" id="delivery-github-actions">
-<h2>Delivery: Github Actions<a class="headerlink" href="#delivery-github-actions" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="delivery-github-actions">
+<h2>Delivery: Github Actions<a class="headerlink" href="#delivery-github-actions" title="Permalink to this headline">#</a></h2>
 <p><a class="reference external" href="https://github.com/features/actions">Github Actions</a> automate the build and test stages. You can enable a <a class="reference external" href="https://github.com/marketplace?type=actions">ready to go</a> Github Action by putting the relevant <code class="docutils literal notranslate"><span class="pre">*.yml</span></code> file in the <code class="docutils literal notranslate"><span class="pre">.github/workflows/</span></code> directory of your repo. You can check the status of this actions in the <code class="docutils literal notranslate"><span class="pre">actions</span></code> tab of the Github repo in question.</p>
-</div>
-<div class="section" id="deployment-conda-and-docker">
-<h2>Deployment: Conda and Docker<a class="headerlink" href="#deployment-conda-and-docker" title="Permalink to this heading">#</a></h2>
-<div class="section" id="conda-and-anaconda-cloud">
-<h3>Conda and Anaconda Cloud<a class="headerlink" href="#conda-and-anaconda-cloud" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="deployment-conda-and-docker">
+<h2>Deployment: Conda and Docker<a class="headerlink" href="#deployment-conda-and-docker" title="Permalink to this headline">#</a></h2>
+<section id="conda-and-anaconda-cloud">
+<h3>Conda and Anaconda Cloud<a class="headerlink" href="#conda-and-anaconda-cloud" title="Permalink to this headline">#</a></h3>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Conda_(package_manager)">Conda</a> is a package manager for software. You have to provide three building blocks for this software to be built:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">build.sh</span></code>: a build script.</p></li>
@@ -405,14 +408,14 @@ document.write(`
 <li><p><code class="docutils literal notranslate"><span class="pre">conda_build_config.yaml</span></code>: sets the specific versions of the requirements used. Should be kept constant over the intended software environment.</p></li>
 </ul>
 <p>For easy distribution, built packages can be uploaded to <a class="reference external" href="https://anaconda.org/gqcg">Anaconda Cloud</a>.</p>
-</div>
-<div class="section" id="docker">
-<h3>Docker<a class="headerlink" href="#docker" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="docker">
+<h3>Docker<a class="headerlink" href="#docker" title="Permalink to this headline">#</a></h3>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Docker_(software)">Docker</a> provides a platform as a service and is ideally suited to provide development environments. Docker only requires a <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code>, which contains all steps needed to provision the container.</p>
 <p>For easy distribution, images can be uploaded to <a class="reference external" href="https://hub.docker.com/">Docker Hub</a>.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -440,7 +443,10 @@ document.write(`
               
               
                 <footer class="bd-footer-article">
-                  <!-- Previous / next buttons -->
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="ONV-path-manipulation.html"
@@ -460,7 +466,10 @@ document.write(`
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
@@ -490,7 +499,7 @@ document.write(`
             
           </div>
           <footer class="bd-footer-content">
-            <div class="bd-footer-content__inner">
+            
 <div class="bd-footer-content__inner container">
   
   <div class="footer-item">
@@ -520,7 +529,7 @@ By The Ghent Quantum Chemistry Group
     
   </div>
   
-</div></div>
+</div>
           </footer>
         
 
@@ -529,8 +538,8 @@ By The Ghent Quantum Chemistry Group
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
   </footer>

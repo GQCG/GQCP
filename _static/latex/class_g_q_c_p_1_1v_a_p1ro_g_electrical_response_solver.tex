@@ -43,6 +43,17 @@ Collaboration diagram for GQCP\+::v\+AP1ro\+GElectrical\+Response\+Solver\+:
 \item 
 \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ double, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 3 $>$ \mbox{\hyperlink{class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver_a6f5cf46763e12fd1d88ae5b738c19d34}{calculate\+Multiplier\+Response}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian, const \mbox{\hyperlink{namespace_g_q_c_p_a937c6a66a78202fc6957b3d807c57e64}{Vector\+RSQOne\+Electron\+Operator}}$<$ double $>$ dipole\+\_\+op, const \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ double, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 3 $>$ \&\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{x}}) const
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_base_electrical_response_solver}{GQCP\+::\+Base\+Electrical\+Response\+Solver}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_base_electrical_response_solver_ac749b5b8109884a1dfee1e0f0e294118}{$\sim$\+Base\+Electrical\+Response\+Solver}} ()=default
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_electrical_response_solver_a18ff2cef784f0264d239999edfa2667a}{calculate\+Parameter\+Response\+Constant}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian) const =0
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ double, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 3 $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_electrical_response_solver_a6bfa0b6bdc3a611d92194f2401044756}{calculate\+Parameter\+Response\+Force}} (const \mbox{\hyperlink{namespace_g_q_c_p_a937c6a66a78202fc6957b3d807c57e64}{Vector\+RSQOne\+Electron\+Operator}}$<$ double $>$ \&dipole\+\_\+op) const =0
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix}}$<$ double, \mbox{\hyperlink{namespace_g_q_c_p_aae02f7d1e3557edc7114d417804dd298}{Dynamic}}, 3 $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_electrical_response_solver_aefba71f24e5892d19ef34c7493ac73a3}{calculate\+Wave\+Function\+Response}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian, const \mbox{\hyperlink{namespace_g_q_c_p_a937c6a66a78202fc6957b3d807c57e64}{Vector\+RSQOne\+Electron\+Operator}}$<$ double $>$ dipole\+\_\+op) const
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -167,7 +178,7 @@ the parameter response constant (k\+\_\+p), i.\+e. the first-\/order parameter p
 \end{DoxyReturn}
 
 
-Implements \mbox{\hyperlink{class_g_q_c_p_1_1_base_electrical_response_solver_a473fec7ce257c65dc06b24c6e7bfcf63}{GQCP\+::\+Base\+Electrical\+Response\+Solver}}.
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_base_electrical_response_solver_a18ff2cef784f0264d239999edfa2667a}{GQCP\+::\+Base\+Electrical\+Response\+Solver}}.
 
 \mbox{\Hypertarget{class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver_a7998371857b99312be11eddfb500862f}\label{class_g_q_c_p_1_1v_a_p1ro_g_electrical_response_solver_a7998371857b99312be11eddfb500862f}} 
 \index{GQCP::vAP1roGElectricalResponseSolver@{GQCP::vAP1roGElectricalResponseSolver}!calculateParameterResponseForce@{calculateParameterResponseForce}}
@@ -185,7 +196,7 @@ the parameter response force (F\+\_\+p) as an (Nx3)-\/matrix, i.\+e. the first-\
 \end{DoxyReturn}
 
 
-Implements \mbox{\hyperlink{class_g_q_c_p_1_1_base_electrical_response_solver_aab5c5eb8bac13beda120aaab8c56f13e}{GQCP\+::\+Base\+Electrical\+Response\+Solver}}.
+Implements \mbox{\hyperlink{class_g_q_c_p_1_1_base_electrical_response_solver_a6bfa0b6bdc3a611d92194f2401044756}{GQCP\+::\+Base\+Electrical\+Response\+Solver}}.
 
 
 

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_g_transformation_3_01_scalar_01_4_01_4" kind="struct" language="C++" prot="public">
     <compoundname>GQCP::JacobiRotatableTraits&lt; GTransformation&lt; Scalar &gt; &gt;</compoundname>
     <includes refid="_g_transformation_8hpp" local="no">GTransformation.hpp</includes>
@@ -14,6 +14,7 @@
         <definition>using GQCP::JacobiRotatableTraits&lt; GTransformation&lt; Scalar &gt; &gt;::JacobiRotationType =  JacobiRotation</definition>
         <argsstring></argsstring>
         <name>JacobiRotationType</name>
+        <qualifiedname>GQCP::JacobiRotatableTraits&lt; GTransformation&lt; Scalar &gt; &gt;::JacobiRotationType</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>

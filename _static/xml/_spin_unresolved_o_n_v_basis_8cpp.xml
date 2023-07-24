@@ -1,17 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="_spin_unresolved_o_n_v_basis_8cpp" kind="file" language="C++">
     <compoundname>SpinUnresolvedONVBasis.cpp</compoundname>
     <includes local="yes">ONVBasis/SpinUnresolvedONVBasis.hpp</includes>
     <includes local="no">boost/math/special_functions.hpp</includes>
     <includes local="no">boost/numeric/conversion/converter.hpp</includes>
     <incdepgraph>
-      <node id="3">
-        <label>boost/math/special_functions.hpp</label>
-      </node>
-      <node id="4">
-        <label>boost/numeric/conversion/converter.hpp</label>
-      </node>
       <node id="1">
         <label>/__w/GQCP/GQCP/gqcp/src/ONVBasis/SpinUnresolvedONVBasis.cpp</label>
         <link refid="_spin_unresolved_o_n_v_basis_8cpp"/>
@@ -24,6 +18,12 @@
       </node>
       <node id="2">
         <label>ONVBasis/SpinUnresolvedONVBasis.hpp</label>
+      </node>
+      <node id="3">
+        <label>boost/math/special_functions.hpp</label>
+      </node>
+      <node id="4">
+        <label>boost/numeric/conversion/converter.hpp</label>
       </node>
     </incdepgraph>
     <innernamespace refid="namespace_g_q_c_p">GQCP</innernamespace>
@@ -581,7 +581,7 @@
 <codeline lineno="724"><highlight class="comment"><sp/>*<sp/><sp/>MARK:<sp/>Generalized<sp/>matrix-vector<sp/>product<sp/>evaluations</highlight></codeline>
 <codeline lineno="725"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="726"><highlight class="normal"></highlight></codeline>
-<codeline lineno="735"><highlight class="normal">VectorX&lt;double&gt;<sp/>SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ScalarGSQOneElectronOperator&lt;double&gt;&amp;<sp/>f,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorX&lt;double&gt;&amp;<sp/><ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5" kindref="member">x</ref>)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="735"><highlight class="normal">VectorX&lt;double&gt;<sp/>SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ScalarGSQOneElectronOperator&lt;double&gt;&amp;<sp/>f,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorX&lt;double&gt;&amp;<sp/>x)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="736"><highlight class="normal"></highlight></codeline>
 <codeline lineno="737"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(f.numberOfOrbitals()<sp/>!=<sp/>this-&gt;numberOfOrbitals())<sp/>{</highlight></codeline>
 <codeline lineno="738"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(</highlight><highlight class="stringliteral">&quot;SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(const<sp/>ScalarGSQOneElectronOperator&lt;double&gt;&amp;,<sp/>const<sp/>VectorX&lt;double&gt;&amp;):<sp/>The<sp/>number<sp/>of<sp/>orbitals<sp/>of<sp/>this<sp/>ONV<sp/>basis<sp/>and<sp/>the<sp/>operator<sp/>are<sp/>incompatible.&quot;</highlight><highlight class="normal">);</highlight></codeline>
@@ -595,17 +595,17 @@
 <codeline lineno="746"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="747"><highlight class="normal"></highlight></codeline>
 <codeline lineno="748"><highlight class="normal"></highlight></codeline>
-<codeline lineno="757"><highlight class="normal">VectorX&lt;double&gt;<sp/>SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ScalarGSQTwoElectronOperator&lt;double&gt;&amp;<sp/>g,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorX&lt;double&gt;&amp;<sp/><ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5" kindref="member">x</ref>)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="757"><highlight class="normal">VectorX&lt;double&gt;<sp/>SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ScalarGSQTwoElectronOperator&lt;double&gt;&amp;<sp/>g,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorX&lt;double&gt;&amp;<sp/>x)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="758"><highlight class="normal"></highlight></codeline>
 <codeline lineno="759"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>In<sp/>order<sp/>to<sp/>avoid<sp/>duplicate<sp/>code,<sp/>we<sp/>choose<sp/>to<sp/>delegate<sp/>this<sp/>method<sp/>to<sp/>the<sp/>evaluation<sp/>of<sp/>a<sp/>`GSQHamiltonian`<sp/>that<sp/>contains<sp/>no<sp/>core<sp/>contributions.<sp/>This<sp/>does<sp/>not<sp/>affect<sp/>performance<sp/>significantly,<sp/>because<sp/>the<sp/>bottleneck<sp/>will<sp/>always<sp/>be<sp/>the<sp/>iteration<sp/>over<sp/>the<sp/>whole<sp/>ONV<sp/>basis.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="760"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>zero<sp/>=<sp/>ScalarGSQOneElectronOperator&lt;double&gt;::Zero(g.numberOfOrbitals());</highlight></codeline>
 <codeline lineno="761"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GSQHamiltonian&lt;double&gt;<sp/>hamiltonian<sp/>{zero,<sp/>g};</highlight></codeline>
 <codeline lineno="762"><highlight class="normal"></highlight></codeline>
-<codeline lineno="763"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;evaluateOperatorMatrixVectorProduct(hamiltonian,<sp/><ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5" kindref="member">x</ref>);</highlight></codeline>
+<codeline lineno="763"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;evaluateOperatorMatrixVectorProduct(hamiltonian,<sp/>x);</highlight></codeline>
 <codeline lineno="764"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="765"><highlight class="normal"></highlight></codeline>
 <codeline lineno="766"><highlight class="normal"></highlight></codeline>
-<codeline lineno="775"><highlight class="normal">VectorX&lt;double&gt;<sp/>SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GSQHamiltonian&lt;double&gt;&amp;<sp/>hamiltonian,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorX&lt;double&gt;&amp;<sp/><ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5" kindref="member">x</ref>)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="775"><highlight class="normal">VectorX&lt;double&gt;<sp/>SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GSQHamiltonian&lt;double&gt;&amp;<sp/>hamiltonian,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorX&lt;double&gt;&amp;<sp/>x)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="776"><highlight class="normal"></highlight></codeline>
 <codeline lineno="777"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(hamiltonian.numberOfOrbitals()<sp/>!=<sp/>this-&gt;numberOfOrbitals())<sp/>{</highlight></codeline>
 <codeline lineno="778"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(</highlight><highlight class="stringliteral">&quot;SpinUnresolvedONVBasis::evaluateOperatorMatrixVectorProduct(const<sp/>USQHamiltonian&lt;double&gt;&amp;,<sp/>const<sp/>VectorX&lt;double&gt;&amp;<sp/>x):<sp/>The<sp/>number<sp/>of<sp/>orbitals<sp/>of<sp/>this<sp/>ONV<sp/>basis<sp/>and<sp/>the<sp/>given<sp/>Hamiltonian<sp/>are<sp/>incompatible.&quot;</highlight><highlight class="normal">);</highlight></codeline>

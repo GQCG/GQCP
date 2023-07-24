@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_u_h_f_error_calculation" kind="class" language="C++" prot="public">
     <compoundname>GQCP::UHFErrorCalculation</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_step" prot="public" virt="non-virtual">GQCP::Step&lt; UHFSCFEnvironment&lt; _Scalar &gt; &gt;</basecompoundref>
@@ -15,6 +15,7 @@
         <definition>using GQCP::UHFErrorCalculation&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
         <argsstring></argsstring>
         <name>Scalar</name>
+        <qualifiedname>GQCP::UHFErrorCalculation::Scalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -28,6 +29,7 @@
         <definition>using GQCP::UHFErrorCalculation&lt; _Scalar &gt;::Environment =  UHFSCFEnvironment&lt;Scalar&gt;</definition>
         <argsstring></argsstring>
         <name>Environment</name>
+        <qualifiedname>GQCP::UHFErrorCalculation::Environment</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -43,6 +45,7 @@
         <definition>std::string GQCP::UHFErrorCalculation&lt; _Scalar &gt;::description</definition>
         <argsstring>() const override</argsstring>
         <name>description</name>
+        <qualifiedname>GQCP::UHFErrorCalculation::description</qualifiedname>
         <reimplements refid="class_g_q_c_p_1_1_step_1af2276da3e9eef7f8d2049a8aa255b9fb">description</reimplements>
         <briefdescription>
         </briefdescription>
@@ -60,6 +63,7 @@
         <definition>void GQCP::UHFErrorCalculation&lt; _Scalar &gt;::execute</definition>
         <argsstring>(Environment &amp;environment) override</argsstring>
         <name>execute</name>
+        <qualifiedname>GQCP::UHFErrorCalculation::execute</qualifiedname>
         <param>
           <type><ref refid="class_g_q_c_p_1_1_u_h_f_error_calculation_1a891792f2112cbd8845074199aabc7354" kindref="member">Environment</ref> &amp;</type>
           <declname>environment</declname>

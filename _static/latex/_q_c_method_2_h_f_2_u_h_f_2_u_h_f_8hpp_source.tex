@@ -1,0 +1,73 @@
+\hypertarget{_q_c_method_2_h_f_2_u_h_f_2_u_h_f_8hpp_source}{}\doxysection{UHF.\+hpp}
+\label{_q_c_method_2_h_f_2_u_h_f_2_u_h_f_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHF.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHF.hpp}}
+\mbox{\hyperlink{_q_c_method_2_h_f_2_u_h_f_2_u_h_f_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_iterative_algorithm_8hpp}{Mathematical/Algorithm/IterativeAlgorithm.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_q_hamiltonian_8hpp}{Operator/SecondQuantized/SQHamiltonian.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_u_h_f_s_c_f_environment_8hpp}{QCMethod/HF/UHF/UHFSCFEnvironment.hpp}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_q_c_structure_8hpp}{QCMethod/QCStructure.hpp}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_q_c_model_2_h_f_2_u_h_f_8hpp}{QCModel/HF/UHF.hpp}}"{}}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00031\ \textcolor{keyword}{namespace\ }QCMethod\ \{}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar>}
+\DoxyCodeLine{00040\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_u_h_f}{UHF}}\ \{}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_u_h_f_abe2d4c573f93a73ce3ecf5a4ff20a435}{Scalar}}\ =\ \_Scalar;}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00048\ \textcolor{comment}{\ \ \ \ \ *\ \ PUBLIC\ METHODS}}
+\DoxyCodeLine{00049\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Solver>}
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure}{QCStructure<QCModel::UHF<Scalar>}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_u_h_f_abe2d4c573f93a73ce3ecf5a4ff20a435}{Scalar}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_u_h_f_ab380065dd4f67d7b537dd6a5275180c8}{optimize}}(Solver\&\ solver,\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment}{UHFSCFEnvironment<Scalar>}}\&\ environment)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ UHF\ method's\ responsibility\ is\ to\ try\ to\ optimize\ the\ parameters\ of\ its\ method,\ given\ a\ solver\ and\ associated\ environment.}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ solver.perform(environment);}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ To\ make\ a\ QCStructure<QCModel::UHF<Scalar>>,\ we\ need\ the\ electronic\ energy,\ coefficient\ matrices,\ orbital\ energies\ and\ the\ numbers\ of\ electrons.}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Furthermore,\ the\ current\ UHF\ SCF\ solvers\ only\ find\ the\ ground\ state\ wave\ function\ parameters,\ so\ the\ QCStructure\ only\ needs\ to\ contain\ the\ parameters\ for\ one\ state.}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ E\_electronic\ =\ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a4e26f9a73e2b888da19d7ff2296c8335}{electronic\_energies}}.back();}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ C\ =\ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a882bc4cc1e34b50d23a7db9d4a58d891}{coefficient\_matrices}}.back();}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ orbital\_energies\ =\ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a46da6bdf231994ebcdf4353de69e2e1b}{orbital\_energies}}.back();}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ N\ =\ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a52cd91e5da87f74541424c64b4abff2b}{N}};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f}{QCModel::UHF<Scalar>}}\ uhf\_parameters\ \{N.alpha(),\ N.beta(),\ orbital\_energies.alpha(),\ orbital\_energies.beta(),\ C\};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure}{QCStructure<QCModel::UHF<Scalar>}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_method_1_1_u_h_f_abe2d4c573f93a73ce3ecf5a4ff20a435}{Scalar}}>(\{E\_electronic\},\ \{uhf\_parameters\});}
+\DoxyCodeLine{00075\ \ \ \ \ \}}
+\DoxyCodeLine{00076\ \};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \}\ \ \textcolor{comment}{//\ namespace\ QCMethod}}
+\DoxyCodeLine{00080\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

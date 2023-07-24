@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_levi_civita_tensor" kind="class" language="C++" prot="public">
     <compoundname>GQCP::LeviCivitaTensor</compoundname>
     <includes refid="_levi_civita_tensor_8hpp" local="no">LeviCivitaTensor.hpp</includes>
@@ -14,6 +14,7 @@
         <definition>using GQCP::LeviCivitaTensor&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
         <argsstring></argsstring>
         <name>Scalar</name>
+        <qualifiedname>GQCP::LeviCivitaTensor::Scalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -29,6 +30,7 @@
         <definition>Tensor&lt;Scalar, 3&gt; GQCP::LeviCivitaTensor&lt; _Scalar &gt;::epsilon</definition>
         <argsstring></argsstring>
         <name>epsilon</name>
+        <qualifiedname>GQCP::LeviCivitaTensor::epsilon</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -44,6 +46,7 @@
         <definition>GQCP::LeviCivitaTensor&lt; _Scalar &gt;::LeviCivitaTensor</definition>
         <argsstring>()</argsstring>
         <name>LeviCivitaTensor</name>
+        <qualifiedname>GQCP::LeviCivitaTensor::LeviCivitaTensor</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -58,6 +61,7 @@
         <definition>Scalar GQCP::LeviCivitaTensor&lt; _Scalar &gt;::operator()</definition>
         <argsstring>(const size_t i, const size_t j, const size_t k) const</argsstring>
         <name>operator()</name>
+        <qualifiedname>GQCP::LeviCivitaTensor::operator()</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>i</declname>
@@ -112,6 +116,7 @@
         <definition>size_t GQCP::LeviCivitaTensor&lt; _Scalar &gt;::nonZeroIndex</definition>
         <argsstring>(const size_t i, const size_t j) const</argsstring>
         <name>nonZeroIndex</name>
+        <qualifiedname>GQCP::LeviCivitaTensor::nonZeroIndex</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>i</declname>

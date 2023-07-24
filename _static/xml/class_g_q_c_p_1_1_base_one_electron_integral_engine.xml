@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_base_one_electron_integral_engine" kind="class" language="C++" prot="public" abstract="yes">
     <compoundname>GQCP::BaseOneElectronIntegralEngine</compoundname>
     <derivedcompoundref refid="class_g_q_c_p_1_1_libcint_one_electron_integral_engine" prot="public" virt="non-virtual">GQCP::LibcintOneElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;</derivedcompoundref>
@@ -23,6 +23,7 @@
         <definition>using GQCP::BaseOneElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::Shell =  _Shell</definition>
         <argsstring></argsstring>
         <name>Shell</name>
+        <qualifiedname>GQCP::BaseOneElectronIntegralEngine::Shell</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -36,6 +37,7 @@
         <definition>using GQCP::BaseOneElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::IntegralScalar =  _IntegralScalar</definition>
         <argsstring></argsstring>
         <name>IntegralScalar</name>
+        <qualifiedname>GQCP::BaseOneElectronIntegralEngine::IntegralScalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -51,6 +53,7 @@
         <definition>constexpr auto GQCP::BaseOneElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::N</definition>
         <argsstring></argsstring>
         <name>N</name>
+        <qualifiedname>GQCP::BaseOneElectronIntegralEngine::N</qualifiedname>
         <initializer>= _N</initializer>
         <briefdescription>
         </briefdescription>
@@ -67,6 +70,7 @@
         <definition>virtual GQCP::BaseOneElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::~BaseOneElectronIntegralEngine</definition>
         <argsstring>()=default</argsstring>
         <name>~BaseOneElectronIntegralEngine</name>
+        <qualifiedname>GQCP::BaseOneElectronIntegralEngine::~BaseOneElectronIntegralEngine</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -75,13 +79,14 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/BaseOneElectronIntegralEngine.hpp" line="53" column="13"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_base_one_electron_integral_engine_1aa72a849494df30951a5466471fdc246f" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_base_one_electron_integral_engine_1a5ebc73dd256d9d703043250e3a39d6dd" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
         <type>std::shared_ptr&lt; <ref refid="class_g_q_c_p_1_1_base_one_electron_integral_buffer" kindref="compound">BaseOneElectronIntegralBuffer</ref>&lt; <ref refid="class_g_q_c_p_1_1_base_one_electron_integral_engine_1aebe2d404144f1c0ed72257f6fc7e2620" kindref="member">IntegralScalar</ref>, <ref refid="class_g_q_c_p_1_1_base_one_electron_integral_engine_1a038d65de177b191cf901b58810bd0542" kindref="member">N</ref> &gt; &gt;</type>
-        <definition>virtual std::shared_ptr&lt;BaseOneElectronIntegralBuffer&lt;IntegralScalar, N&gt; &gt; GQCP::BaseOneElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::calculate</definition>
+        <definition>virtual std::shared_ptr&lt; BaseOneElectronIntegralBuffer&lt; IntegralScalar, N &gt; &gt; GQCP::BaseOneElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::calculate</definition>
         <argsstring>(const Shell &amp;shell1, const Shell &amp;shell2)=0</argsstring>
         <name>calculate</name>
-        <reimplementedby refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine_1a23dd8c30d8a8f48fa616cab87ec3463d">calculate</reimplementedby>
-        <reimplementedby refid="class_g_q_c_p_1_1_one_electron_integral_engine_1ae4d0cafa515f1537853318284e813a93">calculate</reimplementedby>
+        <qualifiedname>GQCP::BaseOneElectronIntegralEngine::calculate</qualifiedname>
+        <reimplementedby refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine_1afb85714de8d35630e9b0a5f6ba103279">calculate</reimplementedby>
+        <reimplementedby refid="class_g_q_c_p_1_1_one_electron_integral_engine_1a702a7d95f11a204fcc39737d41acac3b">calculate</reimplementedby>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_base_one_electron_integral_engine_1a9441338b4cd372511833a39b42e2aa0f" kindref="member">Shell</ref> &amp;</type>
           <declname>shell1</declname>
@@ -125,7 +130,7 @@
     <briefdescription>
     </briefdescription>
     <detaileddescription>
-<para>A base class that helps to implement one-electron integral engines. Integral engines are used calculate integrals of operators over shells. see also the <ref refid="class_g_q_c_p_1_1_base_one_electron_integral_engine_1aa72a849494df30951a5466471fdc246f" kindref="member">calculate()</ref> call.</para>
+<para>A base class that helps to implement one-electron integral engines. Integral engines are used calculate integrals of operators over shells. see also the <ref refid="class_g_q_c_p_1_1_base_one_electron_integral_engine_1a5ebc73dd256d9d703043250e3a39d6dd" kindref="member">calculate()</ref> call.</para>
 <para><parameterlist kind="templateparam"><parameteritem>
 <parameternamelist>
 <parametername>_Shell</parametername>
@@ -173,7 +178,7 @@
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/BaseOneElectronIntegralEngine.hpp" line="37" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/BaseOneElectronIntegralEngine.hpp" bodystart="37" bodyend="71"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_base_one_electron_integral_engine_1aa72a849494df30951a5466471fdc246f" prot="public" virt="pure-virtual"><scope>GQCP::BaseOneElectronIntegralEngine</scope><name>calculate</name></member>
+      <member refid="class_g_q_c_p_1_1_base_one_electron_integral_engine_1a5ebc73dd256d9d703043250e3a39d6dd" prot="public" virt="pure-virtual"><scope>GQCP::BaseOneElectronIntegralEngine</scope><name>calculate</name></member>
       <member refid="class_g_q_c_p_1_1_base_one_electron_integral_engine_1aebe2d404144f1c0ed72257f6fc7e2620" prot="public" virt="non-virtual"><scope>GQCP::BaseOneElectronIntegralEngine</scope><name>IntegralScalar</name></member>
       <member refid="class_g_q_c_p_1_1_base_one_electron_integral_engine_1a038d65de177b191cf901b58810bd0542" prot="public" virt="non-virtual"><scope>GQCP::BaseOneElectronIntegralEngine</scope><name>N</name></member>
       <member refid="class_g_q_c_p_1_1_base_one_electron_integral_engine_1a9441338b4cd372511833a39b42e2aa0f" prot="public" virt="non-virtual"><scope>GQCP::BaseOneElectronIntegralEngine</scope><name>Shell</name></member>

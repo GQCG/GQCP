@@ -1,0 +1,121 @@
+\hypertarget{_libint_interfacer_8hpp_source}{}\doxysection{Libint\+Interfacer.\+hpp}
+\label{_libint_interfacer_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibintInterfacer.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibintInterfacer.hpp}}
+\mbox{\hyperlink{_libint_interfacer_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_g_t_o_shell_8hpp}{Basis/ScalarBasis/GTOShell.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_shell_set_8hpp}{Basis/ScalarBasis/ShellSet.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_molecule_8hpp}{Molecule/Molecule.hpp}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_coulomb_repulsion_operator_8hpp}{Operator/FirstQuantized/CoulombRepulsionOperator.hpp}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_electronic_dipole_operator_8hpp}{Operator/FirstQuantized/ElectronicDipoleOperator.hpp}}"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_kinetic_operator_8hpp}{Operator/FirstQuantized/KineticOperator.hpp}}"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_nuclear_attraction_operator_8hpp}{Operator/FirstQuantized/NuclearAttractionOperator.hpp}}"{}}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_overlap_operator_8hpp}{Operator/FirstQuantized/OverlapOperator.hpp}}"{}}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ <boost/preprocessor.hpp>}\ \ \textcolor{comment}{//\ include\ preprocessor\ before\ libint\ to\ fix\ libint-\/boost\ bug}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ <libint2.hpp>}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer}{LibintInterfacer}}\ \{}
+\DoxyCodeLine{00044\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer_a60b19bbf913080d3e958cca51bc16196}{libint\_target\_ptr\_vec}}\ =\ libint2::Engine::target\_ptr\_vec;}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{//\ PRIVATE\ METHODS\ -\/\ SINGLETON}}
+\DoxyCodeLine{00053\ \textcolor{comment}{}\ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer}{LibintInterfacer}}();}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00058\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer}{\string~LibintInterfacer}}();}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{comment}{//\ PRIVATE\ STRUCTS}}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00063\ \ \ \ \ \}\ empty;\ \ \textcolor{comment}{//\ empty\_pod\ is\ a\ private\ typedef\ for\ libint2::Engine,\ so\ we\ copy\ it\ over}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{comment}{//\ PUBLIC\ METHODS\ -\/\ SINGLETON}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer}{LibintInterfacer}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer_a8a24a71b6a4c013badc0a484966b4e22}{get}}();}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00077\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer_a723d4bbf5cc350ed155b6752ed2bb096}{LibintInterfacer}}(\mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer}{LibintInterfacer}}\ \textcolor{keyword}{const}\&\ libint\_communicator)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer_aab216f2d2458c398eb271561f7f553dd}{operator=}}(\mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer}{LibintInterfacer}}\ \textcolor{keyword}{const}\&\ libint\_communicator)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00082\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Interfacing\ -\/\ std\ to\ libint}}
+\DoxyCodeLine{00083\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00092\ \ \ \ \ libint2::svector<double>\ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer_a0b80aec11ef1d1fd1773b6f51ced15fb}{interface}}(\textcolor{keyword}{const}\ std::vector<double>\&\ vector)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00096\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Interfacing\ -\/\ libint\ to\ std}}
+\DoxyCodeLine{00097\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00106\ \ \ \ \ std::vector<double>\ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer_a0b80aec11ef1d1fd1773b6f51ced15fb}{interface}}(\textcolor{keyword}{const}\ libint2::svector<double>\&\ svector)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{comment}{//\ PUBLIC\ METHODS\ -\/\ INTERFACING\ (GQCP\ TO\ LIBINT)}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00116\ \ \ \ \ libint2::Atom\ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer_a0b80aec11ef1d1fd1773b6f51ced15fb}{interface}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_nucleus}{Nucleus}}\&\ nucleus)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00123\ \ \ \ \ std::vector<libint2::Atom>\ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer_a0b80aec11ef1d1fd1773b6f51ced15fb}{interface}}(\textcolor{keyword}{const}\ std::vector<Nucleus>\&\ nuclei)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00130\ \ \ \ \ libint2::Shell\ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer_a0b80aec11ef1d1fd1773b6f51ced15fb}{interface}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}}\&\ shell)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00137\ \ \ \ \ libint2::BasisSet\ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer_a0b80aec11ef1d1fd1773b6f51ced15fb}{interface}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{ShellSet<GTOShell>}}\&\ shellset)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{comment}{//\ PUBLIC\ METHODS\ -\/\ INTERFACING\ (LIBINT\ TO\ GQCP)}}
+\DoxyCodeLine{00150\ \textcolor{comment}{}\ \ \ \ std::vector<GTOShell>\ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer_a0b80aec11ef1d1fd1773b6f51ced15fb}{interface}}(\textcolor{keyword}{const}\ libint2::Shell\&\ libint\_shell,\ \textcolor{keyword}{const}\ std::vector<Nucleus>\&\ nuclei,\ \textcolor{keywordtype}{bool}\ undo\_renorm\ =\ \textcolor{keyword}{true})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00160\ \ \ \ \ std::vector<GTOShell>\ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer_a0b80aec11ef1d1fd1773b6f51ced15fb}{interface}}(\textcolor{keyword}{const}\ libint2::BasisSet\&\ libint\_basisset,\ \textcolor{keyword}{const}\ std::vector<Nucleus>\&\ nuclei)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{comment}{//\ PUBLIC\ METHODS}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00174\ \ \ \ \ libint2::Engine\ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer_ac404e0944449e3e4698bdba35067290e}{createEngine}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{CoulombRepulsionOperator}}\&\ op,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ max\_nprim,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ max\_l)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00185\ \ \ \ \ libint2::Engine\ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer_ac404e0944449e3e4698bdba35067290e}{createEngine}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_dipole_operator}{ElectronicDipoleOperator}}\&\ op,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ max\_nprim,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ max\_l)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00196\ \ \ \ \ libint2::Engine\ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer_ac404e0944449e3e4698bdba35067290e}{createEngine}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_kinetic_operator}{KineticOperator}}\&\ op,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ max\_nprim,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ max\_l)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00207\ \ \ \ \ libint2::Engine\ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer_ac404e0944449e3e4698bdba35067290e}{createEngine}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_attraction_operator}{NuclearAttractionOperator}}\&\ op,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ max\_nprim,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ max\_l)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00218\ \ \ \ \ libint2::Engine\ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer_ac404e0944449e3e4698bdba35067290e}{createEngine}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_overlap_operator}{OverlapOperator}}\&\ op,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ max\_nprim,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ max\_l)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer_aab35d169c5fdc188a826f4c5538aff83}{numberOfShells}}(\textcolor{keyword}{const}\ libint2::Shell\&\ libint\_shell)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00232\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer_aab35d169c5fdc188a826f4c5538aff83}{numberOfShells}}(\textcolor{keyword}{const}\ libint2::BasisSet\&\ libint\_basisset)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00239\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_libint_interfacer_ad39caadc6d5320df459e9d451c4b0b1c}{undoRenorm}}(libint2::Shell\&\ libint\_shell)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00240\ \};}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

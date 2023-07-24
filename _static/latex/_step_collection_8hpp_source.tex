@@ -1,0 +1,120 @@
+\hypertarget{_step_collection_8hpp_source}{}\doxysection{Step\+Collection.\+hpp}
+\label{_step_collection_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/StepCollection.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/StepCollection.hpp}}
+\mbox{\hyperlink{_step_collection_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_algorithm_2_step_8hpp}{Mathematical/Algorithm/Step.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{memory_8hpp}{Utilities/memory.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{type__traits_8hpp}{Utilities/type\_traits.hpp}}"{}}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <boost/format.hpp>}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Environment>}
+\DoxyCodeLine{00041\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_step_collection}{StepCollection}}:\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_step}{Step}}<\_Environment>\ \{}
+\DoxyCodeLine{00042\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a9a2b54cf182fc7117d01c91b9031eec0}{Environment}}\ =\ \_Environment;}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00047\ \ \ \ \ std::vector<std::shared\_ptr<Step<Environment>>>\ steps;\ \ \textcolor{comment}{//\ the\ consecutive\ steps\ that\ this\ collection\ consists\ of}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00052\ \textcolor{comment}{\ \ \ \ \ *\ \ PUBLIC\ OVERRIDDEN\ METHODS}}
+\DoxyCodeLine{00053\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00058\ \ \ \ \ std::string\ \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a4f63e6c1cb7d7de973cbb4212e5ba699}{description}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ std::string\ description\_string\ =\ (boost::format(\textcolor{stringliteral}{"{}An\ algorithmic\ step\ consisting\ of\ \%s\ algorithmic\ steps:\(\backslash\)n"{}})\ \%\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a0fa34cf0088c63bffa9c1abc1a8dd8c2}{numberOfSteps}}()).str();}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a0fa34cf0088c63bffa9c1abc1a8dd8c2}{numberOfSteps}}();\ i++)\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ step\ =\ this-\/>steps[i];}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ description\_string\ +=\ (boost::format(\textcolor{stringliteral}{"{}\(\backslash\)t\%s.\ \%s\(\backslash\)n"{}})\ \%\ std::to\_string(i\ +\ 1)\ \%\ step-\/>description()).str();}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ description\_string;}
+\DoxyCodeLine{00067\ \ \ \ \ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a227f70ef9375810de6e45dfbc23fc034}{execute}}(\mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a9a2b54cf182fc7117d01c91b9031eec0}{Environment}}\&\ environment)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ step\ :\ this-\/>steps)\ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ step-\/>execute(environment);}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00079\ \ \ \ \ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00083\ \textcolor{comment}{\ \ \ \ \ *\ \ PUBLIC\ METHODS}}
+\DoxyCodeLine{00084\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Step<Environment>>}
+\DoxyCodeLine{00092\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<std::is\_same<Environment,\ typename\ Z::Environment>::value}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection}{StepCollection<Environment>}}\&>\ \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_ae642fc19be01a8aadebeaed0aef863b9}{add}}(\textcolor{keyword}{const}\ Z\&\ step)\ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ this-\/>steps.push\_back(std::make\_shared<Z>(step));}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00095\ \ \ \ \ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Step<Environment>>}
+\DoxyCodeLine{00105\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<std::is\_same<Environment,\ typename\ Z::Environment>::value}},\ \textcolor{keywordtype}{void}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a1382fc8584fa77d82e6648b9f929ac74}{insert}}(\textcolor{keyword}{const}\ Z\&\ step,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ index)\ \{}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ the\ index\ is\ out\ of\ bounds.}}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ >\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a0fa34cf0088c63bffa9c1abc1a8dd8c2}{numberOfSteps}}())\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}StepCollection::insert(const\ Z\&,\ const\ size\_t):\ Cannot\ insert\ at\ the\ given\ index."{}});}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Actually\ insert\ in\ the\ std::vector\ of\ steps.}}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ <\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a0fa34cf0088c63bffa9c1abc1a8dd8c2}{numberOfSteps}}())\ \{\ \ \textcolor{comment}{//\ within\ the\ current\ bounds}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ it\ =\ this-\/>steps.begin();}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>steps.insert(it\ +\ index,\ std::make\_shared<Z>(step));\ \ \textcolor{comment}{//\ inserting\ at\ an\ given\ index\ goes\ through\ an\ iterator}}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (index\ ==\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a0fa34cf0088c63bffa9c1abc1a8dd8c2}{numberOfSteps}}())\ \{\ \ \textcolor{comment}{//\ at\ the\ end}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_ae642fc19be01a8aadebeaed0aef863b9}{add}}(step);}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00122\ \ \ \ \ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a0fa34cf0088c63bffa9c1abc1a8dd8c2}{numberOfSteps}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>steps.size();\ \}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a7b03c30ebdc23920b3872a4409e887df}{remove}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ index)\ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ this-\/>steps.erase(this-\/>steps.begin()\ +\ index);}
+\DoxyCodeLine{00138\ \ \ \ \ \}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Step<Environment>>}
+\DoxyCodeLine{00148\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<std::is\_same<Environment,\ typename\ Z::Environment>::value}},\ \textcolor{keywordtype}{void}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a5a31f46749bfa08eadfa3cee42d28ddc}{replace}}(\textcolor{keyword}{const}\ Z\&\ step,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ index)\ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ this-\/>steps[index]\ =\ std::make\_shared<Z>(step);}
+\DoxyCodeLine{00150\ \ \ \ \ \}}
+\DoxyCodeLine{00151\ \};}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

@@ -1,18 +1,19 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="namespace_g_q_c_p_1_1_generalized_eigenproblem_solver" kind="namespace" language="C++">
     <compoundname>GQCP::GeneralizedEigenproblemSolver</compoundname>
       <sectiondef kind="func">
-      <memberdef kind="function" id="namespace_g_q_c_p_1_1_generalized_eigenproblem_solver_1a8a29038e5ba31dcdf0a375f8d2c5242c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespace_g_q_c_p_1_1_generalized_eigenproblem_solver_1a89eb48a2f9b0d2961fa7526e1bed4b8a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Scalar</type>
           </param>
         </templateparamlist>
         <type><ref refid="class_g_q_c_p_1_1_algorithm" kindref="compound">Algorithm</ref>&lt; <ref refid="class_g_q_c_p_1_1_generalized_eigenproblem_environment" kindref="compound">GeneralizedEigenproblemEnvironment</ref>&lt; Scalar &gt; &gt;</type>
-        <definition>Algorithm&lt;GeneralizedEigenproblemEnvironment&lt;Scalar&gt; &gt; GQCP::GeneralizedEigenproblemSolver::Dense</definition>
+        <definition>Algorithm&lt; GeneralizedEigenproblemEnvironment&lt; Scalar &gt; &gt; GQCP::GeneralizedEigenproblemSolver::Dense</definition>
         <argsstring>()</argsstring>
         <name>Dense</name>
+        <qualifiedname>GQCP::GeneralizedEigenproblemSolver::Dense</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>

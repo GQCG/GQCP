@@ -1,18 +1,19 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="namespace_g_q_c_p_1_1_eigenproblem_solver" kind="namespace" language="C++">
     <compoundname>GQCP::EigenproblemSolver</compoundname>
       <sectiondef kind="func">
-      <memberdef kind="function" id="namespace_g_q_c_p_1_1_eigenproblem_solver_1addc726674f4d48350853085d77218a48" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespace_g_q_c_p_1_1_eigenproblem_solver_1adc0a346fd49d743303c6cbc86d6d3b6a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Scalar</type>
           </param>
         </templateparamlist>
         <type><ref refid="class_g_q_c_p_1_1_algorithm" kindref="compound">Algorithm</ref>&lt; <ref refid="class_g_q_c_p_1_1_eigenproblem_environment" kindref="compound">EigenproblemEnvironment</ref>&lt; Scalar &gt; &gt;</type>
-        <definition>Algorithm&lt;EigenproblemEnvironment&lt;Scalar&gt; &gt; GQCP::EigenproblemSolver::Dense</definition>
+        <definition>Algorithm&lt; EigenproblemEnvironment&lt; Scalar &gt; &gt; GQCP::EigenproblemSolver::Dense</definition>
         <argsstring>()</argsstring>
         <name>Dense</name>
+        <qualifiedname>GQCP::EigenproblemSolver::Dense</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -33,11 +34,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp" line="35" column="11" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp" bodystart="35" bodyend="42"/>
       </memberdef>
-      <memberdef kind="function" id="namespace_g_q_c_p_1_1_eigenproblem_solver_1a5c1cb39442d8cffd03566c1de6e0cdd8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespace_g_q_c_p_1_1_eigenproblem_solver_1a3b9052f76c252ada23e2b5a01d838133" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_iterative_algorithm" kindref="compound">IterativeAlgorithm</ref>&lt; <ref refid="class_g_q_c_p_1_1_eigenproblem_environment" kindref="compound">EigenproblemEnvironment</ref>&lt; double &gt; &gt;</type>
-        <definition>IterativeAlgorithm&lt;EigenproblemEnvironment&lt;double&gt; &gt; GQCP::EigenproblemSolver::Davidson</definition>
+        <definition>IterativeAlgorithm&lt; EigenproblemEnvironment&lt; double &gt; &gt; GQCP::EigenproblemSolver::Davidson</definition>
         <argsstring>(const size_t number_of_requested_eigenpairs=1, const size_t maximum_subspace_dimension=15, const double convergence_threshold=1.0e-08, double correction_threshold=1.0e-12, const size_t maximum_number_of_iterations=128, const double inclusion_threshold=1.0e-03)</argsstring>
         <name>Davidson</name>
+        <qualifiedname>GQCP::EigenproblemSolver::Davidson</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>number_of_requested_eigenpairs</declname>

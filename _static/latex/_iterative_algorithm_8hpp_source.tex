@@ -1,0 +1,117 @@
+\hypertarget{_iterative_algorithm_8hpp_source}{}\doxysection{Iterative\+Algorithm.\+hpp}
+\label{_iterative_algorithm_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/IterativeAlgorithm.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/IterativeAlgorithm.hpp}}
+\mbox{\hyperlink{_iterative_algorithm_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_convergence_criterion_8hpp}{Mathematical/Algorithm/ConvergenceCriterion.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_step_collection_8hpp}{Mathematical/Algorithm/StepCollection.hpp}}"{}}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <boost/format.hpp>}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Environment>}
+\DoxyCodeLine{00038\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{IterativeAlgorithm}}\ \{}
+\DoxyCodeLine{00039\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm_ad8a935ff155d2a6d392444038135803a}{Environment}}\ =\ \_Environment;}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ maximum\_number\_of\_iterations;}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ iteration\ =\ 0;\ \ \textcolor{comment}{//\ the\ number\ of\ iterations\ that\ have\ been\ performed}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection}{StepCollection<Environment>}}\ steps;\ \ \textcolor{comment}{//\ the\ collection\ of\ algorithm\ steps\ that\ is\ performed\ in-\/between\ convergence\ checks}}
+\DoxyCodeLine{00048\ \ \ \ \ std::shared\_ptr<ConvergenceCriterion<Environment>>\ convergence\_criterion;}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00053\ \textcolor{comment}{\ \ \ \ \ *\ \ CONSTRUCTORS}}
+\DoxyCodeLine{00054\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Criterion>}
+\DoxyCodeLine{00066\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm_afa032f15f52a6296be5b02d8d4079fb0}{IterativeAlgorithm}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection}{StepCollection<Environment>}}\&\ steps,\ \textcolor{keyword}{const}\ Criterion\&\ convergence\_criterion,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ maximum\_number\_of\_iterations\ =\ 128)\ :}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ maximum\_number\_of\_iterations\ \{maximum\_number\_of\_iterations\},}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ steps\ \{steps\},}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ convergence\_criterion\ \{std::make\_shared<Criterion>(convergence\_criterion)\}\ \{\}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00073\ \textcolor{comment}{\ \ \ \ \ *\ \ PUBLIC\ METHODS}}
+\DoxyCodeLine{00074\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00080\ \ \ \ \ std::string\ \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm_a83d469ddf0d942cb38f2161a7922c6b2}{description}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ std::string\ description\_string\ =\ (boost::format(\textcolor{stringliteral}{"{}An\ iterative\ algorithm\ (with\ a\ maximum\ of\ \%s\ iterations)\ consisting\ of\ the\ following\ steps:\(\backslash\)n"{}})\ \%\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm_ae459d4c90d11df0f1b4ea67db7b2e293}{maximumNumberOfIterations}}()).str();}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ description\_string\ +=\ steps.\mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a4f63e6c1cb7d7de973cbb4212e5ba699}{description}}();}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ description\_string\ +=\ \textcolor{stringliteral}{"{}\(\backslash\)nWith\ the\ following\ convergence\ criterion:\(\backslash\)n"{}};}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ description\_string\ +=\ convergence\_criterion-\/>description();}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ description\_string;}
+\DoxyCodeLine{00089\ \ \ \ \ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Step<Environment>>}
+\DoxyCodeLine{00099\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<std::is\_same<Environment,\ typename\ Z::Environment>::value}},\ \textcolor{keywordtype}{void}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm_a3f8838d9873c7529f2f63d2941c46f00}{insert}}(\textcolor{keyword}{const}\ Z\&\ step,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ index)\ \{\ this-\/>steps.\mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a1382fc8584fa77d82e6648b9f929ac74}{insert}}(step,\ index);\ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm_ae459d4c90d11df0f1b4ea67db7b2e293}{maximumNumberOfIterations}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>maximum\_number\_of\_iterations;\ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm_a687cac45fb0d820001960019dcd2b331}{numberOfIterations}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>iteration;\ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm_a10999981761f1e11f253f314a34fd063}{perform}}(\mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm_ad8a935ff155d2a6d392444038135803a}{Environment}}\&\ environment)\ \{}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (this-\/>iteration\ =\ 0;\ this-\/>iteration\ <=\ this-\/>maximum\_number\_of\_iterations;\ this-\/>iteration++)\ \{\ \ \textcolor{comment}{//\ do\ at\ maximum\ the\ maximum\ allowed\ number\ of\ iterations}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Every\ iteration\ consists\ of\ two\ parts:}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ -\/\ the\ convergence\ check,\ which\ checks\ if\ the\ iterations\ may\ stop}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ -\/\ the\ iteration\ cycle,\ i.e.\ what\ happens\ in-\/between\ the\ convergence\ checks}}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>convergence\_criterion-\/>isFulfilled(environment))\ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};\ \ \textcolor{comment}{//\ exit\ the\ loop\ and\ function\ early}}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>steps.\mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a227f70ef9375810de6e45dfbc23fc034}{execute}}(environment);}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Since\ we\ will\ exit\ the\ function\ early\ if\ convergence\ is\ achieved,\ the\ algorithm\ is\ considered\ non-\/converging\ if\ the\ loop\ is\ done.}}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}IterativeAlgorithm<Environment>::perform(Environment\&):\ The\ algorithm\ didn't\ find\ a\ solution\ within\ the\ maximum\ number\ of\ iterations."{}});}
+\DoxyCodeLine{00134\ \ \ \ \ \}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm_a20ca757a5e8a98f552b0f4c40ceb840e}{remove}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ index)\ \{\ this-\/>steps.\mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a7b03c30ebdc23920b3872a4409e887df}{remove}}(index);\ \}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Step<Environment>>}
+\DoxyCodeLine{00152\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<std::is\_same<Environment,\ typename\ Z::Environment>::value}},\ \textcolor{keywordtype}{void}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm_ad4c35728ce2e847b9dd338b13f8a1905}{replace}}(\textcolor{keyword}{const}\ Z\&\ step,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ index)\ \{\ this-\/>steps.\mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_a5a31f46749bfa08eadfa3cee42d28ddc}{replace}}(step,\ index);\ \}}
+\DoxyCodeLine{00153\ \};}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

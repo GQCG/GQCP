@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_t2_amplitudes" kind="class" language="C++" prot="public">
     <compoundname>GQCP::T2Amplitudes</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_vector_space_arithmetic" prot="public" virt="non-virtual">GQCP::VectorSpaceArithmetic&lt; T2Amplitudes&lt; _Scalar &gt;, _Scalar &gt;</basecompoundref>
@@ -15,6 +15,7 @@
         <definition>using GQCP::T2Amplitudes&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
         <argsstring></argsstring>
         <name>Scalar</name>
+        <qualifiedname>GQCP::T2Amplitudes::Scalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -28,6 +29,7 @@
         <definition>using GQCP::T2Amplitudes&lt; _Scalar &gt;::Self =  T2Amplitudes&lt;Scalar&gt;</definition>
         <argsstring></argsstring>
         <name>Self</name>
+        <qualifiedname>GQCP::T2Amplitudes::Self</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -43,6 +45,7 @@
         <definition>OrbitalSpace GQCP::T2Amplitudes&lt; _Scalar &gt;::orbital_space</definition>
         <argsstring></argsstring>
         <name>orbital_space</name>
+        <qualifiedname>GQCP::T2Amplitudes::orbital_space</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -56,6 +59,7 @@
         <definition>ImplicitRankFourTensorSlice&lt;Scalar&gt; GQCP::T2Amplitudes&lt; _Scalar &gt;::t</definition>
         <argsstring></argsstring>
         <name>t</name>
+        <qualifiedname>GQCP::T2Amplitudes::t</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -71,6 +75,7 @@
         <definition>GQCP::T2Amplitudes&lt; _Scalar &gt;::T2Amplitudes</definition>
         <argsstring>(const ImplicitRankFourTensorSlice&lt; Scalar &gt; &amp;t, const OrbitalSpace &amp;orbital_space)</argsstring>
         <name>T2Amplitudes</name>
+        <qualifiedname>GQCP::T2Amplitudes::T2Amplitudes</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_t2_amplitudes_1aa92c680ab582739af243ff2ed843ad45" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>t</declname>
@@ -111,6 +116,7 @@
         <definition>GQCP::T2Amplitudes&lt; _Scalar &gt;::T2Amplitudes</definition>
         <argsstring>(const ImplicitRankFourTensorSlice&lt; Scalar &gt; &amp;t, const size_t N, const size_t M)</argsstring>
         <name>T2Amplitudes</name>
+        <qualifiedname>GQCP::T2Amplitudes::T2Amplitudes</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_t2_amplitudes_1aa92c680ab582739af243ff2ed843ad45" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>t</declname>
@@ -163,6 +169,7 @@
         <definition>Scalar GQCP::T2Amplitudes&lt; _Scalar &gt;::operator()</definition>
         <argsstring>(const size_t i, const size_t j, const size_t a, const size_t b) const</argsstring>
         <name>operator()</name>
+        <qualifiedname>GQCP::T2Amplitudes::operator()</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>i</declname>
@@ -224,11 +231,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" line="133" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" bodystart="133" bodyend="133"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_t2_amplitudes_1a842400905c898572cc8ab4df1e162795" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_t2_amplitudes_1ac7d5b263c4cdb8b516bc6b8756ba89fd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_t2_amplitudes_1aa92c680ab582739af243ff2ed843ad45" kindref="member">Scalar</ref> &amp;</type>
-        <definition>Scalar&amp; GQCP::T2Amplitudes&lt; _Scalar &gt;::operator()</definition>
+        <definition>Scalar &amp; GQCP::T2Amplitudes&lt; _Scalar &gt;::operator()</definition>
         <argsstring>(const size_t i, const size_t j, const size_t a, const size_t b)</argsstring>
         <name>operator()</name>
+        <qualifiedname>GQCP::T2Amplitudes::operator()</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>i</declname>
@@ -290,11 +298,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" line="145" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" bodystart="145" bodyend="145"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_t2_amplitudes_1abf1805e5eaa6e845a1ed95e80c122bf0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_t2_amplitudes_1ab2708c2264c654264bb0a81bbe44fbf6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_t2_amplitudes_1aa92c680ab582739af243ff2ed843ad45" kindref="member">Scalar</ref> &gt; &amp;</type>
-        <definition>const ImplicitRankFourTensorSlice&lt;Scalar&gt;&amp; GQCP::T2Amplitudes&lt; _Scalar &gt;::asImplicitRankFourTensorSlice</definition>
+        <definition>const ImplicitRankFourTensorSlice&lt; Scalar &gt; &amp; GQCP::T2Amplitudes&lt; _Scalar &gt;::asImplicitRankFourTensorSlice</definition>
         <argsstring>() const</argsstring>
         <name>asImplicitRankFourTensorSlice</name>
+        <qualifiedname>GQCP::T2Amplitudes::asImplicitRankFourTensorSlice</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -306,11 +315,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" line="150" column="39" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" bodystart="150" bodyend="150"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_t2_amplitudes_1ab97309a121f7d229f2f5ac00c343ac6d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_t2_amplitudes_1a15d0734f2885dc55f214a6c8049b380c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_orbital_space" kindref="compound">OrbitalSpace</ref> &amp;</type>
-        <definition>const OrbitalSpace&amp; GQCP::T2Amplitudes&lt; _Scalar &gt;::orbitalSpace</definition>
+        <definition>const OrbitalSpace &amp; GQCP::T2Amplitudes&lt; _Scalar &gt;::orbitalSpace</definition>
         <argsstring>() const</argsstring>
         <name>orbitalSpace</name>
+        <qualifiedname>GQCP::T2Amplitudes::orbitalSpace</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -327,6 +337,7 @@
         <definition>Scalar GQCP::T2Amplitudes&lt; _Scalar &gt;::norm</definition>
         <argsstring>() const</argsstring>
         <name>norm</name>
+        <qualifiedname>GQCP::T2Amplitudes::norm</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -338,11 +349,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" line="165" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" bodystart="165" bodyend="165"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_t2_amplitudes_1aceccc95a7c3c82a13ad6cb09cf77ed82" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_t2_amplitudes_1a1bad3da44f2a56ab9844d95416ef8cb9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_t2_amplitudes_1a543cc420792b577ae1c43ba570ade8a4" kindref="member">Self</ref> &amp;</type>
-        <definition>Self&amp; GQCP::T2Amplitudes&lt; _Scalar &gt;::operator+=</definition>
+        <definition>Self &amp; GQCP::T2Amplitudes&lt; _Scalar &gt;::operator+=</definition>
         <argsstring>(const Self &amp;rhs) override</argsstring>
         <name>operator+=</name>
+        <qualifiedname>GQCP::T2Amplitudes::operator+=</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_t2_amplitudes_1a543cc420792b577ae1c43ba570ade8a4" kindref="member">Self</ref> &amp;</type>
           <declname>rhs</declname>
@@ -356,12 +368,13 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" line="175" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" bodystart="175" bodyend="187"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_t2_amplitudes_1a10ae1614bffaae6a0bdf8755b8840d72" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_t2_amplitudes_1aeb24114c65744ed5323bde446ecbab6c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type><ref refid="class_g_q_c_p_1_1_t2_amplitudes_1a543cc420792b577ae1c43ba570ade8a4" kindref="member">Self</ref> &amp;</type>
-        <definition>Self&amp; GQCP::T2Amplitudes&lt; _Scalar &gt;::operator*=</definition>
+        <definition>Self &amp; GQCP::T2Amplitudes&lt; _Scalar &gt;::operator*=</definition>
         <argsstring>(const Scalar &amp;a) override</argsstring>
         <name>operator*=</name>
-        <reimplements refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a1ea665b4c39561433d116ee4b6c1d911">operator*=</reimplements>
+        <qualifiedname>GQCP::T2Amplitudes::operator*=</qualifiedname>
+        <reimplements refid="class_g_q_c_p_1_1_vector_space_arithmetic_1af51affdc48585acbd2de35c1d1bc88c6">operator*=</reimplements>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_t2_amplitudes_1aa92c680ab582739af243ff2ed843ad45" kindref="member">Scalar</ref> &amp;</type>
           <declname>a</declname>
@@ -377,11 +390,12 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="class_g_q_c_p_1_1_t2_amplitudes_1a5a0b7ae7664a5eaa7706867505931790" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_t2_amplitudes_1a629dbb366ec07607636132fa4739d93f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_t2_amplitudes" kindref="compound">T2Amplitudes</ref>&lt; <ref refid="class_g_q_c_p_1_1_t2_amplitudes_1aa92c680ab582739af243ff2ed843ad45" kindref="member">Scalar</ref> &gt;</type>
-        <definition>static T2Amplitudes&lt;Scalar&gt; GQCP::T2Amplitudes&lt; _Scalar &gt;::Perturbative</definition>
+        <definition>static T2Amplitudes&lt; Scalar &gt; GQCP::T2Amplitudes&lt; _Scalar &gt;::Perturbative</definition>
         <argsstring>(const SquareMatrix&lt; Scalar &gt; &amp;f, const SquareRankFourTensor&lt; Scalar &gt; &amp;V_A, const OrbitalSpace &amp;orbital_space)</argsstring>
         <name>Perturbative</name>
+        <qualifiedname>GQCP::T2Amplitudes::Perturbative</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_t2_amplitudes_1aa92c680ab582739af243ff2ed843ad45" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>f</declname>
@@ -449,11 +463,9 @@
 </para>
     </detaileddescription>
     <inheritancegraph>
-      <node id="2">
-        <label>GQCP::VectorSpaceArithmetic&lt; T2Amplitudes&lt; _Scalar &gt;, _Scalar &gt;</label>
-        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
-        <childnode refid="3" relation="public-inheritance">
-        </childnode>
+      <node id="3">
+        <label>GQCP::CRTP&lt; _Derived &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
       </node>
       <node id="1">
         <label>GQCP::T2Amplitudes&lt; _Scalar &gt;</label>
@@ -461,17 +473,17 @@
         <childnode refid="2" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="3">
-        <label>GQCP::CRTP&lt; _Derived &gt;</label>
-        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
+      <node id="2">
+        <label>GQCP::VectorSpaceArithmetic&lt; T2Amplitudes&lt; _Scalar &gt;, _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="2">
-        <label>GQCP::VectorSpaceArithmetic&lt; T2Amplitudes&lt; _Scalar &gt;, _Scalar &gt;</label>
-        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
-        <childnode refid="3" relation="public-inheritance">
-        </childnode>
+      <node id="3">
+        <label>GQCP::CRTP&lt; _Derived &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
       </node>
       <node id="1">
         <label>GQCP::T2Amplitudes&lt; _Scalar &gt;</label>
@@ -479,28 +491,30 @@
         <childnode refid="2" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="3">
-        <label>GQCP::CRTP&lt; _Derived &gt;</label>
-        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
+      <node id="2">
+        <label>GQCP::VectorSpaceArithmetic&lt; T2Amplitudes&lt; _Scalar &gt;, _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
       </node>
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" line="38" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CC/T2Amplitudes.hpp" bodystart="39" bodyend="206"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_t2_amplitudes_1abf1805e5eaa6e845a1ed95e80c122bf0" prot="public" virt="non-virtual"><scope>GQCP::T2Amplitudes</scope><name>asImplicitRankFourTensorSlice</name></member>
-      <member refid="class_g_q_c_p_1_1_c_r_t_p_1a2266d4aacaad437e302033b24e1d6d11" prot="public" virt="non-virtual"><scope>GQCP::T2Amplitudes</scope><name>derived</name></member>
-      <member refid="class_g_q_c_p_1_1_c_r_t_p_1ab53c6ca668c4f27dd4aa51856b6aee91" prot="public" virt="non-virtual"><scope>GQCP::T2Amplitudes</scope><name>derived</name></member>
+      <member refid="class_g_q_c_p_1_1_t2_amplitudes_1ab2708c2264c654264bb0a81bbe44fbf6" prot="public" virt="non-virtual"><scope>GQCP::T2Amplitudes</scope><name>asImplicitRankFourTensorSlice</name></member>
+      <member refid="class_g_q_c_p_1_1_c_r_t_p_1afbb2119ea002c348828c45726583d863" prot="public" virt="non-virtual"><scope>GQCP::T2Amplitudes</scope><name>derived</name></member>
+      <member refid="class_g_q_c_p_1_1_c_r_t_p_1a28a8bce1d2ca75d90ecf1295dd640f13" prot="public" virt="non-virtual"><scope>GQCP::T2Amplitudes</scope><name>derived</name></member>
       <member refid="class_g_q_c_p_1_1_c_r_t_p_1ab72cbeb2fad6d811d4f6fcd2c962b55e" prot="public" virt="non-virtual"><scope>GQCP::T2Amplitudes</scope><name>Derived</name></member>
       <member refid="class_g_q_c_p_1_1_t2_amplitudes_1a0ba7fd37b05a3d653b15a148a675d000" prot="public" virt="non-virtual"><scope>GQCP::T2Amplitudes</scope><name>norm</name></member>
       <member refid="class_g_q_c_p_1_1_t2_amplitudes_1a72b3745d781ae7986c45f4e348906b89" prot="public" virt="non-virtual"><scope>GQCP::T2Amplitudes</scope><name>operator()</name></member>
-      <member refid="class_g_q_c_p_1_1_t2_amplitudes_1a842400905c898572cc8ab4df1e162795" prot="public" virt="non-virtual"><scope>GQCP::T2Amplitudes</scope><name>operator()</name></member>
-      <member refid="class_g_q_c_p_1_1_t2_amplitudes_1a10ae1614bffaae6a0bdf8755b8840d72" prot="public" virt="virtual"><scope>GQCP::T2Amplitudes</scope><name>operator*=</name></member>
-      <member refid="class_g_q_c_p_1_1_t2_amplitudes_1aceccc95a7c3c82a13ad6cb09cf77ed82" prot="public" virt="non-virtual"><scope>GQCP::T2Amplitudes</scope><name>operator+=</name></member>
-      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a241d8217aa2b2f34384a4439a968d555" prot="public" virt="pure-virtual" ambiguityscope="VectorSpaceArithmetic&lt; T2Amplitudes&lt; _Scalar &gt;, _Scalar &gt;::"><scope>GQCP::T2Amplitudes</scope><name>operator+=</name></member>
+      <member refid="class_g_q_c_p_1_1_t2_amplitudes_1ac7d5b263c4cdb8b516bc6b8756ba89fd" prot="public" virt="non-virtual"><scope>GQCP::T2Amplitudes</scope><name>operator()</name></member>
+      <member refid="class_g_q_c_p_1_1_t2_amplitudes_1aeb24114c65744ed5323bde446ecbab6c" prot="public" virt="virtual"><scope>GQCP::T2Amplitudes</scope><name>operator*=</name></member>
+      <member refid="class_g_q_c_p_1_1_t2_amplitudes_1a1bad3da44f2a56ab9844d95416ef8cb9" prot="public" virt="non-virtual"><scope>GQCP::T2Amplitudes</scope><name>operator+=</name></member>
+      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a766eadd335959ff0a7a51f85142ce3c7" prot="public" virt="pure-virtual" ambiguityscope="VectorSpaceArithmetic&lt; T2Amplitudes&lt; _Scalar &gt;, _Scalar &gt;::"><scope>GQCP::T2Amplitudes</scope><name>operator+=</name></member>
       <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a6b0d86c96ce2b6aaed10dc6d70a493bc" prot="public" virt="non-virtual"><scope>GQCP::T2Amplitudes</scope><name>operator-</name></member>
-      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a63a0cb54302a2d2f1d54af66e7527c4f" prot="public" virt="non-virtual"><scope>GQCP::T2Amplitudes</scope><name>operator-=</name></member>
+      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a5dcedcec644cdc0b4ea33fb8ab2ea43f" prot="public" virt="non-virtual"><scope>GQCP::T2Amplitudes</scope><name>operator-=</name></member>
       <member refid="class_g_q_c_p_1_1_t2_amplitudes_1a468d9d2e69c8f5166585283adde5819d" prot="private" virt="non-virtual"><scope>GQCP::T2Amplitudes</scope><name>orbital_space</name></member>
-      <member refid="class_g_q_c_p_1_1_t2_amplitudes_1ab97309a121f7d229f2f5ac00c343ac6d" prot="public" virt="non-virtual"><scope>GQCP::T2Amplitudes</scope><name>orbitalSpace</name></member>
-      <member refid="class_g_q_c_p_1_1_t2_amplitudes_1a5a0b7ae7664a5eaa7706867505931790" prot="public" virt="non-virtual"><scope>GQCP::T2Amplitudes</scope><name>Perturbative</name></member>
+      <member refid="class_g_q_c_p_1_1_t2_amplitudes_1a15d0734f2885dc55f214a6c8049b380c" prot="public" virt="non-virtual"><scope>GQCP::T2Amplitudes</scope><name>orbitalSpace</name></member>
+      <member refid="class_g_q_c_p_1_1_t2_amplitudes_1a629dbb366ec07607636132fa4739d93f" prot="public" virt="non-virtual"><scope>GQCP::T2Amplitudes</scope><name>Perturbative</name></member>
       <member refid="class_g_q_c_p_1_1_t2_amplitudes_1aa92c680ab582739af243ff2ed843ad45" prot="public" virt="non-virtual"><scope>GQCP::T2Amplitudes</scope><name>Scalar</name></member>
       <member refid="class_g_q_c_p_1_1_t2_amplitudes_1a543cc420792b577ae1c43ba570ade8a4" prot="public" virt="non-virtual"><scope>GQCP::T2Amplitudes</scope><name>Self</name></member>
       <member refid="class_g_q_c_p_1_1_t2_amplitudes_1a79736e1b3d13a680b594873dd0beacde" prot="private" virt="non-virtual"><scope>GQCP::T2Amplitudes</scope><name>t</name></member>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer" kind="class" language="C++" prot="public">
     <compoundname>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer" prot="public" virt="non-virtual">GQCP::QCMethodNewtonOrbitalOptimizer</basecompoundref>
@@ -10,6 +10,7 @@
         <definition>size_t GQCP::AP1roGLagrangianNewtonOrbitalOptimizer::N_P</definition>
         <argsstring></argsstring>
         <name>N_P</name>
+        <qualifiedname>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer::N_P</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -23,6 +24,7 @@
         <definition>double GQCP::AP1roGLagrangianNewtonOrbitalOptimizer::pse_convergence_threshold</definition>
         <argsstring></argsstring>
         <name>pse_convergence_threshold</name>
+        <qualifiedname>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer::pse_convergence_threshold</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -36,6 +38,7 @@
         <definition>size_t GQCP::AP1roGLagrangianNewtonOrbitalOptimizer::pse_maximum_number_of_iterations</definition>
         <argsstring></argsstring>
         <name>pse_maximum_number_of_iterations</name>
+        <qualifiedname>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer::pse_maximum_number_of_iterations</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -49,6 +52,7 @@
         <definition>double GQCP::AP1roGLagrangianNewtonOrbitalOptimizer::E</definition>
         <argsstring></argsstring>
         <name>E</name>
+        <qualifiedname>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer::E</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -62,6 +66,7 @@
         <definition>AP1roGGeminalCoefficients GQCP::AP1roGLagrangianNewtonOrbitalOptimizer::G</definition>
         <argsstring></argsstring>
         <name>G</name>
+        <qualifiedname>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer::G</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -75,6 +80,7 @@
         <definition>ImplicitMatrixSlice&lt;double&gt; GQCP::AP1roGLagrangianNewtonOrbitalOptimizer::m_multipliers</definition>
         <argsstring></argsstring>
         <name>m_multipliers</name>
+        <qualifiedname>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer::m_multipliers</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -90,6 +96,7 @@
         <definition>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer::AP1roGLagrangianNewtonOrbitalOptimizer</definition>
         <argsstring>(const size_t N_P, const size_t K, std::shared_ptr&lt; BaseHessianModifier &gt; hessian_modifier, const double oo_convergence_threshold=1.0e-08, const size_t oo_maximum_number_of_iterations=128, const double pse_convergence_threshold=1.0e-08, const size_t pse_maximum_number_of_iterations=128)</argsstring>
         <name>AP1roGLagrangianNewtonOrbitalOptimizer</name>
+        <qualifiedname>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer::AP1roGLagrangianNewtonOrbitalOptimizer</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>N_P</declname>
@@ -193,6 +200,7 @@ The initial guess for the geminal coefficients is zero </para>
         <definition>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer::AP1roGLagrangianNewtonOrbitalOptimizer</definition>
         <argsstring>(const AP1roGGeminalCoefficients &amp;G, std::shared_ptr&lt; BaseHessianModifier &gt; hessian_modifier, const double oo_convergence_threshold=1.0e-08, const size_t oo_maximum_number_of_iterations=128, const double pse_convergence_threshold=1.0e-08, const size_t pse_maximum_number_of_iterations=128)</argsstring>
         <name>AP1roGLagrangianNewtonOrbitalOptimizer</name>
+        <qualifiedname>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer::AP1roGLagrangianNewtonOrbitalOptimizer</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients" kindref="compound">AP1roGGeminalCoefficients</ref> &amp;</type>
           <declname>G</declname>
@@ -284,6 +292,7 @@ The initial guess for the geminal coefficients is zero </para>
         <definition>void GQCP::AP1roGLagrangianNewtonOrbitalOptimizer::prepareDMCalculation</definition>
         <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian) override</argsstring>
         <name>prepareDMCalculation</name>
+        <qualifiedname>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer::prepareDMCalculation</qualifiedname>
         <reimplements refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a815d7b0854bb6b1b5a2e0ecb2ece412d">prepareDMCalculation</reimplements>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
@@ -304,7 +313,8 @@ The initial guess for the geminal coefficients is zero </para>
         <definition>Orbital1DM&lt; double &gt; GQCP::AP1roGLagrangianNewtonOrbitalOptimizer::calculate1DM</definition>
         <argsstring>() const override</argsstring>
         <name>calculate1DM</name>
-        <reimplements refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a77ccb23d08d84d516aabe4194266f4be">calculate1DM</reimplements>
+        <qualifiedname>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer::calculate1DM</qualifiedname>
+        <reimplements refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1aaa0a7c8fb29e59fe541238648a7e394d">calculate1DM</reimplements>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -321,7 +331,8 @@ The initial guess for the geminal coefficients is zero </para>
         <definition>Orbital2DM&lt; double &gt; GQCP::AP1roGLagrangianNewtonOrbitalOptimizer::calculate2DM</definition>
         <argsstring>() const override</argsstring>
         <name>calculate2DM</name>
-        <reimplements refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a16c4c030ecb92d0b5122c05c3e8fa832">calculate2DM</reimplements>
+        <qualifiedname>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer::calculate2DM</qualifiedname>
+        <reimplements refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a98bc4a32c98d24c4b184f878e1def6c6">calculate2DM</reimplements>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -338,7 +349,8 @@ The initial guess for the geminal coefficients is zero </para>
         <definition>ROrbitalRotationGenerators&lt; double &gt; GQCP::AP1roGLagrangianNewtonOrbitalOptimizer::calculateNewFullOrbitalGenerators</definition>
         <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian) const override</argsstring>
         <name>calculateNewFullOrbitalGenerators</name>
-        <reimplements refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1af83988926d235cfc1bce813c7f621225">calculateNewFullOrbitalGenerators</reimplements>
+        <qualifiedname>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer::calculateNewFullOrbitalGenerators</qualifiedname>
+        <reimplements refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a1838e16ae50e1765c75dc9df7216410b">calculateNewFullOrbitalGenerators</reimplements>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
           <declname>sq_hamiltonian</declname>
@@ -369,6 +381,7 @@ The initial guess for the geminal coefficients is zero </para>
         <definition>double GQCP::AP1roGLagrangianNewtonOrbitalOptimizer::electronicEnergy</definition>
         <argsstring>() const</argsstring>
         <name>electronicEnergy</name>
+        <qualifiedname>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer::electronicEnergy</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -380,11 +393,12 @@ The initial guess for the geminal coefficients is zero </para>
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGLagrangianNewtonOrbitalOptimizer.hpp" line="102" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGLagrangianNewtonOrbitalOptimizer.hpp" bodystart="102" bodyend="102"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_1a2c0effa80f9ae7eb102ba37f7b710dee" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_1a5f0b7be4a0e78d038f9b685928820632" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients" kindref="compound">AP1roGGeminalCoefficients</ref> &amp;</type>
-        <definition>const AP1roGGeminalCoefficients&amp; GQCP::AP1roGLagrangianNewtonOrbitalOptimizer::geminalCoefficients</definition>
+        <definition>const AP1roGGeminalCoefficients &amp; GQCP::AP1roGLagrangianNewtonOrbitalOptimizer::geminalCoefficients</definition>
         <argsstring>() const</argsstring>
         <name>geminalCoefficients</name>
+        <qualifiedname>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer::geminalCoefficients</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -396,11 +410,12 @@ The initial guess for the geminal coefficients is zero </para>
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGLagrangianNewtonOrbitalOptimizer.hpp" line="107" column="37" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/AP1roGLagrangianNewtonOrbitalOptimizer.hpp" bodystart="107" bodyend="107"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_1a5f5453dc98e1d3926721c7f7c7654521" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_1af20928ea8100fa1f7d893ee1e9ded08c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice</ref>&lt; double &gt; &amp;</type>
-        <definition>const ImplicitMatrixSlice&lt;double&gt;&amp; GQCP::AP1roGLagrangianNewtonOrbitalOptimizer::multipliers</definition>
+        <definition>const ImplicitMatrixSlice&lt; double &gt; &amp; GQCP::AP1roGLagrangianNewtonOrbitalOptimizer::multipliers</definition>
         <argsstring>() const</argsstring>
         <name>multipliers</name>
+        <qualifiedname>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer::multipliers</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -418,6 +433,16 @@ The initial guess for the geminal coefficients is zero </para>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
+      <node id="1">
+        <label>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>GQCP::BaseOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_base_orbital_optimizer"/>
+      </node>
       <node id="3">
         <label>GQCP::NewtonOrbitalOptimizer</label>
         <link refid="class_g_q_c_p_1_1_newton_orbital_optimizer"/>
@@ -430,9 +455,14 @@ The initial guess for the geminal coefficients is zero </para>
         <childnode refid="3" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="4">
-        <label>GQCP::BaseOrbitalOptimizer</label>
-        <link refid="class_g_q_c_p_1_1_base_orbital_optimizer"/>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="11">
+        <label>GQCP::BasisTransformable&lt; _DerivedDM &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
+      <node id="6">
+        <label>Eigen::Matrix&lt; double, Dynamic, Dynamic &gt;</label>
       </node>
       <node id="1">
         <label>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</label>
@@ -440,8 +470,14 @@ The initial guess for the geminal coefficients is zero </para>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
       </node>
-    </inheritancegraph>
-    <collaborationgraph>
+      <node id="4">
+        <label>GQCP::BaseOrbitalOptimizer</label>
+        <link refid="class_g_q_c_p_1_1_base_orbital_optimizer"/>
+      </node>
+      <node id="14">
+        <label>GQCP::CRTP&lt; _Derived &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
+      </node>
       <node id="3">
         <label>GQCP::NewtonOrbitalOptimizer</label>
         <link refid="class_g_q_c_p_1_1_newton_orbital_optimizer"/>
@@ -460,31 +496,13 @@ The initial guess for the geminal coefficients is zero </para>
         <childnode refid="3" relation="public-inheritance">
         </childnode>
         <childnode refid="9" relation="usage">
-          <edgelabel>#d</edgelabel>
-        </childnode>
-        <childnode refid="15" relation="usage">
           <edgelabel>#D</edgelabel>
         </childnode>
-      </node>
-      <node id="4">
-        <label>GQCP::BaseOrbitalOptimizer</label>
-        <link refid="class_g_q_c_p_1_1_base_orbital_optimizer"/>
-      </node>
-      <node id="12">
-        <label>GQCP::JacobiRotatable&lt; _DerivedDM &gt;</label>
-        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
-      </node>
-      <node id="15">
-        <label>GQCP::Orbital1DM&lt; double &gt;</label>
-        <link refid="class_g_q_c_p_1_1_orbital1_d_m"/>
-        <childnode refid="16" relation="public-inheritance">
+        <childnode refid="15" relation="usage">
+          <edgelabel>#d</edgelabel>
         </childnode>
       </node>
-      <node id="11">
-        <label>GQCP::BasisTransformable&lt; _DerivedDM &gt;</label>
-        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
-      </node>
-      <node id="16">
+      <node id="10">
         <label>GQCP::Simple1DM&lt; _Scalar, _DerivedDM &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple1_d_m"/>
         <childnode refid="11" relation="public-inheritance">
@@ -494,7 +512,7 @@ The initial guess for the geminal coefficients is zero </para>
         <childnode refid="13" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="10">
+      <node id="16">
         <label>GQCP::Simple2DM&lt; _Scalar, _DerivedDM &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple2_d_m"/>
         <childnode refid="11" relation="public-inheritance">
@@ -504,36 +522,15 @@ The initial guess for the geminal coefficients is zero </para>
         <childnode refid="13" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="6">
-        <label>Eigen::Matrix&lt; double, Dynamic, Dynamic &gt;</label>
+      <node id="12">
+        <label>GQCP::JacobiRotatable&lt; _DerivedDM &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
       </node>
-      <node id="7">
-        <label>GQCP::SquareMatrix&lt; double &gt;</label>
-        <link refid="class_g_q_c_p_1_1_square_matrix"/>
-        <childnode refid="8" relation="public-inheritance">
+      <node id="5">
+        <label>GQCP::Matrix&lt; double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_matrix"/>
+        <childnode refid="6" relation="public-inheritance">
         </childnode>
-      </node>
-      <node id="9">
-        <label>GQCP::Orbital2DM&lt; double &gt;</label>
-        <link refid="class_g_q_c_p_1_1_orbital2_d_m"/>
-        <childnode refid="10" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="13">
-        <label>GQCP::VectorSpaceArithmetic&lt; _DerivedDM, _Scalar &gt;</label>
-        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
-        <childnode refid="14" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="1">
-        <label>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</label>
-        <link refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer"/>
-        <childnode refid="2" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="14">
-        <label>GQCP::CRTP&lt; _Derived &gt;</label>
-        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
       </node>
       <node id="8">
         <label>MatrixX&lt; double  &gt;</label>
@@ -541,10 +538,28 @@ The initial guess for the geminal coefficients is zero </para>
         <childnode refid="6" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="5">
-        <label>GQCP::Matrix&lt; double &gt;</label>
-        <link refid="class_g_q_c_p_1_1_matrix"/>
-        <childnode refid="6" relation="public-inheritance">
+      <node id="9">
+        <label>GQCP::Orbital1DM&lt; double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_orbital1_d_m"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>GQCP::Orbital2DM&lt; double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_orbital2_d_m"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>GQCP::SquareMatrix&lt; double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_square_matrix"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>GQCP::VectorSpaceArithmetic&lt; _DerivedDM, _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
+        <childnode refid="14" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
@@ -570,28 +585,27 @@ The initial guess for the geminal coefficients is zero </para>
       <member refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_1a93ad53810dd5a565c59da9915005e0df" prot="private" virt="non-virtual"><scope>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</scope><name>E</name></member>
       <member refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_1a69ab60b9b58343f58660e2bfe8576920" prot="public" virt="non-virtual"><scope>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</scope><name>electronicEnergy</name></member>
       <member refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_1a7f7bdc65089854e428ca4a8f1e143ecd" prot="private" virt="non-virtual"><scope>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</scope><name>G</name></member>
-      <member refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_1a2c0effa80f9ae7eb102ba37f7b710dee" prot="public" virt="non-virtual"><scope>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</scope><name>geminalCoefficients</name></member>
+      <member refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_1a5f0b7be4a0e78d038f9b685928820632" prot="public" virt="non-virtual"><scope>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</scope><name>geminalCoefficients</name></member>
       <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a7654786bd0428dd90feb1de31fc7fe4c" prot="protected" virt="non-virtual"><scope>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</scope><name>gradient</name></member>
       <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a4b4f69a479c8d9f5df94fb0a150b5e37" prot="protected" virt="non-virtual"><scope>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</scope><name>hessian</name></member>
       <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1ad31068b230ffb38e97432624120c4318" prot="protected" virt="non-virtual"><scope>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</scope><name>hessian_modifier</name></member>
       <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a0334372101297cb9e997d3981442439f" prot="protected" virt="non-virtual"><scope>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</scope><name>is_converged</name></member>
       <member refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_1a7320b55766fd81758143eead81e828e7" prot="private" virt="non-virtual"><scope>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</scope><name>m_multipliers</name></member>
       <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1adce91f67cf6314d31a2b73bb54cdd815" prot="protected" virt="non-virtual"><scope>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</scope><name>maximum_number_of_iterations</name></member>
-      <member refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_1a5f5453dc98e1d3926721c7f7c7654521" prot="public" virt="non-virtual"><scope>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</scope><name>multipliers</name></member>
+      <member refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_1af20928ea8100fa1f7d893ee1e9ded08c" prot="public" virt="non-virtual"><scope>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</scope><name>multipliers</name></member>
       <member refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_1a41f963dbdbcffe94e24ddff2678ca28e" prot="private" virt="non-virtual"><scope>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</scope><name>N_P</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a984528ec04ca0ebd0363cf13f3a3d3fb" prot="public" virt="non-virtual"><scope>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</scope><name>NewtonOrbitalOptimizer</name></member>
-      <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a984528ec04ca0ebd0363cf13f3a3d3fb" prot="public" virt="non-virtual" ambiguityscope="GQCP::NewtonOrbitalOptimizer::"><scope>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</scope><name>NewtonOrbitalOptimizer</name></member>
       <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1ad3464e1f18027d579598c62ef854fff6" prot="public" virt="non-virtual"><scope>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</scope><name>newtonStepIsWellDefined</name></member>
       <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a728ec120b0025ec997b6020b7ef588e3" prot="protected" virt="non-virtual"><scope>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</scope><name>number_of_iterations</name></member>
       <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a053125eead499da4abf2088e75d47353" prot="public" virt="non-virtual"><scope>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</scope><name>numberOfIterations</name></member>
-      <member refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a68efaa117f5bc3faa31e7c0b13ad5e10" prot="public" virt="non-virtual"><scope>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</scope><name>oneDM</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a4000ebd4a6b587f381e6169e1c963c98" prot="public" virt="non-virtual"><scope>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</scope><name>oneDM</name></member>
       <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a2242ce4237417d082a387eab633f18b7" prot="public" virt="non-virtual"><scope>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</scope><name>optimize</name></member>
       <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1a8ea385584daa8b470b2a9bfde1d2712b" prot="public" virt="virtual"><scope>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</scope><name>prepareConvergenceChecking</name></member>
       <member refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_1a5c8c974c787553a88daeaf850210229f" prot="public" virt="virtual"><scope>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</scope><name>prepareDMCalculation</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a7059d13f4c52ef77baec8567a9e72eb1" prot="public" virt="virtual"><scope>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</scope><name>prepareOrbitalDerivativesCalculation</name></member>
       <member refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_1a2533ab40abdea4b3628b2b2fc452bea1" prot="private" virt="non-virtual"><scope>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</scope><name>pse_convergence_threshold</name></member>
       <member refid="class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer_1ace64d8c86a98e0f19817206626ebfa83" prot="private" virt="non-virtual"><scope>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</scope><name>pse_maximum_number_of_iterations</name></member>
-      <member refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a1866e5572df06732205a72736eeb47af" prot="public" virt="non-virtual"><scope>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</scope><name>twoDM</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a5e5906dcacb2c3ce19cbc7da96c01961" prot="public" virt="non-virtual"><scope>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</scope><name>twoDM</name></member>
       <member refid="class_g_q_c_p_1_1_base_orbital_optimizer_1a921777ec77da41074b306bab5834454c" prot="public" virt="virtual"><scope>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</scope><name>~BaseOrbitalOptimizer</name></member>
       <member refid="class_g_q_c_p_1_1_newton_orbital_optimizer_1ac524dbf48349206dcc68774489d30a6d" prot="public" virt="virtual"><scope>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</scope><name>~NewtonOrbitalOptimizer</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer_1a4a07cc144897f0b68f775f258a747bd1" prot="public" virt="virtual"><scope>GQCP::AP1roGLagrangianNewtonOrbitalOptimizer</scope><name>~QCMethodNewtonOrbitalOptimizer</name></member>

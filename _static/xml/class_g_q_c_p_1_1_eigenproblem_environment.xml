@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_eigenproblem_environment" kind="class" language="C++" prot="public">
     <compoundname>GQCP::EigenproblemEnvironment</compoundname>
     <includes refid="_eigenproblem_environment_8hpp" local="no">EigenproblemEnvironment.hpp</includes>
@@ -14,6 +14,7 @@
         <definition>using GQCP::EigenproblemEnvironment&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
         <argsstring></argsstring>
         <name>Scalar</name>
+        <qualifiedname>GQCP::EigenproblemEnvironment::Scalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -29,6 +30,7 @@
         <definition>VectorFunction&lt;Scalar&gt; GQCP::EigenproblemEnvironment&lt; _Scalar &gt;::matrix_vector_product_function</definition>
         <argsstring></argsstring>
         <name>matrix_vector_product_function</name>
+        <qualifiedname>GQCP::EigenproblemEnvironment::matrix_vector_product_function</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -42,6 +44,7 @@
         <definition>SquareMatrix&lt;Scalar&gt; GQCP::EigenproblemEnvironment&lt; _Scalar &gt;::A</definition>
         <argsstring></argsstring>
         <name>A</name>
+        <qualifiedname>GQCP::EigenproblemEnvironment::A</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -55,6 +58,7 @@
         <definition>VectorX&lt;Scalar&gt; GQCP::EigenproblemEnvironment&lt; _Scalar &gt;::diagonal</definition>
         <argsstring></argsstring>
         <name>diagonal</name>
+        <qualifiedname>GQCP::EigenproblemEnvironment::diagonal</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -68,6 +72,7 @@
         <definition>size_t GQCP::EigenproblemEnvironment&lt; _Scalar &gt;::dimension</definition>
         <argsstring></argsstring>
         <name>dimension</name>
+        <qualifiedname>GQCP::EigenproblemEnvironment::dimension</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -81,6 +86,7 @@
         <definition>VectorX&lt;double&gt; GQCP::EigenproblemEnvironment&lt; _Scalar &gt;::eigenvalues</definition>
         <argsstring></argsstring>
         <name>eigenvalues</name>
+        <qualifiedname>GQCP::EigenproblemEnvironment::eigenvalues</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -94,6 +100,7 @@
         <definition>MatrixX&lt;Scalar&gt; GQCP::EigenproblemEnvironment&lt; _Scalar &gt;::eigenvectors</definition>
         <argsstring></argsstring>
         <name>eigenvectors</name>
+        <qualifiedname>GQCP::EigenproblemEnvironment::eigenvectors</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -107,6 +114,7 @@
         <definition>SquareMatrix&lt;Scalar&gt; GQCP::EigenproblemEnvironment&lt; _Scalar &gt;::S</definition>
         <argsstring></argsstring>
         <name>S</name>
+        <qualifiedname>GQCP::EigenproblemEnvironment::S</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -120,6 +128,7 @@
         <definition>VectorX&lt;double&gt; GQCP::EigenproblemEnvironment&lt; _Scalar &gt;::Lambda</definition>
         <argsstring></argsstring>
         <name>Lambda</name>
+        <qualifiedname>GQCP::EigenproblemEnvironment::Lambda</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -133,6 +142,7 @@
         <definition>MatrixX&lt;Scalar&gt; GQCP::EigenproblemEnvironment&lt; _Scalar &gt;::Z</definition>
         <argsstring></argsstring>
         <name>Z</name>
+        <qualifiedname>GQCP::EigenproblemEnvironment::Z</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -146,6 +156,7 @@
         <definition>MatrixX&lt;Scalar&gt; GQCP::EigenproblemEnvironment&lt; _Scalar &gt;::V</definition>
         <argsstring></argsstring>
         <name>V</name>
+        <qualifiedname>GQCP::EigenproblemEnvironment::V</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -159,6 +170,7 @@
         <definition>MatrixX&lt;Scalar&gt; GQCP::EigenproblemEnvironment&lt; _Scalar &gt;::VA</definition>
         <argsstring></argsstring>
         <name>VA</name>
+        <qualifiedname>GQCP::EigenproblemEnvironment::VA</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -172,6 +184,7 @@
         <definition>MatrixX&lt;Scalar&gt; GQCP::EigenproblemEnvironment&lt; _Scalar &gt;::X</definition>
         <argsstring></argsstring>
         <name>X</name>
+        <qualifiedname>GQCP::EigenproblemEnvironment::X</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -185,6 +198,7 @@
         <definition>MatrixX&lt;Scalar&gt; GQCP::EigenproblemEnvironment&lt; _Scalar &gt;::R</definition>
         <argsstring></argsstring>
         <name>R</name>
+        <qualifiedname>GQCP::EigenproblemEnvironment::R</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -198,6 +212,7 @@
         <definition>MatrixX&lt;Scalar&gt; GQCP::EigenproblemEnvironment&lt; _Scalar &gt;::Delta</definition>
         <argsstring></argsstring>
         <name>Delta</name>
+        <qualifiedname>GQCP::EigenproblemEnvironment::Delta</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -213,6 +228,7 @@
         <definition>GQCP::EigenproblemEnvironment&lt; _Scalar &gt;::EigenproblemEnvironment</definition>
         <argsstring>(const SquareMatrix&lt; Scalar &gt; &amp;A)</argsstring>
         <name>EigenproblemEnvironment</name>
+        <qualifiedname>GQCP::EigenproblemEnvironment::EigenproblemEnvironment</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1a088f09eda9140bf157ab9deb5a4d7b3f" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>A</declname>
@@ -240,6 +256,7 @@
         <definition>GQCP::EigenproblemEnvironment&lt; _Scalar &gt;::EigenproblemEnvironment</definition>
         <argsstring>(const VectorFunction&lt; Scalar &gt; &amp;matrix_vector_product_function, const VectorX&lt; Scalar &gt; &amp;diagonal, const MatrixX&lt; Scalar &gt; &amp;V)</argsstring>
         <name>EigenproblemEnvironment</name>
+        <qualifiedname>GQCP::EigenproblemEnvironment::EigenproblemEnvironment</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ae8a9e0086f5fbab030b1d49b05202054" kindref="member">VectorFunction</ref>&lt; <ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1a088f09eda9140bf157ab9deb5a4d7b3f" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>matrix_vector_product_function</declname>
@@ -278,11 +295,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp" line="104" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp" bodystart="104" bodyend="109"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_eigenproblem_environment_1a95dc6b2615ff0a61db2bdc4372cdfcff" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_eigenproblem_environment_1a13adc7214798089577bc2e1705c02fc3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>std::vector&lt; <ref refid="class_g_q_c_p_1_1_eigenpair" kindref="compound">Eigenpair</ref>&lt; double, <ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1a088f09eda9140bf157ab9deb5a4d7b3f" kindref="member">Scalar</ref> &gt; &gt;</type>
-        <definition>std::vector&lt;Eigenpair&lt;double, Scalar&gt; &gt; GQCP::EigenproblemEnvironment&lt; _Scalar &gt;::eigenpairs</definition>
+        <definition>std::vector&lt; Eigenpair&lt; double, Scalar &gt; &gt; GQCP::EigenproblemEnvironment&lt; _Scalar &gt;::eigenpairs</definition>
         <argsstring>(const size_t number_of_requested_eigenpairs=1) const</argsstring>
         <name>eigenpairs</name>
+        <qualifiedname>GQCP::EigenproblemEnvironment::eigenpairs</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>number_of_requested_eigenpairs</declname>
@@ -315,6 +333,7 @@
         <definition>static EigenproblemEnvironment GQCP::EigenproblemEnvironment&lt; _Scalar &gt;::Dense</definition>
         <argsstring>(const SquareMatrix&lt; Scalar &gt; &amp;A)</argsstring>
         <name>Dense</name>
+        <qualifiedname>GQCP::EigenproblemEnvironment::Dense</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1a088f09eda9140bf157ab9deb5a4d7b3f" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>A</declname>
@@ -344,6 +363,7 @@
         <definition>static EigenproblemEnvironment GQCP::EigenproblemEnvironment&lt; _Scalar &gt;::Iterative</definition>
         <argsstring>(const VectorFunction&lt; Scalar &gt; &amp;matrix_vector_product_function, const VectorX&lt; Scalar &gt; &amp;diagonal, const MatrixX&lt; Scalar &gt; &amp;V)</argsstring>
         <name>Iterative</name>
+        <qualifiedname>GQCP::EigenproblemEnvironment::Iterative</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ae8a9e0086f5fbab030b1d49b05202054" kindref="member">VectorFunction</ref>&lt; <ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1a088f09eda9140bf157ab9deb5a4d7b3f" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>matrix_vector_product_function</declname>
@@ -397,6 +417,7 @@
         <definition>static EigenproblemEnvironment GQCP::EigenproblemEnvironment&lt; _Scalar &gt;::Iterative</definition>
         <argsstring>(const SquareMatrix&lt; Scalar &gt; &amp;A, const MatrixX&lt; Scalar &gt; &amp;V)</argsstring>
         <name>Iterative</name>
+        <qualifiedname>GQCP::EigenproblemEnvironment::Iterative</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1a088f09eda9140bf157ab9deb5a4d7b3f" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>A</declname>
@@ -450,18 +471,20 @@
 </para>
     </detaileddescription>
     <collaborationgraph>
+      <node id="6">
+        <label>Eigen::Matrix&lt; Scalar , Dynamic , Dynamic  &gt;</label>
+      </node>
+      <node id="4">
+        <label>Eigen::Matrix&lt; double, Dynamic, Dynamic &gt;</label>
+      </node>
       <node id="1">
         <label>GQCP::EigenproblemEnvironment&lt; _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_eigenproblem_environment"/>
         <childnode refid="2" relation="usage">
-          <edgelabel>+Lambda</edgelabel>
-          <edgelabel>+eigenvalues</edgelabel>
-        </childnode>
-        <childnode refid="4" relation="usage">
           <edgelabel>+A</edgelabel>
           <edgelabel>+S</edgelabel>
         </childnode>
-        <childnode refid="6" relation="usage">
+        <childnode refid="5" relation="usage">
           <edgelabel>+Delta</edgelabel>
           <edgelabel>+R</edgelabel>
           <edgelabel>+V</edgelabel>
@@ -471,34 +494,32 @@
           <edgelabel>+diagonal</edgelabel>
           <edgelabel>+eigenvectors</edgelabel>
         </childnode>
-      </node>
-      <node id="7">
-        <label>Eigen::Matrix&lt; Scalar , Dynamic , Dynamic  &gt;</label>
-      </node>
-      <node id="3">
-        <label>Eigen::Matrix&lt; double, Dynamic, Dynamic &gt;</label>
-      </node>
-      <node id="4">
-        <label>GQCP::SquareMatrix&lt; Scalar &gt;</label>
-        <link refid="class_g_q_c_p_1_1_square_matrix"/>
-        <childnode refid="5" relation="public-inheritance">
+        <childnode refid="7" relation="usage">
+          <edgelabel>+Lambda</edgelabel>
+          <edgelabel>+eigenvalues</edgelabel>
         </childnode>
       </node>
       <node id="5">
-        <label>MatrixX&lt; Scalar  &gt;</label>
-        <link refid="class_g_q_c_p_1_1_matrix"/>
-        <childnode refid="3" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="6">
         <label>GQCP::Matrix&lt; Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_matrix"/>
-        <childnode refid="7" relation="public-inheritance">
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>GQCP::Matrix&lt; double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_matrix"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>MatrixX&lt; Scalar  &gt;</label>
+        <link refid="class_g_q_c_p_1_1_matrix"/>
+        <childnode refid="4" relation="public-inheritance">
         </childnode>
       </node>
       <node id="2">
-        <label>GQCP::Matrix&lt; double &gt;</label>
-        <link refid="class_g_q_c_p_1_1_matrix"/>
+        <label>GQCP::SquareMatrix&lt; Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_square_matrix"/>
         <childnode refid="3" relation="public-inheritance">
         </childnode>
       </node>
@@ -510,7 +531,7 @@
       <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1acf84deadaff12d58fc9cf21d46b45787" prot="public" virt="non-virtual"><scope>GQCP::EigenproblemEnvironment</scope><name>Dense</name></member>
       <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1a25b534ad54e086e91c69bde714a0c4c4" prot="public" virt="non-virtual"><scope>GQCP::EigenproblemEnvironment</scope><name>diagonal</name></member>
       <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1a5409c53cfd95076713c08a6fb341afb1" prot="public" virt="non-virtual"><scope>GQCP::EigenproblemEnvironment</scope><name>dimension</name></member>
-      <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1a95dc6b2615ff0a61db2bdc4372cdfcff" prot="public" virt="non-virtual"><scope>GQCP::EigenproblemEnvironment</scope><name>eigenpairs</name></member>
+      <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1a13adc7214798089577bc2e1705c02fc3" prot="public" virt="non-virtual"><scope>GQCP::EigenproblemEnvironment</scope><name>eigenpairs</name></member>
       <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1ad144d41a45edab52a494694a7e59066f" prot="public" virt="non-virtual"><scope>GQCP::EigenproblemEnvironment</scope><name>EigenproblemEnvironment</name></member>
       <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1a7ecaa971dceb4e76e0efa1058593eb2a" prot="public" virt="non-virtual"><scope>GQCP::EigenproblemEnvironment</scope><name>EigenproblemEnvironment</name></member>
       <member refid="class_g_q_c_p_1_1_eigenproblem_environment_1a32a61251a3de42f08c34013bd764a9bc" prot="public" virt="non-virtual"><scope>GQCP::EigenproblemEnvironment</scope><name>eigenvalues</name></member>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_u_orbital_rotation_generators_component" kind="class" language="C++" prot="public">
     <compoundname>GQCP::UOrbitalRotationGeneratorsComponent</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators" prot="public" virt="non-virtual">GQCP::SimpleOrbitalRotationGenerators&lt; _Scalar, UOrbitalRotationGeneratorsComponent&lt; _Scalar &gt; &gt;</basecompoundref>
@@ -15,6 +15,7 @@
         <definition>using GQCP::UOrbitalRotationGeneratorsComponent&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
         <argsstring></argsstring>
         <name>Scalar</name>
+        <qualifiedname>GQCP::UOrbitalRotationGeneratorsComponent::Scalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -40,33 +41,33 @@
 </para>
     </detaileddescription>
     <inheritancegraph>
-      <node id="2">
-        <label>GQCP::SimpleOrbitalRotationGenerators&lt; _Scalar, UOrbitalRotationGeneratorsComponent&lt; _Scalar &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators"/>
-      </node>
       <node id="1">
         <label>GQCP::UOrbitalRotationGeneratorsComponent&lt; _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_u_orbital_rotation_generators_component"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::SimpleOrbitalRotationGenerators&lt; _Scalar, UOrbitalRotationGeneratorsComponent&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="2">
-        <label>GQCP::SimpleOrbitalRotationGenerators&lt; _Scalar, UOrbitalRotationGeneratorsComponent&lt; _Scalar &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators"/>
-      </node>
       <node id="1">
         <label>GQCP::UOrbitalRotationGeneratorsComponent&lt; _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_u_orbital_rotation_generators_component"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::SimpleOrbitalRotationGenerators&lt; _Scalar, UOrbitalRotationGeneratorsComponent&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators"/>
       </node>
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UOrbitalRotationGeneratorsComponent.hpp" line="38" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/UOrbitalRotationGeneratorsComponent.hpp" bodystart="39" bodyend="51"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1a35873aaca35f5f4fc1f40d63557fab6e" prot="public" virt="non-virtual"><scope>GQCP::UOrbitalRotationGeneratorsComponent</scope><name>asMatrix</name></member>
-      <member refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1a0dc21c5af16e41317a390c43155c4ae1" prot="public" virt="non-virtual"><scope>GQCP::UOrbitalRotationGeneratorsComponent</scope><name>asVector</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1ad4a58794fbf45ec43ca33f4d17e23f81" prot="public" virt="non-virtual"><scope>GQCP::UOrbitalRotationGeneratorsComponent</scope><name>asMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1a904f8cc2420a355fce00dce714c19441" prot="public" virt="non-virtual"><scope>GQCP::UOrbitalRotationGeneratorsComponent</scope><name>asVector</name></member>
       <member refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1a41f858a7486ce4755ec7db4c2f039119" prot="public" virt="non-virtual"><scope>GQCP::UOrbitalRotationGeneratorsComponent</scope><name>DerivedOrbitalRotationGenerators</name></member>
       <member refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1a7e00234875bc9a932f341f0b0f935a96" prot="public" virt="non-virtual"><scope>GQCP::UOrbitalRotationGeneratorsComponent</scope><name>FromOccupationTypes</name></member>
       <member refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1a6de01ae1ba7fe5820fbd29e6629685f0" prot="public" virt="non-virtual"><scope>GQCP::UOrbitalRotationGeneratorsComponent</scope><name>numberOfOrbitals</name></member>

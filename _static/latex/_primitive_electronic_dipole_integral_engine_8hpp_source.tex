@@ -1,0 +1,204 @@
+\hypertarget{_primitive_electronic_dipole_integral_engine_8hpp_source}{}\doxysection{Primitive\+Electronic\+Dipole\+Integral\+Engine.\+hpp}
+\label{_primitive_electronic_dipole_integral_engine_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicDipoleIntegralEngine.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Basis/Integrals/Primitive/PrimitiveElectronicDipoleIntegralEngine.hpp}}
+\mbox{\hyperlink{_primitive_electronic_dipole_integral_engine_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_base_vector_primitive_integral_engine_8hpp}{Basis/Integrals/Primitive/BaseVectorPrimitiveIntegralEngine.hpp}}"{}}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_primitive_overlap_integral_engine_8hpp}{Basis/Integrals/Primitive/PrimitiveOverlapIntegralEngine.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_g_t_o_shell_8hpp}{Basis/ScalarBasis/GTOShell.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_cartesian_g_t_o_8hpp}{Mathematical/Functions/CartesianGTO.hpp}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_electronic_dipole_operator_8hpp}{Operator/FirstQuantized/ElectronicDipoleOperator.hpp}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{type__traits_8hpp}{Utilities/type\_traits.hpp}}"{}}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <boost/math/constants/constants.hpp>}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Shell>}
+\DoxyCodeLine{00041\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine}{PrimitiveElectronicDipoleIntegralEngine}}:}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_base_vector_primitive_integral_engine}{BaseVectorPrimitiveIntegralEngine}}\ \{}
+\DoxyCodeLine{00043\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ shell\ that\ this\ integral\ engine\ is\ related\ to.}}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine_a4941e09fbe1bc8f378a8eda4933f17e1}{Shell}}\ =\ \_Shell;}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ primitive\ that\ underlies\ the\ type\ of\ shell.}}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine_abbd98918b22d3d08a1ce50e3752d32c1}{Primitive}}\ =\ \textcolor{keyword}{typename}\ Shell::Primitive;}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{comment}{//\ The\ scalar\ representation\ of\ an\ overlap\ integral.}}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine_a6d068527ae0649205ae9665fe6bef8c7}{IntegralScalar}}\ =\ \mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\_t<ElectronicDipoleOperator::Scalar,\ typename\ Primitive::OutputType>}};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//\ The\ electronic\ dipole\ operator\ over\ which\ integrals\ should\ be\ calculated.}}
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_dipole_operator}{ElectronicDipoleOperator}}\ dipole\_operator;}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00061\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Constructors}}
+\DoxyCodeLine{00062\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine_a89eb40609d4b58aea3a01e93da5f0b7f}{PrimitiveElectronicDipoleIntegralEngine}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_dipole_operator}{ElectronicDipoleOperator}}\&\ dipole\_operator,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8}{CartesianDirection}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_base_vector_primitive_integral_engine_ae7e8b1f36eaa6edbf7883183a133e9af}{component}}\ =\ \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{CartesianDirection::x}})\ :}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ dipole\_operator\ \{dipole\_operator\},}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_base_vector_primitive_integral_engine}{BaseVectorPrimitiveIntegralEngine}}(\mbox{\hyperlink{class_g_q_c_p_1_1_base_vector_primitive_integral_engine_ae7e8b1f36eaa6edbf7883183a133e9af}{component}})\ \{\}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00074\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ CartesianGTO\ integrals}}
+\DoxyCodeLine{00075\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Shell>}
+\DoxyCodeLine{00086\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<std::is\_same<Z,\ GTOShell>::value}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine_a6d068527ae0649205ae9665fe6bef8c7}{IntegralScalar}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine_a211b0417b960ecdb055b98a237341d4a}{calculate}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{CartesianGTO}}\&\ left,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{CartesianGTO}}\&\ right)\ \{}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Prepare\ some\ variables.}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ i\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(left.\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ae362602050de10275e3588dbd229785d}{cartesianExponents}}().\mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents_a311290fc4ae2e2fce7d21d2dbb8c3194}{value}}(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{CartesianDirection::x}}));}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ k\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(left.\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ae362602050de10275e3588dbd229785d}{cartesianExponents}}().\mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents_a311290fc4ae2e2fce7d21d2dbb8c3194}{value}}(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a8611d87f8dc5908d04f3d314c7c321b1}{CartesianDirection::y}}));}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ m\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(left.\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ae362602050de10275e3588dbd229785d}{cartesianExponents}}().\mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents_a311290fc4ae2e2fce7d21d2dbb8c3194}{value}}(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a11d242b501b62c0182e98a9d516335f7}{CartesianDirection::z}}));}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ j\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(right.\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ae362602050de10275e3588dbd229785d}{cartesianExponents}}().\mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents_a311290fc4ae2e2fce7d21d2dbb8c3194}{value}}(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{CartesianDirection::x}}));}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ l\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(right.\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ae362602050de10275e3588dbd229785d}{cartesianExponents}}().\mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents_a311290fc4ae2e2fce7d21d2dbb8c3194}{value}}(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a8611d87f8dc5908d04f3d314c7c321b1}{CartesianDirection::y}}));}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ n\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(right.\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ae362602050de10275e3588dbd229785d}{cartesianExponents}}().\mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents_a311290fc4ae2e2fce7d21d2dbb8c3194}{value}}(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a11d242b501b62c0182e98a9d516335f7}{CartesianDirection::z}}));}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ a\ =\ left.\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ab38b2d462ea81e9755a32d3433642863}{gaussianExponent}}();}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ b\ =\ right.\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ab38b2d462ea81e9755a32d3433642863}{gaussianExponent}}();}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\_x\ =\ left.\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a1e7691184b5896251ea1812e78547ed5}{center}}()(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{CartesianDirection::x}});}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\_y\ =\ left.\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a1e7691184b5896251ea1812e78547ed5}{center}}()(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a8611d87f8dc5908d04f3d314c7c321b1}{CartesianDirection::y}});}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\_z\ =\ left.\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a1e7691184b5896251ea1812e78547ed5}{center}}()(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a11d242b501b62c0182e98a9d516335f7}{CartesianDirection::z}});}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ L\_x\ =\ right.\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a1e7691184b5896251ea1812e78547ed5}{center}}()(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{CartesianDirection::x}});}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ L\_y\ =\ right.\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a1e7691184b5896251ea1812e78547ed5}{center}}()(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a8611d87f8dc5908d04f3d314c7c321b1}{CartesianDirection::y}});}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ L\_z\ =\ right.\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a1e7691184b5896251ea1812e78547ed5}{center}}()(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a11d242b501b62c0182e98a9d516335f7}{CartesianDirection::z}});}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine}{PrimitiveOverlapIntegralEngine<GTOShell>}}\ S;}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ the\ current\ component,\ the\ integral\ can\ be\ calculated\ as\ a\ product\ of\ three\ contributions.}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_base_vector_primitive_integral_engine_ae7e8b1f36eaa6edbf7883183a133e9af}{component}})\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{CartesianDirection::x}}:\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine_a9c3596d174089faf633bcaf8255336ec}{calculate1D}}(a,\ K\_x,\ i,\ b,\ L\_x,\ j)\ *\ S.\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a7f75bdad6c765a1680f3dd124ba2e205}{calculate1D}}(a,\ K\_y,\ k,\ b,\ L\_y,\ l)\ *\ S.\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a7f75bdad6c765a1680f3dd124ba2e205}{calculate1D}}(a,\ K\_z,\ m,\ b,\ L\_z,\ n);}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a8611d87f8dc5908d04f3d314c7c321b1}{CartesianDirection::y}}:\ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ S.\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a7f75bdad6c765a1680f3dd124ba2e205}{calculate1D}}(a,\ K\_x,\ i,\ b,\ L\_x,\ j)\ *\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine_a9c3596d174089faf633bcaf8255336ec}{calculate1D}}(a,\ K\_y,\ k,\ b,\ L\_y,\ l)\ *\ S.\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a7f75bdad6c765a1680f3dd124ba2e205}{calculate1D}}(a,\ K\_z,\ m,\ b,\ L\_z,\ n);}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a11d242b501b62c0182e98a9d516335f7}{CartesianDirection::z}}:\ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ S.\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a7f75bdad6c765a1680f3dd124ba2e205}{calculate1D}}(a,\ K\_x,\ i,\ b,\ L\_x,\ j)\ *\ S.\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a7f75bdad6c765a1680f3dd124ba2e205}{calculate1D}}(a,\ K\_y,\ k,\ b,\ L\_y,\ l)\ *\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine_a9c3596d174089faf633bcaf8255336ec}{calculate1D}}(a,\ K\_z,\ m,\ b,\ L\_z,\ n);}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00128\ \ \ \ \ \}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Shell>}
+\DoxyCodeLine{00143\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<std::is\_same<Z,\ GTOShell>::value}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine_a6d068527ae0649205ae9665fe6bef8c7}{IntegralScalar}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine_a9c3596d174089faf633bcaf8255336ec}{calculate1D}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ a,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ K,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ b,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ L,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ j)\ \{}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Prepare\ some\ variables.}}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_mc_murchie_davidson_coefficient}{McMurchieDavidsonCoefficient}}\ E\ \{K,\ a,\ L,\ b\};}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ P\ =\ E.\mbox{\hyperlink{class_g_q_c_p_1_1_mc_murchie_davidson_coefficient_a6e45664e3ffca2c50c94ae6e46d2ef44}{centerOfMass}}();}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ p\ =\ a\ +\ b;}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ X\_PC\ =\ P\ -\/\ this-\/>dipole\_operator.\mbox{\hyperlink{class_g_q_c_p_1_1_base_reference_dependent_operator_a705a97851e0bdb89ab7d9e44d9c37ee7}{reference}}()(this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_base_vector_primitive_integral_engine_ae7e8b1f36eaa6edbf7883183a133e9af}{component}});\ \ \textcolor{comment}{//\ The\ distance\ between\ P\ and\ the\ origin\ of\ the\ dipole\ operator.}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ dipole\ integral\ over\ the\ current\ component.\ The\ minus\ sign\ comes\ from\ the\ charge\ of\ the\ electron.}}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/std::pow(boost::math::constants::pi<double>()\ /\ p,\ 0.5)\ *\ (E(i,\ j,\ 1)\ +\ X\_PC\ *\ E(i,\ j,\ 0));}
+\DoxyCodeLine{00155\ \ \ \ \ \}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00159\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ London\ CartesianGTO\ integrals}}
+\DoxyCodeLine{00160\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Shell>}
+\DoxyCodeLine{00171\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<std::is\_same<Z,\ LondonGTOShell>::value}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine_a6d068527ae0649205ae9665fe6bef8c7}{IntegralScalar}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine_aed5b01167b66873ef37bde3afe9058f2}{calculate}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o}{LondonCartesianGTO}}\&\ left,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o}{LondonCartesianGTO}}\&\ right)\ \{}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Prepare\ some\ variables.}}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ i\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(left.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_ab6b2dc7fbca5ba89c436254bc6bfeac8}{cartesianGTO}}().\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ae362602050de10275e3588dbd229785d}{cartesianExponents}}().\mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents_a311290fc4ae2e2fce7d21d2dbb8c3194}{value}}(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{CartesianDirection::x}}));}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ k\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(left.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_ab6b2dc7fbca5ba89c436254bc6bfeac8}{cartesianGTO}}().\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ae362602050de10275e3588dbd229785d}{cartesianExponents}}().\mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents_a311290fc4ae2e2fce7d21d2dbb8c3194}{value}}(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a8611d87f8dc5908d04f3d314c7c321b1}{CartesianDirection::y}}));}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ m\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(left.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_ab6b2dc7fbca5ba89c436254bc6bfeac8}{cartesianGTO}}().\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ae362602050de10275e3588dbd229785d}{cartesianExponents}}().\mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents_a311290fc4ae2e2fce7d21d2dbb8c3194}{value}}(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a11d242b501b62c0182e98a9d516335f7}{CartesianDirection::z}}));}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ j\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(right.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_ab6b2dc7fbca5ba89c436254bc6bfeac8}{cartesianGTO}}().\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ae362602050de10275e3588dbd229785d}{cartesianExponents}}().\mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents_a311290fc4ae2e2fce7d21d2dbb8c3194}{value}}(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{CartesianDirection::x}}));}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ l\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(right.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_ab6b2dc7fbca5ba89c436254bc6bfeac8}{cartesianGTO}}().\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ae362602050de10275e3588dbd229785d}{cartesianExponents}}().\mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents_a311290fc4ae2e2fce7d21d2dbb8c3194}{value}}(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a8611d87f8dc5908d04f3d314c7c321b1}{CartesianDirection::y}}));}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ n\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(right.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_ab6b2dc7fbca5ba89c436254bc6bfeac8}{cartesianGTO}}().\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ae362602050de10275e3588dbd229785d}{cartesianExponents}}().\mbox{\hyperlink{struct_g_q_c_p_1_1_cartesian_exponents_a311290fc4ae2e2fce7d21d2dbb8c3194}{value}}(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a11d242b501b62c0182e98a9d516335f7}{CartesianDirection::z}}));}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ a\ =\ left.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_ab6b2dc7fbca5ba89c436254bc6bfeac8}{cartesianGTO}}().\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ab38b2d462ea81e9755a32d3433642863}{gaussianExponent}}();}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ b\ =\ right.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_ab6b2dc7fbca5ba89c436254bc6bfeac8}{cartesianGTO}}().\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_ab38b2d462ea81e9755a32d3433642863}{gaussianExponent}}();}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\_x\ =\ left.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_ab6b2dc7fbca5ba89c436254bc6bfeac8}{cartesianGTO}}().\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a1e7691184b5896251ea1812e78547ed5}{center}}()(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{CartesianDirection::x}});}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\_y\ =\ left.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_ab6b2dc7fbca5ba89c436254bc6bfeac8}{cartesianGTO}}().\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a1e7691184b5896251ea1812e78547ed5}{center}}()(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a8611d87f8dc5908d04f3d314c7c321b1}{CartesianDirection::y}});}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\_z\ =\ left.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_ab6b2dc7fbca5ba89c436254bc6bfeac8}{cartesianGTO}}().\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a1e7691184b5896251ea1812e78547ed5}{center}}()(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a11d242b501b62c0182e98a9d516335f7}{CartesianDirection::z}});}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ L\_x\ =\ right.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_ab6b2dc7fbca5ba89c436254bc6bfeac8}{cartesianGTO}}().\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a1e7691184b5896251ea1812e78547ed5}{center}}()(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{CartesianDirection::x}});}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ L\_y\ =\ right.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_ab6b2dc7fbca5ba89c436254bc6bfeac8}{cartesianGTO}}().\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a1e7691184b5896251ea1812e78547ed5}{center}}()(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a8611d87f8dc5908d04f3d314c7c321b1}{CartesianDirection::y}});}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ L\_z\ =\ right.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_ab6b2dc7fbca5ba89c436254bc6bfeac8}{cartesianGTO}}().\mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o_a1e7691184b5896251ea1812e78547ed5}{center}}()(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a11d242b501b62c0182e98a9d516335f7}{CartesianDirection::z}});}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Vector<double,\ 3>}}\ k1\ =\ right.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_a41950c00f15c081511681d8ac24eaa47}{kVector}}()\ -\/\ left.\mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_a41950c00f15c081511681d8ac24eaa47}{kVector}}();\ \ \textcolor{comment}{//\ The\ k-\/vector\ of\ the\ London\ overlap\ distribution.}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ k1\_x\ =\ k1(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{CartesianDirection::x}});}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ k1\_y\ =\ k1(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a8611d87f8dc5908d04f3d314c7c321b1}{CartesianDirection::y}});}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ k1\_z\ =\ k1(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a11d242b501b62c0182e98a9d516335f7}{CartesianDirection::z}});}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine}{PrimitiveOverlapIntegralEngine<LondonGTOShell>}}\ S;}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ the\ current\ component,\ the\ integral\ can\ be\ calculated\ as\ a\ product\ of\ three\ contributions.}}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_base_vector_primitive_integral_engine_ae7e8b1f36eaa6edbf7883183a133e9af}{component}})\ \{}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{CartesianDirection::x}}:\ \{}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine_a9c3596d174089faf633bcaf8255336ec}{calculate1D}}(k1\_x,\ a,\ K\_x,\ i,\ b,\ L\_x,\ j)\ *\ S.\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a7f75bdad6c765a1680f3dd124ba2e205}{calculate1D}}(k1\_y,\ a,\ K\_y,\ k,\ b,\ L\_y,\ l)\ *\ S.\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a7f75bdad6c765a1680f3dd124ba2e205}{calculate1D}}(k1\_z,\ a,\ K\_z,\ m,\ b,\ L\_z,\ n);}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a8611d87f8dc5908d04f3d314c7c321b1}{CartesianDirection::y}}:\ \{}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ S.\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a7f75bdad6c765a1680f3dd124ba2e205}{calculate1D}}(k1\_x,\ a,\ K\_x,\ i,\ b,\ L\_x,\ j)\ *\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine_a9c3596d174089faf633bcaf8255336ec}{calculate1D}}(k1\_y,\ a,\ K\_y,\ k,\ b,\ L\_y,\ l)\ *\ S.\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a7f75bdad6c765a1680f3dd124ba2e205}{calculate1D}}(k1\_z,\ a,\ K\_z,\ m,\ b,\ L\_z,\ n);}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a11d242b501b62c0182e98a9d516335f7}{CartesianDirection::z}}:\ \{}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ S.\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a7f75bdad6c765a1680f3dd124ba2e205}{calculate1D}}(k1\_x,\ a,\ K\_x,\ i,\ b,\ L\_x,\ j)\ *\ S.\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a7f75bdad6c765a1680f3dd124ba2e205}{calculate1D}}(k1\_y,\ a,\ K\_y,\ k,\ b,\ L\_y,\ l)\ *\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine_a9c3596d174089faf633bcaf8255336ec}{calculate1D}}(k1\_z,\ a,\ K\_z,\ m,\ b,\ L\_z,\ n);}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00219\ \ \ \ \ \}}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00235\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Shell>}
+\DoxyCodeLine{00236\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<std::is\_same<Z,\ LondonGTOShell>::value}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine_a6d068527ae0649205ae9665fe6bef8c7}{IntegralScalar}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_electronic_dipole_integral_engine_a483f1aa40ed0670269607bfc60eb8418}{calculate1D}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}}\ k1,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ a,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ K,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ b,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ L,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ j)\ \{}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Prepare\ some\ variables.}}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ X\_KC\ =\ K\ -\/\ this-\/>dipole\_operator.\mbox{\hyperlink{class_g_q_c_p_1_1_base_reference_dependent_operator_a705a97851e0bdb89ab7d9e44d9c37ee7}{reference}}()(this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_base_vector_primitive_integral_engine_ae7e8b1f36eaa6edbf7883183a133e9af}{component}});\ \ \textcolor{comment}{//\ The\ distance\ between\ K\ and\ the\ origin\ of\ the\ dipole\ operator.}}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ 1-\/D\ electronic\ dipole\ integral\ can\ be\ calculated\ completely\ from\ overlap\ integrals.\ The\ sign\ factor\ is\ included\ to\ account\ for\ the\ sign\ of\ the\ electron.}}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine}{PrimitiveOverlapIntegralEngine<LondonGTOShell>}}\ S;}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (-\/1.0)\ *\ (S.\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a7f75bdad6c765a1680f3dd124ba2e205}{calculate1D}}(k1,\ a,\ K,\ i\ +\ 1,\ b,\ L,\ j)\ +}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ X\_KC\ *\ S.\mbox{\hyperlink{class_g_q_c_p_1_1_primitive_overlap_integral_engine_a7f75bdad6c765a1680f3dd124ba2e205}{calculate1D}}(k1,\ a,\ K,\ i,\ b,\ L,\ j));}
+\DoxyCodeLine{00246\ \ \ \ \ \}}
+\DoxyCodeLine{00247\ \};}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

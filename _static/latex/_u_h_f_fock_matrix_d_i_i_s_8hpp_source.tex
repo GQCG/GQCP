@@ -1,0 +1,122 @@
+\hypertarget{_u_h_f_fock_matrix_d_i_i_s_8hpp_source}{}\doxysection{UHFFock\+Matrix\+DIIS.\+hpp}
+\label{_u_h_f_fock_matrix_d_i_i_s_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFFockMatrixDIIS.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFFockMatrixDIIS.hpp}}
+\mbox{\hyperlink{_u_h_f_fock_matrix_d_i_i_s_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_algorithm_2_step_8hpp}{Mathematical/Algorithm/Step.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_d_i_i_s_8hpp}{Mathematical/Optimization/Accelerator/DIIS.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_u_h_f_fock_matrix_diagonalization_8hpp}{QCMethod/HF/UHF/UHFFockMatrixDiagonalization.hpp}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_u_h_f_s_c_f_environment_8hpp}{QCMethod/HF/UHF/UHFSCFEnvironment.hpp}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_q_c_model_2_h_f_2_u_h_f_8hpp}{QCModel/HF/UHF.hpp}}"{}}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar>}
+\DoxyCodeLine{00039\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_fock_matrix_d_i_i_s}{UHFFockMatrixDIIS}}:}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_step}{Step}}<UHFSCFEnvironment<\_Scalar>>\ \{}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_fock_matrix_d_i_i_s_a3c5cab15d8afe08c7614d893d0aabadd}{Scalar}}\ =\ \_Scalar;}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment}{Environment}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment}{UHFSCFEnvironment<Scalar>}};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ minimum\_subspace\_dimension;\ \ \textcolor{comment}{//\ The\ minimum\ number\ of\ Fock\ matrices\ that\ have\ to\ be\ in\ the\ subspace\ before\ enabling\ DIIS.}}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ maximum\_subspace\_dimension;\ \ \textcolor{comment}{//\ The\ maximum\ number\ of\ Fock\ matrices\ that\ can\ be\ handled\ by\ DIIS.}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_d_i_i_s}{DIIS<Scalar>}}\ diis;\ \ \textcolor{comment}{//\ The\ DIIS\ accelerator.}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00056\ \textcolor{comment}{\ \ \ \ \ *\ \ CONSTRUCTORS}}
+\DoxyCodeLine{00057\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_fock_matrix_d_i_i_s_ad2bdf1e167babd76b3d5a6b6c4c0f357}{UHFFockMatrixDIIS}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ minimum\_subspace\_dimension\ =\ 6,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ maximum\_subspace\_dimension\ =\ 6)\ :}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ minimum\_subspace\_dimension\ \{minimum\_subspace\_dimension\},}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ maximum\_subspace\_dimension\ \{maximum\_subspace\_dimension\}\ \{\}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00069\ \textcolor{comment}{\ \ \ \ \ *\ \ PUBLIC\ OVERRIDDEN\ METHODS}}
+\DoxyCodeLine{00070\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00075\ \ \ \ \ std::string\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_fock_matrix_d_i_i_s_a0e3a95de68060c280dc8c43e108cc86a}{description}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Calculate\ the\ accelerated\ alpha-\/\ and\ beta-\/\ Fock\ matrices,\ and\ perform\ a\ diagonalization\ step\ on\ them."{}};}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_fock_matrix_d_i_i_s_a207ae64b829294f7b15481f7cbd17990}{execute}}(\mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment}{Environment}}\&\ environment)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (environment.\mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a93c1f0bb1a00de972b2602acf17cae59}{error\_vectors}}.size()\ <\ this-\/>minimum\_subspace\_dimension)\ \{\ \ \textcolor{comment}{//\ The\ beta\ dimension\ will\ be\ the\ same.}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ No\ acceleration\ is\ possible,\ so\ calculate\ the\ regular\ Fock\ matrices\ and\ diagonalize\ them.}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_fock_matrix_calculation}{UHFFockMatrixCalculation<Scalar>}}().\mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_fock_matrix_calculation_a3477f32fa104205808148d9dd5e156fa}{execute}}(environment);}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_fock_matrix_diagonalization}{UHFFockMatrixDiagonalization<Scalar>}}().\mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_fock_matrix_diagonalization_ae358b2b13f6dcc5299745573298be194}{execute}}(environment);}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Convert\ the\ deques\ in\ the\ environment\ to\ vectors\ that\ can\ be\ accepted\ by\ the\ DIIS\ accelerator.\ The\ total\ number\ of\ elements\ we\ can\ use\ in\ DIIS\ is\ either\ the\ maximum\ subspace\ dimension\ or\ the\ number\ of\ available\ error\ matrices.}}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ n\ =\ std::min(this-\/>maximum\_subspace\_dimension,\ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a93c1f0bb1a00de972b2602acf17cae59}{error\_vectors}}.size());}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<SpinResolved<VectorX<Scalar>>>\ error\_vectors\ \{environment.\mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a93c1f0bb1a00de972b2602acf17cae59}{error\_vectors}}.end()\ -\/\ n,\ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a93c1f0bb1a00de972b2602acf17cae59}{error\_vectors}}.end()\};\ \ \textcolor{comment}{//\ The\ n-\/th\ last\ alpha\ error\ vectors.}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<ScalarUSQOneElectronOperator<Scalar>>\ fock\_matrices\ \{environment.\mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a0f5f070c7bc52ea98ed1d89117104c99}{fock\_matrices}}.end()\ -\/\ n,\ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a0f5f070c7bc52ea98ed1d89117104c99}{fock\_matrices}}.end()\};\ \ \textcolor{comment}{//\ The\ n-\/th\ last\ Fock\ matrices.}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ std::vector<SquareMatrix<Scalar>>\ alpha\_fock\_matrices;}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ std::vector<SquareMatrix<Scalar>>\ beta\_fock\_matrices;}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ fock\_matrices.size();\ i++)\ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ alpha\_fock\_matrices.push\_back(fock\_matrices[i].\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{alpha}}().parameters());}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ beta\_fock\_matrices.push\_back(fock\_matrices[i].\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{beta}}().parameters());}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ std::vector<VectorX<Scalar>>\ alpha\_error\_vectors;}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ std::vector<VectorX<Scalar>>\ beta\_error\_vectors;}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ error\_vectors.size();\ i++)\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ alpha\_error\_vectors.push\_back(error\_vectors[i].\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{alpha}}());}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ beta\_error\_vectors.push\_back(error\_vectors[i].\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{beta}}());}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ accelerated\ Fock\ matrices\ and\ do\ a\ diagonalization\ step\ on\ them.}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ F\_alpha\_accelerated\ =\ this-\/>diis.\mbox{\hyperlink{class_g_q_c_p_1_1_d_i_i_s_a60b91c219acac53eab5f3e6f3b32a34d}{accelerate}}(alpha\_fock\_matrices,\ alpha\_error\_vectors);}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ F\_beta\_accelerated\ =\ this-\/>diis.\mbox{\hyperlink{class_g_q_c_p_1_1_d_i_i_s_a60b91c219acac53eab5f3e6f3b32a34d}{accelerate}}(beta\_fock\_matrices,\ beta\_error\_vectors);}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator}{ScalarUSQOneElectronOperator<Scalar>}}\ F\_accelerated\ \{F\_alpha\_accelerated,\ F\_beta\_accelerated\};}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a0f5f070c7bc52ea98ed1d89117104c99}{fock\_matrices}}.push\_back(F\_accelerated);\ \ \textcolor{comment}{//\ The\ diagonalization\ step\ can\ only\ read\ from\ the\ environment.}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_fock_matrix_diagonalization}{UHFFockMatrixDiagonalization<Scalar>}}().\mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_fock_matrix_diagonalization_ae358b2b13f6dcc5299745573298be194}{execute}}(environment);}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ accelerated/extrapolated\ Fock\ matrices\ should\ not\ be\ used\ in\ further\ extrapolation\ steps,\ as\ they\ are\ not\ created\ from\ a\ density\ matrix.}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_u_h_f_s_c_f_environment_a0f5f070c7bc52ea98ed1d89117104c99}{fock\_matrices}}.pop\_back();}
+\DoxyCodeLine{00129\ \ \ \ \ \}}
+\DoxyCodeLine{00130\ \};}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

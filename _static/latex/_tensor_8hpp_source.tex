@@ -1,0 +1,408 @@
+\hypertarget{_tensor_8hpp_source}{}\doxysection{Tensor.\+hpp}
+\label{_tensor_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Tensor.hpp}}
+\mbox{\hyperlink{_tensor_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_matrix_8hpp}{Mathematical/Representation/Matrix.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{type__traits_8hpp}{Utilities/type\_traits.hpp}}"{}}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <boost/algorithm/string.hpp>}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <unsupported/Eigen/CXX11/Tensor>}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar,\ \textcolor{keywordtype}{int}\ \_Rank>}
+\DoxyCodeLine{00045\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor}}:}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{public}\ Eigen::Tensor<\_Scalar,\ \_Rank>\ \{}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{//\ The\ scalar\ type\ of\ one\ of\ the\ elements\ of\ the\ tensor.}}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}}\ =\ \_Scalar;}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ The\ rank\ of\ the\ tensor,\ i.e.\ the\ number\ of\ axes.}}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a776e6ece53ccfc888aa36aef2f998985}{Rank}}\ =\ \_Rank;}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ 'this'.}}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Self}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor<Scalar,\ Rank>}};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{//\ The\ Eigen\ base\ type.}}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a5d199f6660a9a70074c508f2c6a66b4e}{Base}}\ =\ Eigen::Tensor<Scalar,\ Rank>;}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00064\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Constructors}}
+\DoxyCodeLine{00065\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{comment}{//\ Inherit\ `Eigen::Tensor`'s\ constructors.}}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{using\ }Eigen::Tensor<\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}},\ \_Rank>::Tensor;}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00072\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Named\ constructors}}
+\DoxyCodeLine{00073\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{int}\ Z\ =\ Rank>}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<Z\ ==\ 4,\ Self>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a838f8fafc54c04eb1d9e9e04698e5ff0}{FromBlock}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Self}}\&\ T,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ j,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ k,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ l,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ cutoff\ =\ 0)\ \{}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor<double,\ Rank>}}\ T\_result\ \{\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{long}\textcolor{keyword}{>}(T.dimension(0)\ -\/\ i\ -\/\ cutoff),}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{long}\textcolor{keyword}{>}(T.dimension(1)\ -\/\ j\ -\/\ cutoff),}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{long}\textcolor{keyword}{>}(T.dimension(2)\ -\/\ k\ -\/\ cutoff),}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{long}\textcolor{keyword}{>}(T.dimension(3)\ -\/\ l\ -\/\ cutoff)\};}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ T\_result.setZero();}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ p\ =\ 0;\ p\ <\ T\_result.dimension(0);\ p++)\ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ q\ =\ 0;\ q\ <\ T\_result.dimension(1);\ q++)\ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ r\ =\ 0;\ r\ <\ T\_result.dimension(2);\ r++)\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ s\ =\ 0;\ s\ <\ T\_result.dimension(3);\ s++)\ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ T\_result(p,\ q,\ r,\ s)\ =\ T(i\ +\ p,\ j\ +\ q,\ k\ +\ r,\ l\ +\ s);}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ T\_result;}
+\DoxyCodeLine{00106\ \ \ \ \ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00110\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Conversions}}
+\DoxyCodeLine{00111\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a5d199f6660a9a70074c508f2c6a66b4e}{Base}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a1975212d179fc9fee2020d1cdf835c88}{Eigen}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a5d199f6660a9a70074c508f2c6a66b4e}{Base}}\&\textcolor{keyword}{>}(*this);\ \}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00121\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a5d199f6660a9a70074c508f2c6a66b4e}{Base}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_abb190f852fb6363020292ffdd661a159}{Eigen}}()\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a5d199f6660a9a70074c508f2c6a66b4e}{Base}}\&\textcolor{keyword}{>}(*this);\ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00125\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Tensor\ operations}}
+\DoxyCodeLine{00126\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{size\_t}\ r,\ \textcolor{keywordtype}{size\_t}\ s,\ \textcolor{keywordtype}{int}\ Z\ =\ Rank>}
+\DoxyCodeLine{00153\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<Z\ ==\ 4,\ Self\&>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a5c7fda06e3a53969768880fec8477e8c}{addBlock}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<Scalar>}}\&\ M,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ j,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ k,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ l)\ \{}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initialize\ series\ of\ arrays\ with\ 1\ or\ 0\ values,\ so\ that\ the\ correct\ tensor\ indices\ given\ by\ the\ template\ argument\ correspond\ to\ the\ matrix\ indices}}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ ia[4]\ =\ \{1,\ 0,\ 0,\ 0\};}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ ja[4]\ =\ \{0,\ 1,\ 0,\ 0\};}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ ka[4]\ =\ \{0,\ 0,\ 1,\ 0\};}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ la[4]\ =\ \{0,\ 0,\ 0,\ 1\};}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{x}}\ =\ 0;\ \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{x}}\ <\ M.rows();\ \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{x}}++)\ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a8611d87f8dc5908d04f3d314c7c321b1}{y}}\ =\ 0;\ \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a8611d87f8dc5908d04f3d314c7c321b1}{y}}\ <\ M.cols();\ \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a8611d87f8dc5908d04f3d314c7c321b1}{y}}++)\ \{}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ i\_effective\ =\ i\ +\ \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{x}}\ *\ ia[r]\ +\ \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a8611d87f8dc5908d04f3d314c7c321b1}{y}}\ *\ ia[s];}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ j\_effective\ =\ j\ +\ \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{x}}\ *\ ja[r]\ +\ \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a8611d87f8dc5908d04f3d314c7c321b1}{y}}\ *\ ja[s];}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ k\_effective\ =\ k\ +\ \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{x}}\ *\ ka[r]\ +\ \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a8611d87f8dc5908d04f3d314c7c321b1}{y}}\ *\ ka[s];}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ l\_effective\ =\ l\ +\ \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{x}}\ *\ la[r]\ +\ \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a8611d87f8dc5908d04f3d314c7c321b1}{y}}\ *\ la[s];}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>operator()(i\_effective,\ j\_effective,\ k\_effective,\ l\_effective)\ +=\ M(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{x}},\ \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a8611d87f8dc5908d04f3d314c7c321b1}{y}});}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (*\textcolor{keyword}{this});}
+\DoxyCodeLine{00174\ \ \ \ \ \}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{int}\ Z\ =\ Rank>}
+\DoxyCodeLine{00189\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<Z\ ==\ 4,\ Self\&>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_ac3e2203847759b0411a7a959838e309a}{addBlock}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Self}}\&\ T,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ j,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ k,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ l)\ \{}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ p\ =\ 0;\ p\ <\ T.dimension(0);\ p++)\ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ q\ =\ 0;\ q\ <\ T.dimension(1);\ q++)\ \{}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ r\ =\ 0;\ r\ <\ T.dimension(2);\ r++)\ \{}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ s\ =\ 0;\ s\ <\ T.dimension(3);\ s++)\ \{}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>operator()(i\ +\ p,\ j\ +\ q,\ k\ +\ r,\ l\ +\ s)\ +=\ T(p,\ q,\ r,\ s);}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (*\textcolor{keyword}{this});}
+\DoxyCodeLine{00202\ \ \ \ \ \}}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{int}\ Z\ =\ Rank>}
+\DoxyCodeLine{00219\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<Z\ ==\ 4,\ Matrix<Scalar>}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a6f42f7296a3da003d3713e42c6d93e18}{pairWiseReduced}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ start\_i\ =\ 0,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ start\_j\ =\ 0,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ start\_k\ =\ 0,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ start\_l\ =\ 0)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initialize\ the\ resulting\ matrix}}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ dims\ =\ this-\/>dimensions();}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix<Scalar>}}\ M\ \{(dims[0]\ -\/\ start\_i)\ *\ (dims[1]\ -\/\ start\_j),}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (dims[2]\ -\/\ start\_k)\ *\ (dims[3]\ -\/\ start\_l)\};}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ compound\ indices\ and\ bring\ the\ elements\ from\ the\ tensor\ over\ into\ the\ matrix}}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ row\_index\ =\ 0;}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ j\ =\ start\_j;\ j\ <\ dims[1];\ j++)\ \{\ \ \ \ \ \ \textcolor{comment}{//\ "{}column\ major"{}\ ordering\ for\ row\_index<-\/i,j\ so\ we\ do\ j\ first,\ then\ i}}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ start\_i;\ i\ <\ dims[0];\ i++)\ \{\ \ \textcolor{comment}{//\ in\ column\ major\ indices,\ columns\ are\ contiguous,\ so\ the\ first\ of\ two\ indices\ changes\ more\ rapidly}}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ column\_index\ =\ 0;}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ l\ =\ start\_l;\ l\ <\ dims[3];\ l++)\ \{\ \ \ \ \ \ \textcolor{comment}{//\ "{}column\ major"{}\ ordering\ for\ column\_index<-\/k,l\ so\ we\ do\ l\ first,\ then\ k}}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ k\ =\ start\_k;\ k\ <\ dims[2];\ k++)\ \{\ \ \textcolor{comment}{//\ in\ column\ major\ indices,\ columns\ are\ contiguous,\ so\ the\ first\ of\ two\ indices\ changes\ more\ rapidly}}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ M(row\_index,\ column\_index)\ =\ this-\/>operator()(i,\ j,\ k,\ l);}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ column\_index++;}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ row\_index++;}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ M;}
+\DoxyCodeLine{00246\ \ \ \ \ \}}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00263\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{int}\ N,\ \textcolor{keywordtype}{int}\ LHSRank\ =\ Rank,\ \textcolor{keywordtype}{int}\ RHSRank>}
+\DoxyCodeLine{00264\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor}}<\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}},\ LHSRank\ +\ RHSRank\ -\/\ 2\ *\ N>\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a3fd4b9da869c1904198751255521699c}{einsum}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor<Scalar,\ RHSRank>}}\&\ rhs,\ \textcolor{keyword}{const}\ std::string\&\ lhs\_labels,\ \textcolor{keyword}{const}\ std::string\&\ rhs\_labels,\ \textcolor{keyword}{const}\ std::string\&\ output\_labels)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ the\ length\ of\ the\ indices.}}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ ResultRank\ =\ LHSRank\ +\ RHSRank\ -\/\ 2\ *\ N;}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (lhs\_labels.size()\ !=\ LHSRank)\ \{}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Tensor.einsum(const\ Tensor<Scalar,\ RHSRank>\&,\ const\ std::string\&,\ const\ std::string\&,\ const\ std::string\&):\ The\ number\ of\ indices\ for\ the\ left-\/hand\ side\ of\ the\ contraction\ does\ not\ match\ the\ rank\ of\ the\ left-\/hand\ side\ tensor."{}});}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rhs\_labels.size()\ !=\ RHSRank)\ \{}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Tensor.einsum(const\ Tensor<Scalar,\ RHSRank>\&,\ const\ std::string\&,\ const\ std::string\&,\ const\ std::string\&):\ The\ number\ of\ indices\ for\ the\ right-\/hand\ side\ of\ the\ contraction\ does\ not\ match\ the\ rank\ of\ the\ right-\/hand\ side\ tensor."{}});}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (output\_labels.size()\ !=\ ResultRank)\ \{}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Tensor.einsum(const\ Tensor<Scalar,\ RHSRank>\&,\ const\ std::string\&,\ const\ std::string\&,\ const\ std::string\&):\ The\ number\ of\ output\ indices\ does\ not\ match\ the\ number\ of\ axes\ that\ should\ be\ contracted\ over."{}});}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Find\ the\ indices\ that\ should\ be\ contracted\ over,\ these\ are\ the\ positions\ of\ the\ axis\ labels\ that\ are\ both\ in\ the\ lhs-\/\ and\ rhs-\/indices.}}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ Eigen::array<Eigen::IndexPair<int>,\ N>\ contraction\_pairs\ \{\};}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ array\_position\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ index\ at\ which\ an\ `Eigen::IndexPair`\ should\ be\ placed.}}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ LHSRank;\ i++)\ \{\ \ \textcolor{comment}{//\ 'i'\ loops\ over\ the\ lhs-\/indices}}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ current\_label\ =\ lhs\_labels[i];}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ match\ =\ rhs\_labels.find(current\_label);}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (match\ !=\ std::string::npos)\ \{\ \ \textcolor{comment}{//\ an\ actual\ match\ was\ found}}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ contraction\_pairs[array\_position]\ =\ Eigen::IndexPair<int>(i,\ match);}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ array\_position++;}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Perform\ the\ contraction.\ It\ is\ an\ intermediate\ result,\ because\ we\ still\ have\ to\ align\ the\ tensor\ axes\ that\ Eigen's\ contraction\ module\ produces\ with\ the\ user's\ requested\ axes.}}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor<Scalar,\ ResultRank>}}\ T\_intermediate\ =\ this-\/>contract(rhs.\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a1975212d179fc9fee2020d1cdf835c88}{Eigen}}(),\ contraction\_pairs);}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Finally,\ we\ should\ find\ the\ shuffle\ indices\ that\ map\ the\ obtained\ intermediate\ axes\ to\ the\ requested\ axes.}}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ intermediate\ axes\ are\ just\ concatenated\ from\ left\ to\ right,\ removing\ any\ duplicates.}}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ intermediate\_indices\ =\ lhs\_labels\ +\ rhs\_labels;}
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 1;\ i\ <\ LHSRank\ +\ RHSRank;\ i++)\ \{\ \ \textcolor{comment}{//\ We\ should\ skip\ the\ first\ iteration,\ since\ there\ wouldn't\ be\ any\ duplicates\ anyways.}}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ the\ current\ index\ label\ appears\ in\ the\ substring\ before\ it.}}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ current\_label\ =\ intermediate\_indices[i];}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ match\ =\ intermediate\_indices.substr(0,\ i).find(current\_label);}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (match\ !=\ std::string::npos)\ \{\ \ \textcolor{comment}{//\ an\ actual\ match\ was\ found}}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ intermediate\_indices.erase(match,\ 1);}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ intermediate\_indices.erase(i\ -\/\ 1,\ 1);\ \ \textcolor{comment}{//\ i-\/1\ is\ used\ because\ the\ length\ of\ the\ parameter\ ìntermediate\_indices`changed.}}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ have\ to\ set\ back\ the\ current\ index\ to\ account\ for\ the\ removed\ indices.}}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i\ -\/=\ 2;}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00315\ }
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Eigen3\ does\ not\ document\ its\ tensor\ contraction\ clearly,\ so\ see\ the\ accepted\ answer\ on\ stackoverflow\ (https://stackoverflow.com/a/47558349/7930415):}}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ Eigen3\ does\ not\ accept\ a\ way\ to\ specify\ the\ output\ axes:\ instead,\ it\ retains\ the\ order\ from\ left\ to\ right\ of\ the\ axes\ that\ survive\ the\ contraction.}}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ This\ means\ that,\ in\ order\ to\ get\ the\ right\ ordering\ of\ the\ axes,\ we\ will\ have\ to\ swap\ axes.}}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Find\ the\ position\ of\ the\ intermediate\ axes'\ labels\ in\ the\ requested\ output\ labels\ in\ order\ to\ set\ up\ the\ required\ shuffle\ indices.}}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ is\ only\ necessary\ when\ not\ contracting\ over\ all\ axes,\ in\ other\ words,\ when\ the\ string\ of\ output\ labels\ is\ not\ empty.}}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (output\_labels\ !=\ \textcolor{stringliteral}{"{}"{}})\ \{}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ Eigen::array<int,\ 4>\ shuffle\_indices\ \{\};}
+\DoxyCodeLine{00324\ }
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ 4;\ i++)\ \{}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ current\_label\ =\ intermediate\_indices[i];}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ shuffle\_indices[i]\ =\ output\_labels.find(current\_label);}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00329\ }
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ T\_intermediate.shuffle(shuffle\_indices);}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00332\ }
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ T\_intermediate;}
+\DoxyCodeLine{00334\ \ \ \ \ \}}
+\DoxyCodeLine{00335\ }
+\DoxyCodeLine{00336\ }
+\DoxyCodeLine{00349\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{int}\ N,\ \textcolor{keywordtype}{int}\ LHSRank\ =\ Rank,\ \textcolor{keywordtype}{int}\ RHSRank>}
+\DoxyCodeLine{00350\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor}}<\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}},\ LHSRank\ +\ RHSRank\ -\/\ 2\ *\ N>\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a2e625a0f5f694c035a6171c1006cbf69}{einsum}}(std::string\ contraction\_string,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor<Scalar,\ RHSRank>}}\&\ rhs)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Remove\ unnecessary\ symbols\ from\ string.}}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ boost::erase\_all(contraction\_string,\ \textcolor{stringliteral}{"{}\ "{}});\ \ \textcolor{comment}{//\ Remove\ all\ spaces.}}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ boost::erase\_all(contraction\_string,\ \textcolor{stringliteral}{"{}>"{}});}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ boost::replace\_all(contraction\_string,\ \textcolor{stringliteral}{"{}-\/"{}},\ \textcolor{stringliteral}{"{}\ "{}});}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ boost::replace\_all(contraction\_string,\ \textcolor{stringliteral}{"{},"{}},\ \textcolor{stringliteral}{"{}\ "{}});}
+\DoxyCodeLine{00356\ }
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Split\ the\ stringstream\ in\ the\ necessary\ components,\ 3\ in\ most\ cases.}}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ std::vector<std::string>\ segment\_list;}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ boost::split(segment\_list,\ contraction\_string,\ boost::is\_any\_of(\textcolor{stringliteral}{"{}\ "{}}));}
+\DoxyCodeLine{00360\ }
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ a\ contraction\ over\ all\ indices\ is\ done,\ only\ 2\ sets\ of\ labels\ are\ saved\ in\ the\ vector.\ The\ last\ set\ of\ labels\ is\ an\ empty\ string,\ and\ is\ added\ manually.}}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (segment\_list.size()\ ==\ 2)\ \{}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ segment\_list.push\_back(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00365\ }
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ following\ code\ can\ be\ used\ to\ calculate\ template\ parameter\ `N`\ at\ runtime.\ At\ the\ moment\ however,\ this\ is\ not\ used.}}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ number\ of\ axes\ to\ contract\ over}}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ std::vector<char>\ segment\_1(segment\_list[0].begin(),\ segment\_list[0].end());}}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ std::vector<char>\ segment\_2(segment\_list[1].begin(),\ segment\_list[1].end());}}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ std::vector<char>\ intersection;}}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ std::set\_intersection(segment\_1.begin(),\ segment\_1.end(),}}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ segment\_2.begin(),\ segment\_2.end(),\ std::back\_inserter(intersection));}}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ const\ int\ Z\ =\ intersection.size();}}
+\DoxyCodeLine{00377\ }
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>einsum<N>(rhs,\ segment\_list[0],\ segment\_list[1],\ segment\_list[2]);}
+\DoxyCodeLine{00379\ \ \ \ \ \}}
+\DoxyCodeLine{00380\ }
+\DoxyCodeLine{00381\ }
+\DoxyCodeLine{00394\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{int}\ N,\ \textcolor{keywordtype}{int}\ LHSRank\ =\ Rank>}
+\DoxyCodeLine{00395\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor}}<\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_af3fe62d68eabe84eaa63f637a31fc65c}{Scalar}},\ LHSRank\ +\ 2\ -\/\ 2\ *\ N>\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a883e0b2e73e9579c7fdeefa625741afa}{einsum}}(std::string\ contraction\_string,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Matrix<Scalar>}}\ rhs)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Convert\ the\ given\ `Matrix`\ to\ its\ equivalent\ rank-\/2\ `Tensor`.}}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ tensor\_from\_matrix\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor<Scalar,\ 2>}}(Eigen::TensorMap<Eigen::Tensor<const\ Scalar,\ 2>>(rhs.data(),\ rhs.rows(),\ rhs.cols()));}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>einsum<N>(contraction\_string,\ tensor\_from\_matrix);}
+\DoxyCodeLine{00399\ \ \ \ \ \}}
+\DoxyCodeLine{00400\ }
+\DoxyCodeLine{00401\ }
+\DoxyCodeLine{00405\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{int}\ Z\ =\ Rank>}
+\DoxyCodeLine{00406\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<Z\ ==\ 2,\ GQCP::Matrix<Scalar>}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_ab0e5ba6f1b1fe279289bb98772e3e387}{asMatrix}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00407\ }
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ rows\ =\ this-\/>dimension(0);}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ cols\ =\ this-\/>dimension(1);}
+\DoxyCodeLine{00410\ }
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{GQCP::Matrix<Scalar>}}(Eigen::Map<\textcolor{keyword}{const}\ Eigen::Matrix<Scalar,\ Eigen::Dynamic,\ Eigen::Dynamic>>(this-\/>data(),\ rows,\ cols));}
+\DoxyCodeLine{00412\ \ \ \ \ \}}
+\DoxyCodeLine{00413\ }
+\DoxyCodeLine{00422\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{GQCP::Matrix<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a0c6235577d215b4ecdff6ba9b5981ea7}{reshape}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ rows,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ cols)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00423\ }
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ dimensions\ of\ the\ tensor\ have\ to\ match\ the\ dimensions\ of\ the\ target\ matrix.}}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rows\ *\ cols\ !=\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a9e3aeb7907fbbfb2fce357af8426f234}{numberOfElements}}())\ \{}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Tensor.reshape(const\ size\_t\ rows,\ const\ size\_t\ cols):\ The\ tensor\ cannot\ be\ reshaped\ into\ a\ matrix\ with\ the\ specified\ dimensions."{}});}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00428\ }
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initialize\ a\ matrix\ with\ the\ wanted\ dimensions.}}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{GQCP::Matrix<Scalar>}}\ M\ \{rows,\ cols\};}
+\DoxyCodeLine{00431\ }
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ create\ an\ intermediate\ vector\ to\ contain\ all\ the\ values\ of\ the\ tensor.}}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ std::vector<Scalar>\ vectorized;}
+\DoxyCodeLine{00434\ }
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ reserve\ the\ amount\ of\ data\ we\ expect\ the\ tensor\ to\ take\ up.}}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ vectorized.reserve(rows\ *\ cols);}
+\DoxyCodeLine{00437\ }
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Fill\ the\ vector\ with\ the\ elements\ of\ the\ tensor.}}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ this-\/>dimension(0);\ i++)\ \{}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ this-\/>dimension(1);\ j++)\ \{}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ k\ =\ 0;\ k\ <\ this-\/>dimension(2);\ k++)\ \{}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ l\ =\ 0;\ l\ <\ this-\/>dimension(3);\ l++)\ \{}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vectorized.push\_back(this-\/>\textcolor{keyword}{operator}()(i,\ j,\ k,\ l));}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00448\ }
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Fill\ the\ matrix\ with\ the\ elements\ of\ the\ intermediate\ vector.}}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ r\ =\ 0;\ r\ <\ rows;\ r++)\ \{}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ c\ =\ 0;\ c\ <\ cols;\ c++)\ \{}
+\DoxyCodeLine{00452\ }
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ columns\ are\ looped\ first.\ Hence,\ the\ position\ within\ the\ row\ is\ determined\ by\ c\ (+c).}}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ rows\ are\ determined\ by\ the\ outer\ loop.\ When\ you\ start\ filling\ a\ new\ row,\ you\ have\ to\ skip\ all\ the\ vector\ elements\ used\ for\ the\ previous\ row\ (r\ *\ cols).}}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ M(r,\ c)\ =\ vectorized[r\ *\ cols\ +\ c];}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00458\ }
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ M;}
+\DoxyCodeLine{00460\ \ \ \ \ \}}
+\DoxyCodeLine{00461\ }
+\DoxyCodeLine{00462\ }
+\DoxyCodeLine{00463\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00464\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ General\ information}}
+\DoxyCodeLine{00465\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00466\ }
+\DoxyCodeLine{00472\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a0fbb66c2ec178b7c21441ef6aaf3362d}{hasEqualDimensionsAs}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Self}}\&\ other)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00473\ }
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a776e6ece53ccfc888aa36aef2f998985}{Rank}};\ i++)\ \{}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>dimension(i)\ !=\ other.dimension(i))\ \{}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00479\ }
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00481\ \ \ \ \ \}}
+\DoxyCodeLine{00482\ }
+\DoxyCodeLine{00483\ }
+\DoxyCodeLine{00490\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{int}\ Z\ =\ Rank>}
+\DoxyCodeLine{00491\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<Z\ ==\ 4,\ bool>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a6f031658f7e1bb111fa29234f85b3eab}{isApprox}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Self}}\&\ other,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ tolerance\ =\ 1.0e-\/12)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00492\ }
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a0fbb66c2ec178b7c21441ef6aaf3362d}{hasEqualDimensionsAs}}(other))\ \{}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}RankFourTensor<Scalar>::isApprox(Self,\ double):\ the\ tensors\ have\ different\ dimensions"{}});}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00496\ }
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ every\ pair\ of\ values}}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ this-\/>dimension(0);\ i++)\ \{}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ j\ =\ 0;\ j\ <\ this-\/>dimension(1);\ j++)\ \{}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ k\ =\ 0;\ k\ <\ this-\/>dimension(2);\ k++)\ \{}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ l\ =\ 0;\ l\ <\ this-\/>dimension(3);\ l++)\ \{}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (std::abs(this-\/>\textcolor{keyword}{operator}()(i,\ j,\ k,\ l)\ -\/\ other(i,\ j,\ k,\ l))\ >\ tolerance)\ \{}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ \}\ \ \textcolor{comment}{//\ rank-\/4\ tensor\ traversing}}
+\DoxyCodeLine{00509\ }
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00511\ \ \ \ \ \}}
+\DoxyCodeLine{00512\ }
+\DoxyCodeLine{00513\ }
+\DoxyCodeLine{00517\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a9e3aeb7907fbbfb2fce357af8426f234}{numberOfElements}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>dimension(0)\ *\ this-\/>dimension(1)\ *\ this-\/>dimension(2)\ *\ this-\/>dimension(3);}
+\DoxyCodeLine{00519\ \ \ \ \ \}}
+\DoxyCodeLine{00520\ }
+\DoxyCodeLine{00521\ }
+\DoxyCodeLine{00527\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{int}\ Z\ =\ Rank>}
+\DoxyCodeLine{00528\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<Z\ ==\ 4>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor_a0842ff636779da8fb3c947707c438265}{print}}(std::ostream\&\ output\_stream\ =\ std::cout)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00529\ }
+\DoxyCodeLine{00530\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ this-\/>dimension(0);\ i++)\ \{}
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ j\ =\ 0;\ j\ <\ this-\/>dimension(1);\ j++)\ \{}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ k\ =\ 0;\ k\ <\ this-\/>dimension(2);\ k++)\ \{}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ l\ =\ 0;\ l\ <\ this-\/>dimension(3);\ l++)\ \{}
+\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ output\_stream\ <<\ i\ <<\ \textcolor{charliteral}{'\ '}\ <<\ j\ <<\ \textcolor{charliteral}{'\ '}\ <<\ k\ <<\ \textcolor{charliteral}{'\ '}\ <<\ l\ <<\ \textcolor{stringliteral}{"{}\ \ "{}}\ <<\ this-\/>operator()(i,\ j,\ k,\ l)\ <<\ std::endl;}
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00539\ \ \ \ \ \}}
+\DoxyCodeLine{00540\ \};}
+\DoxyCodeLine{00541\ }
+\DoxyCodeLine{00542\ }
+\DoxyCodeLine{00543\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

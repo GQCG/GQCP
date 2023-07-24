@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_array" kind="class" language="C++" prot="public">
     <compoundname>GQCP::Array</compoundname>
     <basecompoundref prot="public" virt="non-virtual">Eigen::Array&lt; double, Dynamic, Dynamic &gt;</basecompoundref>
@@ -28,6 +28,7 @@
         <definition>using GQCP::Array&lt; _Scalar, _Rows, _Cols &gt;::Scalar =  _Scalar</definition>
         <argsstring></argsstring>
         <name>Scalar</name>
+        <qualifiedname>GQCP::Array::Scalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -41,6 +42,7 @@
         <definition>using GQCP::Array&lt; _Scalar, _Rows, _Cols &gt;::Self =  Array&lt;Scalar, Rows, Cols&gt;</definition>
         <argsstring></argsstring>
         <name>Self</name>
+        <qualifiedname>GQCP::Array::Self</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -54,6 +56,7 @@
         <definition>using GQCP::Array&lt; _Scalar, _Rows, _Cols &gt;::Base =  Eigen::Array&lt;Scalar, Rows, Cols&gt;</definition>
         <argsstring></argsstring>
         <name>Base</name>
+        <qualifiedname>GQCP::Array::Base</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -69,6 +72,7 @@
         <definition>constexpr auto GQCP::Array&lt; _Scalar, _Rows, _Cols &gt;::Rows</definition>
         <argsstring></argsstring>
         <name>Rows</name>
+        <qualifiedname>GQCP::Array::Rows</qualifiedname>
         <initializer>= _Rows</initializer>
         <briefdescription>
         </briefdescription>
@@ -83,6 +87,7 @@
         <definition>constexpr auto GQCP::Array&lt; _Scalar, _Rows, _Cols &gt;::Cols</definition>
         <argsstring></argsstring>
         <name>Cols</name>
+        <qualifiedname>GQCP::Array::Cols</qualifiedname>
         <initializer>= _Cols</initializer>
         <briefdescription>
         </briefdescription>
@@ -94,11 +99,12 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="class_g_q_c_p_1_1_array_1a2c65c9d1508b75e3c49dd6032aff56ba" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_array_1ad5e830f748fee3ea77943b5efafb890a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_array_1aeffdde1d0d823598ed30436468ab6cdd" kindref="member">Base</ref> &amp;</type>
-        <definition>const Base&amp; GQCP::Array&lt; _Scalar, _Rows, _Cols &gt;::Eigen</definition>
+        <definition>const Base &amp; GQCP::Array&lt; _Scalar, _Rows, _Cols &gt;::Eigen</definition>
         <argsstring>() const</argsstring>
         <name>Eigen</name>
+        <qualifiedname>GQCP::Array::Eigen</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -110,11 +116,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Array.hpp" line="64" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Array.hpp" bodystart="64" bodyend="64"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_array_1a1b74a3bd9afc30efda40dc938bc7b8c8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_array_1a0580b18e7830a5717b4878f450066638" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_array_1aeffdde1d0d823598ed30436468ab6cdd" kindref="member">Base</ref> &amp;</type>
-        <definition>Base&amp; GQCP::Array&lt; _Scalar, _Rows, _Cols &gt;::Eigen</definition>
+        <definition>Base &amp; GQCP::Array&lt; _Scalar, _Rows, _Cols &gt;::Eigen</definition>
         <argsstring>()</argsstring>
         <name>Eigen</name>
+        <qualifiedname>GQCP::Array::Eigen</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -132,33 +139,33 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
+      <node id="2">
+        <label>Eigen::Array&lt; double, Dynamic, Dynamic &gt;</label>
+      </node>
       <node id="1">
         <label>GQCP::Array&lt; _Scalar, _Rows, _Cols &gt;</label>
         <link refid="class_g_q_c_p_1_1_array"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
-      </node>
-      <node id="2">
-        <label>Eigen::Array&lt; double, Dynamic, Dynamic &gt;</label>
       </node>
     </inheritancegraph>
     <collaborationgraph>
+      <node id="2">
+        <label>Eigen::Array&lt; double, Dynamic, Dynamic &gt;</label>
+      </node>
       <node id="1">
         <label>GQCP::Array&lt; _Scalar, _Rows, _Cols &gt;</label>
         <link refid="class_g_q_c_p_1_1_array"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
-      </node>
-      <node id="2">
-        <label>Eigen::Array&lt; double, Dynamic, Dynamic &gt;</label>
       </node>
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Array.hpp" line="35" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Array.hpp" bodystart="36" bodyend="70"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_array_1aeffdde1d0d823598ed30436468ab6cdd" prot="public" virt="non-virtual"><scope>GQCP::Array</scope><name>Base</name></member>
       <member refid="class_g_q_c_p_1_1_array_1a30fbb03f12e8c849a864527bab9e7805" prot="public" virt="non-virtual"><scope>GQCP::Array</scope><name>Cols</name></member>
-      <member refid="class_g_q_c_p_1_1_array_1a2c65c9d1508b75e3c49dd6032aff56ba" prot="public" virt="non-virtual"><scope>GQCP::Array</scope><name>Eigen</name></member>
-      <member refid="class_g_q_c_p_1_1_array_1a1b74a3bd9afc30efda40dc938bc7b8c8" prot="public" virt="non-virtual"><scope>GQCP::Array</scope><name>Eigen</name></member>
+      <member refid="class_g_q_c_p_1_1_array_1ad5e830f748fee3ea77943b5efafb890a" prot="public" virt="non-virtual"><scope>GQCP::Array</scope><name>Eigen</name></member>
+      <member refid="class_g_q_c_p_1_1_array_1a0580b18e7830a5717b4878f450066638" prot="public" virt="non-virtual"><scope>GQCP::Array</scope><name>Eigen</name></member>
       <member refid="class_g_q_c_p_1_1_array_1a78a9fec8a72ed484c270f5079193ddc3" prot="public" virt="non-virtual"><scope>GQCP::Array</scope><name>Rows</name></member>
       <member refid="class_g_q_c_p_1_1_array_1a3432611fea1a8d7c264c37f9b7428ebd" prot="public" virt="non-virtual"><scope>GQCP::Array</scope><name>Scalar</name></member>
       <member refid="class_g_q_c_p_1_1_array_1a4fcfaa985c1451c6659bfea6a9c5e59f" prot="public" virt="non-virtual"><scope>GQCP::Array</scope><name>Self</name></member>

@@ -1,0 +1,172 @@
+\hypertarget{_dense_vectorizer_8hpp_source}{}\doxysection{Dense\+Vectorizer.\+hpp}
+\label{_dense_vectorizer_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Representation/DenseVectorizer.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Representation/DenseVectorizer.hpp}}
+\mbox{\hyperlink{_dense_vectorizer_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <numeric>}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespace_g_q_c_p_aa03d875bac2a1696d399ae8136c705e5}{Ordering}}\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{//\ Specifies\ that\ the\ first\ axis\ is\ contiguous.}}
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_aa03d875bac2a1696d399ae8136c705e5af695e73139b1c1d06d77655104370f00}{ColumnMajor}},}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//\ Specifies\ that\ the\ last\ axis\ is\ contiguous.}}
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_aa03d875bac2a1696d399ae8136c705e5abba47a7c03289a67ca347baa3f55be2f}{RowMajor}}}
+\DoxyCodeLine{00040\ \};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{size\_t}\ A>}
+\DoxyCodeLine{00049\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer}{DenseVectorizer}}\ \{}
+\DoxyCodeLine{00050\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{//\ The\ ordering\ of\ the\ axes.}}
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_aa03d875bac2a1696d399ae8136c705e5}{Ordering}}\ m\_ordering;}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{comment}{//\ The\ dimensions\ of\ each\ axis.}}
+\DoxyCodeLine{00055\ \ \ \ \ std::array<size\_t,\ A>\ m\_dimensions;}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{//\ The\ strides\ associated\ to\ each\ axis.}}
+\DoxyCodeLine{00058\ \ \ \ \ std::array<size\_t,\ A>\ m\_strides;}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00063\ \textcolor{comment}{\ \ \ \ \ *\ \ CONSTRUCTORS}}
+\DoxyCodeLine{00064\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer_ad7ea32c04b5fc8ba7f4ddfa882140625}{DenseVectorizer}}(\textcolor{keyword}{const}\ std::array<size\_t,\ A>\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer_a0eeac9172d90a9a7806bea1c21701c51}{dimensions}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_aa03d875bac2a1696d399ae8136c705e5}{Ordering}}\ ordering\ =\ \mbox{\hyperlink{namespace_g_q_c_p_aa03d875bac2a1696d399ae8136c705e5af695e73139b1c1d06d77655104370f00}{Ordering::ColumnMajor}})\ :}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ m\_ordering\ \{ordering\},}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ m\_dimensions\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer_a0eeac9172d90a9a7806bea1c21701c51}{dimensions}}\}\ \{}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initialize\ the\ strides\ for\ every\ dimension.}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (this-\/>m\_ordering)\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespace_g_q_c_p_aa03d875bac2a1696d399ae8136c705e5af695e73139b1c1d06d77655104370f00}{Ordering::ColumnMajor}}:\ \{\ \ \textcolor{comment}{//\ the\ first\ axis\ is\ contiguous}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ k\ =\ 0;\ k\ <\ A;\ k++)\ \{}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer_aba1a78ae4da4afc01eccace066cccd3a}{stride}}\ \{1\};}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ l\ =\ 0;\ l\ <\ k;\ l++)\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer_aba1a78ae4da4afc01eccace066cccd3a}{stride}}\ *=\ this-\/>m\_dimensions[l];}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>m\_strides[k]\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer_aba1a78ae4da4afc01eccace066cccd3a}{stride}};}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespace_g_q_c_p_aa03d875bac2a1696d399ae8136c705e5abba47a7c03289a67ca347baa3f55be2f}{Ordering::RowMajor}}:\ \{\ \ \textcolor{comment}{//\ the\ last\ axis\ is\ contiguous}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ k\ =\ 0;\ k\ <\ A;\ k++)\ \{}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer_aba1a78ae4da4afc01eccace066cccd3a}{stride}}\ \{1\};}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ l\ =\ k\ +\ 1;\ l\ <\ A;\ l++)\ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer_aba1a78ae4da4afc01eccace066cccd3a}{stride}}\ *=\ this-\/>m\_dimensions[l];}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>m\_strides[k]\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer_aba1a78ae4da4afc01eccace066cccd3a}{stride}};}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00104\ \ \ \ \ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00109\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer_ae3532176463e4b0739df98172c5f4b67}{DenseVectorizer}}()\ :}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer}{DenseVectorizer}}(std::array<size\_t,\ A>\ \{\})\ \{\}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer_a1ed21f7a475d6a73d0c870fce1a33abc}{offset}}(\textcolor{keyword}{const}\ std::array<size\_t,\ A>\&\ indices)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ value\ \{0\};}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ k\ =\ 0;\ k\ <\ A;\ k++)\ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (indices[k]\ >\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer_a28472ea97ca2632a3b0fa6a20435e00d}{dimension}}(k))\ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}DenseVectorizer::offset(const\ std::array<size\_t,\ A>\&):\ The\ index\ is\ not\ supported\ with\ the\ memory\ layout."{}});}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ value\ +=\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer_aba1a78ae4da4afc01eccace066cccd3a}{stride}}(k)\ *\ indices[k];}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ value;}
+\DoxyCodeLine{00136\ \ \ \ \ \}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00140\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ General\ information}}
+\DoxyCodeLine{00141\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer_a28472ea97ca2632a3b0fa6a20435e00d}{dimension}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ axis)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (axis\ >=\ A)\ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}DenseVectorizer::offset(const\ std::array<size\_t,\ A>\&):\ The\ given\ axis\ does\ not\ exist."{}});}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer_a0eeac9172d90a9a7806bea1c21701c51}{dimensions}}()[axis];}
+\DoxyCodeLine{00154\ \ \ \ \ \}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keyword}{const}\ std::array<size\_t,\ A>\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer_a0eeac9172d90a9a7806bea1c21701c51}{dimensions}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>m\_dimensions;\ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{comment}{//\ The\ number\ of\ axes\ for\ this\ vectorizer.}}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer_a56985fe9a137a3974a85b2feecb941d9}{NumberOfAxes}}\ =\ A;}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer_ade9a8861fbacf06054d36647ad5f8c03}{numberOfAxes}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ A;\ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer_a05907ab8cff671a7c0f95c068ac6babf}{numberOfElements}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::accumulate(this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer_a0eeac9172d90a9a7806bea1c21701c51}{dimensions}}().begin(),\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer_a0eeac9172d90a9a7806bea1c21701c51}{dimensions}}().end(),\ 1,\ std::multiplies<size\_t>());}
+\DoxyCodeLine{00174\ \ \ \ \ \}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer_aba1a78ae4da4afc01eccace066cccd3a}{stride}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ axis)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (axis\ >=\ A)\ \{}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}DenseVectorizer::offset(const\ std::array<size\_t,\ A>\&):\ The\ given\ axis\ does\ not\ exist."{}});}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer_aebfd28d96283cf99f3842202ee8be26a}{strides}}()[axis];}
+\DoxyCodeLine{00188\ \ \ \ \ \}}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keyword}{const}\ std::array<size\_t,\ A>\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer_aebfd28d96283cf99f3842202ee8be26a}{strides}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>m\_strides;\ \}}
+\DoxyCodeLine{00195\ \};}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00199\ \textcolor{comment}{\ *\ \ MARK:\ Convenience\ aliases}}
+\DoxyCodeLine{00200\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \textcolor{comment}{//\ A\ trivial\ vectorizer\ that\ offers\ tuple-\/based\ indexing\ for\ 0\ arguments.}}
+\DoxyCodeLine{00203\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer}{ScalarVectorizer}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer}{DenseVectorizer<0>}};}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \textcolor{comment}{//\ A\ vectorizer\ that\ offers\ tuple-\/based\ indexing\ for\ 1\ argument.}}
+\DoxyCodeLine{00206\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer}{VectorVectorizer}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer}{DenseVectorizer<1>}};}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \textcolor{comment}{//\ A\ vectorizer\ that\ offers\ tuple-\/based\ indexing\ for\ 2\ arguments.}}
+\DoxyCodeLine{00209\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer}{MatrixVectorizer}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer}{DenseVectorizer<2>}};}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \textcolor{comment}{//\ A\ vectorizer\ that\ offers\ tuple-\/based\ indexing\ for\ a\ general\ number\ of\ arguments.}}
+\DoxyCodeLine{00212\ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{size\_t}\ A>}
+\DoxyCodeLine{00213\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer}{TensorVectorizer}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer}{DenseVectorizer<A>}};}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

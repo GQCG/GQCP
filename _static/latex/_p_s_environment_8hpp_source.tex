@@ -1,0 +1,60 @@
+\hypertarget{_p_s_environment_8hpp_source}{}\doxysection{PSEnvironment.\+hpp}
+\label{_p_s_environment_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/PSEnvironment.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/PSEnvironment.hpp}}
+\mbox{\hyperlink{_p_s_environment_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_non_linear_equation_environment_8hpp}{Mathematical/Optimization/NonLinearEquation/NonLinearEquationEnvironment.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_q_hamiltonian_8hpp}{Operator/SecondQuantized/SQHamiltonian.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_q_c_model_2_geminals_2_a_p1ro_g_8hpp}{QCModel/Geminals/AP1roG.hpp}}"{}}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00027\ \textcolor{keyword}{namespace\ }PSEnvironment\ \{}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00039\ \mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_environment}{NonLinearEquationEnvironment<Scalar>}}\ \mbox{\hyperlink{namespace_g_q_c_p_1_1_p_s_environment_a498b2b7f242dc5c25c038c72c518e5e7}{AP1roG}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{RSQHamiltonian<Scalar>}}\&\ sq\_hamiltonian,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients}{AP1roGGeminalCoefficients}}\&\ G\_initial)\ \{}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ N\_P\ =\ G\_initial.\mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients_a0ced60dde75f8042832cd83271578aa7}{numberOfElectronPairs}}();}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ initial\_guess\ =\ G\_initial.\mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients_a16f932e173aede97a1a244d2305584fc}{asVector}}();\ \ \textcolor{comment}{//\ column\ major}}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ f\_callable\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_ac5bb3c054474a28f82e40cf4b3c1b940}{QCModel::AP1roG::callablePSECoordinateFunctions}}(sq\_hamiltonian,\ N\_P);}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ J\_callable\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_a79195d8abb1f7da152ada5b5b05909b0}{QCModel::AP1roG::callablePSEJacobian}}(sq\_hamiltonian,\ N\_P);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_environment}{GQCP::NonLinearEquationEnvironment<Scalar>}}(initial\_guess,\ f\_callable,\ J\_callable);}
+\DoxyCodeLine{00048\ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00060\ \mbox{\hyperlink{class_g_q_c_p_1_1_non_linear_equation_environment}{NonLinearEquationEnvironment<Scalar>}}\ \mbox{\hyperlink{namespace_g_q_c_p_1_1_p_s_environment_a498b2b7f242dc5c25c038c72c518e5e7}{AP1roG}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{RSQHamiltonian<Scalar>}}\&\ sq\_hamiltonian,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ N\_P)\ \{}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\ =\ sq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a9beb3656dcb386bb52a74e74f7723ad2}{numberOfOrbitals}}();\ \ \ \ \textcolor{comment}{//\ number\ of\ spatial\ orbitals}}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients}{AP1roGGeminalCoefficients}}\ G\_initial\ \{N\_P,\ K\};\ \ \textcolor{comment}{//\ geminal\ coefficients\ set\ to\ zero}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{return}\ GQCP::PSEnvironment::AP1roG<Scalar>(sq\_hamiltonian,\ G\_initial);}
+\DoxyCodeLine{00066\ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \}\ \ \textcolor{comment}{//\ namespace\ PSEnvironment}}
+\DoxyCodeLine{00070\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

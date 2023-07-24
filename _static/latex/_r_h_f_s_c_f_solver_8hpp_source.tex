@@ -1,0 +1,116 @@
+\hypertarget{_r_h_f_s_c_f_solver_8hpp_source}{}\doxysection{RHFSCFSolver.\+hpp}
+\label{_r_h_f_s_c_f_solver_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFSolver.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFSolver.hpp}}
+\mbox{\hyperlink{_r_h_f_s_c_f_solver_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_iterative_algorithm_8hpp}{Mathematical/Algorithm/IterativeAlgorithm.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_consecutive_iterates_norm_convergence_8hpp}{Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_r_h_f_density_matrix_calculation_8hpp}{QCMethod/HF/RHF/RHFDensityMatrixCalculation.hpp}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_r_h_f_density_matrix_damper_8hpp}{QCMethod/HF/RHF/RHFDensityMatrixDamper.hpp}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_r_h_f_electronic_energy_calculation_8hpp}{QCMethod/HF/RHF/RHFElectronicEnergyCalculation.hpp}}"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_r_h_f_error_calculation_8hpp}{QCMethod/HF/RHF/RHFErrorCalculation.hpp}}"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_r_h_f_fock_matrix_calculation_8hpp}{QCMethod/HF/RHF/RHFFockMatrixCalculation.hpp}}"{}}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_r_h_f_fock_matrix_d_i_i_s_8hpp}{QCMethod/HF/RHF/RHFFockMatrixDIIS.hpp}}"{}}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_r_h_f_fock_matrix_diagonalization_8hpp}{QCMethod/HF/RHF/RHFFockMatrixDiagonalization.hpp}}"{}}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_r_h_f_s_c_f_environment_8hpp}{QCMethod/HF/RHF/RHFSCFEnvironment.hpp}}"{}}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar>}
+\DoxyCodeLine{00042\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_solver}{RHFSCFSolver}}\ \{}
+\DoxyCodeLine{00043\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_solver_aa8d8b39701bb5828989c99ba55bb88de}{Scalar}}\ =\ \_Scalar;}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00049\ \textcolor{comment}{\ \ \ \ \ *\ \ PUBLIC\ STATIC\ METHODS}}
+\DoxyCodeLine{00050\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{IterativeAlgorithm<RHFSCFEnvironment<Scalar>}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_solver_a0ecd9c7c937696b598369fc69dbe1a0a}{DensityDamped}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{alpha}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ threshold\ =\ 1.0e-\/08,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ maximum\_number\_of\_iterations\ =\ 128)\ \{}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ the\ iteration\ cycle\ that\ effectively\ 'defines'\ a\ damped\ RHF\ SCF\ solver.}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection}{StepCollection<RHFSCFEnvironment<Scalar>}}>\ damped\_rhf\_scf\_cycle\ \{\};}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ damped\_rhf\_scf\_cycle}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ .\mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_ae642fc19be01a8aadebeaed0aef863b9}{add}}(\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_density_matrix_calculation}{RHFDensityMatrixCalculation<Scalar>}}())}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ .add(\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_density_matrix_damper}{RHFDensityMatrixDamper<Scalar>}}(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{alpha}}))}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ .add(\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_fock_matrix_calculation}{RHFFockMatrixCalculation<Scalar>}}())}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ .add(\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_fock_matrix_diagonalization}{RHFFockMatrixDiagonalization<Scalar>}}())}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ .add(\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_electronic_energy_calculation}{RHFElectronicEnergyCalculation<Scalar>}}());}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ a\ convergence\ criterion\ on\ the\ norm\ of\ subsequent\ density\ matrices.}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::function<std::deque<Orbital1DM<Scalar>>(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_environment}{RHFSCFEnvironment<Scalar>}}\&)>\ density\_matrix\_extractor\ =\ [](\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_environment}{RHFSCFEnvironment<Scalar>}}\&\ environment)\ \{\ \textcolor{keywordflow}{return}\ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_environment_a11ddbb78f3f9cc70ff4ec86af7b1d2a7}{density\_matrices}};\ \};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }ConvergenceType\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence}{ConsecutiveIteratesNormConvergence<Orbital1DM<Scalar>}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_environment}{RHFSCFEnvironment<Scalar>}}>;}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ ConvergenceType\ convergence\_criterion\ \{threshold,\ density\_matrix\_extractor,\ \textcolor{stringliteral}{"{}the\ RHF\ density\ matrix\ in\ AO\ basis"{}}\};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{IterativeAlgorithm<RHFSCFEnvironment<Scalar>}}>(damped\_rhf\_scf\_cycle,\ convergence\_criterion,\ maximum\_number\_of\_iterations);}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{IterativeAlgorithm<RHFSCFEnvironment<Scalar>}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_solver_a6d350d0c2172d9af652510d4a82c9fdf}{DIIS}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ minimum\_subspace\_dimension\ =\ 6,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ maximum\_subspace\_dimension\ =\ 6,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ threshold\ =\ 1.0e-\/08,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ maximum\_number\_of\_iterations\ =\ 128)\ \{}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ the\ iteration\ cycle\ that\ effectively\ 'defines'\ a\ DIIS\ RHF\ SCF\ solver.}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection}{StepCollection<RHFSCFEnvironment<Scalar>}}>\ diis\_rhf\_scf\_cycle\ \{\};}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ diis\_rhf\_scf\_cycle}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ .\mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_ae642fc19be01a8aadebeaed0aef863b9}{add}}(\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_density_matrix_calculation}{RHFDensityMatrixCalculation<Scalar>}}())}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ .add(\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_fock_matrix_calculation}{RHFFockMatrixCalculation<Scalar>}}())}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ .add(\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_error_calculation}{RHFErrorCalculation<Scalar>}}())}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ .add(\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_fock_matrix_d_i_i_s}{RHFFockMatrixDIIS<Scalar>}}(minimum\_subspace\_dimension,\ maximum\_subspace\_dimension))\ \ \textcolor{comment}{//\ This\ also\ calculates\ the\ next\ coefficient\ matrix.}}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ .add(\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_electronic_energy_calculation}{RHFElectronicEnergyCalculation<Scalar>}}());}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ a\ convergence\ criterion\ on\ the\ norm\ of\ subsequent\ density\ matrices.}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::function<std::deque<Orbital1DM<Scalar>>(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_environment}{RHFSCFEnvironment<Scalar>}}\&)>\ density\_matrix\_extractor\ =\ [](\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_environment}{RHFSCFEnvironment<Scalar>}}\&\ environment)\ \{\ \textcolor{keywordflow}{return}\ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_environment_a11ddbb78f3f9cc70ff4ec86af7b1d2a7}{density\_matrices}};\ \};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }ConvergenceType\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence}{ConsecutiveIteratesNormConvergence<Orbital1DM<Scalar>}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_environment}{RHFSCFEnvironment<Scalar>}}>;}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ ConvergenceType\ convergence\_criterion\ \{threshold,\ density\_matrix\_extractor,\ \textcolor{stringliteral}{"{}the\ RHF\ density\ matrix\ in\ AO\ basis"{}}\};}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{IterativeAlgorithm<RHFSCFEnvironment<Scalar>}}>(diis\_rhf\_scf\_cycle,\ convergence\_criterion,\ maximum\_number\_of\_iterations);}
+\DoxyCodeLine{00106\ \ \ \ \ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{IterativeAlgorithm<RHFSCFEnvironment<Scalar>}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_solver_acd1ba253c6aa9baefe683bde5c10edfd}{Plain}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ threshold\ =\ 1.0e-\/08,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ maximum\_number\_of\_iterations\ =\ 128)\ \{}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ the\ iteration\ cycle\ that\ effectively\ 'defines'\ a\ plain\ RHF\ SCF\ solver.}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection}{StepCollection<RHFSCFEnvironment<Scalar>}}>\ plain\_rhf\_scf\_cycle\ \{\};}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ plain\_rhf\_scf\_cycle}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ .\mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_ae642fc19be01a8aadebeaed0aef863b9}{add}}(\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_density_matrix_calculation}{RHFDensityMatrixCalculation<Scalar>}}())}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ .add(\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_fock_matrix_calculation}{RHFFockMatrixCalculation<Scalar>}}())}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ .add(\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_fock_matrix_diagonalization}{RHFFockMatrixDiagonalization<Scalar>}}())}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ .add(\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_electronic_energy_calculation}{RHFElectronicEnergyCalculation<Scalar>}}());}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ a\ convergence\ criterion\ on\ the\ norm\ of\ subsequent\ density\ matrices.}}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ density\_matrix\_extractor\ =\ [](\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_environment}{RHFSCFEnvironment<Scalar>}}\&\ environment)\ \{\ \textcolor{keywordflow}{return}\ environment.density\_matrices;\ \};}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }ConvergenceType\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence}{ConsecutiveIteratesNormConvergence<Orbital1DM<Scalar>}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_environment}{RHFSCFEnvironment<Scalar>}}>;}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ ConvergenceType\ convergence\_criterion\ \{threshold,\ density\_matrix\_extractor,\ \textcolor{stringliteral}{"{}the\ RHF\ density\ matrix\ in\ AO\ basis"{}}\};}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{IterativeAlgorithm<RHFSCFEnvironment<Scalar>}}>(plain\_rhf\_scf\_cycle,\ convergence\_criterion,\ maximum\_number\_of\_iterations);}
+\DoxyCodeLine{00132\ \ \ \ \ \}}
+\DoxyCodeLine{00133\ \};}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

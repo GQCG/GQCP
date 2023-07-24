@@ -1,4 +1,4 @@
-\hypertarget{class_g_q_c_p_1_1_functional_step}{}\doxysection{GQCP\+::Functional\+Step$<$ \+\_\+\+Environment $>$ Class Template Reference}
+\hypertarget{class_g_q_c_p_1_1_functional_step}{}\doxysection{GQCP\+::Functional\+Step\texorpdfstring{$<$}{<} \+\_\+\+Environment \texorpdfstring{$>$}{>} Class Template Reference}
 \label{class_g_q_c_p_1_1_functional_step}\index{GQCP::FunctionalStep$<$ \_Environment $>$@{GQCP::FunctionalStep$<$ \_Environment $>$}}
 
 
@@ -6,7 +6,7 @@
 
 
 
-Inheritance diagram for GQCP\+::Functional\+Step$<$ \+\_\+\+Environment $>$\+:
+Inheritance diagram for GQCP\+::Functional\+Step\texorpdfstring{$<$}{<} \+\_\+\+Environment \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -16,7 +16,7 @@ Inheritance diagram for GQCP\+::Functional\+Step$<$ \+\_\+\+Environment $>$\+:
 \end{figure}
 
 
-Collaboration diagram for GQCP\+::Functional\+Step$<$ \+\_\+\+Environment $>$\+:
+Collaboration diagram for GQCP\+::Functional\+Step\texorpdfstring{$<$}{<} \+\_\+\+Environment \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -31,6 +31,11 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_functional_step_ada2b7f1e0145d18a7a2843
 \item 
 using \mbox{\hyperlink{class_g_q_c_p_1_1_functional_step_aafa7ad564744c3c164dfd928e943f637}{Function}} = std\+::function$<$ void(\mbox{\hyperlink{class_g_q_c_p_1_1_functional_step_ada2b7f1e0145d18a7a2843f181edf2da}{Environment}} \&)$>$
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_step}{GQCP\+::\+Step$<$ \+\_\+\+Environment $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_step_a479d9d1f930d4cabb39879a6e71f4915}{Environment}} = \+\_\+\+Environment
+\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -40,12 +45,20 @@ std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_functional_step_acdbcb74b42d6f3
 \item 
 void \mbox{\hyperlink{class_g_q_c_p_1_1_functional_step_aa30af9328c3482352d24d15e05156e1d}{execute}} (\mbox{\hyperlink{class_g_q_c_p_1_1_functional_step_ada2b7f1e0145d18a7a2843f181edf2da}{Environment}} \&environment) override
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_step}{GQCP\+::\+Step$<$ \+\_\+\+Environment $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_step_a013c882b1c3e8c18babbe1a478382cb0}{$\sim$\+Step}} ()=default
+\item 
+virtual std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_step_af2276da3e9eef7f8d2049a8aa255b9fb}{description}} () const =0
+\item 
+virtual void \mbox{\hyperlink{class_g_q_c_p_1_1_step_afc654a62596b3fff0801acb2d993818f}{execute}} (\mbox{\hyperlink{class_g_q_c_p_1_1_step_a479d9d1f930d4cabb39879a6e71f4915}{Environment}} \&environment)=0
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$typename \+\_\+\+Environment$>$\newline
 class GQCP\+::\+Functional\+Step$<$ \+\_\+\+Environment $>$}
-
 A general algorithmic step that acts as a wrapper around a function call.
 
 
@@ -61,14 +74,14 @@ A general algorithmic step that acts as a wrapper around a function call.
 \index{Environment@{Environment}!GQCP::FunctionalStep$<$ \_Environment $>$@{GQCP::FunctionalStep$<$ \_Environment $>$}}
 \doxysubsubsection{\texorpdfstring{Environment}{Environment}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Environment $>$ \\
-using \mbox{\hyperlink{class_g_q_c_p_1_1_functional_step}{GQCP\+::\+Functional\+Step}}$<$ \+\_\+\+Environment $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_functional_step_ada2b7f1e0145d18a7a2843f181edf2da}{Environment}} =  \+\_\+\+Environment}
+using \mbox{\hyperlink{class_g_q_c_p_1_1_functional_step}{GQCP\+::\+Functional\+Step}}$<$ \+\_\+\+Environment $>$\+::\+Environment =  \+\_\+\+Environment}
 
 \mbox{\Hypertarget{class_g_q_c_p_1_1_functional_step_aafa7ad564744c3c164dfd928e943f637}\label{class_g_q_c_p_1_1_functional_step_aafa7ad564744c3c164dfd928e943f637}} 
 \index{GQCP::FunctionalStep$<$ \_Environment $>$@{GQCP::FunctionalStep$<$ \_Environment $>$}!Function@{Function}}
 \index{Function@{Function}!GQCP::FunctionalStep$<$ \_Environment $>$@{GQCP::FunctionalStep$<$ \_Environment $>$}}
 \doxysubsubsection{\texorpdfstring{Function}{Function}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Environment $>$ \\
-using \mbox{\hyperlink{class_g_q_c_p_1_1_functional_step}{GQCP\+::\+Functional\+Step}}$<$ \+\_\+\+Environment $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_functional_step_aafa7ad564744c3c164dfd928e943f637}{Function}} =  std\+::function$<$void(\mbox{\hyperlink{class_g_q_c_p_1_1_functional_step_ada2b7f1e0145d18a7a2843f181edf2da}{Environment}}\&)$>$}
+using \mbox{\hyperlink{class_g_q_c_p_1_1_functional_step}{GQCP\+::\+Functional\+Step}}$<$ \+\_\+\+Environment $>$\+::\+Function =  std\+::function$<$void(\mbox{\hyperlink{class_g_q_c_p_1_1_functional_step_ada2b7f1e0145d18a7a2843f181edf2da}{Environment}}\&)$>$}
 
 
 
@@ -78,7 +91,7 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_functional_step}{GQCP\+::\+Functional\+
 \index{FunctionalStep@{FunctionalStep}!GQCP::FunctionalStep$<$ \_Environment $>$@{GQCP::FunctionalStep$<$ \_Environment $>$}}
 \doxysubsubsection{\texorpdfstring{FunctionalStep()}{FunctionalStep()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Environment $>$ \\
-\mbox{\hyperlink{class_g_q_c_p_1_1_functional_step}{GQCP\+::\+Functional\+Step}}$<$ \+\_\+\+Environment $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_functional_step}{Functional\+Step}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_functional_step_aafa7ad564744c3c164dfd928e943f637}{Function}} \&}]{function,  }\item[{const std\+::string \&}]{description = {\ttfamily \char`\"{}A~custom~functional~step.\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{class_g_q_c_p_1_1_functional_step}{GQCP\+::\+Functional\+Step}}$<$ \+\_\+\+Environment $>$\+::\+Functional\+Step (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_functional_step_aafa7ad564744c3c164dfd928e943f637}{Function}} \&}]{function,  }\item[{const std\+::string \&}]{description = {\ttfamily \char`\"{}A~custom~functional~step.\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Create a \mbox{\hyperlink{class_g_q_c_p_1_1_step}{Step}} by wrapping a function.
 

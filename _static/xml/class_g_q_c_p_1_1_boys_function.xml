@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_boys_function" kind="class" language="C++" prot="public">
     <compoundname>GQCP::BoysFunction</compoundname>
     <includes refid="_boys_function_8hpp" local="no">BoysFunction.hpp</includes>
@@ -9,6 +9,7 @@
         <definition>double GQCP::BoysFunction::operator()</definition>
         <argsstring>(const size_t n, const double x) const</argsstring>
         <name>operator()</name>
+        <qualifiedname>GQCP::BoysFunction::operator()</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>n</declname>
@@ -71,6 +72,7 @@ Calculate the value for the Boys function F_n(x).</para>
         <definition>complex GQCP::BoysFunction::operator()</definition>
         <argsstring>(const size_t n, const complex z) const</argsstring>
         <name>operator()</name>
+        <qualifiedname>GQCP::BoysFunction::operator()</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>n</declname>

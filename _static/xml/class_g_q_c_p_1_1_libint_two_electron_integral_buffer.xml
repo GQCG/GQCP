@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_libint_two_electron_integral_buffer" kind="class" language="C++" prot="public">
     <compoundname>GQCP::LibintTwoElectronIntegralBuffer</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer" prot="public" virt="non-virtual">GQCP::BaseTwoElectronIntegralBuffer&lt; double, _N &gt;</basecompoundref>
@@ -17,6 +17,7 @@
         <definition>using GQCP::LibintTwoElectronIntegralBuffer&lt; _N &gt;::IntegralScalar =  double</definition>
         <argsstring></argsstring>
         <name>IntegralScalar</name>
+        <qualifiedname>GQCP::LibintTwoElectronIntegralBuffer::IntegralScalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -32,6 +33,7 @@
         <definition>using GQCP::LibintTwoElectronIntegralBuffer&lt; _N &gt;::libint2_buffer_t =  LibintInterfacer::libint_target_ptr_vec</definition>
         <argsstring></argsstring>
         <name>libint2_buffer_t</name>
+        <qualifiedname>GQCP::LibintTwoElectronIntegralBuffer::libint2_buffer_t</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -47,6 +49,7 @@
         <definition>constexpr auto GQCP::LibintTwoElectronIntegralBuffer&lt; _N &gt;::N</definition>
         <argsstring></argsstring>
         <name>N</name>
+        <qualifiedname>GQCP::LibintTwoElectronIntegralBuffer::N</qualifiedname>
         <initializer>= _N</initializer>
         <briefdescription>
         </briefdescription>
@@ -63,6 +66,7 @@
         <definition>libint2_buffer_t GQCP::LibintTwoElectronIntegralBuffer&lt; _N &gt;::libint2_buffer</definition>
         <argsstring></argsstring>
         <name>libint2_buffer</name>
+        <qualifiedname>GQCP::LibintTwoElectronIntegralBuffer::libint2_buffer</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -78,6 +82,7 @@
         <definition>GQCP::LibintTwoElectronIntegralBuffer&lt; _N &gt;::LibintTwoElectronIntegralBuffer</definition>
         <argsstring>(const libint2_buffer_t &amp;libint2_buffer, const size_t nbf1, const size_t nbf2, const size_t nbf3, const size_t nbf4)</argsstring>
         <name>LibintTwoElectronIntegralBuffer</name>
+        <qualifiedname>GQCP::LibintTwoElectronIntegralBuffer::LibintTwoElectronIntegralBuffer</qualifiedname>
         <param>
           <type>const libint2_buffer_t &amp;</type>
           <declname>libint2_buffer</declname>
@@ -153,6 +158,7 @@
         <definition>bool GQCP::LibintTwoElectronIntegralBuffer&lt; _N &gt;::areIntegralsAllZero</definition>
         <argsstring>() const override</argsstring>
         <name>areIntegralsAllZero</name>
+        <qualifiedname>GQCP::LibintTwoElectronIntegralBuffer::areIntegralsAllZero</qualifiedname>
         <reimplements refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer_1a6ea199f70814102a3a10b76dbd850f90">areIntegralsAllZero</reimplements>
         <briefdescription>
         </briefdescription>
@@ -170,6 +176,7 @@
         <definition>IntegralScalar GQCP::LibintTwoElectronIntegralBuffer&lt; _N &gt;::value</definition>
         <argsstring>(const size_t i, const size_t f1, const size_t f2, const size_t f3, const size_t f4) const override</argsstring>
         <name>value</name>
+        <qualifiedname>GQCP::LibintTwoElectronIntegralBuffer::value</qualifiedname>
         <reimplements refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer_1aae389b8ee9a545e84ebdd11a7b81c95a">value</reimplements>
         <param>
           <type>const size_t</type>
@@ -260,27 +267,27 @@
 </para>
     </detaileddescription>
     <inheritancegraph>
+      <node id="2">
+        <label>GQCP::BaseTwoElectronIntegralBuffer&lt; double, _N &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer"/>
+      </node>
       <node id="1">
         <label>GQCP::LibintTwoElectronIntegralBuffer&lt; _N &gt;</label>
         <link refid="class_g_q_c_p_1_1_libint_two_electron_integral_buffer"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
-      </node>
-      <node id="2">
-        <label>GQCP::BaseTwoElectronIntegralBuffer&lt; double, _N &gt;</label>
-        <link refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
+      <node id="2">
+        <label>GQCP::BaseTwoElectronIntegralBuffer&lt; double, _N &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer"/>
+      </node>
       <node id="1">
         <label>GQCP::LibintTwoElectronIntegralBuffer&lt; _N &gt;</label>
         <link refid="class_g_q_c_p_1_1_libint_two_electron_integral_buffer"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
-      </node>
-      <node id="2">
-        <label>GQCP::BaseTwoElectronIntegralBuffer&lt; double, _N &gt;</label>
-        <link refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer"/>
       </node>
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibintTwoElectronIntegralBuffer.hpp" line="33" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibintTwoElectronIntegralBuffer.hpp" bodystart="33" bodyend="83"/>

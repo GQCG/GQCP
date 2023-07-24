@@ -1,21 +1,21 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="_array_8hpp" kind="file" language="C++">
     <compoundname>Array.hpp</compoundname>
     <includes refid="_eigen_8hpp" local="yes">Utilities/Eigen.hpp</includes>
-    <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
     <includedby refid="_weighted_grid_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/WeightedGrid.hpp</includedby>
+    <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
     <incdepgraph>
-      <node id="2">
-        <label>Utilities/Eigen.hpp</label>
-        <link refid="_eigen_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
       <node id="1">
         <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Array.hpp</label>
         <link refid="_array_8hpp"/>
         <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Utilities/Eigen.hpp</label>
+        <link refid="_eigen_8hpp"/>
+        <childnode refid="3" relation="include">
         </childnode>
       </node>
       <node id="3">
@@ -23,10 +23,10 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="3">
+      <node id="2">
         <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Grid/WeightedGrid.hpp</label>
         <link refid="_weighted_grid_8hpp"/>
-        <childnode refid="2" relation="include">
+        <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
@@ -39,7 +39,7 @@
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="2">
+      <node id="3">
         <label>/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</label>
         <link refid="gqcp_8hpp"/>
       </node>
@@ -86,13 +86,13 @@
 <codeline lineno="37"><highlight class="normal"></highlight></codeline>
 <codeline lineno="38"><highlight class="normal"></highlight></codeline>
 <codeline lineno="39"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="40" refid="class_g_q_c_p_1_1_array_1a3432611fea1a8d7c264c37f9b7428ebd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_array_1a3432611fea1a8d7c264c37f9b7428ebd" kindref="member">Scalar</ref><sp/>=<sp/>_Scalar;</highlight></codeline>
-<codeline lineno="41" refid="class_g_q_c_p_1_1_array_1a78a9fec8a72ed484c270f5079193ddc3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_array_1a78a9fec8a72ed484c270f5079193ddc3" kindref="member">Rows</ref><sp/>=<sp/>_Rows;</highlight></codeline>
-<codeline lineno="42" refid="class_g_q_c_p_1_1_array_1a30fbb03f12e8c849a864527bab9e7805" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_array_1a30fbb03f12e8c849a864527bab9e7805" kindref="member">Cols</ref><sp/>=<sp/>_Cols;</highlight></codeline>
+<codeline lineno="40" refid="class_g_q_c_p_1_1_array_1a3432611fea1a8d7c264c37f9b7428ebd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_array_1a3432611fea1a8d7c264c37f9b7428ebd" kindref="member">Scalar</ref><sp/>=<sp/>_Scalar;</highlight></codeline>
+<codeline lineno="41" refid="class_g_q_c_p_1_1_array_1a78a9fec8a72ed484c270f5079193ddc3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_array_1a78a9fec8a72ed484c270f5079193ddc3" kindref="member">Rows</ref><sp/>=<sp/>_Rows;</highlight></codeline>
+<codeline lineno="42" refid="class_g_q_c_p_1_1_array_1a30fbb03f12e8c849a864527bab9e7805" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_array_1a30fbb03f12e8c849a864527bab9e7805" kindref="member">Cols</ref><sp/>=<sp/>_Cols;</highlight></codeline>
 <codeline lineno="43"><highlight class="normal"></highlight></codeline>
 <codeline lineno="44"><highlight class="normal"></highlight></codeline>
-<codeline lineno="45" refid="class_g_q_c_p_1_1_array_1a4fcfaa985c1451c6659bfea6a9c5e59f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_array" kindref="compound">Self</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_array" kindref="compound">Array&lt;Scalar, Rows, Cols&gt;</ref>;</highlight></codeline>
-<codeline lineno="46" refid="class_g_q_c_p_1_1_array_1aeffdde1d0d823598ed30436468ab6cdd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_array_1aeffdde1d0d823598ed30436468ab6cdd" kindref="member">Base</ref><sp/>=<sp/>Eigen::Array&lt;Scalar,<sp/>Rows,<sp/>Cols&gt;;</highlight></codeline>
+<codeline lineno="45" refid="class_g_q_c_p_1_1_array_1a4fcfaa985c1451c6659bfea6a9c5e59f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_array" kindref="compound">Self</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_array" kindref="compound">Array&lt;Scalar, Rows, Cols&gt;</ref>;</highlight></codeline>
+<codeline lineno="46" refid="class_g_q_c_p_1_1_array_1aeffdde1d0d823598ed30436468ab6cdd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_array_1aeffdde1d0d823598ed30436468ab6cdd" kindref="member">Base</ref><sp/>=<sp/>Eigen::Array&lt;Scalar,<sp/>Rows,<sp/>Cols&gt;;</highlight></codeline>
 <codeline lineno="47"><highlight class="normal"></highlight></codeline>
 <codeline lineno="48"><highlight class="normal"></highlight></codeline>
 <codeline lineno="49"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
@@ -100,12 +100,12 @@
 <codeline lineno="51"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>CONSTRUCTORS</highlight></codeline>
 <codeline lineno="52"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="53"><highlight class="normal"></highlight></codeline>
-<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>Eigen::Array&lt;Scalar,<sp/>Rows,<sp/>Cols&gt;::Array;<sp/><sp/></highlight><highlight class="comment">//<sp/>inhert<sp/>base<sp/>constructors</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">Eigen::Array&lt;<ref refid="class_g_q_c_p_1_1_array_1a3432611fea1a8d7c264c37f9b7428ebd" kindref="member">Scalar</ref>,<sp/><ref refid="class_g_q_c_p_1_1_array_1a78a9fec8a72ed484c270f5079193ddc3" kindref="member">Rows</ref>,<sp/><ref refid="class_g_q_c_p_1_1_array_1a30fbb03f12e8c849a864527bab9e7805" kindref="member">Cols</ref>&gt;::Array;<sp/><sp/></highlight><highlight class="comment">//<sp/>inhert<sp/>base<sp/>constructors</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="55"><highlight class="normal"></highlight></codeline>
 <codeline lineno="56"><highlight class="normal"></highlight></codeline>
-<codeline lineno="64" refid="class_g_q_c_p_1_1_array_1a2c65c9d1508b75e3c49dd6032aff56ba" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_array_1aeffdde1d0d823598ed30436468ab6cdd" kindref="member">Base</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_array_1a2c65c9d1508b75e3c49dd6032aff56ba" kindref="member">Eigen</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keyword">const<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_array_1aeffdde1d0d823598ed30436468ab6cdd" kindref="member">Base</ref>&amp;</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(*this);<sp/>}</highlight></codeline>
+<codeline lineno="64" refid="class_g_q_c_p_1_1_array_1ad5e830f748fee3ea77943b5efafb890a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_array_1aeffdde1d0d823598ed30436468ab6cdd" kindref="member">Base</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_array_1ad5e830f748fee3ea77943b5efafb890a" kindref="member">Eigen</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keyword">const<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_array_1aeffdde1d0d823598ed30436468ab6cdd" kindref="member">Base</ref>&amp;</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(*this);<sp/>}</highlight></codeline>
 <codeline lineno="65"><highlight class="normal"></highlight></codeline>
-<codeline lineno="69" refid="class_g_q_c_p_1_1_array_1a1b74a3bd9afc30efda40dc938bc7b8c8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_array_1aeffdde1d0d823598ed30436468ab6cdd" kindref="member">Base</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_array_1a1b74a3bd9afc30efda40dc938bc7b8c8" kindref="member">Eigen</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_array_1aeffdde1d0d823598ed30436468ab6cdd" kindref="member">Base</ref>&amp;</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(*this);<sp/>}</highlight></codeline>
+<codeline lineno="69" refid="class_g_q_c_p_1_1_array_1a0580b18e7830a5717b4878f450066638" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_array_1aeffdde1d0d823598ed30436468ab6cdd" kindref="member">Base</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_array_1a0580b18e7830a5717b4878f450066638" kindref="member">Eigen</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_array_1aeffdde1d0d823598ed30436468ab6cdd" kindref="member">Base</ref>&amp;</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(*this);<sp/>}</highlight></codeline>
 <codeline lineno="70"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="71"><highlight class="normal"></highlight></codeline>
 <codeline lineno="72"><highlight class="normal"></highlight></codeline>
@@ -114,10 +114,10 @@
 <codeline lineno="75"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="76"><highlight class="normal"></highlight></codeline>
 <codeline lineno="77"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Scalar&gt;</highlight></codeline>
-<codeline lineno="78" refid="namespace_g_q_c_p_1a91a4a76c7877bfb4db770b73fdd0fc0b" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_array" kindref="compound">ArrayX</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_array" kindref="compound">Array&lt;Scalar, Dynamic, 1&gt;</ref>;</highlight></codeline>
+<codeline lineno="78" refid="namespace_g_q_c_p_1a91a4a76c7877bfb4db770b73fdd0fc0b" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_array" kindref="compound">ArrayX</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_array" kindref="compound">Array&lt;Scalar, Dynamic, 1&gt;</ref>;</highlight></codeline>
 <codeline lineno="79"><highlight class="normal"></highlight></codeline>
 <codeline lineno="80"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Scalar&gt;</highlight></codeline>
-<codeline lineno="81" refid="namespace_g_q_c_p_1ab269ada467ee7f0575bf11f97f8c6bad" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_array" kindref="compound">ArrayXX</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_array" kindref="compound">Array&lt;Scalar, Dynamic, Dynamic&gt;</ref>;</highlight></codeline>
+<codeline lineno="81" refid="namespace_g_q_c_p_1ab269ada467ee7f0575bf11f97f8c6bad" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_array" kindref="compound">ArrayXX</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_array" kindref="compound">Array&lt;Scalar, Dynamic, Dynamic&gt;</ref>;</highlight></codeline>
 <codeline lineno="82"><highlight class="normal"></highlight></codeline>
 <codeline lineno="83"><highlight class="normal"></highlight></codeline>
 <codeline lineno="84"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>

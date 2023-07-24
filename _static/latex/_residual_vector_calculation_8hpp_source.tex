@@ -1,0 +1,77 @@
+\hypertarget{_residual_vector_calculation_8hpp_source}{}\doxysection{Residual\+Vector\+Calculation.\+hpp}
+\label{_residual_vector_calculation_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/ResidualVectorCalculation.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/ResidualVectorCalculation.hpp}}
+\mbox{\hyperlink{_residual_vector_calculation_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_algorithm_2_step_8hpp}{Mathematical/Algorithm/Step.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_eigenproblem_environment_8hpp}{Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp}}"{}}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_residual_vector_calculation}{ResidualVectorCalculation}}:}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_step}{Step}}<EigenproblemEnvironment<double>>\ \{}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ number\_of\_requested\_eigenpairs;}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00040\ \textcolor{comment}{\ \ \ \ \ *\ \ CONSTRUCTORS}}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_residual_vector_calculation_acc5ae34403a28caab1c086b982cc22f8}{ResidualVectorCalculation}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ number\_of\_requested\_eigenpairs\ =\ 1)\ :}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ number\_of\_requested\_eigenpairs\ \{number\_of\_requested\_eigenpairs\}\ \{\}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00051\ \textcolor{comment}{\ \ \ \ \ *\ \ PUBLIC\ OVERRIDDEN\ METHODS}}
+\DoxyCodeLine{00052\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00057\ \ \ \ \ std::string\ \mbox{\hyperlink{class_g_q_c_p_1_1_residual_vector_calculation_afb3cb399b0a1fae12b5580e2a4c62624}{description}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Calculate\ the\ residual\ vectors\ from\ the\ new\ guesses\ for\ the\ eigenvectors."{}};}
+\DoxyCodeLine{00059\ \ \ \ \ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_residual_vector_calculation_a13c984e572665b8d3eebe56a1059f10f}{execute}}(\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{EigenproblemEnvironment<double>}}\&\ environment)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ dim\ =\ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a5409c53cfd95076713c08a6fb341afb1}{dimension}};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ VA\ =\ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_ad1322f5ba8ad32def492dc275f85cb76}{VA}};\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ VA\ =\ A\ *\ V\ (implicitly\ calculated\ through\ the\ matrix-\/vector\ product)}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ Z\ =\ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a7f53eede93b4b59a2bdfb50dfb7bd810}{Z}};\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ (requested\ number\ of)\ eigenvectors\ of\ the\ subspace\ matrix\ S}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ Lambda\ =\ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_ab9d9ff337078f8cdd90cc166f89d7cbe}{Lambda}};\ \ \textcolor{comment}{//\ the\ (requested\ number\ of)\ eigenvalues\ of\ the\ subspace\ matrix\ S}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ X\ =\ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a238f88df14aff1b0ce73f34e4aa8ba0f}{X}};\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ contains\ the\ new\ guesses\ for\ the\ eigenvectors\ (as\ a\ linear\ combination\ of\ the\ current\ subspace\ V)}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ residual\ vectors:\ r\_i\ =\ VA\ *\ z\_i\ -\/\ Lambda\ *\ x\_i}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_af75cf9113b87fd65208c7b6d38910be6}{R}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<double>::Zero}}(dim,\ this-\/>number\_of\_requested\_eigenpairs);}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ column\_index\ =\ 0;\ column\_index\ <\ this-\/>number\_of\_requested\_eigenpairs;\ column\_index++)\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_af75cf9113b87fd65208c7b6d38910be6}{R}}.col(column\_index)\ =\ VA\ *\ Z.col(column\_index)\ -\/\ Lambda(column\_index)\ *\ X.col(column\_index);}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00081\ \ \ \ \ \}}
+\DoxyCodeLine{00082\ \};}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

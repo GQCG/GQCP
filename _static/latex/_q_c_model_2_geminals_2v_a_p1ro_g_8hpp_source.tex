@@ -1,0 +1,87 @@
+\hypertarget{_q_c_model_2_geminals_2v_a_p1ro_g_8hpp_source}{}\doxysection{v\+AP1ro\+G.\+hpp}
+\label{_q_c_model_2_geminals_2v_a_p1ro_g_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/QCModel/Geminals/vAP1roG.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/QCModel/Geminals/vAP1roG.hpp}}
+\mbox{\hyperlink{_q_c_model_2_geminals_2v_a_p1ro_g_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_orbital1_d_m_8hpp}{DensityMatrix/Orbital1DM.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_orbital2_d_m_8hpp}{DensityMatrix/Orbital2DM.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_implicit_matrix_slice_8hpp}{Mathematical/Representation/ImplicitMatrixSlice.hpp}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_q_hamiltonian_8hpp}{Operator/SecondQuantized/SQHamiltonian.hpp}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_q_c_model_2_geminals_2_a_p1ro_g_8hpp}{QCModel/Geminals/AP1roG.hpp}}"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_a_p1ro_g_geminal_coefficients_8hpp}{QCModel/Geminals/AP1roGGeminalCoefficients.hpp}}"{}}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00030\ \textcolor{keyword}{namespace\ }QCModel\ \{}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g}{vAP1roG}}\ \{}
+\DoxyCodeLine{00037\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients}{AP1roGGeminalCoefficients}}\ G;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ optimized\ geminal\ coefficients}}
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{ImplicitMatrixSlice<double>}}\ multipliers;\ \ \textcolor{comment}{//\ the\ optimized\ Lagrange\ multipliers}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{//\ CONSTRUCTORS}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g}{vAP1roG}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients}{AP1roGGeminalCoefficients}}\&\ G,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{ImplicitMatrixSlice<double>}}\&\ multipliers);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ \ STATIC\ PUBLIC\ METHODS}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital1_d_m}{Orbital1DM<double>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g_afdb25f3e0533615c7660f2a9440c556f}{calculate1DM}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients}{AP1roGGeminalCoefficients}}\&\ G,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{ImplicitMatrixSlice<double>}}\&\ multipliers);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital2_d_m}{Orbital2DM<double>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g_ab04036358c622db39c4b887a8c830cd7}{calculate2DM}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients}{AP1roGGeminalCoefficients}}\&\ G,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{ImplicitMatrixSlice<double>}}\&\ multipliers);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g_a20b7dadcb814eb1b6cb1f35a1a7b9576}{calculateEnergy}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients}{AP1roGGeminalCoefficients}}\&\ G,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{RSQHamiltonian<double>}}\&\ sq\_hamiltonian)\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_a_p1ro_g_a09afa5a4f60c4f631c58aefd7ecc6330}{AP1roG::calculateEnergy}}(G,\ sq\_hamiltonian);\ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{ImplicitMatrixSlice<double>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g_a4a59522e0f5f7749e623e9d807732678}{calculateMultiplierResponseForce}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{RSQHamiltonian<double>}}\&\ sq\_hamiltonian,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ N\_P);}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<double>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g_af8da613c00b56e12c072a16b5a3bc12f}{calculateMultiplierResponseForceConstant}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{RSQHamiltonian<double>}}\&\ sq\_hamiltonian,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients}{AP1roGGeminalCoefficients}}\&\ G);}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<double>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g_ac6097016fcd926adb640aab4bd4ec014}{calculateNumber2DM}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients}{AP1roGGeminalCoefficients}}\&\ G,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{ImplicitMatrixSlice<double>}}\&\ multipliers);}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<double>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g_a7c6e8708db3023d08e3d4948fa04aecb}{calculatePair2DM}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients}{AP1roGGeminalCoefficients}}\&\ G,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{ImplicitMatrixSlice<double>}}\&\ multipliers);}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{comment}{//\ PUBLIC\ METHODS}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00116\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital1_d_m}{Orbital1DM<double>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g_afdb25f3e0533615c7660f2a9440c556f}{calculate1DM}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g_afdb25f3e0533615c7660f2a9440c556f}{vAP1roG::calculate1DM}}(this-\/>G,\ this-\/>multipliers);\ \};}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00121\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital2_d_m}{Orbital2DM<double>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g_ab04036358c622db39c4b887a8c830cd7}{calculate2DM}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g_ab04036358c622db39c4b887a8c830cd7}{vAP1roG::calculate2DM}}(this-\/>G,\ this-\/>multipliers);\ \};}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g_aef1e560d63a1fab8ee2649d646fee50a}{calculateEnergy}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{RSQHamiltonian<double>}}\&\ sq\_hamiltonian)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g_a20b7dadcb814eb1b6cb1f35a1a7b9576}{vAP1roG::calculateEnergy}}(this-\/>G,\ sq\_hamiltonian);\ \}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients}{AP1roGGeminalCoefficients}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g_a31c4f29557a4921314e84169f303c5c5}{geminalCoefficients}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>G;\ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{ImplicitMatrixSlice<double>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g_ae9df64b3f3b288981efc8e0afc1cc7e5}{lagrangeMultipliers}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>multipliers;\ \}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g_aab29a5354810ec6530bea6e39a5cb04c}{numberOfElectronPairs}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>G.\mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients_a0ced60dde75f8042832cd83271578aa7}{numberOfElectronPairs}}();\ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1v_a_p1ro_g_a050fc878e6242082b81eada39ee37573}{numberOfSpatialOrbitals}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>G.\mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients_a37bbaac361aff290b7513e2f992a0748}{numberOfSpatialOrbitals}}();\ \}}
+\DoxyCodeLine{00149\ \};}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \}\ \ \textcolor{comment}{//\ namespace\ QCModel}}
+\DoxyCodeLine{00153\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

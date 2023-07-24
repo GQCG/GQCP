@@ -1,0 +1,286 @@
+\hypertarget{_field_8hpp_source}{}\doxysection{Field.\+hpp}
+\label{_field_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Grid/Field.hpp}}
+\mbox{\hyperlink{_field_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_matrix_8hpp}{Mathematical/Representation/Matrix.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{miscellaneous_8hpp}{Utilities/miscellaneous.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{type__traits_8hpp}{Utilities/type\_traits.hpp}}"{}}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T\_>}
+\DoxyCodeLine{00039\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_field}{Field}}\ \{}
+\DoxyCodeLine{00040\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ the\ evaluated\ function\ values.}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_field_a24cfed19b25ab94e35da3357ac923534}{T}}\ =\ T\_;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{//\ The\ evaluated\ function\ values,\ in\ the\ order\ of\ the\ grid's\ loop.}}
+\DoxyCodeLine{00046\ \ \ \ \ std::vector<T>\ m\_values;}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00051\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Constructors}}
+\DoxyCodeLine{00052\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_field_a9c9b48d7aa478798952d3d5373df34ce}{Field}}(\textcolor{keyword}{const}\ std::vector<T>\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_field_a828d6993869541c594465b9583844cf8}{values}})\ :}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ m\_values\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_field_a828d6993869541c594465b9583844cf8}{values}}\}\ \{\}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00064\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Named\ constructors.}}
+\DoxyCodeLine{00065\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ T>}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<std::is\_same<Z,\ double>::value}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_field}{Field<double>}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_field_a4cc50927583a5eb6bf70514b1b5d592a}{ReadCubeFile}}(\textcolor{keyword}{const}\ std::string\&\ filename)\ \{}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Prepare\ the\ input\ file.}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ std::ifstream\ input\_file\_stream\ =\ \mbox{\hyperlink{namespace_g_q_c_p_acf6fe8292e618c8a1f4b7f0bfe23cce4}{validateAndOpen}}(filename,\ \textcolor{stringliteral}{"{}cube"{}});}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Skip\ the\ first\ two\ comment\ lines.}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ std::string\ line;}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ std::getline(input\_file\_stream,\ line);}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ std::getline(input\_file\_stream,\ line);}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Figure\ out\ the\ number\ of\ atoms,\ in\ order\ to\ ignore\ that\ information\ later\ on.}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ std::getline(input\_file\_stream,\ line);}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Split\ the\ line\ on\ any\ whitespace\ or\ tabs.}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ std::vector<std::string>\ splitted\_line;\ \ \textcolor{comment}{//\ create\ a\ container\ for\ the\ line\ to\ be\ split\ in}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ boost::trim\_if(line,\ boost::is\_any\_of(\textcolor{stringliteral}{"{}\ \(\backslash\)t"{}}));}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ boost::split(splitted\_line,\ line,\ boost::is\_any\_of(\textcolor{stringliteral}{"{}\ \(\backslash\)t"{}}),\ boost::token\_compress\_on);}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ number\_of\_atoms\ =\ std::stoi(splitted\_line[0]);}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ next\ three\ lines\ contain\ the\ number\ of\ steps.}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ grid\_size\ \{1\};\ \ \textcolor{comment}{//\ will\ contain\ the\ total\ grid\ size\ after\ parsing}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ 3;\ i++)\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ std::getline(input\_file\_stream,\ line);}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Split\ the\ line\ on\ any\ whitespace\ or\ tabs.}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ boost::trim\_if(line,\ boost::is\_any\_of(\textcolor{stringliteral}{"{}\ \(\backslash\)t"{}}));}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ boost::split(splitted\_line,\ line,\ boost::is\_any\_of(\textcolor{stringliteral}{"{}\ \(\backslash\)t"{}}),\ boost::token\_compress\_on);}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ first\ column\ contains\ the\ number\ of\ steps.}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ grid\_size\ *=\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{size\_t}\textcolor{keyword}{>}(std::stoll(splitted\_line[0]));}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Skip\ the\ lines\ containing\ atomic\ information.}}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ number\_of\_atoms;\ i++)\ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ std::getline(input\_file\_stream,\ line);}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Finally,\ read\ in\ all\ field\ values.}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ std::vector<double>\ field\_values;}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ field\_values.reserve(grid\_size);\ \ \textcolor{comment}{//\ allocate\ memory\ for\ all\ the\ grid\ points}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(input\_file\_stream,\ line))\ \{}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Split\ the\ line\ on\ any\ whitespace\ or\ tabs.}}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ boost::trim\_if(line,\ boost::is\_any\_of(\textcolor{stringliteral}{"{}\ \(\backslash\)t"{}}));}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ boost::split(splitted\_line,\ line,\ boost::is\_any\_of(\textcolor{stringliteral}{"{}\ \(\backslash\)t"{}}),\ boost::token\_compress\_on);}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ the\ field\ values\ from\ this\ line\ to\ the\ total\ array.}}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_field_a4a7f1e8a8fc1a45c2b82a8424ada5db9}{value}}\ :\ splitted\_line)\ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ field\_values.push\_back(std::stod(\mbox{\hyperlink{class_g_q_c_p_1_1_field_a4a7f1e8a8fc1a45c2b82a8424ada5db9}{value}}));\ \ \textcolor{comment}{//\ no\ worries\ about\ push\_back,\ since\ we\ have\ reserved\ enough\ memory\ up-\/front}}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ input\_file\_stream.close();}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_field}{Field<double>}}(field\_values);}
+\DoxyCodeLine{00138\ \ \ \ \ \}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{int}\ N>}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_field}{Field<Vector<double,\ N>}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_field_af93d840bfa82a82b263eb9175ed573ef}{ReadGridFile}}(\textcolor{keyword}{const}\ std::string\&\ filename)\ \{}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Find\ the\ extension\ of\ the\ given\ path\ (https://stackoverflow.com/a/51992).}}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ std::string\ filename\_extension;\ \ \textcolor{comment}{//\ will\ contain\ the\ extension\ of\ the\ given\ filename}}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ std::string::size\_type\ idx\ =\ filename.rfind(\textcolor{charliteral}{'.'});}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (idx\ !=\ std::string::npos)\ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ filename\_extension\ =\ filename.substr(idx\ +\ 1);}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Field::ReadGridFile(const\ std::string\&):\ I\ did\ not\ find\ an\ extension\ in\ your\ given\ file\ name."{}});}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ the\ user\ supplied\ an\ .rgrid-\/\ or\ .igrid-\/file.}}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((filename\_extension\ !=\ \textcolor{stringliteral}{"{}rgrid"{}})\ \&\&\ (filename\_extension\ !=\ \textcolor{stringliteral}{"{}igrid"{}}))\ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Field::ReadGridFile(const\ std::string\&):\ The\ given\ file\ is\ not\ an\ .igrid-\/\ or\ .rgrid-\/file."{}});}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ the\ filename\ isn't\ properly\ converted\ into\ an\ input\ file\ stream,\ we\ assume\ the\ user\ supplied\ a\ wrong\ file}}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ std::ifstream\ input\_file\_stream\ \{filename\};}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!input\_file\_stream.good())\ \{}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}validateAndOpen(const\ std::string\&,\ const\ std::string\&):\ The\ provided\ file\ name\ is\ illegible.\ Maybe\ you\ specified\ a\ wrong\ path?"{}});}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Do\ the\ actual\ parsing.}}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ std::vector<Vector<double,\ N>>\ field\_values;}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ std::string\ line;}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(input\_file\_stream,\ line))\ \{}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::string>\ splitted\_line;\ \ \textcolor{comment}{//\ create\ a\ container\ for\ the\ line\ to\ be\ split\ in}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Split\ the\ line\ on\ any\ whitespace\ or\ tabs.}}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ boost::trim\_if(line,\ boost::is\_any\_of(\textcolor{stringliteral}{"{}\ \(\backslash\)t"{}}));}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ boost::split(splitted\_line,\ line,\ boost::is\_any\_of(\textcolor{stringliteral}{"{}\ \(\backslash\)t"{}}),\ boost::token\_compress\_on);}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ can\ skip\ the\ first\ 4\ columns\ (index\ and\ grid\ point\ coordinates).}}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Read\ the\ field\ value\ by\ converting\ the\ string(s)\ to\ a\ double\ and\ using\ Eigen::Map\ to\ instantiate\ the\ correct\ Vector.}}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<double>\ field\_value\_vector;}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ index\ =\ 4;\ index\ <\ 4\ +\ N;\ index++)\ \{}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ field\_value\_vector.push\_back(std::stod(splitted\_line[index]));}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ Eigen::Map<Eigen::VectorXd>\ field\_value\ \{field\_value\_vector.data(),\ N\};}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ field\_values.push\_back(\mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{Vector<double,\ N>}}(field\_value));}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ can\ skip\ the\ weight\ column\ as\ well.}}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ input\_file\_stream.close();}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Convert\ the\ std::vector\ of\ weights\ to\ an\ Array.}}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_field}{Field<Vector<double,\ N>}}>(field\_values);}
+\DoxyCodeLine{00217\ \ \ \ \ \}}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00221\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Canonical\ mathematical\ operators\ (https://en.cppreference.com/w/cpp/language/operators)}}
+\DoxyCodeLine{00222\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00233\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_field}{Field<T>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_field_ad1a1501c301167be4c79ee935fd1262a}{operator+=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_field}{Field<T>}}\&\ rhs)\ \{}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ std::transform(this-\/>m\_values.begin(),\ this-\/>m\_values.end(),\ rhs.\mbox{\hyperlink{class_g_q_c_p_1_1_field_a828d6993869541c594465b9583844cf8}{values}}().begin(),}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>m\_values.begin(),\ std::plus<T>());}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00239\ \ \ \ \ \}}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00252\ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{class_g_q_c_p_1_1_field}{Field<T>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_field_a43d3d11671503441606d93db6ee19158}{operator+}}(\mbox{\hyperlink{class_g_q_c_p_1_1_field}{Field<T>}}\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_field}{Field<T>}}\&\ rhs)\ \{}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ lhs\ +=\ rhs;}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ lhs;}
+\DoxyCodeLine{00256\ \ \ \ \ \}}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00264\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_field}{Field<T>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_field_a3344b792d37ab8de8e77c49fe295f595}{operator-\/}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ std::vector<T>\ result;}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ result.reserve(this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_field_aaab5b4df2677052efa8f93f0933e34ae}{size}}());}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ std::transform(this-\/>m\_values.begin(),\ this-\/>m\_values.end(),}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::back\_inserter(result),\ std::negate<T>());}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00273\ \ \ \ \ \}}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00285\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_field}{Field<T>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_field_aebae43a24e7609218678f0d274f90ac8}{operator-\/=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_field}{Field<T>}}\&\ rhs)\ \{}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Define\ subtraction\ as\ addition\ with\ the\ negation.}}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ *\textcolor{keyword}{this}\ +=\ (-\/rhs);}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00290\ \ \ \ \ \}}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00303\ \ \ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{class_g_q_c_p_1_1_field}{Field<T>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_field_ac212fb7ea34c77655bab22a740698391}{operator-\/}}(\mbox{\hyperlink{class_g_q_c_p_1_1_field}{Field<T>}}\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_field}{Field<T>}}\&\ rhs)\ \{}
+\DoxyCodeLine{00304\ }
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ lhs\ -\/=\ rhs;}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ lhs;}
+\DoxyCodeLine{00307\ \ \ \ \ \}}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00311\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ General\ information}}
+\DoxyCodeLine{00312\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00317\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_field_aaab5b4df2677052efa8f93f0933e34ae}{size}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>m\_values.size();\ \}}
+\DoxyCodeLine{00318\ }
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00321\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Mappings}}
+\DoxyCodeLine{00322\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00329\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_field_a944ad51413a8231e78dbe2bb34c1c6e0}{map}}(\textcolor{keyword}{const}\ std::function<\mbox{\hyperlink{class_g_q_c_p_1_1_field_a24cfed19b25ab94e35da3357ac923534}{T}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_field_a24cfed19b25ab94e35da3357ac923534}{T}}\&)>\&\ function)\ \{}
+\DoxyCodeLine{00330\ }
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ std::transform(this-\/>m\_values.begin(),\ this-\/>m\_values.end(),\ this-\/>m\_values.begin(),}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ function);}
+\DoxyCodeLine{00333\ \ \ \ \ \}}
+\DoxyCodeLine{00334\ }
+\DoxyCodeLine{00335\ }
+\DoxyCodeLine{00343\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_field}{Field<T>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_field_ae5a2d2096b269cf1634cc9bb3ed0fe5b}{mapped}}(\textcolor{keyword}{const}\ std::function<\mbox{\hyperlink{class_g_q_c_p_1_1_field_a24cfed19b25ab94e35da3357ac923534}{T}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_field_a24cfed19b25ab94e35da3357ac923534}{T}}\&)>\&\ function)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00344\ }
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ this\_copy\ =\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ this\_copy.map(function);}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this\_copy;}
+\DoxyCodeLine{00349\ \ \ \ \ \}}
+\DoxyCodeLine{00350\ }
+\DoxyCodeLine{00351\ }
+\DoxyCodeLine{00352\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00353\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Access}}
+\DoxyCodeLine{00354\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00355\ }
+\DoxyCodeLine{00363\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_field_a24cfed19b25ab94e35da3357ac923534}{T}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_field_a4a7f1e8a8fc1a45c2b82a8424ada5db9}{value}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ index)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>m\_values[index];\ \}}
+\DoxyCodeLine{00364\ }
+\DoxyCodeLine{00372\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_field_a24cfed19b25ab94e35da3357ac923534}{T}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_field_a99f3d9c080ba9426caf87c9dcadb011b}{value}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ index)\ \{\ \textcolor{keywordflow}{return}\ this-\/>m\_values[index];\ \}}
+\DoxyCodeLine{00373\ }
+\DoxyCodeLine{00377\ \ \ \ \ \textcolor{keyword}{const}\ std::vector<T>\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_field_a828d6993869541c594465b9583844cf8}{values}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>m\_values;\ \}}
+\DoxyCodeLine{00378\ \};}
+\DoxyCodeLine{00379\ }
+\DoxyCodeLine{00380\ }
+\DoxyCodeLine{00381\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00382\ \textcolor{comment}{\ *\ \ Convenience\ aliases\ for\ fields.}}
+\DoxyCodeLine{00383\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00384\ }
+\DoxyCodeLine{00385\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00386\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_field}{VectorField}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_field}{Field<Vector<Scalar,\ 3>}}>;}
+\DoxyCodeLine{00387\ }
+\DoxyCodeLine{00388\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00389\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_field}{MatrixField}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_field}{Field<Matrix<Scalar,\ 3,\ 3>}}>;}
+\DoxyCodeLine{00390\ }
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00392\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

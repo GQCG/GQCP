@@ -1,0 +1,101 @@
+\hypertarget{_simple_orbital_rotation_generators_8hpp_source}{}\doxysection{Simple\+Orbital\+Rotation\+Generators.\+hpp}
+\label{_simple_orbital_rotation_generators_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleOrbitalRotationGenerators.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleOrbitalRotationGenerators.hpp}}
+\mbox{\hyperlink{_simple_orbital_rotation_generators_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_occupation_type_8hpp}{Basis/SpinorBasis/OccupationType.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_orbital_space_8hpp}{Basis/SpinorBasis/OrbitalSpace.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_square_matrix_8hpp}{Mathematical/Representation/SquareMatrix.hpp}}"{}}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar,\ \textcolor{keyword}{typename}\ \_DerivedOrbitalRotationGenerators>}
+\DoxyCodeLine{00042\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_simple_orbital_rotation_generators}{SimpleOrbitalRotationGenerators}}\ \{}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{//\ The\ scalar\ type\ used\ for\ an\ orbital\ rotation\ generator:\ real\ or\ complex.}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_simple_orbital_rotation_generators_a08409bc973314549c81df7c8558729fb}{Scalar}}\ =\ \_Scalar;}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ the\ orbital\ rotation\ generator\ that\ derives\ from\ this\ class,\ enabling\ CRTP\ and\ compile-\/time\ polymorphism.}}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_simple_orbital_rotation_generators_a41f858a7486ce4755ec7db4c2f039119}{DerivedOrbitalRotationGenerators}}\ =\ \_DerivedOrbitalRotationGenerators;}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ The\ number\ of\ orbitals\ (spinors\ for\ the\ general(ized)\ case,\ spin-\/orbitals\ for\ the\ restricted\ and\ unrestricted\ case)\ that\ can\ be\ rotated\ using\ these\ orbital\ rotation\ generators.}}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ number\_of\_orbitals;}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//\ The\ strict\ lower\ triangle\ of\ the\ kappa\ matrix.\ The\ entries\ of\ the\ matrix\ are\ stored\ in\ a\ `column\ major`format\ in\ this\ vector.}}
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<Scalar>}}\ v;}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_orbital_rotation_generators_ab48bcc5fd37420de2ac9e7c94235903b}{SimpleOrbitalRotationGenerators}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<Scalar>}}\&\ v)\ :}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ v\ \{v\},}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ number\_of\_orbitals\ \{\mbox{\hyperlink{namespace_g_q_c_p_a1457a824d08dadcac6a081f036d4eaa5}{strictTriangularRootOf}}(v.size())\}\ \{\}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_orbital_rotation_generators_ac4fe3eb410b6388209d8d3501968936e}{SimpleOrbitalRotationGenerators}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\&\ kappa)\ :}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_orbital_rotation_generators}{SimpleOrbitalRotationGenerators}}(kappa.pairWiseStrictReduced())\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!kappa.\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_afeb6926506aceed33af8ad57560bd67d}{isAntiHermitian}}())\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}SimpleOrbitalRotationGenerators(const\ SquareMatrix<Scalar>\&\ kappa):\ The\ given\ kappa\ matrix\ is\ not\ anti-\/Hermitian."{}});}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00085\ \ \ \ \ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_orbital_rotation_generators_a41f858a7486ce4755ec7db4c2f039119}{DerivedOrbitalRotationGenerators}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_orbital_rotation_generators_a7e00234875bc9a932f341f0b0f935a96}{FromOccupationTypes}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_orbital_rotation_generators_a41f858a7486ce4755ec7db4c2f039119}{DerivedOrbitalRotationGenerators}}\&\ generators,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{OccupationType}}\ row\_occupation\_type,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246b}{OccupationType}}\ column\_occupation\_type,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ K)\ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (row\_occupation\_type\ !=\ column\_occupation\_type)\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}SimpleOrbitalRotationGenerators::FromOccupationTypes(const\ DerivedOrbitalRotationGenerators\&\ generators,\ const\ OccupationType\ row\_occupation\_type,\ const\ OccupationType\ column\_occupation\_type,\ const\ size\_t\ K):\ Occupied/virtual\ and\ virtual/occupied\ rotations\ are\ currently\ disabled.\ The\ row\ and\ column\ occupation\ types\ should\ be\ the\ same."{}});}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ total\ number\ of\ orbitals\ determines\ the\ size\ of\ the\ total\ kappa\ matrix.}}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\ kappa\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_ae3551bb3ac15b2560846f7a5956d1d90}{SquareMatrix<Scalar>::Zero}}(K);}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Depending\ on\ the\ row\ and\ column\ occupation\ types,\ we\ fill\ in\ the\ correct\ block\ of\ the\ total\ kappa\ matrix\ and\ leave\ the\ rest\ to\ be\ zero.}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (row\_occupation\_type\ ==\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}\ \&\&\ column\_occupation\_type\ ==\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}})\ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ kappa.topLeftCorner(generators.numberOfOrbitals(),\ generators.numberOfOrbitals())\ =\ generators.asMatrix();}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ kappa.bottomRightCorner(generators.numberOfOrbitals(),\ generators.numberOfOrbitals())\ =\ generators.asMatrix();}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_orbital_rotation_generators_a41f858a7486ce4755ec7db4c2f039119}{DerivedOrbitalRotationGenerators}}(kappa);}
+\DoxyCodeLine{00118\ \ \ \ \ \}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_orbital_rotation_generators_ad4a58794fbf45ec43ca33f4d17e23f81}{asMatrix}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ kappa\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_af916a1d7dab54e720134c9445f32b2ea}{SquareMatrix<Scalar>::FromStrictTriangle}}(this-\/>v);\ \ \textcolor{comment}{//\ Lower\ triangle\ only.}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ kappa\ -\/\ kappa.adjoint();}
+\DoxyCodeLine{00133\ \ \ \ \ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_orbital_rotation_generators_a904f8cc2420a355fce00dce714c19441}{asVector}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>v;\ \}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_orbital_rotation_generators_a6de01ae1ba7fe5820fbd29e6629685f0}{numberOfOrbitals}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>number\_of\_orbitals;\ \}}
+\DoxyCodeLine{00145\ \};}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

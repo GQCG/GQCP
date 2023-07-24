@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_r_h_f_s_c_f_solver" kind="class" language="C++" prot="public">
     <compoundname>GQCP::RHFSCFSolver</compoundname>
     <includes refid="_r_h_f_s_c_f_solver_8hpp" local="no">RHFSCFSolver.hpp</includes>
@@ -14,6 +14,7 @@
         <definition>using GQCP::RHFSCFSolver&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
         <argsstring></argsstring>
         <name>Scalar</name>
+        <qualifiedname>GQCP::RHFSCFSolver::Scalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -24,11 +25,12 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="class_g_q_c_p_1_1_r_h_f_s_c_f_solver_1ac435feb4e5b40ce050377e5423ab1017" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_r_h_f_s_c_f_solver_1a0ecd9c7c937696b598369fc69dbe1a0a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_iterative_algorithm" kindref="compound">IterativeAlgorithm</ref>&lt; <ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment" kindref="compound">RHFSCFEnvironment</ref>&lt; <ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_solver_1aa8d8b39701bb5828989c99ba55bb88de" kindref="member">Scalar</ref> &gt; &gt;</type>
-        <definition>static IterativeAlgorithm&lt;RHFSCFEnvironment&lt;Scalar&gt; &gt; GQCP::RHFSCFSolver&lt; _Scalar &gt;::DensityDamped</definition>
+        <definition>static IterativeAlgorithm&lt; RHFSCFEnvironment&lt; Scalar &gt; &gt; GQCP::RHFSCFSolver&lt; _Scalar &gt;::DensityDamped</definition>
         <argsstring>(const double alpha, const double threshold=1.0e-08, const size_t maximum_number_of_iterations=128)</argsstring>
         <name>DensityDamped</name>
+        <qualifiedname>GQCP::RHFSCFSolver::DensityDamped</qualifiedname>
         <param>
           <type>const double</type>
           <declname>alpha</declname>
@@ -79,11 +81,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFSolver.hpp" line="59" column="31" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFSolver.hpp" bodystart="59" bodyend="77"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_r_h_f_s_c_f_solver_1a9dc00e9fe26b41554f5a8e35e32c1948" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_r_h_f_s_c_f_solver_1a6d350d0c2172d9af652510d4a82c9fdf" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_iterative_algorithm" kindref="compound">IterativeAlgorithm</ref>&lt; <ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment" kindref="compound">RHFSCFEnvironment</ref>&lt; <ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_solver_1aa8d8b39701bb5828989c99ba55bb88de" kindref="member">Scalar</ref> &gt; &gt;</type>
-        <definition>static IterativeAlgorithm&lt;RHFSCFEnvironment&lt;Scalar&gt; &gt; GQCP::RHFSCFSolver&lt; _Scalar &gt;::DIIS</definition>
+        <definition>static IterativeAlgorithm&lt; RHFSCFEnvironment&lt; Scalar &gt; &gt; GQCP::RHFSCFSolver&lt; _Scalar &gt;::DIIS</definition>
         <argsstring>(const size_t minimum_subspace_dimension=6, const size_t maximum_subspace_dimension=6, const double threshold=1.0e-08, const size_t maximum_number_of_iterations=128)</argsstring>
         <name>DIIS</name>
+        <qualifiedname>GQCP::RHFSCFSolver::DIIS</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>minimum_subspace_dimension</declname>
@@ -148,11 +151,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFSolver.hpp" line="88" column="31" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFSolver.hpp" bodystart="88" bodyend="106"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_r_h_f_s_c_f_solver_1aac28fd47780a448947f1b924be6d5e46" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_r_h_f_s_c_f_solver_1acd1ba253c6aa9baefe683bde5c10edfd" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_iterative_algorithm" kindref="compound">IterativeAlgorithm</ref>&lt; <ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_environment" kindref="compound">RHFSCFEnvironment</ref>&lt; <ref refid="class_g_q_c_p_1_1_r_h_f_s_c_f_solver_1aa8d8b39701bb5828989c99ba55bb88de" kindref="member">Scalar</ref> &gt; &gt;</type>
-        <definition>static IterativeAlgorithm&lt;RHFSCFEnvironment&lt;Scalar&gt; &gt; GQCP::RHFSCFSolver&lt; _Scalar &gt;::Plain</definition>
+        <definition>static IterativeAlgorithm&lt; RHFSCFEnvironment&lt; Scalar &gt; &gt; GQCP::RHFSCFSolver&lt; _Scalar &gt;::Plain</definition>
         <argsstring>(const double threshold=1.0e-08, const size_t maximum_number_of_iterations=128)</argsstring>
         <name>Plain</name>
+        <qualifiedname>GQCP::RHFSCFSolver::Plain</qualifiedname>
         <param>
           <type>const double</type>
           <declname>threshold</declname>
@@ -215,9 +219,9 @@
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFSolver.hpp" line="42" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/RHF/RHFSCFSolver.hpp" bodystart="42" bodyend="133"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_solver_1ac435feb4e5b40ce050377e5423ab1017" prot="public" virt="non-virtual"><scope>GQCP::RHFSCFSolver</scope><name>DensityDamped</name></member>
-      <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_solver_1a9dc00e9fe26b41554f5a8e35e32c1948" prot="public" virt="non-virtual"><scope>GQCP::RHFSCFSolver</scope><name>DIIS</name></member>
-      <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_solver_1aac28fd47780a448947f1b924be6d5e46" prot="public" virt="non-virtual"><scope>GQCP::RHFSCFSolver</scope><name>Plain</name></member>
+      <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_solver_1a0ecd9c7c937696b598369fc69dbe1a0a" prot="public" virt="non-virtual"><scope>GQCP::RHFSCFSolver</scope><name>DensityDamped</name></member>
+      <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_solver_1a6d350d0c2172d9af652510d4a82c9fdf" prot="public" virt="non-virtual"><scope>GQCP::RHFSCFSolver</scope><name>DIIS</name></member>
+      <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_solver_1acd1ba253c6aa9baefe683bde5c10edfd" prot="public" virt="non-virtual"><scope>GQCP::RHFSCFSolver</scope><name>Plain</name></member>
       <member refid="class_g_q_c_p_1_1_r_h_f_s_c_f_solver_1aa8d8b39701bb5828989c99ba55bb88de" prot="public" virt="non-virtual"><scope>GQCP::RHFSCFSolver</scope><name>Scalar</name></member>
     </listofallmembers>
   </compounddef>

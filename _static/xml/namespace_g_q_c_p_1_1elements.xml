@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="namespace_g_q_c_p_1_1elements" kind="namespace" language="C++">
     <compoundname>GQCP::elements</compoundname>
       <sectiondef kind="var">
@@ -8,6 +8,7 @@
         <definition>std::vector&lt;boost::bimap&lt;std::string, size_t&gt;::value_type&gt; GQCP::elements::elements_list</definition>
         <argsstring></argsstring>
         <name>elements_list</name>
+        <qualifiedname>GQCP::elements::elements_list</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -23,6 +24,7 @@
         <definition>const boost::bimap&lt;std::string, size_t&gt; GQCP::elements::periodic_table</definition>
         <argsstring></argsstring>
         <name>periodic_table</name>
+        <qualifiedname>GQCP::elements::periodic_table</qualifiedname>
         <initializer>{elements_list.begin(), elements_list.end()}</initializer>
         <briefdescription>
         </briefdescription>
@@ -41,6 +43,7 @@
         <definition>const std::string &amp; GQCP::elements::atomicNumberToElement</definition>
         <argsstring>(const size_t atomic_number)</argsstring>
         <name>atomicNumberToElement</name>
+        <qualifiedname>GQCP::elements::atomicNumberToElement</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>atomic_number</declname>
@@ -70,6 +73,7 @@
         <definition>size_t GQCP::elements::elementToAtomicNumber</definition>
         <argsstring>(const std::string &amp;symbol)</argsstring>
         <name>elementToAtomicNumber</name>
+        <qualifiedname>GQCP::elements::elementToAtomicNumber</qualifiedname>
         <param>
           <type>const std::string &amp;</type>
           <declname>symbol</declname>

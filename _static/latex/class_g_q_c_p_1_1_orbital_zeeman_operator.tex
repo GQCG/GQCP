@@ -27,15 +27,48 @@ Collaboration diagram for GQCP\+::Orbital\+Zeeman\+Operator\+:
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_zeeman_operator_a6ac70a0008e6f54b82d902d20733b8fc}{Orbital\+Zeeman\+Operator}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{Homogeneous\+Magnetic\+Field}} \&B, const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&\mbox{\hyperlink{class_g_q_c_p_1_1_base_reference_dependent_operator_aa303dae66a990df61f90a740d3192036}{reference}})
+\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_zeeman_operator_a6ac70a0008e6f54b82d902d20733b8fc}{Orbital\+Zeeman\+Operator}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{Homogeneous\+Magnetic\+Field}} \&B, const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&\mbox{\hyperlink{class_g_q_c_p_1_1_base_reference_dependent_operator_a705a97851e0bdb89ab7d9e44d9c37ee7}{reference}})
 \item 
 \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_zeeman_operator_a12c815996b34a12c272ee45e2e503662}{Orbital\+Zeeman\+Operator}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{Homogeneous\+Magnetic\+Field}} \&B)
 \item 
-const \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{Homogeneous\+Magnetic\+Field}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_zeeman_operator_acf562757081e24eb810109abeea67ca2}{magnetic\+Field}} () const
+const \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{Homogeneous\+Magnetic\+Field}} \& \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_zeeman_operator_abffd469db7921150d45905d69a5fb93e}{magnetic\+Field}} () const
 \item 
 \mbox{\hyperlink{class_g_q_c_p_1_1_angular_momentum_operator}{Angular\+Momentum\+Operator}} \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_zeeman_operator_ad6629beb5b0a4f776803647d485ede3f}{angular\+Momentum}} () const
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator}{GQCP\+::\+Base\+FQOperator$<$ N, \+\_\+\+Scalar, Scalar\+Vectorizer $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_a1f47a08d6dbad212da9370b4d55fd522}{$\sim$\+Base\+FQOperator}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_base_reference_dependent_operator}{GQCP\+::\+Base\+Reference\+Dependent\+Operator}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_base_reference_dependent_operator_a54a0c94b11d3c1b094b91de2c1125083}{Base\+Reference\+Dependent\+Operator}} (const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&\mbox{\hyperlink{class_g_q_c_p_1_1_base_reference_dependent_operator_a705a97851e0bdb89ab7d9e44d9c37ee7}{reference}}=\mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$\+::\+Zero())
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_base_reference_dependent_operator_a67db3a2bf7e00d38db5fcba98dec06ed}{$\sim$\+Base\+Reference\+Dependent\+Operator}} ()=0
+\item 
+const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_base_reference_dependent_operator_a705a97851e0bdb89ab7d9e44d9c37ee7}{reference}} () const
+\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
+\doxysubsubsection*{Public Types inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator}{GQCP\+::\+Base\+FQOperator$<$ N, \+\_\+\+Scalar, Scalar\+Vectorizer $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}{Scalar}} = \+\_\+\+Scalar
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_a3bf379636691d7d74ea96afc8f5049cf}{Vectorizer}} = \mbox{\hyperlink{namespace_g_q_c_p_a6c012317d3e2de845b7ee1a860c61e99}{Scalar\+Vectorizer}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_base_scalar_f_q_operator}{GQCP\+::\+Base\+Scalar\+FQOperator$<$ N, \+\_\+\+Scalar $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_scalar_f_q_operator_a7bf7164b798fb0becf494a29e8d54eb7}{Number\+Of\+Components}} = 1
+\item 
+static const \mbox{\hyperlink{namespace_g_q_c_p_a6c012317d3e2de845b7ee1a860c61e99}{Scalar\+Vectorizer}} \mbox{\hyperlink{class_g_q_c_p_1_1_base_scalar_f_q_operator_ad07fca0083a7212821250e3beff14242}{vectorizer}} \{\}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator}{GQCP\+::\+Base\+FQOperator$<$ N, \+\_\+\+Scalar, Scalar\+Vectorizer $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_ae56208bbc85e6d9d401fa4540f20a573}{Number\+Of\+Electrons}}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -85,11 +118,11 @@ The reference point is chosen to be the gauge origin of the magnetic field.
 \begin{DoxyReturn}{Returns}
 The angular momentum operator that is related to this orbital Zeeman operator. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_orbital_zeeman_operator_acf562757081e24eb810109abeea67ca2}\label{class_g_q_c_p_1_1_orbital_zeeman_operator_acf562757081e24eb810109abeea67ca2}} 
+\mbox{\Hypertarget{class_g_q_c_p_1_1_orbital_zeeman_operator_abffd469db7921150d45905d69a5fb93e}\label{class_g_q_c_p_1_1_orbital_zeeman_operator_abffd469db7921150d45905d69a5fb93e}} 
 \index{GQCP::OrbitalZeemanOperator@{GQCP::OrbitalZeemanOperator}!magneticField@{magneticField}}
 \index{magneticField@{magneticField}!GQCP::OrbitalZeemanOperator@{GQCP::OrbitalZeemanOperator}}
 \doxysubsubsection{\texorpdfstring{magneticField()}{magneticField()}}
-{\footnotesize\ttfamily const \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{Homogeneous\+Magnetic\+Field}}\& GQCP\+::\+Orbital\+Zeeman\+Operator\+::magnetic\+Field (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{Homogeneous\+Magnetic\+Field}} \& GQCP\+::\+Orbital\+Zeeman\+Operator\+::magnetic\+Field (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \begin{DoxyReturn}{Returns}
 The external, homogeneous magnetic field. 

@@ -1,0 +1,72 @@
+\hypertarget{_array_8hpp_source}{}\doxysection{Array.\+hpp}
+\label{_array_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Array.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Representation/Array.hpp}}
+\mbox{\hyperlink{_array_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_eigen_8hpp}{Utilities/Eigen.hpp}}"{}}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar\ =\ \textcolor{keywordtype}{double},\ \textcolor{keywordtype}{int}\ \_Rows\ =\ Dynamic,\ \textcolor{keywordtype}{int}\ \_Cols\ =\ Dynamic>}
+\DoxyCodeLine{00035\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_array}{Array}}:}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{public}\ Eigen::Array<\_Scalar,\ \_Rows,\ \_Cols>\ \{}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_array_a3432611fea1a8d7c264c37f9b7428ebd}{Scalar}}\ =\ \_Scalar;}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_array_a78a9fec8a72ed484c270f5079193ddc3}{Rows}}\ =\ \_Rows;}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_array_a30fbb03f12e8c849a864527bab9e7805}{Cols}}\ =\ \_Cols;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_array}{Self}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_array}{Array<Scalar,\ Rows,\ Cols>}};}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_array_aeffdde1d0d823598ed30436468ab6cdd}{Base}}\ =\ Eigen::Array<Scalar,\ Rows,\ Cols>;}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00051\ \textcolor{comment}{\ \ \ \ \ *\ \ CONSTRUCTORS}}
+\DoxyCodeLine{00052\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{using\ }Eigen::Array<\mbox{\hyperlink{class_g_q_c_p_1_1_array_a3432611fea1a8d7c264c37f9b7428ebd}{Scalar}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_array_a78a9fec8a72ed484c270f5079193ddc3}{Rows}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_array_a30fbb03f12e8c849a864527bab9e7805}{Cols}}>::Array;\ \ \textcolor{comment}{//\ inhert\ base\ constructors}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_array_aeffdde1d0d823598ed30436468ab6cdd}{Base}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_array_ad5e830f748fee3ea77943b5efafb890a}{Eigen}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }\mbox{\hyperlink{class_g_q_c_p_1_1_array_aeffdde1d0d823598ed30436468ab6cdd}{Base}}\&\textcolor{keyword}{>}(*this);\ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_array_aeffdde1d0d823598ed30436468ab6cdd}{Base}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_array_a0580b18e7830a5717b4878f450066638}{Eigen}}()\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{class_g_q_c_p_1_1_array_aeffdde1d0d823598ed30436468ab6cdd}{Base}}\&\textcolor{keyword}{>}(*this);\ \}}
+\DoxyCodeLine{00070\ \};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00074\ \textcolor{comment}{\ *\ \ Convenience\ typedefs\ related\ to\ Array.}}
+\DoxyCodeLine{00075\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00078\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_array}{ArrayX}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_array}{Array<Scalar,\ Dynamic,\ 1>}};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00081\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_array}{ArrayXX}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_array}{Array<Scalar,\ Dynamic,\ Dynamic>}};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

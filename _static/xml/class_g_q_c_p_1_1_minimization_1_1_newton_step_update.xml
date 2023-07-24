@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_minimization_1_1_newton_step_update" kind="class" language="C++" prot="public">
     <compoundname>GQCP::Minimization::NewtonStepUpdate</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_step" prot="public" virt="non-virtual">GQCP::Step&lt; _Environment &gt;</basecompoundref>
@@ -18,6 +18,7 @@
         <definition>using GQCP::Minimization::NewtonStepUpdate&lt; _Scalar, _Environment &gt;::Scalar =  _Scalar</definition>
         <argsstring></argsstring>
         <name>Scalar</name>
+        <qualifiedname>GQCP::Minimization::NewtonStepUpdate::Scalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -31,6 +32,7 @@
         <definition>using GQCP::Minimization::NewtonStepUpdate&lt; _Scalar, _Environment &gt;::Environment =  _Environment</definition>
         <argsstring></argsstring>
         <name>Environment</name>
+        <qualifiedname>GQCP::Minimization::NewtonStepUpdate::Environment</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -46,6 +48,7 @@
         <definition>std::string GQCP::Minimization::NewtonStepUpdate&lt; _Scalar, _Environment &gt;::description</definition>
         <argsstring>() const override</argsstring>
         <name>description</name>
+        <qualifiedname>GQCP::Minimization::NewtonStepUpdate::description</qualifiedname>
         <reimplements refid="class_g_q_c_p_1_1_step_1af2276da3e9eef7f8d2049a8aa255b9fb">description</reimplements>
         <briefdescription>
         </briefdescription>
@@ -63,9 +66,10 @@
         <definition>void GQCP::Minimization::NewtonStepUpdate&lt; _Scalar, _Environment &gt;::execute</definition>
         <argsstring>(Environment &amp;environment) override</argsstring>
         <name>execute</name>
+        <qualifiedname>GQCP::Minimization::NewtonStepUpdate::execute</qualifiedname>
         <reimplements refid="class_g_q_c_p_1_1_step_1afc654a62596b3fff0801acb2d993818f">execute</reimplements>
         <param>
-          <type><ref refid="class_g_q_c_p_1_1_step_1a479d9d1f930d4cabb39879a6e71f4915" kindref="member">Environment</ref> &amp;</type>
+          <type><ref refid="class_g_q_c_p_1_1_minimization_1_1_newton_step_update_1a23edaea9c5f0af5be6d3677da67b2826" kindref="member">Environment</ref> &amp;</type>
           <declname>environment</declname>
         </param>
         <briefdescription>
@@ -112,27 +116,27 @@
 </para>
     </detaileddescription>
     <inheritancegraph>
-      <node id="2">
-        <label>GQCP::Step&lt; _Environment &gt;</label>
-        <link refid="class_g_q_c_p_1_1_step"/>
-      </node>
       <node id="1">
         <label>GQCP::Minimization::NewtonStepUpdate&lt; _Scalar, _Environment &gt;</label>
         <link refid="class_g_q_c_p_1_1_minimization_1_1_newton_step_update"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::Step&lt; _Environment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="2">
-        <label>GQCP::Step&lt; _Environment &gt;</label>
-        <link refid="class_g_q_c_p_1_1_step"/>
-      </node>
       <node id="1">
         <label>GQCP::Minimization::NewtonStepUpdate&lt; _Scalar, _Environment &gt;</label>
         <link refid="class_g_q_c_p_1_1_minimization_1_1_newton_step_update"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::Step&lt; _Environment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_step"/>
       </node>
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/NewtonStepUpdate.hpp" line="41" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/NewtonStepUpdate.hpp" bodystart="42" bodyend="82"/>

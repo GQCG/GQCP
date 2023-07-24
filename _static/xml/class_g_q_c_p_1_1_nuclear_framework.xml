@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_nuclear_framework" kind="class" language="C++" prot="public">
     <compoundname>GQCP::NuclearFramework</compoundname>
     <includes refid="_nuclear_framework_8hpp" local="no">NuclearFramework.hpp</includes>
@@ -9,6 +9,7 @@
         <definition>std::vector&lt;Nucleus&gt; GQCP::NuclearFramework::nuclei</definition>
         <argsstring></argsstring>
         <name>nuclei</name>
+        <qualifiedname>GQCP::NuclearFramework::nuclei</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -24,6 +25,7 @@
         <definition>GQCP::NuclearFramework::NuclearFramework</definition>
         <argsstring>(const std::vector&lt; Nucleus &gt; &amp;nuclei)</argsstring>
         <name>NuclearFramework</name>
+        <qualifiedname>GQCP::NuclearFramework::NuclearFramework</qualifiedname>
         <param>
           <type>const std::vector&lt; <ref refid="class_g_q_c_p_1_1_nucleus" kindref="compound">Nucleus</ref> &gt; &amp;</type>
           <declname>nuclei</declname>
@@ -51,6 +53,7 @@
         <definition>double GQCP::NuclearFramework::calculateInternuclearDistanceBetween</definition>
         <argsstring>(const size_t index1, const size_t index2) const</argsstring>
         <name>calculateInternuclearDistanceBetween</name>
+        <qualifiedname>GQCP::NuclearFramework::calculateInternuclearDistanceBetween</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>index1</declname>
@@ -92,6 +95,7 @@
         <definition>std::string GQCP::NuclearFramework::description</definition>
         <argsstring>() const</argsstring>
         <name>description</name>
+        <qualifiedname>GQCP::NuclearFramework::description</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -103,11 +107,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Molecule/NuclearFramework.hpp" line="119" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Molecule/NuclearFramework.hpp" bodystart="119" bodyend="128"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_nuclear_framework_1ae9ef2e5d439ff7b7be8cd3c72137bc66" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_nuclear_framework_1a653c180ca3c5b45ff912d644c908dfec" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const std::vector&lt; <ref refid="class_g_q_c_p_1_1_nucleus" kindref="compound">Nucleus</ref> &gt; &amp;</type>
-        <definition>const std::vector&lt;Nucleus&gt;&amp; GQCP::NuclearFramework::nucleiAsVector</definition>
+        <definition>const std::vector&lt; Nucleus &gt; &amp; GQCP::NuclearFramework::nucleiAsVector</definition>
         <argsstring>() const</argsstring>
         <name>nucleiAsVector</name>
+        <qualifiedname>GQCP::NuclearFramework::nucleiAsVector</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -124,6 +129,7 @@
         <definition>size_t GQCP::NuclearFramework::numberOfNuclei</definition>
         <argsstring>() const</argsstring>
         <name>numberOfNuclei</name>
+        <qualifiedname>GQCP::NuclearFramework::numberOfNuclei</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -140,6 +146,7 @@
         <definition>size_t GQCP::NuclearFramework::totalNucleicCharge</definition>
         <argsstring>() const</argsstring>
         <name>totalNucleicCharge</name>
+        <qualifiedname>GQCP::NuclearFramework::totalNucleicCharge</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -158,6 +165,7 @@
         <definition>NuclearFramework GQCP::NuclearFramework::HChain</definition>
         <argsstring>(const size_t n, const double spacing, const CartesianDirection axis=CartesianDirection::z)</argsstring>
         <name>HChain</name>
+        <qualifiedname>GQCP::NuclearFramework::HChain</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>n</declname>
@@ -169,7 +177,7 @@
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8" kindref="member">CartesianDirection</ref></type>
           <declname>axis</declname>
-          <defval>CartesianDirection::z</defval>
+          <defval><ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a11d242b501b62c0182e98a9d516335f7" kindref="member">CartesianDirection::z</ref></defval>
         </param>
         <briefdescription>
         </briefdescription>
@@ -231,6 +239,7 @@
         <definition>NuclearFramework GQCP::NuclearFramework::H2Chain</definition>
         <argsstring>(const size_t n, const double a, const double b, const CartesianDirection axis=CartesianDirection::z)</argsstring>
         <name>H2Chain</name>
+        <qualifiedname>GQCP::NuclearFramework::H2Chain</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>n</declname>
@@ -246,7 +255,7 @@
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8" kindref="member">CartesianDirection</ref></type>
           <declname>axis</declname>
-          <defval>CartesianDirection::z</defval>
+          <defval><ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a11d242b501b62c0182e98a9d516335f7" kindref="member">CartesianDirection::z</ref></defval>
         </param>
         <briefdescription>
         </briefdescription>
@@ -324,6 +333,7 @@
         <definition>NuclearFramework GQCP::NuclearFramework::HRingFromDistance</definition>
         <argsstring>(const size_t n, const double distance)</argsstring>
         <name>HRingFromDistance</name>
+        <qualifiedname>GQCP::NuclearFramework::HRingFromDistance</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>n</declname>
@@ -365,6 +375,7 @@
         <definition>NuclearFramework GQCP::NuclearFramework::HRingFromRadius</definition>
         <argsstring>(const size_t n, const double radius)</argsstring>
         <name>HRingFromRadius</name>
+        <qualifiedname>GQCP::NuclearFramework::HRingFromRadius</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>n</declname>
@@ -406,6 +417,7 @@
         <definition>NuclearFramework GQCP::NuclearFramework::ReadXYZ</definition>
         <argsstring>(const std::string &amp;xyz_filename)</argsstring>
         <name>ReadXYZ</name>
+        <qualifiedname>GQCP::NuclearFramework::ReadXYZ</qualifiedname>
         <param>
           <type>const std::string &amp;</type>
           <declname>xyz_filename</declname>
@@ -431,11 +443,12 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="friend">
-      <memberdef kind="friend" id="class_g_q_c_p_1_1_nuclear_framework_1acb65a286f6605e901492eeab91beaad6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="friend" id="class_g_q_c_p_1_1_nuclear_framework_1ad84430aa9f227371e48a77e83d27ebf4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::ostream &amp;</type>
-        <definition>std::ostream&amp; operator&lt;&lt;</definition>
+        <definition>std::ostream &amp; operator&lt;&lt;</definition>
         <argsstring>(std::ostream &amp;os, const NuclearFramework &amp;nuclear_framework)</argsstring>
         <name>operator&lt;&lt;</name>
+        <qualifiedname>GQCP::NuclearFramework::operator&lt;&lt;</qualifiedname>
         <param>
           <type>std::ostream &amp;</type>
           <declname>os</declname>
@@ -495,9 +508,9 @@
       <member refid="class_g_q_c_p_1_1_nuclear_framework_1a9b01585de8dbb6f92092dc8b727a444b" prot="public" virt="non-virtual"><scope>GQCP::NuclearFramework</scope><name>HRingFromRadius</name></member>
       <member refid="class_g_q_c_p_1_1_nuclear_framework_1a50006d54362ff68dd763b8b68066931e" prot="public" virt="non-virtual"><scope>GQCP::NuclearFramework</scope><name>NuclearFramework</name></member>
       <member refid="class_g_q_c_p_1_1_nuclear_framework_1a194b54094a26a8bc6e8e1f60458677da" prot="private" virt="non-virtual"><scope>GQCP::NuclearFramework</scope><name>nuclei</name></member>
-      <member refid="class_g_q_c_p_1_1_nuclear_framework_1ae9ef2e5d439ff7b7be8cd3c72137bc66" prot="public" virt="non-virtual"><scope>GQCP::NuclearFramework</scope><name>nucleiAsVector</name></member>
+      <member refid="class_g_q_c_p_1_1_nuclear_framework_1a653c180ca3c5b45ff912d644c908dfec" prot="public" virt="non-virtual"><scope>GQCP::NuclearFramework</scope><name>nucleiAsVector</name></member>
       <member refid="class_g_q_c_p_1_1_nuclear_framework_1a6cbb29c6b5f00a9a4ff734f8eb94941b" prot="public" virt="non-virtual"><scope>GQCP::NuclearFramework</scope><name>numberOfNuclei</name></member>
-      <member refid="class_g_q_c_p_1_1_nuclear_framework_1acb65a286f6605e901492eeab91beaad6" prot="public" virt="non-virtual"><scope>GQCP::NuclearFramework</scope><name>operator&lt;&lt;</name></member>
+      <member refid="class_g_q_c_p_1_1_nuclear_framework_1ad84430aa9f227371e48a77e83d27ebf4" prot="public" virt="non-virtual"><scope>GQCP::NuclearFramework</scope><name>operator&lt;&lt;</name></member>
       <member refid="class_g_q_c_p_1_1_nuclear_framework_1a1bfaf0cc27def18c7921123a1a81c0a1" prot="public" virt="non-virtual"><scope>GQCP::NuclearFramework</scope><name>ReadXYZ</name></member>
       <member refid="class_g_q_c_p_1_1_nuclear_framework_1adae13b11b7b8594945ad319aac75e28b" prot="public" virt="non-virtual"><scope>GQCP::NuclearFramework</scope><name>totalNucleicCharge</name></member>
     </listofallmembers>

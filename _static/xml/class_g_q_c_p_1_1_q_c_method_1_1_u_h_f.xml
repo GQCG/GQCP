@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_q_c_method_1_1_u_h_f" kind="class" language="C++" prot="public">
     <compoundname>GQCP::QCMethod::UHF</compoundname>
     <includes refid="_q_c_method_2_h_f_2_u_h_f_2_u_h_f_8hpp" local="no">UHF.hpp</includes>
@@ -14,6 +14,7 @@
         <definition>using GQCP::QCMethod::UHF&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
         <argsstring></argsstring>
         <name>Scalar</name>
+        <qualifiedname>GQCP::QCMethod::UHF::Scalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -24,16 +25,17 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_method_1_1_u_h_f_1a7d9df7748fa0da0c0181db6e8e6caf85" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_method_1_1_u_h_f_1ab380065dd4f67d7b537dd6a5275180c8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Solver</type>
           </param>
         </templateparamlist>
         <type><ref refid="class_g_q_c_p_1_1_q_c_structure" kindref="compound">QCStructure</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f" kindref="compound">QCModel::UHF</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_method_1_1_u_h_f_1abe2d4c573f93a73ce3ecf5a4ff20a435" kindref="member">Scalar</ref> &gt;, <ref refid="class_g_q_c_p_1_1_q_c_method_1_1_u_h_f_1abe2d4c573f93a73ce3ecf5a4ff20a435" kindref="member">Scalar</ref> &gt;</type>
-        <definition>QCStructure&lt;QCModel::UHF&lt;Scalar&gt;, Scalar&gt; GQCP::QCMethod::UHF&lt; _Scalar &gt;::optimize</definition>
+        <definition>QCStructure&lt; QCModel::UHF&lt; Scalar &gt;, Scalar &gt; GQCP::QCMethod::UHF&lt; _Scalar &gt;::optimize</definition>
         <argsstring>(Solver &amp;solver, UHFSCFEnvironment&lt; Scalar &gt; &amp;environment) const</argsstring>
         <name>optimize</name>
+        <qualifiedname>GQCP::QCMethod::UHF::optimize</qualifiedname>
         <param>
           <type>Solver &amp;</type>
           <declname>solver</declname>
@@ -102,7 +104,7 @@
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHF.hpp" line="40" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHF.hpp" bodystart="40" bodyend="76"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_q_c_method_1_1_u_h_f_1a7d9df7748fa0da0c0181db6e8e6caf85" prot="public" virt="non-virtual"><scope>GQCP::QCMethod::UHF</scope><name>optimize</name></member>
+      <member refid="class_g_q_c_p_1_1_q_c_method_1_1_u_h_f_1ab380065dd4f67d7b537dd6a5275180c8" prot="public" virt="non-virtual"><scope>GQCP::QCMethod::UHF</scope><name>optimize</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_method_1_1_u_h_f_1abe2d4c573f93a73ce3ecf5a4ff20a435" prot="public" virt="non-virtual"><scope>GQCP::QCMethod::UHF</scope><name>Scalar</name></member>
     </listofallmembers>
   </compounddef>

@@ -1,85 +1,25 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="_subspace_matrix_diagonalization_8hpp" kind="file" language="C++">
     <compoundname>SubspaceMatrixDiagonalization.hpp</compoundname>
     <includes refid="_algorithm_2_step_8hpp" local="yes">Mathematical/Algorithm/Step.hpp</includes>
     <includes refid="_eigenproblem_environment_8hpp" local="yes">Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp</includes>
     <includes refid="_eigenproblem_solver_8hpp" local="yes">Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp</includes>
     <includes local="no">type_traits</includes>
-    <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
     <includedby refid="_davidson_solver_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp</includedby>
+    <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
     <incdepgraph>
-      <node id="14">
-        <label>boost/algorithm/string.hpp</label>
-      </node>
-      <node id="21">
-        <label>functional</label>
-      </node>
-      <node id="8">
-        <label>Utilities/Eigen.hpp</label>
-        <link refid="_eigen_8hpp"/>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="22">
-        <label>iterator</label>
-      </node>
-      <node id="2">
-        <label>Mathematical/Algorithm/Step.hpp</label>
-        <link refid="_algorithm_2_step_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="18">
-        <label>Mathematical/Representation/SquareMatrix.hpp</label>
-        <link refid="_square_matrix_8hpp"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="23" relation="include">
-        </childnode>
-        <childnode refid="24" relation="include">
-        </childnode>
-      </node>
       <node id="26">
         <label>Mathematical/Algorithm/Algorithm.hpp</label>
         <link refid="_algorithm_8hpp"/>
         <childnode refid="27" relation="include">
         </childnode>
       </node>
-      <node id="19">
-        <label>Utilities/miscellaneous.hpp</label>
-        <link refid="miscellaneous_8hpp"/>
-        <childnode refid="20" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-        <childnode refid="22" relation="include">
-        </childnode>
+      <node id="2">
+        <label>Mathematical/Algorithm/Step.hpp</label>
+        <link refid="_algorithm_2_step_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-      </node>
-      <node id="32">
-        <label>boost/format.hpp</label>
-      </node>
-      <node id="24">
-        <label>numeric</label>
-      </node>
-      <node id="3">
-        <label>string</label>
-      </node>
-      <node id="23">
-        <label>boost/numeric/conversion/converter.hpp</label>
-      </node>
-      <node id="15">
-        <label>fstream</label>
       </node>
       <node id="27">
         <label>Mathematical/Algorithm/StepCollection.hpp</label>
@@ -95,8 +35,9 @@
         <childnode refid="17" relation="include">
         </childnode>
       </node>
-      <node id="9">
-        <label>Eigen/Dense</label>
+      <node id="7">
+        <label>Mathematical/Functions/CartesianDirection.hpp</label>
+        <link refid="_cartesian_direction_8hpp"/>
       </node>
       <node id="1">
         <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceMatrixDiagonalization.hpp</label>
@@ -110,26 +51,6 @@
         <childnode refid="12" relation="include">
         </childnode>
       </node>
-      <node id="28">
-        <label>Utilities/memory.hpp</label>
-        <link refid="memory_8hpp"/>
-        <childnode refid="29" relation="include">
-        </childnode>
-        <childnode refid="30" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="31" relation="include">
-        </childnode>
-      </node>
-      <node id="25">
-        <label>Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp</label>
-        <link refid="_eigenproblem_solver_8hpp"/>
-        <childnode refid="26" relation="include">
-        </childnode>
-        <childnode refid="33" relation="include">
-        </childnode>
-      </node>
       <node id="33">
         <label>Mathematical/Optimization/Eigenproblem/DenseDiagonalization.hpp</label>
         <link refid="_dense_diagonalization_8hpp"/>
@@ -138,6 +59,30 @@
         <childnode refid="4" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Mathematical/Optimization/Eigenproblem/Eigenpair.hpp</label>
+        <link refid="_eigenpair_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp</label>
+        <link refid="_eigenproblem_environment_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp</label>
+        <link refid="_eigenproblem_solver_8hpp"/>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
         </childnode>
       </node>
       <node id="6">
@@ -160,14 +105,23 @@
         <childnode refid="17" relation="include">
         </childnode>
       </node>
-      <node id="11">
-        <label>Utilities/type_traits.hpp</label>
-        <link refid="type__traits_8hpp"/>
-        <childnode refid="12" relation="include">
+      <node id="18">
+        <label>Mathematical/Representation/SquareMatrix.hpp</label>
+        <link refid="_square_matrix_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
         </childnode>
       </node>
-      <node id="17">
-        <label>vector</label>
+      <node id="8">
+        <label>Utilities/Eigen.hpp</label>
+        <link refid="_eigen_8hpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
       </node>
       <node id="10">
         <label>Utilities/aliases.hpp</label>
@@ -177,49 +131,101 @@
         <childnode refid="13" relation="include">
         </childnode>
       </node>
-      <node id="31">
-        <label>utility</label>
-      </node>
-      <node id="13">
-        <label>cstdlib</label>
-      </node>
-      <node id="16">
-        <label>iostream</label>
-      </node>
-      <node id="29">
-        <label>cstddef</label>
-      </node>
-      <node id="12">
-        <label>type_traits</label>
-      </node>
-      <node id="4">
-        <label>Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp</label>
-        <link refid="_eigenproblem_environment_8hpp"/>
-        <childnode refid="5" relation="include">
+      <node id="28">
+        <label>Utilities/memory.hpp</label>
+        <link refid="memory_8hpp"/>
+        <childnode refid="29" relation="include">
         </childnode>
-        <childnode refid="6" relation="include">
+        <childnode refid="30" relation="include">
         </childnode>
-        <childnode refid="18" relation="include">
+        <childnode refid="12" relation="include">
         </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>Utilities/miscellaneous.hpp</label>
+        <link refid="miscellaneous_8hpp"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>Utilities/type_traits.hpp</label>
+        <link refid="type__traits_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Eigen/Dense</label>
       </node>
       <node id="20">
         <label>algorithm</label>
       </node>
-      <node id="7">
-        <label>Mathematical/Functions/CartesianDirection.hpp</label>
-        <link refid="_cartesian_direction_8hpp"/>
+      <node id="14">
+        <label>boost/algorithm/string.hpp</label>
       </node>
-      <node id="5">
-        <label>Mathematical/Optimization/Eigenproblem/Eigenpair.hpp</label>
-        <link refid="_eigenpair_8hpp"/>
-        <childnode refid="6" relation="include">
-        </childnode>
+      <node id="32">
+        <label>boost/format.hpp</label>
+      </node>
+      <node id="23">
+        <label>boost/numeric/conversion/converter.hpp</label>
+      </node>
+      <node id="29">
+        <label>cstddef</label>
+      </node>
+      <node id="13">
+        <label>cstdlib</label>
+      </node>
+      <node id="15">
+        <label>fstream</label>
+      </node>
+      <node id="21">
+        <label>functional</label>
+      </node>
+      <node id="16">
+        <label>iostream</label>
+      </node>
+      <node id="22">
+        <label>iterator</label>
       </node>
       <node id="30">
         <label>memory</label>
       </node>
+      <node id="24">
+        <label>numeric</label>
+      </node>
+      <node id="3">
+        <label>string</label>
+      </node>
+      <node id="12">
+        <label>type_traits</label>
+      </node>
+      <node id="31">
+        <label>utility</label>
+      </node>
+      <node id="17">
+        <label>vector</label>
+      </node>
     </incdepgraph>
     <invincdepgraph>
+      <node id="2">
+        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp</label>
+        <link refid="_davidson_solver_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
       <node id="1">
         <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceMatrixDiagonalization.hpp</label>
         <link refid="_subspace_matrix_diagonalization_8hpp"/>
@@ -228,15 +234,9 @@
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="2">
+      <node id="3">
         <label>/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</label>
         <link refid="gqcp_8hpp"/>
-      </node>
-      <node id="3">
-        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp</label>
-        <link refid="_davidson_solver_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
       </node>
     </invincdepgraph>
     <innerclass refid="class_g_q_c_p_1_1_subspace_matrix_diagonalization" prot="public">GQCP::SubspaceMatrixDiagonalization</innerclass>

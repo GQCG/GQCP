@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformable" kind="class" language="C++" prot="public">
     <compoundname>GQCP::DoublySpinResolvedBasisTransformable</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_basis_transformable" prot="public" virt="non-virtual">GQCP::BasisTransformable&lt; Type &gt;</basecompoundref>
@@ -11,10 +11,11 @@
     </templateparamlist>
       <sectiondef kind="public-type">
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformable_1a1be0aa8993c5cbb96da09e91aa2de3eb" prot="public" static="no">
-        <type>typename <ref refid="struct_g_q_c_p_1_1_basis_transformable_traits" kindref="compound">BasisTransformableTraits</ref>&lt; Type &gt;::<ref refid="class_g_q_c_p_1_1_basis_transformable_1a701f799aca6ea8311782e82685851f72" kindref="member">Transformation</ref></type>
+        <type>typename <ref refid="struct_g_q_c_p_1_1_basis_transformable_traits" kindref="compound">BasisTransformableTraits</ref>&lt; Type &gt;::Transformation</type>
         <definition>using GQCP::DoublySpinResolvedBasisTransformable&lt; Type &gt;::Transformation =  typename BasisTransformableTraits&lt;Type&gt;::Transformation</definition>
         <argsstring></argsstring>
         <name>Transformation</name>
+        <qualifiedname>GQCP::DoublySpinResolvedBasisTransformable::Transformation</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -30,9 +31,10 @@
         <definition>Type GQCP::DoublySpinResolvedBasisTransformable&lt; Type &gt;::transformed</definition>
         <argsstring>(const Transformation &amp;T) const override</argsstring>
         <name>transformed</name>
+        <qualifiedname>GQCP::DoublySpinResolvedBasisTransformable::transformed</qualifiedname>
         <reimplements refid="class_g_q_c_p_1_1_basis_transformable_1a3c511224fd132184fb2e01579754850d">transformed</reimplements>
         <param>
-          <type>const <ref refid="class_g_q_c_p_1_1_basis_transformable_1a701f799aca6ea8311782e82685851f72" kindref="member">Transformation</ref> &amp;</type>
+          <type>const <ref refid="class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformable_1a1be0aa8993c5cbb96da09e91aa2de3eb" kindref="member">Transformation</ref> &amp;</type>
           <declname>T</declname>
         </param>
         <briefdescription>
@@ -73,27 +75,27 @@
 </para>
     </detaileddescription>
     <inheritancegraph>
+      <node id="2">
+        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
       <node id="1">
         <label>GQCP::DoublySpinResolvedBasisTransformable&lt; Type &gt;</label>
         <link refid="class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformable"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
-      </node>
-      <node id="2">
-        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
-        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
+      <node id="2">
+        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
       <node id="1">
         <label>GQCP::DoublySpinResolvedBasisTransformable&lt; Type &gt;</label>
         <link refid="class_g_q_c_p_1_1_doubly_spin_resolved_basis_transformable"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
-      </node>
-      <node id="2">
-        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
-        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
       </node>
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/DoublySpinResolvedBasisTransformable.hpp" line="34" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/DoublySpinResolvedBasisTransformable.hpp" bodystart="35" bodyend="70"/>

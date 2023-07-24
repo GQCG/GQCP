@@ -1,24 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="_compound_convergence_criterion_8hpp" kind="file" language="C++">
     <compoundname>CompoundConvergenceCriterion.hpp</compoundname>
     <includes refid="_convergence_criterion_8hpp" local="yes">Mathematical/Algorithm/ConvergenceCriterion.hpp</includes>
     <includes local="no">boost/format.hpp</includes>
     <includes local="no">memory</includes>
     <includes local="no">vector</includes>
-    <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
     <includedby refid="_c_c_s_d_solver_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDSolver.hpp</includedby>
     <includedby refid="_u_h_f_s_c_f_solver_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFSCFSolver.hpp</includedby>
+    <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
     <incdepgraph>
-      <node id="2">
-        <label>Mathematical/Algorithm/ConvergenceCriterion.hpp</label>
-        <link refid="_convergence_criterion_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="4">
-        <label>boost/format.hpp</label>
-      </node>
       <node id="1">
         <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/CompoundConvergenceCriterion.hpp</label>
         <link refid="_compound_convergence_criterion_8hpp"/>
@@ -31,40 +22,49 @@
         <childnode refid="6" relation="include">
         </childnode>
       </node>
+      <node id="2">
+        <label>Mathematical/Algorithm/ConvergenceCriterion.hpp</label>
+        <link refid="_convergence_criterion_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>boost/format.hpp</label>
+      </node>
+      <node id="5">
+        <label>memory</label>
+      </node>
       <node id="3">
         <label>string</label>
       </node>
       <node id="6">
         <label>vector</label>
       </node>
-      <node id="5">
-        <label>memory</label>
-      </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="3">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDSolver.hpp</label>
-        <link refid="_c_c_s_d_solver_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
       <node id="1">
         <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/CompoundConvergenceCriterion.hpp</label>
         <link refid="_compound_convergence_criterion_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="4" relation="include">
+      </node>
+      <node id="2">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDSolver.hpp</label>
+        <link refid="_c_c_s_d_solver_8hpp"/>
+        <childnode refid="3" relation="include">
         </childnode>
       </node>
       <node id="4">
         <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFSCFSolver.hpp</label>
         <link refid="_u_h_f_s_c_f_solver_8hpp"/>
-        <childnode refid="2" relation="include">
+        <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="2">
+      <node id="3">
         <label>/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</label>
         <link refid="gqcp_8hpp"/>
       </node>
@@ -112,8 +112,8 @@
 <codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_convergence_criterion" kindref="compound">ConvergenceCriterion</ref>&lt;_Environment&gt;<sp/>{</highlight></codeline>
 <codeline lineno="40"><highlight class="normal"></highlight></codeline>
 <codeline lineno="41"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="42" refid="class_g_q_c_p_1_1_compound_convergence_criterion_1ae9036ef3b116abfbfd7a9193ab294070" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_compound_convergence_criterion_1ae9036ef3b116abfbfd7a9193ab294070" kindref="member">Environment</ref><sp/>=<sp/>_Environment;</highlight></codeline>
-<codeline lineno="43" refid="class_g_q_c_p_1_1_compound_convergence_criterion_1a25c055a3350caa9a0e56320989d32632" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_compound_convergence_criterion" kindref="compound">Self</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_compound_convergence_criterion" kindref="compound">CompoundConvergenceCriterion&lt;Environment&gt;</ref>;</highlight></codeline>
+<codeline lineno="42" refid="class_g_q_c_p_1_1_compound_convergence_criterion_1ae9036ef3b116abfbfd7a9193ab294070" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_compound_convergence_criterion_1ae9036ef3b116abfbfd7a9193ab294070" kindref="member">Environment</ref><sp/>=<sp/>_Environment;</highlight></codeline>
+<codeline lineno="43" refid="class_g_q_c_p_1_1_compound_convergence_criterion_1a25c055a3350caa9a0e56320989d32632" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_compound_convergence_criterion" kindref="compound">Self</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_compound_convergence_criterion" kindref="compound">CompoundConvergenceCriterion&lt;Environment&gt;</ref>;</highlight></codeline>
 <codeline lineno="44"><highlight class="normal"></highlight></codeline>
 <codeline lineno="45"><highlight class="normal"></highlight></codeline>
 <codeline lineno="46"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>

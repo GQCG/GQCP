@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_linear_expansion" kind="class" language="C++" prot="public">
     <compoundname>GQCP::LinearExpansion</compoundname>
     <includes refid="_linear_expansion_8hpp" local="no">LinearExpansion.hpp</includes>
@@ -17,26 +17,28 @@
         <definition>using GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::Scalar =  _Scalar</definition>
         <argsstring></argsstring>
         <name>Scalar</name>
+        <qualifiedname>GQCP::LinearExpansion::Scalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="58" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="58" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="62" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="62" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_linear_expansion_1a42c9141e026bdfdb3fd13ae91f59d74f" prot="public" static="no">
         <type>_ONVBasis</type>
         <definition>using GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::ONVBasis =  _ONVBasis</definition>
         <argsstring></argsstring>
         <name>ONVBasis</name>
+        <qualifiedname>GQCP::LinearExpansion::ONVBasis</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="61" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="61" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="65" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="65" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-attrib">
@@ -45,26 +47,28 @@
         <definition>ONVBasis GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::onv_basis</definition>
         <argsstring></argsstring>
         <name>onv_basis</name>
+        <qualifiedname>GQCP::LinearExpansion::onv_basis</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="66" column="14" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="66" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="70" column="14" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="70" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_g_q_c_p_1_1_linear_expansion_1aca2691547f747fd79d5e27379ba6903a" prot="private" static="no" mutable="no">
         <type><ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; <ref refid="class_g_q_c_p_1_1_linear_expansion_1ab6283d757673aa83a7609e87a8b01ce9" kindref="member">Scalar</ref> &gt;</type>
         <definition>VectorX&lt;Scalar&gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::m_coefficients</definition>
         <argsstring></argsstring>
         <name>m_coefficients</name>
+        <qualifiedname>GQCP::LinearExpansion::m_coefficients</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="69" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="69" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="73" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="73" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -73,6 +77,7 @@
         <definition>GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::LinearExpansion</definition>
         <argsstring>(const ONVBasis &amp;onv_basis, const VectorX&lt; Scalar &gt; &amp;coefficients)</argsstring>
         <name>LinearExpansion</name>
+        <qualifiedname>GQCP::LinearExpansion::LinearExpansion</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_linear_expansion_1a42c9141e026bdfdb3fd13ae91f59d74f" kindref="member">ONVBasis</ref> &amp;</type>
           <declname>onv_basis</declname>
@@ -106,26 +111,28 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="83" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="83" bodyend="85"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="87" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="87" bodyend="89"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a6902d1a87c3ea5c120819b7ff5c4a594" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::LinearExpansion</definition>
         <argsstring>()=default</argsstring>
         <name>LinearExpansion</name>
+        <qualifiedname>GQCP::LinearExpansion::LinearExpansion</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="91" column="5"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="95" column="5"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a60c63293906daaea5dcce4aea644c74d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_linear_expansion_1ab6283d757673aa83a7609e87a8b01ce9" kindref="member">Scalar</ref></type>
         <definition>Scalar GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::coefficient</definition>
         <argsstring>(const size_t i) const</argsstring>
         <name>coefficient</name>
+        <qualifiedname>GQCP::LinearExpansion::coefficient</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>i</declname>
@@ -149,13 +156,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="384" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="384" bodyend="384"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="388" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="388" bodyend="388"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a8cfae67734c46f6ed1bed2235444c158" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a6b3479bc3007d2c71d5c9a42fc1e6ddd" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; <ref refid="class_g_q_c_p_1_1_linear_expansion_1ab6283d757673aa83a7609e87a8b01ce9" kindref="member">Scalar</ref> &gt; &amp;</type>
-        <definition>const VectorX&lt;Scalar&gt;&amp; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::coefficients</definition>
+        <definition>const VectorX&lt; Scalar &gt; &amp; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::coefficients</definition>
         <argsstring>() const</argsstring>
         <name>coefficients</name>
+        <qualifiedname>GQCP::LinearExpansion::coefficients</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -165,13 +173,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="389" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="389" bodyend="389"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="393" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="393" bodyend="393"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1af99f45f0ff40fd21d773aa4c591fd4f5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1adfbfbb6330dd8c19099cb1927b8561fe" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_linear_expansion_1a42c9141e026bdfdb3fd13ae91f59d74f" kindref="member">ONVBasis</ref> &amp;</type>
-        <definition>const ONVBasis&amp; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::onvBasis</definition>
+        <definition>const ONVBasis &amp; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::onvBasis</definition>
         <argsstring>() const</argsstring>
         <name>onvBasis</name>
+        <qualifiedname>GQCP::LinearExpansion::onvBasis</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -181,9 +190,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="394" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="394" bodyend="394"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="398" column="20" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="398" bodyend="398"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a5b75a7df26c9dae8da6262395690088f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a237247a44a750b5f15ea962eab038687" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z1</type>
@@ -195,9 +204,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z1, double &gt;::value &amp;&amp;std::is_same&lt; Z2, SpinResolvedONVBasis &gt;::value &gt;</type>
-        <definition>enable_if_t&lt;std::is_same&lt;Z1, double&gt;::value &amp;&amp; std::is_same&lt;Z2, SpinResolvedONVBasis&gt;::value&gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::basisTransform</definition>
+        <definition>enable_if_t&lt; std::is_same&lt; Z1, double &gt;::value &amp;&amp;std::is_same&lt; Z2, SpinResolvedONVBasis &gt;::value &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::basisTransform</definition>
         <argsstring>(const RTransformation&lt; double &gt; &amp;T)</argsstring>
         <name>basisTransform</name>
+        <qualifiedname>GQCP::LinearExpansion::basisTransform</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_r_transformation" kindref="compound">RTransformation</ref>&lt; double &gt; &amp;</type>
           <declname>T</declname>
@@ -224,9 +234,9 @@
         <inbodydescription>
 <para>The transformation of the expansion coefficients is adapted from Helgaker2000, chapter 11.9. For every orbital, a set of correction coefficients will be calculated (Delta C in Helgaker), to update the current coefficients.</para>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="410" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="410" bodyend="578"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="414" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="414" bodyend="582"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a520a6768167ffe6816d16ba020203924" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a942a9a34b540d95eb828b17879da1440" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z1</type>
@@ -238,18 +248,19 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z1, double &gt;::value &amp;&amp;std::is_same&lt; Z2, SpinUnresolvedONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_g1_d_m" kindref="compound">G1DM</ref>&lt; double &gt; &gt;</type>
-        <definition>enable_if_t&lt;std::is_same&lt;Z1, double&gt;::value &amp;&amp; std::is_same&lt;Z2, SpinUnresolvedONVBasis&gt;::value, G1DM&lt;double&gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculate1DM</definition>
+        <definition>enable_if_t&lt; std::is_same&lt; Z1, double &gt;::value &amp;&amp;std::is_same&lt; Z2, SpinUnresolvedONVBasis &gt;::value, G1DM&lt; double &gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculate1DM</definition>
         <argsstring>() const</argsstring>
         <name>calculate1DM</name>
+        <qualifiedname>GQCP::LinearExpansion::calculate1DM</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="591" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="591" bodyend="651"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="595" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="595" bodyend="655"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a68260d54ae9ed4e953c544c9fe6d9f35" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a4617b5d4195977a4e60226bc02cb0919" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z</type>
@@ -257,9 +268,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, SpinUnresolvedONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_linear_expansion_1ab6283d757673aa83a7609e87a8b01ce9" kindref="member">Scalar</ref> &gt;</type>
-        <definition>enable_if_t&lt;std::is_same&lt;Z, SpinUnresolvedONVBasis&gt;::value, Scalar&gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculateNDMElement</definition>
+        <definition>enable_if_t&lt; std::is_same&lt; Z, SpinUnresolvedONVBasis &gt;::value, Scalar &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculateNDMElement</definition>
         <argsstring>(const std::vector&lt; size_t &gt; &amp;bra_indices, const std::vector&lt; size_t &gt; &amp;ket_indices) const</argsstring>
         <name>calculateNDMElement</name>
+        <qualifiedname>GQCP::LinearExpansion::calculateNDMElement</qualifiedname>
         <param>
           <type>const std::vector&lt; size_t &gt; &amp;</type>
           <declname>bra_indices</declname>
@@ -297,9 +309,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="665" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="665" bodyend="739"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="669" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="669" bodyend="743"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a681b9ee10933b17c0b3802630c69886f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a7db884d0fe88a76502fe3b02988b14ad" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z</type>
@@ -307,9 +319,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, SpinUnresolvedSelectedONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_linear_expansion_1ab6283d757673aa83a7609e87a8b01ce9" kindref="member">Scalar</ref> &gt;</type>
-        <definition>enable_if_t&lt;std::is_same&lt;Z, SpinUnresolvedSelectedONVBasis&gt;::value, Scalar&gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculateNDMElement</definition>
+        <definition>enable_if_t&lt; std::is_same&lt; Z, SpinUnresolvedSelectedONVBasis &gt;::value, Scalar &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculateNDMElement</definition>
         <argsstring>(const std::vector&lt; size_t &gt; &amp;bra_indices, const std::vector&lt; size_t &gt; &amp;ket_indices) const</argsstring>
         <name>calculateNDMElement</name>
+        <qualifiedname>GQCP::LinearExpansion::calculateNDMElement</qualifiedname>
         <param>
           <type>const std::vector&lt; size_t &gt; &amp;</type>
           <declname>bra_indices</declname>
@@ -347,9 +360,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="753" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="753" bodyend="826"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="757" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="757" bodyend="830"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a26173a1862769598b24351d3458f45b6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a97ff7a4e17511a28e658fab4b9e1478f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z1</type>
@@ -361,9 +374,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z1, double &gt;::value &amp;&amp;std::is_same&lt; Z2, SpinResolvedONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m" kindref="compound">SpinResolved1DM</ref>&lt; double &gt; &gt;</type>
-        <definition>enable_if_t&lt;std::is_same&lt;Z1, double&gt;::value &amp;&amp; std::is_same&lt;Z2, SpinResolvedONVBasis&gt;::value, SpinResolved1DM&lt;double&gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculateSpinResolved1DM</definition>
+        <definition>enable_if_t&lt; std::is_same&lt; Z1, double &gt;::value &amp;&amp;std::is_same&lt; Z2, SpinResolvedONVBasis &gt;::value, SpinResolved1DM&lt; double &gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculateSpinResolved1DM</definition>
         <argsstring>() const</argsstring>
         <name>calculateSpinResolved1DM</name>
+        <qualifiedname>GQCP::LinearExpansion::calculateSpinResolved1DM</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -374,9 +388,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="839" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="839" bodyend="950"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="843" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="843" bodyend="954"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a9cedef33ec080b51617740a3684ef777" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1ab70860c64b91db4f2612984ca4d1f2f1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z1</type>
@@ -388,9 +402,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z1, double &gt;::value &amp;&amp;std::is_same&lt; Z2, SpinResolvedONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_spin_resolved2_d_m" kindref="compound">SpinResolved2DM</ref>&lt; double &gt; &gt;</type>
-        <definition>enable_if_t&lt;std::is_same&lt;Z1, double&gt;::value &amp;&amp; std::is_same&lt;Z2, SpinResolvedONVBasis&gt;::value, SpinResolved2DM&lt;double&gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculateSpinResolved2DM</definition>
+        <definition>enable_if_t&lt; std::is_same&lt; Z1, double &gt;::value &amp;&amp;std::is_same&lt; Z2, SpinResolvedONVBasis &gt;::value, SpinResolved2DM&lt; double &gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculateSpinResolved2DM</definition>
         <argsstring>() const</argsstring>
         <name>calculateSpinResolved2DM</name>
+        <qualifiedname>GQCP::LinearExpansion::calculateSpinResolved2DM</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -401,9 +416,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="959" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="959" bodyend="1163"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="963" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="963" bodyend="1167"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a9c97256da0f7d643c385ffdc42758731" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1ad6bb1642c2a6d06ad181599cf0c3ef44" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z1</type>
@@ -415,9 +430,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z1, double &gt;::value &amp;&amp;std::is_same&lt; Z2, SpinResolvedONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_orbital1_d_m" kindref="compound">Orbital1DM</ref>&lt; double &gt; &gt;</type>
-        <definition>enable_if_t&lt;std::is_same&lt;Z1, double&gt;::value &amp;&amp; std::is_same&lt;Z2, SpinResolvedONVBasis&gt;::value, Orbital1DM&lt;double&gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculate1DM</definition>
+        <definition>enable_if_t&lt; std::is_same&lt; Z1, double &gt;::value &amp;&amp;std::is_same&lt; Z2, SpinResolvedONVBasis &gt;::value, Orbital1DM&lt; double &gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculate1DM</definition>
         <argsstring>() const</argsstring>
         <name>calculate1DM</name>
+        <qualifiedname>GQCP::LinearExpansion::calculate1DM</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -428,9 +444,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1172" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1172" bodyend="1172"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1176" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1176" bodyend="1176"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a0bb9e25c8522c72b53de3cc218b86312" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a96779d39bbd8962cb102f5b3d569cbc9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z1</type>
@@ -442,9 +458,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z1, double &gt;::value &amp;&amp;std::is_same&lt; Z2, SpinResolvedONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_orbital2_d_m" kindref="compound">Orbital2DM</ref>&lt; double &gt; &gt;</type>
-        <definition>enable_if_t&lt;std::is_same&lt;Z1, double&gt;::value &amp;&amp; std::is_same&lt;Z2, SpinResolvedONVBasis&gt;::value, Orbital2DM&lt;double&gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculate2DM</definition>
+        <definition>enable_if_t&lt; std::is_same&lt; Z1, double &gt;::value &amp;&amp;std::is_same&lt; Z2, SpinResolvedONVBasis &gt;::value, Orbital2DM&lt; double &gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculate2DM</definition>
         <argsstring>() const</argsstring>
         <name>calculate2DM</name>
+        <qualifiedname>GQCP::LinearExpansion::calculate2DM</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -455,9 +472,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1181" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1181" bodyend="1181"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1185" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1185" bodyend="1185"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a1253d917657e0280beda087214b49f6a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a9d885bd727a59ce487c944590ce92e3e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z1</type>
@@ -469,9 +486,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z1, double &gt;::value &amp;&amp;std::is_same&lt; Z2, SeniorityZeroONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_orbital1_d_m" kindref="compound">Orbital1DM</ref>&lt; double &gt; &gt;</type>
-        <definition>enable_if_t&lt;std::is_same&lt;Z1, double&gt;::value &amp;&amp; std::is_same&lt;Z2, SeniorityZeroONVBasis&gt;::value, Orbital1DM&lt;double&gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculate1DM</definition>
+        <definition>enable_if_t&lt; std::is_same&lt; Z1, double &gt;::value &amp;&amp;std::is_same&lt; Z2, SeniorityZeroONVBasis &gt;::value, Orbital1DM&lt; double &gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculate1DM</definition>
         <argsstring>() const</argsstring>
         <name>calculate1DM</name>
+        <qualifiedname>GQCP::LinearExpansion::calculate1DM</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -482,9 +500,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1194" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1194" bodyend="1219"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1198" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1198" bodyend="1223"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a62221808d5ac5ebce97705e6e5c18420" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a4c107c02909a635144faa00c12e0c73f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z1</type>
@@ -496,9 +514,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z1, double &gt;::value &amp;&amp;std::is_same&lt; Z2, SeniorityZeroONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_orbital2_d_m" kindref="compound">Orbital2DM</ref>&lt; double &gt; &gt;</type>
-        <definition>enable_if_t&lt;std::is_same&lt;Z1, double&gt;::value &amp;&amp; std::is_same&lt;Z2, SeniorityZeroONVBasis&gt;::value, Orbital2DM&lt;double&gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculate2DM</definition>
+        <definition>enable_if_t&lt; std::is_same&lt; Z1, double &gt;::value &amp;&amp;std::is_same&lt; Z2, SeniorityZeroONVBasis &gt;::value, Orbital2DM&lt; double &gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculate2DM</definition>
         <argsstring>() const</argsstring>
         <name>calculate2DM</name>
+        <qualifiedname>GQCP::LinearExpansion::calculate2DM</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -509,9 +528,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1228" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1228" bodyend="1228"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1232" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1232" bodyend="1232"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a355dea63151bc35974fcb4a733a3a020" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a8d78a522f933890b0934a641c000f754" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z1</type>
@@ -523,9 +542,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z1, double &gt;::value &amp;&amp;std::is_same&lt; Z2, SeniorityZeroONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m" kindref="compound">SpinResolved1DM</ref>&lt; double &gt; &gt;</type>
-        <definition>enable_if_t&lt;std::is_same&lt;Z1, double&gt;::value &amp;&amp; std::is_same&lt;Z2, SeniorityZeroONVBasis&gt;::value, SpinResolved1DM&lt;double&gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculateSpinResolved1DM</definition>
+        <definition>enable_if_t&lt; std::is_same&lt; Z1, double &gt;::value &amp;&amp;std::is_same&lt; Z2, SeniorityZeroONVBasis &gt;::value, SpinResolved1DM&lt; double &gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculateSpinResolved1DM</definition>
         <argsstring>() const</argsstring>
         <name>calculateSpinResolved1DM</name>
+        <qualifiedname>GQCP::LinearExpansion::calculateSpinResolved1DM</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -536,9 +556,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1236" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1236" bodyend="1236"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1240" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1240" bodyend="1240"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a73df44f6170ab3ac8989714d26406bfe" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a43c6bf67273c3ae4b2dc3b3431ec8a4c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z1</type>
@@ -550,9 +570,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z1, double &gt;::value &amp;&amp;std::is_same&lt; Z2, SeniorityZeroONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_spin_resolved2_d_m" kindref="compound">SpinResolved2DM</ref>&lt; double &gt; &gt;</type>
-        <definition>enable_if_t&lt;std::is_same&lt;Z1, double&gt;::value &amp;&amp; std::is_same&lt;Z2, SeniorityZeroONVBasis&gt;::value, SpinResolved2DM&lt;double&gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculateSpinResolved2DM</definition>
+        <definition>enable_if_t&lt; std::is_same&lt; Z1, double &gt;::value &amp;&amp;std::is_same&lt; Z2, SeniorityZeroONVBasis &gt;::value, SpinResolved2DM&lt; double &gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculateSpinResolved2DM</definition>
         <argsstring>() const</argsstring>
         <name>calculateSpinResolved2DM</name>
+        <qualifiedname>GQCP::LinearExpansion::calculateSpinResolved2DM</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -563,9 +584,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1245" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1245" bodyend="1302"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1249" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1249" bodyend="1306"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a67589ca63e3416c18a743755da18c737" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1af5557aee6d74427e9ebffc73258782d9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z1</type>
@@ -577,9 +598,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z1, double &gt;::value &amp;&amp;std::is_same&lt; Z2, SpinResolvedSelectedONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_spin_resolved1_d_m" kindref="compound">SpinResolved1DM</ref>&lt; double &gt; &gt;</type>
-        <definition>enable_if_t&lt;std::is_same&lt;Z1, double&gt;::value &amp;&amp; std::is_same&lt;Z2, SpinResolvedSelectedONVBasis&gt;::value, SpinResolved1DM&lt;double&gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculateSpinResolved1DM</definition>
+        <definition>enable_if_t&lt; std::is_same&lt; Z1, double &gt;::value &amp;&amp;std::is_same&lt; Z2, SpinResolvedSelectedONVBasis &gt;::value, SpinResolved1DM&lt; double &gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculateSpinResolved1DM</definition>
         <argsstring>() const</argsstring>
         <name>calculateSpinResolved1DM</name>
+        <qualifiedname>GQCP::LinearExpansion::calculateSpinResolved1DM</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -590,9 +612,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1315" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1315" bodyend="1386"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1319" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1319" bodyend="1390"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1ab703ef7bbf3af427842525656ea90018" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1ae00cf6a87db408bbc89fe1c6a777e2ff" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z1</type>
@@ -604,9 +626,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z1, double &gt;::value &amp;&amp;std::is_same&lt; Z2, SpinResolvedSelectedONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_spin_resolved2_d_m" kindref="compound">SpinResolved2DM</ref>&lt; double &gt; &gt;</type>
-        <definition>enable_if_t&lt;std::is_same&lt;Z1, double&gt;::value &amp;&amp; std::is_same&lt;Z2, SpinResolvedSelectedONVBasis&gt;::value, SpinResolved2DM&lt;double&gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculateSpinResolved2DM</definition>
+        <definition>enable_if_t&lt; std::is_same&lt; Z1, double &gt;::value &amp;&amp;std::is_same&lt; Z2, SpinResolvedSelectedONVBasis &gt;::value, SpinResolved2DM&lt; double &gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculateSpinResolved2DM</definition>
         <argsstring>() const</argsstring>
         <name>calculateSpinResolved2DM</name>
+        <qualifiedname>GQCP::LinearExpansion::calculateSpinResolved2DM</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -617,9 +640,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1395" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1395" bodyend="1618"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1399" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1399" bodyend="1622"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a68715529f7cd2e9632658808447a2396" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a170c37f47dd80cc442014825d698d0c8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z1</type>
@@ -631,9 +654,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z1, double &gt;::value &amp;&amp;std::is_same&lt; Z2, SpinResolvedSelectedONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_orbital1_d_m" kindref="compound">Orbital1DM</ref>&lt; double &gt; &gt;</type>
-        <definition>enable_if_t&lt;std::is_same&lt;Z1, double&gt;::value &amp;&amp; std::is_same&lt;Z2, SpinResolvedSelectedONVBasis&gt;::value, Orbital1DM&lt;double&gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculate1DM</definition>
+        <definition>enable_if_t&lt; std::is_same&lt; Z1, double &gt;::value &amp;&amp;std::is_same&lt; Z2, SpinResolvedSelectedONVBasis &gt;::value, Orbital1DM&lt; double &gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculate1DM</definition>
         <argsstring>() const</argsstring>
         <name>calculate1DM</name>
+        <qualifiedname>GQCP::LinearExpansion::calculate1DM</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -644,9 +668,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1627" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1627" bodyend="1627"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1631" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1631" bodyend="1631"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1ae3548e45e0d00792771c32ee090029ba" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a650b4b0ada44f4deefed6c87fb3fd357" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z1</type>
@@ -658,9 +682,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z1, double &gt;::value &amp;&amp;std::is_same&lt; Z2, SpinResolvedSelectedONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_orbital2_d_m" kindref="compound">Orbital2DM</ref>&lt; double &gt; &gt;</type>
-        <definition>enable_if_t&lt;std::is_same&lt;Z1, double&gt;::value &amp;&amp; std::is_same&lt;Z2, SpinResolvedSelectedONVBasis&gt;::value, Orbital2DM&lt;double&gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculate2DM</definition>
+        <definition>enable_if_t&lt; std::is_same&lt; Z1, double &gt;::value &amp;&amp;std::is_same&lt; Z2, SpinResolvedSelectedONVBasis &gt;::value, Orbital2DM&lt; double &gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculate2DM</definition>
         <argsstring>() const</argsstring>
         <name>calculate2DM</name>
+        <qualifiedname>GQCP::LinearExpansion::calculate2DM</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -671,9 +696,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1636" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1636" bodyend="1636"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1640" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1640" bodyend="1640"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a4f2112174b9ecd83b68ea3eb77394a7c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1af8dd4e3377dbbfff5e07872f3ec1c413" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z</type>
@@ -681,9 +706,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, SpinUnresolvedSelectedONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_g1_d_m" kindref="compound">G1DM</ref>&lt; <ref refid="class_g_q_c_p_1_1_linear_expansion_1ab6283d757673aa83a7609e87a8b01ce9" kindref="member">Scalar</ref> &gt; &gt;</type>
-        <definition>enable_if_t&lt;std::is_same&lt;Z, SpinUnresolvedSelectedONVBasis&gt;::value, G1DM&lt;Scalar&gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculate1DM</definition>
+        <definition>enable_if_t&lt; std::is_same&lt; Z, SpinUnresolvedSelectedONVBasis &gt;::value, G1DM&lt; Scalar &gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculate1DM</definition>
         <argsstring>() const</argsstring>
         <name>calculate1DM</name>
+        <qualifiedname>GQCP::LinearExpansion::calculate1DM</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -694,9 +720,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1645" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1645" bodyend="1684"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1649" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1649" bodyend="1688"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1aba66ead5fd15d70424318070d3076adb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a539a721085724fa27889cc8f763655c5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z</type>
@@ -704,9 +730,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, SpinUnresolvedSelectedONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_g2_d_m" kindref="compound">G2DM</ref>&lt; <ref refid="class_g_q_c_p_1_1_linear_expansion_1ab6283d757673aa83a7609e87a8b01ce9" kindref="member">Scalar</ref> &gt; &gt;</type>
-        <definition>enable_if_t&lt;std::is_same&lt;Z, SpinUnresolvedSelectedONVBasis&gt;::value, G2DM&lt;Scalar&gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculate2DM</definition>
+        <definition>enable_if_t&lt; std::is_same&lt; Z, SpinUnresolvedSelectedONVBasis &gt;::value, G2DM&lt; Scalar &gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculate2DM</definition>
         <argsstring>() const</argsstring>
         <name>calculate2DM</name>
+        <qualifiedname>GQCP::LinearExpansion::calculate2DM</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -717,9 +744,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1693" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1693" bodyend="1782"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1697" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1697" bodyend="1786"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1add4f99d37106e94f8593102bfd52166a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a4fb15105e2f38a40d9ffc2e461cba52b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z</type>
@@ -727,9 +754,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, SpinUnresolvedONVBasis &gt;::value|std::is_same&lt; Z, SpinResolvedONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">GQCP::Tensor</ref>&lt; <ref refid="class_g_q_c_p_1_1_linear_expansion_1ab6283d757673aa83a7609e87a8b01ce9" kindref="member">Scalar</ref>, 2 &gt; &gt;</type>
-        <definition>enable_if_t&lt;std::is_same&lt;Z, SpinUnresolvedONVBasis&gt;::value | std::is_same&lt;Z, SpinResolvedONVBasis&gt;::value, GQCP::Tensor&lt;Scalar, 2&gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::tensorizeCoefficients</definition>
+        <definition>enable_if_t&lt; std::is_same&lt; Z, SpinUnresolvedONVBasis &gt;::value|std::is_same&lt; Z, SpinResolvedONVBasis &gt;::value, GQCP::Tensor&lt; Scalar, 2 &gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::tensorizeCoefficients</definition>
         <argsstring>(const std::vector&lt; typename ONVBasis::ONV &gt; &amp;system_onvs, const std::vector&lt; typename ONVBasis::ONV &gt; &amp;environment_onvs) const</argsstring>
         <name>tensorizeCoefficients</name>
+        <qualifiedname>GQCP::LinearExpansion::tensorizeCoefficients</qualifiedname>
         <param>
           <type>const std::vector&lt; typename ONVBasis::ONV &gt; &amp;</type>
           <declname>system_onvs</declname>
@@ -765,26 +793,23 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1798" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1798" bodyend="1851"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1802" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1802" bodyend="1850"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a363a67ac168a23f0fc986e29c43fdd6f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a5b2c846a25a8462109048bc391a91ca9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z</type>
             <defval><ref refid="class_g_q_c_p_1_1_linear_expansion_1a42c9141e026bdfdb3fd13ae91f59d74f" kindref="member">ONVBasis</ref></defval>
           </param>
         </templateparamlist>
-        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, SpinUnresolvedONVBasis &gt;::value|std::is_same&lt; Z, SpinResolvedONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">GQCP::Tensor</ref>&lt; <ref refid="class_g_q_c_p_1_1_linear_expansion_1ab6283d757673aa83a7609e87a8b01ce9" kindref="member">Scalar</ref>, 2 &gt; &gt;</type>
-        <definition>enable_if_t&lt;std::is_same&lt;Z, SpinUnresolvedONVBasis&gt;::value | std::is_same&lt;Z, SpinResolvedONVBasis&gt;::value, GQCP::Tensor&lt;Scalar, 2&gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculateSystemOrbitalRDM</definition>
-        <argsstring>(const std::vector&lt; typename ONVBasis::ONV &gt; &amp;system_onvs, const std::vector&lt; typename ONVBasis::ONV &gt; &amp;environment_onvs) const</argsstring>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, SpinResolvedONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">Tensor</ref>&lt; <ref refid="class_g_q_c_p_1_1_linear_expansion_1ab6283d757673aa83a7609e87a8b01ce9" kindref="member">Scalar</ref>, 2 &gt; &gt;</type>
+        <definition>enable_if_t&lt; std::is_same&lt; Z, SpinResolvedONVBasis &gt;::value, Tensor&lt; Scalar, 2 &gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculateSystemOrbitalRDM</definition>
+        <argsstring>(const DiscreteDomainPartition &amp;domain_partition) const</argsstring>
         <name>calculateSystemOrbitalRDM</name>
+        <qualifiedname>GQCP::LinearExpansion::calculateSystemOrbitalRDM</qualifiedname>
         <param>
-          <type>const std::vector&lt; typename ONVBasis::ONV &gt; &amp;</type>
-          <declname>system_onvs</declname>
-        </param>
-        <param>
-          <type>const std::vector&lt; typename ONVBasis::ONV &gt; &amp;</type>
-          <declname>environment_onvs</declname>
+          <type>const DiscreteDomainPartition &amp;</type>
+          <declname>domain_partition</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -792,18 +817,10 @@
 <para>Calculate the system orbital reduced density matrix as defined in equation (2) of Rissler2005 (<ulink url="https://doi.org/10.1016/j.chemphys.2005.10.018">https://doi.org/10.1016/j.chemphys.2005.10.018</ulink>).</para>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername>system_onvs</parametername>
+<parametername>domain_partition</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>A vector of all ONVs of the system that is obtained after splitting a collection of ONVs into two subsystems. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>environment_onvs</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>A vector of all ONVs of the environment that is obtained after splitting a collection of ONVs into two subsystems.</para>
+<para>The (discrete) domain partition used to partition the spin-resolved ONVs in this <computeroutput><ref refid="class_g_q_c_p_1_1_linear_expansion" kindref="compound">LinearExpansion</ref></computeroutput>.</para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -813,9 +830,46 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1863" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1863" bodyend="1874"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1861" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1861" bodyend="1886"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1ac5d36496b690457a45bd56b8289a29ab" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a2ac344dcc8138702f5d2845488024e13" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_linear_expansion_1a42c9141e026bdfdb3fd13ae91f59d74f" kindref="member">ONVBasis</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, SpinUnresolvedONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">Tensor</ref>&lt; <ref refid="class_g_q_c_p_1_1_linear_expansion_1ab6283d757673aa83a7609e87a8b01ce9" kindref="member">Scalar</ref>, 2 &gt; &gt;</type>
+        <definition>enable_if_t&lt; std::is_same&lt; Z, SpinUnresolvedONVBasis &gt;::value, Tensor&lt; Scalar, 2 &gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculateSystemOrbitalRDM</definition>
+        <argsstring>(const DiscreteDomainPartition &amp;domain_partition) const</argsstring>
+        <name>calculateSystemOrbitalRDM</name>
+        <qualifiedname>GQCP::LinearExpansion::calculateSystemOrbitalRDM</qualifiedname>
+        <param>
+          <type>const DiscreteDomainPartition &amp;</type>
+          <declname>domain_partition</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the system orbital reduced density matrix as defined in equation (2) of Rissler2005 (<ulink url="https://doi.org/10.1016/j.chemphys.2005.10.018">https://doi.org/10.1016/j.chemphys.2005.10.018</ulink>).</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>domain_partition</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The (discrete) domain partition used to partition the spin-unresolved ONVs in this <computeroutput><ref refid="class_g_q_c_p_1_1_linear_expansion" kindref="compound">LinearExpansion</ref></computeroutput>.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The system orbital reduced density matrix. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1897" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1897" bodyend="1930"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a693a628e454b539ed6e19d2f1297d877" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z</type>
@@ -823,9 +877,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, double &gt;::value, double &gt;</type>
-        <definition>enable_if_t&lt;std::is_same&lt;Z, double&gt;::value, double&gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculateShannonEntropy</definition>
+        <definition>enable_if_t&lt; std::is_same&lt; Z, double &gt;::value, double &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculateShannonEntropy</definition>
         <argsstring>() const</argsstring>
         <name>calculateShannonEntropy</name>
+        <qualifiedname>GQCP::LinearExpansion::calculateShannonEntropy</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -835,9 +890,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1881" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1881" bodyend="1892"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1937" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1937" bodyend="1948"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a3c8b320ac4cbac4ec9630d66fbf43b25" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1aaf5e9cb02507e80ea7cea70263102d8f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z1</type>
@@ -849,9 +904,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z1, double &gt;::value &amp;&amp;std::is_same&lt; Z2, SpinResolvedONVBasis &gt;::value, double &gt;</type>
-        <definition>enable_if_t&lt;std::is_same&lt;Z1, double&gt;::value &amp;&amp; std::is_same&lt;Z2, SpinResolvedONVBasis&gt;::value, double&gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculateSingleOrbitalEntropy</definition>
+        <definition>enable_if_t&lt; std::is_same&lt; Z1, double &gt;::value &amp;&amp;std::is_same&lt; Z2, SpinResolvedONVBasis &gt;::value, double &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculateSingleOrbitalEntropy</definition>
         <argsstring>(const size_t orbital_index) const</argsstring>
         <name>calculateSingleOrbitalEntropy</name>
+        <qualifiedname>GQCP::LinearExpansion::calculateSingleOrbitalEntropy</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>orbital_index</declname>
@@ -877,9 +933,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1905" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1905" bodyend="1941"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1961" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1961" bodyend="1997"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1ae38a8e6814c2ea1e027b651bda168168" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1aa5c66b844be83e68142311ef4a0ec49f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z1</type>
@@ -891,9 +947,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z1, <ref refid="class_g_q_c_p_1_1_linear_expansion_1ab6283d757673aa83a7609e87a8b01ce9" kindref="member">Scalar</ref> &gt;::value &amp;&amp;std::is_same&lt; Z2, SeniorityZeroONVBasis &gt;::value, double &gt;</type>
-        <definition>enable_if_t&lt;std::is_same&lt;Z1, Scalar&gt;::value &amp;&amp; std::is_same&lt;Z2, SeniorityZeroONVBasis&gt;::value, double&gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculateSingleOrbitalEntropy</definition>
+        <definition>enable_if_t&lt; std::is_same&lt; Z1, Scalar &gt;::value &amp;&amp;std::is_same&lt; Z2, SeniorityZeroONVBasis &gt;::value, double &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculateSingleOrbitalEntropy</definition>
         <argsstring>(const size_t orbital_index) const</argsstring>
         <name>calculateSingleOrbitalEntropy</name>
+        <qualifiedname>GQCP::LinearExpansion::calculateSingleOrbitalEntropy</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>orbital_index</declname>
@@ -919,9 +976,121 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1954" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1954" bodyend="1986"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="2010" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="2010" bodyend="2042"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1adef9943597c3292868341ed108c18ac7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a365a4727ec38d2c7ac615f043b31acbf" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename ElectronPartition</type>
+          </param>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_linear_expansion_1a42c9141e026bdfdb3fd13ae91f59d74f" kindref="member">ONVBasis</ref></defval>
+          </param>
+          <param>
+            <type>std::enable_if_t&lt; std::is_same&lt; Z, SpinResolvedONVBasis &gt;::value, bool &gt;</type>
+            <defval>true</defval>
+          </param>
+        </templateparamlist>
+        <type>double</type>
+        <definition>double GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculateProbabilityOfFindingElectronPartition</definition>
+        <argsstring>(const DiscreteDomainPartition &amp;domain_partition, const ElectronPartition &amp;electron_partition) const</argsstring>
+        <name>calculateProbabilityOfFindingElectronPartition</name>
+        <qualifiedname>GQCP::LinearExpansion::calculateProbabilityOfFindingElectronPartition</qualifiedname>
+        <param>
+          <type>const DiscreteDomainPartition &amp;</type>
+          <declname>domain_partition</declname>
+        </param>
+        <param>
+          <type>const ElectronPartition &amp;</type>
+          <declname>electron_partition</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>MARK: Probability Calculate the probability of finding a given electron distribution over the discrete domains according to equation (11) in VanHende2022 (<ulink url="https://doi.org/10.1002/jcc.26806">https://doi.org/10.1002/jcc.26806</ulink>).</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>domain_partition</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The partition of the orbitals in discrete domains. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>electron_partition</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Electron occupation number in each discrete domain.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the probability of finding a given electron distribution over the discrete domains. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="2058" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="2058" bodyend="2070"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a365a4727ec38d2c7ac615f043b31acbf" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename ElectronPartition</type>
+          </param>
+          <param>
+            <type>typename Z</type>
+            <defval><ref refid="class_g_q_c_p_1_1_linear_expansion_1a42c9141e026bdfdb3fd13ae91f59d74f" kindref="member">ONVBasis</ref></defval>
+          </param>
+          <param>
+            <type>std::enable_if_t&lt; std::is_same&lt; Z, SpinUnresolvedONVBasis &gt;::value, bool &gt;</type>
+            <defval>true</defval>
+          </param>
+        </templateparamlist>
+        <type>double</type>
+        <definition>double GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::calculateProbabilityOfFindingElectronPartition</definition>
+        <argsstring>(const DiscreteDomainPartition &amp;domain_partition, const ElectronPartition &amp;electron_partition) const</argsstring>
+        <name>calculateProbabilityOfFindingElectronPartition</name>
+        <qualifiedname>GQCP::LinearExpansion::calculateProbabilityOfFindingElectronPartition</qualifiedname>
+        <param>
+          <type>const DiscreteDomainPartition &amp;</type>
+          <declname>domain_partition</declname>
+        </param>
+        <param>
+          <type>const ElectronPartition &amp;</type>
+          <declname>electron_partition</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the probability of finding a given electron distribution over the discrete domains according to equation (11) in VanHende2022 (<ulink url="https://doi.org/10.1002/jcc.26806">https://doi.org/10.1002/jcc.26806</ulink>).</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>domain_partition</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The partition of the orbitals in discrete domains. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>electron_partition</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Electron occupation number in each discrete domain.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The probability of finding a given electron distribution over the discrete domains. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="2081" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="2081" bodyend="2091"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a9cdb7536bc7185c03b7f80b21844c517" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z</type>
@@ -929,9 +1098,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, SpinResolvedONVBasis &gt;::value, void &gt;</type>
-        <definition>enable_if_t&lt;std::is_same&lt;Z, SpinResolvedONVBasis&gt;::value, void&gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::forEach</definition>
+        <definition>enable_if_t&lt; std::is_same&lt; Z, SpinResolvedONVBasis &gt;::value, void &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::forEach</definition>
         <argsstring>(const std::function&lt; void(const Scalar, const SpinResolvedONV)&gt; &amp;callback) const</argsstring>
         <name>forEach</name>
+        <qualifiedname>GQCP::LinearExpansion::forEach</qualifiedname>
         <param>
           <type>const std::function&lt; void(const <ref refid="class_g_q_c_p_1_1_linear_expansion_1ab6283d757673aa83a7609e87a8b01ce9" kindref="member">Scalar</ref>, const SpinResolvedONV)&gt; &amp;</type>
           <declname>callback</declname>
@@ -953,9 +1123,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="1999" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="1999" bodyend="2011"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="2104" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="2104" bodyend="2116"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a0a630f96bd6104c473983d16842cfe8d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a251e9be48f5c32e3f0b7c3ed9082b5e3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z</type>
@@ -963,9 +1133,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, SpinUnresolvedONVBasis &gt;::value, void &gt;</type>
-        <definition>enable_if_t&lt;std::is_same&lt;Z, SpinUnresolvedONVBasis&gt;::value, void&gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::forEach</definition>
+        <definition>enable_if_t&lt; std::is_same&lt; Z, SpinUnresolvedONVBasis &gt;::value, void &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::forEach</definition>
         <argsstring>(const std::function&lt; void(const Scalar, const SpinUnresolvedONV)&gt; &amp;callback) const</argsstring>
         <name>forEach</name>
+        <qualifiedname>GQCP::LinearExpansion::forEach</qualifiedname>
         <param>
           <type>const std::function&lt; void(const <ref refid="class_g_q_c_p_1_1_linear_expansion_1ab6283d757673aa83a7609e87a8b01ce9" kindref="member">Scalar</ref>, const SpinUnresolvedONV)&gt; &amp;</type>
           <declname>callback</declname>
@@ -987,13 +1158,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="2020" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="2020" bodyend="2030"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="2125" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="2125" bodyend="2135"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1aee095ee9919d57753f68396b99da4370" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
         <definition>bool GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::isApprox</definition>
         <argsstring>(const LinearExpansion&lt; Scalar, ONVBasis &gt; &amp;other, double tolerance=1.0e-12) const</argsstring>
         <name>isApprox</name>
+        <qualifiedname>GQCP::LinearExpansion::isApprox</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_linear_expansion" kindref="compound">LinearExpansion</ref>&lt; <ref refid="class_g_q_c_p_1_1_linear_expansion_1ab6283d757673aa83a7609e87a8b01ce9" kindref="member">Scalar</ref>, <ref refid="class_g_q_c_p_1_1_linear_expansion_1a42c9141e026bdfdb3fd13ae91f59d74f" kindref="member">ONVBasis</ref> &gt; &amp;</type>
           <declname>other</declname>
@@ -1029,15 +1201,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="2043" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="2043" bodyend="2050"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="2148" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="2148" bodyend="2155"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a57e038e1975f19c5e6933d36c7c8b504" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1ac5c87997a5811b71943be58100ea6278" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_linear_expansion" kindref="compound">LinearExpansion</ref>&lt; <ref refid="class_g_q_c_p_1_1_linear_expansion_1ab6283d757673aa83a7609e87a8b01ce9" kindref="member">Scalar</ref>, <ref refid="class_g_q_c_p_1_1_linear_expansion_1a42c9141e026bdfdb3fd13ae91f59d74f" kindref="member">ONVBasis</ref> &gt;</type>
-        <definition>static LinearExpansion&lt;Scalar, ONVBasis&gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::Constant</definition>
+        <definition>static LinearExpansion&lt; Scalar, ONVBasis &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::Constant</definition>
         <argsstring>(const ONVBasis &amp;onv_basis)</argsstring>
         <name>Constant</name>
+        <qualifiedname>GQCP::LinearExpansion::Constant</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_linear_expansion_1a42c9141e026bdfdb3fd13ae91f59d74f" kindref="member">ONVBasis</ref> &amp;</type>
           <declname>onv_basis</declname>
@@ -1061,13 +1234,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="105" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="105" bodyend="111"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="109" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="109" bodyend="115"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a73053c804e2222efb302aff74ad45801" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1aad29eb362547ac6d2302fbf13111135d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_linear_expansion" kindref="compound">LinearExpansion</ref>&lt; <ref refid="class_g_q_c_p_1_1_linear_expansion_1ab6283d757673aa83a7609e87a8b01ce9" kindref="member">Scalar</ref>, <ref refid="class_g_q_c_p_1_1_linear_expansion_1a42c9141e026bdfdb3fd13ae91f59d74f" kindref="member">ONVBasis</ref> &gt;</type>
-        <definition>static LinearExpansion&lt;Scalar, ONVBasis&gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::HartreeFock</definition>
+        <definition>static LinearExpansion&lt; Scalar, ONVBasis &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::HartreeFock</definition>
         <argsstring>(const ONVBasis &amp;onv_basis)</argsstring>
         <name>HartreeFock</name>
+        <qualifiedname>GQCP::LinearExpansion::HartreeFock</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_linear_expansion_1a42c9141e026bdfdb3fd13ae91f59d74f" kindref="member">ONVBasis</ref> &amp;</type>
           <declname>onv_basis</declname>
@@ -1091,13 +1265,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="121" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="121" bodyend="126"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="125" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="125" bodyend="130"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a4cf29388d529c35b62a093b52f5d7a24" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a0e633723ca75fcbe86dd81014a27bbe0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_linear_expansion" kindref="compound">LinearExpansion</ref>&lt; <ref refid="class_g_q_c_p_1_1_linear_expansion_1ab6283d757673aa83a7609e87a8b01ce9" kindref="member">Scalar</ref>, <ref refid="class_g_q_c_p_1_1_linear_expansion_1a42c9141e026bdfdb3fd13ae91f59d74f" kindref="member">ONVBasis</ref> &gt;</type>
-        <definition>static LinearExpansion&lt;Scalar, ONVBasis&gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::Normalized</definition>
+        <definition>static LinearExpansion&lt; Scalar, ONVBasis &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::Normalized</definition>
         <argsstring>(const ONVBasis &amp;onv_basis, const VectorX&lt; Scalar &gt; &amp;coefficients)</argsstring>
         <name>Normalized</name>
+        <qualifiedname>GQCP::LinearExpansion::Normalized</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_linear_expansion_1a42c9141e026bdfdb3fd13ae91f59d74f" kindref="member">ONVBasis</ref> &amp;</type>
           <declname>onv_basis</declname>
@@ -1133,13 +1308,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="137" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="137" bodyend="142"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="141" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="141" bodyend="146"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a4243e84f3b71c655cbbe3784f4665904" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a771a6ed3dea04c7b2e37f39bf80ebc07" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_linear_expansion" kindref="compound">LinearExpansion</ref>&lt; <ref refid="class_g_q_c_p_1_1_linear_expansion_1ab6283d757673aa83a7609e87a8b01ce9" kindref="member">Scalar</ref>, <ref refid="class_g_q_c_p_1_1_linear_expansion_1a42c9141e026bdfdb3fd13ae91f59d74f" kindref="member">ONVBasis</ref> &gt;</type>
-        <definition>static LinearExpansion&lt;Scalar, ONVBasis&gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::Random</definition>
+        <definition>static LinearExpansion&lt; Scalar, ONVBasis &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::Random</definition>
         <argsstring>(const ONVBasis &amp;onv_basis)</argsstring>
         <name>Random</name>
+        <qualifiedname>GQCP::LinearExpansion::Random</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_linear_expansion_1a42c9141e026bdfdb3fd13ae91f59d74f" kindref="member">ONVBasis</ref> &amp;</type>
           <declname>onv_basis</declname>
@@ -1163,9 +1339,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="152" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="152" bodyend="158"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="156" column="28" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="156" bodyend="162"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1ab81ea18db61745ee5f364d7a0bd4478d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a5fd884556bf3aa178bf662e38a410351" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z1</type>
@@ -1177,9 +1353,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z1, double &gt;::value &amp;&amp;std::is_same&lt; Z2, SpinResolvedSelectedONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_linear_expansion" kindref="compound">LinearExpansion</ref>&lt; double, SpinResolvedSelectedONVBasis &gt; &gt;</type>
-        <definition>static enable_if_t&lt;std::is_same&lt;Z1, double&gt;::value &amp;&amp; std::is_same&lt;Z2, SpinResolvedSelectedONVBasis&gt;::value, LinearExpansion&lt;double, SpinResolvedSelectedONVBasis&gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::FromGAMESSUS</definition>
+        <definition>static enable_if_t&lt; std::is_same&lt; Z1, double &gt;::value &amp;&amp;std::is_same&lt; Z2, SpinResolvedSelectedONVBasis &gt;::value, LinearExpansion&lt; double, SpinResolvedSelectedONVBasis &gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::FromGAMESSUS</definition>
         <argsstring>(const std::string &amp;GAMESSUS_filename)</argsstring>
         <name>FromGAMESSUS</name>
+        <qualifiedname>GQCP::LinearExpansion::FromGAMESSUS</qualifiedname>
         <param>
           <type>const std::string &amp;</type>
           <declname>GAMESSUS_filename</declname>
@@ -1203,9 +1380,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="169" column="26" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="169" bodyend="272"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="173" column="26" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="173" bodyend="276"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a431d89c7f251e498024392ad02e12c30" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1ae89e20b537f5f34bbdeb7d34c24162a1" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z1</type>
@@ -1217,9 +1394,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z1, double &gt;::value &amp;&amp;std::is_same&lt; Z2, SpinResolvedONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_linear_expansion" kindref="compound">LinearExpansion</ref>&lt; double, SpinResolvedONVBasis &gt; &gt;</type>
-        <definition>static enable_if_t&lt;std::is_same&lt;Z1, double&gt;::value &amp;&amp; std::is_same&lt;Z2, SpinResolvedONVBasis&gt;::value, LinearExpansion&lt;double, SpinResolvedONVBasis&gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::FromONVProjection</definition>
+        <definition>static enable_if_t&lt; std::is_same&lt; Z1, double &gt;::value &amp;&amp;std::is_same&lt; Z2, SpinResolvedONVBasis &gt;::value, LinearExpansion&lt; double, SpinResolvedONVBasis &gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::FromONVProjection</definition>
         <argsstring>(const SpinResolvedONV &amp;onv, const RSpinOrbitalBasis&lt; double, GTOShell &gt; &amp;r_spinor_basis, const USpinOrbitalBasis&lt; double, GTOShell &gt; &amp;u_spinor_basis)</argsstring>
         <name>FromONVProjection</name>
+        <qualifiedname>GQCP::LinearExpansion::FromONVProjection</qualifiedname>
         <param>
           <type>const SpinResolvedONV &amp;</type>
           <declname>onv</declname>
@@ -1267,9 +1445,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="285" column="26" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="285" bodyend="325"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="289" column="26" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="289" bodyend="329"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1a2cb9dfcdab0b36f17e1e0e448397c975" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_linear_expansion_1ad61703de894c7a6fa767ecc920dd7fa5" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z1</type>
@@ -1281,9 +1459,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z1, double &gt;::value &amp;&amp;std::is_same&lt; Z2, SpinUnresolvedONVBasis &gt;::value, <ref refid="class_g_q_c_p_1_1_linear_expansion" kindref="compound">LinearExpansion</ref>&lt; double, SpinUnresolvedONVBasis &gt; &gt;</type>
-        <definition>static enable_if_t&lt;std::is_same&lt;Z1, double&gt;::value &amp;&amp; std::is_same&lt;Z2, SpinUnresolvedONVBasis&gt;::value, LinearExpansion&lt;double, SpinUnresolvedONVBasis&gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::FromONVProjection</definition>
+        <definition>static enable_if_t&lt; std::is_same&lt; Z1, double &gt;::value &amp;&amp;std::is_same&lt; Z2, SpinUnresolvedONVBasis &gt;::value, LinearExpansion&lt; double, SpinUnresolvedONVBasis &gt; &gt; GQCP::LinearExpansion&lt; _Scalar, _ONVBasis &gt;::FromONVProjection</definition>
         <argsstring>(const SpinUnresolvedONV &amp;onv_of, const GSpinorBasis&lt; double, GTOShell &gt; &amp;spinor_basis_on, const GSpinorBasis&lt; double, GTOShell &gt; &amp;spinor_basis_of)</argsstring>
         <name>FromONVProjection</name>
+        <qualifiedname>GQCP::LinearExpansion::FromONVProjection</qualifiedname>
         <param>
           <type>const SpinUnresolvedONV &amp;</type>
           <declname>onv_of</declname>
@@ -1331,7 +1510,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="338" column="26" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="338" bodyend="370"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="342" column="26" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="342" bodyend="374"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -1363,50 +1542,53 @@
         <link refid="class_g_q_c_p_1_1_linear_expansion"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="55" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="55" bodyend="2051"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" line="59" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/CI/LinearExpansion.hpp" bodystart="59" bodyend="2156"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_linear_expansion_1a5b75a7df26c9dae8da6262395690088f" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>basisTransform</name></member>
-      <member refid="class_g_q_c_p_1_1_linear_expansion_1a520a6768167ffe6816d16ba020203924" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculate1DM</name></member>
-      <member refid="class_g_q_c_p_1_1_linear_expansion_1a9c97256da0f7d643c385ffdc42758731" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculate1DM</name></member>
-      <member refid="class_g_q_c_p_1_1_linear_expansion_1a1253d917657e0280beda087214b49f6a" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculate1DM</name></member>
-      <member refid="class_g_q_c_p_1_1_linear_expansion_1a68715529f7cd2e9632658808447a2396" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculate1DM</name></member>
-      <member refid="class_g_q_c_p_1_1_linear_expansion_1a4f2112174b9ecd83b68ea3eb77394a7c" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculate1DM</name></member>
-      <member refid="class_g_q_c_p_1_1_linear_expansion_1a0bb9e25c8522c72b53de3cc218b86312" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculate2DM</name></member>
-      <member refid="class_g_q_c_p_1_1_linear_expansion_1a62221808d5ac5ebce97705e6e5c18420" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculate2DM</name></member>
-      <member refid="class_g_q_c_p_1_1_linear_expansion_1ae3548e45e0d00792771c32ee090029ba" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculate2DM</name></member>
-      <member refid="class_g_q_c_p_1_1_linear_expansion_1aba66ead5fd15d70424318070d3076adb" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculate2DM</name></member>
-      <member refid="class_g_q_c_p_1_1_linear_expansion_1a68260d54ae9ed4e953c544c9fe6d9f35" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateNDMElement</name></member>
-      <member refid="class_g_q_c_p_1_1_linear_expansion_1a681b9ee10933b17c0b3802630c69886f" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateNDMElement</name></member>
-      <member refid="class_g_q_c_p_1_1_linear_expansion_1ac5d36496b690457a45bd56b8289a29ab" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateShannonEntropy</name></member>
-      <member refid="class_g_q_c_p_1_1_linear_expansion_1a3c8b320ac4cbac4ec9630d66fbf43b25" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateSingleOrbitalEntropy</name></member>
-      <member refid="class_g_q_c_p_1_1_linear_expansion_1ae38a8e6814c2ea1e027b651bda168168" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateSingleOrbitalEntropy</name></member>
-      <member refid="class_g_q_c_p_1_1_linear_expansion_1a26173a1862769598b24351d3458f45b6" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateSpinResolved1DM</name></member>
-      <member refid="class_g_q_c_p_1_1_linear_expansion_1a355dea63151bc35974fcb4a733a3a020" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateSpinResolved1DM</name></member>
-      <member refid="class_g_q_c_p_1_1_linear_expansion_1a67589ca63e3416c18a743755da18c737" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateSpinResolved1DM</name></member>
-      <member refid="class_g_q_c_p_1_1_linear_expansion_1a9cedef33ec080b51617740a3684ef777" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateSpinResolved2DM</name></member>
-      <member refid="class_g_q_c_p_1_1_linear_expansion_1a73df44f6170ab3ac8989714d26406bfe" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateSpinResolved2DM</name></member>
-      <member refid="class_g_q_c_p_1_1_linear_expansion_1ab703ef7bbf3af427842525656ea90018" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateSpinResolved2DM</name></member>
-      <member refid="class_g_q_c_p_1_1_linear_expansion_1a363a67ac168a23f0fc986e29c43fdd6f" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateSystemOrbitalRDM</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a237247a44a750b5f15ea962eab038687" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>basisTransform</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a942a9a34b540d95eb828b17879da1440" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculate1DM</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1ad6bb1642c2a6d06ad181599cf0c3ef44" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculate1DM</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a9d885bd727a59ce487c944590ce92e3e" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculate1DM</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a170c37f47dd80cc442014825d698d0c8" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculate1DM</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1af8dd4e3377dbbfff5e07872f3ec1c413" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculate1DM</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a96779d39bbd8962cb102f5b3d569cbc9" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculate2DM</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a4c107c02909a635144faa00c12e0c73f" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculate2DM</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a650b4b0ada44f4deefed6c87fb3fd357" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculate2DM</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a539a721085724fa27889cc8f763655c5" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculate2DM</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a4617b5d4195977a4e60226bc02cb0919" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateNDMElement</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a7db884d0fe88a76502fe3b02988b14ad" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateNDMElement</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a365a4727ec38d2c7ac615f043b31acbf" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateProbabilityOfFindingElectronPartition</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a365a4727ec38d2c7ac615f043b31acbf" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateProbabilityOfFindingElectronPartition</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a693a628e454b539ed6e19d2f1297d877" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateShannonEntropy</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1aaf5e9cb02507e80ea7cea70263102d8f" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateSingleOrbitalEntropy</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1aa5c66b844be83e68142311ef4a0ec49f" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateSingleOrbitalEntropy</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a97ff7a4e17511a28e658fab4b9e1478f" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateSpinResolved1DM</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a8d78a522f933890b0934a641c000f754" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateSpinResolved1DM</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1af5557aee6d74427e9ebffc73258782d9" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateSpinResolved1DM</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1ab70860c64b91db4f2612984ca4d1f2f1" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateSpinResolved2DM</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a43c6bf67273c3ae4b2dc3b3431ec8a4c" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateSpinResolved2DM</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1ae00cf6a87db408bbc89fe1c6a777e2ff" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateSpinResolved2DM</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a5b2c846a25a8462109048bc391a91ca9" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateSystemOrbitalRDM</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a2ac344dcc8138702f5d2845488024e13" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>calculateSystemOrbitalRDM</name></member>
       <member refid="class_g_q_c_p_1_1_linear_expansion_1a60c63293906daaea5dcce4aea644c74d" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>coefficient</name></member>
-      <member refid="class_g_q_c_p_1_1_linear_expansion_1a8cfae67734c46f6ed1bed2235444c158" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>coefficients</name></member>
-      <member refid="class_g_q_c_p_1_1_linear_expansion_1a57e038e1975f19c5e6933d36c7c8b504" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>Constant</name></member>
-      <member refid="class_g_q_c_p_1_1_linear_expansion_1adef9943597c3292868341ed108c18ac7" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>forEach</name></member>
-      <member refid="class_g_q_c_p_1_1_linear_expansion_1a0a630f96bd6104c473983d16842cfe8d" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>forEach</name></member>
-      <member refid="class_g_q_c_p_1_1_linear_expansion_1ab81ea18db61745ee5f364d7a0bd4478d" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>FromGAMESSUS</name></member>
-      <member refid="class_g_q_c_p_1_1_linear_expansion_1a431d89c7f251e498024392ad02e12c30" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>FromONVProjection</name></member>
-      <member refid="class_g_q_c_p_1_1_linear_expansion_1a2cb9dfcdab0b36f17e1e0e448397c975" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>FromONVProjection</name></member>
-      <member refid="class_g_q_c_p_1_1_linear_expansion_1a73053c804e2222efb302aff74ad45801" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>HartreeFock</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a6b3479bc3007d2c71d5c9a42fc1e6ddd" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>coefficients</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1ac5c87997a5811b71943be58100ea6278" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>Constant</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a9cdb7536bc7185c03b7f80b21844c517" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>forEach</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a251e9be48f5c32e3f0b7c3ed9082b5e3" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>forEach</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a5fd884556bf3aa178bf662e38a410351" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>FromGAMESSUS</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1ae89e20b537f5f34bbdeb7d34c24162a1" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>FromONVProjection</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1ad61703de894c7a6fa767ecc920dd7fa5" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>FromONVProjection</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1aad29eb362547ac6d2302fbf13111135d" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>HartreeFock</name></member>
       <member refid="class_g_q_c_p_1_1_linear_expansion_1aee095ee9919d57753f68396b99da4370" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>isApprox</name></member>
       <member refid="class_g_q_c_p_1_1_linear_expansion_1af7649247c802d4da39eb4516d85b8ffb" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>LinearExpansion</name></member>
       <member refid="class_g_q_c_p_1_1_linear_expansion_1a6902d1a87c3ea5c120819b7ff5c4a594" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>LinearExpansion</name></member>
       <member refid="class_g_q_c_p_1_1_linear_expansion_1aca2691547f747fd79d5e27379ba6903a" prot="private" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>m_coefficients</name></member>
-      <member refid="class_g_q_c_p_1_1_linear_expansion_1a4cf29388d529c35b62a093b52f5d7a24" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>Normalized</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a0e633723ca75fcbe86dd81014a27bbe0" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>Normalized</name></member>
       <member refid="class_g_q_c_p_1_1_linear_expansion_1a6b3dfe51faf4e58e0dd6d038842c0942" prot="private" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>onv_basis</name></member>
-      <member refid="class_g_q_c_p_1_1_linear_expansion_1af99f45f0ff40fd21d773aa4c591fd4f5" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>onvBasis</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1adfbfbb6330dd8c19099cb1927b8561fe" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>onvBasis</name></member>
       <member refid="class_g_q_c_p_1_1_linear_expansion_1a42c9141e026bdfdb3fd13ae91f59d74f" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>ONVBasis</name></member>
-      <member refid="class_g_q_c_p_1_1_linear_expansion_1a4243e84f3b71c655cbbe3784f4665904" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>Random</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a771a6ed3dea04c7b2e37f39bf80ebc07" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>Random</name></member>
       <member refid="class_g_q_c_p_1_1_linear_expansion_1ab6283d757673aa83a7609e87a8b01ce9" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>Scalar</name></member>
-      <member refid="class_g_q_c_p_1_1_linear_expansion_1add4f99d37106e94f8593102bfd52166a" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>tensorizeCoefficients</name></member>
+      <member refid="class_g_q_c_p_1_1_linear_expansion_1a4fb15105e2f38a40d9ffc2e461cba52b" prot="public" virt="non-virtual"><scope>GQCP::LinearExpansion</scope><name>tensorizeCoefficients</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

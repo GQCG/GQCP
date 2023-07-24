@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_r_orbital_rotation_generators" kind="class" language="C++" prot="public">
     <compoundname>GQCP::ROrbitalRotationGenerators</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators" prot="public" virt="non-virtual">GQCP::SimpleOrbitalRotationGenerators&lt; _Scalar, ROrbitalRotationGenerators&lt; _Scalar &gt; &gt;</basecompoundref>
@@ -15,6 +15,7 @@
         <definition>using GQCP::ROrbitalRotationGenerators&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
         <argsstring></argsstring>
         <name>Scalar</name>
+        <qualifiedname>GQCP::ROrbitalRotationGenerators::Scalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -65,8 +66,8 @@
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/ROrbitalRotationGenerators.hpp" line="37" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/ROrbitalRotationGenerators.hpp" bodystart="38" bodyend="50"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1a35873aaca35f5f4fc1f40d63557fab6e" prot="public" virt="non-virtual"><scope>GQCP::ROrbitalRotationGenerators</scope><name>asMatrix</name></member>
-      <member refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1a0dc21c5af16e41317a390c43155c4ae1" prot="public" virt="non-virtual"><scope>GQCP::ROrbitalRotationGenerators</scope><name>asVector</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1ad4a58794fbf45ec43ca33f4d17e23f81" prot="public" virt="non-virtual"><scope>GQCP::ROrbitalRotationGenerators</scope><name>asMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1a904f8cc2420a355fce00dce714c19441" prot="public" virt="non-virtual"><scope>GQCP::ROrbitalRotationGenerators</scope><name>asVector</name></member>
       <member refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1a41f858a7486ce4755ec7db4c2f039119" prot="public" virt="non-virtual"><scope>GQCP::ROrbitalRotationGenerators</scope><name>DerivedOrbitalRotationGenerators</name></member>
       <member refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1a7e00234875bc9a932f341f0b0f935a96" prot="public" virt="non-virtual"><scope>GQCP::ROrbitalRotationGenerators</scope><name>FromOccupationTypes</name></member>
       <member refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1a6de01ae1ba7fe5820fbd29e6629685f0" prot="public" virt="non-virtual"><scope>GQCP::ROrbitalRotationGenerators</scope><name>numberOfOrbitals</name></member>

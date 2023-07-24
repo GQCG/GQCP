@@ -3,11 +3,12 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Mean-field calculations in magnetic fields</title>
   
   
@@ -18,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -37,18 +38,20 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
@@ -63,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Mulliken constrained CI calculations" href="Mulliken-constrained-CI.html" />
     <link rel="prev" title="Gauge-origin independence for London kinetic integrals" href="London-integrals.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
   
   
@@ -429,8 +432,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="section" id="mean-field-calculations-in-magnetic-fields">
-<h1>Mean-field calculations in magnetic fields<a class="headerlink" href="#mean-field-calculations-in-magnetic-fields" title="Permalink to this heading">#</a></h1>
+  <section id="mean-field-calculations-in-magnetic-fields">
+<h1>Mean-field calculations in magnetic fields<a class="headerlink" href="#mean-field-calculations-in-magnetic-fields" title="Permalink to this headline">#</a></h1>
 <p>In this interactive Notebook, we’ll explore how GQCP can be used to perform electronic structure calculations in the presence of strong magnetic fields.</p>
 <p>Since the presence of the magnetic field governs the physical interactions present in the system, we provide <strong>two types</strong> of magnetic Hamiltonians:</p>
 <ul class="simple">
@@ -472,8 +475,8 @@ document.write(`
 </div>
 </div>
 </div>
-<div class="section" id="rhf-in-a-magnetic-field">
-<h2>RHF in a magnetic field<a class="headerlink" href="#rhf-in-a-magnetic-field" title="Permalink to this heading">#</a></h2>
+<section id="rhf-in-a-magnetic-field">
+<h2>RHF in a magnetic field<a class="headerlink" href="#rhf-in-a-magnetic-field" title="Permalink to this headline">#</a></h2>
 <p>Since the expectation value of the spin operator for RHF is identically zero, the spin Zeeman operator does not contribute to the RHF energy. Therefore, we can use the <code class="docutils literal notranslate"><span class="pre">FQMolecularMagneticHamiltonian</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -502,9 +505,9 @@ document.write(`
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="uhf-in-a-magnetic-field">
-<h2>UHF in a magnetic field<a class="headerlink" href="#uhf-in-a-magnetic-field" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="uhf-in-a-magnetic-field">
+<h2>UHF in a magnetic field<a class="headerlink" href="#uhf-in-a-magnetic-field" title="Permalink to this headline">#</a></h2>
 <p>In the UHF case, we can do a singlet calculation (i.e. $S_z = 0$ or $N_\alpha = N_\beta$) or a triplet calculation (i.e. $S_z = 1$ or $N_\alpha = 2$ with $N_\beta = 0$). Since the contribution from the spin Zeeman term is constant, we can do the UHF calculation using a <code class="docutils literal notranslate"><span class="pre">FQMolecularMagneticHamiltonian</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -555,9 +558,9 @@ document.write(`
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="ghf-in-a-magnetic-field">
-<h2>GHF in a magnetic field<a class="headerlink" href="#ghf-in-a-magnetic-field" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="ghf-in-a-magnetic-field">
+<h2>GHF in a magnetic field<a class="headerlink" href="#ghf-in-a-magnetic-field" title="Permalink to this headline">#</a></h2>
 <p>Since GHF is a spin non-collinear theory, its spin Zeeman contribution is not necessarily constant. Therefore, to allow the most flexible description in the presence of an external magnetic field, we use a <code class="docutils literal notranslate"><span class="pre">FQMolecularPauliHamiltonian</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -587,9 +590,9 @@ document.write(`
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="visualizations">
-<h2>Visualizations<a class="headerlink" href="#visualizations" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="visualizations">
+<h2>Visualizations<a class="headerlink" href="#visualizations" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly</span>
@@ -697,8 +700,8 @@ if (outputEl) {{
 
                         })                };                });            </script>        </div></div></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -726,7 +729,10 @@ if (outputEl) {{
               
               
                 <footer class="bd-footer-article">
-                  <!-- Previous / next buttons -->
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="London-integrals.html"
@@ -746,7 +752,10 @@ if (outputEl) {{
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
@@ -773,7 +782,7 @@ if (outputEl) {{
             
           </div>
           <footer class="bd-footer-content">
-            <div class="bd-footer-content__inner">
+            
 <div class="bd-footer-content__inner container">
   
   <div class="footer-item">
@@ -803,7 +812,7 @@ By The Ghent Quantum Chemistry Group
     
   </div>
   
-</div></div>
+</div>
           </footer>
         
 
@@ -812,8 +821,8 @@ By The Ghent Quantum Chemistry Group
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
   </footer>

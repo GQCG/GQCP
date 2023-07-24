@@ -1,0 +1,158 @@
+\hypertarget{_scalar_basis_8hpp_source}{}\doxysection{Scalar\+Basis.\+hpp}
+\label{_scalar_basis_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Basis/ScalarBasis/ScalarBasis.hpp}}
+\mbox{\hyperlink{_scalar_basis_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_g_t_o_basis_set_8hpp}{Basis/ScalarBasis/GTOBasisSet.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_g_t_o_shell_8hpp}{Basis/ScalarBasis/GTOShell.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_london_g_t_o_shell_8hpp}{Basis/ScalarBasis/LondonGTOShell.hpp}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_shell_set_8hpp}{Basis/ScalarBasis/ShellSet.hpp}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_molecule_8hpp}{Molecule/Molecule.hpp}}"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_nuclear_framework_8hpp}{Molecule/NuclearFramework.hpp}}"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{type__traits_8hpp}{Utilities/type\_traits.hpp}}"{}}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Shell>}
+\DoxyCodeLine{00041\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{ScalarBasis}}\ \{}
+\DoxyCodeLine{00042\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ shell\ that\ this\ scalar\ basis\ contains.}}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_a56cb0cabc632a2e4222abd17affb23eb}{Shell}}\ =\ \_Shell;}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ the\ primitive\ functions\ that\ underlie\ this\ scalar\ basis.}}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_aca51beca0624a8c632902a9cd06617ed}{Primitive}}\ =\ \textcolor{keyword}{typename}\ Shell::Primitive;}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ basis\ functions\ that\ this\ scalar\ basis\ consists\ of.}}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_af7f13ae4384545ad6fd8c9e622cb2180}{BasisFunction}}\ =\ \textcolor{keyword}{typename}\ Shell::BasisFunction;}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{//\ A\ collection\ of\ shells\ that\ represents\ this\ scalar\ basis.}}
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{ShellSet<Shell>}}\ shell\_set;}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00059\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Constructors}}
+\DoxyCodeLine{00060\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00065\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_a062e580dff23f232205131c185fb908a}{ScalarBasis}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{ShellSet<Shell>}}\&\ shell\_set)\ :}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ shell\_set\ \{shell\_set\}\ \{\}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Shell>}
+\DoxyCodeLine{00078\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_adfc218e2641da59116cecd9c573b8403}{ScalarBasis}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework}{NuclearFramework}}\&\ nuclear\_framework,\ \textcolor{keyword}{const}\ std::string\&\ basisset\_name,}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ std::enable\_if<std::is\_same<Z,\ GTOShell>::value>::type*\ =\ 0)\ :}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{ScalarBasis}}(\mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_basis_set}{GTOBasisSet}}(basisset\_name).generate(nuclear\_framework))\ \{}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ this-\/>shell\_set.\mbox{\hyperlink{class_g_q_c_p_1_1_shell_set_aedd598eb82a83d2542b06db08c06cd16}{embedNormalizationFactorsOfPrimitives}}();}
+\DoxyCodeLine{00083\ \ \ \ \ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Shell>}
+\DoxyCodeLine{00095\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_a039b66e5dc34f865d172d669cad0f20a}{ScalarBasis}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}}\&\ molecule,\ \textcolor{keyword}{const}\ std::string\&\ basisset\_name,}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ std::enable\_if<std::is\_same<Z,\ GTOShell>::value>::type*\ =\ 0)\ :}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{ScalarBasis}}(molecule.nuclearFramework(),\ basisset\_name)\ \{\}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Shell>}
+\DoxyCodeLine{00110\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_afe320a0e48627402e35e9d7c58c61bef}{ScalarBasis}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework}{NuclearFramework}}\&\ nuclear\_framework,\ \textcolor{keyword}{const}\ std::string\&\ basisset\_name,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{HomogeneousMagneticField}}\&\ B,}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ std::enable\_if<std::is\_same<Z,\ LondonGTOShell>::value>::type*\ =\ 0)\ :}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{ScalarBasis}}(\mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_basis_set}{GTOBasisSet}}(basisset\_name).generate(nuclear\_framework).applyLondonModification(B))\ \{}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ this-\/>shell\_set.\mbox{\hyperlink{class_g_q_c_p_1_1_shell_set_aedd598eb82a83d2542b06db08c06cd16}{embedNormalizationFactorsOfPrimitives}}();}
+\DoxyCodeLine{00115\ \ \ \ \ \}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Shell>}
+\DoxyCodeLine{00128\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_aab3d105699f8e3929c1d4e090243a117}{ScalarBasis}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}}\&\ molecule,\ \textcolor{keyword}{const}\ std::string\&\ basisset\_name,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{HomogeneousMagneticField}}\&\ B,}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ std::enable\_if<std::is\_same<Z,\ LondonGTOShell>::value>::type*\ =\ 0)\ :}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{ScalarBasis}}(molecule.nuclearFramework(),\ basisset\_name,\ B)\ \{\}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00134\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Shell\ set}}
+\DoxyCodeLine{00135\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{ShellSet<Shell>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_aeb9d5b6e2903b492d96a8d4d4cfd9b55}{shellSet}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>shell\_set;\ \}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00144\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Basis\ functions}}
+\DoxyCodeLine{00145\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00150\ \ \ \ \ std::vector<BasisFunction>\ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_a000b7c24c209792eff7f965de01a657c}{basisFunctions}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>shell\_set.\mbox{\hyperlink{class_g_q_c_p_1_1_shell_set_a6fef0ae32aad408cf32ad8e184705d17}{basisFunctions}}();\ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_a7e604db3de1539af1ff231992743e4f7}{numberOfBasisFunctions}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>shell\_set.\mbox{\hyperlink{class_g_q_c_p_1_1_shell_set_abe949af8f29058c15b0f462797b19970}{numberOfBasisFunctions}}();\ \}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00164\ \ \ \ \ std::vector<size\_t>\ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_acd5f433e61fcaa284350331a566516a7}{basisFunctionIndices}}(\textcolor{keyword}{const}\ std::function<\textcolor{keywordtype}{bool}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_a56cb0cabc632a2e4222abd17affb23eb}{Shell}}\&)>\&\ selector)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ shells\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_aeb9d5b6e2903b492d96a8d4d4cfd9b55}{shellSet}}().\mbox{\hyperlink{class_g_q_c_p_1_1_shell_set_a569efd7b6357946f92b9a603d2b0075b}{asVector}}();}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Find\ the\ indices\ of\ those\ basis\ functions\ for\ which\ the\ shell\ selector\ returns\ true.}}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ std::vector<size\_t>\ ao\_indices;}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ bf\_index\ =\ 0;}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ shell\_index\ =\ 0;\ shell\_index\ <\ shells.size();\ shell\_index++)\ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ shell\ =\ shells[shell\_index];}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ a\ shell\ has\ to\ be\ included,\ include\ all\ indices\ of\ the\ basis\ functions\ in\ it.}}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ number\_of\_bf\_in\_shell\ =\ shell.numberOfBasisFunctions();}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (selector(shell))\ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ number\_of\_bf\_in\_shell;\ i++)\ \{}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ao\_indices.push\_back(bf\_index);}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bf\_index++;}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Increase\ the\ current\ BF\ index\ to\ accommodate\ to\ the\ next\ shell.}}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bf\_index\ +=\ number\_of\_bf\_in\_shell;}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ao\_indices;}
+\DoxyCodeLine{00188\ \ \ \ \ \}}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00198\ \ \ \ \ std::vector<size\_t>\ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_af6d85f66e262223634566908e22edd62}{basisFunctionIndices}}(\textcolor{keyword}{const}\ std::function<\textcolor{keywordtype}{bool}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_af7f13ae4384545ad6fd8c9e622cb2180}{BasisFunction}}\&)>\&\ selector)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ basis\_functions\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_a000b7c24c209792eff7f965de01a657c}{basisFunctions}}();}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Find\ the\ indices\ of\ those\ basis\ functions\ for\ which\ the\ selector\ returns\ true.}}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ std::vector<size\_t>\ ao\_indices;}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ basis\_functions.size();\ i++)\ \{}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ basis\_function\ =\ basis\_functions[i];}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (selector(basis\_function))\ \{}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ao\_indices.push\_back(i);}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ao\_indices;}
+\DoxyCodeLine{00213\ \ \ \ \ \}}
+\DoxyCodeLine{00214\ \};}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

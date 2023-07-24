@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_libcint_two_electron_integral_engine" kind="class" language="C++" prot="public">
     <compoundname>GQCP::LibcintTwoElectronIntegralEngine</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_base_two_electron_integral_engine" prot="public" virt="non-virtual">GQCP::BaseTwoElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;</basecompoundref>
@@ -23,6 +23,7 @@
         <definition>using GQCP::LibcintTwoElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::Shell =  _Shell</definition>
         <argsstring></argsstring>
         <name>Shell</name>
+        <qualifiedname>GQCP::LibcintTwoElectronIntegralEngine::Shell</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -36,6 +37,7 @@
         <definition>using GQCP::LibcintTwoElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::IntegralScalar =  _IntegralScalar</definition>
         <argsstring></argsstring>
         <name>IntegralScalar</name>
+        <qualifiedname>GQCP::LibcintTwoElectronIntegralEngine::IntegralScalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -51,6 +53,7 @@
         <definition>constexpr auto GQCP::LibcintTwoElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::N</definition>
         <argsstring></argsstring>
         <name>N</name>
+        <qualifiedname>GQCP::LibcintTwoElectronIntegralEngine::N</qualifiedname>
         <initializer>= _N</initializer>
         <briefdescription>
         </briefdescription>
@@ -67,6 +70,7 @@
         <definition>Libcint2eFunction GQCP::LibcintTwoElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::libcint_function</definition>
         <argsstring></argsstring>
         <name>libcint_function</name>
+        <qualifiedname>GQCP::LibcintTwoElectronIntegralEngine::libcint_function</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -76,10 +80,11 @@
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp" line="50" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp" bodystart="50" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1a23bb6a9c2724a5be47711225a952b6d5" prot="private" static="no" mutable="no">
-        <type><ref refid="namespace_g_q_c_p_1af6c0e3151a6af439a47e0812512aea6b" kindref="member">Libcint2eOptimizerFunction</ref></type>
+        <type><ref refid="namespace_g_q_c_p_1ac6643c2ed5e21d07597ca1dfaf5881c7" kindref="member">Libcint2eOptimizerFunction</ref></type>
         <definition>Libcint2eOptimizerFunction GQCP::LibcintTwoElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::libcint_optimizer_function</definition>
         <argsstring></argsstring>
         <name>libcint_optimizer_function</name>
+        <qualifiedname>GQCP::LibcintTwoElectronIntegralEngine::libcint_optimizer_function</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -93,6 +98,7 @@
         <definition>libcint::RawContainer GQCP::LibcintTwoElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::libcint_raw_container</definition>
         <argsstring></argsstring>
         <name>libcint_raw_container</name>
+        <qualifiedname>GQCP::LibcintTwoElectronIntegralEngine::libcint_raw_container</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -106,6 +112,7 @@
         <definition>ShellSet&lt;Shell&gt; GQCP::LibcintTwoElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::shell_set</definition>
         <argsstring></argsstring>
         <name>shell_set</name>
+        <qualifiedname>GQCP::LibcintTwoElectronIntegralEngine::shell_set</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -121,6 +128,7 @@
         <definition>GQCP::LibcintTwoElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::LibcintTwoElectronIntegralEngine</definition>
         <argsstring>(const CoulombRepulsionOperator &amp;op, const ShellSet&lt; Shell &gt; &amp;shell_set)</argsstring>
         <name>LibcintTwoElectronIntegralEngine</name>
+        <qualifiedname>GQCP::LibcintTwoElectronIntegralEngine::LibcintTwoElectronIntegralEngine</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" kindref="compound">CoulombRepulsionOperator</ref> &amp;</type>
           <declname>op</declname>
@@ -145,7 +153,7 @@
 <parametername>shell_set</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the <ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet</ref> whose information should be converted to a RawContainer, which will serve as some kind of &apos;global&apos; data for the libcint engine to use in all its <ref refid="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1a3fe3d85618e88bb2db9feef4762f5031" kindref="member">calculate()</ref> calls </para>
+<para>the <ref refid="class_g_q_c_p_1_1_shell_set" kindref="compound">ShellSet</ref> whose information should be converted to a RawContainer, which will serve as some kind of &apos;global&apos; data for the libcint engine to use in all its <ref refid="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1a8404d0c46a097616f3eefdc155d4d116" kindref="member">calculate()</ref> calls </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -155,12 +163,13 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp" line="67" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp" bodystart="67" bodyend="71"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1a3fe3d85618e88bb2db9feef4762f5031" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>std::shared_ptr&lt; <ref refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer" kindref="compound">BaseTwoElectronIntegralBuffer</ref>&lt; <ref refid="class_g_q_c_p_1_1_base_two_electron_integral_engine_1a87e94dce0cbb9f885900ae0564d94e59" kindref="member">IntegralScalar</ref>, <ref refid="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1af5559db63d0655594be4e38d7d0a5e3d" kindref="member">N</ref> &gt; &gt;</type>
-        <definition>std::shared_ptr&lt;BaseTwoElectronIntegralBuffer&lt;IntegralScalar, N&gt; &gt; GQCP::LibcintTwoElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::calculate</definition>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1a8404d0c46a097616f3eefdc155d4d116" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>std::shared_ptr&lt; <ref refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer" kindref="compound">BaseTwoElectronIntegralBuffer</ref>&lt; <ref refid="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1abe498205d4d709c3c6bab9a3bd277e65" kindref="member">IntegralScalar</ref>, <ref refid="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1af5559db63d0655594be4e38d7d0a5e3d" kindref="member">N</ref> &gt; &gt;</type>
+        <definition>std::shared_ptr&lt; BaseTwoElectronIntegralBuffer&lt; IntegralScalar, N &gt; &gt; GQCP::LibcintTwoElectronIntegralEngine&lt; _Shell, _N, _IntegralScalar &gt;::calculate</definition>
         <argsstring>(const Shell &amp;shell1, const Shell &amp;shell2, const Shell &amp;shell3, const Shell &amp;shell4) override</argsstring>
         <name>calculate</name>
-        <reimplements refid="class_g_q_c_p_1_1_base_two_electron_integral_engine_1a2b36d7ebbf6ee7aa876b6f15df77c18b">calculate</reimplements>
+        <qualifiedname>GQCP::LibcintTwoElectronIntegralEngine::calculate</qualifiedname>
+        <reimplements refid="class_g_q_c_p_1_1_base_two_electron_integral_engine_1a7609ce35191c383e216b6d4072357e47">calculate</reimplements>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1a1512407c73000165b4b14f59c7df00b1" kindref="member">Shell</ref> &amp;</type>
           <declname>shell1</declname>
@@ -279,7 +288,7 @@ This method is not marked const to allow the Engine&apos;s internals to be chang
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp" line="42" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp" bodystart="42" bodyend="111"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1a3fe3d85618e88bb2db9feef4762f5031" prot="public" virt="virtual"><scope>GQCP::LibcintTwoElectronIntegralEngine</scope><name>calculate</name></member>
+      <member refid="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1a8404d0c46a097616f3eefdc155d4d116" prot="public" virt="virtual"><scope>GQCP::LibcintTwoElectronIntegralEngine</scope><name>calculate</name></member>
       <member refid="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1abe498205d4d709c3c6bab9a3bd277e65" prot="public" virt="non-virtual"><scope>GQCP::LibcintTwoElectronIntegralEngine</scope><name>IntegralScalar</name></member>
       <member refid="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1ab435a6606f771d5dd03fe7a0c795b8b8" prot="private" virt="non-virtual"><scope>GQCP::LibcintTwoElectronIntegralEngine</scope><name>libcint_function</name></member>
       <member refid="class_g_q_c_p_1_1_libcint_two_electron_integral_engine_1a23bb6a9c2724a5be47711225a952b6d5" prot="private" virt="non-virtual"><scope>GQCP::LibcintTwoElectronIntegralEngine</scope><name>libcint_optimizer_function</name></member>

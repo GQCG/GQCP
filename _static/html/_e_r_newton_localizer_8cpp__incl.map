@@ -1,52 +1,52 @@
 <map id="/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.cpp" name="/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/Localization/ERNewtonLocalizer.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="1400,5,1659,61"/>
-<area shape="rect" id="node2" href="$_e_r_newton_localizer_8hpp.html" title=" " alt="" coords="1399,109,1659,151"/>
-<area shape="rect" id="node3" href="$_orbital_space_8hpp.html" title=" " alt="" coords="1419,824,1605,865"/>
-<area shape="rect" id="node23" href="$_newton_orbital_optimizer_8hpp.html" title=" " alt="" coords="2306,199,2529,240"/>
-<area shape="rect" id="node4" href="$_occupation_type_8hpp.html" title=" " alt="" coords="1769,913,1983,955"/>
-<area shape="rect" id="node5" href="$_implicit_matrix_slice_8hpp.html" title=" " alt="" coords="1115,913,1330,955"/>
-<area shape="rect" id="node11" title=" " alt="" coords="2087,1271,2153,1297"/>
-<area shape="rect" id="node15" title=" " alt="" coords="1478,1189,1541,1215"/>
-<area shape="rect" id="node16" title=" " alt="" coords="1197,1010,1248,1037"/>
-<area shape="rect" id="node18" href="$_implicit_rank_four_tensor_slice_8hpp.html" title=" " alt="" coords="1405,913,1643,955"/>
-<area shape="rect" id="node22" title=" " alt="" coords="2369,1099,2428,1126"/>
-<area shape="rect" id="node6" href="$_matrix_8hpp.html" title=" " alt="" coords="1762,1092,1977,1133"/>
-<area shape="rect" id="node17" title=" " alt="" coords="1383,1010,1457,1037"/>
-<area shape="rect" id="node7" href="$_cartesian_direction_8hpp.html" title=" " alt="" coords="1717,1181,1896,1223"/>
-<area shape="rect" id="node8" href="$_eigen_8hpp.html" title=" " alt="" coords="1137,1189,1279,1215"/>
-<area shape="rect" id="node9" href="$aliases_8hpp.html" title=" " alt="" coords="2393,1189,2543,1215"/>
-<area shape="rect" id="node10" href="$type__traits_8hpp.html" title=" " alt="" coords="1542,1271,1717,1297"/>
-<area shape="rect" id="node12" title=" " alt="" coords="1920,1189,2115,1215"/>
-<area shape="rect" id="node13" title=" " alt="" coords="2190,1189,2263,1215"/>
-<area shape="rect" id="node14" title=" " alt="" coords="2288,1189,2368,1215"/>
-<area shape="rect" id="node19" href="$_tensor_8hpp.html" title=" " alt="" coords="2191,1003,2406,1044"/>
-<area shape="rect" id="node20" title=" " alt="" coords="2053,1092,2243,1133"/>
-<area shape="rect" id="node21" title=" " alt="" coords="2452,1099,2537,1126"/>
-<area shape="rect" id="node24" href="$_r_orbital_rotation_generators_8hpp.html" title=" " alt="" coords="1759,645,1993,687"/>
-<area shape="rect" id="node26" href="$_square_matrix_8hpp.html" title=" " alt="" coords="2287,824,2502,865"/>
-<area shape="rect" id="node31" href="$_r_transformation_8hpp.html" title=" " alt="" coords="771,556,938,597"/>
-<area shape="rect" id="node38" href="$_base_hessian_modifier_8hpp.html" title=" " alt="" coords="2481,377,2759,419"/>
-<area shape="rect" id="node39" href="$_square_rank_four_tensor_8hpp.html" title=" " alt="" coords="2635,735,2850,776"/>
-<area shape="rect" id="node40" href="$_base_orbital_optimizer_8hpp.html" title=" " alt="" coords="1106,288,1329,329"/>
-<area shape="rect" id="node50" title=" " alt="" coords="2531,295,2591,322"/>
-<area shape="rect" id="node25" href="$_simple_orbital_rotation_generators_8hpp.html" title=" " alt="" coords="1741,735,2011,776"/>
-<area shape="rect" id="node27" href="$miscellaneous_8hpp.html" title=" " alt="" coords="2577,1010,2775,1037"/>
-<area shape="rect" id="node30" title=" " alt="" coords="2433,913,2623,955"/>
-<area shape="rect" id="node28" title=" " alt="" coords="2714,1099,2801,1126"/>
-<area shape="rect" id="node29" title=" " alt="" coords="2825,1099,2895,1126"/>
-<area shape="rect" id="node32" href="$_simple_transformation_8hpp.html" title=" " alt="" coords="535,735,732,776"/>
-<area shape="rect" id="node33" href="$_basis_transformable_8hpp.html" title=" " alt="" coords="687,824,870,865"/>
-<area shape="rect" id="node34" href="$_jacobi_rotatable_8hpp.html" title=" " alt="" coords="497,824,663,865"/>
-<area shape="rect" id="node36" href="$_orbital_rotation_generator_traits_8hpp.html" title=" " alt="" coords="219,824,472,865"/>
-<area shape="rect" id="node37" title=" " alt="" coords="5,824,195,865"/>
-<area shape="rect" id="node35" href="$_jacobi_rotation_8hpp.html" title=" " alt="" coords="842,1003,1009,1044"/>
-<area shape="rect" id="node41" href="$_r_spin_orbital_basis_8hpp.html" title=" " alt="" coords="1350,377,1573,419"/>
-<area shape="rect" id="node49" href="$_s_q_hamiltonian_8hpp.html" title=" " alt="" coords="793,735,989,776"/>
-<area shape="rect" id="node42" href="$_integral_calculator_8hpp.html" title=" " alt="" coords="2805,645,2977,687"/>
-<area shape="rect" id="node43" href="$_g_t_o_shell_8hpp.html" title=" " alt="" coords="1115,474,1343,501"/>
-<area shape="rect" id="node44" href="$_current_density_matrix_element_8hpp.html" title=" " alt="" coords="2161,556,2357,597"/>
-<area shape="rect" id="node45" href="$_simple_spin_orbital_basis_8hpp.html" title=" " alt="" coords="1368,467,1555,508"/>
-<area shape="rect" id="node46" href="$_spinor_8hpp.html" title=" " alt="" coords="1579,474,1789,501"/>
-<area shape="rect" id="node47" href="$_r_mulliken_domain_8hpp.html" title=" " alt="" coords="2073,467,2255,508"/>
-<area shape="rect" id="node48" href="$_angular_momentum_operator_8hpp.html" title=" " alt="" coords="1813,467,2048,508"/>
+<area shape="rect" id="node1" title=" " alt="" coords="1400,5,1659,60"/>
+<area shape="rect" id="node2" href="$_e_r_newton_localizer_8hpp.html" title=" " alt="" coords="1399,108,1659,148"/>
+<area shape="rect" id="node3" href="$_orbital_space_8hpp.html" title=" " alt="" coords="1419,812,1605,852"/>
+<area shape="rect" id="node23" href="$_newton_orbital_optimizer_8hpp.html" title=" " alt="" coords="2306,196,2529,236"/>
+<area shape="rect" id="node4" href="$_occupation_type_8hpp.html" title=" " alt="" coords="1769,900,1983,940"/>
+<area shape="rect" id="node5" href="$_implicit_matrix_slice_8hpp.html" title=" " alt="" coords="1115,900,1330,940"/>
+<area shape="rect" id="node11" title=" " alt="" coords="2087,1252,2153,1277"/>
+<area shape="rect" id="node15" title=" " alt="" coords="1478,1171,1541,1197"/>
+<area shape="rect" id="node16" title=" " alt="" coords="1197,995,1248,1021"/>
+<area shape="rect" id="node18" href="$_implicit_rank_four_tensor_slice_8hpp.html" title=" " alt="" coords="1405,900,1643,940"/>
+<area shape="rect" id="node22" title=" " alt="" coords="2369,1083,2428,1109"/>
+<area shape="rect" id="node6" href="$_matrix_8hpp.html" title=" " alt="" coords="1762,1076,1977,1116"/>
+<area shape="rect" id="node17" title=" " alt="" coords="1383,995,1457,1021"/>
+<area shape="rect" id="node7" href="$_cartesian_direction_8hpp.html" title=" " alt="" coords="1717,1164,1896,1204"/>
+<area shape="rect" id="node8" href="$_eigen_8hpp.html" title=" " alt="" coords="1137,1171,1279,1197"/>
+<area shape="rect" id="node9" href="$aliases_8hpp.html" title=" " alt="" coords="2393,1171,2543,1197"/>
+<area shape="rect" id="node10" href="$type__traits_8hpp.html" title=" " alt="" coords="1542,1252,1717,1277"/>
+<area shape="rect" id="node12" title=" " alt="" coords="1920,1171,2115,1197"/>
+<area shape="rect" id="node13" title=" " alt="" coords="2190,1171,2263,1197"/>
+<area shape="rect" id="node14" title=" " alt="" coords="2288,1171,2368,1197"/>
+<area shape="rect" id="node19" href="$_tensor_8hpp.html" title=" " alt="" coords="2191,988,2406,1028"/>
+<area shape="rect" id="node20" title=" " alt="" coords="2053,1076,2243,1116"/>
+<area shape="rect" id="node21" title=" " alt="" coords="2452,1083,2537,1109"/>
+<area shape="rect" id="node24" href="$_r_orbital_rotation_generators_8hpp.html" title=" " alt="" coords="1759,636,1993,676"/>
+<area shape="rect" id="node26" href="$_square_matrix_8hpp.html" title=" " alt="" coords="2287,812,2502,852"/>
+<area shape="rect" id="node31" href="$_r_transformation_8hpp.html" title=" " alt="" coords="771,548,938,588"/>
+<area shape="rect" id="node38" href="$_base_hessian_modifier_8hpp.html" title=" " alt="" coords="2481,372,2759,412"/>
+<area shape="rect" id="node39" href="$_square_rank_four_tensor_8hpp.html" title=" " alt="" coords="2635,724,2850,764"/>
+<area shape="rect" id="node40" href="$_base_orbital_optimizer_8hpp.html" title=" " alt="" coords="1106,284,1329,324"/>
+<area shape="rect" id="node50" title=" " alt="" coords="2531,291,2591,317"/>
+<area shape="rect" id="node25" href="$_simple_orbital_rotation_generators_8hpp.html" title=" " alt="" coords="1741,724,2011,764"/>
+<area shape="rect" id="node27" href="$miscellaneous_8hpp.html" title=" " alt="" coords="2577,995,2775,1021"/>
+<area shape="rect" id="node30" title=" " alt="" coords="2433,900,2623,940"/>
+<area shape="rect" id="node28" title=" " alt="" coords="2714,1083,2801,1109"/>
+<area shape="rect" id="node29" title=" " alt="" coords="2825,1083,2895,1109"/>
+<area shape="rect" id="node32" href="$_simple_transformation_8hpp.html" title=" " alt="" coords="535,724,732,764"/>
+<area shape="rect" id="node33" href="$_basis_transformable_8hpp.html" title=" " alt="" coords="687,812,870,852"/>
+<area shape="rect" id="node34" href="$_jacobi_rotatable_8hpp.html" title=" " alt="" coords="497,812,663,852"/>
+<area shape="rect" id="node36" href="$_orbital_rotation_generator_traits_8hpp.html" title=" " alt="" coords="219,812,472,852"/>
+<area shape="rect" id="node37" title=" " alt="" coords="5,812,195,852"/>
+<area shape="rect" id="node35" href="$_jacobi_rotation_8hpp.html" title=" " alt="" coords="842,988,1009,1028"/>
+<area shape="rect" id="node41" href="$_r_spin_orbital_basis_8hpp.html" title=" " alt="" coords="1350,372,1573,412"/>
+<area shape="rect" id="node49" href="$_s_q_hamiltonian_8hpp.html" title=" " alt="" coords="793,724,989,764"/>
+<area shape="rect" id="node42" href="$_integral_calculator_8hpp.html" title=" " alt="" coords="2805,636,2977,676"/>
+<area shape="rect" id="node43" href="$_g_t_o_shell_8hpp.html" title=" " alt="" coords="1115,467,1343,493"/>
+<area shape="rect" id="node44" href="$_current_density_matrix_element_8hpp.html" title=" " alt="" coords="2161,548,2357,588"/>
+<area shape="rect" id="node45" href="$_simple_spin_orbital_basis_8hpp.html" title=" " alt="" coords="1368,460,1555,500"/>
+<area shape="rect" id="node46" href="$_spinor_8hpp.html" title=" " alt="" coords="1579,467,1789,493"/>
+<area shape="rect" id="node47" href="$_r_mulliken_domain_8hpp.html" title=" " alt="" coords="2073,460,2255,500"/>
+<area shape="rect" id="node48" href="$_angular_momentum_operator_8hpp.html" title=" " alt="" coords="1813,460,2048,500"/>
 </map>

@@ -1,18 +1,19 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="namespace_g_q_c_p_1_1_p_s_environment" kind="namespace" language="C++">
     <compoundname>GQCP::PSEnvironment</compoundname>
       <sectiondef kind="func">
-      <memberdef kind="function" id="namespace_g_q_c_p_1_1_p_s_environment_1ab7ade7744238001d644f02702f8d7309" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespace_g_q_c_p_1_1_p_s_environment_1a498b2b7f242dc5c25c038c72c518e5e7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Scalar</type>
           </param>
         </templateparamlist>
         <type><ref refid="class_g_q_c_p_1_1_non_linear_equation_environment" kindref="compound">NonLinearEquationEnvironment</ref>&lt; Scalar &gt;</type>
-        <definition>NonLinearEquationEnvironment&lt;Scalar&gt; GQCP::PSEnvironment::AP1roG</definition>
+        <definition>NonLinearEquationEnvironment&lt; Scalar &gt; GQCP::PSEnvironment::AP1roG</definition>
         <argsstring>(const RSQHamiltonian&lt; Scalar &gt; &amp;sq_hamiltonian, const AP1roGGeminalCoefficients &amp;G_initial)</argsstring>
         <name>AP1roG</name>
+        <qualifiedname>GQCP::PSEnvironment::AP1roG</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; Scalar &gt; &amp;</type>
           <declname>sq_hamiltonian</declname>
@@ -50,16 +51,17 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/PSEnvironment.hpp" line="39" column="30" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/Geminals/PSEnvironment.hpp" bodystart="39" bodyend="48"/>
       </memberdef>
-      <memberdef kind="function" id="namespace_g_q_c_p_1_1_p_s_environment_1a84c4e68c10aeadbb0062b6de6c9f94b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespace_g_q_c_p_1_1_p_s_environment_1a2d15f87b7dc98d7f367312ca413cf1d3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Scalar</type>
           </param>
         </templateparamlist>
         <type><ref refid="class_g_q_c_p_1_1_non_linear_equation_environment" kindref="compound">NonLinearEquationEnvironment</ref>&lt; Scalar &gt;</type>
-        <definition>NonLinearEquationEnvironment&lt;Scalar&gt; GQCP::PSEnvironment::AP1roG</definition>
+        <definition>NonLinearEquationEnvironment&lt; Scalar &gt; GQCP::PSEnvironment::AP1roG</definition>
         <argsstring>(const RSQHamiltonian&lt; Scalar &gt; &amp;sq_hamiltonian, const size_t N_P)</argsstring>
         <name>AP1roG</name>
+        <qualifiedname>GQCP::PSEnvironment::AP1roG</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; Scalar &gt; &amp;</type>
           <declname>sq_hamiltonian</declname>

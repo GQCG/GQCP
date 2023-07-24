@@ -3,11 +3,12 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Orbital bases</title>
   
   
@@ -18,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -37,18 +38,20 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
@@ -63,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Quantum chemical methods" href="quantum-chemical-methods.html" />
     <link rel="prev" title="Molecules" href="molecules.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
   
   
@@ -378,10 +381,10 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="section" id="orbital-bases">
-<h1>Orbital bases<a class="headerlink" href="#orbital-bases" title="Permalink to this heading">#</a></h1>
-<div class="section" id="creating-an-orbital-basis">
-<h2>Creating an orbital basis<a class="headerlink" href="#creating-an-orbital-basis" title="Permalink to this heading">#</a></h2>
+  <section id="orbital-bases">
+<h1>Orbital bases<a class="headerlink" href="#orbital-bases" title="Permalink to this headline">#</a></h1>
+<section id="creating-an-orbital-basis">
+<h2>Creating an orbital basis<a class="headerlink" href="#creating-an-orbital-basis" title="Permalink to this headline">#</a></h2>
 <p>An intermediary step in-between the creation of a <code class="docutils literal notranslate"><span class="pre">Molecule</span></code> object and the calculation of the <em>integrals</em> for this molecule, is the initialization of an orbital basis. In molecular electronic structure theory based on wave function models, we often express a set of orthonormal spinors or spin-orbitals as linear combinations of basis functions.</p>
 <p>Here’s where the spinor-basis objects come into play. They encapsulate the expansion coefficients, together with the atomic orbital basis. You can create a restricted spin-orbital basis (<code class="docutils literal notranslate"><span class="pre">RSpinOrbitalBasis</span></code>) by specifying the molecule and the name of the basisset that you would like to use.</p>
 <!--DOCUSAURUS_CODE_TABS-->
@@ -401,9 +404,9 @@ document.write(`
 <blockquote>
 <div><p><strong>Additional information</strong>: For more theoretical information, please visit our knowdes on <a class="reference external" href="https://gqcg-res.github.io/knowdes/general-spinor-bases.html">spinor bases</a>, <a class="reference external" href="https://gqcg-res.github.io/knowdes/spin-orbital-bases.html">spin-orbital bases</a> and on <a class="reference external" href="https://gqcg-res.github.io/knowdes/quantizing-one-and-two-electron-operators-in-general-spinor-bases.html">quantizing one- and two-electron operators</a>.</p>
 </div></blockquote>
-</div>
-<div class="section" id="calculating-integrals">
-<h2>Calculating integrals<a class="headerlink" href="#calculating-integrals" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="calculating-integrals">
+<h2>Calculating integrals<a class="headerlink" href="#calculating-integrals" title="Permalink to this headline">#</a></h2>
 <p>One of the most important ingredients for any quantum chemical method are its one- and two-electron integrals. Calculating the <em>integrals</em>, which is actually short for calculating the matrix representation of various first-quantized one- and two-electron operators in a spinor basis, is made fairly simple. If you are acquainted with the modern electronic structure framework of second quantization, you will find it very natural to use.</p>
 <p><code class="docutils literal notranslate"><span class="pre">SpinorBases</span></code> are responsible for expressing spinors in the underlying scalar orbitals. Subsequently, a <code class="docutils literal notranslate"><span class="pre">SpinorBasis</span></code> instance provides <code class="docutils literal notranslate"><span class="pre">.quantize()</span></code> methods that can create second-quantized representations of the corresponding first-quantized operators. More or less, this means that <code class="docutils literal notranslate"><span class="pre">SpinorBasis</span></code> instances provide the interface to calculate the matrix representations of one- and two-electron integrals.</p>
 <p>Below, we can find examples how the overlap, kinetic energy, potential energy and interelectronic repulsion energy operators can be expressed in the recently initialized <code class="docutils literal notranslate"><span class="pre">spinor_basis</span></code>. The process of expressing these first-quantized one- and two-electron integrals in the spinor basis is what we call <em>quantizing</em>.</p>
@@ -417,11 +420,11 @@ document.write(`
 </pre></div>
 </div>
 <!--C++-->
-<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spinor_basis</span><span class="p">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">GQCP</span><span class="o">::</span><span class="n">OverlapOperator</span><span class="p">());</span>
-<span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spinor_basis</span><span class="p">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">GQCP</span><span class="o">::</span><span class="n">KineticOperator</span><span class="p">());</span>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spinor_basis</span><span class="p">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">GQCP</span><span class="o">::</span><span class="n">OverlapOperator</span><span class="p">());</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spinor_basis</span><span class="p">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">GQCP</span><span class="o">::</span><span class="n">KineticOperator</span><span class="p">());</span><span class="w"></span>
 <span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">V</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spinor_basis</span><span class="p">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">GQCP</span><span class="o">::</span><span class="n">NuclearAttractionOperator</span><span class="p">(</span><span class="n">molecule</span><span class="p">.</span><span class="n">nuclearFramework</span><span class="p">()));</span><span class="w">  </span><span class="c1">// the nuclear attraction operator is defined with respect to the molecule&#39;s nuclear framework</span>
 
-<span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spinor_basis</span><span class="p">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">GQCP</span><span class="o">::</span><span class="n">CoulombRepulsionOperator</span><span class="p">());</span>
+<span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spinor_basis</span><span class="p">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">GQCP</span><span class="o">::</span><span class="n">CoulombRepulsionOperator</span><span class="p">());</span><span class="w"></span>
 </pre></div>
 </div>
 <!--END_DOCUSAURUS_CODE_TABS-->
@@ -436,19 +439,19 @@ document.write(`
 </pre></div>
 </div>
 <!--C++-->
-<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">S_op</span><span class="p">.</span><span class="n">parameters</span><span class="p">();</span>
-<span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T_op</span><span class="p">.</span><span class="n">parameters</span><span class="p">();</span>
-<span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">V</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">V_op</span><span class="p">.</span><span class="n">parameters</span><span class="p">();</span>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">S_op</span><span class="p">.</span><span class="n">parameters</span><span class="p">();</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T_op</span><span class="p">.</span><span class="n">parameters</span><span class="p">();</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">V</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">V_op</span><span class="p">.</span><span class="n">parameters</span><span class="p">();</span><span class="w"></span>
 
-<span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_op</span><span class="p">.</span><span class="n">parameters</span><span class="p">();</span>
+<span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_op</span><span class="p">.</span><span class="n">parameters</span><span class="p">();</span><span class="w"></span>
 </pre></div>
 </div>
 <!--END_DOCUSAURUS_CODE_TABS-->
 <blockquote>
 <div><p><strong>Note</strong>: The matrices/tensors that we have calculated here are associated to the non-orthogonal AO basis.</p>
 </div></blockquote>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -476,7 +479,10 @@ document.write(`
               
               
                 <footer class="bd-footer-article">
-                  <!-- Previous / next buttons -->
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="molecules.html"
@@ -496,7 +502,10 @@ document.write(`
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
@@ -521,7 +530,7 @@ document.write(`
             
           </div>
           <footer class="bd-footer-content">
-            <div class="bd-footer-content__inner">
+            
 <div class="bd-footer-content__inner container">
   
   <div class="footer-item">
@@ -551,7 +560,7 @@ By The Ghent Quantum Chemistry Group
     
   </div>
   
-</div></div>
+</div>
           </footer>
         
 
@@ -560,8 +569,8 @@ By The Ghent Quantum Chemistry Group
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
   </footer>

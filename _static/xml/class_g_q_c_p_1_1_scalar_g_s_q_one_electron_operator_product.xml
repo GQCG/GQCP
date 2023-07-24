@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product" kind="class" language="C++" prot="public">
     <compoundname>GQCP::ScalarGSQOneElectronOperatorProduct</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_vector_space_arithmetic" prot="public" virt="non-virtual">GQCP::VectorSpaceArithmetic&lt; ScalarGSQOneElectronOperatorProduct&lt; _Scalar &gt;, _Scalar &gt;</basecompoundref>
@@ -17,6 +17,7 @@
         <definition>using GQCP::ScalarGSQOneElectronOperatorProduct&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
         <argsstring></argsstring>
         <name>Scalar</name>
+        <qualifiedname>GQCP::ScalarGSQOneElectronOperatorProduct::Scalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -30,6 +31,7 @@
         <definition>using GQCP::ScalarGSQOneElectronOperatorProduct&lt; _Scalar &gt;::Self =  ScalarGSQOneElectronOperatorProduct&lt;Scalar&gt;</definition>
         <argsstring></argsstring>
         <name>Self</name>
+        <qualifiedname>GQCP::ScalarGSQOneElectronOperatorProduct::Self</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -45,6 +47,7 @@
         <definition>ScalarGSQOneElectronOperator&lt;Scalar&gt; GQCP::ScalarGSQOneElectronOperatorProduct&lt; _Scalar &gt;::o</definition>
         <argsstring></argsstring>
         <name>o</name>
+        <qualifiedname>GQCP::ScalarGSQOneElectronOperatorProduct::o</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -58,6 +61,7 @@
         <definition>ScalarGSQTwoElectronOperator&lt;Scalar&gt; GQCP::ScalarGSQOneElectronOperatorProduct&lt; _Scalar &gt;::t</definition>
         <argsstring></argsstring>
         <name>t</name>
+        <qualifiedname>GQCP::ScalarGSQOneElectronOperatorProduct::t</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -73,6 +77,7 @@
         <definition>GQCP::ScalarGSQOneElectronOperatorProduct&lt; _Scalar &gt;::ScalarGSQOneElectronOperatorProduct</definition>
         <argsstring>(const ScalarGSQOneElectronOperator&lt; Scalar &gt; &amp;o, const ScalarGSQTwoElectronOperator&lt; Scalar &gt; &amp;t)</argsstring>
         <name>ScalarGSQOneElectronOperatorProduct</name>
+        <qualifiedname>GQCP::ScalarGSQOneElectronOperatorProduct::ScalarGSQOneElectronOperatorProduct</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ae61b369ffb274e21947436ff6efb78fa" kindref="member">ScalarGSQOneElectronOperator</ref>&lt; <ref refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a43b006e3a4eacbc3c52e9c43b19b1ad2" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>o</declname>
@@ -108,11 +113,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/GSQTwoElectronOperator.hpp" line="207" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/GSQTwoElectronOperator.hpp" bodystart="207" bodyend="209"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a30d50232bd86a3732fb28dd8918f43f5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a154dddb5599ed435763456c0c59e7f27" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="namespace_g_q_c_p_1ae61b369ffb274e21947436ff6efb78fa" kindref="member">ScalarGSQOneElectronOperator</ref>&lt; <ref refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a43b006e3a4eacbc3c52e9c43b19b1ad2" kindref="member">Scalar</ref> &gt; &amp;</type>
-        <definition>const ScalarGSQOneElectronOperator&lt;Scalar&gt;&amp; GQCP::ScalarGSQOneElectronOperatorProduct&lt; _Scalar &gt;::oneElectron</definition>
+        <definition>const ScalarGSQOneElectronOperator&lt; Scalar &gt; &amp; GQCP::ScalarGSQOneElectronOperatorProduct&lt; _Scalar &gt;::oneElectron</definition>
         <argsstring>() const</argsstring>
         <name>oneElectron</name>
+        <qualifiedname>GQCP::ScalarGSQOneElectronOperatorProduct::oneElectron</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -124,11 +130,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/GSQTwoElectronOperator.hpp" line="219" column="40" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/GSQTwoElectronOperator.hpp" bodystart="219" bodyend="219"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1ac10d9604eeb97631b73173a84066575b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1aaf74d68c861c913dffac227937982564" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="namespace_g_q_c_p_1a5f89165f28b83bb254975779e36b0b98" kindref="member">ScalarGSQTwoElectronOperator</ref>&lt; <ref refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a43b006e3a4eacbc3c52e9c43b19b1ad2" kindref="member">Scalar</ref> &gt; &amp;</type>
-        <definition>const ScalarGSQTwoElectronOperator&lt;Scalar&gt;&amp; GQCP::ScalarGSQOneElectronOperatorProduct&lt; _Scalar &gt;::twoElectron</definition>
+        <definition>const ScalarGSQTwoElectronOperator&lt; Scalar &gt; &amp; GQCP::ScalarGSQOneElectronOperatorProduct&lt; _Scalar &gt;::twoElectron</definition>
         <argsstring>() const</argsstring>
         <name>twoElectron</name>
+        <qualifiedname>GQCP::ScalarGSQOneElectronOperatorProduct::twoElectron</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -140,11 +147,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/GSQTwoElectronOperator.hpp" line="224" column="40" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/GSQTwoElectronOperator.hpp" bodystart="224" bodyend="224"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a30781d00772a009d44d73a4c50e72ad1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a7d0f9ef48be435f8ebd4c9c055b29cda" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="namespace_g_q_c_p_1ae61b369ffb274e21947436ff6efb78fa" kindref="member">ScalarGSQOneElectronOperator</ref>&lt; <ref refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a43b006e3a4eacbc3c52e9c43b19b1ad2" kindref="member">Scalar</ref> &gt; &amp;</type>
-        <definition>ScalarGSQOneElectronOperator&lt;Scalar&gt;&amp; GQCP::ScalarGSQOneElectronOperatorProduct&lt; _Scalar &gt;::oneElectron</definition>
+        <definition>ScalarGSQOneElectronOperator&lt; Scalar &gt; &amp; GQCP::ScalarGSQOneElectronOperatorProduct&lt; _Scalar &gt;::oneElectron</definition>
         <argsstring>()</argsstring>
         <name>oneElectron</name>
+        <qualifiedname>GQCP::ScalarGSQOneElectronOperatorProduct::oneElectron</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -156,11 +164,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/GSQTwoElectronOperator.hpp" line="229" column="34" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/GSQTwoElectronOperator.hpp" bodystart="229" bodyend="229"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a6a67386d6818d0726eb5a8a2fe2c3da5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a6889f65f4b142c8e0cda5999fc329e9b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="namespace_g_q_c_p_1a5f89165f28b83bb254975779e36b0b98" kindref="member">ScalarGSQTwoElectronOperator</ref>&lt; <ref refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a43b006e3a4eacbc3c52e9c43b19b1ad2" kindref="member">Scalar</ref> &gt; &amp;</type>
-        <definition>ScalarGSQTwoElectronOperator&lt;Scalar&gt;&amp; GQCP::ScalarGSQOneElectronOperatorProduct&lt; _Scalar &gt;::twoElectron</definition>
+        <definition>ScalarGSQTwoElectronOperator&lt; Scalar &gt; &amp; GQCP::ScalarGSQOneElectronOperatorProduct&lt; _Scalar &gt;::twoElectron</definition>
         <argsstring>()</argsstring>
         <name>twoElectron</name>
+        <qualifiedname>GQCP::ScalarGSQOneElectronOperatorProduct::twoElectron</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -172,12 +181,13 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/GSQTwoElectronOperator.hpp" line="234" column="34" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/GSQTwoElectronOperator.hpp" bodystart="234" bodyend="234"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a2a833747358b8f6b50481ed94beb90f2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a3a47fad948823a43a351ad7d0b7a6d4a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type><ref refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product" kindref="compound">ScalarGSQOneElectronOperatorProduct</ref> &amp;</type>
-        <definition>ScalarGSQOneElectronOperatorProduct&amp; GQCP::ScalarGSQOneElectronOperatorProduct&lt; _Scalar &gt;::operator+=</definition>
+        <definition>ScalarGSQOneElectronOperatorProduct &amp; GQCP::ScalarGSQOneElectronOperatorProduct&lt; _Scalar &gt;::operator+=</definition>
         <argsstring>(const ScalarGSQOneElectronOperatorProduct &amp;rhs) override</argsstring>
         <name>operator+=</name>
-        <reimplements refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a241d8217aa2b2f34384a4439a968d555">operator+=</reimplements>
+        <qualifiedname>GQCP::ScalarGSQOneElectronOperatorProduct::operator+=</qualifiedname>
+        <reimplements refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a766eadd335959ff0a7a51f85142ce3c7">operator+=</reimplements>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product" kindref="compound">ScalarGSQOneElectronOperatorProduct</ref> &amp;</type>
           <declname>rhs</declname>
@@ -191,12 +201,13 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/GSQTwoElectronOperator.hpp" line="244" column="41" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/GSQTwoElectronOperator.hpp" bodystart="244" bodyend="251"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a915528b3fe1c159e99e9cd73e5044383" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a151f8688fc44cc9f686328d5ced5168f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type><ref refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product" kindref="compound">ScalarGSQOneElectronOperatorProduct</ref> &amp;</type>
-        <definition>ScalarGSQOneElectronOperatorProduct&amp; GQCP::ScalarGSQOneElectronOperatorProduct&lt; _Scalar &gt;::operator*=</definition>
+        <definition>ScalarGSQOneElectronOperatorProduct &amp; GQCP::ScalarGSQOneElectronOperatorProduct&lt; _Scalar &gt;::operator*=</definition>
         <argsstring>(const Scalar &amp;a) override</argsstring>
         <name>operator*=</name>
-        <reimplements refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a1ea665b4c39561433d116ee4b6c1d911">operator*=</reimplements>
+        <qualifiedname>GQCP::ScalarGSQOneElectronOperatorProduct::operator*=</qualifiedname>
+        <reimplements refid="class_g_q_c_p_1_1_vector_space_arithmetic_1af51affdc48585acbd2de35c1d1bc88c6">operator*=</reimplements>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a43b006e3a4eacbc3c52e9c43b19b1ad2" kindref="member">Scalar</ref> &amp;</type>
           <declname>a</declname>
@@ -215,6 +226,7 @@
         <definition>Self GQCP::ScalarGSQOneElectronOperatorProduct&lt; _Scalar &gt;::transformed</definition>
         <argsstring>(const GTransformation&lt; Scalar &gt; &amp;T) const override</argsstring>
         <name>transformed</name>
+        <qualifiedname>GQCP::ScalarGSQOneElectronOperatorProduct::transformed</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">GTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a43b006e3a4eacbc3c52e9c43b19b1ad2" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>T</declname>
@@ -245,6 +257,7 @@
         <definition>Self GQCP::ScalarGSQOneElectronOperatorProduct&lt; _Scalar &gt;::rotated</definition>
         <argsstring>(const JacobiRotation &amp;jacobi_rotation) const override</argsstring>
         <name>rotated</name>
+        <qualifiedname>GQCP::ScalarGSQOneElectronOperatorProduct::rotated</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_jacobi_rotation" kindref="compound">JacobiRotation</ref> &amp;</type>
           <declname>jacobi_rotation</declname>
@@ -275,6 +288,7 @@
         <definition>Scalar GQCP::ScalarGSQOneElectronOperatorProduct&lt; _Scalar &gt;::calculateExpectationValue</definition>
         <argsstring>(const G1DM&lt; Scalar &gt; &amp;D, const G2DM&lt; Scalar &gt; &amp;d) const</argsstring>
         <name>calculateExpectationValue</name>
+        <qualifiedname>GQCP::ScalarGSQOneElectronOperatorProduct::calculateExpectationValue</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_g1_d_m" kindref="compound">G1DM</ref>&lt; <ref refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a43b006e3a4eacbc3c52e9c43b19b1ad2" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>D</declname>
@@ -329,19 +343,13 @@
 </para>
     </detaileddescription>
     <inheritancegraph>
-      <node id="2">
-        <label>GQCP::VectorSpaceArithmetic&lt; ScalarGSQOneElectronOperatorProduct&lt; _Scalar &gt;, _Scalar &gt;</label>
-        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
-        <childnode refid="3" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="5">
-        <label>GQCP::JacobiRotatable&lt; ScalarGSQOneElectronOperatorProduct&lt; _Scalar &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
-      </node>
       <node id="4">
         <label>GQCP::BasisTransformable&lt; ScalarGSQOneElectronOperatorProduct&lt; _Scalar &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
+      <node id="3">
+        <label>GQCP::CRTP&lt; _Derived &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
       </node>
       <node id="1">
         <label>GQCP::ScalarGSQOneElectronOperatorProduct&lt; _Scalar &gt;</label>
@@ -353,25 +361,25 @@
         <childnode refid="5" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="3">
-        <label>GQCP::CRTP&lt; _Derived &gt;</label>
-        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
+      <node id="5">
+        <label>GQCP::JacobiRotatable&lt; ScalarGSQOneElectronOperatorProduct&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      </node>
+      <node id="2">
+        <label>GQCP::VectorSpaceArithmetic&lt; ScalarGSQOneElectronOperatorProduct&lt; _Scalar &gt;, _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="2">
-        <label>GQCP::VectorSpaceArithmetic&lt; ScalarGSQOneElectronOperatorProduct&lt; _Scalar &gt;, _Scalar &gt;</label>
-        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
-        <childnode refid="3" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="5">
-        <label>GQCP::JacobiRotatable&lt; ScalarGSQOneElectronOperatorProduct&lt; _Scalar &gt; &gt;</label>
-        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
-      </node>
       <node id="4">
         <label>GQCP::BasisTransformable&lt; ScalarGSQOneElectronOperatorProduct&lt; _Scalar &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
+      <node id="3">
+        <label>GQCP::CRTP&lt; _Derived &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
       </node>
       <node id="1">
         <label>GQCP::ScalarGSQOneElectronOperatorProduct&lt; _Scalar &gt;</label>
@@ -383,25 +391,31 @@
         <childnode refid="5" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="3">
-        <label>GQCP::CRTP&lt; _Derived &gt;</label>
-        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
+      <node id="5">
+        <label>GQCP::JacobiRotatable&lt; ScalarGSQOneElectronOperatorProduct&lt; _Scalar &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      </node>
+      <node id="2">
+        <label>GQCP::VectorSpaceArithmetic&lt; ScalarGSQOneElectronOperatorProduct&lt; _Scalar &gt;, _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
       </node>
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/GSQTwoElectronOperator.hpp" line="176" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/GSQTwoElectronOperator.hpp" bodystart="179" bodyend="340"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a20bb473f3d35ea3f1d93f5c66dc54241" prot="public" virt="non-virtual"><scope>GQCP::ScalarGSQOneElectronOperatorProduct</scope><name>calculateExpectationValue</name></member>
-      <member refid="class_g_q_c_p_1_1_c_r_t_p_1a2266d4aacaad437e302033b24e1d6d11" prot="public" virt="non-virtual"><scope>GQCP::ScalarGSQOneElectronOperatorProduct</scope><name>derived</name></member>
-      <member refid="class_g_q_c_p_1_1_c_r_t_p_1ab53c6ca668c4f27dd4aa51856b6aee91" prot="public" virt="non-virtual"><scope>GQCP::ScalarGSQOneElectronOperatorProduct</scope><name>derived</name></member>
+      <member refid="class_g_q_c_p_1_1_c_r_t_p_1afbb2119ea002c348828c45726583d863" prot="public" virt="non-virtual"><scope>GQCP::ScalarGSQOneElectronOperatorProduct</scope><name>derived</name></member>
+      <member refid="class_g_q_c_p_1_1_c_r_t_p_1a28a8bce1d2ca75d90ecf1295dd640f13" prot="public" virt="non-virtual"><scope>GQCP::ScalarGSQOneElectronOperatorProduct</scope><name>derived</name></member>
       <member refid="class_g_q_c_p_1_1_c_r_t_p_1ab72cbeb2fad6d811d4f6fcd2c962b55e" prot="public" virt="non-virtual"><scope>GQCP::ScalarGSQOneElectronOperatorProduct</scope><name>Derived</name></member>
       <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a107861c91912a3808817f5845823204f" prot="public" virt="non-virtual"><scope>GQCP::ScalarGSQOneElectronOperatorProduct</scope><name>JacobiRotationType</name></member>
       <member refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1ac3f6d48808173f1f3c2f8858706b2086" prot="private" virt="non-virtual"><scope>GQCP::ScalarGSQOneElectronOperatorProduct</scope><name>o</name></member>
-      <member refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a30d50232bd86a3732fb28dd8918f43f5" prot="public" virt="non-virtual"><scope>GQCP::ScalarGSQOneElectronOperatorProduct</scope><name>oneElectron</name></member>
-      <member refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a30781d00772a009d44d73a4c50e72ad1" prot="public" virt="non-virtual"><scope>GQCP::ScalarGSQOneElectronOperatorProduct</scope><name>oneElectron</name></member>
-      <member refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a915528b3fe1c159e99e9cd73e5044383" prot="public" virt="virtual"><scope>GQCP::ScalarGSQOneElectronOperatorProduct</scope><name>operator*=</name></member>
-      <member refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a2a833747358b8f6b50481ed94beb90f2" prot="public" virt="virtual"><scope>GQCP::ScalarGSQOneElectronOperatorProduct</scope><name>operator+=</name></member>
+      <member refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a154dddb5599ed435763456c0c59e7f27" prot="public" virt="non-virtual"><scope>GQCP::ScalarGSQOneElectronOperatorProduct</scope><name>oneElectron</name></member>
+      <member refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a7d0f9ef48be435f8ebd4c9c055b29cda" prot="public" virt="non-virtual"><scope>GQCP::ScalarGSQOneElectronOperatorProduct</scope><name>oneElectron</name></member>
+      <member refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a151f8688fc44cc9f686328d5ced5168f" prot="public" virt="virtual"><scope>GQCP::ScalarGSQOneElectronOperatorProduct</scope><name>operator*=</name></member>
+      <member refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a3a47fad948823a43a351ad7d0b7a6d4a" prot="public" virt="virtual"><scope>GQCP::ScalarGSQOneElectronOperatorProduct</scope><name>operator+=</name></member>
       <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a6b0d86c96ce2b6aaed10dc6d70a493bc" prot="public" virt="non-virtual"><scope>GQCP::ScalarGSQOneElectronOperatorProduct</scope><name>operator-</name></member>
-      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a63a0cb54302a2d2f1d54af66e7527c4f" prot="public" virt="non-virtual"><scope>GQCP::ScalarGSQOneElectronOperatorProduct</scope><name>operator-=</name></member>
+      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a5dcedcec644cdc0b4ea33fb8ab2ea43f" prot="public" virt="non-virtual"><scope>GQCP::ScalarGSQOneElectronOperatorProduct</scope><name>operator-=</name></member>
       <member refid="class_g_q_c_p_1_1_basis_transformable_1a2e107bd3cf4d603c003c8cb9357d0094" prot="public" virt="non-virtual" ambiguityscope="BasisTransformable&lt; ScalarGSQOneElectronOperatorProduct&lt; _Scalar &gt; &gt;::"><scope>GQCP::ScalarGSQOneElectronOperatorProduct</scope><name>rotate</name></member>
       <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a11657b774fe75246bef1f7849f9aad72" prot="public" virt="non-virtual" ambiguityscope="JacobiRotatable&lt; ScalarGSQOneElectronOperatorProduct&lt; _Scalar &gt; &gt;::"><scope>GQCP::ScalarGSQOneElectronOperatorProduct</scope><name>rotate</name></member>
       <member refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a555ca48e10ebe6ec4eabf755f32c1629" prot="public" virt="non-virtual"><scope>GQCP::ScalarGSQOneElectronOperatorProduct</scope><name>rotated</name></member>
@@ -415,8 +429,8 @@
       <member refid="class_g_q_c_p_1_1_basis_transformable_1a701f799aca6ea8311782e82685851f72" prot="public" virt="non-virtual"><scope>GQCP::ScalarGSQOneElectronOperatorProduct</scope><name>Transformation</name></member>
       <member refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a189822376a82602ef92b519a2959432d" prot="public" virt="non-virtual"><scope>GQCP::ScalarGSQOneElectronOperatorProduct</scope><name>transformed</name></member>
       <member refid="class_g_q_c_p_1_1_basis_transformable_1a3c511224fd132184fb2e01579754850d" prot="public" virt="pure-virtual" ambiguityscope="BasisTransformable&lt; ScalarGSQOneElectronOperatorProduct&lt; _Scalar &gt; &gt;::"><scope>GQCP::ScalarGSQOneElectronOperatorProduct</scope><name>transformed</name></member>
-      <member refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1ac10d9604eeb97631b73173a84066575b" prot="public" virt="non-virtual"><scope>GQCP::ScalarGSQOneElectronOperatorProduct</scope><name>twoElectron</name></member>
-      <member refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a6a67386d6818d0726eb5a8a2fe2c3da5" prot="public" virt="non-virtual"><scope>GQCP::ScalarGSQOneElectronOperatorProduct</scope><name>twoElectron</name></member>
+      <member refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1aaf74d68c861c913dffac227937982564" prot="public" virt="non-virtual"><scope>GQCP::ScalarGSQOneElectronOperatorProduct</scope><name>twoElectron</name></member>
+      <member refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a6889f65f4b142c8e0cda5999fc329e9b" prot="public" virt="non-virtual"><scope>GQCP::ScalarGSQOneElectronOperatorProduct</scope><name>twoElectron</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

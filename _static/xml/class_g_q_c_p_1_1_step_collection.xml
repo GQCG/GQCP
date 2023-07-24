@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_step_collection" kind="class" language="C++" prot="public">
     <compoundname>GQCP::StepCollection</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_step" prot="public" virt="non-virtual">GQCP::Step&lt; _Environment &gt;</basecompoundref>
@@ -15,6 +15,7 @@
         <definition>using GQCP::StepCollection&lt; _Environment &gt;::Environment =  _Environment</definition>
         <argsstring></argsstring>
         <name>Environment</name>
+        <qualifiedname>GQCP::StepCollection::Environment</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -30,6 +31,7 @@
         <definition>std::vector&lt;std::shared_ptr&lt;Step&lt;Environment&gt; &gt; &gt; GQCP::StepCollection&lt; _Environment &gt;::steps</definition>
         <argsstring></argsstring>
         <name>steps</name>
+        <qualifiedname>GQCP::StepCollection::steps</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -45,6 +47,7 @@
         <definition>std::string GQCP::StepCollection&lt; _Environment &gt;::description</definition>
         <argsstring>() const override</argsstring>
         <name>description</name>
+        <qualifiedname>GQCP::StepCollection::description</qualifiedname>
         <reimplements refid="class_g_q_c_p_1_1_step_1af2276da3e9eef7f8d2049a8aa255b9fb">description</reimplements>
         <briefdescription>
         </briefdescription>
@@ -62,6 +65,7 @@
         <definition>void GQCP::StepCollection&lt; _Environment &gt;::execute</definition>
         <argsstring>(Environment &amp;environment) override</argsstring>
         <name>execute</name>
+        <qualifiedname>GQCP::StepCollection::execute</qualifiedname>
         <reimplements refid="class_g_q_c_p_1_1_step_1afc654a62596b3fff0801acb2d993818f">execute</reimplements>
         <param>
           <type><ref refid="class_g_q_c_p_1_1_step_collection_1a9a2b54cf182fc7117d01c91b9031eec0" kindref="member">Environment</ref> &amp;</type>
@@ -86,7 +90,7 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/StepCollection.hpp" line="75" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/StepCollection.hpp" bodystart="75" bodyend="79"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_step_collection_1a564aa7135354b9c6af9b0b0114d534d7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_step_collection_1ae642fc19be01a8aadebeaed0aef863b9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z</type>
@@ -94,9 +98,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; <ref refid="class_g_q_c_p_1_1_step_collection_1a9a2b54cf182fc7117d01c91b9031eec0" kindref="member">Environment</ref>, typename Z::Environment &gt;::value, <ref refid="class_g_q_c_p_1_1_step_collection" kindref="compound">StepCollection</ref>&lt; <ref refid="class_g_q_c_p_1_1_step_collection_1a9a2b54cf182fc7117d01c91b9031eec0" kindref="member">Environment</ref> &gt; &amp; &gt;</type>
-        <definition>enable_if_t&lt;std::is_same&lt;Environment, typename Z::Environment&gt;::value, StepCollection&lt;Environment&gt;&amp;&gt; GQCP::StepCollection&lt; _Environment &gt;::add</definition>
+        <definition>enable_if_t&lt; std::is_same&lt; Environment, typename Z::Environment &gt;::value, StepCollection&lt; Environment &gt; &amp; &gt; GQCP::StepCollection&lt; _Environment &gt;::add</definition>
         <argsstring>(const Z &amp;step)</argsstring>
         <name>add</name>
+        <qualifiedname>GQCP::StepCollection::add</qualifiedname>
         <param>
           <type>const Z &amp;</type>
           <declname>step</declname>
@@ -113,7 +118,7 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/StepCollection.hpp" line="92" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/StepCollection.hpp" bodystart="92" bodyend="95"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_step_collection_1a009873ccc611a2c200c15d51e0c38e2b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_step_collection_1a1382fc8584fa77d82e6648b9f929ac74" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z</type>
@@ -121,9 +126,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; <ref refid="class_g_q_c_p_1_1_step_collection_1a9a2b54cf182fc7117d01c91b9031eec0" kindref="member">Environment</ref>, typename Z::Environment &gt;::value, void &gt;</type>
-        <definition>enable_if_t&lt;std::is_same&lt;Environment, typename Z::Environment&gt;::value, void&gt; GQCP::StepCollection&lt; _Environment &gt;::insert</definition>
+        <definition>enable_if_t&lt; std::is_same&lt; Environment, typename Z::Environment &gt;::value, void &gt; GQCP::StepCollection&lt; _Environment &gt;::insert</definition>
         <argsstring>(const Z &amp;step, const size_t index)</argsstring>
         <name>insert</name>
+        <qualifiedname>GQCP::StepCollection::insert</qualifiedname>
         <param>
           <type>const Z &amp;</type>
           <declname>step</declname>
@@ -164,6 +170,7 @@
         <definition>size_t GQCP::StepCollection&lt; _Environment &gt;::numberOfSteps</definition>
         <argsstring>() const</argsstring>
         <name>numberOfSteps</name>
+        <qualifiedname>GQCP::StepCollection::numberOfSteps</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -180,6 +187,7 @@
         <definition>void GQCP::StepCollection&lt; _Environment &gt;::remove</definition>
         <argsstring>(const size_t index)</argsstring>
         <name>remove</name>
+        <qualifiedname>GQCP::StepCollection::remove</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>index</declname>
@@ -203,7 +211,7 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/StepCollection.hpp" line="136" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/StepCollection.hpp" bodystart="136" bodyend="138"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_step_collection_1a10234ffefae0fbec6949dc0a85902323" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_step_collection_1a5a31f46749bfa08eadfa3cee42d28ddc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z</type>
@@ -211,9 +219,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; <ref refid="class_g_q_c_p_1_1_step_collection_1a9a2b54cf182fc7117d01c91b9031eec0" kindref="member">Environment</ref>, typename Z::Environment &gt;::value, void &gt;</type>
-        <definition>enable_if_t&lt;std::is_same&lt;Environment, typename Z::Environment&gt;::value, void&gt; GQCP::StepCollection&lt; _Environment &gt;::replace</definition>
+        <definition>enable_if_t&lt; std::is_same&lt; Environment, typename Z::Environment &gt;::value, void &gt; GQCP::StepCollection&lt; _Environment &gt;::replace</definition>
         <argsstring>(const Z &amp;step, const size_t index)</argsstring>
         <name>replace</name>
+        <qualifiedname>GQCP::StepCollection::replace</qualifiedname>
         <param>
           <type>const Z &amp;</type>
           <declname>step</declname>
@@ -292,14 +301,14 @@
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/StepCollection.hpp" line="41" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Algorithm/StepCollection.hpp" bodystart="41" bodyend="151"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_step_collection_1a564aa7135354b9c6af9b0b0114d534d7" prot="public" virt="non-virtual"><scope>GQCP::StepCollection</scope><name>add</name></member>
+      <member refid="class_g_q_c_p_1_1_step_collection_1ae642fc19be01a8aadebeaed0aef863b9" prot="public" virt="non-virtual"><scope>GQCP::StepCollection</scope><name>add</name></member>
       <member refid="class_g_q_c_p_1_1_step_collection_1a4f63e6c1cb7d7de973cbb4212e5ba699" prot="public" virt="virtual"><scope>GQCP::StepCollection</scope><name>description</name></member>
       <member refid="class_g_q_c_p_1_1_step_collection_1a9a2b54cf182fc7117d01c91b9031eec0" prot="public" virt="non-virtual"><scope>GQCP::StepCollection</scope><name>Environment</name></member>
       <member refid="class_g_q_c_p_1_1_step_collection_1a227f70ef9375810de6e45dfbc23fc034" prot="public" virt="virtual"><scope>GQCP::StepCollection</scope><name>execute</name></member>
-      <member refid="class_g_q_c_p_1_1_step_collection_1a009873ccc611a2c200c15d51e0c38e2b" prot="public" virt="non-virtual"><scope>GQCP::StepCollection</scope><name>insert</name></member>
+      <member refid="class_g_q_c_p_1_1_step_collection_1a1382fc8584fa77d82e6648b9f929ac74" prot="public" virt="non-virtual"><scope>GQCP::StepCollection</scope><name>insert</name></member>
       <member refid="class_g_q_c_p_1_1_step_collection_1a0fa34cf0088c63bffa9c1abc1a8dd8c2" prot="public" virt="non-virtual"><scope>GQCP::StepCollection</scope><name>numberOfSteps</name></member>
       <member refid="class_g_q_c_p_1_1_step_collection_1a7b03c30ebdc23920b3872a4409e887df" prot="public" virt="non-virtual"><scope>GQCP::StepCollection</scope><name>remove</name></member>
-      <member refid="class_g_q_c_p_1_1_step_collection_1a10234ffefae0fbec6949dc0a85902323" prot="public" virt="non-virtual"><scope>GQCP::StepCollection</scope><name>replace</name></member>
+      <member refid="class_g_q_c_p_1_1_step_collection_1a5a31f46749bfa08eadfa3cee42d28ddc" prot="public" virt="non-virtual"><scope>GQCP::StepCollection</scope><name>replace</name></member>
       <member refid="class_g_q_c_p_1_1_step_collection_1abc1ad0d96b57101ce70745988dda1460" prot="private" virt="non-virtual"><scope>GQCP::StepCollection</scope><name>steps</name></member>
       <member refid="class_g_q_c_p_1_1_step_1a013c882b1c3e8c18babbe1a478382cb0" prot="public" virt="virtual"><scope>GQCP::StepCollection</scope><name>~Step</name></member>
     </listofallmembers>

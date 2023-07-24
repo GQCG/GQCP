@@ -1,53 +1,18 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="_unaltering_hessian_modifier_8hpp" kind="file" language="C++">
     <compoundname>UnalteringHessianModifier.hpp</compoundname>
     <includes refid="_base_hessian_modifier_8hpp" local="yes">Mathematical/Optimization/Minimization/BaseHessianModifier.hpp</includes>
     <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
     <incdepgraph>
-      <node id="12">
-        <label>boost/algorithm/string.hpp</label>
+      <node id="5">
+        <label>Mathematical/Functions/CartesianDirection.hpp</label>
+        <link refid="_cartesian_direction_8hpp"/>
       </node>
-      <node id="18">
-        <label>functional</label>
-      </node>
-      <node id="6">
-        <label>Utilities/Eigen.hpp</label>
-        <link refid="_eigen_8hpp"/>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="19">
-        <label>iterator</label>
-      </node>
-      <node id="3">
-        <label>Mathematical/Representation/SquareMatrix.hpp</label>
-        <link refid="_square_matrix_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-        <childnode refid="22" relation="include">
-        </childnode>
-      </node>
-      <node id="16">
-        <label>Utilities/miscellaneous.hpp</label>
-        <link refid="miscellaneous_8hpp"/>
-        <childnode refid="17" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="20" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
+      <node id="2">
+        <label>Mathematical/Optimization/Minimization/BaseHessianModifier.hpp</label>
+        <link refid="_base_hessian_modifier_8hpp"/>
+        <childnode refid="3" relation="include">
         </childnode>
       </node>
       <node id="1">
@@ -55,21 +20,6 @@
         <link refid="_unaltering_hessian_modifier_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-      </node>
-      <node id="22">
-        <label>numeric</label>
-      </node>
-      <node id="20">
-        <label>string</label>
-      </node>
-      <node id="21">
-        <label>boost/numeric/conversion/converter.hpp</label>
-      </node>
-      <node id="13">
-        <label>fstream</label>
-      </node>
-      <node id="7">
-        <label>Eigen/Dense</label>
       </node>
       <node id="4">
         <label>Mathematical/Representation/Matrix.hpp</label>
@@ -91,14 +41,23 @@
         <childnode refid="15" relation="include">
         </childnode>
       </node>
-      <node id="9">
-        <label>Utilities/type_traits.hpp</label>
-        <link refid="type__traits_8hpp"/>
-        <childnode refid="10" relation="include">
+      <node id="3">
+        <label>Mathematical/Representation/SquareMatrix.hpp</label>
+        <link refid="_square_matrix_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
         </childnode>
       </node>
-      <node id="15">
-        <label>vector</label>
+      <node id="6">
+        <label>Utilities/Eigen.hpp</label>
+        <link refid="_eigen_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
       </node>
       <node id="8">
         <label>Utilities/aliases.hpp</label>
@@ -108,27 +67,68 @@
         <childnode refid="11" relation="include">
         </childnode>
       </node>
-      <node id="11">
-        <label>cstdlib</label>
+      <node id="16">
+        <label>Utilities/miscellaneous.hpp</label>
+        <link refid="miscellaneous_8hpp"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
       </node>
-      <node id="14">
-        <label>iostream</label>
+      <node id="9">
+        <label>Utilities/type_traits.hpp</label>
+        <link refid="type__traits_8hpp"/>
+        <childnode refid="10" relation="include">
+        </childnode>
       </node>
-      <node id="10">
-        <label>type_traits</label>
+      <node id="7">
+        <label>Eigen/Dense</label>
       </node>
       <node id="17">
         <label>algorithm</label>
       </node>
-      <node id="2">
-        <label>Mathematical/Optimization/Minimization/BaseHessianModifier.hpp</label>
-        <link refid="_base_hessian_modifier_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
+      <node id="12">
+        <label>boost/algorithm/string.hpp</label>
       </node>
-      <node id="5">
-        <label>Mathematical/Functions/CartesianDirection.hpp</label>
-        <link refid="_cartesian_direction_8hpp"/>
+      <node id="21">
+        <label>boost/numeric/conversion/converter.hpp</label>
+      </node>
+      <node id="11">
+        <label>cstdlib</label>
+      </node>
+      <node id="13">
+        <label>fstream</label>
+      </node>
+      <node id="18">
+        <label>functional</label>
+      </node>
+      <node id="14">
+        <label>iostream</label>
+      </node>
+      <node id="19">
+        <label>iterator</label>
+      </node>
+      <node id="22">
+        <label>numeric</label>
+      </node>
+      <node id="20">
+        <label>string</label>
+      </node>
+      <node id="10">
+        <label>type_traits</label>
+      </node>
+      <node id="15">
+        <label>vector</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
@@ -179,12 +179,12 @@
 <codeline lineno="27" refid="class_g_q_c_p_1_1_unaltering_hessian_modifier" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_unaltering_hessian_modifier" kindref="compound">UnalteringHessianModifier</ref>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_base_hessian_modifier" kindref="compound">BaseHessianModifier</ref><sp/>{</highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>CONSTRUCTORS</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>BaseHessianModifier::BaseHessianModifier;<sp/><sp/></highlight><highlight class="comment">//<sp/>inherit<sp/>base<sp/>constructors</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">BaseHessianModifier::BaseHessianModifier;<sp/><sp/></highlight><highlight class="comment">//<sp/>inherit<sp/>base<sp/>constructors</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight></codeline>
 <codeline lineno="32"><highlight class="normal"></highlight></codeline>
 <codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>PUBLIC<sp/>OVERRIDDEN<sp/>METHODS</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="34"><highlight class="normal"></highlight></codeline>
-<codeline lineno="40" refid="class_g_q_c_p_1_1_unaltering_hessian_modifier_1a81003869b0163039fea7cfe80c89ebb3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix&lt;double&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_unaltering_hessian_modifier_1a81003869b0163039fea7cfe80c89ebb3" kindref="member">operator()</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix&lt;double&gt;</ref>&amp;<sp/>hessian)</highlight><highlight class="keyword"><sp/>override<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>hessian;<sp/>}</highlight></codeline>
+<codeline lineno="40" refid="class_g_q_c_p_1_1_unaltering_hessian_modifier_1a90a3e9afd38ec05eb3c774a6c7ece554" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix&lt;double&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_unaltering_hessian_modifier_1a90a3e9afd38ec05eb3c774a6c7ece554" kindref="member">operator()</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix&lt;double&gt;</ref>&amp;<sp/>hessian)</highlight><highlight class="keyword"><sp/>override<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>hessian;<sp/>}</highlight></codeline>
 <codeline lineno="41"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="42"><highlight class="normal"></highlight></codeline>
 <codeline lineno="43"><highlight class="normal"></highlight></codeline>

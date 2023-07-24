@@ -37,7 +37,72 @@ void \mbox{\hyperlink{class_g_q_c_p_1_1_e_r_jacobi_localizer_ad4c9ec9d542e031896
 \item 
 \mbox{\hyperlink{class_g_q_c_p_1_1_e_r_jacobi_localizer_acdb881443d205c747880aa88382f8e23}{Jacobi\+Orbital\+Optimizer}} (const size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_orbital_optimizer_afa2b23e301f0eee1ea111cde0cbf9231}{dim}}, const double \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_a641d1bcc0494b20cec91ed4b782ab1f0}{convergence\+\_\+threshold}}=1.\+0e-\/08, const size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_adce91f67cf6314d31a2b73bb54cdd815}{maximum\+\_\+number\+\_\+of\+\_\+iterations}}=128)
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_orbital_optimizer}{GQCP\+::\+Jacobi\+Orbital\+Optimizer}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_orbital_optimizer_acdb881443d205c747880aa88382f8e23}{Jacobi\+Orbital\+Optimizer}} (const size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_orbital_optimizer_afa2b23e301f0eee1ea111cde0cbf9231}{dim}}, const double \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_a641d1bcc0494b20cec91ed4b782ab1f0}{convergence\+\_\+threshold}}=1.\+0e-\/08, const size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_adce91f67cf6314d31a2b73bb54cdd815}{maximum\+\_\+number\+\_\+of\+\_\+iterations}}=128)
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_orbital_optimizer_a498a290b456a8ea7f9549d17cde54c8e}{$\sim$\+Jacobi\+Orbital\+Optimizer}} ()=default
+\item 
+virtual void \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_orbital_optimizer_a1d0903ec685d348fc47027d6d2cfe0bd}{calculate\+Jacobi\+Coefficients}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian, const size\+\_\+t p, const size\+\_\+t q)=0
+\item 
+virtual double \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_orbital_optimizer_a88fb6f7fd3ce8670e540b1f1e0e896cf}{calculate\+Optimal\+Rotation\+Angle}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian, const size\+\_\+t p, const size\+\_\+t q) const =0
+\item 
+virtual double \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_orbital_optimizer_adb16cd498fedf675dbc0ef1f9c538757}{calculate\+Scalar\+Function\+Change}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian, const \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_rotation}{Jacobi\+Rotation}} \&jacobi\+\_\+rot\+\_\+par) const =0
+\item 
+virtual void \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_orbital_optimizer_ab453b26fea4b3901b2483afa97b061b1}{prepare\+Jacobi\+Specific\+Convergence\+Checking}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian)=0
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{RTransformation}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_orbital_optimizer_a7dff6c1818ec2325b7dcf5bdf9451832}{calculate\+New\+Rotation\+Matrix}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian) const override
+\item 
+bool \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_orbital_optimizer_a613899349c56b102563b2fe8dff886a6}{check\+For\+Convergence}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian) const override
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_orbital_optimizer_a4ae385438afc93d40d1cbadfa031a48f}{prepare\+Convergence\+Checking}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian) override
+\item 
+std\+::pair$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_rotation}{Jacobi\+Rotation}}, double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_orbital_optimizer_a33ff7044eb3f0c3c18266205a38f1305}{calculate\+Optimal\+Jacobi\+Parameters}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian)
+\item 
+std\+::function$<$ bool(const \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_orbital_optimizer_a7bfe81d67f87d94e11afbfcd8c6a2079}{pair\+\_\+type}} \&, const \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_orbital_optimizer_a7bfe81d67f87d94e11afbfcd8c6a2079}{pair\+\_\+type}} \&)$>$ \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_orbital_optimizer_a47db01d590dd175c7125a2f8d12546be}{comparer}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer}{GQCP\+::\+Base\+Orbital\+Optimizer}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_acdc1b258aaac1e14f003163d19cee2c0}{Base\+Orbital\+Optimizer}} (const double \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_a641d1bcc0494b20cec91ed4b782ab1f0}{convergence\+\_\+threshold}}=1.\+0e-\/08, const size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_adce91f67cf6314d31a2b73bb54cdd815}{maximum\+\_\+number\+\_\+of\+\_\+iterations}}=128)
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_a921777ec77da41074b306bab5834454c}{$\sim$\+Base\+Orbital\+Optimizer}} ()=default
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{RTransformation}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_a23b43f7fc59abebfeaaa33d790609103}{calculate\+New\+Rotation\+Matrix}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian) const =0
+\item 
+virtual bool \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_a02599e35214b1c257efb3193c536abf2}{check\+For\+Convergence}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian) const =0
+\item 
+virtual void \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_a33b25e7711aaa563cc0f4722152fb2b5}{prepare\+Convergence\+Checking}} (const \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian)=0
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_a053125eead499da4abf2088e75d47353}{number\+Of\+Iterations}} () const
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_a2242ce4237417d082a387eab633f18b7}{optimize}} (\mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis}{RSpin\+Orbital\+Basis}}$<$ double, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}} $>$ \&spinor\+\_\+basis, \mbox{\hyperlink{namespace_g_q_c_p_ab3ebca2a53b8e94ced149c725732035a}{RSQHamiltonian}}$<$ double $>$ \&sq\+\_\+hamiltonian)
+\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
+\doxysubsubsection*{Protected Types inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_orbital_optimizer}{GQCP\+::\+Jacobi\+Orbital\+Optimizer}}}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_orbital_optimizer_a7bfe81d67f87d94e11afbfcd8c6a2079}{pair\+\_\+type}} = std\+::pair$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_rotation}{Jacobi\+Rotation}}, double $>$
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_orbital_optimizer}{GQCP\+::\+Jacobi\+Orbital\+Optimizer}}}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_orbital_optimizer_afa2b23e301f0eee1ea111cde0cbf9231}{dim}}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_orbital_optimizer_a7bfe81d67f87d94e11afbfcd8c6a2079}{pair\+\_\+type}} \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_orbital_optimizer_acaae116e87a463b1d00d55bb32811737}{optimal\+\_\+jacobi\+\_\+with\+\_\+scalar}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer}{GQCP\+::\+Base\+Orbital\+Optimizer}}}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_a0334372101297cb9e997d3981442439f}{is\+\_\+converged}} = false
+\item 
+double \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_a641d1bcc0494b20cec91ed4b782ab1f0}{convergence\+\_\+threshold}} = 1.\+0e-\/08
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_adce91f67cf6314d31a2b73bb54cdd815}{maximum\+\_\+number\+\_\+of\+\_\+iterations}} = 128
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_orbital_optimizer_a728ec120b0025ec997b6020b7ef588e3}{number\+\_\+of\+\_\+iterations}} = 0
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -128,7 +193,7 @@ Implements \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_orbital_optimizer_adb16cd49
 \index{GQCP::ERJacobiLocalizer@{GQCP::ERJacobiLocalizer}!JacobiOrbitalOptimizer@{JacobiOrbitalOptimizer}}
 \index{JacobiOrbitalOptimizer@{JacobiOrbitalOptimizer}!GQCP::ERJacobiLocalizer@{GQCP::ERJacobiLocalizer}}
 \doxysubsubsection{\texorpdfstring{JacobiOrbitalOptimizer()}{JacobiOrbitalOptimizer()}}
-{\footnotesize\ttfamily GQCP\+::\+Jacobi\+Orbital\+Optimizer\+::\+Jacobi\+Orbital\+Optimizer}
+{\footnotesize\ttfamily GQCP\+::\+Jacobi\+Orbital\+Optimizer\+::\+Jacobi\+Orbital\+Optimizer (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{dim,  }\item[{const double}]{convergence\+\_\+threshold = {\ttfamily 1.0e-\/08},  }\item[{const size\+\_\+t}]{maximum\+\_\+number\+\_\+of\+\_\+iterations = {\ttfamily 128} }\end{DoxyParamCaption})}
 
 
 \begin{DoxyParams}{Parameters}

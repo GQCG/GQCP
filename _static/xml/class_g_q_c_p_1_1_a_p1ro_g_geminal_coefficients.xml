@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients" kind="class" language="C++" prot="public">
     <compoundname>GQCP::AP1roGGeminalCoefficients</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_geminal_coefficients_interface" prot="public" virt="non-virtual">GQCP::GeminalCoefficientsInterface</basecompoundref>
@@ -10,6 +10,7 @@
         <definition>size_t GQCP::AP1roGGeminalCoefficients::K</definition>
         <argsstring></argsstring>
         <name>K</name>
+        <qualifiedname>GQCP::AP1roGGeminalCoefficients::K</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -23,6 +24,7 @@
         <definition>size_t GQCP::AP1roGGeminalCoefficients::N_P</definition>
         <argsstring></argsstring>
         <name>N_P</name>
+        <qualifiedname>GQCP::AP1roGGeminalCoefficients::N_P</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -36,6 +38,7 @@
         <definition>ImplicitMatrixSlice&lt;double&gt; GQCP::AP1roGGeminalCoefficients::G</definition>
         <argsstring></argsstring>
         <name>G</name>
+        <qualifiedname>GQCP::AP1roGGeminalCoefficients::G</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -51,6 +54,7 @@
         <definition>GQCP::AP1roGGeminalCoefficients::AP1roGGeminalCoefficients</definition>
         <argsstring>(const ImplicitMatrixSlice&lt; double &gt; &amp;G, const size_t N_P, const size_t K)</argsstring>
         <name>AP1roGGeminalCoefficients</name>
+        <qualifiedname>GQCP::AP1roGGeminalCoefficients::AP1roGGeminalCoefficients</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_implicit_matrix_slice" kindref="compound">ImplicitMatrixSlice</ref>&lt; double &gt; &amp;</type>
           <declname>G</declname>
@@ -86,6 +90,7 @@
         <definition>GQCP::AP1roGGeminalCoefficients::AP1roGGeminalCoefficients</definition>
         <argsstring>(const MatrixX&lt; double &gt; &amp;G)</argsstring>
         <name>AP1roGGeminalCoefficients</name>
+        <qualifiedname>GQCP::AP1roGGeminalCoefficients::AP1roGGeminalCoefficients</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" kindref="member">MatrixX</ref>&lt; double &gt; &amp;</type>
           <declname>G</declname>
@@ -113,6 +118,7 @@
         <definition>GQCP::AP1roGGeminalCoefficients::AP1roGGeminalCoefficients</definition>
         <argsstring>(const size_t N_P, const size_t K)</argsstring>
         <name>AP1roGGeminalCoefficients</name>
+        <qualifiedname>GQCP::AP1roGGeminalCoefficients::AP1roGGeminalCoefficients</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>N_P</declname>
@@ -153,6 +159,7 @@
         <definition>GQCP::AP1roGGeminalCoefficients::~AP1roGGeminalCoefficients</definition>
         <argsstring>() override</argsstring>
         <name>~AP1roGGeminalCoefficients</name>
+        <qualifiedname>GQCP::AP1roGGeminalCoefficients::~AP1roGGeminalCoefficients</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -167,6 +174,7 @@
         <definition>double GQCP::AP1roGGeminalCoefficients::operator()</definition>
         <argsstring>(const size_t i, const size_t a) const</argsstring>
         <name>operator()</name>
+        <qualifiedname>GQCP::AP1roGGeminalCoefficients::operator()</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>i</declname>
@@ -208,6 +216,7 @@
         <definition>MatrixX&lt; double &gt; GQCP::AP1roGGeminalCoefficients::asMatrix</definition>
         <argsstring>() const</argsstring>
         <name>asMatrix</name>
+        <qualifiedname>GQCP::AP1roGGeminalCoefficients::asMatrix</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -219,11 +228,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/AP1roGGeminalCoefficients.hpp" line="125" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCModel/Geminals/AP1roGGeminalCoefficients.cpp" bodystart="182" bodyend="194"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients_1ab5f85c4500a7e278a7f3174a0ad6745c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients_1a16f932e173aede97a1a244d2305584fc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; double &gt;</type>
-        <definition>VectorX&lt;double&gt; GQCP::AP1roGGeminalCoefficients::asVector</definition>
+        <definition>VectorX&lt; double &gt; GQCP::AP1roGGeminalCoefficients::asVector</definition>
         <argsstring>() const</argsstring>
         <name>asVector</name>
+        <qualifiedname>GQCP::AP1roGGeminalCoefficients::asVector</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -240,6 +250,7 @@
         <definition>size_t GQCP::AP1roGGeminalCoefficients::count</definition>
         <argsstring>() const</argsstring>
         <name>count</name>
+        <qualifiedname>GQCP::AP1roGGeminalCoefficients::count</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -256,6 +267,7 @@
         <definition>size_t GQCP::AP1roGGeminalCoefficients::numberOfElectronPairs</definition>
         <argsstring>() const</argsstring>
         <name>numberOfElectronPairs</name>
+        <qualifiedname>GQCP::AP1roGGeminalCoefficients::numberOfElectronPairs</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -272,6 +284,7 @@
         <definition>size_t GQCP::AP1roGGeminalCoefficients::numberOfSpatialOrbitals</definition>
         <argsstring>() const</argsstring>
         <name>numberOfSpatialOrbitals</name>
+        <qualifiedname>GQCP::AP1roGGeminalCoefficients::numberOfSpatialOrbitals</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -288,6 +301,7 @@
         <definition>OrbitalSpace GQCP::AP1roGGeminalCoefficients::orbitalSpace</definition>
         <argsstring>() const</argsstring>
         <name>orbitalSpace</name>
+        <qualifiedname>GQCP::AP1roGGeminalCoefficients::orbitalSpace</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -306,6 +320,7 @@
         <definition>double GQCP::AP1roGGeminalCoefficients::overlap</definition>
         <argsstring>(const SpinUnresolvedONV &amp;onv) const override</argsstring>
         <name>overlap</name>
+        <qualifiedname>GQCP::AP1roGGeminalCoefficients::overlap</qualifiedname>
         <reimplements refid="class_g_q_c_p_1_1_geminal_coefficients_interface_1a3be4021a57bdf21adab08a5a4521eb0f">overlap</reimplements>
         <param>
           <type>const SpinUnresolvedONV &amp;</type>
@@ -338,6 +353,7 @@
         <definition>AP1roGGeminalCoefficients GQCP::AP1roGGeminalCoefficients::FromColumnMajor</definition>
         <argsstring>(const VectorX&lt; double &gt; &amp;g, const size_t N_P, const size_t K)</argsstring>
         <name>FromColumnMajor</name>
+        <qualifiedname>GQCP::AP1roGGeminalCoefficients::FromColumnMajor</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; double &gt; &amp;</type>
           <declname>g</declname>
@@ -413,6 +429,7 @@
         <definition>AP1roGGeminalCoefficients GQCP::AP1roGGeminalCoefficients::FromRowMajor</definition>
         <argsstring>(const VectorX&lt; double &gt; &amp;g, const size_t N_P, const size_t K)</argsstring>
         <name>FromRowMajor</name>
+        <qualifiedname>GQCP::AP1roGGeminalCoefficients::FromRowMajor</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; double &gt; &amp;</type>
           <declname>g</declname>
@@ -464,6 +481,7 @@
         <definition>AP1roGGeminalCoefficients GQCP::AP1roGGeminalCoefficients::WeakInteractionLimit</definition>
         <argsstring>(const RSQHamiltonian&lt; double &gt; &amp;sq_hamiltonian, const size_t N_P)</argsstring>
         <name>WeakInteractionLimit</name>
+        <qualifiedname>GQCP::AP1roGGeminalCoefficients::WeakInteractionLimit</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; double &gt; &amp;</type>
           <declname>sq_hamiltonian</declname>
@@ -524,6 +542,7 @@
         <definition>size_t GQCP::AP1roGGeminalCoefficients::numberOfGeminalCoefficients</definition>
         <argsstring>(const size_t N_P, const size_t K)</argsstring>
         <name>numberOfGeminalCoefficients</name>
+        <qualifiedname>GQCP::AP1roGGeminalCoefficients::numberOfGeminalCoefficients</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>N_P</declname>
@@ -596,7 +615,7 @@
       <member refid="class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients_1af318a857542d385c73ad7bf5814bef58" prot="public" virt="non-virtual"><scope>GQCP::AP1roGGeminalCoefficients</scope><name>AP1roGGeminalCoefficients</name></member>
       <member refid="class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients_1a774e99c2d926c466fb14a1bcb1e03095" prot="public" virt="non-virtual"><scope>GQCP::AP1roGGeminalCoefficients</scope><name>AP1roGGeminalCoefficients</name></member>
       <member refid="class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients_1a79fe0084a66485aeda53d18981aaf9e6" prot="public" virt="non-virtual"><scope>GQCP::AP1roGGeminalCoefficients</scope><name>asMatrix</name></member>
-      <member refid="class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients_1ab5f85c4500a7e278a7f3174a0ad6745c" prot="public" virt="non-virtual"><scope>GQCP::AP1roGGeminalCoefficients</scope><name>asVector</name></member>
+      <member refid="class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients_1a16f932e173aede97a1a244d2305584fc" prot="public" virt="non-virtual"><scope>GQCP::AP1roGGeminalCoefficients</scope><name>asVector</name></member>
       <member refid="class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients_1aab25c01f638c131b5caabfa57b5a2fda" prot="public" virt="non-virtual"><scope>GQCP::AP1roGGeminalCoefficients</scope><name>count</name></member>
       <member refid="class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients_1a7578fd83b0b36f6f97689e7b2cb9cabf" prot="public" virt="non-virtual"><scope>GQCP::AP1roGGeminalCoefficients</scope><name>FromColumnMajor</name></member>
       <member refid="class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients_1ab77208c91494828a0f624e1770ec19c1" prot="public" virt="non-virtual"><scope>GQCP::AP1roGGeminalCoefficients</scope><name>FromRowMajor</name></member>

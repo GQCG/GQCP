@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_current_density_matrix_element" kind="class" language="C++" prot="public">
     <compoundname>GQCP::CurrentDensityMatrixElement</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_function" prot="public" virt="non-virtual">GQCP::Function&lt; complex, Vector&lt; double, 3 &gt; &gt;</basecompoundref>
@@ -18,6 +18,7 @@
         <definition>using GQCP::CurrentDensityMatrixElement&lt; _Scalar, _Primitive &gt;::Scalar =  _Scalar</definition>
         <argsstring></argsstring>
         <name>Scalar</name>
+        <qualifiedname>GQCP::CurrentDensityMatrixElement::Scalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -31,6 +32,7 @@
         <definition>using GQCP::CurrentDensityMatrixElement&lt; _Scalar, _Primitive &gt;::Primitive =  _Primitive</definition>
         <argsstring></argsstring>
         <name>Primitive</name>
+        <qualifiedname>GQCP::CurrentDensityMatrixElement::Primitive</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -44,6 +46,7 @@
         <definition>using GQCP::CurrentDensityMatrixElement&lt; _Scalar, _Primitive &gt;::BasisFunction =  EvaluableLinearCombination&lt;double, Primitive&gt;</definition>
         <argsstring></argsstring>
         <name>BasisFunction</name>
+        <qualifiedname>GQCP::CurrentDensityMatrixElement::BasisFunction</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -57,6 +60,7 @@
         <definition>using GQCP::CurrentDensityMatrixElement&lt; _Scalar, _Primitive &gt;::SpatialOrbital =  EvaluableLinearCombination&lt;Scalar, BasisFunction&gt;</definition>
         <argsstring></argsstring>
         <name>SpatialOrbital</name>
+        <qualifiedname>GQCP::CurrentDensityMatrixElement::SpatialOrbital</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -70,6 +74,7 @@
         <definition>using GQCP::CurrentDensityMatrixElement&lt; _Scalar, _Primitive &gt;::PrimitiveDerivative =  EvaluableLinearCombination&lt;double, Primitive&gt;</definition>
         <argsstring></argsstring>
         <name>PrimitiveDerivative</name>
+        <qualifiedname>GQCP::CurrentDensityMatrixElement::PrimitiveDerivative</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -83,6 +88,7 @@
         <definition>using GQCP::CurrentDensityMatrixElement&lt; _Scalar, _Primitive &gt;::BasisFunctionDerivative =  EvaluableLinearCombination&lt;double, PrimitiveDerivative&gt;</definition>
         <argsstring></argsstring>
         <name>BasisFunctionDerivative</name>
+        <qualifiedname>GQCP::CurrentDensityMatrixElement::BasisFunctionDerivative</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -96,6 +102,7 @@
         <definition>using GQCP::CurrentDensityMatrixElement&lt; _Scalar, _Primitive &gt;::SpatialOrbitalDerivative =  EvaluableLinearCombination&lt;Scalar, BasisFunctionDerivative&gt;</definition>
         <argsstring></argsstring>
         <name>SpatialOrbitalDerivative</name>
+        <qualifiedname>GQCP::CurrentDensityMatrixElement::SpatialOrbitalDerivative</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -111,6 +118,7 @@
         <definition>SpatialOrbital GQCP::CurrentDensityMatrixElement&lt; _Scalar, _Primitive &gt;::phi_p</definition>
         <argsstring></argsstring>
         <name>phi_p</name>
+        <qualifiedname>GQCP::CurrentDensityMatrixElement::phi_p</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -124,6 +132,7 @@
         <definition>SpatialOrbital GQCP::CurrentDensityMatrixElement&lt; _Scalar, _Primitive &gt;::phi_q</definition>
         <argsstring></argsstring>
         <name>phi_q</name>
+        <qualifiedname>GQCP::CurrentDensityMatrixElement::phi_q</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -137,6 +146,7 @@
         <definition>SpatialOrbitalDerivative GQCP::CurrentDensityMatrixElement&lt; _Scalar, _Primitive &gt;::dphi_p</definition>
         <argsstring></argsstring>
         <name>dphi_p</name>
+        <qualifiedname>GQCP::CurrentDensityMatrixElement::dphi_p</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -150,6 +160,7 @@
         <definition>SpatialOrbitalDerivative GQCP::CurrentDensityMatrixElement&lt; _Scalar, _Primitive &gt;::dphi_q</definition>
         <argsstring></argsstring>
         <name>dphi_q</name>
+        <qualifiedname>GQCP::CurrentDensityMatrixElement::dphi_q</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -165,6 +176,7 @@
         <definition>GQCP::CurrentDensityMatrixElement&lt; _Scalar, _Primitive &gt;::CurrentDensityMatrixElement</definition>
         <argsstring>()=default</argsstring>
         <name>CurrentDensityMatrixElement</name>
+        <qualifiedname>GQCP::CurrentDensityMatrixElement::CurrentDensityMatrixElement</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -178,6 +190,7 @@
         <definition>GQCP::CurrentDensityMatrixElement&lt; _Scalar, _Primitive &gt;::CurrentDensityMatrixElement</definition>
         <argsstring>(const SpatialOrbital &amp;phi_p, const SpatialOrbital &amp;phi_q, const SpatialOrbitalDerivative &amp;dphi_p, const SpatialOrbitalDerivative &amp;dphi_q)</argsstring>
         <name>CurrentDensityMatrixElement</name>
+        <qualifiedname>GQCP::CurrentDensityMatrixElement::CurrentDensityMatrixElement</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_current_density_matrix_element_1a024be910b3d76785d2414e2bf947871c" kindref="member">SpatialOrbital</ref> &amp;</type>
           <declname>phi_p</declname>
@@ -241,6 +254,7 @@
         <definition>complex GQCP::CurrentDensityMatrixElement&lt; _Scalar, _Primitive &gt;::operator()</definition>
         <argsstring>(const Vector&lt; double, 3 &gt; &amp;r) const override</argsstring>
         <name>operator()</name>
+        <qualifiedname>GQCP::CurrentDensityMatrixElement::operator()</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &amp;</type>
           <declname>r</declname>

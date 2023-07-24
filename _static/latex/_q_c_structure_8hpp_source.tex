@@ -1,0 +1,93 @@
+\hypertarget{_q_c_structure_8hpp_source}{}\doxysection{QCStructure.\+hpp}
+\label{_q_c_structure_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/QCMethod/QCStructure.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/QCMethod/QCStructure.hpp}}
+\mbox{\hyperlink{_q_c_structure_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_QCModel,\ \textcolor{keyword}{typename}\ \_Scalar\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00036\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure}{QCStructure}}\ \{}
+\DoxyCodeLine{00037\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ the\ optimal\ model\ parameters.}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure_a276213817ea1787072d3aa9f28c0ea84}{QCModel}}\ =\ \_QCModel;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ The\ scalar\ type\ of\ the\ energy:\ real\ or\ complex.}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure_afb72e11ca946c8556cc4d1685b2aec84}{Scalar}}\ =\ \_Scalar;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{comment}{//\ The\ electronic\ energies\ for\ the\ ground\ state\ and\ possibly\ for\ the\ excited\ states.}}
+\DoxyCodeLine{00047\ \ \ \ \ std::vector<Scalar>\ energies;}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{//\ The\ optimal\ model\ parameters\ for\ the\ ground\ state\ and\ possibly\ for\ the\ excited\ states.}}
+\DoxyCodeLine{00050\ \ \ \ \ std::vector<QCModel>\ model\_parameters;}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00055\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Constructors}}
+\DoxyCodeLine{00056\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure_af00552d03eb740daaedac7b6c53ae8ff}{QCStructure}}(\textcolor{keyword}{const}\ std::vector<Scalar>\&\ energies,\ \textcolor{keyword}{const}\ std::vector<QCModel>\&\ model\_parameters)\ :}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ energies\ \{energies\},}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ model\_parameters\ \{model\_parameters\}\ \{}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ n\ =\ energies.size();}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (n\ <\ 1)\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}QCStructure(const\ std::vector<Scalar>\&,\ const\ std::vector<QCModel>\&):\ You\ have\ given\ an\ empty\ number\ of\ energies."{}});}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (n\ !=\ model\_parameters.size())\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}QCStructure(const\ std::vector<Scalar>\&,\ const\ std::vector<QCModel>\&):\ The\ number\ of\ energies\ and\ sets\ of\ parameters\ do\ not\ match."{}});}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00075\ \ \ \ \ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00079\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Energy}}
+\DoxyCodeLine{00080\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00087\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure_afb72e11ca946c8556cc4d1685b2aec84}{Scalar}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure_a917d86b1a78da0d70ed1390fe4bab7a8}{energy}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ i\ =\ 0)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>energies[i];\ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00092\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure_afb72e11ca946c8556cc4d1685b2aec84}{Scalar}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure_a5f1a68bdf40e8eec2fefbb893f43a32b}{groundStateEnergy}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure_a917d86b1a78da0d70ed1390fe4bab7a8}{energy}}();\ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00096\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Parameters}}
+\DoxyCodeLine{00097\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure_a276213817ea1787072d3aa9f28c0ea84}{QCModel}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure_a13eb903131f8609adeed54d8fbd87aa8}{parameters}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ i\ =\ 0)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>model\_parameters[i];\ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure_a276213817ea1787072d3aa9f28c0ea84}{QCModel}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure_aa1760e00afe7d479850e623bc93cb60f}{groundStateParameters}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_structure_a13eb903131f8609adeed54d8fbd87aa8}{parameters}}();\ \}}
+\DoxyCodeLine{00110\ \};}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

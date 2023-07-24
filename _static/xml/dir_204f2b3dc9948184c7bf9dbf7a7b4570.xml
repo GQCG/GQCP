@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="dir_204f2b3dc9948184c7bf9dbf7a7b4570" kind="dir">
     <compoundname>/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/GHF</compoundname>
     <innerfile refid="_q_c_method_2_h_f_2_g_h_f_2_g_h_f_8hpp">GHF.hpp</innerfile>

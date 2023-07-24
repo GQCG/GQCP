@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_residual_vector_convergence" kind="class" language="C++" prot="public">
     <compoundname>GQCP::ResidualVectorConvergence</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_convergence_criterion" prot="public" virt="non-virtual">GQCP::ConvergenceCriterion&lt; _Environment &gt;</basecompoundref>
@@ -15,6 +15,7 @@
         <definition>using GQCP::ResidualVectorConvergence&lt; _Environment &gt;::Environment =  _Environment</definition>
         <argsstring></argsstring>
         <name>Environment</name>
+        <qualifiedname>GQCP::ResidualVectorConvergence::Environment</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -30,6 +31,7 @@
         <definition>double GQCP::ResidualVectorConvergence&lt; _Environment &gt;::threshold</definition>
         <argsstring></argsstring>
         <name>threshold</name>
+        <qualifiedname>GQCP::ResidualVectorConvergence::threshold</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -45,6 +47,7 @@
         <definition>GQCP::ResidualVectorConvergence&lt; _Environment &gt;::ResidualVectorConvergence</definition>
         <argsstring>(const double threshold=1.0e-08)</argsstring>
         <name>ResidualVectorConvergence</name>
+        <qualifiedname>GQCP::ResidualVectorConvergence::ResidualVectorConvergence</qualifiedname>
         <param>
           <type>const double</type>
           <declname>threshold</declname>
@@ -73,6 +76,7 @@
         <definition>std::string GQCP::ResidualVectorConvergence&lt; _Environment &gt;::description</definition>
         <argsstring>() const override</argsstring>
         <name>description</name>
+        <qualifiedname>GQCP::ResidualVectorConvergence::description</qualifiedname>
         <reimplements refid="class_g_q_c_p_1_1_convergence_criterion_1a5d2993454005779f8a6376c63aec430c">description</reimplements>
         <briefdescription>
         </briefdescription>
@@ -90,9 +94,10 @@
         <definition>bool GQCP::ResidualVectorConvergence&lt; _Environment &gt;::isFulfilled</definition>
         <argsstring>(Environment &amp;environment) override</argsstring>
         <name>isFulfilled</name>
+        <qualifiedname>GQCP::ResidualVectorConvergence::isFulfilled</qualifiedname>
         <reimplements refid="class_g_q_c_p_1_1_convergence_criterion_1a84503e9b2b4bdd01188f21be512bc281">isFulfilled</reimplements>
         <param>
-          <type><ref refid="class_g_q_c_p_1_1_convergence_criterion_1af1d80b82ec0172943d13c50a48cc1cb3" kindref="member">Environment</ref> &amp;</type>
+          <type><ref refid="class_g_q_c_p_1_1_residual_vector_convergence_1a7e5cb82e0596a4e6a326d726ed6c8bc4" kindref="member">Environment</ref> &amp;</type>
           <declname>environment</declname>
         </param>
         <briefdescription>

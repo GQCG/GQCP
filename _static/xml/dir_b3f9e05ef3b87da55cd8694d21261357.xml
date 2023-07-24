@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="dir_b3f9e05ef3b87da55cd8694d21261357" kind="dir">
     <compoundname>/__w/GQCP/GQCP/gqcp/src/QCMethod</compoundname>
     <innerdir refid="dir_d258e53cc9882d4f53db1685bedb6902">/__w/GQCP/GQCP/gqcp/src/QCMethod/Geminals</innerdir>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_double_london_hermite_coulomb_integral" kind="class" language="C++" prot="public">
     <compoundname>GQCP::DoubleLondonHermiteCoulombIntegral</compoundname>
     <includes refid="_double_london_hermite_coulomb_integral_8hpp" local="no">DoubleLondonHermiteCoulombIntegral.hpp</includes>
@@ -9,6 +9,7 @@
         <definition>double GQCP::DoubleLondonHermiteCoulombIntegral::p</definition>
         <argsstring></argsstring>
         <name>p</name>
+        <qualifiedname>GQCP::DoubleLondonHermiteCoulombIntegral::p</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -22,6 +23,7 @@
         <definition>double GQCP::DoubleLondonHermiteCoulombIntegral::q</definition>
         <argsstring></argsstring>
         <name>q</name>
+        <qualifiedname>GQCP::DoubleLondonHermiteCoulombIntegral::q</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -35,6 +37,7 @@
         <definition>Vector&lt;double, 3&gt; GQCP::DoubleLondonHermiteCoulombIntegral::k1</definition>
         <argsstring></argsstring>
         <name>k1</name>
+        <qualifiedname>GQCP::DoubleLondonHermiteCoulombIntegral::k1</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -48,6 +51,7 @@
         <definition>Vector&lt;double, 3&gt; GQCP::DoubleLondonHermiteCoulombIntegral::k2</definition>
         <argsstring></argsstring>
         <name>k2</name>
+        <qualifiedname>GQCP::DoubleLondonHermiteCoulombIntegral::k2</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -61,6 +65,7 @@
         <definition>Vector&lt;double, 3&gt; GQCP::DoubleLondonHermiteCoulombIntegral::P</definition>
         <argsstring></argsstring>
         <name>P</name>
+        <qualifiedname>GQCP::DoubleLondonHermiteCoulombIntegral::P</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -74,6 +79,7 @@
         <definition>Vector&lt;double, 3&gt; GQCP::DoubleLondonHermiteCoulombIntegral::Q</definition>
         <argsstring></argsstring>
         <name>Q</name>
+        <qualifiedname>GQCP::DoubleLondonHermiteCoulombIntegral::Q</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -89,6 +95,7 @@
         <definition>GQCP::DoubleLondonHermiteCoulombIntegral::DoubleLondonHermiteCoulombIntegral</definition>
         <argsstring>(const Vector&lt; double, 3 &gt; &amp;k1, const double p, const Vector&lt; double, 3 &gt; &amp;P, const Vector&lt; double, 3 &gt; &amp;k2, const double q, const Vector&lt; double, 3 &gt; &amp;Q)</argsstring>
         <name>DoubleLondonHermiteCoulombIntegral</name>
+        <qualifiedname>GQCP::DoubleLondonHermiteCoulombIntegral::DoubleLondonHermiteCoulombIntegral</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &amp;</type>
           <declname>k1</declname>
@@ -176,6 +183,7 @@
         <definition>complex GQCP::DoubleLondonHermiteCoulombIntegral::operator()</definition>
         <argsstring>(const size_t n, const int t, const int u, const int v, const int tau, const int mu, const int nu) const</argsstring>
         <name>operator()</name>
+        <qualifiedname>GQCP::DoubleLondonHermiteCoulombIntegral::operator()</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>n</declname>

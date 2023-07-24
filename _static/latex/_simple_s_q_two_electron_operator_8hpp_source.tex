@@ -1,0 +1,437 @@
+\hypertarget{_simple_s_q_two_electron_operator_8hpp_source}{}\doxysection{Simple\+SQTwo\+Electron\+Operator.\+hpp}
+\label{_simple_s_q_two_electron_operator_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SimpleSQTwoElectronOperator.hpp}}
+\mbox{\hyperlink{_simple_s_q_two_electron_operator_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_basis_transformable_8hpp}{Basis/Transformations/BasisTransformable.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_jacobi_rotatable_8hpp}{Basis/Transformations/JacobiRotatable.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_square_rank_four_tensor_8hpp}{Mathematical/Representation/SquareRankFourTensor.hpp}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_storage_array_8hpp}{Mathematical/Representation/StorageArray.hpp}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_q_operator_storage_8hpp}{Operator/SecondQuantized/SQOperatorStorage.hpp}}"{}}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar,\ \textcolor{keyword}{typename}\ \_Vectorizer,\ \textcolor{keyword}{typename}\ \_DerivedOperator>}
+\DoxyCodeLine{00043\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator}{SimpleSQTwoElectronOperator}}:}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage}{SQOperatorStorage}}<SquareRankFourTensor<\_Scalar>,\ \_Vectorizer,\ SimpleSQTwoElectronOperator<\_Scalar,\ \_Vectorizer,\ \_DerivedOperator>>,}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable}{BasisTransformable}}<\_DerivedOperator>,}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_rotatable}{JacobiRotatable}}<\_DerivedOperator>\ \{}
+\DoxyCodeLine{00047\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{comment}{//\ The\ scalar\ type\ used\ for\ a\ single\ parameter:\ real\ or\ complex.}}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_a941dd011a18ae37efac92163364a559b}{Scalar}}\ =\ \_Scalar;}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ the\ vectorizer\ that\ relates\ a\ one-\/dimensional\ storage\ of\ matrices\ to\ the\ tensor\ structure\ of\ one-\/electron\ operators.\ This\ allows\ for\ a\ distinction\ between\ scalar\ operators\ (such\ as\ the\ kinetic\ energy\ operator),\ vector\ operators\ (such\ as\ the\ spin\ operator)\ and\ matrix/tensor\ operators\ (such\ as\ quadrupole\ and\ multipole\ operators).}}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_a114e14b8c49476b1b0bb74b5d3ab223b}{Vectorizer}}\ =\ \_Vectorizer;}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ the\ operator\ that\ derives\ from\ this\ class,\ enabling\ CRTP\ and\ compile-\/time\ polymorphism.}}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_a2da38f64abe43837678f2a7d06d1f3ed}{DerivedOperator}}\ =\ \_DerivedOperator;}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ 'this'.}}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator}{Self}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator}{SimpleSQTwoElectronOperator<Scalar,\ Vectorizer,\ DerivedOperator>}};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//\ The\ matrix\ representation\ of\ the\ parameters\ of\ (one\ of\ the\ components\ of)\ the\ two-\/electron\ operator.}}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{MatrixRepresentation}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{SquareRankFourTensor<Scalar>}};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ one-\/electron\ operator\ that\ is\ naturally\ related\ to\ the\ derived\ two-\/electron\ operator.}}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_a323595923e548d275d2acf2e28d75bb4}{DerivedSQOneElectronOperator}}\ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits}{OperatorTraits<DerivedOperator>::SQOneElectronOperator}};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ the\ one-\/particle\ density\ matrix\ that\ is\ naturally\ associated\ to\ the\ derived\ two-\/electron\ operator.}}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_aeb6c0cb939e41dcfff02daca388df47f}{Derived1DM}}\ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits}{OperatorTraits<DerivedOperator>::OneDM}};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ the\ one-\/particle\ density\ matrix\ that\ is\ naturally\ associated\ to\ the\ derived\ two-\/electron\ operator.}}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_a05412940f88bb6522df92e334315498c}{Derived2DM}}\ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits}{OperatorTraits<DerivedOperator>::TwoDM}};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ transformation\ that\ is\ naturally\ associated\ to\ the\ derived\ two-\/electron\ operator.}}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_a02a587d19cfe444dc088c523eea50e54}{Transformation}}\ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits}{OperatorTraits<DerivedOperator>::Transformation}};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{comment}{//\ If\ this\ two-\/electron\ operator\ contains\ matrix\ elements\ that\ are\ modified\ to\ obey\ antisymmetry\ w.r.t.\ creation\ and\ annihilation\ indices.}}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_antisymmetrized\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{comment}{//\ If\ this\ two-\/electron\ operator\ contains\ matrix\ elements\ that\ are\ expressed\ as\ g\_PQRS\ or\ (PQ|RS).}}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_expressed\_using\_chemists\_notation\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00086\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Constructors}}
+\DoxyCodeLine{00087\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{comment}{//\ Inherit\ `SQOperatorStorage`'s\ constructors.}}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage}{SQOperatorStorage}}<\mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{SquareRankFourTensor<Scalar>}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_a114e14b8c49476b1b0bb74b5d3ab223b}{Vectorizer}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator}{SimpleSQTwoElectronOperator<Scalar,\ Vectorizer,\ DerivedOperator>}}>::SQOperatorStorage;}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00094\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Calculations}}
+\DoxyCodeLine{00095\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00104\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array}{StorageArray<Scalar,\ Vectorizer>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_aacdc2b49829e4565e28b89bef47ff858}{calculateExpectationValue}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_a05412940f88bb6522df92e334315498c}{Derived2DM}}\&\ d)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a3db8d8010d4b40797ca252c8dc4ca1a1}{numberOfOrbitals}}()\ !=\ d.numberOfOrbitals())\ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}SimpleSQTwoElectronOperator::calculateExpectationValue(const\ Derived2DM\&):\ The\ given\ 2-\/DM's\ dimension\ is\ not\ compatible\ with\ the\ two-\/electron\ operator."{}});}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ expectation\ value\ for\ every\ component\ of\ the\ operator.}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a347d31f5837873ca173a9177bb10f837}{parameters}}\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a6833dc88eeab1e0f842a3d9154d7ace8}{allParameters}}();}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ std::vector<Scalar>\ expectation\_values(this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_aec5499c60c1ccf1c3a2bbb4ede557181}{numberOfComponents}}());\ \ \textcolor{comment}{//\ Zero-\/initialize\ the\ vector\ with\ a\ number\ of\ elements.}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_aec5499c60c1ccf1c3a2bbb4ede557181}{numberOfComponents}}();\ i++)\ \{}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Perform\ the\ actual\ contraction\ (with\ prefactor\ 0.5):}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ 0.5\ g(p\ q\ r\ s)\ d(p\ q\ r\ s)}}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ Eigen::Tensor<Scalar,\ 0>\ contraction\ =\ 0.5\ *\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a347d31f5837873ca173a9177bb10f837}{parameters}}[i].template\ einsum<4>(\textcolor{stringliteral}{"{}pqrs,\ pqrs-\/>"{}},\ d.tensor());}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ As\ the\ contraction\ is\ a\ scalar\ (a\ tensor\ of\ rank\ 0),\ we\ should\ access\ using\ `operator(0)`.}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ expectation\_values[i]\ =\ contraction(0);}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array}{StorageArray<Scalar,\ Vectorizer>}}\ \{expectation\_values,\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_ae0f9fa3ea86967e23c84a2f6ed581d00}{array}}.\mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a6b27a1a4302287cb5584c8f5c06950b4}{vectorizer}}()\};\ \ \textcolor{comment}{//\ convert\ std::array\ to\ Vector}}
+\DoxyCodeLine{00126\ \ \ \ \ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Scalar>}
+\DoxyCodeLine{00140\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<std::is\_same<Z,\ double>::value}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array}{StorageArray<SquareMatrix<double>}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_a114e14b8c49476b1b0bb74b5d3ab223b}{Vectorizer}}>>\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_a6918c08b8728c27dd69a5be9abbbd2b8}{calculateFockianMatrix}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_aeb6c0cb939e41dcfff02daca388df47f}{Derived1DM}}\&\ DM,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_a05412940f88bb6522df92e334315498c}{Derived2DM}}\&\ dm)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (DM.numberOfOrbitals()\ !=\ this-\/>numberOfOrbitals())\ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}SimpleSQTwoElectronOperator::calculateFockianMatrix(const\ Derived1DM\&,\ const\ Derived2DM\&):\ The\ 1-\/DM's\ dimensions\ are\ not\ compatible\ with\ this\ two-\/electron\ operator."{}});}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dm.numberOfOrbitals()\ !=\ this-\/>numberOfOrbitals())\ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}SimpleSQTwoElectronOperator::calculateFockianMatrix(const\ Derived1DM\&,\ const\ Derived2DM\&):\ The\ 2-\/DM's\ dimensions\ are\ not\ compatible\ with\ this\ two-\/electron\ operator."{}});}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a347d31f5837873ca173a9177bb10f837}{parameters}}\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a6833dc88eeab1e0f842a3d9154d7ace8}{allParameters}}();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ parameters\ of\ this\ two-\/electron\ operator,\ as\ a\ vector.}}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ std::vector<SquareMatrix<double>>\ F\_vector\ \{this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_aec5499c60c1ccf1c3a2bbb4ede557181}{numberOfComponents}}()\};\ \ \textcolor{comment}{//\ The\ resulting\ vector\ of\ Fockian\ matrices.}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ A\ KISS\ implementation\ of\ the\ calculation\ of\ the\ Fockian\ matrix.}}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ d\ =\ dm.tensor();}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_aec5499c60c1ccf1c3a2bbb4ede557181}{numberOfComponents}}();\ i++)\ \{}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ g\_i\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a347d31f5837873ca173a9177bb10f837}{parameters}}[i];\ \ \textcolor{comment}{//\ The\ matrix\ representation\ of\ the\ parameters\ of\ the\ i-\/th\ component.}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ Fockian\ matrix\ for\ every\ component\ and\ add\ it\ to\ the\ vector.}}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\ F\_i\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_ae3551bb3ac15b2560846f7a5956d1d90}{SquareMatrix<double>::Zero}}(this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a3db8d8010d4b40797ca252c8dc4ca1a1}{numberOfOrbitals}}());}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ p\ =\ 0;\ p\ <\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a3db8d8010d4b40797ca252c8dc4ca1a1}{numberOfOrbitals}}();\ p++)\ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ q\ =\ 0;\ q\ <\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a3db8d8010d4b40797ca252c8dc4ca1a1}{numberOfOrbitals}}();\ q++)\ \{}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ r\ =\ 0;\ r\ <\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a3db8d8010d4b40797ca252c8dc4ca1a1}{numberOfOrbitals}}();\ r++)\ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ s\ =\ 0;\ s\ <\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a3db8d8010d4b40797ca252c8dc4ca1a1}{numberOfOrbitals}}();\ s++)\ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ t\ =\ 0;\ t\ <\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a3db8d8010d4b40797ca252c8dc4ca1a1}{numberOfOrbitals}}();\ t++)\ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ F\_i(p,\ q)\ +=\ 0.5\ *\ g\_i(q,\ r,\ s,\ t)\ *\ (d(p,\ r,\ s,\ t)\ +\ d(r,\ p,\ s,\ t));\ \ \textcolor{comment}{//\ Include\ a\ factor\ 1/2\ to\ accommodate\ for\ response\ density\ matrices.}}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \textcolor{comment}{//\ F\_i\ elements\ loop}}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ F\_vector[i]\ =\ F\_i;}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array}{StorageArray<SquareMatrix<double>}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_a114e14b8c49476b1b0bb74b5d3ab223b}{Vectorizer}}>\ \{F\_vector,\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_ae0f9fa3ea86967e23c84a2f6ed581d00}{array}}.\mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a6b27a1a4302287cb5584c8f5c06950b4}{vectorizer}}()\};}
+\DoxyCodeLine{00177\ \ \ \ \ \}}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Scalar>}
+\DoxyCodeLine{00191\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<std::is\_same<Z,\ double>::value}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array}{StorageArray<SquareRankFourTensor<double>}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_a114e14b8c49476b1b0bb74b5d3ab223b}{Vectorizer}}>>\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_a11af8eb572b2ed266ac819bf8dcf70a3}{calculateSuperFockianMatrix}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_aeb6c0cb939e41dcfff02daca388df47f}{Derived1DM}}\&\ DM,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_a05412940f88bb6522df92e334315498c}{Derived2DM}}\&\ dm)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (DM.numberOfOrbitals()\ !=\ this-\/>numberOfOrbitals())\ \{}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}SimpleSQTwoElectronOperator::calculateFockianMatrix(const\ Derived1DM\&,\ const\ Derived2DM\&):\ The\ given\ 1-\/DM's\ dimensions\ are\ not\ compatible\ with\ this\ two-\/electron\ operator."{}});}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dm.numberOfOrbitals()\ !=\ this-\/>numberOfOrbitals())\ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}SimpleSQTwoElectronOperator::calculateFockianMatrix(const\ Derived1DM\&,\ const\ Derived2DM\&):\ The\ given\ 2-\/DM's\ dimensions\ are\ not\ compatible\ with\ this\ two-\/electron\ operator."{}});}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a347d31f5837873ca173a9177bb10f837}{parameters}}\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a6833dc88eeab1e0f842a3d9154d7ace8}{allParameters}}();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ parameters\ of\ this\ two-\/electron\ operator,\ as\ a\ vector.}}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ std::vector<SquareRankFourTensor<double>>\ G\_vector\ \{this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_aec5499c60c1ccf1c3a2bbb4ede557181}{numberOfComponents}}()\};\ \ \textcolor{comment}{//\ The\ resulting\ vector\ of\ super-\/Fockian\ matrices.}}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ F\_vector\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_a6918c08b8728c27dd69a5be9abbbd2b8}{calculateFockianMatrix}}(DM,\ dm).elements();\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ Fockian\ matrices\ are\ necessary\ in\ the\ calculation\ of\ the\ super-\/Fockian\ matrices.}}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ A\ KISS\ implementation\ of\ the\ calculation\ of\ the\ super-\/Fockian\ matrix.}}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ d\ =\ dm.tensor();}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_aec5499c60c1ccf1c3a2bbb4ede557181}{numberOfComponents}}();\ i++)\ \{}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ g\_i\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a347d31f5837873ca173a9177bb10f837}{parameters}}[i];\ \ \textcolor{comment}{//\ The\ matrix\ representation\ of\ the\ parameters\ of\ the\ i-\/th\ component.}}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ F\_i\ =\ F\_vector[i];\ \ \ \ \textcolor{comment}{//\ The\ Fockian\ matrix\ of\ the\ i-\/th\ component.}}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ super-\/Fockian\ matrix\ for\ every\ component\ and\ add\ it\ to\ the\ array.\ Add\ factors\ 1/2\ to\ accommodate\ for\ response\ density\ matrices.}}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{SquareRankFourTensor<Scalar>}}\ G\_i\ \{this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a3db8d8010d4b40797ca252c8dc4ca1a1}{numberOfOrbitals}}()\};}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ G\_i.setZero();}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ p\ =\ 0;\ p\ <\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a3db8d8010d4b40797ca252c8dc4ca1a1}{numberOfOrbitals}}();\ p++)\ \{}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ q\ =\ 0;\ q\ <\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a3db8d8010d4b40797ca252c8dc4ca1a1}{numberOfOrbitals}}();\ q++)\ \{}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ r\ =\ 0;\ r\ <\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a3db8d8010d4b40797ca252c8dc4ca1a1}{numberOfOrbitals}}();\ r++)\ \{}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ s\ =\ 0;\ s\ <\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a3db8d8010d4b40797ca252c8dc4ca1a1}{numberOfOrbitals}}();\ s++)\ \{}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (q\ ==\ r)\ \{}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ G\_i(p,\ q,\ r,\ s)\ +=\ F\_i(p,\ s);}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ t\ =\ 0;\ t\ <\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a3db8d8010d4b40797ca252c8dc4ca1a1}{numberOfOrbitals}}();\ t++)\ \{}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ u\ =\ 0;\ u\ <\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a3db8d8010d4b40797ca252c8dc4ca1a1}{numberOfOrbitals}}();\ u++)\ \{}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ value\ =\ g\_i(s,\ t,\ q,\ u)\ *\ (d(r,\ t,\ p,\ u)\ +\ d(t,\ r,\ u,\ p));}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ value\ -\/=\ g\_i(s,\ t,\ u,\ p)\ *\ (d(r,\ t,\ u,\ q)\ +\ d(t,\ r,\ q,\ u));}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ value\ -\/=\ g\_i(s,\ p,\ t,\ u)\ *\ (d(r,\ q,\ t,\ u)\ +\ d(q,\ r,\ u,\ t));}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ G\_i(p,\ q,\ r,\ s)\ +=\ 0.5\ *\ value;}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \textcolor{comment}{//\ G\_i\ elements\ loop}}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ G\_vector[i]\ =\ G\_i;}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array}{StorageArray<SquareRankFourTensor<double>}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_a114e14b8c49476b1b0bb74b5d3ab223b}{Vectorizer}}>\ \{G\_vector,\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_ae0f9fa3ea86967e23c84a2f6ed581d00}{array}}.\mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a6b27a1a4302287cb5584c8f5c06950b4}{vectorizer}}()\};}
+\DoxyCodeLine{00243\ \ \ \ \ \}}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00249\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_a323595923e548d275d2acf2e28d75bb4}{DerivedSQOneElectronOperator}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_ae3c403cf1c713b5c63334f00f4ea16e5}{effectiveOneElectronPartition}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Prepare\ some\ variables.}}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ g\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a6833dc88eeab1e0f842a3d9154d7ace8}{allParameters}}();\ \ \textcolor{comment}{//\ The\ parameters\ of\ this\ two-\/electron\ operator,\ as\ a\ vector.}}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a3db8d8010d4b40797ca252c8dc4ca1a1}{numberOfOrbitals}}();}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_a323595923e548d275d2acf2e28d75bb4}{DerivedSQOneElectronOperator}}\ k\_op\ =\ DerivedSQOneElectronOperator::Zero(K);\ \ \textcolor{comment}{//\ 'op'\ for\ operator.}}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ k\ =\ k\_op.allParameters();}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ A\ KISS-\/implementation\ of\ the\ elements\ of\ the\ one-\/electron\ partition.}}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_aec5499c60c1ccf1c3a2bbb4ede557181}{numberOfComponents}}();\ i++)\ \{}
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ p\ =\ 0;\ p\ <\ K;\ p++)\ \{}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ q\ =\ 0;\ q\ <\ K;\ q++)\ \{}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ r\ =\ 0;\ r\ <\ K;\ r++)\ \{}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ k[i](p,\ q)\ -\/=\ 0.5\ *\ g[i](p,\ r,\ r,\ q);}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ k\_op;}
+\DoxyCodeLine{00271\ \ \ \ \ \}}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00274\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00275\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Conforming\ to\ `BasisTransformable`}}
+\DoxyCodeLine{00276\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00285\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_a2da38f64abe43837678f2a7d06d1f3ed}{DerivedOperator}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_ada0b12379e30e62f52101ccd6ea8b4ec}{transformed}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_a02a587d19cfe444dc088c523eea50e54}{Transformation}}\&\ T)\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Since\ we're\ only\ getting\ T\ as\ a\ matrix,\ we\ should\ convert\ it\ to\ an\ appropriate\ tensor\ to\ perform\ contractions.}}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Although\ not\ a\ necessity\ for\ the\ einsum\ implementation,\ it\ makes\ it\ a\ lot\ easier\ to\ follow\ the\ formulas.}}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{GQCP::Tensor<Scalar,\ 2>}}\ T\_tensor\ =\ Eigen::TensorMap<Eigen::Tensor<const\ Scalar,\ 2>>(T.matrix().data(),\ T.matrix().rows(),\ T.matrix().cols());}
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ calculate\ the\ conjugate\ as\ a\ tensor\ as\ well.}}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{GQCP::Tensor<Scalar,\ 2>}}\ T\_conjugate\ =\ T\_tensor.conjugate();}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ basis\ transformation\ for\ every\ component\ of\ the\ operator.}}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a347d31f5837873ca173a9177bb10f837}{parameters}}\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a6833dc88eeab1e0f842a3d9154d7ace8}{allParameters}}();}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ result\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a6833dc88eeab1e0f842a3d9154d7ace8}{allParameters}}();}
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_aec5499c60c1ccf1c3a2bbb4ede557181}{numberOfComponents}}();\ i++)\ \{}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ will\ have\ to\ do\ four\ single\ contractions}}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ g(T\ U\ V\ W)\ \ T\string^*(V\ R)\ -\/>\ a(T\ U\ R\ W)}}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ a(T\ U\ R\ W)\ \ T(W\ S)\ -\/>\ b(T\ U\ R\ S)}}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ temp\_1\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a347d31f5837873ca173a9177bb10f837}{parameters}}[i].template\ einsum<1>(\textcolor{stringliteral}{"{}TUVW,VR-\/>TURW"{}},\ T\_conjugate).template\ einsum<1>(\textcolor{stringliteral}{"{}TURW,WS-\/>TURS"{}},\ T\_tensor);}
+\DoxyCodeLine{00304\ }
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ T(U\ Q)\ \ b(T\ U\ R\ S)\ -\/>\ c(T\ Q\ R\ S)}}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ temp\_2\ =\ T\_tensor.template\ einsum<1>(\textcolor{stringliteral}{"{}UQ,TURS-\/>TQRS"{}},\ temp\_1);}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ T\string^*(T\ P)\ \ c(T\ Q\ R\ S)\ -\/>\ g'(P\ Q\ R\ S)}}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ transformed\_component\ =\ T\_conjugate.template\ einsum<1>(\textcolor{stringliteral}{"{}TP,TQRS-\/>PQRS"{}},\ temp\_2);}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ result[i]\ =\ transformed\_component;}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_a2da38f64abe43837678f2a7d06d1f3ed}{DerivedOperator}}\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_storage_array}{StorageArray<MatrixRepresentation,\ Vectorizer>}}(result,\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_ae0f9fa3ea86967e23c84a2f6ed581d00}{array}}.\mbox{\hyperlink{class_g_q_c_p_1_1_storage_array_a6b27a1a4302287cb5584c8f5c06950b4}{vectorizer}}())\};}
+\DoxyCodeLine{00315\ \ \ \ \ \}}
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00317\ }
+\DoxyCodeLine{00318\ \ \ \ \ \textcolor{comment}{//\ Allow\ the\ `rotate`\ method\ from\ `BasisTransformable`,\ since\ there's\ also\ a\ `rotate`\ from\ `JacobiRotatable`.}}
+\DoxyCodeLine{00319\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable}{BasisTransformable}}<\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_a2da38f64abe43837678f2a7d06d1f3ed}{DerivedOperator}}>\mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_a2e107bd3cf4d603c003c8cb9357d0094}{::rotate}};}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00321\ \ \ \ \ \textcolor{comment}{//\ Allow\ the\ `rotated`\ method\ from\ `BasisTransformable`,\ since\ there's\ also\ a\ `rotated`\ from\ `JacobiRotatable`.}}
+\DoxyCodeLine{00322\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable}{BasisTransformable}}<\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_a2da38f64abe43837678f2a7d06d1f3ed}{DerivedOperator}}>\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_a3e6be644da73696328a0ac02ebd9bf50}{::rotated}};}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ }
+\DoxyCodeLine{00325\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00326\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Conforming\ to\ `JacobiRotatable`}}
+\DoxyCodeLine{00327\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00328\ }
+\DoxyCodeLine{00336\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_a2da38f64abe43837678f2a7d06d1f3ed}{DerivedOperator}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_a3e6be644da73696328a0ac02ebd9bf50}{rotated}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_rotation}{JacobiRotation}}\&\ jacobi\_rotation)\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00337\ }
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ While\ waiting\ for\ an\ analogous\ Eigen::Tensor\ Jacobi\ module,\ we\ implement\ this\ rotation\ by\ constructing\ a\ Jacobi\ rotation\ matrix\ and\ then\ simply\ doing\ a\ rotation\ with\ it.}}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ J\ =\ Transformation::FromJacobi(jacobi\_rotation,\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a3db8d8010d4b40797ca252c8dc4ca1a1}{numberOfOrbitals}}());}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_a3e6be644da73696328a0ac02ebd9bf50}{rotated}}(J);}
+\DoxyCodeLine{00341\ \ \ \ \ \}}
+\DoxyCodeLine{00342\ }
+\DoxyCodeLine{00343\ \ \ \ \ \textcolor{comment}{//\ Allow\ the\ `rotate`\ method\ from\ `JacobiRotatable`,\ since\ there's\ also\ a\ `rotate`\ from\ `BasisTransformable`.}}
+\DoxyCodeLine{00344\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_rotatable}{JacobiRotatable}}<\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_a2da38f64abe43837678f2a7d06d1f3ed}{DerivedOperator}}>\mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_a2e107bd3cf4d603c003c8cb9357d0094}{::rotate}};}
+\DoxyCodeLine{00345\ }
+\DoxyCodeLine{00346\ }
+\DoxyCodeLine{00347\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00348\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Antisymmetrizing}}
+\DoxyCodeLine{00349\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00350\ }
+\DoxyCodeLine{00358\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_aecc99e276678dade74f99917241682e8}{isAntisymmetrized}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>is\_antisymmetrized;\ \}}
+\DoxyCodeLine{00359\ }
+\DoxyCodeLine{00360\ }
+\DoxyCodeLine{00368\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator}{Self}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_a9aa56110ec0acd40b9d33b12f7f814fa}{antisymmetrized}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00369\ }
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Attempt\ to\ modify\ a\ copy\ of\ these\ integrals\ if\ they\ haven't\ been\ antisymmetrized\ already.}}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a347d31f5837873ca173a9177bb10f837}{parameters}}\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a6833dc88eeab1e0f842a3d9154d7ace8}{allParameters}}();}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ copy\ =\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ copy\_parameters\ =\ copy.allParameters();}
+\DoxyCodeLine{00374\ }
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!(this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_aecc99e276678dade74f99917241682e8}{isAntisymmetrized}}()))\ \{}
+\DoxyCodeLine{00376\ }
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ shuffle-\/indices\ for\ the\ matrix\ elements\ that\ will\ be\ subtracted.}}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ \ \ Eigen::array<int,\ 4>\ shuffle\_indices;}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_abbe16ec8961672c3f0300c086d071bed}{isExpressedUsingChemistsNotation}}())\ \{}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ shuffle\_indices\ =\ Eigen::array<int,\ 4>\ \{0,\ 3,\ 2,\ 1\};}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{\ \ \textcolor{comment}{//\ Expressed\ using\ physicist's\ notation.}}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ shuffle\_indices\ =\ Eigen::array<int,\ 4>\ \{0,\ 1,\ 3,\ 2\};}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00384\ }
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ copy\_parameters\ =\ copy.allParameters();}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_aec5499c60c1ccf1c3a2bbb4ede557181}{numberOfComponents}}();\ i++)\ \{}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ copy\_parameters[i]\ -\/=\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a347d31f5837873ca173a9177bb10f837}{parameters}}[i].shuffle(shuffle\_indices);}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00389\ }
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ copy.is\_antisymmetrized\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00392\ }
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ copy;}
+\DoxyCodeLine{00394\ \ \ \ \ \}}
+\DoxyCodeLine{00395\ }
+\DoxyCodeLine{00396\ }
+\DoxyCodeLine{00404\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_a9647fef0aee06ff660e3e2aec3b819f1}{antisymmetrize}}()\ \{\ *\textcolor{keyword}{this}\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_a9aa56110ec0acd40b9d33b12f7f814fa}{antisymmetrized}}();\ \}}
+\DoxyCodeLine{00405\ }
+\DoxyCodeLine{00406\ }
+\DoxyCodeLine{00407\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00408\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Chemist's\ or\ physicist's\ notation}}
+\DoxyCodeLine{00409\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00410\ }
+\DoxyCodeLine{00414\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_abbe16ec8961672c3f0300c086d071bed}{isExpressedUsingChemistsNotation}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>is\_expressed\_using\_chemists\_notation;\ \}}
+\DoxyCodeLine{00415\ }
+\DoxyCodeLine{00419\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_a9ee6f22c7f5c9ae795e69dc7c33ba6c2}{isExpressedUsingPhysicistsNotation}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ !(this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_abbe16ec8961672c3f0300c086d071bed}{isExpressedUsingChemistsNotation}}());\ \}}
+\DoxyCodeLine{00420\ }
+\DoxyCodeLine{00424\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator}{Self}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_abf0625c0fe9d373c5605a809fe2bae08}{convertedToChemistsNotation}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00425\ }
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Attempt\ to\ modify\ a\ copy\ if\ these\ integrals\ are\ expressed\ in\ physicist's\ notation.}}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a347d31f5837873ca173a9177bb10f837}{parameters}}\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a6833dc88eeab1e0f842a3d9154d7ace8}{allParameters}}();}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ copy\ =\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ copy\_parameters\ =\ copy.allParameters();}
+\DoxyCodeLine{00430\ }
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_a9ee6f22c7f5c9ae795e69dc7c33ba6c2}{isExpressedUsingPhysicistsNotation}}())\ \{}
+\DoxyCodeLine{00432\ }
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \ \ \ \ Eigen::array<int,\ 4>\ shuffle\_indices\ \{0,\ 2,\ 1,\ 3\};}
+\DoxyCodeLine{00434\ }
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_aec5499c60c1ccf1c3a2bbb4ede557181}{numberOfComponents}}();\ i++)\ \{}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ copy\_parameters[i]\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{SquareRankFourTensor<Scalar>}}(\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a347d31f5837873ca173a9177bb10f837}{parameters}}[i].shuffle(shuffle\_indices));}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00438\ }
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \ \ \ \ copy.is\_expressed\_using\_chemists\_notation\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ copy;}
+\DoxyCodeLine{00442\ \ \ \ \ \}}
+\DoxyCodeLine{00443\ }
+\DoxyCodeLine{00444\ }
+\DoxyCodeLine{00448\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator}{Self}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_a5689800be902fc72cbd92c8fb99c71d6}{convertedToPhysicistsNotation}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00449\ }
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Attempt\ to\ modify\ a\ copy\ if\ these\ integrals\ are\ expressed\ in\ chemist's\ notation.}}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a347d31f5837873ca173a9177bb10f837}{parameters}}\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a6833dc88eeab1e0f842a3d9154d7ace8}{allParameters}}();}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ copy\ =\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ copy\_parameters\ =\ copy.allParameters();}
+\DoxyCodeLine{00454\ }
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_abbe16ec8961672c3f0300c086d071bed}{isExpressedUsingChemistsNotation}}())\ \{}
+\DoxyCodeLine{00456\ }
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \ \ \ \ Eigen::array<int,\ 4>\ shuffle\_indices\ \{0,\ 2,\ 1,\ 3\};}
+\DoxyCodeLine{00458\ }
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_aec5499c60c1ccf1c3a2bbb4ede557181}{numberOfComponents}}();\ i++)\ \{}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ copy\_parameters[i]\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{SquareRankFourTensor<Scalar>}}(\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a347d31f5837873ca173a9177bb10f837}{parameters}}[i].shuffle(shuffle\_indices));}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00462\ }
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \ \ \ \ copy.is\_expressed\_using\_chemists\_notation\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ copy;}
+\DoxyCodeLine{00466\ \ \ \ \ \}}
+\DoxyCodeLine{00467\ }
+\DoxyCodeLine{00468\ }
+\DoxyCodeLine{00472\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_a46a104b3d7edf0144c383fbf3bac1070}{convertToChemistsNotation}}()\ \{\ *\textcolor{keyword}{this}\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_abf0625c0fe9d373c5605a809fe2bae08}{convertedToChemistsNotation}}();\ \}}
+\DoxyCodeLine{00473\ }
+\DoxyCodeLine{00477\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_aaf2b6d3355c6e65a45541b6c54950f27}{convertToPhysicistsNotation}}()\ \{\ *\textcolor{keyword}{this}\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator_a5689800be902fc72cbd92c8fb99c71d6}{convertedToPhysicistsNotation}}();\ \}}
+\DoxyCodeLine{00478\ \};}
+\DoxyCodeLine{00479\ }
+\DoxyCodeLine{00480\ }
+\DoxyCodeLine{00481\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00482\ \textcolor{comment}{\ *\ \ MARK:\ Operator\ traits}}
+\DoxyCodeLine{00483\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00484\ }
+\DoxyCodeLine{00488\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar,\ \textcolor{keyword}{typename}\ \_Vectorizer,\ \textcolor{keyword}{typename}\ \_DerivedOperator>}
+\DoxyCodeLine{00489\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits}{OperatorTraits}}<\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator}{SimpleSQTwoElectronOperator}}<\_Scalar,\ \_Vectorizer,\ \_DerivedOperator>>\ \{}
+\DoxyCodeLine{00490\ }
+\DoxyCodeLine{00491\ \ \ \ \ \textcolor{comment}{//\ The\ scalar\ type\ used\ for\ a\ single\ parameter/matrix\ element/integral:\ real\ or\ complex.}}
+\DoxyCodeLine{00492\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits_3_01_simple_s_q_two_electron_operator_3_01___scalar_00_01___v336f20cba8d7038e072e91080830f308_aa3e73d4133b1a7b61079e706822ab018}{Scalar}}\ =\ \_Scalar;}
+\DoxyCodeLine{00493\ }
+\DoxyCodeLine{00494\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ the\ vectorizer\ that\ relates\ a\ one-\/dimensional\ storage\ of\ tensors\ to\ the\ tensor\ structure\ of\ two-\/electron\ operators.\ This\ distinction\ is\ carried\ over\ from\ SimpleSQOneElectronOperator.}}
+\DoxyCodeLine{00495\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits_3_01_simple_s_q_two_electron_operator_3_01___scalar_00_01___v336f20cba8d7038e072e91080830f308_aeb438e01599d703391a7ea5da230420e}{Vectorizer}}\ =\ \_Vectorizer;}
+\DoxyCodeLine{00496\ }
+\DoxyCodeLine{00497\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ the\ operator\ that\ derives\ from\ `SimpleSQTwoElectronOperator`,\ enabling\ CRTP\ and\ compile-\/time\ polymorphism.}}
+\DoxyCodeLine{00498\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits_3_01_simple_s_q_two_electron_operator_3_01___scalar_00_01___v336f20cba8d7038e072e91080830f308_a7a386c32eb0c696623dd5ea925ee7e52}{DerivedOperator}}\ =\ \_DerivedOperator;}
+\DoxyCodeLine{00499\ \};}
+\DoxyCodeLine{00500\ }
+\DoxyCodeLine{00501\ }
+\DoxyCodeLine{00502\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00503\ \textcolor{comment}{\ *\ \ MARK:\ BasisTransformableTraits}}
+\DoxyCodeLine{00504\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00505\ }
+\DoxyCodeLine{00509\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar,\ \textcolor{keyword}{typename}\ \_Vectorizer,\ \textcolor{keyword}{typename}\ \_DerivedOperator>}
+\DoxyCodeLine{00510\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_g_q_c_p_1_1_basis_transformable_traits}{BasisTransformableTraits}}<\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator}{SimpleSQTwoElectronOperator}}<\_Scalar,\ \_Vectorizer,\ \_DerivedOperator>>\ \{}
+\DoxyCodeLine{00511\ }
+\DoxyCodeLine{00512\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ the\ transformation\ for\ which\ the\ basis\ transformation\ should\ be\ defined.}}
+\DoxyCodeLine{00513\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{struct_g_q_c_p_1_1_basis_transformable_traits_3_01_simple_s_q_two_electron_operator_3_01___scalac9aaaed38cee8ca8d58805ca730bc427_aa3c48369388eedecb93f0f4fb13b85ab}{Transformation}}\ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits}{OperatorTraits<\_DerivedOperator>::Transformation}};}
+\DoxyCodeLine{00514\ \};}
+\DoxyCodeLine{00515\ }
+\DoxyCodeLine{00516\ }
+\DoxyCodeLine{00517\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00518\ \textcolor{comment}{\ *\ \ MARK:\ JacobiRotatableTraits}}
+\DoxyCodeLine{00519\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00520\ }
+\DoxyCodeLine{00524\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar,\ \textcolor{keyword}{typename}\ \_Vectorizer,\ \textcolor{keyword}{typename}\ \_DerivedOperator>}
+\DoxyCodeLine{00525\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_g_q_c_p_1_1_jacobi_rotatable_traits}{JacobiRotatableTraits}}<\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_two_electron_operator}{SimpleSQTwoElectronOperator}}<\_Scalar,\ \_Vectorizer,\ \_DerivedOperator>>\ \{}
+\DoxyCodeLine{00526\ }
+\DoxyCodeLine{00527\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ Jacobi\ rotation\ for\ which\ the\ Jacobi\ rotation\ should\ be\ defined.}}
+\DoxyCodeLine{00528\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_rotation}{JacobiRotationType}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_rotation}{JacobiRotation}};}
+\DoxyCodeLine{00529\ \};}
+\DoxyCodeLine{00530\ }
+\DoxyCodeLine{00531\ }
+\DoxyCodeLine{00532\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

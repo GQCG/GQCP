@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_two_electron_integral_buffer" kind="class" language="C++" prot="public">
     <compoundname>GQCP::TwoElectronIntegralBuffer</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer" prot="public" virt="non-virtual">GQCP::BaseTwoElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;</basecompoundref>
@@ -20,6 +20,7 @@
         <definition>using GQCP::TwoElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;::IntegralScalar =  _IntegralScalar</definition>
         <argsstring></argsstring>
         <name>IntegralScalar</name>
+        <qualifiedname>GQCP::TwoElectronIntegralBuffer::IntegralScalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -35,6 +36,7 @@
         <definition>constexpr auto GQCP::TwoElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;::N</definition>
         <argsstring></argsstring>
         <name>N</name>
+        <qualifiedname>GQCP::TwoElectronIntegralBuffer::N</qualifiedname>
         <initializer>= _N</initializer>
         <briefdescription>
         </briefdescription>
@@ -51,6 +53,7 @@
         <definition>std::array&lt;std::vector&lt;IntegralScalar&gt;, N&gt; GQCP::TwoElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;::buffer</definition>
         <argsstring></argsstring>
         <name>buffer</name>
+        <qualifiedname>GQCP::TwoElectronIntegralBuffer::buffer</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -66,6 +69,7 @@
         <definition>GQCP::TwoElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;::TwoElectronIntegralBuffer</definition>
         <argsstring>(const size_t nbf1, const size_t nbf2, const size_t nbf3, const size_t nbf4, const std::array&lt; std::vector&lt; IntegralScalar &gt;, N &gt; &amp;buffer)</argsstring>
         <name>TwoElectronIntegralBuffer</name>
+        <qualifiedname>GQCP::TwoElectronIntegralBuffer::TwoElectronIntegralBuffer</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>nbf1</declname>
@@ -141,6 +145,7 @@
         <definition>bool GQCP::TwoElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;::areIntegralsAllZero</definition>
         <argsstring>() const override</argsstring>
         <name>areIntegralsAllZero</name>
+        <qualifiedname>GQCP::TwoElectronIntegralBuffer::areIntegralsAllZero</qualifiedname>
         <reimplements refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer_1a6ea199f70814102a3a10b76dbd850f90">areIntegralsAllZero</reimplements>
         <briefdescription>
         </briefdescription>
@@ -158,6 +163,7 @@
         <definition>IntegralScalar GQCP::TwoElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;::value</definition>
         <argsstring>(const size_t i, const size_t f1, const size_t f2, const size_t f3, const size_t f4) const override</argsstring>
         <name>value</name>
+        <qualifiedname>GQCP::TwoElectronIntegralBuffer::value</qualifiedname>
         <reimplements refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer_1aae389b8ee9a545e84ebdd11a7b81c95a">value</reimplements>
         <param>
           <type>const size_t</type>
@@ -257,27 +263,27 @@
 </para>
     </detaileddescription>
     <inheritancegraph>
+      <node id="2">
+        <label>GQCP::BaseTwoElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer"/>
+      </node>
       <node id="1">
         <label>GQCP::TwoElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;</label>
         <link refid="class_g_q_c_p_1_1_two_electron_integral_buffer"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
-      </node>
-      <node id="2">
-        <label>GQCP::BaseTwoElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;</label>
-        <link refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
+      <node id="2">
+        <label>GQCP::BaseTwoElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer"/>
+      </node>
       <node id="1">
         <label>GQCP::TwoElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;</label>
         <link refid="class_g_q_c_p_1_1_two_electron_integral_buffer"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
-      </node>
-      <node id="2">
-        <label>GQCP::BaseTwoElectronIntegralBuffer&lt; _IntegralScalar, _N &gt;</label>
-        <link refid="class_g_q_c_p_1_1_base_two_electron_integral_buffer"/>
       </node>
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/TwoElectronIntegralBuffer.hpp" line="38" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/TwoElectronIntegralBuffer.hpp" bodystart="39" bodyend="92"/>

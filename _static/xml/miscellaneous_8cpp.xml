@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="miscellaneous_8cpp" kind="file" language="C++">
     <compoundname>miscellaneous.cpp</compoundname>
     <includes refid="miscellaneous_8hpp" local="yes">Utilities/miscellaneous.hpp</includes>
@@ -8,15 +8,6 @@
     <includes local="no">chrono</includes>
     <includes local="no">iostream</includes>
     <incdepgraph>
-      <node id="10">
-        <label>boost/math/special_functions.hpp</label>
-      </node>
-      <node id="6">
-        <label>functional</label>
-      </node>
-      <node id="7">
-        <label>iterator</label>
-      </node>
       <node id="2">
         <label>Utilities/miscellaneous.hpp</label>
         <link refid="miscellaneous_8hpp"/>
@@ -35,15 +26,6 @@
         <childnode refid="9" relation="include">
         </childnode>
       </node>
-      <node id="8">
-        <label>string</label>
-      </node>
-      <node id="11">
-        <label>boost/numeric/conversion/converter.hpp</label>
-      </node>
-      <node id="5">
-        <label>fstream</label>
-      </node>
       <node id="1">
         <label>/__w/GQCP/GQCP/gqcp/src/Utilities/miscellaneous.cpp</label>
         <link refid="miscellaneous_8cpp"/>
@@ -58,20 +40,38 @@
         <childnode refid="13" relation="include">
         </childnode>
       </node>
-      <node id="9">
-        <label>vector</label>
+      <node id="3">
+        <label>algorithm</label>
       </node>
-      <node id="4">
-        <label>cstdlib</label>
+      <node id="10">
+        <label>boost/math/special_functions.hpp</label>
       </node>
-      <node id="13">
-        <label>iostream</label>
+      <node id="11">
+        <label>boost/numeric/conversion/converter.hpp</label>
       </node>
       <node id="12">
         <label>chrono</label>
       </node>
-      <node id="3">
-        <label>algorithm</label>
+      <node id="4">
+        <label>cstdlib</label>
+      </node>
+      <node id="5">
+        <label>fstream</label>
+      </node>
+      <node id="6">
+        <label>functional</label>
+      </node>
+      <node id="13">
+        <label>iostream</label>
+      </node>
+      <node id="7">
+        <label>iterator</label>
+      </node>
+      <node id="8">
+        <label>string</label>
+      </node>
+      <node id="9">
+        <label>vector</label>
       </node>
     </incdepgraph>
     <innernamespace refid="namespace_g_q_c_p">GQCP</innernamespace>
@@ -233,12 +233,12 @@
 <codeline lineno="193"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="194"><highlight class="normal"></highlight></codeline>
 <codeline lineno="195"><highlight class="normal"></highlight></codeline>
-<codeline lineno="202"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1a7be96c404c2e229bcbb4906d20ed009f" kindref="member">printExecutionTime</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>method_name,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::function&lt;</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">()&gt;&amp;<sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1a7be96c404c2e229bcbb4906d20ed009f" kindref="member">printExecutionTime</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>method_name,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::function&lt;</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">()&gt;&amp;<sp/>function)<sp/>{</highlight></codeline>
 <codeline lineno="203"><highlight class="normal"></highlight></codeline>
 <codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>High<sp/>resolution<sp/>clock<sp/>example<sp/>from<sp/>(https://stackoverflow.com/a/12231232/7930415)</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>start<sp/>=<sp/>std::chrono::high_resolution_clock::now();</highlight></codeline>
 <codeline lineno="206"><highlight class="normal"></highlight></codeline>
-<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal">();</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/>function();</highlight></codeline>
 <codeline lineno="208"><highlight class="normal"></highlight></codeline>
 <codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>stop<sp/>=<sp/>std::chrono::high_resolution_clock::now();</highlight></codeline>
 <codeline lineno="210"><highlight class="normal"></highlight></codeline>

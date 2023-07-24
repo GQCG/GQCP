@@ -1,0 +1,74 @@
+\hypertarget{miscellaneous_8hpp_source}{}\doxysection{miscellaneous.\+hpp}
+\label{miscellaneous_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Utilities/miscellaneous.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Utilities/miscellaneous.hpp}}
+\mbox{\hyperlink{miscellaneous_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <cstdlib>}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <iterator>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00044\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{namespace_g_q_c_p_a0761e8419cd4ef88f0b973e82fa0e764}{findElementIndex}}(\textcolor{keyword}{const}\ std::vector<T>\&\ vector,\ \textcolor{keyword}{const}\ T\&\ value)\ \{}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ it\ =\ std::find(vector.begin(),\ vector.end(),\ value);\ \ \textcolor{comment}{//\ 'it'\ for\ iterator}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{comment}{//\ Check\ if\ the\ value\ was\ found}}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordflow}{if}\ (it\ ==\ vector.end())\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::out\_of\_range(\textcolor{stringliteral}{"{}findElementIndex(const\ std::vector<T>\&,\ const\ T\&):\ the\ given\ value\ was\ not\ found\ in\ the\ given\ vector"{}});}
+\DoxyCodeLine{00051\ \ \ \ \ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordflow}{return}\ std::distance(vector.begin(),\ it);\ \ \textcolor{comment}{//\ the\ 'difference'\ between\ two\ iterators\ is\ an\ index}}
+\DoxyCodeLine{00054\ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00068\ std::vector<std::vector<size\_t>>\ \mbox{\hyperlink{namespace_g_q_c_p_a86c9c3f88f313876e5b4473a84bd3d9b}{generatePartitionsOf}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ n,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ k);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00082\ std::vector<std::vector<size\_t>>\ \mbox{\hyperlink{namespace_g_q_c_p_a9890dbb8bea7ecb12b933ddd5a7e4641}{generateUniquePartitionsOf}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ n,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ k);}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00089\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{namespace_g_q_c_p_a66b68f0876efe8c6a350a8a653216007}{grayCodeOf}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ S);}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00098\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{namespace_g_q_c_p_a52b5694fa9c16741eb893cac4d4b450c}{matrixIndexMajor}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ v,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ cols,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ skipped\ =\ 0);}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00107\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{namespace_g_q_c_p_a50abf952b2356534d6e07cbdd986a735}{matrixIndexMinor}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ v,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ cols,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ skipped\ =\ 0);}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00115\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_g_q_c_p_a7be96c404c2e229bcbb4906d20ed009f}{printExecutionTime}}(\textcolor{keyword}{const}\ std::string\&\ method\_name,\ \textcolor{keyword}{const}\ std::function<\textcolor{keywordtype}{void}()>\&\ function);}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00122\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{namespace_g_q_c_p_a1457a824d08dadcac6a081f036d4eaa5}{strictTriangularRootOf}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{x}});}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00129\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{namespace_g_q_c_p_a1656ae0f118050897b8440752240b85e}{triangularRootOf}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{x}});}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00135\ std::ifstream\ \mbox{\hyperlink{namespace_g_q_c_p_acf6fe8292e618c8a1f4b7f0bfe23cce4}{validateAndOpen}}(\textcolor{keyword}{const}\ std::string\&\ filename,\ \textcolor{keyword}{const}\ std::string\&\ extension);}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00145\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{namespace_g_q_c_p_abf625c067ee657a0593277469c17e222}{vectorIndex}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ j,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ cols,\ \textcolor{keywordtype}{size\_t}\ skipped\ =\ 0);}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

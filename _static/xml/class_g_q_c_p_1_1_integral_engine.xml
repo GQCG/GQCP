@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_integral_engine" kind="class" language="C++" prot="public">
     <compoundname>GQCP::IntegralEngine</compoundname>
     <includes refid="_integral_engine_8hpp" local="no">IntegralEngine.hpp</includes>
       <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1a4cf422b709df6a1b8489339e85ffdae1" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1a5045305deee498747a6d92e8eeeb34db" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Shell</type>
@@ -12,8 +12,9 @@
         </templateparamlist>
         <type>auto</type>
         <definition>static auto GQCP::IntegralEngine::InHouse</definition>
-        <argsstring>(const OverlapOperator &amp;op) -&gt; OneElectronIntegralEngine&lt; PrimitiveOverlapIntegralEngine&lt; Shell &gt;&gt;</argsstring>
+        <argsstring>(const OverlapOperator &amp;op) -&gt; OneElectronIntegralEngine&lt; PrimitiveOverlapIntegralEngine&lt; Shell &gt; &gt;</argsstring>
         <name>InHouse</name>
+        <qualifiedname>GQCP::IntegralEngine::InHouse</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_overlap_operator" kindref="compound">OverlapOperator</ref> &amp;</type>
           <declname>op</declname>
@@ -50,7 +51,7 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="64" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" bodystart="64" bodyend="67"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1a91d02ffde81b71a1e48b11dee9ebfda7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1a6044d088cacff2dfa24fde532349158e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Shell</type>
@@ -58,8 +59,9 @@
         </templateparamlist>
         <type>auto</type>
         <definition>static auto GQCP::IntegralEngine::InHouse</definition>
-        <argsstring>(const ElectronicDipoleOperator &amp;op) -&gt; OneElectronIntegralEngine&lt; PrimitiveElectronicDipoleIntegralEngine&lt; Shell &gt;&gt;</argsstring>
+        <argsstring>(const ElectronicDipoleOperator &amp;op) -&gt; OneElectronIntegralEngine&lt; PrimitiveElectronicDipoleIntegralEngine&lt; Shell &gt; &gt;</argsstring>
         <name>InHouse</name>
+        <qualifiedname>GQCP::IntegralEngine::InHouse</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_electronic_dipole_operator" kindref="compound">ElectronicDipoleOperator</ref> &amp;</type>
           <declname>op</declname>
@@ -96,7 +98,7 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="82" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" bodystart="82" bodyend="85"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1a66c017d2b104224813e6371be96f316d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1a2ec1c79590bceecf8ec8c424f17ccb74" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Shell</type>
@@ -104,8 +106,9 @@
         </templateparamlist>
         <type>auto</type>
         <definition>static auto GQCP::IntegralEngine::InHouse</definition>
-        <argsstring>(const LinearMomentumOperator &amp;op) -&gt; OneElectronIntegralEngine&lt; PrimitiveLinearMomentumIntegralEngine&lt; Shell &gt;&gt;</argsstring>
+        <argsstring>(const LinearMomentumOperator &amp;op) -&gt; OneElectronIntegralEngine&lt; PrimitiveLinearMomentumIntegralEngine&lt; Shell &gt; &gt;</argsstring>
         <name>InHouse</name>
+        <qualifiedname>GQCP::IntegralEngine::InHouse</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_linear_momentum_operator" kindref="compound">LinearMomentumOperator</ref> &amp;</type>
           <declname>op</declname>
@@ -142,7 +145,7 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="100" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" bodystart="100" bodyend="103"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1a130fcebcf302c6675af5aea64cbe548b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1a8831da0da0f91750f70137135a3c1db8" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Shell</type>
@@ -150,8 +153,9 @@
         </templateparamlist>
         <type>auto</type>
         <definition>static auto GQCP::IntegralEngine::InHouse</definition>
-        <argsstring>(const KineticOperator &amp;op) -&gt; OneElectronIntegralEngine&lt; PrimitiveCanonicalKineticEnergyIntegralEngine&lt; Shell &gt;&gt;</argsstring>
+        <argsstring>(const KineticOperator &amp;op) -&gt; OneElectronIntegralEngine&lt; PrimitiveCanonicalKineticEnergyIntegralEngine&lt; Shell &gt; &gt;</argsstring>
         <name>InHouse</name>
+        <qualifiedname>GQCP::IntegralEngine::InHouse</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_kinetic_operator" kindref="compound">KineticOperator</ref> &amp;</type>
           <declname>op</declname>
@@ -188,7 +192,7 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="118" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" bodystart="118" bodyend="121"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1a3d8dda7bbd43c52c6c92be609edc534e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1ae9940954b501f66a5225680b356ff558" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Shell</type>
@@ -196,8 +200,9 @@
         </templateparamlist>
         <type>auto</type>
         <definition>static auto GQCP::IntegralEngine::InHouse</definition>
-        <argsstring>(const AngularMomentumOperator &amp;op) -&gt; OneElectronIntegralEngine&lt; PrimitiveAngularMomentumIntegralEngine&lt; Shell &gt;&gt;</argsstring>
+        <argsstring>(const AngularMomentumOperator &amp;op) -&gt; OneElectronIntegralEngine&lt; PrimitiveAngularMomentumIntegralEngine&lt; Shell &gt; &gt;</argsstring>
         <name>InHouse</name>
+        <qualifiedname>GQCP::IntegralEngine::InHouse</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_angular_momentum_operator" kindref="compound">AngularMomentumOperator</ref> &amp;</type>
           <declname>op</declname>
@@ -234,7 +239,7 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="136" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" bodystart="136" bodyend="139"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1a4a066e523a4bfe6346700cf0d4e92d66" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1a7fef7c71915e938c1e3a57666acfb04a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Shell</type>
@@ -242,8 +247,9 @@
         </templateparamlist>
         <type>auto</type>
         <definition>static auto GQCP::IntegralEngine::InHouse</definition>
-        <argsstring>(const ElectronicQuadrupoleOperator &amp;op) -&gt; OneElectronIntegralEngine&lt; PrimitiveElectronicQuadrupoleIntegralEngine&lt; Shell &gt;&gt;</argsstring>
+        <argsstring>(const ElectronicQuadrupoleOperator &amp;op) -&gt; OneElectronIntegralEngine&lt; PrimitiveElectronicQuadrupoleIntegralEngine&lt; Shell &gt; &gt;</argsstring>
         <name>InHouse</name>
+        <qualifiedname>GQCP::IntegralEngine::InHouse</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_electronic_quadrupole_operator" kindref="compound">ElectronicQuadrupoleOperator</ref> &amp;</type>
           <declname>op</declname>
@@ -280,7 +286,7 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="154" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" bodystart="154" bodyend="157"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1a09d60dc73bf58da92bcda5c3c0599890" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1a824c3fc7cb059fd01802280b747fb3ce" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Shell</type>
@@ -288,8 +294,9 @@
         </templateparamlist>
         <type>auto</type>
         <definition>static auto GQCP::IntegralEngine::InHouse</definition>
-        <argsstring>(const NuclearAttractionOperator &amp;op) -&gt; OneElectronIntegralEngine&lt; PrimitiveNuclearAttractionIntegralEngine&lt; Shell &gt;&gt;</argsstring>
+        <argsstring>(const NuclearAttractionOperator &amp;op) -&gt; OneElectronIntegralEngine&lt; PrimitiveNuclearAttractionIntegralEngine&lt; Shell &gt; &gt;</argsstring>
         <name>InHouse</name>
+        <qualifiedname>GQCP::IntegralEngine::InHouse</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_nuclear_attraction_operator" kindref="compound">NuclearAttractionOperator</ref> &amp;</type>
           <declname>op</declname>
@@ -326,7 +333,7 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="172" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" bodystart="172" bodyend="175"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1a38f49009cb9d182ecbec6dd6d19914a5" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_integral_engine_1ab1c2866ac24a55883529a10dbf351195" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Shell</type>
@@ -334,8 +341,9 @@
         </templateparamlist>
         <type>auto</type>
         <definition>static auto GQCP::IntegralEngine::InHouse</definition>
-        <argsstring>(const CoulombRepulsionOperator &amp;op) -&gt; TwoElectronIntegralEngine&lt; PrimitiveCoulombRepulsionIntegralEngine&lt; Shell &gt;&gt;</argsstring>
+        <argsstring>(const CoulombRepulsionOperator &amp;op) -&gt; TwoElectronIntegralEngine&lt; PrimitiveCoulombRepulsionIntegralEngine&lt; Shell &gt; &gt;</argsstring>
         <name>InHouse</name>
+        <qualifiedname>GQCP::IntegralEngine::InHouse</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" kindref="compound">CoulombRepulsionOperator</ref> &amp;</type>
           <declname>op</declname>
@@ -377,6 +385,7 @@
         <definition>auto GQCP::IntegralEngine::Libint</definition>
         <argsstring>(const CoulombRepulsionOperator &amp;op, const size_t max_nprim, const size_t max_l) -&gt; LibintTwoElectronIntegralEngine&lt; CoulombRepulsionOperator::NumberOfComponents &gt;</argsstring>
         <name>Libint</name>
+        <qualifiedname>GQCP::IntegralEngine::Libint</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" kindref="compound">CoulombRepulsionOperator</ref> &amp;</type>
           <declname>op</declname>
@@ -430,6 +439,7 @@
         <definition>auto GQCP::IntegralEngine::Libint</definition>
         <argsstring>(const ElectronicDipoleOperator &amp;op, const size_t max_nprim, const size_t max_l) -&gt; LibintOneElectronIntegralEngine&lt; ElectronicDipoleOperator::NumberOfComponents &gt;</argsstring>
         <name>Libint</name>
+        <qualifiedname>GQCP::IntegralEngine::Libint</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_electronic_dipole_operator" kindref="compound">ElectronicDipoleOperator</ref> &amp;</type>
           <declname>op</declname>
@@ -483,6 +493,7 @@
         <definition>auto GQCP::IntegralEngine::Libint</definition>
         <argsstring>(const NuclearAttractionOperator &amp;op, const size_t max_nprim, const size_t max_l) -&gt; LibintOneElectronIntegralEngine&lt; NuclearAttractionOperator::NumberOfComponents &gt;</argsstring>
         <name>Libint</name>
+        <qualifiedname>GQCP::IntegralEngine::Libint</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_nuclear_attraction_operator" kindref="compound">NuclearAttractionOperator</ref> &amp;</type>
           <declname>op</declname>
@@ -536,6 +547,7 @@
         <definition>auto GQCP::IntegralEngine::Libint</definition>
         <argsstring>(const KineticOperator &amp;op, const size_t max_nprim, const size_t max_l) -&gt; LibintOneElectronIntegralEngine&lt; KineticOperator::NumberOfComponents &gt;</argsstring>
         <name>Libint</name>
+        <qualifiedname>GQCP::IntegralEngine::Libint</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_kinetic_operator" kindref="compound">KineticOperator</ref> &amp;</type>
           <declname>op</declname>
@@ -589,6 +601,7 @@
         <definition>auto GQCP::IntegralEngine::Libint</definition>
         <argsstring>(const OverlapOperator &amp;op, const size_t max_nprim, const size_t max_l) -&gt; LibintOneElectronIntegralEngine&lt; OverlapOperator::NumberOfComponents &gt;</argsstring>
         <name>Libint</name>
+        <qualifiedname>GQCP::IntegralEngine::Libint</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_overlap_operator" kindref="compound">OverlapOperator</ref> &amp;</type>
           <declname>op</declname>
@@ -642,6 +655,7 @@
         <definition>auto GQCP::IntegralEngine::Libcint</definition>
         <argsstring>(const CoulombRepulsionOperator &amp;op, const ShellSet&lt; GTOShell &gt; &amp;shell_set) -&gt; LibcintTwoElectronIntegralEngine&lt; GTOShell, CoulombRepulsionOperator::NumberOfComponents, double &gt;</argsstring>
         <name>Libcint</name>
+        <qualifiedname>GQCP::IntegralEngine::Libcint</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_coulomb_repulsion_operator" kindref="compound">CoulombRepulsionOperator</ref> &amp;</type>
           <declname>op</declname>
@@ -683,6 +697,7 @@
         <definition>auto GQCP::IntegralEngine::Libcint</definition>
         <argsstring>(const ElectronicDipoleOperator &amp;op, const ShellSet&lt; GTOShell &gt; &amp;shell_set) -&gt; LibcintOneElectronIntegralEngine&lt; GTOShell, ElectronicDipoleOperator::NumberOfComponents, double &gt;</argsstring>
         <name>Libcint</name>
+        <qualifiedname>GQCP::IntegralEngine::Libcint</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_electronic_dipole_operator" kindref="compound">ElectronicDipoleOperator</ref> &amp;</type>
           <declname>op</declname>
@@ -735,6 +750,7 @@
         <definition>auto GQCP::IntegralEngine::Libcint</definition>
         <argsstring>(const NuclearAttractionOperator &amp;op, const ShellSet&lt; GTOShell &gt; &amp;shell_set) -&gt; LibcintOneElectronIntegralEngine&lt; GTOShell, NuclearAttractionOperator::NumberOfComponents, double &gt;</argsstring>
         <name>Libcint</name>
+        <qualifiedname>GQCP::IntegralEngine::Libcint</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_nuclear_attraction_operator" kindref="compound">NuclearAttractionOperator</ref> &amp;</type>
           <declname>op</declname>
@@ -776,6 +792,7 @@
         <definition>auto GQCP::IntegralEngine::Libcint</definition>
         <argsstring>(const KineticOperator &amp;op, const ShellSet&lt; GTOShell &gt; &amp;shell_set) -&gt; LibcintOneElectronIntegralEngine&lt; GTOShell, KineticOperator::NumberOfComponents, double &gt;</argsstring>
         <name>Libcint</name>
+        <qualifiedname>GQCP::IntegralEngine::Libcint</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_kinetic_operator" kindref="compound">KineticOperator</ref> &amp;</type>
           <declname>op</declname>
@@ -817,6 +834,7 @@
         <definition>auto GQCP::IntegralEngine::Libcint</definition>
         <argsstring>(const OverlapOperator &amp;op, const ShellSet&lt; GTOShell &gt; &amp;shell_set) -&gt; LibcintOneElectronIntegralEngine&lt; GTOShell, OverlapOperator::NumberOfComponents, double &gt;</argsstring>
         <name>Libcint</name>
+        <qualifiedname>GQCP::IntegralEngine::Libcint</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_overlap_operator" kindref="compound">OverlapOperator</ref> &amp;</type>
           <declname>op</declname>
@@ -867,14 +885,14 @@
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" line="44" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/IntegralEngine.hpp" bodystart="44" bodyend="289"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_integral_engine_1a4cf422b709df6a1b8489339e85ffdae1" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>InHouse</name></member>
-      <member refid="class_g_q_c_p_1_1_integral_engine_1a91d02ffde81b71a1e48b11dee9ebfda7" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>InHouse</name></member>
-      <member refid="class_g_q_c_p_1_1_integral_engine_1a66c017d2b104224813e6371be96f316d" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>InHouse</name></member>
-      <member refid="class_g_q_c_p_1_1_integral_engine_1a130fcebcf302c6675af5aea64cbe548b" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>InHouse</name></member>
-      <member refid="class_g_q_c_p_1_1_integral_engine_1a3d8dda7bbd43c52c6c92be609edc534e" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>InHouse</name></member>
-      <member refid="class_g_q_c_p_1_1_integral_engine_1a4a066e523a4bfe6346700cf0d4e92d66" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>InHouse</name></member>
-      <member refid="class_g_q_c_p_1_1_integral_engine_1a09d60dc73bf58da92bcda5c3c0599890" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>InHouse</name></member>
-      <member refid="class_g_q_c_p_1_1_integral_engine_1a38f49009cb9d182ecbec6dd6d19914a5" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>InHouse</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_engine_1a5045305deee498747a6d92e8eeeb34db" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>InHouse</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_engine_1a6044d088cacff2dfa24fde532349158e" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>InHouse</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_engine_1a2ec1c79590bceecf8ec8c424f17ccb74" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>InHouse</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_engine_1a8831da0da0f91750f70137135a3c1db8" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>InHouse</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_engine_1ae9940954b501f66a5225680b356ff558" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>InHouse</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_engine_1a7fef7c71915e938c1e3a57666acfb04a" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>InHouse</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_engine_1a824c3fc7cb059fd01802280b747fb3ce" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>InHouse</name></member>
+      <member refid="class_g_q_c_p_1_1_integral_engine_1ab1c2866ac24a55883529a10dbf351195" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>InHouse</name></member>
       <member refid="class_g_q_c_p_1_1_integral_engine_1adda456fbfda8083c3f931e666b558af5" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>Libcint</name></member>
       <member refid="class_g_q_c_p_1_1_integral_engine_1ab92646915ae593df997ae85294158bff" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>Libcint</name></member>
       <member refid="class_g_q_c_p_1_1_integral_engine_1a504b4863082626055f8555ab4f8658bd" prot="public" virt="non-virtual"><scope>GQCP::IntegralEngine</scope><name>Libcint</name></member>

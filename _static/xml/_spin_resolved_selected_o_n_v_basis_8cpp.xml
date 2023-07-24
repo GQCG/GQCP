@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="_spin_resolved_selected_o_n_v_basis_8cpp" kind="file" language="C++">
     <compoundname>SpinResolvedSelectedONVBasis.cpp</compoundname>
     <includes local="yes">ONVBasis/SpinResolvedSelectedONVBasis.hpp</includes>
@@ -7,15 +7,6 @@
     <includes local="no">boost/math/special_functions.hpp</includes>
     <includes local="no">boost/numeric/conversion/converter.hpp</includes>
     <incdepgraph>
-      <node id="4">
-        <label>boost/math/special_functions.hpp</label>
-      </node>
-      <node id="3">
-        <label>boost/dynamic_bitset.hpp</label>
-      </node>
-      <node id="5">
-        <label>boost/numeric/conversion/converter.hpp</label>
-      </node>
       <node id="1">
         <label>/__w/GQCP/GQCP/gqcp/src/ONVBasis/SpinResolvedSelectedONVBasis.cpp</label>
         <link refid="_spin_resolved_selected_o_n_v_basis_8cpp"/>
@@ -30,6 +21,15 @@
       </node>
       <node id="2">
         <label>ONVBasis/SpinResolvedSelectedONVBasis.hpp</label>
+      </node>
+      <node id="3">
+        <label>boost/dynamic_bitset.hpp</label>
+      </node>
+      <node id="4">
+        <label>boost/math/special_functions.hpp</label>
+      </node>
+      <node id="5">
+        <label>boost/numeric/conversion/converter.hpp</label>
       </node>
     </incdepgraph>
     <innernamespace refid="namespace_g_q_c_p">GQCP</innernamespace>
@@ -118,11 +118,11 @@
 <codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>onvs.push_back(SpinResolvedONV<sp/>{<ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6" kindref="member">alpha</ref>,<sp/><ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5" kindref="member">beta</ref>});</highlight></codeline>
 <codeline lineno="96"><highlight class="normal"></highlight></codeline>
 <codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(I_beta<sp/>&lt;<sp/>dim_beta<sp/>-<sp/>1)<sp/>{<sp/><sp/></highlight><highlight class="comment">//<sp/>prevent<sp/>the<sp/>last<sp/>permutation<sp/>from<sp/>occurring</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>onv_basis_beta.transformONVToNextPermutation(<ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5" kindref="member">beta</ref>);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>onv_basis_beta.transformONVToNextPermutation(beta);</highlight></codeline>
 <codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(I_alpha<sp/>&lt;<sp/>dim_alpha<sp/>-<sp/>1)<sp/>{<sp/><sp/></highlight><highlight class="comment">//<sp/>prevent<sp/>the<sp/>last<sp/>permutation<sp/>from<sp/>occurring</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>onv_basis_alpha.transformONVToNextPermutation(<ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6" kindref="member">alpha</ref>);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>onv_basis_alpha.transformONVToNextPermutation(alpha);</highlight></codeline>
 <codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;onvs<sp/>=<sp/>onvs;</highlight></codeline>
@@ -152,8 +152,8 @@
 <codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="140"><highlight class="normal"></highlight></codeline>
 <codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>reference<sp/>=<sp/>SpinResolvedONV::UHF(K,<sp/>N_alpha,<sp/>N_beta);</highlight></codeline>
-<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>alpha_reference<sp/>=<sp/>reference.onv(<ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6" kindref="member">Spin::alpha</ref>);</highlight></codeline>
-<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>beta_reference<sp/>=<sp/>reference.onv(<ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5" kindref="member">Spin::beta</ref>);</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>alpha_reference<sp/>=<sp/>reference.onv(Spin::alpha);</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>beta_reference<sp/>=<sp/>reference.onv(Spin::beta);</highlight></codeline>
 <codeline lineno="144"><highlight class="normal"></highlight></codeline>
 <codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>alpha_orbital_space<sp/>=<sp/>alpha_reference.orbitalSpace();</highlight></codeline>
 <codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>beta_orbital_space<sp/>=<sp/>beta_reference.orbitalSpace();</highlight></codeline>
@@ -228,11 +228,11 @@
 <codeline lineno="215"><highlight class="normal"></highlight></codeline>
 <codeline lineno="221"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SpinResolvedSelectedONVBasis::expandWith(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>SpinResolvedONV&amp;<sp/>onv)<sp/>{</highlight></codeline>
 <codeline lineno="222"><highlight class="normal"></highlight></codeline>
-<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((onv.onv(<ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6" kindref="member">Spin::alpha</ref>).numberOfElectrons()<sp/>!=<sp/>this-&gt;numberOfAlphaElectrons())<sp/>||<sp/>(onv.onv(<ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5" kindref="member">Spin::beta</ref>).numberOfElectrons()<sp/>!=<sp/>this-&gt;numberOfBetaElectrons()))<sp/>{</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((onv.onv(Spin::alpha).numberOfElectrons()<sp/>!=<sp/>this-&gt;numberOfAlphaElectrons())<sp/>||<sp/>(onv.onv(Spin::beta).numberOfElectrons()<sp/>!=<sp/>this-&gt;numberOfBetaElectrons()))<sp/>{</highlight></codeline>
 <codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(</highlight><highlight class="stringliteral">&quot;SpinResolvedSelectedONVBasis::expandWith(const<sp/>SpinResolvedONV&amp;):<sp/>The<sp/>given<sp/>ONV&apos;s<sp/>number<sp/>of<sp/>electrons<sp/>is<sp/>not<sp/>compatible<sp/>with<sp/>the<sp/>number<sp/>of<sp/>electrons<sp/>for<sp/>this<sp/>ONV<sp/>basis.&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="226"><highlight class="normal"></highlight></codeline>
-<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((onv.onv(<ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6" kindref="member">Spin::alpha</ref>).numberOfSpinors()<sp/>!=<sp/>this-&gt;numberOfOrbitals())<sp/>||<sp/>(onv.onv(<ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5" kindref="member">Spin::beta</ref>).numberOfSpinors()<sp/>!=<sp/>this-&gt;numberOfOrbitals()))<sp/>{</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((onv.onv(Spin::alpha).numberOfSpinors()<sp/>!=<sp/>this-&gt;numberOfOrbitals())<sp/>||<sp/>(onv.onv(Spin::beta).numberOfSpinors()<sp/>!=<sp/>this-&gt;numberOfOrbitals()))<sp/>{</highlight></codeline>
 <codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(</highlight><highlight class="stringliteral">&quot;SpinResolvedSelectedONVBasis::expandWith(const<sp/>SpinResolvedONV&amp;):<sp/>The<sp/>given<sp/>ONV&apos;s<sp/>number<sp/>of<sp/>orbitals<sp/>is<sp/>not<sp/>compatible<sp/>with<sp/>the<sp/>number<sp/>of<sp/>orbitals<sp/>for<sp/>this<sp/>ONV<sp/>basis.&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="230"><highlight class="normal"></highlight></codeline>
@@ -365,8 +365,8 @@
 <codeline lineno="411"><highlight class="normal"></highlight></codeline>
 <codeline lineno="412"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>I<sp/>=<sp/>0;<sp/>I<sp/>&lt;<sp/>dim;<sp/>I++)<sp/>{<sp/><sp/></highlight><highlight class="comment">//<sp/>I<sp/>loops<sp/>over<sp/>the<sp/>addresses<sp/>of<sp/>alpha<sp/>onvs</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="413"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SpinResolvedONV<sp/>onv_I<sp/>=<sp/>this-&gt;onvWithIndex(I);</highlight></codeline>
-<codeline lineno="414"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SpinUnresolvedONV<sp/>alpha_I<sp/>=<sp/>onv_I.onv(<ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6" kindref="member">Spin::alpha</ref>);</highlight></codeline>
-<codeline lineno="415"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SpinUnresolvedONV<sp/>beta_I<sp/>=<sp/>onv_I.onv(<ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5" kindref="member">Spin::beta</ref>);</highlight></codeline>
+<codeline lineno="414"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SpinUnresolvedONV<sp/>alpha_I<sp/>=<sp/>onv_I.onv(Spin::alpha);</highlight></codeline>
+<codeline lineno="415"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SpinUnresolvedONV<sp/>beta_I<sp/>=<sp/>onv_I.onv(Spin::beta);</highlight></codeline>
 <codeline lineno="416"><highlight class="normal"></highlight></codeline>
 <codeline lineno="417"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>p<sp/>=<sp/>0;<sp/>p<sp/>&lt;<sp/>K;<sp/>p++)<sp/>{</highlight></codeline>
 <codeline lineno="418"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(alpha_I.isOccupied(p))<sp/>{</highlight></codeline>
@@ -398,8 +398,8 @@
 <codeline lineno="451"><highlight class="normal"></highlight></codeline>
 <codeline lineno="452"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>I<sp/>=<sp/>0;<sp/>I<sp/>&lt;<sp/>dim;<sp/>I++)<sp/>{<sp/><sp/></highlight><highlight class="comment">//<sp/>I<sp/>loops<sp/>over<sp/>addresses<sp/>of<sp/>all<sp/>ONVs</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="453"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SpinResolvedONV<sp/>onv_I<sp/>=<sp/>this-&gt;onvWithIndex(I);</highlight></codeline>
-<codeline lineno="454"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SpinUnresolvedONV<sp/>alpha_I<sp/>=<sp/>onv_I.onv(<ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6" kindref="member">Spin::alpha</ref>);</highlight></codeline>
-<codeline lineno="455"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SpinUnresolvedONV<sp/>beta_I<sp/>=<sp/>onv_I.onv(<ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5" kindref="member">Spin::beta</ref>);</highlight></codeline>
+<codeline lineno="454"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SpinUnresolvedONV<sp/>alpha_I<sp/>=<sp/>onv_I.onv(Spin::alpha);</highlight></codeline>
+<codeline lineno="455"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SpinUnresolvedONV<sp/>beta_I<sp/>=<sp/>onv_I.onv(Spin::beta);</highlight></codeline>
 <codeline lineno="456"><highlight class="normal"></highlight></codeline>
 <codeline lineno="457"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>p<sp/>=<sp/>0;<sp/>p<sp/>&lt;<sp/>K;<sp/>p++)<sp/>{</highlight></codeline>
 <codeline lineno="458"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(alpha_I.isOccupied(p))<sp/>{</highlight></codeline>
@@ -504,8 +504,8 @@
 <codeline lineno="585"><highlight class="normal"><sp/><sp/><sp/><sp/>VectorX&lt;double&gt;<sp/>diagonal<sp/>=<sp/>VectorX&lt;double&gt;::Zero(dim);</highlight></codeline>
 <codeline lineno="586"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>I<sp/>=<sp/>0;<sp/>I<sp/>&lt;<sp/>dim;<sp/>I++)<sp/>{<sp/><sp/></highlight><highlight class="comment">//<sp/>Ia<sp/>loops<sp/>over<sp/>addresses<sp/>of<sp/>alpha<sp/>onvs</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="587"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SpinResolvedONV<sp/>onv_I<sp/>=<sp/>this-&gt;onvWithIndex(I);</highlight></codeline>
-<codeline lineno="588"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SpinUnresolvedONV<sp/>alpha_I<sp/>=<sp/>onv_I.onv(<ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6" kindref="member">Spin::alpha</ref>);</highlight></codeline>
-<codeline lineno="589"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SpinUnresolvedONV<sp/>beta_I<sp/>=<sp/>onv_I.onv(<ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5" kindref="member">Spin::beta</ref>);</highlight></codeline>
+<codeline lineno="588"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SpinUnresolvedONV<sp/>alpha_I<sp/>=<sp/>onv_I.onv(Spin::alpha);</highlight></codeline>
+<codeline lineno="589"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SpinUnresolvedONV<sp/>beta_I<sp/>=<sp/>onv_I.onv(Spin::beta);</highlight></codeline>
 <codeline lineno="590"><highlight class="normal"></highlight></codeline>
 <codeline lineno="591"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>p<sp/>=<sp/>0;<sp/>p<sp/>&lt;<sp/>K;<sp/>p++)<sp/>{</highlight></codeline>
 <codeline lineno="592"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(alpha_I.isOccupied(p))<sp/>{</highlight></codeline>
@@ -557,7 +557,7 @@
 <codeline lineno="638"><highlight class="comment"><sp/>*<sp/><sp/>MARK:<sp/>Restricted<sp/>matrix-vector<sp/>product<sp/>evaluations</highlight></codeline>
 <codeline lineno="639"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="640"><highlight class="normal"></highlight></codeline>
-<codeline lineno="649"><highlight class="normal">VectorX&lt;double&gt;<sp/>SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduct(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ScalarRSQOneElectronOperator&lt;double&gt;&amp;<sp/>f,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorX&lt;double&gt;&amp;<sp/><ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5" kindref="member">x</ref>)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="649"><highlight class="normal">VectorX&lt;double&gt;<sp/>SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduct(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ScalarRSQOneElectronOperator&lt;double&gt;&amp;<sp/>f,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorX&lt;double&gt;&amp;<sp/>x)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="650"><highlight class="normal"></highlight></codeline>
 <codeline lineno="651"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(f.numberOfOrbitals()<sp/>!=<sp/>this-&gt;numberOfOrbitals())<sp/>{</highlight></codeline>
 <codeline lineno="652"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(</highlight><highlight class="stringliteral">&quot;SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduct(const<sp/>ScalarRSQOneElectronOperator&lt;double&gt;&amp;,<sp/>const<sp/>VectorX&lt;double&gt;&amp;):<sp/>The<sp/>number<sp/>of<sp/>orbitals<sp/>of<sp/>this<sp/>ONV<sp/>basis<sp/>and<sp/>the<sp/>operator<sp/>are<sp/>incompatible.&quot;</highlight><highlight class="normal">);</highlight></codeline>
@@ -574,7 +574,7 @@
 <codeline lineno="663"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="664"><highlight class="normal"></highlight></codeline>
 <codeline lineno="665"><highlight class="normal"></highlight></codeline>
-<codeline lineno="674"><highlight class="normal">VectorX&lt;double&gt;<sp/>SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduct(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ScalarRSQTwoElectronOperator&lt;double&gt;&amp;<sp/>g,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorX&lt;double&gt;&amp;<sp/><ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5" kindref="member">x</ref>)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="674"><highlight class="normal">VectorX&lt;double&gt;<sp/>SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduct(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ScalarRSQTwoElectronOperator&lt;double&gt;&amp;<sp/>g,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorX&lt;double&gt;&amp;<sp/>x)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="675"><highlight class="normal"></highlight></codeline>
 <codeline lineno="676"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(g.numberOfOrbitals()<sp/>!=<sp/>this-&gt;numberOfOrbitals())<sp/>{</highlight></codeline>
 <codeline lineno="677"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(</highlight><highlight class="stringliteral">&quot;SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduct(const<sp/>ScalarRSQTwoElectronOperator&lt;double&gt;&amp;,<sp/>const<sp/>VectorX&lt;double&gt;&amp;):<sp/>The<sp/>number<sp/>of<sp/>orbitals<sp/>of<sp/>this<sp/>ONV<sp/>basis<sp/>and<sp/>the<sp/>operator<sp/>are<sp/>incompatible.&quot;</highlight><highlight class="normal">);</highlight></codeline>
@@ -593,7 +593,7 @@
 <codeline lineno="690"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="691"><highlight class="normal"></highlight></codeline>
 <codeline lineno="692"><highlight class="normal"></highlight></codeline>
-<codeline lineno="701"><highlight class="normal">VectorX&lt;double&gt;<sp/>SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduct(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>RSQHamiltonian&lt;double&gt;&amp;<sp/>hamiltonian,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorX&lt;double&gt;&amp;<sp/><ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5" kindref="member">x</ref>)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="701"><highlight class="normal">VectorX&lt;double&gt;<sp/>SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduct(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>RSQHamiltonian&lt;double&gt;&amp;<sp/>hamiltonian,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorX&lt;double&gt;&amp;<sp/>x)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="702"><highlight class="normal"></highlight></codeline>
 <codeline lineno="703"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>By<sp/>delegating<sp/>the<sp/>actual<sp/>implementation<sp/>of<sp/>this<sp/>method<sp/>to<sp/>its<sp/>unrestricted<sp/>counterpart,<sp/>we<sp/>avoid<sp/>code<sp/>duplication<sp/>for<sp/>the<sp/>restricted<sp/>part.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="704"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>This<sp/>does<sp/>not<sp/>affect<sp/>performance<sp/>significantly,<sp/>because<sp/>the<sp/>bottleneck<sp/>will<sp/>always<sp/>be<sp/>the<sp/>double<sp/>iteration<sp/>over<sp/>the<sp/>whole<sp/>ONV<sp/>basis.</highlight><highlight class="normal"></highlight></codeline>
@@ -601,7 +601,7 @@
 <codeline lineno="706"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>g_unrestricted<sp/>=<sp/>ScalarUSQTwoElectronOperator&lt;double&gt;::FromRestricted(hamiltonian.twoElectron());</highlight></codeline>
 <codeline lineno="707"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>USQHamiltonian&lt;double&gt;<sp/>unrestricted_hamiltonian<sp/>{h_unrestricted,<sp/>g_unrestricted};</highlight></codeline>
 <codeline lineno="708"><highlight class="normal"></highlight></codeline>
-<codeline lineno="709"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;evaluateOperatorMatrixVectorProduct(unrestricted_hamiltonian,<sp/><ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5" kindref="member">x</ref>);</highlight></codeline>
+<codeline lineno="709"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;evaluateOperatorMatrixVectorProduct(unrestricted_hamiltonian,<sp/>x);</highlight></codeline>
 <codeline lineno="710"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="711"><highlight class="normal"></highlight></codeline>
 <codeline lineno="712"><highlight class="normal"></highlight></codeline>
@@ -633,7 +633,7 @@
 <codeline lineno="745"><highlight class="comment"><sp/>*<sp/><sp/>MARK:<sp/>Unrestricted<sp/>matrix-vector<sp/>product<sp/>evaluations</highlight></codeline>
 <codeline lineno="746"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="747"><highlight class="normal"></highlight></codeline>
-<codeline lineno="756"><highlight class="normal">VectorX&lt;double&gt;<sp/>SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduct(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>USQHamiltonian&lt;double&gt;&amp;<sp/>hamiltonian,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorX&lt;double&gt;&amp;<sp/><ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5" kindref="member">x</ref>)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="756"><highlight class="normal">VectorX&lt;double&gt;<sp/>SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduct(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>USQHamiltonian&lt;double&gt;&amp;<sp/>hamiltonian,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorX&lt;double&gt;&amp;<sp/>x)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="757"><highlight class="normal"></highlight></codeline>
 <codeline lineno="758"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(hamiltonian.numberOfOrbitals()<sp/>!=<sp/>this-&gt;numberOfOrbitals())<sp/>{</highlight></codeline>
 <codeline lineno="759"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(</highlight><highlight class="stringliteral">&quot;SpinResolvedSelectedONVBasis::evaluateOperatorMatrixVectorProduct(const<sp/>USQHamiltonian&lt;double&gt;&amp;,<sp/>const<sp/>VectorX&lt;double&gt;&amp;<sp/>x):<sp/>The<sp/>number<sp/>of<sp/>orbitals<sp/>of<sp/>this<sp/>ONV<sp/>basis<sp/>and<sp/>the<sp/>given<sp/>Hamiltonian<sp/>are<sp/>incompatible.&quot;</highlight><highlight class="normal">);</highlight></codeline>

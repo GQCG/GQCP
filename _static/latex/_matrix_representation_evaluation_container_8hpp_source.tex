@@ -1,0 +1,224 @@
+\hypertarget{_matrix_representation_evaluation_container_8hpp_source}{}\doxysection{Matrix\+Representation\+Evaluation\+Container.\+hpp}
+\label{_matrix_representation_evaluation_container_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Representation/MatrixRepresentationEvaluationContainer.hpp}}
+\mbox{\hyperlink{_matrix_representation_evaluation_container_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_square_matrix_8hpp}{Mathematical/Representation/SquareMatrix.hpp}}"{}}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <Eigen/Sparse>}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Matrix>}
+\DoxyCodeLine{00035\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{MatrixRepresentationEvaluationContainer}}\ \{}
+\DoxyCodeLine{00036\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//\ The\ type\ that\ is\ used\ as\ a\ matrix\ representation,\ i.e.\ a\ container\ that\ stores\ the\ matrix\ representation.}}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a365dc456a44d8f1611150741a43434a6}{Matrix}}\ =\ \_Matrix;}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ The\ scalar\ type\ of\ one\ of\ the\ matrix\ elements:\ real\ or\ complex.}}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a5249468abc4206c06b7d2786620a99eb}{Scalar}}\ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_a820960c1c3ad2c124d6be1ccd0eec021}{Matrix::Scalar}};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{//\ The\ current\ index\ of\ the\ iterator,\ which\ is\ an\ address\ in\ a\ particular\ ONV\ basis.}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_aac052cc33b05c34338e8b2ee46f7c637}{index}}\ =\ 0;}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{comment}{//\ The\ expected\ last\ position\ of\ the\ iterator,\ i.e.\ the\ dimension\ of\ the\ particular\ ONV\ basis.}}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a1f58343098e10f15d7521e19e52e3001}{end}};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{//\ The\ matrix\ representation.}}
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a365dc456a44d8f1611150741a43434a6}{Matrix}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_aa62b8fa69579d4f38fada5f3ef224455}{matrix}};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00057\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Constructors}}
+\DoxyCodeLine{00058\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00065\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a6b9ef0370563f0eea68afd8d1db51ddc}{MatrixRepresentationEvaluationContainer}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ dimension)\ :}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_aa62b8fa69579d4f38fada5f3ef224455}{matrix}}\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a365dc456a44d8f1611150741a43434a6}{Matrix}}::Zero(dimension)\},}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a1f58343098e10f15d7521e19e52e3001}{end}}\ \{dimension\}\ \{\}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00071\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Additions\ and\ evaluations}}
+\DoxyCodeLine{00072\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a3c0df8025bcd4fff073f5dc906b71ed6}{addDiagonally}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a5249468abc4206c06b7d2786620a99eb}{Scalar}}\ value)\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_aa62b8fa69579d4f38fada5f3ef224455}{matrix}}(this-\/>index,\ this-\/>index)\ +=\ value;}
+\DoxyCodeLine{00081\ \ \ \ \ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a01e94b367635ae325c4ae22c55ff8262}{addColumnwise}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ column,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a5249468abc4206c06b7d2786620a99eb}{Scalar}}\ value)\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_aa62b8fa69579d4f38fada5f3ef224455}{matrix}}(this-\/>index,\ column)\ +=\ value;}
+\DoxyCodeLine{00091\ \ \ \ \ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_ac231c9271823d5a3334eff6d8a7f4133}{addRowwise}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ row,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a5249468abc4206c06b7d2786620a99eb}{Scalar}}\ value)\ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_aa62b8fa69579d4f38fada5f3ef224455}{matrix}}(row,\ this-\/>index)\ +=\ value;}
+\DoxyCodeLine{00102\ \ \ \ \ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a365dc456a44d8f1611150741a43434a6}{Matrix}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_ab5ade55d3bdebd17751f9b099165c879}{evaluation}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_aa62b8fa69579d4f38fada5f3ef224455}{matrix}};\ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00112\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Iterator}}
+\DoxyCodeLine{00113\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_ac70cfe74faa0933d129260dd8654edb5}{increment}}()\ \{\ this-\/>index++;\ \}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a6740eba1f8a2206adff9187763fb7bb9}{isFinished}}()\ \{}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>index\ ==\ this-\/>end)\ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>index\ =\ 0;}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00133\ \ \ \ \ \}}
+\DoxyCodeLine{00134\ \};}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00143\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar>}
+\DoxyCodeLine{00144\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{MatrixRepresentationEvaluationContainer}}<\mbox{\hyperlink{namespace_eigen}{Eigen}}::SparseMatrix<\_Scalar>>\ \{}
+\DoxyCodeLine{00145\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{comment}{//\ The\ scalar\ type\ of\ one\ of\ the\ matrix\ elements:\ real\ or\ complex.}}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_af84adab4904d8df12521d2c4372b6713}{Scalar}}\ =\ \_Scalar;}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_aac052cc33b05c34338e8b2ee46f7c637}{index}}\ =\ 0;\ \ \textcolor{comment}{//\ Current\ position\ of\ the\ iterator\ in\ the\ dimension\ of\ the\ ONV\ basis.}}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_a0bceb6fdcd7e0f55d00bc86641c5134b}{end}};\ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ total\ dimension.}}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \ \ Eigen::SparseMatrix<Scalar>\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_afa6c0e9862ec918a7f85a9059b09f0f9}{matrix}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Matrix\ containing\ the\ evaluations.}}
+\DoxyCodeLine{00155\ \ \ \ \ std::vector<Eigen::Triplet<Scalar>>\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_ae9ebff5467f2d4aebc02a9045fb995a4}{triplet\_vector}};\ \ \textcolor{comment}{//\ Vector\ which\ temporarily\ contains\ the\ added\ values.}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00160\ \textcolor{comment}{\ \ \ \ \ *\ \ CONSTRUCTORS}}
+\DoxyCodeLine{00161\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00166\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_a749f8b27d989dc3de141ac9f844e3683}{MatrixRepresentationEvaluationContainer}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ dimension)\ :}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_aa62b8fa69579d4f38fada5f3ef224455}{matrix}}\ \{\mbox{\hyperlink{namespace_eigen}{Eigen}}::SparseMatrix<\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_af84adab4904d8df12521d2c4372b6713}{Scalar}}>(dimension,\ dimension)\},}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a1f58343098e10f15d7521e19e52e3001}{end}}(dimension)\ \{\}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00172\ \textcolor{comment}{\ \ \ \ \ *\ \ PUBLIC\ METHODS}}
+\DoxyCodeLine{00173\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_a6ec6850d45f905b4c165c37a95cfe66d}{addColumnwise}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ column,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_af84adab4904d8df12521d2c4372b6713}{Scalar}}\ value)\ \{\ this-\/>triplet\_vector.emplace\_back(this-\/>index,\ column,\ value);\ \}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_af2fa0c6b929e4973ee92bcea1d471d4a}{addRowwise}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ row,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_af84adab4904d8df12521d2c4372b6713}{Scalar}}\ value)\ \{\ this-\/>triplet\_vector.emplace\_back(row,\ this-\/>index,\ value);\ \}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_ac13568aa199accd63da79e615aec83f0}{addToMatrix}}()\ \{}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ this-\/>matrix.setFromTriplets(this-\/>triplet\_vector.begin(),\ this-\/>triplet\_vector.end());}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ this-\/>triplet\_vector\ =\ \{\};}
+\DoxyCodeLine{00204\ \ \ \ \ \}}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keyword}{const}\ Eigen::SparseMatrix<Scalar>\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_a259e68375ed316ce9d441f7a09c5d5a6}{evaluation}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_aa62b8fa69579d4f38fada5f3ef224455}{matrix}};\ \}}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_a65e10aa30f5e6b00d807c4bfd52bafb4}{increment}}()\ \{\ this-\/>index++;\ \}}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_a43e5db65f4c5c173eabfd012f5d6bbeb}{isFinished}}()\ \{}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>index\ ==\ this-\/>end)\ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>index\ =\ 0;}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00230\ \ \ \ \ \}}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00237\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_ab46ff2529e84e8be0b7d020fe1396906}{reserve}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ n)\ \{}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ this-\/>triplet\_vector.reserve(n);}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ this-\/>matrix.reserve(n);}
+\DoxyCodeLine{00240\ \ \ \ \ \}}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{keyword}{const}\ std::vector<Eigen::Triplet<Scalar>>\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_eigen_1_1_sparse_matrix_3_01___scalar_01_4_01_4_a21c4a071b4bfedccddfb15ed268010cd}{triplets}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ triplet\_vector;\ \}}
+\DoxyCodeLine{00246\ \};}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00254\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar>}
+\DoxyCodeLine{00255\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container}{MatrixRepresentationEvaluationContainer}}<\mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX}}<\_Scalar>>\ \{}
+\DoxyCodeLine{00256\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00257\ \ \ \ \ \textcolor{comment}{//\ The\ scalar\ type\ of\ one\ of\ the\ matrix\ elements:\ real\ or\ complex.}}
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_a58ded81d72b782fc4a2e985bf162ee62}{Scalar}}\ =\ \_Scalar;}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00261\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_aac052cc33b05c34338e8b2ee46f7c637}{index}}\ =\ 0;\ \ \textcolor{comment}{//\ Current\ position\ of\ the\ iterator\ in\ the\ dimension\ of\ the\ ONV\ basis.}}
+\DoxyCodeLine{00262\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_a4748b796adc8622e6ffbe906ec4b460d}{end}};\ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ total\ dimension.}}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00264\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_a1cfaf5ee4e1543ff37fb6c31189b61c2}{matvec}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Matvec\ containing\ the\ evaluations.}}
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_a2ce0fefc3ee0de32f7b9a4c351eece45}{coefficient\_vector}};\ \ \textcolor{comment}{//\ Vector\ with\ which\ is\ multiplied.}}
+\DoxyCodeLine{00266\ \ \ \ \ \textcolor{keywordtype}{double}\ sequential\_double\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Double\ which\ temporarily\ contains\ the\ sum\ of\ added\ values,\ it\ corresponds\ to\ the\ value\ in\ the\ matvec\ of\ the\ current\ index\ and\ allows\ a\ for\ a\ single\ write\ access\ each\ iteration\ instead\ of\ multiple.}}
+\DoxyCodeLine{00267\ \ \ \ \ \textcolor{keywordtype}{double}\ nonsequential\_double\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Double\ gathered\ from\ the\ coefficient\ for\ non-\/sequential\ matvec\ additions,\ this\ corresponds\ to\ the\ value\ of\ the\ coefficient\ vector\ of\ the\ current\ index,\ it\ allows\ for\ a\ single\ read\ operation\ each\ iteration.}}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00270\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00271\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00272\ \textcolor{comment}{\ \ \ \ \ *\ \ CONSTRUCTORS}}
+\DoxyCodeLine{00273\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00278\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_a1cbaa6c280b05ac52c4ee37b66656829}{MatrixRepresentationEvaluationContainer}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<Scalar>}}\&\ coefficient\_vector,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<Scalar>}}\&\ diagonal)\ :}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a1f58343098e10f15d7521e19e52e3001}{end}}\ \{static\_cast<size\_t>(coefficient\_vector.rows())\},}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ coefficient\_vector\ \{coefficient\_vector\},}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ matvec\ \{diagonal.cwiseProduct(coefficient\_vector)\}\ \{\}}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_a6fd944eac99f9bf09f7bafd63bafedf0}{MatrixRepresentationEvaluationContainer}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<Scalar>}}\&\ coefficient\_vector)\ :}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_a1f58343098e10f15d7521e19e52e3001}{end}}\ \{static\_cast<size\_t>(coefficient\_vector.rows())\},}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ coefficient\_vector\ \{coefficient\_vector\},}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ matvec\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX}}<\mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_a58ded81d72b782fc4a2e985bf162ee62}{Scalar}}>::Zero(coefficient\_vector.rows())\}\ \{\}}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00290\ \textcolor{comment}{\ \ \ \ \ *\ \ PUBLIC\ METHODS}}
+\DoxyCodeLine{00291\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00299\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_a1f88c106ae3b051de9c1bd25e4f9caa6}{addColumnwise}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ column,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_a58ded81d72b782fc4a2e985bf162ee62}{Scalar}}\ value)\ \{\ sequential\_double\ +=\ value\ *\ coefficient\_vector(column);\ \}}
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00307\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_aeaca9cc8c580b370adea28b10d94d1a3}{addRowwise}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ row,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_a58ded81d72b782fc4a2e985bf162ee62}{Scalar}}\ value)\ \{\ this-\/>matvec(row)\ +=\ value\ *\ this-\/>nonsequential\_double;\ \}}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00312\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_a9be240f053bbfb5de2fa2e4c69886bb0}{evaluation}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>matvec;\ \}}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00317\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_ad3c265f959d0df2b4d1f67ab192f06ad}{increment}}()\ \{}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ this-\/>matvec(this-\/>index)\ +=\ this-\/>sequential\_double;}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ this-\/>sequential\_double\ =\ 0;}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ this-\/>index++;}
+\DoxyCodeLine{00321\ \ \ \ \ \}}
+\DoxyCodeLine{00322\ }
+\DoxyCodeLine{00329\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix_representation_evaluation_container_3_01_vector_x_3_01___scalar_01_4_01_4_a650d3ab0744ffc133424eda57aee306a}{isFinished}}()\ \{}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>index\ ==\ this-\/>end)\ \{}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>index\ =\ 0;}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>nonsequential\_double\ =\ this-\/>coefficient\_vector(this-\/>index);}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00337\ \ \ \ \ \}}
+\DoxyCodeLine{00338\ \};}
+\DoxyCodeLine{00339\ }
+\DoxyCodeLine{00340\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

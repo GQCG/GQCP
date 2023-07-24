@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_convergence_criterion" kind="class" language="C++" prot="public" abstract="yes">
     <compoundname>GQCP::ConvergenceCriterion</compoundname>
     <derivedcompoundref refid="class_g_q_c_p_1_1_compound_convergence_criterion" prot="public" virt="non-virtual">GQCP::CompoundConvergenceCriterion&lt; _Environment &gt;</derivedcompoundref>
@@ -17,6 +17,7 @@
         <definition>using GQCP::ConvergenceCriterion&lt; _Environment &gt;::Environment =  _Environment</definition>
         <argsstring></argsstring>
         <name>Environment</name>
+        <qualifiedname>GQCP::ConvergenceCriterion::Environment</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -32,6 +33,7 @@
         <definition>virtual GQCP::ConvergenceCriterion&lt; _Environment &gt;::~ConvergenceCriterion</definition>
         <argsstring>()=default</argsstring>
         <name>~ConvergenceCriterion</name>
+        <qualifiedname>GQCP::ConvergenceCriterion::~ConvergenceCriterion</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -45,6 +47,7 @@
         <definition>virtual std::string GQCP::ConvergenceCriterion&lt; _Environment &gt;::description</definition>
         <argsstring>() const =0</argsstring>
         <name>description</name>
+        <qualifiedname>GQCP::ConvergenceCriterion::description</qualifiedname>
         <reimplementedby refid="class_g_q_c_p_1_1_compound_convergence_criterion_1a7915c59e6ba2fd2ac59aebf377b3b7b2">description</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1ac4551544623997fd2a585830d238ecf9">description</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_residual_vector_convergence_1a60eb61cd13e3663cdcca2c7a1f7a8dfd">description</reimplementedby>
@@ -64,6 +67,7 @@
         <definition>virtual bool GQCP::ConvergenceCriterion&lt; _Environment &gt;::isFulfilled</definition>
         <argsstring>(Environment &amp;environment)=0</argsstring>
         <name>isFulfilled</name>
+        <qualifiedname>GQCP::ConvergenceCriterion::isFulfilled</qualifiedname>
         <reimplementedby refid="class_g_q_c_p_1_1_compound_convergence_criterion_1a86066355bcaf6aa79b6d0152bbf4fe8f">isFulfilled</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence_1a0be253e3c3a65055a4e2bdba68c34e54">isFulfilled</reimplementedby>
         <reimplementedby refid="class_g_q_c_p_1_1_residual_vector_convergence_1aefd9d7262006ed781a52ee7238adc6b8">isFulfilled</reimplementedby>
@@ -108,16 +112,6 @@
 </para>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1">
-        <label>GQCP::ConvergenceCriterion&lt; _Environment &gt;</label>
-        <link refid="class_g_q_c_p_1_1_convergence_criterion"/>
-      </node>
-      <node id="4">
-        <label>GQCP::ResidualVectorConvergence&lt; _Environment &gt;</label>
-        <link refid="class_g_q_c_p_1_1_residual_vector_convergence"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
       <node id="2">
         <label>GQCP::CompoundConvergenceCriterion&lt; _Environment &gt;</label>
         <link refid="class_g_q_c_p_1_1_compound_convergence_criterion"/>
@@ -127,6 +121,16 @@
       <node id="3">
         <label>GQCP::ConsecutiveIteratesNormConvergence&lt; _Iterate, _Environment &gt;</label>
         <link refid="class_g_q_c_p_1_1_consecutive_iterates_norm_convergence"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>GQCP::ConvergenceCriterion&lt; _Environment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_convergence_criterion"/>
+      </node>
+      <node id="4">
+        <label>GQCP::ResidualVectorConvergence&lt; _Environment &gt;</label>
+        <link refid="class_g_q_c_p_1_1_residual_vector_convergence"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>

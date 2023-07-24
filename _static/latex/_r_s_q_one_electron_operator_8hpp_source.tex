@@ -1,0 +1,155 @@
+\hypertarget{_r_s_q_one_electron_operator_8hpp_source}{}\doxysection{RSQOne\+Electron\+Operator.\+hpp}
+\label{_r_s_q_one_electron_operator_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/RSQOneElectronOperator.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/RSQOneElectronOperator.hpp}}
+\mbox{\hyperlink{_r_s_q_one_electron_operator_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_r_transformation_8hpp}{Basis/Transformations/RTransformation.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_orbital1_d_m_8hpp}{DensityMatrix/Orbital1DM.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_orbital2_d_m_8hpp}{DensityMatrix/Orbital2DM.hpp}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_r_mulliken_domain_8hpp}{Domain/MullikenDomain/RMullikenDomain.hpp}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_dense_vectorizer_8hpp}{Mathematical/Representation/DenseVectorizer.hpp}}"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_simple_s_q_one_electron_operator_8hpp}{Operator/SecondQuantized/SimpleSQOneElectronOperator.hpp}}"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_u_s_q_one_electron_operator_component_8hpp}{Operator/SecondQuantized/USQOneElectronOperatorComponent.hpp}}"{}}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{spinor__tags_8hpp}{QuantumChemical/spinor\_tags.hpp}}"{}}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar,\ \textcolor{keyword}{typename}\ \_Vectorizer>}
+\DoxyCodeLine{00041\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_one_electron_operator}{RSQOneElectronOperator}}:}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator}{SimpleSQOneElectronOperator}}<\_Scalar,\ \_Vectorizer,\ RSQOneElectronOperator<\_Scalar,\ \_Vectorizer>>\ \{}
+\DoxyCodeLine{00043\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{comment}{//\ The\ scalar\ type\ used\ for\ a\ single\ parameter:\ real\ or\ complex.}}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_one_electron_operator_ab4dea0b6f2ed9906da78a5e72f9e28f4}{Scalar}}\ =\ \_Scalar;}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ the\ vectorizer\ that\ relates\ a\ one-\/dimensional\ storage\ of\ matrices\ to\ the\ tensor\ structure\ of\ one-\/electron\ operators.\ This\ allows\ for\ a\ distinction\ between\ scalar\ operators\ (such\ as\ the\ kinetic\ energy\ operator),\ vector\ operators\ (such\ as\ the\ spin\ operator)\ and\ matrix/tensor\ operators\ (such\ as\ quadrupole\ and\ multipole\ operators).}}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_one_electron_operator_a3f3a4af998454a23adbd4cf0f2008e70}{Vectorizer}}\ =\ \_Vectorizer;}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{comment}{//\ The\ spinor\ tag\ corresponding\ to\ an\ `RSQOneElectronOperator`.}}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_restricted_spinor_tag}{SpinorTag}}\ =\ \mbox{\hyperlink{namespace_g_q_c_p_a7f6dc73e9642604cae80dd2e813b91f5}{RestrictedSpinOrbitalTag}};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00056\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Constructors}}
+\DoxyCodeLine{00057\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{//\ Inherit\ `SimpleSQOneElectronOperator`'s\ constructors.}}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_simple_s_q_one_electron_operator}{SimpleSQOneElectronOperator}}<\_Scalar,\ \_Vectorizer,\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_one_electron_operator}{RSQOneElectronOperator<\_Scalar,\ \_Vectorizer>}}>::SimpleSQOneElectronOperator;}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00064\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Conversions\ to\ spin\ components}}
+\DoxyCodeLine{00065\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator_component}{USQOneElectronOperatorComponent<Scalar,\ Vectorizer>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_one_electron_operator_af0601cd89fae72421d83a4531e51cd15}{alpha}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Since\ f\_pq\ =\ f\_\{p\ alpha,\ q\ alpha\},\ we\ can\ just\ wrap\ the\ one-\/electron\ integrals\ into\ the\ correct\ class.}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_storage_array}{StorageArray<SquareMatrix<Scalar>}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_one_electron_operator_a3f3a4af998454a23adbd4cf0f2008e70}{Vectorizer}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_ae0f9fa3ea86967e23c84a2f6ed581d00}{array}}\ \{this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a6833dc88eeab1e0f842a3d9154d7ace8}{allParameters}}(),\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_aa649706e0a27037de4fe8fe006455ef3}{vectorizer}}()\};}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator_component}{USQOneElectronOperatorComponent<Scalar,\ Vectorizer>}}\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_ae0f9fa3ea86967e23c84a2f6ed581d00}{array}}\};}
+\DoxyCodeLine{00075\ \ \ \ \ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00079\ \textcolor{comment}{\ \ \ \ \ *\ \ @return\ The\ beta-\/component\ of\ this\ restricted\ one-\/electron\ operator.}}
+\DoxyCodeLine{00080\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00081\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator_component}{USQOneElectronOperatorComponent<Scalar,\ Vectorizer>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_one_electron_operator_a6129b465599eb324cc9b5f9ad8c37eda}{beta}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ alpha-\/\ and\ beta-\/\ integrals\ are\ equal\ for\ a\ restricted\ operator,\ f\_pq\ =\ f\_\{p\ alpha,\ q\ alpha\}\ =\ f\_\{p\ beta,\ q\_beta\}.}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_one_electron_operator_af0601cd89fae72421d83a4531e51cd15}{alpha}}();}
+\DoxyCodeLine{00085\ \ \ \ \ \}}
+\DoxyCodeLine{00086\ \};\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00090\ \textcolor{comment}{\ *\ \ MARK:\ Convenience\ aliases}}
+\DoxyCodeLine{00091\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{comment}{//\ A\ scalar-\/like\ RSQOneElectronOperator,\ i.e.\ with\ scalar-\/like\ access.}}
+\DoxyCodeLine{00094\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00095\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_one_electron_operator}{ScalarRSQOneElectronOperator}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_one_electron_operator}{RSQOneElectronOperator<Scalar,\ ScalarVectorizer>}};}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{comment}{//\ A\ vector-\/like\ RSQOneElectronOperator,\ i.e.\ with\ vector-\/like\ access.}}
+\DoxyCodeLine{00098\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00099\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_one_electron_operator}{VectorRSQOneElectronOperator}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_one_electron_operator}{RSQOneElectronOperator<Scalar,\ VectorVectorizer>}};}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \textcolor{comment}{//\ A\ matrix-\/like\ RSQOneElectronOperator,\ i.e.\ with\ matrix-\/like\ access.}}
+\DoxyCodeLine{00102\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar>}
+\DoxyCodeLine{00103\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_one_electron_operator}{MatrixRSQOneElectronOperator}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_one_electron_operator}{RSQOneElectronOperator<Scalar,\ MatrixVectorizer>}};}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \textcolor{comment}{//\ A\ tensor-\/like\ RSQOneElectronOperator,\ i.e.\ with\ tensor-\/like\ access.}}
+\DoxyCodeLine{00106\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar,\ \textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00107\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_one_electron_operator}{TensorRSQOneElectronOperator}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_one_electron_operator}{RSQOneElectronOperator<Scalar,\ TensorVectorizer<N>}}>;}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00111\ \textcolor{comment}{\ *\ \ MARK:\ Operator\ traits}}
+\DoxyCodeLine{00112\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00120\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar,\ \textcolor{keyword}{typename}\ Vectorizer>}
+\DoxyCodeLine{00121\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_g_q_c_p_1_1_operator_traits}{OperatorTraits}}<\mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_one_electron_operator}{RSQOneElectronOperator}}<Scalar,\ Vectorizer>>\ \{}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{comment}{//\ A\ type\ that\ corresponds\ to\ the\ scalar\ version\ of\ the\ associated\ restricted\ one-\/electron\ operator\ type.}}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_one_electron_operator}{ScalarOperator}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_one_electron_operator}{ScalarRSQOneElectronOperator<Scalar>}};}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ transformation\ that\ is\ naturally\ associated\ to\ an\ `RSQOneElectronOperator`.}}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{Transformation}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{RTransformation<Scalar>}};}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ the\ one-\/particle\ density\ matrix\ that\ is\ naturally\ associated\ an\ `RSQOneElectronOperator`.}}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_orbital1_d_m}{OneDM}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital1_d_m}{Orbital1DM<Scalar>}};}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ the\ two-\/particle\ density\ matrix\ that\ is\ naturally\ associated\ an\ `RSQOneElectronOperator`.}}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_orbital2_d_m}{TwoDM}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital2_d_m}{Orbital2DM<Scalar>}};}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{comment}{//\ The\ type\ used\ to\ encapsulate\ the\ Mulliken\ domain.}}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_r_mulliken_domain}{MullikenDomain}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_mulliken_domain}{RMullikenDomain<Scalar>}};}
+\DoxyCodeLine{00137\ \};}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00141\ \textcolor{comment}{\ *\ \ MARK:\ BasisTransformableTraits}}
+\DoxyCodeLine{00142\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00147\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar,\ \textcolor{keyword}{typename}\ Vectorizer>}
+\DoxyCodeLine{00148\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_g_q_c_p_1_1_basis_transformable_traits}{BasisTransformableTraits}}<\mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_one_electron_operator}{RSQOneElectronOperator}}<Scalar,\ Vectorizer>>\ \{}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ transformation\ that\ is\ naturally\ associated\ to\ an\ `RSQOneElectronOperator`.}}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{Transformation}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{RTransformation<Scalar>}};}
+\DoxyCodeLine{00152\ \};}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00156\ \textcolor{comment}{\ *\ \ MARK:\ JacobiRotatableTraits}}
+\DoxyCodeLine{00157\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00162\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Scalar,\ \textcolor{keyword}{typename}\ Vectorizer>}
+\DoxyCodeLine{00163\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_g_q_c_p_1_1_jacobi_rotatable_traits}{JacobiRotatableTraits}}<\mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_one_electron_operator}{RSQOneElectronOperator}}<Scalar,\ Vectorizer>>\ \{}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ Jacobi\ rotation\ for\ which\ the\ Jacobi\ rotation\ should\ be\ defined.}}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_rotation}{JacobiRotationType}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_rotation}{JacobiRotation}};}
+\DoxyCodeLine{00167\ \};}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

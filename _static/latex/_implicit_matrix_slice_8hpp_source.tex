@@ -1,0 +1,182 @@
+\hypertarget{_implicit_matrix_slice_8hpp_source}{}\doxysection{Implicit\+Matrix\+Slice.\+hpp}
+\label{_implicit_matrix_slice_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitMatrixSlice.hpp}}
+\mbox{\hyperlink{_implicit_matrix_slice_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_matrix_8hpp}{Mathematical/Representation/Matrix.hpp}}"{}}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <numeric>}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar>}
+\DoxyCodeLine{00038\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{ImplicitMatrixSlice}}\ \{}
+\DoxyCodeLine{00039\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a514de4b6de54f817d2d76ca80da80856}{Scalar}}\ =\ \_Scalar;}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00044\ \ \ \ \ std::map<size\_t,\ size\_t>\ rows\_implicit\_to\_dense;\ \ \textcolor{comment}{//\ maps\ the\ row\ indices\ of\ the\ implicit\ matrix\ to\ the\ row\ indices\ of\ the\ dense\ representation\ of\ the\ slice}}
+\DoxyCodeLine{00045\ \ \ \ \ std::map<size\_t,\ size\_t>\ cols\_implicit\_to\_dense;\ \ \textcolor{comment}{//\ maps\ the\ column\ indices\ of\ the\ implicit\ matrix\ to\ the\ column\ indices\ of\ the\ dense\ representation\ of\ the\ slice}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<Scalar>}}\ M;\ \ \textcolor{comment}{//\ the\ dense\ representation\ of\ the\ slice}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00052\ \textcolor{comment}{\ \ \ \ \ *\ \ CONSTRUCTORS}}
+\DoxyCodeLine{00053\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_afa40af129ba899491054271b8cae6d3c}{ImplicitMatrixSlice}}(\textcolor{keyword}{const}\ std::map<size\_t,\ size\_t>\&\ rows\_implicit\_to\_dense,\ \textcolor{keyword}{const}\ std::map<size\_t,\ size\_t>\&\ cols\_implicit\_to\_dense,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<Scalar>}}\&\ M)\ :}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ rows\_implicit\_to\_dense\ \{rows\_implicit\_to\_dense\},}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ cols\_implicit\_to\_dense\ \{cols\_implicit\_to\_dense\},}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ M\ \{M\}\ \{}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ the\ maps\ are\ consistent\ with\ the\ dense\ representation\ of\ the\ slice.}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>rows\_implicit\_to\_dense.size()\ !=\ this-\/>M.rows())\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}ImplicitMatrixSlice(const\ std::map<size\_t,\ size\_t>\&,\ const\ std::map<size\_t,\ size\_t>\&,\ const\ MatrixX<Scalar>\&):\ The\ given\ dense\ representation\ of\ the\ slice\ does\ not\ have\ a\ compatible\ number\ of\ rows."{}});}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>cols\_implicit\_to\_dense.size()\ !=\ this-\/>M.cols())\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}ImplicitMatrixSlice(const\ std::map<size\_t,\ size\_t>\&,\ const\ std::map<size\_t,\ size\_t>\&,\ const\ MatrixX<Scalar>\&):\ The\ given\ dense\ representation\ of\ the\ slice\ does\ not\ have\ a\ compatible\ number\ of\ columns."{}});}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00075\ \ \ \ \ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a0771fa9d0f5c2e4e83e60dab9d1bda71}{ImplicitMatrixSlice}}(\textcolor{keyword}{const}\ std::map<size\_t,\ size\_t>\&\ rows\_implicit\_to\_dense,\ \textcolor{keyword}{const}\ std::map<size\_t,\ size\_t>\&\ cols\_implicit\_to\_dense)\ :}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{ImplicitMatrixSlice}}(rows\_implicit\_to\_dense,\ cols\_implicit\_to\_dense,}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX}}<\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a514de4b6de54f817d2d76ca80da80856}{Scalar}}>::Zero(rows\_implicit\_to\_dense.size(),\ cols\_implicit\_to\_dense.size()))\ \{\}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00092\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_af0f9b6279f0d4960a6597882a2963bd4}{ImplicitMatrixSlice}}()\ :}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ a\ named\ constructor\ for\ the\ default\ initialization.}}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{ImplicitMatrixSlice}}(\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{ImplicitMatrixSlice}}<\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a514de4b6de54f817d2d76ca80da80856}{Scalar}}>::\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a02cdae1f1712eb1d5ebad4ff22e7886e}{ZeroFromIndices}}(\{\},\ \{\}))\ \{\}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00098\ \textcolor{comment}{\ \ \ \ \ *\ \ NAMED\ CONSTRUCTORS}}
+\DoxyCodeLine{00099\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{ImplicitMatrixSlice<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a252ecf2d78c4bf418f1022e0e59758a2}{FromBlockRanges}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ row\_start,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ row\_end,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ col\_start,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ col\_end,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<Scalar>}}\&\ M)\ \{}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Convert\ the\ ranges\ into\ allowed\ row\ and\ column\ indices\ of\ the\ implicit\ matrix,\ and\ then\ use\ another\ named\ constructor.}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ std::vector<size\_t>\ row\_indices(row\_end\ -\/\ row\_start);}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ std::iota(row\_indices.begin(),\ row\_indices.end(),\ row\_start);}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ std::vector<size\_t>\ col\_indices(col\_end\ -\/\ col\_start);}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ std::iota(col\_indices.begin(),\ col\_indices.end(),\ col\_start);}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_ac2a8600cf5ace10e85ed82e9f254eb0b}{ImplicitMatrixSlice<Scalar>::FromIndices}}(row\_indices,\ col\_indices,\ M);}
+\DoxyCodeLine{00122\ \ \ \ \ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{ImplicitMatrixSlice<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_ac2a8600cf5ace10e85ed82e9f254eb0b}{FromIndices}}(\textcolor{keyword}{const}\ std::vector<size\_t>\&\ row\_indices,\ \textcolor{keyword}{const}\ std::vector<size\_t>\&\ col\_indices,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<Scalar>}}\&\ M)\ \{}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Loop\ over\ all\ row\ and\ column\ indices,\ mapping\ them\ to\ the\ indices\ of\ the\ dense\ representation\ of\ the\ slice.}}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ std::map<size\_t,\ size\_t>\ rows\_map;}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ dense\_row\_index\ =\ 0;\ \ \textcolor{comment}{//\ row\ index\ in\ the\ dense\ representation\ of\ the\ slice}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ implicit\_row\_index\ :\ row\_indices)\ \{}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ rows\_map[implicit\_row\_index]\ =\ dense\_row\_index;}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ dense\_row\_index++;\ \ \textcolor{comment}{//\ the\ dense\ indices\ are\ contiguous}}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ std::map<size\_t,\ size\_t>\ cols\_map;}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ dense\_col\_index\ =\ 0;\ \ \textcolor{comment}{//\ column\ index\ in\ the\ dense\ representation\ of\ the\ slice}}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ implicit\_col\_index\ :\ col\_indices)\ \{}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ cols\_map[implicit\_col\_index]\ =\ dense\_col\_index;}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ dense\_col\_index++;\ \ \textcolor{comment}{//\ the\ dense\ indices\ are\ contiguous}}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{ImplicitMatrixSlice<Scalar>}}(rows\_map,\ cols\_map,\ M);}
+\DoxyCodeLine{00154\ \ \ \ \ \}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{ImplicitMatrixSlice<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a59c0f2df02ccf678053110fdfb62ca61}{ZeroFromBlockRanges}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ row\_start,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ row\_end,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ col\_start,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ col\_end)\ \{}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ the\ zero\ dense\ representation\ of\ the\ slice\ and\ then\ use\ another\ named\ constructor.}}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ rows\ =\ row\_end\ -\/\ row\_start;}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ cols\ =\ col\_end\ -\/\ col\_start;}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<Scalar>}}\ M\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<Scalar>::Zero}}(rows,\ cols);}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a252ecf2d78c4bf418f1022e0e59758a2}{ImplicitMatrixSlice<Scalar>::FromBlockRanges}}(row\_start,\ row\_end,\ col\_start,\ col\_end,\ M);}
+\DoxyCodeLine{00176\ \ \ \ \ \}}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{ImplicitMatrixSlice<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a02cdae1f1712eb1d5ebad4ff22e7886e}{ZeroFromIndices}}(\textcolor{keyword}{const}\ std::vector<size\_t>\&\ row\_indices,\ \textcolor{keyword}{const}\ std::vector<size\_t>\&\ col\_indices)\ \{}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Zero-\/initialize\ a\ matrix\ with\ the\ number\ of\ rows\ and\ columns\ and\ use\ a\ different\ constructor.}}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<Scalar>}}\ M\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<Scalar>::Zero}}(row\_indices.size(),\ col\_indices.size());}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_ac2a8600cf5ace10e85ed82e9f254eb0b}{ImplicitMatrixSlice<Scalar>::FromIndices}}(row\_indices,\ col\_indices,\ M);}
+\DoxyCodeLine{00193\ \ \ \ \ \}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00197\ \textcolor{comment}{\ \ \ \ \ *\ \ OPERATORS}}
+\DoxyCodeLine{00198\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00208\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a514de4b6de54f817d2d76ca80da80856}{Scalar}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a2a98a04bc7cbcfda3b2c7c8a8d4b334c}{operator()}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ row,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ col)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Map\ the\ implicit\ row\ and\ column\ indices\ to\ the\ row\ and\ column\ indices\ of\ the\ dense\ representation\ of\ this\ slice\ and\ access\ accordingly.}}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ i\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_ad12f4e99ff37cc14b171db4456d80c9f}{denseIndexOfRow}}(row);}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ j\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a6df4decf4762ca9ce020b49e08728f45}{denseIndexOfColumn}}(col);}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>M(i,\ j);}
+\DoxyCodeLine{00215\ \ \ \ \ \}}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00226\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a514de4b6de54f817d2d76ca80da80856}{Scalar}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a4005484c8a1d4997c861aed2c5bfa352}{operator()}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ row,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ col)\ \{}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Map\ the\ implicit\ row\ and\ column\ indices\ to\ the\ row\ and\ column\ indices\ of\ the\ dense\ representation\ of\ this\ slice\ and\ access\ accordingly.}}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ i\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_ad12f4e99ff37cc14b171db4456d80c9f}{denseIndexOfRow}}(row);}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ j\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a6df4decf4762ca9ce020b49e08728f45}{denseIndexOfColumn}}(col);}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>M(i,\ j);}
+\DoxyCodeLine{00233\ \ \ \ \ \}}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00237\ \textcolor{comment}{\ \ \ \ \ *\ \ PUBLIC\ METHODS}}
+\DoxyCodeLine{00238\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a091cc8d07987a8755ece129fd6632048}{asMatrix}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>M;\ \}}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00248\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a15b3ff5297e5c06f5f944f770ad485e3}{asVector}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>M.pairWiseReduced();\ \}}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00253\ \ \ \ \ \textcolor{keyword}{const}\ std::map<size\_t,\ size\_t>\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a8b36f2ba7efc81c829bcd1219a35ff89}{columnIndexMap}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>cols\_implicit\_to\_dense;\ \}}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00262\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_a6df4decf4762ca9ce020b49e08728f45}{denseIndexOfColumn}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ col)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>cols\_implicit\_to\_dense.at(col);\ \}}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00271\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_ad12f4e99ff37cc14b171db4456d80c9f}{denseIndexOfRow}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ row)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>rows\_implicit\_to\_dense.at(row);\ \}}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00276\ \ \ \ \ \textcolor{keyword}{const}\ std::map<size\_t,\ size\_t>\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice_ac7d124b69a230e006bea9caff9c585dc}{rowIndexMap}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>rows\_implicit\_to\_dense;\ \}}
+\DoxyCodeLine{00277\ \};}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

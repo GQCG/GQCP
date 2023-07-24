@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_pure_u_s_q_two_electron_operator_component_3_01_5951181e4bf7687a9c1d9d69dbbdf843" kind="struct" language="C++" prot="public">
     <compoundname>GQCP::JacobiRotatableTraits&lt; PureUSQTwoElectronOperatorComponent&lt; Scalar, Vectorizer &gt; &gt;</compoundname>
     <includes refid="_pure_u_s_q_two_electron_operator_component_8hpp" local="no">PureUSQTwoElectronOperatorComponent.hpp</includes>
@@ -17,6 +17,7 @@
         <definition>using GQCP::JacobiRotatableTraits&lt; PureUSQTwoElectronOperatorComponent&lt; Scalar, Vectorizer &gt; &gt;::JacobiRotationType =  JacobiRotation</definition>
         <argsstring></argsstring>
         <name>JacobiRotationType</name>
+        <qualifiedname>GQCP::JacobiRotatableTraits&lt; PureUSQTwoElectronOperatorComponent&lt; Scalar, Vectorizer &gt; &gt;::JacobiRotationType</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>

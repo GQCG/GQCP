@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_storage_array" kind="class" language="C++" prot="public">
     <compoundname>GQCP::StorageArray</compoundname>
     <includes refid="_storage_array_8hpp" local="no">StorageArray.hpp</includes>
@@ -17,6 +17,7 @@
         <definition>using GQCP::StorageArray&lt; _Element, _Vectorizer &gt;::Element =  _Element</definition>
         <argsstring></argsstring>
         <name>Element</name>
+        <qualifiedname>GQCP::StorageArray::Element</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -30,6 +31,7 @@
         <definition>using GQCP::StorageArray&lt; _Element, _Vectorizer &gt;::Vectorizer =  _Vectorizer</definition>
         <argsstring></argsstring>
         <name>Vectorizer</name>
+        <qualifiedname>GQCP::StorageArray::Vectorizer</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -43,6 +45,7 @@
         <definition>using GQCP::StorageArray&lt; _Element, _Vectorizer &gt;::Self =  StorageArray&lt;Element, Vectorizer&gt;</definition>
         <argsstring></argsstring>
         <name>Self</name>
+        <qualifiedname>GQCP::StorageArray::Self</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -58,6 +61,7 @@
         <definition>constexpr auto GQCP::StorageArray&lt; _Element, _Vectorizer &gt;::NumberOfAxes</definition>
         <argsstring></argsstring>
         <name>NumberOfAxes</name>
+        <qualifiedname>GQCP::StorageArray::NumberOfAxes</qualifiedname>
         <initializer>= Vectorizer::NumberOfAxes</initializer>
         <briefdescription>
         </briefdescription>
@@ -74,6 +78,7 @@
         <definition>std::vector&lt;Element&gt; GQCP::StorageArray&lt; _Element, _Vectorizer &gt;::m_elements</definition>
         <argsstring></argsstring>
         <name>m_elements</name>
+        <qualifiedname>GQCP::StorageArray::m_elements</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -87,6 +92,7 @@
         <definition>Vectorizer GQCP::StorageArray&lt; _Element, _Vectorizer &gt;::m_vectorizer</definition>
         <argsstring></argsstring>
         <name>m_vectorizer</name>
+        <qualifiedname>GQCP::StorageArray::m_vectorizer</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -102,6 +108,7 @@
         <definition>GQCP::StorageArray&lt; _Element, _Vectorizer &gt;::StorageArray</definition>
         <argsstring>(const std::vector&lt; Element &gt; &amp;elements, const Vectorizer &amp;vectorizer)</argsstring>
         <name>StorageArray</name>
+        <qualifiedname>GQCP::StorageArray::StorageArray</qualifiedname>
         <param>
           <type>const std::vector&lt; <ref refid="class_g_q_c_p_1_1_storage_array_1a25d46a7fbdcbedeb31475cf694edc40c" kindref="member">Element</ref> &gt; &amp;</type>
           <declname>elements</declname>
@@ -142,6 +149,7 @@
         <definition>GQCP::StorageArray&lt; _Element, _Vectorizer &gt;::StorageArray</definition>
         <argsstring>(const Element &amp;element, const Vectorizer &amp;vectorizer)</argsstring>
         <name>StorageArray</name>
+        <qualifiedname>GQCP::StorageArray::StorageArray</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_storage_array_1a25d46a7fbdcbedeb31475cf694edc40c" kindref="member">Element</ref> &amp;</type>
           <declname>element</declname>
@@ -182,6 +190,7 @@
         <definition>GQCP::StorageArray&lt; _Element, _Vectorizer &gt;::StorageArray</definition>
         <argsstring>(const Vectorizer &amp;vectorizer)</argsstring>
         <name>StorageArray</name>
+        <qualifiedname>GQCP::StorageArray::StorageArray</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_storage_array_1ac25750c505083e8acf20527e578f163d" kindref="member">Vectorizer</ref> &amp;</type>
           <declname>vectorizer</declname>
@@ -217,6 +226,7 @@
         <definition>GQCP::StorageArray&lt; _Element, _Vectorizer &gt;::StorageArray</definition>
         <argsstring>(const std::array&lt; Element, N &gt; &amp;elements, const Vectorizer &amp;vectorizer)</argsstring>
         <name>StorageArray</name>
+        <qualifiedname>GQCP::StorageArray::StorageArray</qualifiedname>
         <param>
           <type>const std::array&lt; <ref refid="class_g_q_c_p_1_1_storage_array_1a25d46a7fbdcbedeb31475cf694edc40c" kindref="member">Element</ref>, N &gt; &amp;</type>
           <declname>elements</declname>
@@ -276,6 +286,7 @@
         <definition>GQCP::StorageArray&lt; _Element, _Vectorizer &gt;::operator Element</definition>
         <argsstring>() const</argsstring>
         <name>operator Element</name>
+        <qualifiedname>GQCP::StorageArray::operator Element</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -286,7 +297,7 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/StorageArray.hpp" line="119" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/StorageArray.hpp" bodystart="119" bodyend="121"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_storage_array_1af5c33456e2f3996561c1e3f5e469c158" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_storage_array_1a979fee6a72fbe6d882e356b41d32e644" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename...</type>
@@ -295,9 +306,10 @@
           </param>
         </templateparamlist>
         <type>const <ref refid="class_g_q_c_p_1_1_storage_array_1a25d46a7fbdcbedeb31475cf694edc40c" kindref="member">Element</ref> &amp;</type>
-        <definition>const Element&amp; GQCP::StorageArray&lt; _Element, _Vectorizer &gt;::operator()</definition>
+        <definition>const Element &amp; GQCP::StorageArray&lt; _Element, _Vectorizer &gt;::operator()</definition>
         <argsstring>(const Indices &amp;... indices) const</argsstring>
         <name>operator()</name>
+        <qualifiedname>GQCP::StorageArray::operator()</qualifiedname>
         <param>
           <type>const Indices &amp;...</type>
           <declname>indices</declname>
@@ -322,7 +334,7 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/StorageArray.hpp" line="134" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/StorageArray.hpp" bodystart="134" bodyend="146"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_storage_array_1a63ba4fe0ff40dfd65bfcf222edb67db7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_storage_array_1a5e29cce531ea15aabe47b058c8d35544" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename...</type>
@@ -331,9 +343,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="class_g_q_c_p_1_1_storage_array_1a25d46a7fbdcbedeb31475cf694edc40c" kindref="member">Element</ref> &amp;</type>
-        <definition>Element&amp; GQCP::StorageArray&lt; _Element, _Vectorizer &gt;::operator()</definition>
+        <definition>Element &amp; GQCP::StorageArray&lt; _Element, _Vectorizer &gt;::operator()</definition>
         <argsstring>(const Indices &amp;... indices)</argsstring>
         <name>operator()</name>
+        <qualifiedname>GQCP::StorageArray::operator()</qualifiedname>
         <param>
           <type>const Indices &amp;...</type>
           <declname>indices</declname>
@@ -358,11 +371,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/StorageArray.hpp" line="155" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/StorageArray.hpp" bodystart="155" bodyend="155"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_storage_array_1a60c7738ff7d96cb95a742d46cbb9c90c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_storage_array_1a5878511b2a6029a5f35382b30d54eea6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const std::vector&lt; <ref refid="class_g_q_c_p_1_1_storage_array_1a25d46a7fbdcbedeb31475cf694edc40c" kindref="member">Element</ref> &gt; &amp;</type>
-        <definition>const std::vector&lt;Element&gt;&amp; GQCP::StorageArray&lt; _Element, _Vectorizer &gt;::elements</definition>
+        <definition>const std::vector&lt; Element &gt; &amp; GQCP::StorageArray&lt; _Element, _Vectorizer &gt;::elements</definition>
         <argsstring>() const</argsstring>
         <name>elements</name>
+        <qualifiedname>GQCP::StorageArray::elements</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -374,11 +388,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/StorageArray.hpp" line="161" column="23" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/StorageArray.hpp" bodystart="161" bodyend="161"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_storage_array_1ae1a8728a102c0db1e203b25b33711eed" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_storage_array_1a15f30ba938415ddc4efd1f150d76db29" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>std::vector&lt; <ref refid="class_g_q_c_p_1_1_storage_array_1a25d46a7fbdcbedeb31475cf694edc40c" kindref="member">Element</ref> &gt; &amp;</type>
-        <definition>std::vector&lt;Element&gt;&amp; GQCP::StorageArray&lt; _Element, _Vectorizer &gt;::elements</definition>
+        <definition>std::vector&lt; Element &gt; &amp; GQCP::StorageArray&lt; _Element, _Vectorizer &gt;::elements</definition>
         <argsstring>()</argsstring>
         <name>elements</name>
+        <qualifiedname>GQCP::StorageArray::elements</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -390,11 +405,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/StorageArray.hpp" line="167" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/StorageArray.hpp" bodystart="167" bodyend="167"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_storage_array_1a2169f2d6a312916bf31d08ca769f9c09" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_storage_array_1a6b27a1a4302287cb5584c8f5c06950b4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_storage_array_1ac25750c505083e8acf20527e578f163d" kindref="member">Vectorizer</ref> &amp;</type>
-        <definition>const Vectorizer&amp; GQCP::StorageArray&lt; _Element, _Vectorizer &gt;::vectorizer</definition>
+        <definition>const Vectorizer &amp; GQCP::StorageArray&lt; _Element, _Vectorizer &gt;::vectorizer</definition>
         <argsstring>() const</argsstring>
         <name>vectorizer</name>
+        <qualifiedname>GQCP::StorageArray::vectorizer</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -406,7 +422,7 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/StorageArray.hpp" line="177" column="22" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/StorageArray.hpp" bodystart="177" bodyend="177"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_storage_array_1a2cb80d53a35c3842541cc95d5737f707" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_storage_array_1a914d026e95fed27a2b0133f3aea4db99" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z</type>
@@ -414,9 +430,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="namespace_g_q_c_p_1a75056d5799528c495b717e21cccc75f7" kindref="member">VectorVectorizer</ref> &gt;::value, <ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; <ref refid="class_g_q_c_p_1_1_storage_array_1a25d46a7fbdcbedeb31475cf694edc40c" kindref="member">Element</ref> &gt; &gt;</type>
-        <definition>enable_if_t&lt;std::is_same&lt;Z, VectorVectorizer&gt;::value, VectorX&lt;Element&gt; &gt; GQCP::StorageArray&lt; _Element, _Vectorizer &gt;::asVector</definition>
+        <definition>enable_if_t&lt; std::is_same&lt; Z, VectorVectorizer &gt;::value, VectorX&lt; Element &gt; &gt; GQCP::StorageArray&lt; _Element, _Vectorizer &gt;::asVector</definition>
         <argsstring>()</argsstring>
         <name>asVector</name>
+        <qualifiedname>GQCP::StorageArray::asVector</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -461,23 +478,23 @@
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/StorageArray.hpp" line="38" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/StorageArray.hpp" bodystart="38" bodyend="194"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_storage_array_1a2cb80d53a35c3842541cc95d5737f707" prot="public" virt="non-virtual"><scope>GQCP::StorageArray</scope><name>asVector</name></member>
+      <member refid="class_g_q_c_p_1_1_storage_array_1a914d026e95fed27a2b0133f3aea4db99" prot="public" virt="non-virtual"><scope>GQCP::StorageArray</scope><name>asVector</name></member>
       <member refid="class_g_q_c_p_1_1_storage_array_1a25d46a7fbdcbedeb31475cf694edc40c" prot="public" virt="non-virtual"><scope>GQCP::StorageArray</scope><name>Element</name></member>
-      <member refid="class_g_q_c_p_1_1_storage_array_1a60c7738ff7d96cb95a742d46cbb9c90c" prot="public" virt="non-virtual"><scope>GQCP::StorageArray</scope><name>elements</name></member>
-      <member refid="class_g_q_c_p_1_1_storage_array_1ae1a8728a102c0db1e203b25b33711eed" prot="public" virt="non-virtual"><scope>GQCP::StorageArray</scope><name>elements</name></member>
+      <member refid="class_g_q_c_p_1_1_storage_array_1a5878511b2a6029a5f35382b30d54eea6" prot="public" virt="non-virtual"><scope>GQCP::StorageArray</scope><name>elements</name></member>
+      <member refid="class_g_q_c_p_1_1_storage_array_1a15f30ba938415ddc4efd1f150d76db29" prot="public" virt="non-virtual"><scope>GQCP::StorageArray</scope><name>elements</name></member>
       <member refid="class_g_q_c_p_1_1_storage_array_1a237dfeb5befa1fff135cb409d7a3b9e5" prot="private" virt="non-virtual"><scope>GQCP::StorageArray</scope><name>m_elements</name></member>
       <member refid="class_g_q_c_p_1_1_storage_array_1ab5d8651e0e234dd6049cca4982d7bd59" prot="private" virt="non-virtual"><scope>GQCP::StorageArray</scope><name>m_vectorizer</name></member>
       <member refid="class_g_q_c_p_1_1_storage_array_1a79bca4884e8981d1ba7a378178d311d0" prot="public" virt="non-virtual"><scope>GQCP::StorageArray</scope><name>NumberOfAxes</name></member>
       <member refid="class_g_q_c_p_1_1_storage_array_1a1afead824c6f09ba10cc74dbd9b4b3cb" prot="public" virt="non-virtual"><scope>GQCP::StorageArray</scope><name>operator Element</name></member>
-      <member refid="class_g_q_c_p_1_1_storage_array_1af5c33456e2f3996561c1e3f5e469c158" prot="public" virt="non-virtual"><scope>GQCP::StorageArray</scope><name>operator()</name></member>
-      <member refid="class_g_q_c_p_1_1_storage_array_1a63ba4fe0ff40dfd65bfcf222edb67db7" prot="public" virt="non-virtual"><scope>GQCP::StorageArray</scope><name>operator()</name></member>
+      <member refid="class_g_q_c_p_1_1_storage_array_1a979fee6a72fbe6d882e356b41d32e644" prot="public" virt="non-virtual"><scope>GQCP::StorageArray</scope><name>operator()</name></member>
+      <member refid="class_g_q_c_p_1_1_storage_array_1a5e29cce531ea15aabe47b058c8d35544" prot="public" virt="non-virtual"><scope>GQCP::StorageArray</scope><name>operator()</name></member>
       <member refid="class_g_q_c_p_1_1_storage_array_1aa4796adbc9dcca9ac7e6f1f480e343c6" prot="public" virt="non-virtual"><scope>GQCP::StorageArray</scope><name>Self</name></member>
       <member refid="class_g_q_c_p_1_1_storage_array_1a0aade5a8ec10e2079a85e92afb2a3d92" prot="public" virt="non-virtual"><scope>GQCP::StorageArray</scope><name>StorageArray</name></member>
       <member refid="class_g_q_c_p_1_1_storage_array_1af8f1cb9ce64ff5cff566a4e18a48f4d4" prot="public" virt="non-virtual"><scope>GQCP::StorageArray</scope><name>StorageArray</name></member>
       <member refid="class_g_q_c_p_1_1_storage_array_1a83b18d73072f0a22c4850bb3f48893ec" prot="public" virt="non-virtual"><scope>GQCP::StorageArray</scope><name>StorageArray</name></member>
       <member refid="class_g_q_c_p_1_1_storage_array_1a880c6a1f3e9a64f2585ff6905a9ce08f" prot="public" virt="non-virtual"><scope>GQCP::StorageArray</scope><name>StorageArray</name></member>
       <member refid="class_g_q_c_p_1_1_storage_array_1ac25750c505083e8acf20527e578f163d" prot="public" virt="non-virtual"><scope>GQCP::StorageArray</scope><name>Vectorizer</name></member>
-      <member refid="class_g_q_c_p_1_1_storage_array_1a2169f2d6a312916bf31d08ca769f9c09" prot="public" virt="non-virtual"><scope>GQCP::StorageArray</scope><name>vectorizer</name></member>
+      <member refid="class_g_q_c_p_1_1_storage_array_1a6b27a1a4302287cb5584c8f5c06950b4" prot="public" virt="non-virtual"><scope>GQCP::StorageArray</scope><name>vectorizer</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

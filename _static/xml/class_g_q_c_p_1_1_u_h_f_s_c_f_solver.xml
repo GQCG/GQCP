@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_u_h_f_s_c_f_solver" kind="class" language="C++" prot="public">
     <compoundname>GQCP::UHFSCFSolver</compoundname>
     <includes refid="_u_h_f_s_c_f_solver_8hpp" local="no">UHFSCFSolver.hpp</includes>
@@ -14,6 +14,7 @@
         <definition>using GQCP::UHFSCFSolver&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
         <argsstring></argsstring>
         <name>Scalar</name>
+        <qualifiedname>GQCP::UHFSCFSolver::Scalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -24,11 +25,12 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="class_g_q_c_p_1_1_u_h_f_s_c_f_solver_1a5580b5d602ff4b82a0da4e292cac5c2c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_u_h_f_s_c_f_solver_1a13c92987ce4ee10791808b50c3add449" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_iterative_algorithm" kindref="compound">IterativeAlgorithm</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment" kindref="compound">UHFSCFEnvironment</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_h_f_s_c_f_solver_1aeea978898b8c8c57a9741f0e5a38fd78" kindref="member">Scalar</ref> &gt; &gt;</type>
-        <definition>static IterativeAlgorithm&lt;UHFSCFEnvironment&lt;Scalar&gt; &gt; GQCP::UHFSCFSolver&lt; _Scalar &gt;::DIIS</definition>
+        <definition>static IterativeAlgorithm&lt; UHFSCFEnvironment&lt; Scalar &gt; &gt; GQCP::UHFSCFSolver&lt; _Scalar &gt;::DIIS</definition>
         <argsstring>(const size_t minimum_subspace_dimension=6, const size_t maximum_subspace_dimension=6, const double threshold=1.0e-08, const size_t maximum_number_of_iterations=128)</argsstring>
         <name>DIIS</name>
+        <qualifiedname>GQCP::UHFSCFSolver::DIIS</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>minimum_subspace_dimension</declname>
@@ -93,11 +95,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFSCFSolver.hpp" line="60" column="31" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFSCFSolver.hpp" bodystart="60" bodyend="78"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_u_h_f_s_c_f_solver_1abf4b5d3d91c29d01762e89432887f2c0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_u_h_f_s_c_f_solver_1a8e0e4884fe916c6e63098b4677234b4b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_iterative_algorithm" kindref="compound">IterativeAlgorithm</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment" kindref="compound">UHFSCFEnvironment</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_h_f_s_c_f_solver_1aeea978898b8c8c57a9741f0e5a38fd78" kindref="member">Scalar</ref> &gt; &gt;</type>
-        <definition>static IterativeAlgorithm&lt;UHFSCFEnvironment&lt;Scalar&gt; &gt; GQCP::UHFSCFSolver&lt; _Scalar &gt;::Plain</definition>
+        <definition>static IterativeAlgorithm&lt; UHFSCFEnvironment&lt; Scalar &gt; &gt; GQCP::UHFSCFSolver&lt; _Scalar &gt;::Plain</definition>
         <argsstring>(const double threshold=1.0e-08, const size_t maximum_number_of_iterations=128)</argsstring>
         <name>Plain</name>
+        <qualifiedname>GQCP::UHFSCFSolver::Plain</qualifiedname>
         <param>
           <type>const double</type>
           <declname>threshold</declname>
@@ -160,8 +163,8 @@
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFSCFSolver.hpp" line="42" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFSCFSolver.hpp" bodystart="42" bodyend="105"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_solver_1a5580b5d602ff4b82a0da4e292cac5c2c" prot="public" virt="non-virtual"><scope>GQCP::UHFSCFSolver</scope><name>DIIS</name></member>
-      <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_solver_1abf4b5d3d91c29d01762e89432887f2c0" prot="public" virt="non-virtual"><scope>GQCP::UHFSCFSolver</scope><name>Plain</name></member>
+      <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_solver_1a13c92987ce4ee10791808b50c3add449" prot="public" virt="non-virtual"><scope>GQCP::UHFSCFSolver</scope><name>DIIS</name></member>
+      <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_solver_1a8e0e4884fe916c6e63098b4677234b4b" prot="public" virt="non-virtual"><scope>GQCP::UHFSCFSolver</scope><name>Plain</name></member>
       <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_solver_1aeea978898b8c8c57a9741f0e5a38fd78" prot="public" virt="non-virtual"><scope>GQCP::UHFSCFSolver</scope><name>Scalar</name></member>
     </listofallmembers>
   </compounddef>

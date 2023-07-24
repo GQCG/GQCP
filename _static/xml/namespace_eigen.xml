@@ -1,14 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="namespace_eigen" kind="namespace" language="C++">
     <compoundname>Eigen</compoundname>
     <innerclass refid="struct_eigen_1_1_num_traits_3_01_g_q_c_p_1_1_evaluable_linear_combination_3_01_coefficient_00_01_function_type_01_4_01_4" prot="public">Eigen::NumTraits&lt; GQCP::EvaluableLinearCombination&lt; Coefficient, FunctionType &gt; &gt;</innerclass>
-    <innerclass refid="struct_eigen_1_1_scalar_binary_op_traits_3_01_g_q_c_p_1_1_evaluable_linear_combination_3_01_coeff48761ced5368c95f2a826daa428cd26" prot="public">Eigen::ScalarBinaryOpTraits&lt; GQCP::EvaluableLinearCombination&lt; Coefficient, FunctionType &gt;, Coefficient, Eigen::internal::scalar_product_op&lt; GQCP::EvaluableLinearCombination&lt; Coefficient, FunctionType &gt;, Coefficient &gt; &gt;</innerclass>
     <innerclass refid="struct_eigen_1_1_scalar_binary_op_traits_3_01_coefficient_00_01_g_q_c_p_1_1_evaluable_linear_combf529400b11b6eb385709cf8e9d0cb16" prot="public">Eigen::ScalarBinaryOpTraits&lt; Coefficient, GQCP::EvaluableLinearCombination&lt; Coefficient, FunctionType &gt;, Eigen::internal::scalar_product_op&lt; Coefficient, GQCP::EvaluableLinearCombination&lt; Coefficient, FunctionType &gt; &gt; &gt;</innerclass>
+    <innerclass refid="struct_eigen_1_1_scalar_binary_op_traits_3_01_g_q_c_p_1_1_evaluable_linear_combination_3_01_coeff48761ced5368c95f2a826daa428cd26" prot="public">Eigen::ScalarBinaryOpTraits&lt; GQCP::EvaluableLinearCombination&lt; Coefficient, FunctionType &gt;, Coefficient, Eigen::internal::scalar_product_op&lt; GQCP::EvaluableLinearCombination&lt; Coefficient, FunctionType &gt;, Coefficient &gt; &gt;</innerclass>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" line="329" column="1"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/EvaluableLinearCombination.hpp" line="330" column="1"/>
   </compounddef>
 </doxygen>

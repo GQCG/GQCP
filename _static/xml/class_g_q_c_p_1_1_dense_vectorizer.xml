@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_dense_vectorizer" kind="class" language="C++" prot="public">
     <compoundname>GQCP::DenseVectorizer</compoundname>
     <includes refid="_dense_vectorizer_8hpp" local="no">DenseVectorizer.hpp</includes>
@@ -16,6 +16,7 @@
         <definition>Ordering GQCP::DenseVectorizer&lt; A &gt;::m_ordering</definition>
         <argsstring></argsstring>
         <name>m_ordering</name>
+        <qualifiedname>GQCP::DenseVectorizer::m_ordering</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -29,6 +30,7 @@
         <definition>std::array&lt;size_t, A&gt; GQCP::DenseVectorizer&lt; A &gt;::m_dimensions</definition>
         <argsstring></argsstring>
         <name>m_dimensions</name>
+        <qualifiedname>GQCP::DenseVectorizer::m_dimensions</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -42,6 +44,7 @@
         <definition>std::array&lt;size_t, A&gt; GQCP::DenseVectorizer&lt; A &gt;::m_strides</definition>
         <argsstring></argsstring>
         <name>m_strides</name>
+        <qualifiedname>GQCP::DenseVectorizer::m_strides</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -57,6 +60,7 @@
         <definition>constexpr auto GQCP::DenseVectorizer&lt; A &gt;::NumberOfAxes</definition>
         <argsstring></argsstring>
         <name>NumberOfAxes</name>
+        <qualifiedname>GQCP::DenseVectorizer::NumberOfAxes</qualifiedname>
         <initializer>= A</initializer>
         <briefdescription>
         </briefdescription>
@@ -73,6 +77,7 @@
         <definition>GQCP::DenseVectorizer&lt; A &gt;::DenseVectorizer</definition>
         <argsstring>(const std::array&lt; size_t, A &gt; &amp;dimensions, const Ordering ordering=Ordering::ColumnMajor)</argsstring>
         <name>DenseVectorizer</name>
+        <qualifiedname>GQCP::DenseVectorizer::DenseVectorizer</qualifiedname>
         <param>
           <type>const std::array&lt; size_t, A &gt; &amp;</type>
           <declname>dimensions</declname>
@@ -114,6 +119,7 @@
         <definition>GQCP::DenseVectorizer&lt; A &gt;::DenseVectorizer</definition>
         <argsstring>()</argsstring>
         <name>DenseVectorizer</name>
+        <qualifiedname>GQCP::DenseVectorizer::DenseVectorizer</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -128,6 +134,7 @@
         <definition>size_t GQCP::DenseVectorizer&lt; A &gt;::offset</definition>
         <argsstring>(const std::array&lt; size_t, A &gt; &amp;indices) const</argsstring>
         <name>offset</name>
+        <qualifiedname>GQCP::DenseVectorizer::offset</qualifiedname>
         <param>
           <type>const std::array&lt; size_t, A &gt; &amp;</type>
           <declname>indices</declname>
@@ -158,6 +165,7 @@
         <definition>size_t GQCP::DenseVectorizer&lt; A &gt;::dimension</definition>
         <argsstring>(const size_t axis) const</argsstring>
         <name>dimension</name>
+        <qualifiedname>GQCP::DenseVectorizer::dimension</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>axis</declname>
@@ -182,11 +190,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/DenseVectorizer.hpp" line="148" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/DenseVectorizer.hpp" bodystart="148" bodyend="154"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_dense_vectorizer_1ac78a975787d5b6467a7c5433614c7b9d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_dense_vectorizer_1a0eeac9172d90a9a7806bea1c21701c51" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const std::array&lt; size_t, A &gt; &amp;</type>
-        <definition>const std::array&lt;size_t, A&gt;&amp; GQCP::DenseVectorizer&lt; A &gt;::dimensions</definition>
+        <definition>const std::array&lt; size_t, A &gt; &amp; GQCP::DenseVectorizer&lt; A &gt;::dimensions</definition>
         <argsstring>() const</argsstring>
         <name>dimensions</name>
+        <qualifiedname>GQCP::DenseVectorizer::dimensions</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -203,6 +212,7 @@
         <definition>size_t GQCP::DenseVectorizer&lt; A &gt;::numberOfAxes</definition>
         <argsstring>() const</argsstring>
         <name>numberOfAxes</name>
+        <qualifiedname>GQCP::DenseVectorizer::numberOfAxes</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -219,6 +229,7 @@
         <definition>size_t GQCP::DenseVectorizer&lt; A &gt;::numberOfElements</definition>
         <argsstring>() const</argsstring>
         <name>numberOfElements</name>
+        <qualifiedname>GQCP::DenseVectorizer::numberOfElements</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -235,6 +246,7 @@
         <definition>size_t GQCP::DenseVectorizer&lt; A &gt;::stride</definition>
         <argsstring>(const size_t axis) const</argsstring>
         <name>stride</name>
+        <qualifiedname>GQCP::DenseVectorizer::stride</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>axis</declname>
@@ -259,11 +271,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/DenseVectorizer.hpp" line="182" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/DenseVectorizer.hpp" bodystart="182" bodyend="188"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_dense_vectorizer_1aff9da3e46ec3e9eb34c98d26b33edd39" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_dense_vectorizer_1aebfd28d96283cf99f3842202ee8be26a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const std::array&lt; size_t, A &gt; &amp;</type>
-        <definition>const std::array&lt;size_t, A&gt;&amp; GQCP::DenseVectorizer&lt; A &gt;::strides</definition>
+        <definition>const std::array&lt; size_t, A &gt; &amp; GQCP::DenseVectorizer&lt; A &gt;::strides</definition>
         <argsstring>() const</argsstring>
         <name>strides</name>
+        <qualifiedname>GQCP::DenseVectorizer::strides</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -302,7 +315,7 @@
       <member refid="class_g_q_c_p_1_1_dense_vectorizer_1ad7ea32c04b5fc8ba7f4ddfa882140625" prot="public" virt="non-virtual"><scope>GQCP::DenseVectorizer</scope><name>DenseVectorizer</name></member>
       <member refid="class_g_q_c_p_1_1_dense_vectorizer_1ae3532176463e4b0739df98172c5f4b67" prot="public" virt="non-virtual"><scope>GQCP::DenseVectorizer</scope><name>DenseVectorizer</name></member>
       <member refid="class_g_q_c_p_1_1_dense_vectorizer_1a28472ea97ca2632a3b0fa6a20435e00d" prot="public" virt="non-virtual"><scope>GQCP::DenseVectorizer</scope><name>dimension</name></member>
-      <member refid="class_g_q_c_p_1_1_dense_vectorizer_1ac78a975787d5b6467a7c5433614c7b9d" prot="public" virt="non-virtual"><scope>GQCP::DenseVectorizer</scope><name>dimensions</name></member>
+      <member refid="class_g_q_c_p_1_1_dense_vectorizer_1a0eeac9172d90a9a7806bea1c21701c51" prot="public" virt="non-virtual"><scope>GQCP::DenseVectorizer</scope><name>dimensions</name></member>
       <member refid="class_g_q_c_p_1_1_dense_vectorizer_1a77fd0c0c2d47e6a0e801ca67826d31d6" prot="private" virt="non-virtual"><scope>GQCP::DenseVectorizer</scope><name>m_dimensions</name></member>
       <member refid="class_g_q_c_p_1_1_dense_vectorizer_1a57e446e8ac36d052d7942256e0042498" prot="private" virt="non-virtual"><scope>GQCP::DenseVectorizer</scope><name>m_ordering</name></member>
       <member refid="class_g_q_c_p_1_1_dense_vectorizer_1a494fe8ebadbfacb197954784756b4a59" prot="private" virt="non-virtual"><scope>GQCP::DenseVectorizer</scope><name>m_strides</name></member>
@@ -311,7 +324,7 @@
       <member refid="class_g_q_c_p_1_1_dense_vectorizer_1a05907ab8cff671a7c0f95c068ac6babf" prot="public" virt="non-virtual"><scope>GQCP::DenseVectorizer</scope><name>numberOfElements</name></member>
       <member refid="class_g_q_c_p_1_1_dense_vectorizer_1a1ed21f7a475d6a73d0c870fce1a33abc" prot="public" virt="non-virtual"><scope>GQCP::DenseVectorizer</scope><name>offset</name></member>
       <member refid="class_g_q_c_p_1_1_dense_vectorizer_1aba1a78ae4da4afc01eccace066cccd3a" prot="public" virt="non-virtual"><scope>GQCP::DenseVectorizer</scope><name>stride</name></member>
-      <member refid="class_g_q_c_p_1_1_dense_vectorizer_1aff9da3e46ec3e9eb34c98d26b33edd39" prot="public" virt="non-virtual"><scope>GQCP::DenseVectorizer</scope><name>strides</name></member>
+      <member refid="class_g_q_c_p_1_1_dense_vectorizer_1aebfd28d96283cf99f3842202ee8be26a" prot="public" virt="non-virtual"><scope>GQCP::DenseVectorizer</scope><name>strides</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

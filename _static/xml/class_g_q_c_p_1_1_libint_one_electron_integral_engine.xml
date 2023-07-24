@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_libint_one_electron_integral_engine" kind="class" language="C++" prot="public">
     <compoundname>GQCP::LibintOneElectronIntegralEngine</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_base_one_electron_integral_engine" prot="public" virt="non-virtual">GQCP::BaseOneElectronIntegralEngine&lt; GTOShell, _N, double &gt;</basecompoundref>
@@ -17,6 +17,7 @@
         <definition>using GQCP::LibintOneElectronIntegralEngine&lt; _N &gt;::IntegralScalar =  double</definition>
         <argsstring></argsstring>
         <name>IntegralScalar</name>
+        <qualifiedname>GQCP::LibintOneElectronIntegralEngine::IntegralScalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -32,6 +33,7 @@
         <definition>constexpr auto GQCP::LibintOneElectronIntegralEngine&lt; _N &gt;::N</definition>
         <argsstring></argsstring>
         <name>N</name>
+        <qualifiedname>GQCP::LibintOneElectronIntegralEngine::N</qualifiedname>
         <initializer>= _N</initializer>
         <briefdescription>
         </briefdescription>
@@ -48,6 +50,7 @@
         <definition>libint2::Engine GQCP::LibintOneElectronIntegralEngine&lt; _N &gt;::libint2_engine</definition>
         <argsstring></argsstring>
         <name>libint2_engine</name>
+        <qualifiedname>GQCP::LibintOneElectronIntegralEngine::libint2_engine</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -61,6 +64,7 @@
         <definition>size_t GQCP::LibintOneElectronIntegralEngine&lt; _N &gt;::component_offset</definition>
         <argsstring></argsstring>
         <name>component_offset</name>
+        <qualifiedname>GQCP::LibintOneElectronIntegralEngine::component_offset</qualifiedname>
         <initializer>= 0</initializer>
         <briefdescription>
         </briefdescription>
@@ -75,6 +79,7 @@
         <definition>double GQCP::LibintOneElectronIntegralEngine&lt; _N &gt;::scaling_factor</definition>
         <argsstring></argsstring>
         <name>scaling_factor</name>
+        <qualifiedname>GQCP::LibintOneElectronIntegralEngine::scaling_factor</qualifiedname>
         <initializer>= 1.0</initializer>
         <briefdescription>
         </briefdescription>
@@ -91,6 +96,7 @@
         <definition>GQCP::LibintOneElectronIntegralEngine&lt; _N &gt;::LibintOneElectronIntegralEngine</definition>
         <argsstring>(const ElectronicDipoleOperator &amp;op, const size_t max_nprim, const size_t max_l)</argsstring>
         <name>LibintOneElectronIntegralEngine</name>
+        <qualifiedname>GQCP::LibintOneElectronIntegralEngine::LibintOneElectronIntegralEngine</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_electronic_dipole_operator" kindref="compound">ElectronicDipoleOperator</ref> &amp;</type>
           <declname>op</declname>
@@ -142,6 +148,7 @@
         <definition>GQCP::LibintOneElectronIntegralEngine&lt; _N &gt;::LibintOneElectronIntegralEngine</definition>
         <argsstring>(const KineticOperator &amp;op, const size_t max_nprim, const size_t max_l)</argsstring>
         <name>LibintOneElectronIntegralEngine</name>
+        <qualifiedname>GQCP::LibintOneElectronIntegralEngine::LibintOneElectronIntegralEngine</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_kinetic_operator" kindref="compound">KineticOperator</ref> &amp;</type>
           <declname>op</declname>
@@ -193,6 +200,7 @@
         <definition>GQCP::LibintOneElectronIntegralEngine&lt; _N &gt;::LibintOneElectronIntegralEngine</definition>
         <argsstring>(const NuclearAttractionOperator &amp;op, const size_t max_nprim, const size_t max_l)</argsstring>
         <name>LibintOneElectronIntegralEngine</name>
+        <qualifiedname>GQCP::LibintOneElectronIntegralEngine::LibintOneElectronIntegralEngine</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_nuclear_attraction_operator" kindref="compound">NuclearAttractionOperator</ref> &amp;</type>
           <declname>op</declname>
@@ -244,6 +252,7 @@
         <definition>GQCP::LibintOneElectronIntegralEngine&lt; _N &gt;::LibintOneElectronIntegralEngine</definition>
         <argsstring>(const OverlapOperator &amp;op, const size_t max_nprim, const size_t max_l)</argsstring>
         <name>LibintOneElectronIntegralEngine</name>
+        <qualifiedname>GQCP::LibintOneElectronIntegralEngine::LibintOneElectronIntegralEngine</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_overlap_operator" kindref="compound">OverlapOperator</ref> &amp;</type>
           <declname>op</declname>
@@ -290,12 +299,13 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibintOneElectronIntegralEngine.hpp" line="94" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibintOneElectronIntegralEngine.hpp" bodystart="94" bodyend="95"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_libint_one_electron_integral_engine_1a23dd8c30d8a8f48fa616cab87ec3463d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_libint_one_electron_integral_engine_1afb85714de8d35630e9b0a5f6ba103279" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>std::shared_ptr&lt; <ref refid="class_g_q_c_p_1_1_base_one_electron_integral_buffer" kindref="compound">BaseOneElectronIntegralBuffer</ref>&lt; <ref refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine_1a4f3de27fe215afa94ca40359da86fb2e" kindref="member">IntegralScalar</ref>, <ref refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine_1a0b7145b2e812d88b6a4bf169fbb8b76b" kindref="member">N</ref> &gt; &gt;</type>
-        <definition>std::shared_ptr&lt;BaseOneElectronIntegralBuffer&lt;IntegralScalar, N&gt; &gt; GQCP::LibintOneElectronIntegralEngine&lt; _N &gt;::calculate</definition>
+        <definition>std::shared_ptr&lt; BaseOneElectronIntegralBuffer&lt; IntegralScalar, N &gt; &gt; GQCP::LibintOneElectronIntegralEngine&lt; _N &gt;::calculate</definition>
         <argsstring>(const GTOShell &amp;shell1, const GTOShell &amp;shell2) override</argsstring>
         <name>calculate</name>
-        <reimplements refid="class_g_q_c_p_1_1_base_one_electron_integral_engine_1aa72a849494df30951a5466471fdc246f">calculate</reimplements>
+        <qualifiedname>GQCP::LibintOneElectronIntegralEngine::calculate</qualifiedname>
+        <reimplements refid="class_g_q_c_p_1_1_base_one_electron_integral_engine_1a5ebc73dd256d9d703043250e3a39d6dd">calculate</reimplements>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_g_t_o_shell" kindref="compound">GTOShell</ref> &amp;</type>
           <declname>shell1</declname>
@@ -372,7 +382,7 @@
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibintOneElectronIntegralEngine.hpp" line="36" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibintOneElectronIntegralEngine.hpp" bodystart="36" bodyend="115"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine_1a23dd8c30d8a8f48fa616cab87ec3463d" prot="public" virt="virtual"><scope>GQCP::LibintOneElectronIntegralEngine</scope><name>calculate</name></member>
+      <member refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine_1afb85714de8d35630e9b0a5f6ba103279" prot="public" virt="virtual"><scope>GQCP::LibintOneElectronIntegralEngine</scope><name>calculate</name></member>
       <member refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine_1a70cf729653affad13b4e846b320cfd7b" prot="private" virt="non-virtual"><scope>GQCP::LibintOneElectronIntegralEngine</scope><name>component_offset</name></member>
       <member refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine_1a4f3de27fe215afa94ca40359da86fb2e" prot="public" virt="non-virtual"><scope>GQCP::LibintOneElectronIntegralEngine</scope><name>IntegralScalar</name></member>
       <member refid="class_g_q_c_p_1_1_libint_one_electron_integral_engine_1a80d62511c91c61ab63266a24261bdbf4" prot="private" virt="non-virtual"><scope>GQCP::LibintOneElectronIntegralEngine</scope><name>libint2_engine</name></member>

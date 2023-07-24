@@ -1,4 +1,4 @@
-\hypertarget{class_g_q_c_p_1_1_libint_one_electron_integral_buffer}{}\doxysection{GQCP\+::Libint\+One\+Electron\+Integral\+Buffer$<$ \+\_\+N $>$ Class Template Reference}
+\hypertarget{class_g_q_c_p_1_1_libint_one_electron_integral_buffer}{}\doxysection{GQCP\+::Libint\+One\+Electron\+Integral\+Buffer\texorpdfstring{$<$}{<} \+\_\+N \texorpdfstring{$>$}{>} Class Template Reference}
 \label{class_g_q_c_p_1_1_libint_one_electron_integral_buffer}\index{GQCP::LibintOneElectronIntegralBuffer$<$ \_N $>$@{GQCP::LibintOneElectronIntegralBuffer$<$ \_N $>$}}
 
 
@@ -6,7 +6,7 @@
 
 
 
-Inheritance diagram for GQCP\+::Libint\+One\+Electron\+Integral\+Buffer$<$ \+\_\+N $>$\+:
+Inheritance diagram for GQCP\+::Libint\+One\+Electron\+Integral\+Buffer\texorpdfstring{$<$}{<} \+\_\+N \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -16,7 +16,7 @@ Inheritance diagram for GQCP\+::Libint\+One\+Electron\+Integral\+Buffer$<$ \+\_\
 \end{figure}
 
 
-Collaboration diagram for GQCP\+::Libint\+One\+Electron\+Integral\+Buffer$<$ \+\_\+N $>$\+:
+Collaboration diagram for GQCP\+::Libint\+One\+Electron\+Integral\+Buffer\texorpdfstring{$<$}{<} \+\_\+N \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -29,6 +29,11 @@ Collaboration diagram for GQCP\+::Libint\+One\+Electron\+Integral\+Buffer$<$ \+\
 \item 
 using \mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_buffer_a2b83a04f2dac3c87c0338c91c499b076}{Integral\+Scalar}} = double
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer}{GQCP\+::\+Base\+One\+Electron\+Integral\+Buffer$<$ double, \+\_\+\+N $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a7d6d3786a723460b5dd69a3d9735b8b3}{Integral\+Scalar}} = double
+\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -38,18 +43,46 @@ bool \mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_buffer_ab63
 \item 
 \mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_buffer_a2b83a04f2dac3c87c0338c91c499b076}{Integral\+Scalar}} \mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_buffer_a699f63f2a570a11e2022e678458078d3}{value}} (const size\+\_\+t i, const size\+\_\+t f1, const size\+\_\+t f2) const override
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer}{GQCP\+::\+Base\+One\+Electron\+Integral\+Buffer$<$ double, \+\_\+\+N $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_ad6b54c9052a08862e46ff33ae8454150}{Base\+One\+Electron\+Integral\+Buffer}} (const size\+\_\+t nbf1, const size\+\_\+t nbf2)
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a57d1a4399d5efc0ead4e673cc2184f06}{$\sim$\+Base\+One\+Electron\+Integral\+Buffer}} ()=default
+\item 
+virtual bool \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a5232fce397b298cb104338dcca2f4372}{are\+Integrals\+All\+Zero}} () const=0
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a7d6d3786a723460b5dd69a3d9735b8b3}{Integral\+Scalar}} \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a7bc13b7b9e41f521fee0b6e42010bf2f}{value}} (const size\+\_\+t i, const size\+\_\+t f1, const size\+\_\+t f2) const=0
+\item 
+void \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a507bcae75392dfa3711c5c94cecb26f5}{emplace}} (std\+::array$<$ \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a7d6d3786a723460b5dd69a3d9735b8b3}{Integral\+Scalar}} $>$, N $>$ \&full\+\_\+components, const size\+\_\+t bf1, const size\+\_\+t bf2) const
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_aa56618790db92694ff81073db85b1a59}{number\+Of\+Basis\+Functions\+In\+Shell1}} () const
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a9da29ace8b56208361adda924956575c}{number\+Of\+Basis\+Functions\+In\+Shell2}} () const
+\end{DoxyCompactItemize}
 \doxysubsection*{Static Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 static constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_buffer_a20effd892f96d12ba2256a6bc0ed263c}{N}} = \+\_\+N
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer}{GQCP\+::\+Base\+One\+Electron\+Integral\+Buffer$<$ double, \+\_\+\+N $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr auto \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a4ca9cff291498c51e7f613c8147ddbcc}{N}}
+\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
+\doxysubsubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer}{GQCP\+::\+Base\+One\+Electron\+Integral\+Buffer$<$ double, \+\_\+\+N $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_aa35cde54a1104ab16272a0642fcb5c3a}{nbf1}}
+\item 
+size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_base_one_electron_integral_buffer_a3d261dcc128d01c14b848e4debec9493}{nbf2}}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$size\+\_\+t \+\_\+N$>$\newline
 class GQCP\+::\+Libint\+One\+Electron\+Integral\+Buffer$<$ \+\_\+\+N $>$}
-
 A buffer for storing libint one-\/electron integrals
 
 
@@ -65,7 +98,7 @@ A buffer for storing libint one-\/electron integrals
 \index{IntegralScalar@{IntegralScalar}!GQCP::LibintOneElectronIntegralBuffer$<$ \_N $>$@{GQCP::LibintOneElectronIntegralBuffer$<$ \_N $>$}}
 \doxysubsubsection{\texorpdfstring{IntegralScalar}{IntegralScalar}}
 {\footnotesize\ttfamily template$<$size\+\_\+t \+\_\+N$>$ \\
-using \mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_buffer}{GQCP\+::\+Libint\+One\+Electron\+Integral\+Buffer}}$<$ \+\_\+N $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_buffer_a2b83a04f2dac3c87c0338c91c499b076}{Integral\+Scalar}} =  double}
+using \mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_buffer}{GQCP\+::\+Libint\+One\+Electron\+Integral\+Buffer}}$<$ \+\_\+N $>$\+::\+Integral\+Scalar =  double}
 
 
 
@@ -75,7 +108,7 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_buffer}{GQ
 \index{LibintOneElectronIntegralBuffer@{LibintOneElectronIntegralBuffer}!GQCP::LibintOneElectronIntegralBuffer$<$ \_N $>$@{GQCP::LibintOneElectronIntegralBuffer$<$ \_N $>$}}
 \doxysubsubsection{\texorpdfstring{LibintOneElectronIntegralBuffer()}{LibintOneElectronIntegralBuffer()}}
 {\footnotesize\ttfamily template$<$size\+\_\+t \+\_\+N$>$ \\
-\mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_buffer}{GQCP\+::\+Libint\+One\+Electron\+Integral\+Buffer}}$<$ \+\_\+N $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_buffer}{Libint\+One\+Electron\+Integral\+Buffer}} (\begin{DoxyParamCaption}\item[{const libint2\+\_\+buffer\+\_\+t \&}]{libint2\+\_\+buffer,  }\item[{const size\+\_\+t}]{nbf1,  }\item[{const size\+\_\+t}]{nbf2,  }\item[{const size\+\_\+t}]{component\+\_\+offset = {\ttfamily 0},  }\item[{const double}]{scaling\+\_\+factor = {\ttfamily 1.0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{class_g_q_c_p_1_1_libint_one_electron_integral_buffer}{GQCP\+::\+Libint\+One\+Electron\+Integral\+Buffer}}$<$ \+\_\+N $>$\+::\+Libint\+One\+Electron\+Integral\+Buffer (\begin{DoxyParamCaption}\item[{const libint2\+\_\+buffer\+\_\+t \&}]{libint2\+\_\+buffer,  }\item[{const size\+\_\+t}]{nbf1,  }\item[{const size\+\_\+t}]{nbf2,  }\item[{const size\+\_\+t}]{component\+\_\+offset = {\ttfamily 0},  }\item[{const double}]{scaling\+\_\+factor = {\ttfamily 1.0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 \begin{DoxyParams}{Parameters}

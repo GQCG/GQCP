@@ -1,21 +1,17 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="_london_hermite_coulomb_integral_8cpp" kind="file" language="C++">
     <compoundname>LondonHermiteCoulombIntegral.cpp</compoundname>
     <includes refid="_london_hermite_coulomb_integral_8hpp" local="yes">Basis/Integrals/Primitive/LondonHermiteCoulombIntegral.hpp</includes>
     <includes refid="_boys_function_8hpp" local="yes">Mathematical/Functions/BoysFunction.hpp</includes>
     <incdepgraph>
-      <node id="11">
-        <label>boost/algorithm/string.hpp</label>
-      </node>
-      <node id="5">
-        <label>Utilities/Eigen.hpp</label>
-        <link refid="_eigen_8hpp"/>
-        <childnode refid="6" relation="include">
+      <node id="2">
+        <label>Basis/Integrals/Primitive/LondonHermiteCoulombIntegral.hpp</label>
+        <link refid="_london_hermite_coulomb_integral_8hpp"/>
+        <childnode refid="3" relation="include">
         </childnode>
-      </node>
-      <node id="12">
-        <label>fstream</label>
+        <childnode refid="15" relation="include">
+        </childnode>
       </node>
       <node id="17">
         <label>Mathematical/Functions/BoysFunction.hpp</label>
@@ -25,8 +21,9 @@
         <childnode refid="18" relation="include">
         </childnode>
       </node>
-      <node id="6">
-        <label>Eigen/Dense</label>
+      <node id="4">
+        <label>Mathematical/Functions/CartesianDirection.hpp</label>
+        <link refid="_cartesian_direction_8hpp"/>
       </node>
       <node id="3">
         <label>Mathematical/Representation/Matrix.hpp</label>
@@ -48,14 +45,11 @@
         <childnode refid="14" relation="include">
         </childnode>
       </node>
-      <node id="8">
-        <label>Utilities/type_traits.hpp</label>
-        <link refid="type__traits_8hpp"/>
-        <childnode refid="9" relation="include">
+      <node id="5">
+        <label>Utilities/Eigen.hpp</label>
+        <link refid="_eigen_8hpp"/>
+        <childnode refid="6" relation="include">
         </childnode>
-      </node>
-      <node id="14">
-        <label>vector</label>
       </node>
       <node id="7">
         <label>Utilities/aliases.hpp</label>
@@ -65,12 +59,18 @@
         <childnode refid="10" relation="include">
         </childnode>
       </node>
-      <node id="2">
-        <label>Basis/Integrals/Primitive/LondonHermiteCoulombIntegral.hpp</label>
-        <link refid="_london_hermite_coulomb_integral_8hpp"/>
-        <childnode refid="3" relation="include">
+      <node id="15">
+        <label>Utilities/complex.hpp</label>
+        <link refid="complex_8hpp"/>
+        <childnode refid="8" relation="include">
         </childnode>
-        <childnode refid="15" relation="include">
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Utilities/type_traits.hpp</label>
+        <link refid="type__traits_8hpp"/>
+        <childnode refid="9" relation="include">
         </childnode>
       </node>
       <node id="1">
@@ -81,32 +81,32 @@
         <childnode refid="17" relation="include">
         </childnode>
       </node>
-      <node id="10">
-        <label>cstdlib</label>
+      <node id="6">
+        <label>Eigen/Dense</label>
       </node>
-      <node id="13">
-        <label>iostream</label>
-      </node>
-      <node id="18">
-        <label>cstddef</label>
-      </node>
-      <node id="15">
-        <label>Utilities/complex.hpp</label>
-        <link refid="complex_8hpp"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-      </node>
-      <node id="9">
-        <label>type_traits</label>
+      <node id="11">
+        <label>boost/algorithm/string.hpp</label>
       </node>
       <node id="16">
         <label>complex</label>
       </node>
-      <node id="4">
-        <label>Mathematical/Functions/CartesianDirection.hpp</label>
-        <link refid="_cartesian_direction_8hpp"/>
+      <node id="18">
+        <label>cstddef</label>
+      </node>
+      <node id="10">
+        <label>cstdlib</label>
+      </node>
+      <node id="12">
+        <label>fstream</label>
+      </node>
+      <node id="13">
+        <label>iostream</label>
+      </node>
+      <node id="9">
+        <label>type_traits</label>
+      </node>
+      <node id="14">
+        <label>vector</label>
       </node>
     </incdepgraph>
     <innernamespace refid="namespace_g_q_c_p">GQCP</innernamespace>
@@ -160,8 +160,8 @@
 <codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_g_q_c_p_1_1literals" kindref="compound">GQCP::literals</ref>;</highlight></codeline>
 <codeline lineno="58"><highlight class="normal"></highlight></codeline>
 <codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Prepare<sp/>some<sp/>variables.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Vector&lt;complex,<sp/>3&gt;<sp/>P_<sp/>=<sp/>this-&gt;P<sp/>-<sp/>(1.0_ii<sp/>/<sp/>(2<sp/>*<sp/>this-&gt;p))<sp/>*<sp/>this-&gt;k1;<sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>modified<sp/>overlap<sp/>distribution<sp/>center.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Vector&lt;complex,<sp/>3&gt;<sp/>R_P_C<sp/>=<sp/>P_<sp/>-<sp/>this-&gt;C;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Vector&lt;complex, 3&gt;</ref><sp/>P_<sp/>=<sp/>this-&gt;P<sp/>-<sp/>(1.0_ii<sp/>/<sp/>(2<sp/>*<sp/>this-&gt;p))<sp/>*<sp/>this-&gt;k1;<sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>modified<sp/>overlap<sp/>distribution<sp/>center.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">Vector&lt;complex, 3&gt;</ref><sp/>R_P_C<sp/>=<sp/>P_<sp/>-<sp/>this-&gt;C;</highlight></codeline>
 <codeline lineno="62"><highlight class="normal"></highlight></codeline>
 <codeline lineno="63"><highlight class="normal"></highlight></codeline>
 <codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>If<sp/>any<sp/>of<sp/>the<sp/>degrees<sp/>is<sp/>smaller<sp/>than<sp/>0,<sp/>the<sp/>London<sp/>Hermite<sp/>Coulomb<sp/>integral<sp/>should<sp/>vanish.</highlight><highlight class="normal"></highlight></codeline>
@@ -176,30 +176,30 @@
 <codeline lineno="73"><highlight class="normal"></highlight></codeline>
 <codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::pow(-2.0<sp/>*<sp/>this-&gt;p,<sp/>n)<sp/>*</highlight></codeline>
 <codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::exp(-1.0_ii<sp/>*<sp/>this-&gt;k1.dot(this-&gt;P))<sp/>*</highlight></codeline>
-<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>BoysFunction()(n,<sp/>p<sp/>*<sp/>R2_P_C);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_boys_function" kindref="compound">BoysFunction</ref>()(n,<sp/>p<sp/>*<sp/>R2_P_C);</highlight></codeline>
 <codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="78"><highlight class="normal"></highlight></codeline>
 <codeline lineno="79"><highlight class="normal"></highlight></codeline>
 <codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Recurrence<sp/>for<sp/>v.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((t<sp/>==<sp/>0)<sp/>&amp;&amp;<sp/>(u<sp/>==<sp/>0))<sp/>{</highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>-1.0_ii<sp/>*<sp/>this-&gt;k1(<ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a11d242b501b62c0182e98a9d516335f7" kindref="member">CartesianDirection::z</ref>)<sp/>*<sp/>this-&gt;operator()(n,<sp/>t,<sp/>u,<sp/>v<sp/>-<sp/>1)<sp/>+</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>-1.0_ii<sp/>*<sp/>this-&gt;k1(CartesianDirection::z)<sp/>*<sp/>this-&gt;operator()(n,<sp/>t,<sp/>u,<sp/>v<sp/>-<sp/>1)<sp/>+</highlight></codeline>
 <codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">double</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(v<sp/>-<sp/>1)<sp/>*<sp/>this-&gt;</highlight><highlight class="keyword">operator</highlight><highlight class="normal">()(n<sp/>+<sp/>1,<sp/>t,<sp/>u,<sp/>v<sp/>-<sp/>2)<sp/>+</highlight></codeline>
-<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>R_P_C(<ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a11d242b501b62c0182e98a9d516335f7" kindref="member">CartesianDirection::z</ref>)<sp/>*<sp/>this-&gt;operator()(n<sp/>+<sp/>1,<sp/>t,<sp/>u,<sp/>v<sp/>-<sp/>1);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>R_P_C(CartesianDirection::z)<sp/>*<sp/>this-&gt;operator()(n<sp/>+<sp/>1,<sp/>t,<sp/>u,<sp/>v<sp/>-<sp/>1);</highlight></codeline>
 <codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="86"><highlight class="normal"></highlight></codeline>
 <codeline lineno="87"><highlight class="normal"></highlight></codeline>
 <codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Recurrence<sp/>for<sp/>u.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(t<sp/>==<sp/>0)<sp/>{</highlight></codeline>
-<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>-1.0_ii<sp/>*<sp/>this-&gt;k1(<ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a8611d87f8dc5908d04f3d314c7c321b1" kindref="member">CartesianDirection::y</ref>)<sp/>*<sp/>this-&gt;operator()(n,<sp/>t,<sp/>u<sp/>-<sp/>1,<sp/>v)<sp/>+</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>-1.0_ii<sp/>*<sp/>this-&gt;k1(CartesianDirection::y)<sp/>*<sp/>this-&gt;operator()(n,<sp/>t,<sp/>u<sp/>-<sp/>1,<sp/>v)<sp/>+</highlight></codeline>
 <codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">double</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(u<sp/>-<sp/>1)<sp/>*<sp/>this-&gt;</highlight><highlight class="keyword">operator</highlight><highlight class="normal">()(n<sp/>+<sp/>1,<sp/>t,<sp/>u<sp/>-<sp/>2,<sp/>v)<sp/>+</highlight></codeline>
-<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>R_P_C(<ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a8611d87f8dc5908d04f3d314c7c321b1" kindref="member">CartesianDirection::y</ref>)<sp/>*<sp/>this-&gt;operator()(n<sp/>+<sp/>1,<sp/>t,<sp/>u<sp/>-<sp/>1,<sp/>v);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>R_P_C(CartesianDirection::y)<sp/>*<sp/>this-&gt;operator()(n<sp/>+<sp/>1,<sp/>t,<sp/>u<sp/>-<sp/>1,<sp/>v);</highlight></codeline>
 <codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="94"><highlight class="normal"></highlight></codeline>
 <codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Recurrence<sp/>for<sp/>t.</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
-<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>-1.0_ii<sp/>*<sp/>this-&gt;k1(<ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5" kindref="member">CartesianDirection::x</ref>)<sp/>*<sp/>this-&gt;operator()(n,<sp/>t<sp/>-<sp/>1,<sp/>u,<sp/>v)<sp/>+</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>-1.0_ii<sp/>*<sp/>this-&gt;k1(CartesianDirection::x)<sp/>*<sp/>this-&gt;operator()(n,<sp/>t<sp/>-<sp/>1,<sp/>u,<sp/>v)<sp/>+</highlight></codeline>
 <codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">double</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(t<sp/>-<sp/>1)<sp/>*<sp/>this-&gt;</highlight><highlight class="keyword">operator</highlight><highlight class="normal">()(n<sp/>+<sp/>1,<sp/>t<sp/>-<sp/>2,<sp/>u,<sp/>v)<sp/>+</highlight></codeline>
-<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>R_P_C(<ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5" kindref="member">CartesianDirection::x</ref>)<sp/>*<sp/>this-&gt;operator()(n<sp/>+<sp/>1,<sp/>t<sp/>-<sp/>1,<sp/>u,<sp/>v);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>R_P_C(CartesianDirection::x)<sp/>*<sp/>this-&gt;operator()(n<sp/>+<sp/>1,<sp/>t<sp/>-<sp/>1,<sp/>u,<sp/>v);</highlight></codeline>
 <codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="101"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="102"><highlight class="normal"></highlight></codeline>

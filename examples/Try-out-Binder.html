@@ -3,11 +3,12 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Try out GQCP: the Ghent Quantum Chemistry Package</title>
   
   
@@ -18,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -37,18 +38,20 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
@@ -61,7 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
   
   
@@ -431,15 +434,15 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="section" id="try-out-gqcp-the-ghent-quantum-chemistry-package">
-<h1>Try out GQCP: the Ghent Quantum Chemistry Package<a class="headerlink" href="#try-out-gqcp-the-ghent-quantum-chemistry-package" title="Permalink to this heading">#</a></h1>
+  <section id="try-out-gqcp-the-ghent-quantum-chemistry-package">
+<h1>Try out GQCP: the Ghent Quantum Chemistry Package<a class="headerlink" href="#try-out-gqcp-the-ghent-quantum-chemistry-package" title="Permalink to this headline">#</a></h1>
 <p>Welcome to the try-it-out Notebook that we’ve set up to guide you through your first developer steps with GQCP.</p>
-<div class="section" id="setup">
-<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this heading">#</a></h2>
+<section id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">#</a></h2>
 <p>In order to set up this Notebook for Binder, just run the following cells.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>plotly<span class="w"> </span>plotly-express<span class="w"> </span>pandas<span class="w"> </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install plotly plotly-express pandas 
 </pre></div>
 </div>
 </div>
@@ -452,9 +455,9 @@ document.write(`
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="import-python-modules">
-<h2>Import Python modules<a class="headerlink" href="#import-python-modules" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="import-python-modules">
+<h2>Import Python modules<a class="headerlink" href="#import-python-modules" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gqcpy</span>
@@ -466,9 +469,9 @@ document.write(`
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="generating-pes-diagrams-for-rhf-and-fci">
-<h2>Generating PES diagrams for RHF and FCI<a class="headerlink" href="#generating-pes-diagrams-for-rhf-and-fci" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="generating-pes-diagrams-for-rhf-and-fci">
+<h2>Generating PES diagrams for RHF and FCI<a class="headerlink" href="#generating-pes-diagrams-for-rhf-and-fci" title="Permalink to this headline">#</a></h2>
 <p>In this example, we’ll compare the potential energy surface (PES) for H$_2$ with two well-established quantum chemical methods.</p>
 <p>RHF (restricted Hartree-Fock) is an approximate method, and we’ll examine its well-known behavior in the dissociated regime. On the other hand, FCI (full configuration interaction) is exact (within a given basis set).</p>
 <p>We’ll start off by creating a set of molecules that corresponds to the points on the PES we would like to calculate.</p>
@@ -492,8 +495,8 @@ document.write(`
 </div>
 </div>
 </div>
-<div class="section" id="setting-up-the-rhf-calculations">
-<h3>Setting up the RHF calculations<a class="headerlink" href="#setting-up-the-rhf-calculations" title="Permalink to this heading">#</a></h3>
+<section id="setting-up-the-rhf-calculations">
+<h3>Setting up the RHF calculations<a class="headerlink" href="#setting-up-the-rhf-calculations" title="Permalink to this headline">#</a></h3>
 <p>Let’s make a small function that returns a list of RHF energies when provided our list of molecules as an argument.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -527,9 +530,9 @@ document.write(`
 </div>
 </div>
 <p>Note that the paradigm <code class="docutils literal notranslate"><span class="pre">environment</span> <span class="pre">-</span> <span class="pre">solver</span> <span class="pre">-</span> <span class="pre">optimize</span> <span class="pre">-</span> <span class="pre">qc_structure</span></code> is generally applied to any of the quantum chemical methods that GQCP offers. More information can be found on the web page.</p>
-</div>
-<div class="section" id="setting-up-the-fci-calculations">
-<h3>Setting up the FCI calculations<a class="headerlink" href="#setting-up-the-fci-calculations" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="setting-up-the-fci-calculations">
+<h3>Setting up the FCI calculations<a class="headerlink" href="#setting-up-the-fci-calculations" title="Permalink to this headline">#</a></h3>
 <p>Similarly to the RHF case, let’s set up an FCI function that will calculate all the FCI energies of an input list of molecules.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -564,10 +567,10 @@ document.write(`
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="visualizing-the-results">
-<h2>Visualizing the results<a class="headerlink" href="#visualizing-the-results" title="Permalink to this heading">#</a></h2>
+</section>
+</section>
+<section id="visualizing-the-results">
+<h2>Visualizing the results<a class="headerlink" href="#visualizing-the-results" title="Permalink to this headline">#</a></h2>
 <p>We’ll use <a class="reference external" href="https://plotly.com/graphing-libraries/">plotly</a> for the visualization, which creates amazing and interactive figures. Check them out by hovering your curser over the graph!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -599,8 +602,8 @@ document.write(`
 </div>
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -628,9 +631,15 @@ document.write(`
               
               
                 <footer class="bd-footer-article">
-                  <!-- Previous / next buttons -->
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
@@ -661,7 +670,7 @@ document.write(`
             
           </div>
           <footer class="bd-footer-content">
-            <div class="bd-footer-content__inner">
+            
 <div class="bd-footer-content__inner container">
   
   <div class="footer-item">
@@ -691,7 +700,7 @@ By The Ghent Quantum Chemistry Group
     
   </div>
   
-</div></div>
+</div>
           </footer>
         
 
@@ -700,8 +709,8 @@ By The Ghent Quantum Chemistry Group
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
   </footer>

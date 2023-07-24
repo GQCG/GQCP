@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_minimizer" kind="class" language="C++" prot="public">
     <compoundname>GQCP::Minimizer</compoundname>
     <includes refid="_minimizer_8hpp" local="no">Minimizer.hpp</includes>
@@ -14,6 +14,7 @@
         <definition>using GQCP::Minimizer&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
         <argsstring></argsstring>
         <name>Scalar</name>
+        <qualifiedname>GQCP::Minimizer::Scalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -24,11 +25,12 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="class_g_q_c_p_1_1_minimizer_1a3a798b44876f9fdd5685bced252a4a9b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_minimizer_1a3060f1f7db6a4e17c42bf8ff5ee9d6b0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_iterative_algorithm" kindref="compound">IterativeAlgorithm</ref>&lt; <ref refid="class_g_q_c_p_1_1_minimization_environment" kindref="compound">MinimizationEnvironment</ref>&lt; <ref refid="class_g_q_c_p_1_1_minimizer_1ab04f2a789fa9e06a14b56c8da6450946" kindref="member">Scalar</ref> &gt; &gt;</type>
-        <definition>static IterativeAlgorithm&lt;MinimizationEnvironment&lt;Scalar&gt; &gt; GQCP::Minimizer&lt; _Scalar &gt;::Newton</definition>
+        <definition>static IterativeAlgorithm&lt; MinimizationEnvironment&lt; Scalar &gt; &gt; GQCP::Minimizer&lt; _Scalar &gt;::Newton</definition>
         <argsstring>(const double threshold=1.0e-08, const size_t maximum_number_of_iterations=128)</argsstring>
         <name>Newton</name>
+        <qualifiedname>GQCP::Minimizer::Newton</qualifiedname>
         <param>
           <type>const double</type>
           <declname>threshold</declname>
@@ -91,7 +93,7 @@
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/Minimizer.hpp" line="37" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Minimization/Minimizer.hpp" bodystart="37" bodyend="64"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_minimizer_1a3a798b44876f9fdd5685bced252a4a9b" prot="public" virt="non-virtual"><scope>GQCP::Minimizer</scope><name>Newton</name></member>
+      <member refid="class_g_q_c_p_1_1_minimizer_1a3060f1f7db6a4e17c42bf8ff5ee9d6b0" prot="public" virt="non-virtual"><scope>GQCP::Minimizer</scope><name>Newton</name></member>
       <member refid="class_g_q_c_p_1_1_minimizer_1ab04f2a789fa9e06a14b56c8da6450946" prot="public" virt="non-virtual"><scope>GQCP::Minimizer</scope><name>Scalar</name></member>
     </listofallmembers>
   </compounddef>

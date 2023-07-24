@@ -1,4 +1,4 @@
-\hypertarget{class_g_q_c_p_1_1_r_h_f_density_matrix_damper}{}\doxysection{GQCP\+::RHFDensity\+Matrix\+Damper$<$ \+\_\+\+Scalar $>$ Class Template Reference}
+\hypertarget{class_g_q_c_p_1_1_r_h_f_density_matrix_damper}{}\doxysection{GQCP\+::RHFDensity\+Matrix\+Damper\texorpdfstring{$<$}{<} \+\_\+\+Scalar \texorpdfstring{$>$}{>} Class Template Reference}
 \label{class_g_q_c_p_1_1_r_h_f_density_matrix_damper}\index{GQCP::RHFDensityMatrixDamper$<$ \_Scalar $>$@{GQCP::RHFDensityMatrixDamper$<$ \_Scalar $>$}}
 
 
@@ -6,7 +6,7 @@
 
 
 
-Inheritance diagram for GQCP\+::RHFDensity\+Matrix\+Damper$<$ \+\_\+\+Scalar $>$\+:
+Inheritance diagram for GQCP\+::RHFDensity\+Matrix\+Damper\texorpdfstring{$<$}{<} \+\_\+\+Scalar \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -16,7 +16,7 @@ Inheritance diagram for GQCP\+::RHFDensity\+Matrix\+Damper$<$ \+\_\+\+Scalar $>$
 \end{figure}
 
 
-Collaboration diagram for GQCP\+::RHFDensity\+Matrix\+Damper$<$ \+\_\+\+Scalar $>$\+:
+Collaboration diagram for GQCP\+::RHFDensity\+Matrix\+Damper\texorpdfstring{$<$}{<} \+\_\+\+Scalar \texorpdfstring{$>$}{>}\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -31,6 +31,11 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_density_matrix_damper_a0c076e602b
 \item 
 using \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_density_matrix_damper_a54ab4d24913a141614ab2f6dfaa2d997}{Environment}} = \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_environment}{RHFSCFEnvironment}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_density_matrix_damper_a0c076e602b6970dcb89dad2a25d0d0a2}{Scalar}} $>$
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_step}{GQCP\+::\+Step$<$ RHFSCFEnvironment$<$ \+\_\+\+Scalar $>$ $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_g_q_c_p_1_1_step_a479d9d1f930d4cabb39879a6e71f4915}{Environment}} = \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_environment}{RHFSCFEnvironment}}$<$ \+\_\+\+Scalar $>$
+\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -40,12 +45,20 @@ std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_density_matrix_damper_abd
 \item 
 void \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_density_matrix_damper_ad6b80419c3086f83c05f46038dec769d}{execute}} (\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_density_matrix_damper_a54ab4d24913a141614ab2f6dfaa2d997}{Environment}} \&environment) override
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_step}{GQCP\+::\+Step$<$ RHFSCFEnvironment$<$ \+\_\+\+Scalar $>$ $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_step_a013c882b1c3e8c18babbe1a478382cb0}{$\sim$\+Step}} ()=default
+\item 
+virtual std\+::string \mbox{\hyperlink{class_g_q_c_p_1_1_step_af2276da3e9eef7f8d2049a8aa255b9fb}{description}} () const=0
+\item 
+virtual void \mbox{\hyperlink{class_g_q_c_p_1_1_step_afc654a62596b3fff0801acb2d993818f}{execute}} (\mbox{\hyperlink{class_g_q_c_p_1_1_step_a479d9d1f930d4cabb39879a6e71f4915}{Environment}} \&environment)=0
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$typename \+\_\+\+Scalar$>$\newline
 class GQCP\+::\+RHFDensity\+Matrix\+Damper$<$ \+\_\+\+Scalar $>$}
-
 An iteration step that accelerates the density matrix (expressed in the scalar/\+AO basis) based on a constant damping accelerator.
 
 
@@ -61,14 +74,14 @@ An iteration step that accelerates the density matrix (expressed in the scalar/\
 \index{Environment@{Environment}!GQCP::RHFDensityMatrixDamper$<$ \_Scalar $>$@{GQCP::RHFDensityMatrixDamper$<$ \_Scalar $>$}}
 \doxysubsubsection{\texorpdfstring{Environment}{Environment}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
-using \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_density_matrix_damper}{GQCP\+::\+RHFDensity\+Matrix\+Damper}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_density_matrix_damper_a54ab4d24913a141614ab2f6dfaa2d997}{Environment}} =  \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_environment}{RHFSCFEnvironment}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_density_matrix_damper_a0c076e602b6970dcb89dad2a25d0d0a2}{Scalar}}$>$}
+using \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_density_matrix_damper}{GQCP\+::\+RHFDensity\+Matrix\+Damper}}$<$ \+\_\+\+Scalar $>$\+::\+Environment =  \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_s_c_f_environment}{RHFSCFEnvironment}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_density_matrix_damper_a0c076e602b6970dcb89dad2a25d0d0a2}{Scalar}}$>$}
 
 \mbox{\Hypertarget{class_g_q_c_p_1_1_r_h_f_density_matrix_damper_a0c076e602b6970dcb89dad2a25d0d0a2}\label{class_g_q_c_p_1_1_r_h_f_density_matrix_damper_a0c076e602b6970dcb89dad2a25d0d0a2}} 
 \index{GQCP::RHFDensityMatrixDamper$<$ \_Scalar $>$@{GQCP::RHFDensityMatrixDamper$<$ \_Scalar $>$}!Scalar@{Scalar}}
 \index{Scalar@{Scalar}!GQCP::RHFDensityMatrixDamper$<$ \_Scalar $>$@{GQCP::RHFDensityMatrixDamper$<$ \_Scalar $>$}}
 \doxysubsubsection{\texorpdfstring{Scalar}{Scalar}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
-using \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_density_matrix_damper}{GQCP\+::\+RHFDensity\+Matrix\+Damper}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_density_matrix_damper_a0c076e602b6970dcb89dad2a25d0d0a2}{Scalar}} =  \+\_\+\+Scalar}
+using \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_density_matrix_damper}{GQCP\+::\+RHFDensity\+Matrix\+Damper}}$<$ \+\_\+\+Scalar $>$\+::\+Scalar =  \+\_\+\+Scalar}
 
 
 
@@ -78,7 +91,7 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_density_matrix_damper}{GQCP\+::\+
 \index{RHFDensityMatrixDamper@{RHFDensityMatrixDamper}!GQCP::RHFDensityMatrixDamper$<$ \_Scalar $>$@{GQCP::RHFDensityMatrixDamper$<$ \_Scalar $>$}}
 \doxysubsubsection{\texorpdfstring{RHFDensityMatrixDamper()}{RHFDensityMatrixDamper()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
-\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_density_matrix_damper}{GQCP\+::\+RHFDensity\+Matrix\+Damper}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_density_matrix_damper}{RHFDensity\+Matrix\+Damper}} (\begin{DoxyParamCaption}\item[{const double}]{alpha }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{class_g_q_c_p_1_1_r_h_f_density_matrix_damper}{GQCP\+::\+RHFDensity\+Matrix\+Damper}}$<$ \+\_\+\+Scalar $>$\+::\+RHFDensity\+Matrix\+Damper (\begin{DoxyParamCaption}\item[{const double}]{alpha }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 \begin{DoxyParams}{Parameters}

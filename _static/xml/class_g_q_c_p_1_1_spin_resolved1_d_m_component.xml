@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_spin_resolved1_d_m_component" kind="class" language="C++" prot="public">
     <compoundname>GQCP::SpinResolved1DMComponent</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_simple1_d_m" prot="public" virt="non-virtual">GQCP::Simple1DM&lt; _Scalar, SpinResolved1DMComponent&lt; _Scalar &gt; &gt;</basecompoundref>
@@ -15,6 +15,7 @@
         <definition>using GQCP::SpinResolved1DMComponent&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
         <argsstring></argsstring>
         <name>Scalar</name>
+        <qualifiedname>GQCP::SpinResolved1DMComponent::Scalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -41,6 +42,14 @@
 </para>
     </detaileddescription>
     <inheritancegraph>
+      <node id="6">
+        <label>GQCP::CRTP&lt; T &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
+      </node>
+      <node id="3">
+        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
       <node id="4">
         <label>GQCP::JacobiRotatable&lt; T &gt;</label>
         <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
@@ -49,6 +58,12 @@
         <label>GQCP::SpinResolved1DMComponent&lt; _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_spin_resolved1_d_m_component"/>
         <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>GQCP::VectorSpaceArithmetic&lt; T, Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
+        <childnode refid="6" relation="public-inheritance">
         </childnode>
       </node>
       <node id="2">
@@ -60,23 +75,17 @@
         </childnode>
         <childnode refid="5" relation="public-inheritance">
         </childnode>
-      </node>
-      <node id="6">
-        <label>GQCP::CRTP&lt; T &gt;</label>
-        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
-      </node>
-      <node id="5">
-        <label>GQCP::VectorSpaceArithmetic&lt; T, Scalar &gt;</label>
-        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
-        <childnode refid="6" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="3">
-        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
-        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
+      <node id="6">
+        <label>GQCP::CRTP&lt; T &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
+      </node>
+      <node id="3">
+        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
       <node id="4">
         <label>GQCP::JacobiRotatable&lt; T &gt;</label>
         <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
@@ -85,6 +94,12 @@
         <label>GQCP::SpinResolved1DMComponent&lt; _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_spin_resolved1_d_m_component"/>
         <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>GQCP::VectorSpaceArithmetic&lt; T, Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
+        <childnode refid="6" relation="public-inheritance">
         </childnode>
       </node>
       <node id="2">
@@ -96,39 +111,25 @@
         </childnode>
         <childnode refid="5" relation="public-inheritance">
         </childnode>
-      </node>
-      <node id="6">
-        <label>GQCP::CRTP&lt; T &gt;</label>
-        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
-      </node>
-      <node id="5">
-        <label>GQCP::VectorSpaceArithmetic&lt; T, Scalar &gt;</label>
-        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
-        <childnode refid="6" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="3">
-        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
-        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
       </node>
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved1DMComponent.hpp" line="40" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/DensityMatrix/SpinResolved1DMComponent.hpp" bodystart="41" bodyend="53"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_c_r_t_p_1a2266d4aacaad437e302033b24e1d6d11" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved1DMComponent</scope><name>derived</name></member>
-      <member refid="class_g_q_c_p_1_1_c_r_t_p_1ab53c6ca668c4f27dd4aa51856b6aee91" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved1DMComponent</scope><name>derived</name></member>
+      <member refid="class_g_q_c_p_1_1_c_r_t_p_1afbb2119ea002c348828c45726583d863" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved1DMComponent</scope><name>derived</name></member>
+      <member refid="class_g_q_c_p_1_1_c_r_t_p_1a28a8bce1d2ca75d90ecf1295dd640f13" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved1DMComponent</scope><name>derived</name></member>
       <member refid="class_g_q_c_p_1_1_c_r_t_p_1ab72cbeb2fad6d811d4f6fcd2c962b55e" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved1DMComponent</scope><name>Derived</name></member>
       <member refid="class_g_q_c_p_1_1_simple1_d_m_1a8b792b25e79a11342da60d54b5f1ed44" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved1DMComponent</scope><name>DerivedDM</name></member>
       <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a107861c91912a3808817f5845823204f" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved1DMComponent</scope><name>JacobiRotationType</name></member>
-      <member refid="class_g_q_c_p_1_1_simple1_d_m_1a4a9790b2d1ceb12a2fc3d62002923151" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved1DMComponent</scope><name>matrix</name></member>
-      <member refid="class_g_q_c_p_1_1_simple1_d_m_1a3e3c379b5a13002dc7332d2441798639" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved1DMComponent</scope><name>matrix</name></member>
+      <member refid="class_g_q_c_p_1_1_simple1_d_m_1ac30875260405df322f951b6458dc5788" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved1DMComponent</scope><name>matrix</name></member>
+      <member refid="class_g_q_c_p_1_1_simple1_d_m_1aa6270cc8805e018e9eee53872835d47a" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved1DMComponent</scope><name>matrix</name></member>
       <member refid="class_g_q_c_p_1_1_simple1_d_m_1aba76988eeab709bb1af1a4ae9d4ab83b" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved1DMComponent</scope><name>norm</name></member>
       <member refid="class_g_q_c_p_1_1_simple1_d_m_1a4119731fc8031d5bcaecba3db59297bb" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved1DMComponent</scope><name>numberOfOrbitals</name></member>
-      <member refid="class_g_q_c_p_1_1_simple1_d_m_1adf9829fb7c3d3f634ad83ca0a37fea96" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved1DMComponent</scope><name>operator*=</name></member>
-      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a1ea665b4c39561433d116ee4b6c1d911" prot="public" virt="pure-virtual" ambiguityscope="GQCP::VectorSpaceArithmetic::"><scope>GQCP::SpinResolved1DMComponent</scope><name>operator*=</name></member>
-      <member refid="class_g_q_c_p_1_1_simple1_d_m_1a3730b13257db341c113e49aa26b3fee4" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved1DMComponent</scope><name>operator+=</name></member>
-      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a241d8217aa2b2f34384a4439a968d555" prot="public" virt="pure-virtual" ambiguityscope="GQCP::VectorSpaceArithmetic::"><scope>GQCP::SpinResolved1DMComponent</scope><name>operator+=</name></member>
+      <member refid="class_g_q_c_p_1_1_simple1_d_m_1ad4039ebccc49505bb8b28ccea299deac" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved1DMComponent</scope><name>operator*=</name></member>
+      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1af51affdc48585acbd2de35c1d1bc88c6" prot="public" virt="pure-virtual" ambiguityscope="GQCP::VectorSpaceArithmetic::"><scope>GQCP::SpinResolved1DMComponent</scope><name>operator*=</name></member>
+      <member refid="class_g_q_c_p_1_1_simple1_d_m_1af989aa0c9a54f444a7a90cd4f140c68f" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved1DMComponent</scope><name>operator+=</name></member>
+      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a766eadd335959ff0a7a51f85142ce3c7" prot="public" virt="pure-virtual" ambiguityscope="GQCP::VectorSpaceArithmetic::"><scope>GQCP::SpinResolved1DMComponent</scope><name>operator+=</name></member>
       <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a6b0d86c96ce2b6aaed10dc6d70a493bc" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved1DMComponent</scope><name>operator-</name></member>
-      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a63a0cb54302a2d2f1d54af66e7527c4f" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved1DMComponent</scope><name>operator-=</name></member>
+      <member refid="class_g_q_c_p_1_1_vector_space_arithmetic_1a5dcedcec644cdc0b4ea33fb8ab2ea43f" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved1DMComponent</scope><name>operator-=</name></member>
       <member refid="class_g_q_c_p_1_1_basis_transformable_1a2e107bd3cf4d603c003c8cb9357d0094" prot="public" virt="non-virtual" ambiguityscope="GQCP::"><scope>GQCP::SpinResolved1DMComponent</scope><name>rotate</name></member>
       <member refid="class_g_q_c_p_1_1_jacobi_rotatable_1a11657b774fe75246bef1f7849f9aad72" prot="public" virt="non-virtual" ambiguityscope="GQCP::JacobiRotatable::"><scope>GQCP::SpinResolved1DMComponent</scope><name>rotate</name></member>
       <member refid="class_g_q_c_p_1_1_simple1_d_m_1a6acb767fddd8829ddfd34a3dc5980d2e" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved1DMComponent</scope><name>rotated</name></member>
@@ -140,7 +141,8 @@
       <member refid="class_g_q_c_p_1_1_simple1_d_m_1ae16447c5b63cd60e31d154e791d79dc0" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved1DMComponent</scope><name>Simple1DM</name></member>
       <member refid="class_g_q_c_p_1_1_basis_transformable_1aa55d3cf1b186ac2ec926e97a7b6d645f" prot="public" virt="virtual"><scope>GQCP::SpinResolved1DMComponent</scope><name>transform</name></member>
       <member refid="class_g_q_c_p_1_1_simple1_d_m_1ad2de22beb149df74e5b4757cfcbbbf5a" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved1DMComponent</scope><name>Transformation</name></member>
-      <member refid="class_g_q_c_p_1_1_simple1_d_m_1a734825576319d1c80e64ad9142bf2894" prot="public" virt="virtual"><scope>GQCP::SpinResolved1DMComponent</scope><name>transformed</name></member>
+      <member refid="class_g_q_c_p_1_1_simple1_d_m_1a734825576319d1c80e64ad9142bf2894" prot="public" virt="non-virtual"><scope>GQCP::SpinResolved1DMComponent</scope><name>transformed</name></member>
+      <member refid="class_g_q_c_p_1_1_basis_transformable_1a3c511224fd132184fb2e01579754850d" prot="public" virt="pure-virtual" ambiguityscope="GQCP::BasisTransformable::"><scope>GQCP::SpinResolved1DMComponent</scope><name>transformed</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

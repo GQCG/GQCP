@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_diagonal_r_h_f_fock_matrix_objective" kind="class" language="C++" prot="public">
     <compoundname>GQCP::DiagonalRHFFockMatrixObjective</compoundname>
     <includes refid="_diagonal_r_h_f_fock_matrix_objective_8hpp" local="no">DiagonalRHFFockMatrixObjective.hpp</includes>
@@ -14,6 +14,7 @@
         <definition>using GQCP::DiagonalRHFFockMatrixObjective&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
         <argsstring></argsstring>
         <name>Scalar</name>
+        <qualifiedname>GQCP::DiagonalRHFFockMatrixObjective::Scalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -29,6 +30,7 @@
         <definition>double GQCP::DiagonalRHFFockMatrixObjective&lt; _Scalar &gt;::precision</definition>
         <argsstring></argsstring>
         <name>precision</name>
+        <qualifiedname>GQCP::DiagonalRHFFockMatrixObjective::precision</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -42,6 +44,7 @@
         <definition>RSQHamiltonian&lt;Scalar&gt; GQCP::DiagonalRHFFockMatrixObjective&lt; _Scalar &gt;::sq_hamiltonian</definition>
         <argsstring></argsstring>
         <name>sq_hamiltonian</name>
+        <qualifiedname>GQCP::DiagonalRHFFockMatrixObjective::sq_hamiltonian</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -57,6 +60,7 @@
         <definition>GQCP::DiagonalRHFFockMatrixObjective&lt; _Scalar &gt;::DiagonalRHFFockMatrixObjective</definition>
         <argsstring>(const RSQHamiltonian&lt; Scalar &gt; &amp;sq_hamiltonian, const double precision=1.0e-08)</argsstring>
         <name>DiagonalRHFFockMatrixObjective</name>
+        <qualifiedname>GQCP::DiagonalRHFFockMatrixObjective::DiagonalRHFFockMatrixObjective</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1ab3ebca2a53b8e94ced149c725732035a" kindref="member">RSQHamiltonian</ref>&lt; <ref refid="class_g_q_c_p_1_1_diagonal_r_h_f_fock_matrix_objective_1aa0b5cbdb243f13461631f8fe044c0ca6" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>sq_hamiltonian</declname>
@@ -89,6 +93,7 @@
         <definition>bool GQCP::DiagonalRHFFockMatrixObjective&lt; _Scalar &gt;::isSatisfiedWith</definition>
         <argsstring>(const QCModel::RHF&lt; Scalar &gt; &amp;rhf_parameters) const</argsstring>
         <name>isSatisfiedWith</name>
+        <qualifiedname>GQCP::DiagonalRHFFockMatrixObjective::isSatisfiedWith</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">QCModel::RHF</ref>&lt; <ref refid="class_g_q_c_p_1_1_diagonal_r_h_f_fock_matrix_objective_1aa0b5cbdb243f13461631f8fe044c0ca6" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>rhf_parameters</declname>

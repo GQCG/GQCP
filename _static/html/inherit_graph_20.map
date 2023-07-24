@@ -1,5 +1,11 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$class_g_q_c_p_1_1_base_two_electron_integral_buffer.html" title=" " alt="" coords="5,39,232,80"/>
-<area shape="rect" id="node2" href="$class_g_q_c_p_1_1_libcint_two_electron_integral_buffer.html" title=" " alt="" coords="280,5,543,47"/>
-<area shape="rect" id="node3" href="$class_g_q_c_p_1_1_two_electron_integral_buffer.html" title=" " alt="" coords="305,71,518,112"/>
+<area shape="rect" id="node1" href="$class_g_q_c_p_1_1_base_orbital_optimizer.html" title=" " alt="" coords="5,95,212,121"/>
+<area shape="rect" id="node2" href="$class_g_q_c_p_1_1_jacobi_orbital_optimizer.html" title=" " alt="" coords="265,70,480,95"/>
+<area shape="rect" id="node5" href="$class_g_q_c_p_1_1_newton_orbital_optimizer.html" title=" " alt="" coords="260,119,485,145"/>
+<area shape="rect" id="node3" href="$class_g_q_c_p_1_1_a_p1ro_g_jacobi_orbital_optimizer.html" title=" " alt="" coords="549,5,747,45"/>
+<area shape="rect" id="node4" href="$class_g_q_c_p_1_1_e_r_jacobi_localizer.html" title=" " alt="" coords="557,70,739,95"/>
+<area shape="rect" id="node6" href="$class_g_q_c_p_1_1_e_r_newton_localizer.html" title=" " alt="" coords="552,119,744,145"/>
+<area shape="rect" id="node7" href="$class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer.html" title=" " alt="" coords="533,169,763,209"/>
+<area shape="rect" id="node8" href="$class_g_q_c_p_1_1_a_p1ro_g_lagrangian_newton_orbital_optimizer.html" title=" " alt="" coords="821,137,1059,177"/>
+<area shape="rect" id="node9" href="$class_g_q_c_p_1_1_d_o_c_i_newton_orbital_optimizer.html" title=" " alt="" coords="811,201,1069,241"/>
 </map>

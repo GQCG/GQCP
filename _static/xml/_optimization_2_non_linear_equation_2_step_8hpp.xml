@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="_optimization_2_non_linear_equation_2_step_8hpp" kind="file" language="C++">
     <compoundname>step.hpp</compoundname>
     <includes refid="_matrix_8hpp" local="yes">Mathematical/Representation/Matrix.hpp</includes>
@@ -7,26 +7,15 @@
     <includedby refid="step_8cpp" local="yes">/__w/GQCP/GQCP/gqcp/src/Mathematical/Optimization/NonLinearEquation/step.cpp</includedby>
     <includedby refid="_newton_orbital_optimizer_8cpp" local="yes">/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.cpp</includedby>
     <incdepgraph>
-      <node id="10">
-        <label>boost/algorithm/string.hpp</label>
-      </node>
-      <node id="4">
-        <label>Utilities/Eigen.hpp</label>
-        <link refid="_eigen_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
+      <node id="3">
+        <label>Mathematical/Functions/CartesianDirection.hpp</label>
+        <link refid="_cartesian_direction_8hpp"/>
       </node>
       <node id="1">
         <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/NonLinearEquation/step.hpp</label>
         <link refid="_optimization_2_non_linear_equation_2_step_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-      </node>
-      <node id="11">
-        <label>fstream</label>
-      </node>
-      <node id="5">
-        <label>Eigen/Dense</label>
       </node>
       <node id="2">
         <label>Mathematical/Representation/Matrix.hpp</label>
@@ -48,14 +37,11 @@
         <childnode refid="13" relation="include">
         </childnode>
       </node>
-      <node id="7">
-        <label>Utilities/type_traits.hpp</label>
-        <link refid="type__traits_8hpp"/>
-        <childnode refid="8" relation="include">
+      <node id="4">
+        <label>Utilities/Eigen.hpp</label>
+        <link refid="_eigen_8hpp"/>
+        <childnode refid="5" relation="include">
         </childnode>
-      </node>
-      <node id="13">
-        <label>vector</label>
       </node>
       <node id="6">
         <label>Utilities/aliases.hpp</label>
@@ -65,8 +51,23 @@
         <childnode refid="9" relation="include">
         </childnode>
       </node>
+      <node id="7">
+        <label>Utilities/type_traits.hpp</label>
+        <link refid="type__traits_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="10">
+        <label>boost/algorithm/string.hpp</label>
+      </node>
       <node id="9">
         <label>cstdlib</label>
+      </node>
+      <node id="11">
+        <label>fstream</label>
       </node>
       <node id="12">
         <label>iostream</label>
@@ -74,9 +75,8 @@
       <node id="8">
         <label>type_traits</label>
       </node>
-      <node id="3">
-        <label>Mathematical/Functions/CartesianDirection.hpp</label>
-        <link refid="_cartesian_direction_8hpp"/>
+      <node id="13">
+        <label>vector</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
@@ -90,13 +90,13 @@
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="3">
-        <label>/__w/GQCP/GQCP/gqcp/src/Mathematical/Optimization/NonLinearEquation/step.cpp</label>
-        <link refid="step_8cpp"/>
-      </node>
       <node id="2">
         <label>/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</label>
         <link refid="gqcp_8hpp"/>
+      </node>
+      <node id="3">
+        <label>/__w/GQCP/GQCP/gqcp/src/Mathematical/Optimization/NonLinearEquation/step.cpp</label>
+        <link refid="step_8cpp"/>
       </node>
       <node id="4">
         <label>/__w/GQCP/GQCP/gqcp/src/QCMethod/OrbitalOptimization/NewtonOrbitalOptimizer.cpp</label>

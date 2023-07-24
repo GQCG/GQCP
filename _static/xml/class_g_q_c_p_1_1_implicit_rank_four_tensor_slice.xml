@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kind="class" language="C++" prot="public">
     <compoundname>GQCP::ImplicitRankFourTensorSlice</compoundname>
     <includes refid="_implicit_rank_four_tensor_slice_8hpp" local="no">ImplicitRankFourTensorSlice.hpp</includes>
@@ -14,6 +14,7 @@
         <definition>using GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
         <argsstring></argsstring>
         <name>Scalar</name>
+        <qualifiedname>GQCP::ImplicitRankFourTensorSlice::Scalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -29,6 +30,7 @@
         <definition>std::vector&lt;std::map&lt;size_t, size_t&gt; &gt; GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::indices_implicit_to_dense</definition>
         <argsstring></argsstring>
         <name>indices_implicit_to_dense</name>
+        <qualifiedname>GQCP::ImplicitRankFourTensorSlice::indices_implicit_to_dense</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -42,6 +44,7 @@
         <definition>Tensor&lt;Scalar, 4&gt; GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::T</definition>
         <argsstring></argsstring>
         <name>T</name>
+        <qualifiedname>GQCP::ImplicitRankFourTensorSlice::T</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -52,13 +55,14 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a1b91cb03aafe2c29d45b4ec851d1617b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a9719946461c0623c46c15c61be5629bf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::ImplicitRankFourTensorSlice</definition>
-        <argsstring>(const std::vector&lt; std::map&lt; size_t, size_t &gt;&gt; &amp;indices_implicit_to_dense, const Tensor&lt; Scalar, 4 &gt; &amp;T)</argsstring>
+        <argsstring>(const std::vector&lt; std::map&lt; size_t, size_t &gt; &gt; &amp;indices_implicit_to_dense, const Tensor&lt; Scalar, 4 &gt; &amp;T)</argsstring>
         <name>ImplicitRankFourTensorSlice</name>
+        <qualifiedname>GQCP::ImplicitRankFourTensorSlice::ImplicitRankFourTensorSlice</qualifiedname>
         <param>
-          <type>const std::vector&lt; std::map&lt; size_t, size_t &gt;&gt; &amp;</type>
+          <type>const std::vector&lt; std::map&lt; size_t, size_t &gt; &gt; &amp;</type>
           <declname>indices_implicit_to_dense</declname>
         </param>
         <param>
@@ -97,6 +101,7 @@
         <definition>GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::ImplicitRankFourTensorSlice</definition>
         <argsstring>()</argsstring>
         <name>ImplicitRankFourTensorSlice</name>
+        <qualifiedname>GQCP::ImplicitRankFourTensorSlice::ImplicitRankFourTensorSlice</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -111,6 +116,7 @@
         <definition>Scalar GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::operator()</definition>
         <argsstring>(const size_t index1, const size_t index2, const size_t index3, const size_t index4) const</argsstring>
         <name>operator()</name>
+        <qualifiedname>GQCP::ImplicitRankFourTensorSlice::operator()</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>index1</declname>
@@ -172,11 +178,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" line="235" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" bodystart="235" bodyend="244"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a248b068a2b5bef6091c81140006d914b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1ad056d38e5b59f32b0c332265f6dea901" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a02a3558f948824d588b9f43d4b1d593b" kindref="member">Scalar</ref> &amp;</type>
-        <definition>Scalar&amp; GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::operator()</definition>
+        <definition>Scalar &amp; GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::operator()</definition>
         <argsstring>(const size_t index1, const size_t index2, const size_t index3, const size_t index4)</argsstring>
         <name>operator()</name>
+        <qualifiedname>GQCP::ImplicitRankFourTensorSlice::operator()</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>index1</declname>
@@ -238,11 +245,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" line="256" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" bodystart="256" bodyend="265"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1ad3d9b4fd6a44b4e39d9c781a8a0eed5a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a6988f4ab938598107fac007f8488d42f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" kindref="member">MatrixX</ref>&lt; <ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a02a3558f948824d588b9f43d4b1d593b" kindref="member">Scalar</ref> &gt;</type>
-        <definition>MatrixX&lt;Scalar&gt; GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::asMatrix</definition>
+        <definition>MatrixX&lt; Scalar &gt; GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::asMatrix</definition>
         <argsstring>() const</argsstring>
         <name>asMatrix</name>
+        <qualifiedname>GQCP::ImplicitRankFourTensorSlice::asMatrix</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -254,11 +262,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" line="275" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" bodystart="275" bodyend="275"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1afbce215400fec88e7789e3d26259cbaf" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a5699092acae382bfb591ad0ab4bbacf4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_tensor" kindref="compound">Tensor</ref>&lt; <ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a02a3558f948824d588b9f43d4b1d593b" kindref="member">Scalar</ref>, 4 &gt; &amp;</type>
-        <definition>const Tensor&lt;Scalar, 4&gt;&amp; GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::asTensor</definition>
+        <definition>const Tensor&lt; Scalar, 4 &gt; &amp; GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::asTensor</definition>
         <argsstring>() const</argsstring>
         <name>asTensor</name>
+        <qualifiedname>GQCP::ImplicitRankFourTensorSlice::asTensor</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -282,6 +291,7 @@
         <definition>size_t GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::denseIndexOf</definition>
         <argsstring>(const size_t index) const</argsstring>
         <name>denseIndexOf</name>
+        <qualifiedname>GQCP::ImplicitRankFourTensorSlice::denseIndexOf</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>index</declname>
@@ -316,11 +326,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" line="292" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" bodystart="292" bodyend="292"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a324bac6ce6c4bad1ab4b273c3b5328c2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1adb5b972ca981e761f89dbaaa0ca52835" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const std::vector&lt; std::map&lt; size_t, size_t &gt; &gt; &amp;</type>
-        <definition>const std::vector&lt;std::map&lt;size_t, size_t&gt; &gt;&amp; GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::indexMaps</definition>
+        <definition>const std::vector&lt; std::map&lt; size_t, size_t &gt; &gt; &amp; GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::indexMaps</definition>
         <argsstring>() const</argsstring>
         <name>indexMaps</name>
+        <qualifiedname>GQCP::ImplicitRankFourTensorSlice::indexMaps</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -334,11 +345,12 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1ace48285d256f59a0ef0fa61a2133b18a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1ada72073df00a70b6ec0165916f7c5d5b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a02a3558f948824d588b9f43d4b1d593b" kindref="member">Scalar</ref> &gt;</type>
-        <definition>static ImplicitRankFourTensorSlice&lt;Scalar&gt; GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::FromBlockRanges</definition>
+        <definition>static ImplicitRankFourTensorSlice&lt; Scalar &gt; GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::FromBlockRanges</definition>
         <argsstring>(const size_t axis1_start, const size_t axis1_end, const size_t axis2_start, const size_t axis2_end, const size_t axis3_start, const size_t axis3_end, const size_t axis4_start, const size_t axis4_end, const Tensor&lt; Scalar, 4 &gt; &amp;T)</argsstring>
         <name>FromBlockRanges</name>
+        <qualifiedname>GQCP::ImplicitRankFourTensorSlice::FromBlockRanges</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>axis1_start</declname>
@@ -460,13 +472,14 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" line="101" column="40" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" bodystart="101" bodyend="117"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1afa4ffdf2f793c310305d46246cfcf3dc" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a4cb7b8dc2caacb2a5cb2e3e73e91f2b9" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a02a3558f948824d588b9f43d4b1d593b" kindref="member">Scalar</ref> &gt;</type>
-        <definition>static ImplicitRankFourTensorSlice&lt;Scalar&gt; GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::FromIndices</definition>
-        <argsstring>(const std::vector&lt; std::vector&lt; size_t &gt;&gt; &amp;axes_indices, const Tensor&lt; Scalar, 4 &gt; &amp;T)</argsstring>
+        <definition>static ImplicitRankFourTensorSlice&lt; Scalar &gt; GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::FromIndices</definition>
+        <argsstring>(const std::vector&lt; std::vector&lt; size_t &gt; &gt; &amp;axes_indices, const Tensor&lt; Scalar, 4 &gt; &amp;T)</argsstring>
         <name>FromIndices</name>
+        <qualifiedname>GQCP::ImplicitRankFourTensorSlice::FromIndices</qualifiedname>
         <param>
-          <type>const std::vector&lt; std::vector&lt; size_t &gt;&gt; &amp;</type>
+          <type>const std::vector&lt; std::vector&lt; size_t &gt; &gt; &amp;</type>
           <declname>axes_indices</declname>
         </param>
         <param>
@@ -502,11 +515,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" line="128" column="40" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" bodystart="128" bodyend="144"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1ae1beeb43ddba7afc818e4b54a802f71e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1afbdfb47fbb1e3fe9e097937345c3be63" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a02a3558f948824d588b9f43d4b1d593b" kindref="member">Scalar</ref> &gt;</type>
-        <definition>static ImplicitRankFourTensorSlice&lt;Scalar&gt; GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::FromIndices</definition>
+        <definition>static ImplicitRankFourTensorSlice&lt; Scalar &gt; GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::FromIndices</definition>
         <argsstring>(const std::vector&lt; size_t &gt; &amp;axis1_indices, const std::vector&lt; size_t &gt; &amp;axis2_indices, const std::vector&lt; size_t &gt; &amp;axis3_indices, const std::vector&lt; size_t &gt; &amp;axis4_indices, const Tensor&lt; Scalar, 4 &gt; &amp;T)</argsstring>
         <name>FromIndices</name>
+        <qualifiedname>GQCP::ImplicitRankFourTensorSlice::FromIndices</qualifiedname>
         <param>
           <type>const std::vector&lt; size_t &gt; &amp;</type>
           <declname>axis1_indices</declname>
@@ -580,11 +594,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" line="158" column="40" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" bodystart="158" bodyend="164"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1ad49d63f6bbc9ee0e1d10c7b35e66ef3c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1ae4f825c9b59fe51e99e43e3ce2a52dd0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a02a3558f948824d588b9f43d4b1d593b" kindref="member">Scalar</ref> &gt;</type>
-        <definition>static ImplicitRankFourTensorSlice&lt;Scalar&gt; GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::ZeroFromBlockRanges</definition>
+        <definition>static ImplicitRankFourTensorSlice&lt; Scalar &gt; GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::ZeroFromBlockRanges</definition>
         <argsstring>(const size_t axis1_start, const size_t axis1_end, const size_t axis2_start, const size_t axis2_end, const size_t axis3_start, const size_t axis3_end, const size_t axis4_start, const size_t axis4_end)</argsstring>
         <name>ZeroFromBlockRanges</name>
+        <qualifiedname>GQCP::ImplicitRankFourTensorSlice::ZeroFromBlockRanges</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>axis1_start</declname>
@@ -694,11 +709,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" line="181" column="40" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" bodystart="181" bodyend="193"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a7b0333544660097fe2e3ac8df1699c03" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1aa99ec680ffac036ddcf68633f62d165b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice" kindref="compound">ImplicitRankFourTensorSlice</ref>&lt; <ref refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a02a3558f948824d588b9f43d4b1d593b" kindref="member">Scalar</ref> &gt;</type>
-        <definition>static ImplicitRankFourTensorSlice&lt;Scalar&gt; GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::ZeroFromIndices</definition>
+        <definition>static ImplicitRankFourTensorSlice&lt; Scalar &gt; GQCP::ImplicitRankFourTensorSlice&lt; _Scalar &gt;::ZeroFromIndices</definition>
         <argsstring>(const std::vector&lt; size_t &gt; &amp;axis1_indices, const std::vector&lt; size_t &gt; &amp;axis2_indices, const std::vector&lt; size_t &gt; &amp;axis3_indices, const std::vector&lt; size_t &gt; &amp;axis4_indices)</argsstring>
         <name>ZeroFromIndices</name>
+        <qualifiedname>GQCP::ImplicitRankFourTensorSlice::ZeroFromIndices</qualifiedname>
         <param>
           <type>const std::vector&lt; size_t &gt; &amp;</type>
           <declname>axis1_indices</declname>
@@ -775,22 +791,22 @@
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" line="38" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/ImplicitRankFourTensorSlice.hpp" bodystart="38" bodyend="298"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1ad3d9b4fd6a44b4e39d9c781a8a0eed5a" prot="public" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>asMatrix</name></member>
-      <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1afbce215400fec88e7789e3d26259cbaf" prot="public" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>asTensor</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a6988f4ab938598107fac007f8488d42f" prot="public" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>asMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a5699092acae382bfb591ad0ab4bbacf4" prot="public" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>asTensor</name></member>
       <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a36c9b2dce1d651fbf9f60dcb1d5544a3" prot="public" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>denseIndexOf</name></member>
-      <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1ace48285d256f59a0ef0fa61a2133b18a" prot="public" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>FromBlockRanges</name></member>
-      <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1afa4ffdf2f793c310305d46246cfcf3dc" prot="public" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>FromIndices</name></member>
-      <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1ae1beeb43ddba7afc818e4b54a802f71e" prot="public" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>FromIndices</name></member>
-      <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a1b91cb03aafe2c29d45b4ec851d1617b" prot="public" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>ImplicitRankFourTensorSlice</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1ada72073df00a70b6ec0165916f7c5d5b" prot="public" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>FromBlockRanges</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a4cb7b8dc2caacb2a5cb2e3e73e91f2b9" prot="public" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>FromIndices</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1afbdfb47fbb1e3fe9e097937345c3be63" prot="public" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>FromIndices</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a9719946461c0623c46c15c61be5629bf" prot="public" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>ImplicitRankFourTensorSlice</name></member>
       <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a9b95e2ddc70463be92e49cb9d4793948" prot="public" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>ImplicitRankFourTensorSlice</name></member>
-      <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a324bac6ce6c4bad1ab4b273c3b5328c2" prot="public" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>indexMaps</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1adb5b972ca981e761f89dbaaa0ca52835" prot="public" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>indexMaps</name></member>
       <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a7f63f9c2fc5fb757b9da81669e953117" prot="private" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>indices_implicit_to_dense</name></member>
       <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1ab4c2ba1210e77c3e0555312990714406" prot="public" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>operator()</name></member>
-      <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a248b068a2b5bef6091c81140006d914b" prot="public" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>operator()</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1ad056d38e5b59f32b0c332265f6dea901" prot="public" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>operator()</name></member>
       <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a02a3558f948824d588b9f43d4b1d593b" prot="public" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>Scalar</name></member>
       <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1ad298f46f301e3edf7af9de9447740a38" prot="private" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>T</name></member>
-      <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1ad49d63f6bbc9ee0e1d10c7b35e66ef3c" prot="public" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>ZeroFromBlockRanges</name></member>
-      <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1a7b0333544660097fe2e3ac8df1699c03" prot="public" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>ZeroFromIndices</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1ae4f825c9b59fe51e99e43e3ce2a52dd0" prot="public" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>ZeroFromBlockRanges</name></member>
+      <member refid="class_g_q_c_p_1_1_implicit_rank_four_tensor_slice_1aa99ec680ffac036ddcf68633f62d165b" prot="public" virt="non-virtual"><scope>GQCP::ImplicitRankFourTensorSlice</scope><name>ZeroFromIndices</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_linear_momentum_operator" kind="class" language="C++" prot="public">
     <compoundname>GQCP::LinearMomentumOperator</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_base_f_q_operator" prot="public" virt="non-virtual">GQCP::BaseFQOperator&lt; complex &gt;</basecompoundref>
@@ -10,6 +10,7 @@
         <definition>constexpr size_t GQCP::LinearMomentumOperator::NumberOfComponents</definition>
         <argsstring></argsstring>
         <name>NumberOfComponents</name>
+        <qualifiedname>GQCP::LinearMomentumOperator::NumberOfComponents</qualifiedname>
         <initializer>= 3</initializer>
         <briefdescription>
         </briefdescription>
@@ -24,6 +25,7 @@
         <definition>const VectorVectorizer GQCP::LinearMomentumOperator::vectorizer</definition>
         <argsstring></argsstring>
         <name>vectorizer</name>
+        <qualifiedname>GQCP::LinearMomentumOperator::vectorizer</qualifiedname>
         <initializer>{{<ref refid="class_g_q_c_p_1_1_linear_momentum_operator_1a86600b6da5a5818dce9a16204678917e" kindref="member">LinearMomentumOperator::NumberOfComponents</ref>}}</initializer>
         <briefdescription>
         </briefdescription>
@@ -40,18 +42,22 @@
 <para>The (one-electron) vector operator for an electron&apos;s linear momentum. </para>
     </detaileddescription>
     <inheritancegraph>
+      <node id="2">
+        <label>BaseVectorFQOneElectronOperator&lt; complex &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_f_q_operator"/>
+      </node>
       <node id="1">
         <label>GQCP::LinearMomentumOperator</label>
         <link refid="class_g_q_c_p_1_1_linear_momentum_operator"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
       </node>
+    </inheritancegraph>
+    <collaborationgraph>
       <node id="2">
         <label>BaseVectorFQOneElectronOperator&lt; complex &gt;</label>
         <link refid="class_g_q_c_p_1_1_base_f_q_operator"/>
       </node>
-    </inheritancegraph>
-    <collaborationgraph>
       <node id="3">
         <label>GQCP::DenseVectorizer&lt; A &gt;</label>
         <link refid="class_g_q_c_p_1_1_dense_vectorizer"/>
@@ -64,10 +70,6 @@
         <childnode refid="3" relation="usage">
           <edgelabel>+vectorizer</edgelabel>
         </childnode>
-      </node>
-      <node id="2">
-        <label>BaseVectorFQOneElectronOperator&lt; complex &gt;</label>
-        <link refid="class_g_q_c_p_1_1_base_f_q_operator"/>
       </node>
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/LinearMomentumOperator.hpp" line="32" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/LinearMomentumOperator.hpp" bodystart="33" bodyend="44"/>

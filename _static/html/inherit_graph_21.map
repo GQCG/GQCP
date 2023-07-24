@@ -1,4 +1,9 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$class_g_q_c_p_1_1_base_two_electron_integral_buffer.html" title=" " alt="" coords="5,5,232,47"/>
-<area shape="rect" id="node2" href="$class_g_q_c_p_1_1_libint_two_electron_integral_buffer.html" title=" " alt="" coords="280,5,511,47"/>
+<area shape="rect" id="node1" href="$class_g_q_c_p_1_1_base_scalar_primitive_integral_engine.html" title=" " alt="" coords="5,206,204,246"/>
+<area shape="rect" id="node2" href="$class_g_q_c_p_1_1_functional_one_electron_primitive_integral_engine.html" title=" " alt="" coords="269,5,483,60"/>
+<area shape="rect" id="node3" href="$class_g_q_c_p_1_1_functional_two_electron_primitive_integral_engine.html" title=" " alt="" coords="270,84,482,139"/>
+<area shape="rect" id="node4" href="$class_g_q_c_p_1_1_primitive_canonical_kinetic_energy_integral_engine.html" title=" " alt="" coords="273,163,479,217"/>
+<area shape="rect" id="node5" href="$class_g_q_c_p_1_1_primitive_coulomb_repulsion_integral_engine.html" title=" " alt="" coords="252,242,500,282"/>
+<area shape="rect" id="node6" href="$class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine.html" title=" " alt="" coords="256,306,496,346"/>
+<area shape="rect" id="node7" href="$class_g_q_c_p_1_1_primitive_overlap_integral_engine.html" title=" " alt="" coords="263,370,489,410"/>
 </map>

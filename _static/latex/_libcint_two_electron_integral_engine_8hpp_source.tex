@@ -1,0 +1,97 @@
+\hypertarget{_libcint_two_electron_integral_engine_8hpp_source}{}\doxysection{Libcint\+Two\+Electron\+Integral\+Engine.\+hpp}
+\label{_libcint_two_electron_integral_engine_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Basis/Integrals/Interfaces/LibcintTwoElectronIntegralEngine.hpp}}
+\mbox{\hyperlink{_libcint_two_electron_integral_engine_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_base_two_electron_integral_engine_8hpp}{Basis/Integrals/BaseTwoElectronIntegralEngine.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_libcint_interfacer_8hpp}{Basis/Integrals/Interfaces/LibcintInterfacer.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_libcint_two_electron_integral_buffer_8hpp}{Basis/Integrals/Interfaces/LibcintTwoElectronIntegralBuffer.hpp}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{miscellaneous_8hpp}{Utilities/miscellaneous.hpp}}"{}}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Shell,\ \textcolor{keywordtype}{size\_t}\ \_N,\ \textcolor{keyword}{typename}\ \_IntegralScalar>}
+\DoxyCodeLine{00042\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_engine}{LibcintTwoElectronIntegralEngine}}:\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_base_two_electron_integral_engine}{BaseTwoElectronIntegralEngine}}<\_Shell,\ \_N,\ \_IntegralScalar>\ \{}
+\DoxyCodeLine{00043\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_a1512407c73000165b4b14f59c7df00b1}{Shell}}\ =\ \_Shell;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ type\ of\ shell\ the\ integral\ engine\ is\ able\ to\ handle}}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_abe498205d4d709c3c6bab9a3bd277e65}{IntegralScalar}}\ =\ \_IntegralScalar;\ \ \textcolor{comment}{//\ the\ scalar\ representation\ of\ an\ integral}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_af5559db63d0655594be4e38d7d0a5e3d}{N}}\ =\ \_N;\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ number\ of\ components\ the\ operator\ has}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_ab9e82f4c5fc3ac406b005fcbea227dfb}{Libcint2eFunction}}\ libcint\_function;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ libcint\ two-\/electron\ integral\ function}}
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_ac6643c2ed5e21d07597ca1dfaf5881c7}{Libcint2eOptimizerFunction}}\ libcint\_optimizer\_function;\ \ \textcolor{comment}{//\ the\ libcint\ two-\/electron\ optimizer\ integral\ function}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{//\ Data\ that\ has\ to\ be\ kept\ as\ a\ member\ (see\ the\ class\ note)}}
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1libcint_1_1_raw_container}{libcint::RawContainer}}\ libcint\_raw\_container;\ \ \textcolor{comment}{//\ the\ raw\ libcint\ data}}
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{ShellSet<Shell>}}\ shell\_set;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ corresponding\ shell\ set}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00060\ \textcolor{comment}{\ \ \ \ \ *\ \ CONSTRUCTORS}}
+\DoxyCodeLine{00061\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00067\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_a287c6be774a5da1bd961168a173f9c99}{LibcintTwoElectronIntegralEngine}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{CoulombRepulsionOperator}}\&\ op,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_shell_set}{ShellSet<Shell>}}\&\ shell\_set)\ :}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ libcint\_function\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_libcint_interfacer}{LibcintInterfacer}}().twoElectronFunction(op)\},}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ libcint\_optimizer\_function\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_libcint_interfacer}{LibcintInterfacer}}().twoElectronOptimizerFunction(op)\},}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ libcint\_raw\_container\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_libcint_interfacer}{LibcintInterfacer}}().convert(shell\_set)\},}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ shell\_set\ \{shell\_set\}\ \{\}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00075\ \textcolor{comment}{\ \ \ \ \ *\ \ PUBLIC\ OVERRIDDEN\ METHODS}}
+\DoxyCodeLine{00076\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00086\ \ \ \ \ std::shared\_ptr<BaseTwoElectronIntegralBuffer<IntegralScalar,\ N>>\ \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_a8404d0c46a097616f3eefdc155d4d116}{calculate}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_a1512407c73000165b4b14f59c7df00b1}{Shell}}\&\ shell1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_a1512407c73000165b4b14f59c7df00b1}{Shell}}\&\ shell2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_a1512407c73000165b4b14f59c7df00b1}{Shell}}\&\ shell3,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_a1512407c73000165b4b14f59c7df00b1}{Shell}}\&\ shell4)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Find\ to\ which\ indices\ in\ the\ RawContainer\ the\ given\ shells\ correspond}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ shell\_indices[4];}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ shell\_indices[0]\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(\mbox{\hyperlink{namespace_g_q_c_p_a0761e8419cd4ef88f0b973e82fa0e764}{findElementIndex}}(this-\/>shell\_set.\mbox{\hyperlink{class_g_q_c_p_1_1_shell_set_a569efd7b6357946f92b9a603d2b0075b}{asVector}}(),\ shell1));}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ shell\_indices[1]\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(\mbox{\hyperlink{namespace_g_q_c_p_a0761e8419cd4ef88f0b973e82fa0e764}{findElementIndex}}(this-\/>shell\_set.\mbox{\hyperlink{class_g_q_c_p_1_1_shell_set_a569efd7b6357946f92b9a603d2b0075b}{asVector}}(),\ shell2));}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ shell\_indices[2]\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(\mbox{\hyperlink{namespace_g_q_c_p_a0761e8419cd4ef88f0b973e82fa0e764}{findElementIndex}}(this-\/>shell\_set.\mbox{\hyperlink{class_g_q_c_p_1_1_shell_set_a569efd7b6357946f92b9a603d2b0075b}{asVector}}(),\ shell3));}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ shell\_indices[3]\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(\mbox{\hyperlink{namespace_g_q_c_p_a0761e8419cd4ef88f0b973e82fa0e764}{findElementIndex}}(this-\/>shell\_set.\mbox{\hyperlink{class_g_q_c_p_1_1_shell_set_a569efd7b6357946f92b9a603d2b0075b}{asVector}}(),\ shell4));}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pre-\/allocate\ a\ raw\ buffer,\ because\ libcint\ functions\ expect\ a\ data\ pointer}}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ nbf1\ =\ shell1.numberOfBasisFunctions();}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ nbf2\ =\ shell2.numberOfBasisFunctions();}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ nbf3\ =\ shell3.numberOfBasisFunctions();}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ nbf4\ =\ shell4.numberOfBasisFunctions();}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ libcint\_buffer[\mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_af5559db63d0655594be4e38d7d0a5e3d}{N}}\ *\ nbf1\ *\ nbf2\ *\ nbf3\ *\ nbf4];}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Let\ libcint\ compute\ the\ integrals\ and\ return\ the\ corresponding\ buffer}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ result\ =\ this-\/>libcint\_function(libcint\_buffer,\ shell\_indices,\ this-\/>libcint\_raw\_container.\mbox{\hyperlink{class_g_q_c_p_1_1libcint_1_1_raw_container_a32577dca62f7f76dd2944d9b99d354c7}{atmData}}(),\ this-\/>libcint\_raw\_container.numberOfAtoms(),\ this-\/>libcint\_raw\_container.basData(),\ this-\/>libcint\_raw\_container.numberOfBasisFunctions(),\ this-\/>libcint\_raw\_container.envData(),\ \textcolor{keyword}{nullptr});\ \ \textcolor{comment}{//\ no\ optimizer\ struct}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ std::vector<double>\ buffer\_converted\ \{libcint\_buffer,\ libcint\_buffer\ +\ \mbox{\hyperlink{class_g_q_c_p_1_1_libcint_two_electron_integral_engine_af5559db63d0655594be4e38d7d0a5e3d}{N}}\ *\ nbf1\ *\ nbf2\ *\ nbf3\ *\ nbf4\};\ \ \textcolor{comment}{//\ std::vector\ constructor\ from\ .begin()\ and\ .end()}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_shared<LibcintTwoElectronIntegralBuffer<IntegralScalar,\ N>>(buffer\_converted,\ nbf1,\ nbf2,\ nbf3,\ nbf4,\ result);}
+\DoxyCodeLine{00110\ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \};}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

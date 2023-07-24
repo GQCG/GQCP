@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_simple_orbital_rotation_generators" kind="class" language="C++" prot="public">
     <compoundname>GQCP::SimpleOrbitalRotationGenerators</compoundname>
     <includes refid="_simple_orbital_rotation_generators_8hpp" local="no">SimpleOrbitalRotationGenerators.hpp</includes>
@@ -17,6 +17,7 @@
         <definition>using GQCP::SimpleOrbitalRotationGenerators&lt; _Scalar, _DerivedOrbitalRotationGenerators &gt;::Scalar =  _Scalar</definition>
         <argsstring></argsstring>
         <name>Scalar</name>
+        <qualifiedname>GQCP::SimpleOrbitalRotationGenerators::Scalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -30,6 +31,7 @@
         <definition>using GQCP::SimpleOrbitalRotationGenerators&lt; _Scalar, _DerivedOrbitalRotationGenerators &gt;::DerivedOrbitalRotationGenerators =  _DerivedOrbitalRotationGenerators</definition>
         <argsstring></argsstring>
         <name>DerivedOrbitalRotationGenerators</name>
+        <qualifiedname>GQCP::SimpleOrbitalRotationGenerators::DerivedOrbitalRotationGenerators</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -45,6 +47,7 @@
         <definition>size_t GQCP::SimpleOrbitalRotationGenerators&lt; _Scalar, _DerivedOrbitalRotationGenerators &gt;::number_of_orbitals</definition>
         <argsstring></argsstring>
         <name>number_of_orbitals</name>
+        <qualifiedname>GQCP::SimpleOrbitalRotationGenerators::number_of_orbitals</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -58,6 +61,7 @@
         <definition>VectorX&lt;Scalar&gt; GQCP::SimpleOrbitalRotationGenerators&lt; _Scalar, _DerivedOrbitalRotationGenerators &gt;::v</definition>
         <argsstring></argsstring>
         <name>v</name>
+        <qualifiedname>GQCP::SimpleOrbitalRotationGenerators::v</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -73,6 +77,7 @@
         <definition>GQCP::SimpleOrbitalRotationGenerators&lt; _Scalar, _DerivedOrbitalRotationGenerators &gt;::SimpleOrbitalRotationGenerators</definition>
         <argsstring>(const VectorX&lt; Scalar &gt; &amp;v)</argsstring>
         <name>SimpleOrbitalRotationGenerators</name>
+        <qualifiedname>GQCP::SimpleOrbitalRotationGenerators::SimpleOrbitalRotationGenerators</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; <ref refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1a08409bc973314549c81df7c8558729fb" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>v</declname>
@@ -101,6 +106,7 @@
         <definition>GQCP::SimpleOrbitalRotationGenerators&lt; _Scalar, _DerivedOrbitalRotationGenerators &gt;::SimpleOrbitalRotationGenerators</definition>
         <argsstring>(const SquareMatrix&lt; Scalar &gt; &amp;kappa)</argsstring>
         <name>SimpleOrbitalRotationGenerators</name>
+        <qualifiedname>GQCP::SimpleOrbitalRotationGenerators::SimpleOrbitalRotationGenerators</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1a08409bc973314549c81df7c8558729fb" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>kappa</declname>
@@ -124,11 +130,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleOrbitalRotationGenerators.hpp" line="79" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleOrbitalRotationGenerators.hpp" bodystart="79" bodyend="85"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1a35873aaca35f5f4fc1f40d63557fab6e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1ad4a58794fbf45ec43ca33f4d17e23f81" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1a08409bc973314549c81df7c8558729fb" kindref="member">Scalar</ref> &gt;</type>
-        <definition>const SquareMatrix&lt;Scalar&gt; GQCP::SimpleOrbitalRotationGenerators&lt; _Scalar, _DerivedOrbitalRotationGenerators &gt;::asMatrix</definition>
+        <definition>const SquareMatrix&lt; Scalar &gt; GQCP::SimpleOrbitalRotationGenerators&lt; _Scalar, _DerivedOrbitalRotationGenerators &gt;::asMatrix</definition>
         <argsstring>() const</argsstring>
         <name>asMatrix</name>
+        <qualifiedname>GQCP::SimpleOrbitalRotationGenerators::asMatrix</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -140,11 +147,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleOrbitalRotationGenerators.hpp" line="128" column="24" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleOrbitalRotationGenerators.hpp" bodystart="128" bodyend="133"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1a0dc21c5af16e41317a390c43155c4ae1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1a904f8cc2420a355fce00dce714c19441" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; <ref refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1a08409bc973314549c81df7c8558729fb" kindref="member">Scalar</ref> &gt; &amp;</type>
-        <definition>const VectorX&lt;Scalar&gt;&amp; GQCP::SimpleOrbitalRotationGenerators&lt; _Scalar, _DerivedOrbitalRotationGenerators &gt;::asVector</definition>
+        <definition>const VectorX&lt; Scalar &gt; &amp; GQCP::SimpleOrbitalRotationGenerators&lt; _Scalar, _DerivedOrbitalRotationGenerators &gt;::asVector</definition>
         <argsstring>() const</argsstring>
         <name>asVector</name>
+        <qualifiedname>GQCP::SimpleOrbitalRotationGenerators::asVector</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -161,6 +169,7 @@
         <definition>size_t GQCP::SimpleOrbitalRotationGenerators&lt; _Scalar, _DerivedOrbitalRotationGenerators &gt;::numberOfOrbitals</definition>
         <argsstring>() const</argsstring>
         <name>numberOfOrbitals</name>
+        <qualifiedname>GQCP::SimpleOrbitalRotationGenerators::numberOfOrbitals</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -179,6 +188,7 @@
         <definition>static DerivedOrbitalRotationGenerators GQCP::SimpleOrbitalRotationGenerators&lt; _Scalar, _DerivedOrbitalRotationGenerators &gt;::FromOccupationTypes</definition>
         <argsstring>(const DerivedOrbitalRotationGenerators &amp;generators, const OccupationType row_occupation_type, const OccupationType column_occupation_type, const size_t K)</argsstring>
         <name>FromOccupationTypes</name>
+        <qualifiedname>GQCP::SimpleOrbitalRotationGenerators::FromOccupationTypes</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1a41f858a7486ce4755ec7db4c2f039119" kindref="member">DerivedOrbitalRotationGenerators</ref> &amp;</type>
           <declname>generators</declname>
@@ -273,8 +283,8 @@
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleOrbitalRotationGenerators.hpp" line="42" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/Transformations/SimpleOrbitalRotationGenerators.hpp" bodystart="42" bodyend="145"/>
     <listofallmembers>
-      <member refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1a35873aaca35f5f4fc1f40d63557fab6e" prot="public" virt="non-virtual"><scope>GQCP::SimpleOrbitalRotationGenerators</scope><name>asMatrix</name></member>
-      <member refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1a0dc21c5af16e41317a390c43155c4ae1" prot="public" virt="non-virtual"><scope>GQCP::SimpleOrbitalRotationGenerators</scope><name>asVector</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1ad4a58794fbf45ec43ca33f4d17e23f81" prot="public" virt="non-virtual"><scope>GQCP::SimpleOrbitalRotationGenerators</scope><name>asMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1a904f8cc2420a355fce00dce714c19441" prot="public" virt="non-virtual"><scope>GQCP::SimpleOrbitalRotationGenerators</scope><name>asVector</name></member>
       <member refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1a41f858a7486ce4755ec7db4c2f039119" prot="public" virt="non-virtual"><scope>GQCP::SimpleOrbitalRotationGenerators</scope><name>DerivedOrbitalRotationGenerators</name></member>
       <member refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1a7e00234875bc9a932f341f0b0f935a96" prot="public" virt="non-virtual"><scope>GQCP::SimpleOrbitalRotationGenerators</scope><name>FromOccupationTypes</name></member>
       <member refid="class_g_q_c_p_1_1_simple_orbital_rotation_generators_1a9abcf0d35957ae90bc13aed325dfcf7e" prot="private" virt="non-virtual"><scope>GQCP::SimpleOrbitalRotationGenerators</scope><name>number_of_orbitals</name></member>

@@ -1,0 +1,98 @@
+\hypertarget{_generalized_eigenproblem_environment_8hpp_source}{}\doxysection{Generalized\+Eigenproblem\+Environment.\+hpp}
+\label{_generalized_eigenproblem_environment_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/GeneralizedEigenproblemEnvironment.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/GeneralizedEigenproblemEnvironment.hpp}}
+\mbox{\hyperlink{_generalized_eigenproblem_environment_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_eigenpair_8hpp}{Mathematical/Optimization/Eigenproblem/Eigenpair.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_matrix_8hpp}{Mathematical/Representation/Matrix.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_square_matrix_8hpp}{Mathematical/Representation/SquareMatrix.hpp}}"{}}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar>}
+\DoxyCodeLine{00035\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_generalized_eigenproblem_environment}{GeneralizedEigenproblemEnvironment}}\ \{}
+\DoxyCodeLine{00036\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//\ The\ scalar\ type\ of\ the\ matrix\ elements:\ real\ or\ complex.}}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_generalized_eigenproblem_environment_aa3a91a3123f0f20cca5df92a61d8da8b}{Scalar}}\ =\ \_Scalar;}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{comment}{//\ The\ matrix\ whose\ eigenvalue\ problem\ should\ be\ solved.}}
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_generalized_eigenproblem_environment_aaebb0e2c58c2b42fbf0d8e03957a6b5c}{A}};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{//\ The\ transformation\ matrix\ needed\ to\ solve\ the\ generalized\ eigenvalue\ problem.}}
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_generalized_eigenproblem_environment_a2429ea710010d73d96e35261456371f8}{S}};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{comment}{//\ The\ eigenvalues\ of\ the\ matrix\ A.}}
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<double>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_generalized_eigenproblem_environment_ad370de0ec544a152eb6e11f45027482e}{eigenvalues}};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{//\ The\ eigenvectors\ of\ the\ matrix\ A.}}
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_generalized_eigenproblem_environment_abeb94e47a723069f48f1ac3353d849bb}{eigenvectors}};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00057\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Constructors}}
+\DoxyCodeLine{00058\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_generalized_eigenproblem_environment_a94c5f3aee17fe3d3321b704c15835739}{GeneralizedEigenproblemEnvironment}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_generalized_eigenproblem_environment_aaebb0e2c58c2b42fbf0d8e03957a6b5c}{A}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_generalized_eigenproblem_environment_a2429ea710010d73d96e35261456371f8}{S}})\ :}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_generalized_eigenproblem_environment_aaebb0e2c58c2b42fbf0d8e03957a6b5c}{A}}\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_generalized_eigenproblem_environment_aaebb0e2c58c2b42fbf0d8e03957a6b5c}{A}}\},}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_generalized_eigenproblem_environment_a2429ea710010d73d96e35261456371f8}{S}}\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_generalized_eigenproblem_environment_a2429ea710010d73d96e35261456371f8}{S}}\}\ \{\}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00069\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Named\ constructors}}
+\DoxyCodeLine{00070\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_generalized_eigenproblem_environment}{GeneralizedEigenproblemEnvironment}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_generalized_eigenproblem_environment_a950cddc02175c0c2dacfe26e265febd1}{Dense}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_generalized_eigenproblem_environment_aaebb0e2c58c2b42fbf0d8e03957a6b5c}{A}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_generalized_eigenproblem_environment_a2429ea710010d73d96e35261456371f8}{S}})\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_generalized_eigenproblem_environment}{GeneralizedEigenproblemEnvironment}}(\mbox{\hyperlink{class_g_q_c_p_1_1_generalized_eigenproblem_environment_aaebb0e2c58c2b42fbf0d8e03957a6b5c}{A}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_generalized_eigenproblem_environment_a2429ea710010d73d96e35261456371f8}{S}});\ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00081\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Access}}
+\DoxyCodeLine{00082\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00089\ \ \ \ \ std::vector<Eigenpair<double,\ Scalar>>\ \mbox{\hyperlink{class_g_q_c_p_1_1_generalized_eigenproblem_environment_a7ae72aec6781b4d440c460ecd0f8ad3a}{eigenpairs}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ number\_of\_requested\_eigenpairs\ =\ 1)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (number\_of\_requested\_eigenpairs\ >\ this-\/>eigenvectors.cols())\ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}GeneralEigenproblemEnvironment::eigenpairs(const\ size\_t):\ You\ cannot\ retrieve\ that\ many\ eigenpairs."{}});}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ std::vector<Eigenpair<double,\ Scalar>>\ \mbox{\hyperlink{class_g_q_c_p_1_1_generalized_eigenproblem_environment_a7ae72aec6781b4d440c460ecd0f8ad3a}{eigenpairs}}\ \{\};}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_generalized_eigenproblem_environment_a7ae72aec6781b4d440c460ecd0f8ad3a}{eigenpairs}}.reserve(number\_of\_requested\_eigenpairs);}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ number\_of\_requested\_eigenpairs;\ i++)\ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ eigenvalue\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_generalized_eigenproblem_environment_ad370de0ec544a152eb6e11f45027482e}{eigenvalues}}(i);}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ eigenvector\ =\ this-\/>eigenvectors.col(i);}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_generalized_eigenproblem_environment_a7ae72aec6781b4d440c460ecd0f8ad3a}{eigenpairs}}.emplace\_back(eigenvalue,\ eigenvector);}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_generalized_eigenproblem_environment_a7ae72aec6781b4d440c460ecd0f8ad3a}{eigenpairs}};}
+\DoxyCodeLine{00106\ \ \ \ \ \}}
+\DoxyCodeLine{00107\ \};}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

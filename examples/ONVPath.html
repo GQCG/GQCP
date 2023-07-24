@@ -3,11 +3,12 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>ONV path manipulation</title>
   
   
@@ -18,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -37,18 +38,20 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
@@ -63,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="DOCI calculations" href="DOCI.html" />
     <link rel="prev" title="Following internal instabilities in GHF" href="Following-internal-GHF-instabilities.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
   
   
@@ -443,11 +446,11 @@ document.write(`
 </div>
 </div>
 </div>
-<div class="section" id="onv-path-manipulation">
-<h1>ONV path manipulation<a class="headerlink" href="#onv-path-manipulation" title="Permalink to this heading">#</a></h1>
+<section id="onv-path-manipulation">
+<h1>ONV path manipulation<a class="headerlink" href="#onv-path-manipulation" title="Permalink to this headline">#</a></h1>
 <p>An ONV, or occupation number vector, is a crucial element in Full CI calculations. In this example notebook we will show you how you can use gqcpy to create and manipulate ONV paths.</p>
-<div class="section" id="the-onv-basis">
-<h2>The ONV basis<a class="headerlink" href="#the-onv-basis" title="Permalink to this heading">#</a></h2>
+<section id="the-onv-basis">
+<h2>The ONV basis<a class="headerlink" href="#the-onv-basis" title="Permalink to this headline">#</a></h2>
 <p>In this example we will work with a spin unresolved ONV basis, meaning that there is no distinction between alpha and beta electrons.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -497,9 +500,9 @@ document.write(`
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="a-specific-onv-and-its-path">
-<h2>A specific ONV and its path<a class="headerlink" href="#a-specific-onv-and-its-path" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="a-specific-onv-and-its-path">
+<h2>A specific ONV and its path<a class="headerlink" href="#a-specific-onv-and-its-path" title="Permalink to this headline">#</a></h2>
 <p>We can create an ONV and it’s path in two differenbt ways.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -537,9 +540,9 @@ document.write(`
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="one-electron-excitations">
-<h2>One electron excitations<a class="headerlink" href="#one-electron-excitations" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="one-electron-excitations">
+<h2>One electron excitations<a class="headerlink" href="#one-electron-excitations" title="Permalink to this headline">#</a></h2>
 <p>We can perform certain actions on these ONV’s as well. Let’s do this step-by-step.
 The first step is to annihilate the electron on occupied index 0. This means we will annihilate the arc starting at the point (0, 0). This can be done with annihilate(0, 0) or annihilate(). The second function will always annihilate at the current position in the path.</p>
 <div class="cell docutils container">
@@ -762,9 +765,9 @@ The first step is to annihilate the electron on occupied index 0. This means we 
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="a-slightly-automated-procedure">
-<h2>A slightly automated procedure<a class="headerlink" href="#a-slightly-automated-procedure" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="a-slightly-automated-procedure">
+<h2>A slightly automated procedure<a class="headerlink" href="#a-slightly-automated-procedure" title="Permalink to this headline">#</a></h2>
 <p>We can simplify this procedure however. Let’s start by making a new ONV path.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -865,8 +868,8 @@ The first step is to annihilate the electron on occupied index 0. This means we 
 </div>
 <p>Or visually:
 <img alt="ONVPath_00111.png" src="../_images/ONVPath_00111.png" /></p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -894,7 +897,10 @@ The first step is to annihilate the electron on occupied index 0. This means we 
               
               
                 <footer class="bd-footer-article">
-                  <!-- Previous / next buttons -->
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="Following-internal-GHF-instabilities.html"
@@ -914,7 +920,10 @@ The first step is to annihilate the electron on occupied index 0. This means we 
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
@@ -941,7 +950,7 @@ The first step is to annihilate the electron on occupied index 0. This means we 
             
           </div>
           <footer class="bd-footer-content">
-            <div class="bd-footer-content__inner">
+            
 <div class="bd-footer-content__inner container">
   
   <div class="footer-item">
@@ -971,7 +980,7 @@ By The Ghent Quantum Chemistry Group
     
   </div>
   
-</div></div>
+</div>
           </footer>
         
 
@@ -980,8 +989,8 @@ By The Ghent Quantum Chemistry Group
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
   </footer>

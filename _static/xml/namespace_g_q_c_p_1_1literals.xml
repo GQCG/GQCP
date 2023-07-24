@@ -1,13 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="namespace_g_q_c_p_1_1literals" kind="namespace" language="C++">
     <compoundname>GQCP::literals</compoundname>
       <sectiondef kind="func">
-      <memberdef kind="function" id="namespace_g_q_c_p_1_1literals_1a8e6dba57215616b1228d57f542a4b4a8" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespace_g_q_c_p_1_1literals_1a553c8b537e051f57468013bd015b97b1" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>constexpr std::complex&lt; double &gt;</type>
-        <definition>constexpr std::complex&lt;double&gt; GQCP::literals::operator&quot;&quot;_ii</definition>
+        <definition>constexpr std::complex&lt; double &gt; GQCP::literals::operator&quot;&quot;_ii</definition>
         <argsstring>(unsigned long long d)</argsstring>
         <name>operator&quot;&quot;_ii</name>
+        <qualifiedname>GQCP::literals::operator&quot;&quot;_ii</qualifiedname>
         <param>
           <type>unsigned long long</type>
           <declname>d</declname>
@@ -24,11 +25,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Utilities/complex.hpp" line="65" column="24" bodyfile="/__w/GQCP/GQCP/gqcp/include/Utilities/complex.hpp" bodystart="65" bodyend="67"/>
       </memberdef>
-      <memberdef kind="function" id="namespace_g_q_c_p_1_1literals_1a81f9eff46f8f79e2d3225d5a27bbec42" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespace_g_q_c_p_1_1literals_1ad0ea50553491a0afdf6b6e426b7b36ad" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>constexpr std::complex&lt; double &gt;</type>
-        <definition>constexpr std::complex&lt;double&gt; GQCP::literals::operator&quot;&quot;_ii</definition>
+        <definition>constexpr std::complex&lt; double &gt; GQCP::literals::operator&quot;&quot;_ii</definition>
         <argsstring>(long double d)</argsstring>
         <name>operator&quot;&quot;_ii</name>
+        <qualifiedname>GQCP::literals::operator&quot;&quot;_ii</qualifiedname>
         <param>
           <type>long double</type>
           <declname>d</declname>

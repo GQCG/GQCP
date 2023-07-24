@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_london_cartesian_g_t_o" kind="class" language="C++" prot="public">
     <compoundname>GQCP::LondonCartesianGTO</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_function" prot="public" virt="non-virtual">GQCP::Function&lt; complex, Vector&lt; double, 3 &gt; &gt;</basecompoundref>
@@ -10,6 +10,7 @@
         <definition>using GQCP::LondonCartesianGTO::OutputType =  complex</definition>
         <argsstring></argsstring>
         <name>OutputType</name>
+        <qualifiedname>GQCP::LondonCartesianGTO::OutputType</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -23,6 +24,7 @@
         <definition>using GQCP::LondonCartesianGTO::InputType =  Vector&lt;double, 3&gt;</definition>
         <argsstring></argsstring>
         <name>InputType</name>
+        <qualifiedname>GQCP::LondonCartesianGTO::InputType</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -38,6 +40,7 @@
         <definition>HomogeneousMagneticField GQCP::LondonCartesianGTO::B</definition>
         <argsstring></argsstring>
         <name>B</name>
+        <qualifiedname>GQCP::LondonCartesianGTO::B</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -51,6 +54,7 @@
         <definition>CartesianGTO GQCP::LondonCartesianGTO::gto</definition>
         <argsstring></argsstring>
         <name>gto</name>
+        <qualifiedname>GQCP::LondonCartesianGTO::gto</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -66,6 +70,7 @@
         <definition>GQCP::LondonCartesianGTO::LondonCartesianGTO</definition>
         <argsstring>(const HomogeneousMagneticField &amp;B, const CartesianGTO &amp;gto)</argsstring>
         <name>LondonCartesianGTO</name>
+        <qualifiedname>GQCP::LondonCartesianGTO::LondonCartesianGTO</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_homogeneous_magnetic_field" kindref="compound">HomogeneousMagneticField</ref> &amp;</type>
           <declname>B</declname>
@@ -100,11 +105,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/LondonCartesianGTO.hpp" line="64" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/LondonCartesianGTO.cpp" bodystart="33" bodyend="35"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_london_cartesian_g_t_o_1a9aa089d9f30b2394d3b1f1fa3366fbc0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_london_cartesian_g_t_o_1a10f08f2da83361e6da865d66bf7737bd" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_homogeneous_magnetic_field" kindref="compound">HomogeneousMagneticField</ref> &amp;</type>
-        <definition>const HomogeneousMagneticField&amp; GQCP::LondonCartesianGTO::magneticField</definition>
+        <definition>const HomogeneousMagneticField &amp; GQCP::LondonCartesianGTO::magneticField</definition>
         <argsstring>() const</argsstring>
         <name>magneticField</name>
+        <qualifiedname>GQCP::LondonCartesianGTO::magneticField</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -121,6 +127,7 @@
         <definition>Vector&lt; double, 3 &gt; GQCP::LondonCartesianGTO::kVector</definition>
         <argsstring>() const</argsstring>
         <name>kVector</name>
+        <qualifiedname>GQCP::LondonCartesianGTO::kVector</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -132,11 +139,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/LondonCartesianGTO.hpp" line="79" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/LondonCartesianGTO.cpp" bodystart="45" bodyend="49"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_london_cartesian_g_t_o_1a5eb481aeee373774272b161714e9d453" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_london_cartesian_g_t_o_1ab6b2dc7fbca5ba89c436254bc6bfeac8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_cartesian_g_t_o" kindref="compound">CartesianGTO</ref> &amp;</type>
-        <definition>const CartesianGTO&amp; GQCP::LondonCartesianGTO::cartesianGTO</definition>
+        <definition>const CartesianGTO &amp; GQCP::LondonCartesianGTO::cartesianGTO</definition>
         <argsstring>() const</argsstring>
         <name>cartesianGTO</name>
+        <qualifiedname>GQCP::LondonCartesianGTO::cartesianGTO</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -153,6 +161,7 @@
         <definition>complex GQCP::LondonCartesianGTO::phaseFactor</definition>
         <argsstring>(const Vector&lt; double, 3 &gt; &amp;r) const</argsstring>
         <name>phaseFactor</name>
+        <qualifiedname>GQCP::LondonCartesianGTO::phaseFactor</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &amp;</type>
           <declname>r</declname>
@@ -183,6 +192,7 @@
         <definition>complex GQCP::LondonCartesianGTO::operator()</definition>
         <argsstring>(const Vector&lt; double, 3 &gt; &amp;r) const</argsstring>
         <name>operator()</name>
+        <qualifiedname>GQCP::LondonCartesianGTO::operator()</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &amp;</type>
           <declname>r</declname>
@@ -248,12 +258,12 @@
     <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/LondonCartesianGTO.hpp" line="37" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/LondonCartesianGTO.hpp" bodystart="38" bodyend="108"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_london_cartesian_g_t_o_1aad0596213b6df572094bb20c697a1787" prot="private" virt="non-virtual"><scope>GQCP::LondonCartesianGTO</scope><name>B</name></member>
-      <member refid="class_g_q_c_p_1_1_london_cartesian_g_t_o_1a5eb481aeee373774272b161714e9d453" prot="public" virt="non-virtual"><scope>GQCP::LondonCartesianGTO</scope><name>cartesianGTO</name></member>
+      <member refid="class_g_q_c_p_1_1_london_cartesian_g_t_o_1ab6b2dc7fbca5ba89c436254bc6bfeac8" prot="public" virt="non-virtual"><scope>GQCP::LondonCartesianGTO</scope><name>cartesianGTO</name></member>
       <member refid="class_g_q_c_p_1_1_london_cartesian_g_t_o_1a3f8d62b0f07df4960243020f33c54b37" prot="private" virt="non-virtual"><scope>GQCP::LondonCartesianGTO</scope><name>gto</name></member>
       <member refid="class_g_q_c_p_1_1_london_cartesian_g_t_o_1a91e0172dac58732ce4b7354898b7c2d4" prot="public" virt="non-virtual"><scope>GQCP::LondonCartesianGTO</scope><name>InputType</name></member>
       <member refid="class_g_q_c_p_1_1_london_cartesian_g_t_o_1a41950c00f15c081511681d8ac24eaa47" prot="public" virt="non-virtual"><scope>GQCP::LondonCartesianGTO</scope><name>kVector</name></member>
       <member refid="class_g_q_c_p_1_1_london_cartesian_g_t_o_1a39905eabc409cb2014bc698ed95e82e2" prot="public" virt="non-virtual"><scope>GQCP::LondonCartesianGTO</scope><name>LondonCartesianGTO</name></member>
-      <member refid="class_g_q_c_p_1_1_london_cartesian_g_t_o_1a9aa089d9f30b2394d3b1f1fa3366fbc0" prot="public" virt="non-virtual"><scope>GQCP::LondonCartesianGTO</scope><name>magneticField</name></member>
+      <member refid="class_g_q_c_p_1_1_london_cartesian_g_t_o_1a10f08f2da83361e6da865d66bf7737bd" prot="public" virt="non-virtual"><scope>GQCP::LondonCartesianGTO</scope><name>magneticField</name></member>
       <member refid="class_g_q_c_p_1_1_london_cartesian_g_t_o_1a228010922e242c6b61b6cbf1987d2aed" prot="public" virt="non-virtual"><scope>GQCP::LondonCartesianGTO</scope><name>operator()</name></member>
       <member refid="class_g_q_c_p_1_1_function_1a921ee4632b3b07753bb1a9b16df38198" prot="public" virt="pure-virtual" ambiguityscope="Function&lt; complex, Vector&lt; double, 3 &gt; &gt;::"><scope>GQCP::LondonCartesianGTO</scope><name>operator()</name></member>
       <member refid="class_g_q_c_p_1_1_london_cartesian_g_t_o_1aeba3dd3cb5e4662d8df8740e34f5e1b8" prot="public" virt="non-virtual"><scope>GQCP::LondonCartesianGTO</scope><name>OutputType</name></member>

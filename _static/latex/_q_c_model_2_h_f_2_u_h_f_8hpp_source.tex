@@ -1,0 +1,931 @@
+\hypertarget{_q_c_model_2_h_f_2_u_h_f_8hpp_source}{}\doxysection{UHF.\+hpp}
+\label{_q_c_model_2_h_f_2_u_h_f_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp}}
+\mbox{\hyperlink{_q_c_model_2_h_f_2_u_h_f_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_spin_resolved_orbital_space_8hpp}{Basis/SpinorBasis/SpinResolvedOrbitalSpace.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_u_transformation_8hpp}{Basis/Transformations/UTransformation.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_u_transformation_component_8hpp}{Basis/Transformations/UTransformationComponent.hpp}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_spin_resolved1_d_m_8hpp}{DensityMatrix/SpinResolved1DM.hpp}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_spin_resolved2_d_m_8hpp}{DensityMatrix/SpinResolved2DM.hpp}}"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_matrix_8hpp}{Mathematical/Representation/Matrix.hpp}}"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_mixed_u_s_q_two_electron_operator_component_8hpp}{Operator/SecondQuantized/MixedUSQTwoElectronOperatorComponent.hpp}}"{}}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_r_s_q_one_electron_operator_8hpp}{Operator/SecondQuantized/RSQOneElectronOperator.hpp}}"{}}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_u_s_q_one_electron_operator_8hpp}{Operator/SecondQuantized/USQOneElectronOperator.hpp}}"{}}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_q_c_model_2_h_f_2_r_h_f_8hpp}{QCModel/HF/RHF.hpp}}"{}}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ "{}QCModel/HF/StabilityMatrices/UHFStabilityMatrices.hpp"{}}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_spin_8hpp}{QuantumChemical/Spin.hpp}}"{}}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00036\ \textcolor{keyword}{namespace\ }QCModel\ \{}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar>}
+\DoxyCodeLine{00045\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f}{UHF}}\ \{}
+\DoxyCodeLine{00046\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//\ The\ scalar\ type\ used\ within\ the\ QCModel:\ real\ or\ complex.}}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_ae7a146281f8c7be62eedfd166661bc79}{Scalar}}\ =\ \_Scalar;}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved}{SpinResolved<size\_t>}}\ N;\ \ \textcolor{comment}{//\ The\ number\ of\ alpha\ and\ beta\ electrons.}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved}{SpinResolved<VectorX<Scalar>}}>\ orbital\_energies;\ \ \textcolor{comment}{//\ The\ alpha\ and\ beta\ MO\ energies\ sorted\ by\ ascending\ order.}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<Scalar>}}\ C;\ \ \textcolor{comment}{//\ The\ transformation\ between\ the\ UHF\ MOs\ and\ the\ atomic\ spin-\/orbitals.}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00061\ \textcolor{comment}{\ \ \ \ \ *\ \ CONSTRUCTORS}}
+\DoxyCodeLine{00062\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_abab5b28edf4c1f0a58dc7157706be939}{UHF}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ N\_alpha,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ N\_beta,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<Scalar>}}\&\ orbital\_energies\_alpha,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<Scalar>}}\&\ orbital\_energies\_beta,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<Scalar>}}\&\ C)\ :}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ N\ \{N\_alpha,\ N\_beta\},}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ orbital\_energies\ \{orbital\_energies\_alpha,\ orbital\_energies\_beta\},}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ C\ \{C\}\ \{}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ for\ valid\ arguments.}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\_alpha\ =\ C.\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_a2bf93e827850f7ccebcd64af4999abb4}{numberOfOrbitals}}();\ \ \textcolor{comment}{//\ The\ number\ of\ alpha\ spatial\ orbitals.}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\_beta\ =\ C.\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_a2bf93e827850f7ccebcd64af4999abb4}{numberOfOrbitals}}();\ \ \ \ \textcolor{comment}{//\ The\ number\ of\ beta\ spatial\ orbitals.}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (N\_alpha\ >\ K\_alpha)\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}UHF(const\ size\_t,\ const\ size\_t,\ const\ VectorX<double>\&,\ const\ VectorX<double>\&,\ const\ UTransformation<Scalar>\&):\ The\ number\ of\ given\ alpha\ electrons\ cannot\ be\ larger\ than\ the\ number\ of\ alpha\ spatial\ orbitals."{}});}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (N\_beta\ >\ K\_beta)\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}UHF(const\ size\_t,\ const\ size\_t,\ const\ VectorX<double>\&,\ const\ VectorX<double>\&,\ const\ UTransformation<Scalar>\&):\ The\ number\ of\ given\ beta\ electrons\ cannot\ be\ larger\ than\ the\ number\ of\ beta\ spatial\ orbitals."{}});}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (K\_alpha\ !=\ orbital\_energies\_alpha.size())\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}UHF(const\ size\_t,\ const\ size\_t,\ const\ VectorX<double>\&,\ const\ VectorX<double>\&,\ const\ UTransformation<Scalar>\&):\ The\ number\ of\ given\ alpha-\/spin-\/orbital\ energies\ does\ not\ match\ the\ number\ of\ alpha\ spin-\/orbitals."{}});}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (K\_beta\ !=\ orbital\_energies\_beta.size())\ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}UHF(const\ size\_t,\ const\ size\_t,\ const\ VectorX<double>\&,\ const\ VectorX<double>\&,\ const\ UTransformation<Scalar>\&):\ The\ number\ of\ given\ beta-\/spin-\/orbital\ energies\ does\ not\ match\ the\ beta\ of\ beta\ spin-\/orbitals."{}});}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00097\ \ \ \ \ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00109\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a7accee8aa0875ec408b94c25b3379398}{UHF}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ N\_alpha,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ N\_beta,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<Scalar>}}\&\ C)\ :}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f}{UHF}}(N\_alpha,\ N\_beta,}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}::\mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX}}<\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_ae7a146281f8c7be62eedfd166661bc79}{Scalar}}>::Zero(C.component(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4f}{Spin}}::\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{alpha}}).numberOfOrbitals()),}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}::\mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX}}<\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_ae7a146281f8c7be62eedfd166661bc79}{Scalar}}>::Zero(C.component(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4f}{Spin}}::\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{beta}}).numberOfOrbitals()),}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ C)\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00122\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a149ea8d33bfc1652ebe95ce157b2f2ce}{UHF}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_r_h_f}{GQCP::QCModel::RHF<Scalar>}}\&\ rhf\_model)\ :}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f}{UHF}}(rhf\_model.\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a15e287c301ada683bec5140177caecee}{numberOfElectrons}}(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4f}{Spin}}::\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{alpha}}),\ rhf\_model.\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a15e287c301ada683bec5140177caecee}{numberOfElectrons}}(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4f}{Spin}}::\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{beta}}),}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ rhf\_model.\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a1164d3b81a7271e07ce84182fce34244}{orbitalEnergies}}(),\ rhf\_model.\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a1164d3b81a7271e07ce84182fce34244}{orbitalEnergies}}(),}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}::\mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation}}<\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_ae7a146281f8c7be62eedfd166661bc79}{Scalar}}>::FromRestricted(rhf\_model.\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a75def8b1ed213c242ac7a8417587e423}{expansion}}()))\ \{\}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00129\ \textcolor{comment}{\ \ \ \ \ *\ \ PUBLIC\ STATIC\ METHODS}}
+\DoxyCodeLine{00130\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_ae7a146281f8c7be62eedfd166661bc79}{Scalar}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_ac0fa1294c9de2a55a1340b7dd691d216}{calculateElectronicEnergy}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved1_d_m}{SpinResolved1DM<Scalar>}}\&\ P,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator}{ScalarUSQOneElectronOperator<Scalar>}}\&\ H\_core,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator}{ScalarUSQOneElectronOperator<Scalar>}}\&\ F)\ \{}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ First,\ calculate\ the\ sum\ of\ H\_core\ and\ F\ (this\ saves\ a\ contraction).}}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ Z\ =\ H\_core\ +\ F;}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Convert\ the\ matrix\ Z\ to\ a\ GQCP::Tensor<double,\ 2>\ Z\_tensor.}}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Einsum\ is\ only\ implemented\ for\ a\ tensor\ +\ a\ matrix,\ not\ for\ 2\ matrices.}}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ Eigen::TensorMap<Eigen::Tensor<const\ Scalar,\ 2>>\ Z\_alpha\_t\ \{Z.\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a347d31f5837873ca173a9177bb10f837}{parameters}}().data(),\ Z.alpha().parameters().rows(),\ Z.alpha().parameters().cols()\};}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor<Scalar,\ 2>}}\ Z\_alpha\_tensor\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor<Scalar,\ 2>}}(Z\_alpha\_t);}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ Eigen::TensorMap<Eigen::Tensor<const\ Scalar,\ 2>>\ Z\_beta\_t\ \{Z.beta().parameters().data(),\ Z.beta().parameters().rows(),\ Z.beta().parameters().cols()\};}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor<Scalar,\ 2>}}\ Z\_beta\_tensor\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor<Scalar,\ 2>}}(Z\_beta\_t);}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ To\ calculate\ the\ electronic\ energy,\ we\ must\ perform\ a\ double\ contraction\ (with\ prefactor\ 0.5):}}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ 0.5\ Z\_sigma(mu\ nu)\ P\_sigma(mu\ nu).}}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor<Scalar,\ 0>}}\ contraction\_alpha\ =\ 0.5\ *\ Z\_alpha\_tensor.template\ einsum<2>(\textcolor{stringliteral}{"{}ij,ij-\/>"{}},\ P.\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_ac30875260405df322f951b6458dc5788}{matrix}}());}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_tensor}{Tensor<Scalar,\ 0>}}\ contraction\_beta\ =\ 0.5\ *\ Z\_beta\_tensor.template\ einsum<2>(\textcolor{stringliteral}{"{}ij,ij-\/>"{}},\ P.\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_ac30875260405df322f951b6458dc5788}{matrix}}());}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ As\ the\ double\ contraction\ of\ two\ rank-\/2\ tensors\ is\ a\ scalar\ (a\ tensor\ of\ rank\ 0),\ we\ should\ access\ the\ value\ as\ (0).}}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ contraction\_alpha(0)\ +\ contraction\_beta(0);}
+\DoxyCodeLine{00159\ \ \ \ \ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved}{SpinResolved<SquareMatrix<Scalar>}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_aef9223dd107c72490f56220f4f515501}{calculateError}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator}{ScalarUSQOneElectronOperator<Scalar>}}\&\ F,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved1_d_m}{SpinResolved1DM<Scalar>}}\&\ D,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator}{ScalarUSQOneElectronOperator<Scalar>}}\&\ S)\ \{}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ alpha\ and\ beta\ error\ vectors\ separately.}}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ error\_vector\_alpha\ =\ F.\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a347d31f5837873ca173a9177bb10f837}{parameters}}()\ *\ D.\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_ac30875260405df322f951b6458dc5788}{matrix}}()\ *\ S.\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a347d31f5837873ca173a9177bb10f837}{parameters}}()\ -\/\ S.\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a347d31f5837873ca173a9177bb10f837}{parameters}}()\ *\ D.\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_ac30875260405df322f951b6458dc5788}{matrix}}()\ *\ F.\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a347d31f5837873ca173a9177bb10f837}{parameters}}();}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ error\_vector\_beta\ =\ F.\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a347d31f5837873ca173a9177bb10f837}{parameters}}()\ *\ D.\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_ac30875260405df322f951b6458dc5788}{matrix}}()\ *\ S.\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a347d31f5837873ca173a9177bb10f837}{parameters}}()\ -\/\ S.\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a347d31f5837873ca173a9177bb10f837}{parameters}}()\ *\ D.\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_ac30875260405df322f951b6458dc5788}{matrix}}()\ *\ F.\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_operator_storage_base_a347d31f5837873ca173a9177bb10f837}{parameters}}();}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved}{SpinResolved<SquareMatrix<Scalar>}}>\ \{error\_vector\_alpha,\ error\_vector\_beta\};}
+\DoxyCodeLine{00176\ \ \ \ \ \}}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved1_d_m}{SpinResolved1DM<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_ad70f6eadf3ef8a1065cb44eadbec3b2d}{calculateOrthonormalBasis1DM}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ K\_a,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ K\_b,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ N\_a,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ N\_b)\ \{}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ (alpha)\ 1-\/DM\ for\ UHF\ looks\ like\ (for\ K\_alpha=5,\ N\_alpha=3):}}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ 1\ \ 0\ \ 0\ \ 0\ \ 0}}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ 0\ \ 1\ \ 0\ \ 0\ \ 0}}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ 0\ \ 0\ \ 1\ \ 0\ \ 0}}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ 0\ \ 0\ \ 0\ \ 0\ \ 0}}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ 0\ \ 0\ \ 0\ \ 0\ \ 0}}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\ D\_MO\_a\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_ae3551bb3ac15b2560846f7a5956d1d90}{SquareMatrix<Scalar>::Zero}}(K\_a);}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ D\_MO\_a.topLeftCorner(N\_a,\ N\_a)\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_aa6a5cf30d688d7b21a2605b4a46d2ca9}{SquareMatrix<Scalar>::Identity}}(N\_a);}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\ D\_MO\_b\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_ae3551bb3ac15b2560846f7a5956d1d90}{SquareMatrix<Scalar>::Zero}}(K\_b);}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ D\_MO\_b.topLeftCorner(N\_b,\ N\_b)\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_aa6a5cf30d688d7b21a2605b4a46d2ca9}{SquareMatrix<Scalar>::Identity}}(N\_b);}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved1_d_m}{SpinResolved1DM<Scalar>}}\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved1_d_m_component}{SpinResolved1DMComponent<Scalar>}}\ \{D\_MO\_a\},\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved1_d_m_component}{SpinResolved1DMComponent<Scalar>}}\ \{D\_MO\_b\}\};}
+\DoxyCodeLine{00205\ \ \ \ \ \}}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved2_d_m}{SpinResolved2DM<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_ab8c64b4c792957c42e1493697836f0fa}{calculateOrthonormalBasis2DM}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ K,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ N\_a,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ N\_b)\ \{}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ the\ orbital\ space\ to\ determine\ the\ loops.}}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ orbital\_space\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a76068b80c899b821548b7886bb23580d}{UHF<Scalar>::orbitalSpace}}(K,\ K,\ N\_a,\ N\_b);}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ KISS\ formulas\ to\ implement\ the\ spin\ components\ of\ the\ UHF\ 2-\/DM.}}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{SquareRankFourTensor<Scalar>}}\ d\_aaaa\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor_ac8d9dac01c85a4f11aa67c7efa877e04}{SquareRankFourTensor<Scalar>::Zero}}(K);}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ i\ :\ orbital\_space.alpha().indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ j\ :\ orbital\_space.alpha().indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ k\ :\ orbital\_space.alpha().indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ l\ :\ orbital\_space.alpha().indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((i\ ==\ j)\ \&\&\ (k\ ==\ l))\ \{}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ d\_aaaa(i,\ j,\ k,\ l)\ +=\ 1.0;}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((i\ ==\ l)\ \&\&\ (j\ ==\ k))\ \{}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ d\_aaaa(i,\ j,\ k,\ l)\ -\/=\ 1.0;}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{SquareRankFourTensor<Scalar>}}\ d\_aabb\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor_ac8d9dac01c85a4f11aa67c7efa877e04}{SquareRankFourTensor<Scalar>::Zero}}(K);}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ i\ :\ orbital\_space.alpha().indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ j\ :\ orbital\_space.alpha().indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ k\ :\ orbital\_space.beta().indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ l\ :\ orbital\_space.beta().indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((i\ ==\ j)\ \&\&\ (k\ ==\ l))\ \{}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ d\_aabb(i,\ j,\ k,\ l)\ +=\ 1.0;}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{SquareRankFourTensor<Scalar>}}\ d\_bbaa\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor_ac8d9dac01c85a4f11aa67c7efa877e04}{SquareRankFourTensor<Scalar>::Zero}}(K);}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ i\ :\ orbital\_space.beta().indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ j\ :\ orbital\_space.beta().indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ k\ :\ orbital\_space.alpha().indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ l\ :\ orbital\_space.alpha().indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((i\ ==\ j)\ \&\&\ (k\ ==\ l))\ \{}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ d\_aabb(i,\ j,\ k,\ l)\ +=\ 1.0;}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{SquareRankFourTensor<Scalar>}}\ d\_bbbb\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor_ac8d9dac01c85a4f11aa67c7efa877e04}{SquareRankFourTensor<Scalar>::Zero}}(K);}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ i\ :\ orbital\_space.beta().indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ j\ :\ orbital\_space.beta().indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ k\ :\ orbital\_space.beta().indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ l\ :\ orbital\_space.beta().indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((i\ ==\ j)\ \&\&\ (k\ ==\ l))\ \{}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ d\_aaaa(i,\ j,\ k,\ l)\ +=\ 1.0;}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((i\ ==\ l)\ \&\&\ (j\ ==\ k))\ \{}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ d\_aaaa(i,\ j,\ k,\ l)\ -\/=\ 1.0;}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved2_d_m}{SpinResolved2DM<Scalar>}}\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_pure_spin_resolved2_d_m_component}{PureSpinResolved2DMComponent<Scalar>}}(d\_aaaa),\ \mbox{\hyperlink{class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component}{MixedSpinResolved2DMComponent<Scalar>}}(d\_aabb),\ \mbox{\hyperlink{class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component}{MixedSpinResolved2DMComponent<Scalar>}}(d\_bbaa),\ \mbox{\hyperlink{class_g_q_c_p_1_1_pure_spin_resolved2_d_m_component}{PureSpinResolved2DMComponent<Scalar>}}(d\_bbbb)\};}
+\DoxyCodeLine{00288\ \ \ \ \ \}}
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00300\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved1_d_m}{SpinResolved1DM<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_aeeb696ba147ec50d3964cb2c820b19ea}{calculateScalarBasis1DM}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<Scalar>}}\&\ C,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ N\_a,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ N\_b)\ \{}
+\DoxyCodeLine{00301\ }
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ 1-\/DM\ in\ the\ spin-\/orbital\ basis,\ and\ transform\ to\ the\ underlying\ scalar\ basis.}}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\_a\ =\ C.\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_a2bf93e827850f7ccebcd64af4999abb4}{numberOfOrbitals}}();}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\_b\ =\ C.\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_a2bf93e827850f7ccebcd64af4999abb4}{numberOfOrbitals}}();}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ D\_orthonormal\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_af083360b19b7c5af523a242738bb89a8}{UHF<Scalar>::calculateOrthonormalBasis1DM}}(K\_a,\ K\_b,\ N\_a,\ N\_b);}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ D\_orthonormal.transformed(C.\mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation_a584dac33b20bbe46072f005a4af26835}{inverse}}());}
+\DoxyCodeLine{00308\ \ \ \ \ \}}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00320\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved2_d_m}{SpinResolved2DM<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_ac53508588fb5392a27880b52b5b257a2}{calculateScalarBasis2DM}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<Scalar>}}\&\ C,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ N\_a,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ N\_b)\ \{}
+\DoxyCodeLine{00321\ }
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ 2-\/DM\ in\ the\ spin-\/orbital\ basis,\ and\ transform\ to\ the\ underlying\ scalar\ basis.}}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\ =\ C.\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_transformation_a2bf93e827850f7ccebcd64af4999abb4}{numberOfOrbitals}}();\ \ \textcolor{comment}{//\ Assume\ K\_alpha\ and\ K\_beta\ are\ equal.}}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ d\_orthonormal\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_ab8717366ad010c1ba8625c57aca32afe}{UHF<Scalar>::calculateOrthonormalBasis2DM}}(K,\ N\_a,\ N\_b);}
+\DoxyCodeLine{00325\ }
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ d\_orthonormal.transformed(C.\mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation_a584dac33b20bbe46072f005a4af26835}{inverse}}());}
+\DoxyCodeLine{00327\ \ \ \ \ \}}
+\DoxyCodeLine{00328\ }
+\DoxyCodeLine{00329\ }
+\DoxyCodeLine{00338\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator}{ScalarUSQOneElectronOperator<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a7ab5a2d1a97a22ab798cb44fee8dc83b}{calculateScalarBasisDirectMatrix}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved1_d_m}{SpinResolved1DM<Scalar>}}\&\ P,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{USQHamiltonian<Scalar>}}\&\ sq\_hamiltonian)\ \{}
+\DoxyCodeLine{00339\ }
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ the\ two-\/electron\ parameters.}}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ g\_a\ =\ sq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a2dc43cc8615c2c34751535f3c07ef828}{twoElectron}}().alphaAlpha().parameters();}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ g\_b\ =\ sq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a2dc43cc8615c2c34751535f3c07ef828}{twoElectron}}().betaBeta().parameters();}
+\DoxyCodeLine{00343\ }
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Specify\ the\ contraction\ pairs\ for\ the\ direct\ contractions:}}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ (mu\ nu|rho\ lambda)\ P(rho\ lambda).}}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ J\_alpha\ =\ g\_a.template\ einsum<2>(\textcolor{stringliteral}{"{}ijkl,kl-\/>ij"{}},\ P.\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_ac30875260405df322f951b6458dc5788}{matrix}}()).asMatrix();}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ J\_beta\ =\ g\_b.template\ einsum<2>(\textcolor{stringliteral}{"{}ijkl,kl-\/>ij"{}},\ P.\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_ac30875260405df322f951b6458dc5788}{matrix}}()).asMatrix();}
+\DoxyCodeLine{00348\ }
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ total\ J\ tensor.}}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ J\ =\ J\_alpha\ +\ J\_beta;}
+\DoxyCodeLine{00351\ }
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator}{ScalarUSQOneElectronOperator<Scalar>}}\ \{J,\ J\};}
+\DoxyCodeLine{00353\ \ \ \ \ \}}
+\DoxyCodeLine{00354\ }
+\DoxyCodeLine{00355\ }
+\DoxyCodeLine{00364\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator}{ScalarUSQOneElectronOperator<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_aaaef3bdd473a97e76ed73f59b576986b}{calculateScalarBasisExchangeMatrix}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved1_d_m}{SpinResolved1DM<Scalar>}}\&\ P,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{USQHamiltonian<Scalar>}}\&\ sq\_hamiltonian)\ \{}
+\DoxyCodeLine{00365\ }
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ the\ two-\/electron\ parameters.}}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ g\_a\ =\ sq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a2dc43cc8615c2c34751535f3c07ef828}{twoElectron}}().alphaAlpha().parameters();}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ g\_b\ =\ sq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a2dc43cc8615c2c34751535f3c07ef828}{twoElectron}}().betaBeta().parameters();}
+\DoxyCodeLine{00369\ }
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Specify\ the\ contraction\ pairs\ for\ the\ exchange\ contraction:}}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ (mu\ rho|lambda\ nu)\ P(lambda\ rho).}}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\_alpha\ =\ g\_a.template\ einsum<2>(\textcolor{stringliteral}{"{}ijkl,kj-\/>il"{}},\ P.\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_ac30875260405df322f951b6458dc5788}{matrix}}()).asMatrix();}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\_beta\ =\ g\_b.template\ einsum<2>(\textcolor{stringliteral}{"{}ijkl,kj-\/>il"{}},\ P.\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple1_d_m_ac30875260405df322f951b6458dc5788}{matrix}}()).asMatrix();}
+\DoxyCodeLine{00374\ }
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator}{ScalarUSQOneElectronOperator<Scalar>}}\ \{K\_alpha,\ K\_beta\};}
+\DoxyCodeLine{00376\ \ \ \ \ \}}
+\DoxyCodeLine{00377\ }
+\DoxyCodeLine{00378\ }
+\DoxyCodeLine{00387\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator}{ScalarUSQOneElectronOperator<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a4c2f7c5d846312d46b966ba6df48337c}{calculateScalarBasisFockMatrix}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved1_d_m}{SpinResolved1DM<Scalar>}}\&\ P,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{USQHamiltonian<Scalar>}}\&\ sq\_hamiltonian)\ \{}
+\DoxyCodeLine{00388\ }
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ F\_sigma\ =\ H\_core\ +\ (J\_alpha\ +\ J\_beta)\ -\/\ K\_sigma.}}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ H\_core\ is\ always\ the\ same.}}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ H\_core\ =\ sq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a5cf60477e7d69713eb5dd4069bbda1cb}{core}}();}
+\DoxyCodeLine{00392\ }
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ the\ alpha\ and\ beta\ parameters\ of\ the\ coulomb\ and\ exchange\ matrices.}}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ J\_a\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a7ab5a2d1a97a22ab798cb44fee8dc83b}{UHF<Scalar>::calculateScalarBasisDirectMatrix}}(P,\ sq\_hamiltonian).alpha().parameters();}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ J\_b\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a7ab5a2d1a97a22ab798cb44fee8dc83b}{UHF<Scalar>::calculateScalarBasisDirectMatrix}}(P,\ sq\_hamiltonian).beta().parameters();}
+\DoxyCodeLine{00396\ }
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\_a\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_aaaef3bdd473a97e76ed73f59b576986b}{UHF<Scalar>::calculateScalarBasisExchangeMatrix}}(P,\ sq\_hamiltonian).alpha().parameters();}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\_b\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_aaaef3bdd473a97e76ed73f59b576986b}{UHF<Scalar>::calculateScalarBasisExchangeMatrix}}(P,\ sq\_hamiltonian).beta().parameters();}
+\DoxyCodeLine{00399\ }
+\DoxyCodeLine{00400\ }
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Generate\ the\ alpha\ and\ beta\ Fock\ matrix\ and\ put\ them\ in\ a\ USQOneElectronOperator.}}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ F\_a\ =\ H\_core.alpha().parameters()\ +\ J\_a\ -\/\ K\_a;}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ F\_b\ =\ H\_core.beta().parameters()\ +\ J\_b\ -\/\ K\_b;}
+\DoxyCodeLine{00404\ }
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator}{ScalarUSQOneElectronOperator<Scalar>}}\ \{F\_a,\ F\_b\};}
+\DoxyCodeLine{00406\ \ \ \ \ \}}
+\DoxyCodeLine{00407\ }
+\DoxyCodeLine{00408\ }
+\DoxyCodeLine{00417\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_orbital_space}{SpinResolvedOrbitalSpace}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_ade463214e0cab998c0075412c63f0312}{orbitalSpace}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ K\_a,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ K\_b,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ N\_a,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ N\_b)\ \{}
+\DoxyCodeLine{00418\ }
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ alpha\_orbital\_space\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a22c967bc1d33a75341c86b1ca52b0532}{OrbitalSpace::Implicit}}(\{\{\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ N\_a\},\ \{\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}},\ K\_a\ -\/\ N\_a\}\});}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ beta\_orbital\_space\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a22c967bc1d33a75341c86b1ca52b0532}{OrbitalSpace::Implicit}}(\{\{\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ N\_b\},\ \{\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}},\ K\_b\ -\/\ N\_b\}\});}
+\DoxyCodeLine{00421\ }
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_orbital_space}{SpinResolvedOrbitalSpace}}\ \{alpha\_orbital\_space,\ beta\_orbital\_space\};}
+\DoxyCodeLine{00423\ \ \ \ \ \}}
+\DoxyCodeLine{00424\ }
+\DoxyCodeLine{00425\ }
+\DoxyCodeLine{00426\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00427\ \textcolor{comment}{\ \ \ \ \ *\ \ PUBLIC\ METHODS}}
+\DoxyCodeLine{00428\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00429\ }
+\DoxyCodeLine{00433\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved1_d_m}{SpinResolved1DM<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_af083360b19b7c5af523a242738bb89a8}{calculateOrthonormalBasis1DM}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00434\ }
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\_a\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a7dc72c9793142dd8329fb2092cef37bf}{numberOfSpinOrbitals}}(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{Spin::alpha}});}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\_b\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a7dc72c9793142dd8329fb2092cef37bf}{numberOfSpinOrbitals}}(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{Spin::beta}});}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ N\_a\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a15e287c301ada683bec5140177caecee}{numberOfElectrons}}().\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}();}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ N\_b\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a15e287c301ada683bec5140177caecee}{numberOfElectrons}}().\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}();}
+\DoxyCodeLine{00439\ }
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_af083360b19b7c5af523a242738bb89a8}{UHF<Scalar>::calculateOrthonormalBasis1DM}}(K\_a,\ K\_b,\ N\_a,\ N\_b);}
+\DoxyCodeLine{00441\ \ \ \ \ \}}
+\DoxyCodeLine{00442\ }
+\DoxyCodeLine{00443\ }
+\DoxyCodeLine{00449\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved2_d_m}{SpinResolved2DM<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_ab8717366ad010c1ba8625c57aca32afe}{calculateOrthonormalBasis2DM}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00450\ }
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a7dc72c9793142dd8329fb2092cef37bf}{numberOfSpinOrbitals}}(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{Spin::alpha}});\ \ \textcolor{comment}{//\ Assume\ K\_alpha\ and\ K\_beta\ are\ equal.}}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ N\_a\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a15e287c301ada683bec5140177caecee}{numberOfElectrons}}().\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}();}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ N\_b\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a15e287c301ada683bec5140177caecee}{numberOfElectrons}}().\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}();}
+\DoxyCodeLine{00454\ }
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_ab8717366ad010c1ba8625c57aca32afe}{UHF<Scalar>::calculateOrthonormalBasis2DM}}(K,\ N\_a,\ N\_b);}
+\DoxyCodeLine{00456\ \ \ \ \ \}}
+\DoxyCodeLine{00457\ }
+\DoxyCodeLine{00458\ }
+\DoxyCodeLine{00462\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved1_d_m}{SpinResolved1DM<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a447f7fbda15a865212f529eaf4f87efd}{calculateScalarBasis1DM}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00463\ }
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ C\_a\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a75def8b1ed213c242ac7a8417587e423}{expansion}}().\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_abc73c03917a9bc4469007c832b7dc8d0}{component}}(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{Spin::alpha}});}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ C\_b\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a75def8b1ed213c242ac7a8417587e423}{expansion}}().\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_abc73c03917a9bc4469007c832b7dc8d0}{component}}(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{Spin::beta}});}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<Scalar>}}\ C\ \{C\_a,\ C\_b\};}
+\DoxyCodeLine{00467\ }
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ N\_a\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a15e287c301ada683bec5140177caecee}{numberOfElectrons}}().\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}();}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ N\_b\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a15e287c301ada683bec5140177caecee}{numberOfElectrons}}().\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}();}
+\DoxyCodeLine{00470\ }
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a447f7fbda15a865212f529eaf4f87efd}{UHF<Scalar>::calculateScalarBasis1DM}}(C,\ N\_a,\ N\_b);}
+\DoxyCodeLine{00472\ \ \ \ \ \}}
+\DoxyCodeLine{00473\ }
+\DoxyCodeLine{00474\ }
+\DoxyCodeLine{00478\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved2_d_m}{SpinResolved2DM<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a94fd855298b88b1094119d419e20657e}{calculateScalarBasis2DM}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00479\ }
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ C\_a\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a75def8b1ed213c242ac7a8417587e423}{expansion}}().\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_abc73c03917a9bc4469007c832b7dc8d0}{component}}(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{Spin::alpha}});}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ C\_b\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a75def8b1ed213c242ac7a8417587e423}{expansion}}().\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_abc73c03917a9bc4469007c832b7dc8d0}{component}}(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{Spin::beta}});}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<Scalar>}}\ C\ \{C\_a,\ C\_b\};}
+\DoxyCodeLine{00483\ }
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ N\_a\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a15e287c301ada683bec5140177caecee}{numberOfElectrons}}().\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}();}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ N\_b\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a15e287c301ada683bec5140177caecee}{numberOfElectrons}}().\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}();}
+\DoxyCodeLine{00486\ }
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a94fd855298b88b1094119d419e20657e}{UHF<Scalar>::calculateScalarBasis2DM}}(C,\ N\_a,\ N\_b);}
+\DoxyCodeLine{00488\ \ \ \ \ \}}
+\DoxyCodeLine{00489\ }
+\DoxyCodeLine{00490\ }
+\DoxyCodeLine{00507\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{GQCP::Matrix<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a317c5a84eb1227991b98b32664239b8d}{calculateMixedSpinConservedAComponent}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{USQHamiltonian<Scalar>}}\&\ usq\_hamiltonian,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4f}{Spin}}\ sigma,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4f}{Spin}}\ sigma\_bar)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00508\ }
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Sigma\ and\ sigma\_bar\ need\ to\ be\ different.\ If\ they\ are\ the\ same,\ the\ method\ throws\ an\ error.}}
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sigma\ ==\ sigma\_bar)\ \{}
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}QCModel::UHF<Scalar>.calculateMixedSpinConservedAComponent(const\ USQHamiltonian<Scalar>\&\ usq\_hamiltonian,\ const\ Spin\ sigma,\ const\ Spin\ sigma\_bar):\ The\ spin\ 'sigma'\ and\ spin\ 'sigma\_bar'\ arguments\ are\ not\ allowed\ to\ be\ the\ same."{}});}
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00513\ }
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Depending\ on\ whether\ we\ are\ making\ the\ aabb\ or\ bbaa\ A'-\/component,\ we\ need\ a\ different\ component\ of\ the\ orbital\_space.}}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ orbital\_space\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a76068b80c899b821548b7886bb23580d}{orbitalSpace}}();}
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ orbital\_space\_sigma\ =\ orbital\_space.component(sigma);}
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ orbital\_space\_sigma\_bar\ =\ orbital\_space.component(sigma\_bar);}
+\DoxyCodeLine{00518\ }
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ number\ of\ occupied\ and\ virtual\ orbitals\ for\ both\ spin\ components.}}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_occ\_sigma\ =\ orbital\_space\_sigma.numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}});}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_virt\_sigma\ =\ orbital\_space\_sigma.numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}});}
+\DoxyCodeLine{00522\ }
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_occ\_sigma\_bar\ =\ orbital\_space\_sigma\_bar.numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}});}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_virt\_sigma\_bar\ =\ orbital\_space\_sigma\_bar.numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}});}
+\DoxyCodeLine{00525\ }
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ mixed\ alpha-\/beta\ two\ electron\ integrals\ are\ extracted\ from\ the\ Hamiltonian.}}
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ g\_aabb\ =\ usq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a2dc43cc8615c2c34751535f3c07ef828}{twoElectron}}().alphaBeta().parameters();}
+\DoxyCodeLine{00528\ }
+\DoxyCodeLine{00529\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ next\ step\ is\ to\ create\ the\ needed\ tensor\ slice.}}
+\DoxyCodeLine{00530\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Zero-\/initialize\ an\ occupied-\/virtual-\/occupied-\/virtual\ object\ of\ mixed\ spins.}}
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ A\_iajb\_slice\ =\ orbital\_space.template\ initializeMixedRepresentableObjectFor<Scalar>(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ sigma,\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}},\ sigma,}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ sigma\_bar,\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}},\ sigma\_bar);}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ i\ :\ orbital\_space\_sigma.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ a\ :\ orbital\_space\_sigma.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ j\ :\ orbital\_space\_sigma\_bar.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ b\ :\ orbital\_space\_sigma\_bar.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00537\ }
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Depending\ on\ which\ spin\ component\ is\ alpha\ and\ which\ is\ beta,\ the\ indices\ need\ to\ be\ transposed\ correctly.}}
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sigma\ ==\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{Spin::alpha}}\ \&\&\ sigma\_bar\ ==\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{Spin::beta}})\ \{}
+\DoxyCodeLine{00540\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ A\_iajb\_slice(i,\ a,\ j,\ b)\ =\ g\_aabb(a,\ i,\ j,\ b);}
+\DoxyCodeLine{00541\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00542\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ A\_iajb\_slice(i,\ a,\ j,\ b)\ =\ g\_aabb(j,\ b,\ a,\ i);}
+\DoxyCodeLine{00543\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00544\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00545\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00546\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00547\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00548\ }
+\DoxyCodeLine{00549\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Turn\ the\ ImplicitRankFourTensorSlice\ in\ an\ actual\ Tensor.}}
+\DoxyCodeLine{00550\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ A\_iajb\ =\ A\_iajb\_slice.asTensor();}
+\DoxyCodeLine{00551\ }
+\DoxyCodeLine{00552\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Finally,\ reshape\ the\ tensor\ to\ a\ matrix.}}
+\DoxyCodeLine{00553\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ mixed\_spin\_conserved\_A\_component\ =\ A\_iajb.reshape(n\_occ\_sigma\ *\ n\_virt\_sigma,\ n\_occ\_sigma\_bar\ *\ n\_virt\_sigma\_bar);}
+\DoxyCodeLine{00554\ }
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mixed\_spin\_conserved\_A\_component;}
+\DoxyCodeLine{00556\ \ \ \ \ \}}
+\DoxyCodeLine{00557\ }
+\DoxyCodeLine{00558\ }
+\DoxyCodeLine{00575\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{GQCP::Matrix<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a2a4336a0c0843c66ad090856381716b4}{calculateMixedSpinConservedBComponent}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{USQHamiltonian<Scalar>}}\&\ usq\_hamiltonian,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4f}{Spin}}\ sigma,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4f}{Spin}}\ sigma\_bar)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00576\ }
+\DoxyCodeLine{00577\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Sigma\ and\ sigma\_bar\ need\ to\ be\ different.\ If\ they\ are\ the\ same,\ the\ method\ throws\ an\ error.}}
+\DoxyCodeLine{00578\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sigma\ ==\ sigma\_bar)\ \{}
+\DoxyCodeLine{00579\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}QCModel::UHF<Scalar>.calculateMixedSpinConservedBComponent(const\ USQHamiltonian<Scalar>\&\ usq\_hamiltonian,\ const\ Spin\ sigma,\ const\ Spin\ sigma\_bar):\ The\ spin\ 'sigma'\ and\ spin\ 'sigma\_bar'\ arguments\ are\ not\ allowed\ to\ be\ the\ same."{}});}
+\DoxyCodeLine{00580\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00581\ }
+\DoxyCodeLine{00582\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Depending\ on\ whether\ we\ are\ making\ the\ aabb\ or\ bbaa\ B'-\/component,\ we\ need\ a\ different\ component\ of\ the\ orbital\_space.}}
+\DoxyCodeLine{00583\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ orbital\_space\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a76068b80c899b821548b7886bb23580d}{orbitalSpace}}();}
+\DoxyCodeLine{00584\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ orbital\_space\_sigma\ =\ orbital\_space.component(sigma);}
+\DoxyCodeLine{00585\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ orbital\_space\_sigma\_bar\ =\ orbital\_space.component(sigma\_bar);}
+\DoxyCodeLine{00586\ }
+\DoxyCodeLine{00587\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ number\ of\ occupied\ and\ virtual\ orbitals\ for\ both\ spin\ components.}}
+\DoxyCodeLine{00588\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_occ\_sigma\ =\ orbital\_space\_sigma.numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}});}
+\DoxyCodeLine{00589\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_virt\_sigma\ =\ orbital\_space\_sigma.numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}});}
+\DoxyCodeLine{00590\ }
+\DoxyCodeLine{00591\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_occ\_sigma\_bar\ =\ orbital\_space\_sigma\_bar.numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}});}
+\DoxyCodeLine{00592\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_virt\_sigma\_bar\ =\ orbital\_space\_sigma\_bar.numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}});}
+\DoxyCodeLine{00593\ }
+\DoxyCodeLine{00594\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ mixed\ alpha-\/beta\ two\ electron\ integrals\ are\ extracted\ from\ the\ Hamiltonian.}}
+\DoxyCodeLine{00595\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ g\_aabb\ =\ usq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a2dc43cc8615c2c34751535f3c07ef828}{twoElectron}}().alphaBeta().parameters();}
+\DoxyCodeLine{00596\ }
+\DoxyCodeLine{00597\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ next\ step\ is\ to\ create\ the\ needed\ tensor\ slice.}}
+\DoxyCodeLine{00598\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Zero-\/initialize\ an\ occupied-\/virtual-\/occupied-\/virtual\ object\ of\ mixed\ spins.}}
+\DoxyCodeLine{00599\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ B\_iajb\_slice\ =\ orbital\_space.template\ initializeMixedRepresentableObjectFor<Scalar>(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ sigma,\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}},\ sigma,}
+\DoxyCodeLine{00600\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ sigma\_bar,\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}},\ sigma\_bar);}
+\DoxyCodeLine{00601\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ i\ :\ orbital\_space\_sigma.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00602\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ a\ :\ orbital\_space\_sigma.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00603\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ j\ :\ orbital\_space\_sigma\_bar.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00604\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ b\ :\ orbital\_space\_sigma\_bar.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00605\ }
+\DoxyCodeLine{00606\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Depending\ on\ which\ spin\ component\ is\ alpha\ and\ which\ is\ beta,\ the\ indices\ need\ to\ be\ transposed\ correctly.}}
+\DoxyCodeLine{00607\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sigma\ ==\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{Spin::alpha}}\ \&\&\ sigma\_bar\ ==\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{Spin::beta}})\ \{}
+\DoxyCodeLine{00608\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ B\_iajb\_slice(i,\ a,\ j,\ b)\ =\ g\_aabb(a,\ i,\ b,\ j);}
+\DoxyCodeLine{00609\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00610\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ B\_iajb\_slice(i,\ a,\ j,\ b)\ =\ g\_aabb(b,\ j,\ a,\ i);}
+\DoxyCodeLine{00611\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00612\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00613\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00614\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00615\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00616\ }
+\DoxyCodeLine{00617\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Turn\ the\ ImplicitRankFourTensorSlice\ in\ an\ actual\ Tensor.}}
+\DoxyCodeLine{00618\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ B\_iajb\ =\ B\_iajb\_slice.asTensor();}
+\DoxyCodeLine{00619\ }
+\DoxyCodeLine{00620\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Finally,\ reshape\ the\ tensor\ to\ a\ matrix.}}
+\DoxyCodeLine{00621\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ mixed\_spin\_conserved\_B\_component\ =\ B\_iajb.reshape(n\_occ\_sigma\ *\ n\_virt\_sigma,\ n\_occ\_sigma\_bar\ *\ n\_virt\_sigma\_bar);}
+\DoxyCodeLine{00622\ }
+\DoxyCodeLine{00623\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mixed\_spin\_conserved\_B\_component;}
+\DoxyCodeLine{00624\ \ \ \ \ \}}
+\DoxyCodeLine{00625\ }
+\DoxyCodeLine{00626\ }
+\DoxyCodeLine{00640\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{GQCP::Matrix<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_ae1537408eb4e052df278dfd5c46d69ad}{calculatePureSpinConservedAComponent}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{USQHamiltonian<Scalar>}}\&\ usq\_hamiltonian,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4f}{Spin}}\ sigma)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00641\ }
+\DoxyCodeLine{00642\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Depending\ on\ whether\ we\ are\ making\ the\ alpha\ or\ beta\ A'-\/component,\ we\ need\ a\ different\ component\ of\ the\ orbital\_space.}}
+\DoxyCodeLine{00643\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ orbital\_space\_sigma\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a76068b80c899b821548b7886bb23580d}{orbitalSpace}}().\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_abc73c03917a9bc4469007c832b7dc8d0}{component}}(sigma);}
+\DoxyCodeLine{00644\ }
+\DoxyCodeLine{00645\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ number\ of\ occupied\ and\ virtual\ orbitals.}}
+\DoxyCodeLine{00646\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_occ\ =\ orbital\_space\_sigma.\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a6749db783d556c8d21e52e2a72ea329f}{numberOfOrbitals}}(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}});}
+\DoxyCodeLine{00647\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_virt\ =\ orbital\_space\_sigma.numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}});}
+\DoxyCodeLine{00648\ }
+\DoxyCodeLine{00649\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ pure\ alpha-\/alpha\ two\ electron\ integrals\ are\ extracted\ from\ the\ Hamiltonian.}}
+\DoxyCodeLine{00650\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ need\ the\ anti-\/symmetrized\ tensor:\ (AI||JB)\ =\ (AI|JB)\ -\/\ (AB|JI).\ This\ is\ obtained\ by\ the\ `.antisymmetrized()`\ method.}}
+\DoxyCodeLine{00651\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ g\_aaaa\ =\ usq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a2dc43cc8615c2c34751535f3c07ef828}{twoElectron}}().alphaAlpha().antisymmetrized().parameters();}
+\DoxyCodeLine{00652\ }
+\DoxyCodeLine{00653\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ elements\ F\_BA\ and\ F\_IJ\ are\ the\ eigenvalues\ of\ the\ one-\/electron\ Fock\ operator.}}
+\DoxyCodeLine{00654\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ excitationEnergies\ API\ can\ be\ used\ to\ find\ these\ values.}}
+\DoxyCodeLine{00655\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ F\_values\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a10d0afb3a3452ac926713a73cb394ba6}{excitationEnergies}}().component(sigma);}
+\DoxyCodeLine{00656\ }
+\DoxyCodeLine{00657\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ next\ step\ is\ to\ create\ the\ needed\ tensor\ slice.}}
+\DoxyCodeLine{00658\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Zero-\/initialize\ an\ occupied-\/virtual-\/occupied-\/virtual\ object.}}
+\DoxyCodeLine{00659\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ A\_iajb\_slice\ =\ orbital\_space\_sigma.template\ initializeRepresentableObjectFor<Scalar>(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}});}
+\DoxyCodeLine{00660\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ i\ :\ orbital\_space\_sigma.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00661\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ a\ :\ orbital\_space\_sigma.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00662\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ j\ :\ orbital\_space\_sigma.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00663\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ b\ :\ orbital\_space\_sigma.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00664\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ A\_iajb\_slice(i,\ a,\ j,\ b)\ =\ g\_aaaa(a,\ i,\ j,\ b);}
+\DoxyCodeLine{00665\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00666\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00667\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00668\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00669\ }
+\DoxyCodeLine{00670\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Turn\ the\ ImplicitRankFourTensorSlice\ in\ an\ actual\ Tensor.}}
+\DoxyCodeLine{00671\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ A\_iajb\ =\ A\_iajb\_slice.asTensor();}
+\DoxyCodeLine{00672\ }
+\DoxyCodeLine{00673\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ the\ previously\ calculated\ F\ values\ on\ the\ correct\ positions.}}
+\DoxyCodeLine{00674\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ a\ =\ 0;\ a\ <\ n\_virt;\ a++)\ \{}
+\DoxyCodeLine{00675\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ n\_occ;\ i++)\ \{}
+\DoxyCodeLine{00676\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ A\_iajb(i,\ a,\ i,\ a)\ +=\ F\_values(a,\ i);}
+\DoxyCodeLine{00677\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00678\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00679\ }
+\DoxyCodeLine{00680\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Finally,\ reshape\ the\ tensor\ to\ a\ matrix.}}
+\DoxyCodeLine{00681\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ pure\_spin\_conserved\_A\_component\ =\ A\_iajb.reshape(n\_occ\ *\ n\_virt,\ n\_occ\ *\ n\_virt);}
+\DoxyCodeLine{00682\ }
+\DoxyCodeLine{00683\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ pure\_spin\_conserved\_A\_component;}
+\DoxyCodeLine{00684\ \ \ \ \ \}}
+\DoxyCodeLine{00685\ }
+\DoxyCodeLine{00686\ }
+\DoxyCodeLine{00700\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{GQCP::Matrix<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a19a22c7c44449937e0048f626a014cd5}{calculatePureSpinConservedBComponent}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{USQHamiltonian<Scalar>}}\&\ usq\_hamiltonian,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4f}{Spin}}\ sigma)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00701\ }
+\DoxyCodeLine{00702\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Depending\ on\ whether\ we\ are\ making\ the\ alpha\ or\ beta\ B'-\/component,\ we\ need\ a\ different\ component\ of\ the\ orbital\_space.}}
+\DoxyCodeLine{00703\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ orbital\_space\_sigma\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a76068b80c899b821548b7886bb23580d}{orbitalSpace}}().\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_abc73c03917a9bc4469007c832b7dc8d0}{component}}(sigma);}
+\DoxyCodeLine{00704\ }
+\DoxyCodeLine{00705\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ number\ of\ occupied\ and\ virtual\ orbitals.}}
+\DoxyCodeLine{00706\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_occ\ =\ orbital\_space\_sigma.\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a6749db783d556c8d21e52e2a72ea329f}{numberOfOrbitals}}(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}});}
+\DoxyCodeLine{00707\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_virt\ =\ orbital\_space\_sigma.numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}});}
+\DoxyCodeLine{00708\ }
+\DoxyCodeLine{00709\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ pure\ beta-\/beta\ two\ electron\ integrals\ are\ extracted\ from\ the\ Hamiltonian.}}
+\DoxyCodeLine{00710\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ need\ the\ anti-\/symmetrized\ tensor:\ (AI||JB)\ =\ (AI|JB)\ -\/\ (AB|JI).\ This\ is\ obtained\ by\ the\ `.antisymmetrized()`\ method.}}
+\DoxyCodeLine{00711\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ g\_bbbb\ =\ usq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a2dc43cc8615c2c34751535f3c07ef828}{twoElectron}}().betaBeta().antisymmetrized().parameters();}
+\DoxyCodeLine{00712\ }
+\DoxyCodeLine{00713\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ next\ step\ is\ to\ create\ the\ needed\ tensor\ slice.}}
+\DoxyCodeLine{00714\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Zero-\/initialize\ an\ occupied-\/virtual-\/occupied-\/virtual\ object.}}
+\DoxyCodeLine{00715\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ B\_iajb\_slice\ =\ orbital\_space\_sigma.template\ initializeRepresentableObjectFor<Scalar>(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}});}
+\DoxyCodeLine{00716\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ i\ :\ orbital\_space\_sigma.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00717\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ a\ :\ orbital\_space\_sigma.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00718\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ j\ :\ orbital\_space\_sigma.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00719\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ b\ :\ orbital\_space\_sigma.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00720\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ B\_iajb\_slice(i,\ a,\ j,\ b)\ =\ g\_bbbb(a,\ i,\ b,\ j);}
+\DoxyCodeLine{00721\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00722\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00723\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00724\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00725\ }
+\DoxyCodeLine{00726\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Turn\ the\ ImplicitRankFourTensorSlice\ in\ an\ actual\ Tensor.}}
+\DoxyCodeLine{00727\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ B\_iajb\ =\ B\_iajb\_slice.asTensor();}
+\DoxyCodeLine{00728\ }
+\DoxyCodeLine{00729\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Finally,\ reshape\ the\ tensor\ to\ a\ matrix.}}
+\DoxyCodeLine{00730\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ pure\_spin\_conserved\_B\_component\ =\ B\_iajb.reshape(n\_occ\ *\ n\_virt,\ n\_occ\ *\ n\_virt);}
+\DoxyCodeLine{00731\ }
+\DoxyCodeLine{00732\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ pure\_spin\_conserved\_B\_component;}
+\DoxyCodeLine{00733\ \ \ \ \ \}}
+\DoxyCodeLine{00734\ }
+\DoxyCodeLine{00735\ }
+\DoxyCodeLine{00749\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{GQCP::MatrixX<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a64e9b12c8e05e1052f669de8f05d8a07}{calculateSpinConservedA}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{USQHamiltonian<Scalar>}}\&\ usq\_hamiltonian)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00750\ }
+\DoxyCodeLine{00751\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ four\ different\ A'\ components.}}
+\DoxyCodeLine{00752\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ A\_aaaa\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_ae1537408eb4e052df278dfd5c46d69ad}{calculatePureSpinConservedAComponent}}(usq\_hamiltonian,\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{Spin::alpha}});\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Dimension\ =\ (n\_occ\_a\ *\ n\_virt\_a,\ n\_occ\_a\ *\ n\_virt\_a).}}
+\DoxyCodeLine{00753\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ A\_bbbb\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_ae1537408eb4e052df278dfd5c46d69ad}{calculatePureSpinConservedAComponent}}(usq\_hamiltonian,\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{Spin::beta}});\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Dimension\ =\ (n\_occ\_b\ *\ n\_virt\_b,\ n\_occ\_b\ *\ n\_virt\_b).}}
+\DoxyCodeLine{00754\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ A\_aabb\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a317c5a84eb1227991b98b32664239b8d}{calculateMixedSpinConservedAComponent}}(usq\_hamiltonian,\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{Spin::alpha}},\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{Spin::beta}});\ \ \textcolor{comment}{//\ Dimension\ =\ (n\_occ\_a\ *\ n\_virt\_a,\ n\_occ\_b\ *\ n\_virt\_b).}}
+\DoxyCodeLine{00755\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ A\_bbaa\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a317c5a84eb1227991b98b32664239b8d}{calculateMixedSpinConservedAComponent}}(usq\_hamiltonian,\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{Spin::beta}},\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{Spin::alpha}});\ \ \textcolor{comment}{//\ Dimension\ =\ (n\_occ\_b\ *\ n\_virt\_b,\ n\_occ\_a\ *\ n\_virt\_a).}}
+\DoxyCodeLine{00756\ }
+\DoxyCodeLine{00757\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ total\ matrix\ dimension\ and\ initialize\ the\ total\ matrix.}}
+\DoxyCodeLine{00758\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ orbital\_space\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a76068b80c899b821548b7886bb23580d}{orbitalSpace}}();}
+\DoxyCodeLine{00759\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_occ\_a\ =\ orbital\_space.component(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{Spin::alpha}}).numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}});}
+\DoxyCodeLine{00760\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_virt\_a\ =\ orbital\_space.component(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{Spin::alpha}}).numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}});}
+\DoxyCodeLine{00761\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_occ\_b\ =\ orbital\_space.component(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{Spin::beta}}).numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}});}
+\DoxyCodeLine{00762\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_virt\_b\ =\ orbital\_space.component(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{Spin::beta}}).numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}});}
+\DoxyCodeLine{00763\ }
+\DoxyCodeLine{00764\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ dimension\ =\ (n\_occ\_a\ *\ n\_virt\_a)\ +\ (n\_occ\_b\ *\ n\_virt\_b);}
+\DoxyCodeLine{00765\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{GQCP::MatrixX<Scalar>}}\ total\_A\ \{dimension,\ dimension\};}
+\DoxyCodeLine{00766\ }
+\DoxyCodeLine{00767\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Place\ the\ components\ on\ the\ correct\ positions\ in\ the\ total\ matrix.}}
+\DoxyCodeLine{00768\ \ \ \ \ \ \ \ \ total\_A.topLeftCorner(n\_occ\_a\ *\ n\_virt\_a,\ n\_occ\_a\ *\ n\_virt\_a)\ =\ A\_aaaa;}
+\DoxyCodeLine{00769\ \ \ \ \ \ \ \ \ total\_A.topRightCorner(n\_occ\_a\ *\ n\_virt\_a,\ n\_occ\_b\ *\ n\_virt\_b)\ =\ A\_aabb;}
+\DoxyCodeLine{00770\ \ \ \ \ \ \ \ \ total\_A.bottomLeftCorner(n\_occ\_b\ *\ n\_virt\_b,\ n\_occ\_a\ *\ n\_virt\_a)\ =\ A\_bbaa;}
+\DoxyCodeLine{00771\ \ \ \ \ \ \ \ \ total\_A.bottomRightCorner(n\_occ\_b\ *\ n\_virt\_b,\ n\_occ\_b\ *\ n\_virt\_b)\ =\ A\_bbbb;}
+\DoxyCodeLine{00772\ }
+\DoxyCodeLine{00773\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ total\_A;}
+\DoxyCodeLine{00774\ \ \ \ \ \}}
+\DoxyCodeLine{00775\ }
+\DoxyCodeLine{00776\ }
+\DoxyCodeLine{00790\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{GQCP::MatrixX<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_ae1efa4e3a079baf50362ac2556d1789f}{calculateSpinConservedB}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{USQHamiltonian<Scalar>}}\&\ usq\_hamiltonian)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00791\ }
+\DoxyCodeLine{00792\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ four\ different\ A'\ components.}}
+\DoxyCodeLine{00793\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ B\_aaaa\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a19a22c7c44449937e0048f626a014cd5}{calculatePureSpinConservedBComponent}}(usq\_hamiltonian,\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{Spin::alpha}});\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Dimension\ =\ (n\_occ\_a\ *\ n\_virt\_a,\ n\_occ\_a\ *\ n\_virt\_a).}}
+\DoxyCodeLine{00794\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ B\_bbbb\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a19a22c7c44449937e0048f626a014cd5}{calculatePureSpinConservedBComponent}}(usq\_hamiltonian,\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{Spin::beta}});\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Dimension\ =\ (n\_occ\_b\ *\ n\_virt\_b,\ n\_occ\_b\ *\ n\_virt\_b).}}
+\DoxyCodeLine{00795\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ B\_aabb\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a2a4336a0c0843c66ad090856381716b4}{calculateMixedSpinConservedBComponent}}(usq\_hamiltonian,\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{Spin::alpha}},\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{Spin::beta}});\ \ \textcolor{comment}{//\ Dimension\ =\ (n\_occ\_a\ *\ n\_virt\_a,\ n\_occ\_b\ *\ n\_virt\_b).}}
+\DoxyCodeLine{00796\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ B\_bbaa\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a2a4336a0c0843c66ad090856381716b4}{calculateMixedSpinConservedBComponent}}(usq\_hamiltonian,\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{Spin::beta}},\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{Spin::alpha}});\ \ \textcolor{comment}{//\ Dimension\ =\ (n\_occ\_b\ *\ n\_virt\_b,\ n\_occ\_a\ *\ n\_virt\_a).}}
+\DoxyCodeLine{00797\ }
+\DoxyCodeLine{00798\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ total\ matrix\ dimension\ and\ initialize\ the\ total\ matrix.}}
+\DoxyCodeLine{00799\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ orbital\_space\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a76068b80c899b821548b7886bb23580d}{orbitalSpace}}();}
+\DoxyCodeLine{00800\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_occ\_a\ =\ orbital\_space.component(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{Spin::alpha}}).numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}});}
+\DoxyCodeLine{00801\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_virt\_a\ =\ orbital\_space.component(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{Spin::alpha}}).numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}});}
+\DoxyCodeLine{00802\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_occ\_b\ =\ orbital\_space.component(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{Spin::beta}}).numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}});}
+\DoxyCodeLine{00803\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_virt\_b\ =\ orbital\_space.component(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{Spin::beta}}).numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}});}
+\DoxyCodeLine{00804\ }
+\DoxyCodeLine{00805\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ dimension\ =\ (n\_occ\_a\ *\ n\_virt\_a)\ +\ (n\_occ\_b\ *\ n\_virt\_b);}
+\DoxyCodeLine{00806\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{GQCP::MatrixX<Scalar>}}\ total\_B\ \{dimension,\ dimension\};}
+\DoxyCodeLine{00807\ }
+\DoxyCodeLine{00808\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Place\ the\ components\ on\ the\ correct\ positions\ in\ the\ total\ matrix.}}
+\DoxyCodeLine{00809\ \ \ \ \ \ \ \ \ total\_B.topLeftCorner(n\_occ\_a\ *\ n\_virt\_a,\ n\_occ\_a\ *\ n\_virt\_a)\ =\ B\_aaaa;}
+\DoxyCodeLine{00810\ \ \ \ \ \ \ \ \ total\_B.topRightCorner(n\_occ\_a\ *\ n\_virt\_a,\ n\_occ\_b\ *\ n\_virt\_b)\ =\ B\_aabb;}
+\DoxyCodeLine{00811\ \ \ \ \ \ \ \ \ total\_B.bottomLeftCorner(n\_occ\_b\ *\ n\_virt\_b,\ n\_occ\_a\ *\ n\_virt\_a)\ =\ B\_bbaa;}
+\DoxyCodeLine{00812\ \ \ \ \ \ \ \ \ total\_B.bottomRightCorner(n\_occ\_b\ *\ n\_virt\_b,\ n\_occ\_b\ *\ n\_virt\_b)\ =\ B\_bbbb;}
+\DoxyCodeLine{00813\ }
+\DoxyCodeLine{00814\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ total\_B;}
+\DoxyCodeLine{00815\ \ \ \ \ \}}
+\DoxyCodeLine{00816\ }
+\DoxyCodeLine{00817\ }
+\DoxyCodeLine{00834\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{GQCP::Matrix<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a72be993c43e8973a4a72f8608632e07e}{calculateSpinUnconservedAComponent}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{USQHamiltonian<Scalar>}}\&\ usq\_hamiltonian,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4f}{Spin}}\ sigma,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4f}{Spin}}\ sigma\_bar)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00835\ }
+\DoxyCodeLine{00836\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Sigma\ and\ sigma\_bar\ need\ to\ be\ different.\ If\ they\ are\ the\ same,\ the\ method\ throws\ an\ error.}}
+\DoxyCodeLine{00837\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sigma\ ==\ sigma\_bar)\ \{}
+\DoxyCodeLine{00838\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}QCModel::UHF<Scalar>.calculateMixedSpinConservedAComponent(const\ USQHamiltonian<Scalar>\&\ usq\_hamiltonian,\ const\ Spin\ sigma,\ const\ Spin\ sigma\_bar):\ The\ spin\ 'sigma'\ and\ spin\ 'sigma\_bar'\ arguments\ are\ not\ allowed\ to\ be\ the\ same."{}});}
+\DoxyCodeLine{00839\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00840\ }
+\DoxyCodeLine{00841\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Depending\ on\ whether\ we're\ making\ the\ abab\ or\ baba\ A''-\/component,\ we\ need\ a\ different\ component\ of\ the\ orbital\_space.}}
+\DoxyCodeLine{00842\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ orbital\_space\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a76068b80c899b821548b7886bb23580d}{orbitalSpace}}();}
+\DoxyCodeLine{00843\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ orbital\_space\_sigma\ =\ orbital\_space.component(sigma);}
+\DoxyCodeLine{00844\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ orbital\_space\_sigma\_bar\ =\ orbital\_space.component(sigma\_bar);}
+\DoxyCodeLine{00845\ }
+\DoxyCodeLine{00846\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ number\ of\ occupied\ and\ virtual\ orbitals.}}
+\DoxyCodeLine{00847\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_occ\_sigma\ =\ orbital\_space\_sigma.numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}});}
+\DoxyCodeLine{00848\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_virt\_sigma\ =\ orbital\_space\_sigma.numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}});}
+\DoxyCodeLine{00849\ }
+\DoxyCodeLine{00850\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_occ\_sigma\_bar\ =\ orbital\_space\_sigma\_bar.numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}});}
+\DoxyCodeLine{00851\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_virt\_sigma\_bar\ =\ orbital\_space\_sigma\_bar.numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}});}
+\DoxyCodeLine{00852\ }
+\DoxyCodeLine{00854\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ g\_aabb\ =\ usq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a2dc43cc8615c2c34751535f3c07ef828}{twoElectron}}().alphaBeta().parameters();}
+\DoxyCodeLine{00855\ }
+\DoxyCodeLine{00856\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ next\ step\ is\ to\ create\ the\ needed\ tensor\ slice.}}
+\DoxyCodeLine{00857\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Zero-\/initialize\ an\ occupied-\/virtual-\/occupied-\/virtual\ object\ of\ mixed\ spins.}}
+\DoxyCodeLine{00858\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ A\_iajb\_slice\ =\ orbital\_space.template\ initializeMixedRepresentableObjectFor<Scalar>(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ sigma\_bar,\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}},\ sigma,}
+\DoxyCodeLine{00859\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ sigma\_bar,\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}},\ sigma);}
+\DoxyCodeLine{00860\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ i\ :\ orbital\_space\_sigma\_bar.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00861\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ a\ :\ orbital\_space\_sigma.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00862\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ j\ :\ orbital\_space\_sigma\_bar.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00863\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ b\ :\ orbital\_space\_sigma.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00864\ }
+\DoxyCodeLine{00865\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Depending\ on\ which\ spin\ component\ is\ alpha\ and\ which\ is\ beta,\ the\ indices\ need\ to\ be\ transposed\ correctly.}}
+\DoxyCodeLine{00866\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sigma\ ==\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{Spin::alpha}}\ \&\&\ sigma\_bar\ ==\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{Spin::beta}})\ \{}
+\DoxyCodeLine{00867\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ A\_iajb\_slice(i,\ a,\ j,\ b)\ =\ -\/g\_aabb(a,\ b,\ j,\ i);}
+\DoxyCodeLine{00868\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00869\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ A\_iajb\_slice(i,\ a,\ j,\ b)\ =\ -\/g\_aabb(j,\ i,\ a,\ b);}
+\DoxyCodeLine{00870\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00871\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00872\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00873\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00874\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00875\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Turn\ the\ ImplicitRankFourTensorSlice\ in\ an\ actual\ Tensor.}}
+\DoxyCodeLine{00876\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ A\_iajb\ =\ A\_iajb\_slice.asTensor();}
+\DoxyCodeLine{00877\ }
+\DoxyCodeLine{00878\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ elements\ F\_BA\ and\ F\_IJ\ are\ the\ eigenvalues\ of\ the\ one-\/electron\ Fock\ operator.}}
+\DoxyCodeLine{00879\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ have\ to\ construct\ a\ mixed\ matrix\ in\ this\ particular\ case.}}
+\DoxyCodeLine{00880\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{GQCP::MatrixX<Scalar>}}\ F\_values\ \{n\_virt\_sigma,\ n\_occ\_sigma\_bar\};}
+\DoxyCodeLine{00881\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ virtual\_energies\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a4c4e911c01ee0bad760236a6a57b01a2}{virtualOrbitalEnergies}}().component(sigma);}
+\DoxyCodeLine{00882\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ occupied\_energies\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a22d6d09d1017a87a07add3260e03aae3}{occupiedOrbitalEnergies}}().component(sigma\_bar);}
+\DoxyCodeLine{00883\ }
+\DoxyCodeLine{00884\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ a\ =\ 0;\ a\ <\ n\_virt\_sigma;\ a++)\ \{}
+\DoxyCodeLine{00885\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ n\_occ\_sigma\_bar;\ i++)\ \{}
+\DoxyCodeLine{00886\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ F\_values(a,\ i)\ =\ virtual\_energies[a]\ -\/\ occupied\_energies[i];}
+\DoxyCodeLine{00887\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00888\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00889\ }
+\DoxyCodeLine{00890\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ the\ previously\ calculated\ F\ values\ on\ the\ correct\ positions.}}
+\DoxyCodeLine{00891\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ a\ =\ 0;\ a\ <\ n\_virt\_sigma;\ a++)\ \{}
+\DoxyCodeLine{00892\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ n\_occ\_sigma\_bar;\ i++)\ \{}
+\DoxyCodeLine{00893\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ A\_iajb(i,\ a,\ i,\ a)\ +=\ F\_values(a,\ i);}
+\DoxyCodeLine{00894\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00895\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00896\ }
+\DoxyCodeLine{00897\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Finally,\ reshape\ the\ tensor\ to\ a\ matrix.}}
+\DoxyCodeLine{00898\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ spin\_unconserved\_A\_component\ =\ A\_iajb.reshape(n\_occ\_sigma\_bar\ *\ n\_virt\_sigma,\ n\_occ\_sigma\_bar\ *\ n\_virt\_sigma);}
+\DoxyCodeLine{00899\ }
+\DoxyCodeLine{00900\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ spin\_unconserved\_A\_component;}
+\DoxyCodeLine{00901\ \ \ \ \ \}}
+\DoxyCodeLine{00902\ }
+\DoxyCodeLine{00903\ }
+\DoxyCodeLine{00920\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{GQCP::Matrix<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a970e0b9a5f3854ec2acfb95e75b32610}{calculateSpinUnconservedBComponent}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{USQHamiltonian<Scalar>}}\&\ usq\_hamiltonian,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4f}{Spin}}\ sigma,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4f}{Spin}}\ sigma\_bar)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00921\ }
+\DoxyCodeLine{00922\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Sigma\ and\ sigma\_bar\ need\ to\ be\ different.\ If\ they\ are\ the\ same,\ the\ method\ throws\ an\ error.}}
+\DoxyCodeLine{00923\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sigma\ ==\ sigma\_bar)\ \{}
+\DoxyCodeLine{00924\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}QCModel::UHF<Scalar>.calculateMixedSpinConservedAComponent(const\ USQHamiltonian<Scalar>\&\ usq\_hamiltonian,\ const\ Spin\ sigma,\ const\ Spin\ sigma\_bar):\ The\ spin\ 'sigma'\ and\ spin\ 'sigma\_bar'\ arguments\ are\ not\ allowed\ to\ be\ the\ same."{}});}
+\DoxyCodeLine{00925\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00926\ }
+\DoxyCodeLine{00927\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Depending\ on\ whether\ we're\ making\ the\ abba\ or\ baab\ B''-\/component,\ we\ need\ a\ different\ component\ of\ the\ orbital\_space.}}
+\DoxyCodeLine{00928\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ orbital\_space\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a76068b80c899b821548b7886bb23580d}{orbitalSpace}}();}
+\DoxyCodeLine{00929\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ orbital\_space\_sigma\ =\ orbital\_space.component(sigma);}
+\DoxyCodeLine{00930\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ orbital\_space\_sigma\_bar\ =\ orbital\_space.component(sigma\_bar);}
+\DoxyCodeLine{00931\ }
+\DoxyCodeLine{00932\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ number\ of\ occupied\ and\ virtual\ orbitals.}}
+\DoxyCodeLine{00933\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_occ\_sigma\ =\ orbital\_space\_sigma.numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}});}
+\DoxyCodeLine{00934\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_virt\_sigma\ =\ orbital\_space\_sigma.numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}});}
+\DoxyCodeLine{00935\ }
+\DoxyCodeLine{00936\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_occ\_sigma\_bar\ =\ orbital\_space\_sigma\_bar.numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}});}
+\DoxyCodeLine{00937\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_virt\_sigma\_bar\ =\ orbital\_space\_sigma\_bar.numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}});}
+\DoxyCodeLine{00938\ }
+\DoxyCodeLine{00939\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ mixed\ alpha-\/beta\ two\ electron\ integrals\ are\ extracted\ from\ the\ Hamiltonian.}}
+\DoxyCodeLine{00940\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ g\_aabb\ =\ usq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a2dc43cc8615c2c34751535f3c07ef828}{twoElectron}}().alphaBeta().parameters();}
+\DoxyCodeLine{00941\ }
+\DoxyCodeLine{00942\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ next\ step\ is\ to\ create\ the\ needed\ tensor\ slice.}}
+\DoxyCodeLine{00943\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Zero-\/initialize\ an\ occupied-\/virtual-\/occupied-\/virtual\ object\ of\ mixed\ spins.}}
+\DoxyCodeLine{00944\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ B\_iajb\_slice\ =\ orbital\_space.template\ initializeMixedRepresentableObjectFor<Scalar>(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ sigma,\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}},\ sigma\_bar,}
+\DoxyCodeLine{00945\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}},\ sigma\_bar,\ \mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}},\ sigma);}
+\DoxyCodeLine{00946\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ i\ :\ orbital\_space\_sigma.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00947\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ a\ :\ orbital\_space\_sigma\_bar.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00948\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ j\ :\ orbital\_space\_sigma\_bar.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}}))\ \{}
+\DoxyCodeLine{00949\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ b\ :\ orbital\_space\_sigma.indices(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}}))\ \{}
+\DoxyCodeLine{00950\ }
+\DoxyCodeLine{00951\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Depending\ on\ which\ spin\ component\ is\ alpha\ and\ which\ is\ beta,\ the\ indices\ need\ to\ be\ transposed\ correctly.}}
+\DoxyCodeLine{00952\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sigma\ ==\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{Spin::alpha}}\ \&\&\ sigma\_bar\ ==\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{Spin::beta}})\ \{}
+\DoxyCodeLine{00953\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ B\_iajb\_slice(i,\ a,\ j,\ b)\ =\ -\/g\_aabb(b,\ i,\ a,\ j);}
+\DoxyCodeLine{00954\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00955\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ B\_iajb\_slice(i,\ a,\ j,\ b)\ =\ -\/g\_aabb(a,\ j,\ b,\ i);}
+\DoxyCodeLine{00956\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00957\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00958\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00959\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00960\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00961\ }
+\DoxyCodeLine{00962\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Turn\ the\ ImplicitRankFourTensorSlice\ in\ an\ actual\ Tensor.}}
+\DoxyCodeLine{00963\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ B\_iajb\ =\ B\_iajb\_slice.asTensor();}
+\DoxyCodeLine{00964\ }
+\DoxyCodeLine{00965\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Finally,\ reshape\ the\ tensor\ to\ a\ matrix.}}
+\DoxyCodeLine{00966\ }
+\DoxyCodeLine{00967\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ spin\_unconserved\_B\_component\ =\ B\_iajb.reshape(n\_occ\_sigma\_bar\ *\ n\_virt\_sigma,\ n\_occ\_sigma\ *\ n\_virt\_sigma\_bar);}
+\DoxyCodeLine{00968\ }
+\DoxyCodeLine{00969\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ spin\_unconserved\_B\_component;}
+\DoxyCodeLine{00970\ \ \ \ \ \}}
+\DoxyCodeLine{00971\ }
+\DoxyCodeLine{00972\ }
+\DoxyCodeLine{00986\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{GQCP::MatrixX<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a781e5c73848a6bfb5db693803d489d65}{calculateSpinUnconservedA}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{USQHamiltonian<Scalar>}}\&\ usq\_hamiltonian)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00987\ }
+\DoxyCodeLine{00988\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ two\ different\ A''\ components.}}
+\DoxyCodeLine{00989\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ A\_abab\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a72be993c43e8973a4a72f8608632e07e}{calculateSpinUnconservedAComponent}}(usq\_hamiltonian,\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{Spin::alpha}},\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{Spin::beta}});\ \ \textcolor{comment}{//\ Dimension\ =\ (n\_occ\_b\ *\ n\_virt\_a,\ n\_occ\_b\ *\ n\_virt\_a).}}
+\DoxyCodeLine{00990\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ A\_baba\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a72be993c43e8973a4a72f8608632e07e}{calculateSpinUnconservedAComponent}}(usq\_hamiltonian,\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{Spin::beta}},\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{Spin::alpha}});\ \ \textcolor{comment}{//\ Dimension\ =\ (n\_occ\_a\ *\ n\_virt\_b,\ n\_occ\_a\ *\ n\_virt\_b).}}
+\DoxyCodeLine{00991\ }
+\DoxyCodeLine{00992\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ total\ matrix\ dimension\ and\ initialize\ the\ total\ matrix.}}
+\DoxyCodeLine{00993\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ orbital\_space\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a76068b80c899b821548b7886bb23580d}{orbitalSpace}}();}
+\DoxyCodeLine{00994\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_occ\_a\ =\ orbital\_space.component(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{Spin::alpha}}).numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}});}
+\DoxyCodeLine{00995\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_virt\_a\ =\ orbital\_space.component(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{Spin::alpha}}).numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}});}
+\DoxyCodeLine{00996\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_occ\_b\ =\ orbital\_space.component(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{Spin::beta}}).numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}});}
+\DoxyCodeLine{00997\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_virt\_b\ =\ orbital\_space.component(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{Spin::beta}}).numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}});}
+\DoxyCodeLine{00998\ }
+\DoxyCodeLine{00999\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ dimension\ =\ (n\_occ\_b\ *\ n\_virt\_a)\ +\ (n\_occ\_a\ *\ n\_virt\_b);}
+\DoxyCodeLine{01000\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{GQCP::MatrixX<Scalar>}}\ total\_A\ \{dimension,\ dimension\};}
+\DoxyCodeLine{01001\ }
+\DoxyCodeLine{01002\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initialize\ the\ zero\ blocks\ of\ the\ total\ matrix.}}
+\DoxyCodeLine{01003\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ zero\_1\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{GQCP::MatrixX<Scalar>::Zero}}(n\_virt\_a\ *\ n\_occ\_b,\ n\_occ\_a\ *\ n\_virt\_b);}
+\DoxyCodeLine{01004\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ zero\_2\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{GQCP::MatrixX<Scalar>::Zero}}(n\_occ\_a\ *\ n\_virt\_b,\ n\_virt\_a\ *\ n\_occ\_b);}
+\DoxyCodeLine{01005\ }
+\DoxyCodeLine{01006\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Place\ the\ components\ on\ the\ correct\ positions\ in\ the\ total\ matrix.}}
+\DoxyCodeLine{01007\ \ \ \ \ \ \ \ \ total\_A.topLeftCorner(n\_occ\_b\ *\ n\_virt\_a,\ n\_occ\_b\ *\ n\_virt\_a)\ =\ A\_abab;}
+\DoxyCodeLine{01008\ \ \ \ \ \ \ \ \ total\_A.topRightCorner(n\_virt\_a\ *\ n\_occ\_b,\ n\_occ\_a\ *\ n\_virt\_b)\ =\ zero\_1;}
+\DoxyCodeLine{01009\ \ \ \ \ \ \ \ \ total\_A.bottomLeftCorner(n\_occ\_a\ *\ n\_virt\_b,\ n\_occ\_b\ *\ n\_virt\_a)\ =\ zero\_2;}
+\DoxyCodeLine{01010\ \ \ \ \ \ \ \ \ total\_A.bottomRightCorner(n\_occ\_a\ *\ n\_virt\_b,\ n\_occ\_a\ *\ n\_virt\_b)\ =\ A\_baba;}
+\DoxyCodeLine{01011\ }
+\DoxyCodeLine{01012\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ total\_A;}
+\DoxyCodeLine{01013\ \ \ \ \ \}}
+\DoxyCodeLine{01014\ }
+\DoxyCodeLine{01015\ }
+\DoxyCodeLine{01029\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{GQCP::MatrixX<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a6565f06dc695bfa8a1be535a444b6536}{calculateSpinUnconservedB}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{USQHamiltonian<Scalar>}}\&\ usq\_hamiltonian)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{01030\ }
+\DoxyCodeLine{01031\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ two\ different\ B''\ components.}}
+\DoxyCodeLine{01032\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ B\_abba\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a970e0b9a5f3854ec2acfb95e75b32610}{calculateSpinUnconservedBComponent}}(usq\_hamiltonian,\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{Spin::alpha}},\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{Spin::beta}});\ \ \textcolor{comment}{//\ Dimension\ =\ (n\_occ\_b\ *\ n\_virt\_a,\ n\_occ\_a\ *\ n\_virt\_b).}}
+\DoxyCodeLine{01033\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ B\_baab\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a970e0b9a5f3854ec2acfb95e75b32610}{calculateSpinUnconservedBComponent}}(usq\_hamiltonian,\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{Spin::beta}},\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{Spin::alpha}});\ \ \textcolor{comment}{//\ Dimension\ =\ (n\_occ\_a\ *\ n\_virt\_b,\ n\_occ\_b\ *\ n\_virt\_a).}}
+\DoxyCodeLine{01034\ }
+\DoxyCodeLine{01035\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ total\ matrix\ dimension\ and\ initialize\ the\ total\ matrix.}}
+\DoxyCodeLine{01036\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ orbital\_space\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a76068b80c899b821548b7886bb23580d}{orbitalSpace}}();}
+\DoxyCodeLine{01037\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_occ\_a\ =\ orbital\_space.component(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{Spin::alpha}}).numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}});}
+\DoxyCodeLine{01038\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_virt\_a\ =\ orbital\_space.component(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{Spin::alpha}}).numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}});}
+\DoxyCodeLine{01039\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_occ\_b\ =\ orbital\_space.component(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{Spin::beta}}).numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}});}
+\DoxyCodeLine{01040\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_virt\_b\ =\ orbital\_space.component(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{Spin::beta}}).numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}});}
+\DoxyCodeLine{01041\ }
+\DoxyCodeLine{01042\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ dimension\ =\ (n\_occ\_b\ *\ n\_virt\_a)\ +\ (n\_occ\_a\ *\ n\_virt\_b);}
+\DoxyCodeLine{01043\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{GQCP::MatrixX<Scalar>}}\ total\_B\ \{dimension,\ dimension\};}
+\DoxyCodeLine{01044\ }
+\DoxyCodeLine{01045\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initialize\ the\ zero\ blocks\ of\ the\ total\ matrix.}}
+\DoxyCodeLine{01046\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ zero\_1\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{GQCP::MatrixX<Scalar>::Zero}}(n\_virt\_a\ *\ n\_occ\_b,\ n\_occ\_b\ *\ n\_virt\_a);}
+\DoxyCodeLine{01047\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ zero\_2\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{GQCP::MatrixX<Scalar>::Zero}}(n\_occ\_a\ *\ n\_virt\_b,\ n\_virt\_b\ *\ n\_occ\_a);}
+\DoxyCodeLine{01048\ }
+\DoxyCodeLine{01049\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Place\ the\ components\ on\ the\ correct\ positions\ in\ the\ total\ matrix.}}
+\DoxyCodeLine{01050\ \ \ \ \ \ \ \ \ total\_B.topLeftCorner(n\_occ\_b\ *\ n\_virt\_a,\ n\_occ\_b\ *\ n\_virt\_a)\ =\ zero\_1;}
+\DoxyCodeLine{01051\ \ \ \ \ \ \ \ \ total\_B.topRightCorner(n\_virt\_a\ *\ n\_occ\_b,\ n\_occ\_a\ *\ n\_virt\_b)\ =\ B\_abba;}
+\DoxyCodeLine{01052\ \ \ \ \ \ \ \ \ total\_B.bottomLeftCorner(n\_occ\_a\ *\ n\_virt\_b,\ n\_occ\_b\ *\ n\_virt\_a)\ =\ B\_baab;}
+\DoxyCodeLine{01053\ \ \ \ \ \ \ \ \ total\_B.bottomRightCorner(n\_occ\_a\ *\ n\_virt\_b,\ n\_occ\_a\ *\ n\_virt\_b)\ =\ zero\_2;}
+\DoxyCodeLine{01054\ }
+\DoxyCodeLine{01055\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ total\_B;}
+\DoxyCodeLine{01056\ \ \ \ \ \}}
+\DoxyCodeLine{01057\ }
+\DoxyCodeLine{01058\ }
+\DoxyCodeLine{01066\ \ \ \ \ UHFStabilityMatrices<Scalar>\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_ab8d6eeb50b84bd52e30f415439052f65}{calculateStabilityMatrices}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{USQHamiltonian<Scalar>}}\&\ usq\_hamiltonian)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{01067\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ UHFStabilityMatrices<Scalar>\ \{this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a64e9b12c8e05e1052f669de8f05d8a07}{calculateSpinConservedA}}(usq\_hamiltonian),\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_ae1efa4e3a079baf50362ac2556d1789f}{calculateSpinConservedB}}(usq\_hamiltonian),}
+\DoxyCodeLine{01068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a781e5c73848a6bfb5db693803d489d65}{calculateSpinUnconservedA}}(usq\_hamiltonian),\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a6565f06dc695bfa8a1be535a444b6536}{calculateSpinUnconservedB}}(usq\_hamiltonian)\};}
+\DoxyCodeLine{01069\ \ \ \ \ \}}
+\DoxyCodeLine{01070\ }
+\DoxyCodeLine{01071\ }
+\DoxyCodeLine{01078\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved}{SpinResolved<GQCP::MatrixX<Scalar>}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a10d0afb3a3452ac926713a73cb394ba6}{excitationEnergies}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{01079\ }
+\DoxyCodeLine{01080\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ the\ orbital\ space\ to\ determine\ the\ loops.}}
+\DoxyCodeLine{01081\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ orbital\_space\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a76068b80c899b821548b7886bb23580d}{orbitalSpace}}();}
+\DoxyCodeLine{01082\ }
+\DoxyCodeLine{01083\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ number\ of\ occupied\ and\ virtual\ orbitals.}}
+\DoxyCodeLine{01084\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_occ\_a\ =\ orbital\_space.alpha().numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}});}
+\DoxyCodeLine{01085\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_virt\_a\ =\ orbital\_space.alpha().numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}});}
+\DoxyCodeLine{01086\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_occ\_b\ =\ orbital\_space.beta().numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}});}
+\DoxyCodeLine{01087\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_virt\_b\ =\ orbital\_space.beta().numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246baa3079536f69901e71a7fcdc955d1c47e}{OccupationType::k\_virtual}});}
+\DoxyCodeLine{01088\ }
+\DoxyCodeLine{01089\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ occupied\ and\ virtual\ orbital\ energies.}}
+\DoxyCodeLine{01090\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ occupied\_energies\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a22d6d09d1017a87a07add3260e03aae3}{occupiedOrbitalEnergies}}();}
+\DoxyCodeLine{01091\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ virtual\_energies\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a4c4e911c01ee0bad760236a6a57b01a2}{virtualOrbitalEnergies}}();}
+\DoxyCodeLine{01092\ }
+\DoxyCodeLine{01093\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ the\ F\ matrix.}}
+\DoxyCodeLine{01094\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{GQCP::MatrixX<Scalar>}}\ F\_values\_a\ \{n\_virt\_a,\ n\_occ\_a\};}
+\DoxyCodeLine{01095\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{GQCP::MatrixX<Scalar>}}\ F\_values\_b\ \{n\_virt\_b,\ n\_occ\_b\};}
+\DoxyCodeLine{01096\ }
+\DoxyCodeLine{01097\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ a\ =\ 0;\ a\ <\ n\_virt\_a;\ a++)\ \{}
+\DoxyCodeLine{01098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ n\_occ\_a;\ i++)\ \{}
+\DoxyCodeLine{01099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ F\_values\_a(a,\ i)\ =\ virtual\_energies.alpha()[a]\ -\/\ occupied\_energies.alpha()[i];}
+\DoxyCodeLine{01100\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01101\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ a\ =\ 0;\ a\ <\ n\_virt\_b;\ a++)\ \{}
+\DoxyCodeLine{01103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ n\_occ\_b;\ i++)\ \{}
+\DoxyCodeLine{01104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ F\_values\_b(a,\ i)\ =\ virtual\_energies.beta()[a]\ -\/\ occupied\_energies.beta()[i];}
+\DoxyCodeLine{01105\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01106\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01107\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved}{SpinResolved<GQCP::MatrixX<Scalar>}}>\ \{F\_values\_a,\ F\_values\_b\};}
+\DoxyCodeLine{01108\ \ \ \ \ \}}
+\DoxyCodeLine{01109\ }
+\DoxyCodeLine{01110\ }
+\DoxyCodeLine{01114\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a75def8b1ed213c242ac7a8417587e423}{expansion}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>C;\ \}}
+\DoxyCodeLine{01115\ }
+\DoxyCodeLine{01116\ }
+\DoxyCodeLine{01120\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved}{SpinResolved<size\_t>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a15e287c301ada683bec5140177caecee}{numberOfElectrons}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>N;\ \}}
+\DoxyCodeLine{01121\ }
+\DoxyCodeLine{01122\ }
+\DoxyCodeLine{01126\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a7dc72c9793142dd8329fb2092cef37bf}{numberOfSpinOrbitals}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{01127\ }
+\DoxyCodeLine{01128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a7dc72c9793142dd8329fb2092cef37bf}{numberOfSpinOrbitals}}(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{Spin::alpha}})\ +\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a7dc72c9793142dd8329fb2092cef37bf}{numberOfSpinOrbitals}}(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{Spin::beta}});}
+\DoxyCodeLine{01129\ \ \ \ \ \}}
+\DoxyCodeLine{01130\ }
+\DoxyCodeLine{01131\ }
+\DoxyCodeLine{01137\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_ae9ea834e051059018203fba5ccc4c05e}{numberOfSpinOrbitals}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4f}{Spin}}\ sigma)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{01138\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a75def8b1ed213c242ac7a8417587e423}{expansion}}().\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_abc73c03917a9bc4469007c832b7dc8d0}{component}}(sigma).\mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space_a6749db783d556c8d21e52e2a72ea329f}{numberOfOrbitals}}();}
+\DoxyCodeLine{01139\ \ \ \ \ \}}
+\DoxyCodeLine{01140\ }
+\DoxyCodeLine{01141\ }
+\DoxyCodeLine{01145\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved}{SpinResolved<std::vector<Scalar>}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a22d6d09d1017a87a07add3260e03aae3}{occupiedOrbitalEnergies}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{01146\ }
+\DoxyCodeLine{01147\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ number\ of\ occupied\ orbitals\ of\ the\ spin\ components.}}
+\DoxyCodeLine{01148\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ orbital\_space\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a76068b80c899b821548b7886bb23580d}{orbitalSpace}}();}
+\DoxyCodeLine{01149\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_occ\_a\ =\ orbital\_space.alpha().numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}});}
+\DoxyCodeLine{01150\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_occ\_b\ =\ orbital\_space.beta().numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}});}
+\DoxyCodeLine{01151\ }
+\DoxyCodeLine{01152\ }
+\DoxyCodeLine{01153\ \ \ \ \ \ \ \ \ std::vector<Scalar>\ mo\_energies\_a;\ \ \textcolor{comment}{//\ We\ use\ a\ std::vector\ in\ order\ to\ be\ able\ to\ slice\ the\ vector\ later\ on.}}
+\DoxyCodeLine{01154\ \ \ \ \ \ \ \ \ std::vector<Scalar>\ mo\_energies\_b;\ \ \textcolor{comment}{//\ We\ use\ a\ std::vector\ in\ order\ to\ be\ able\ to\ slice\ the\ vector\ later\ on.}}
+\DoxyCodeLine{01155\ }
+\DoxyCodeLine{01156\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a7dc72c9793142dd8329fb2092cef37bf}{numberOfSpinOrbitals}}(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{Spin::alpha}});\ i++)\ \{}
+\DoxyCodeLine{01157\ \ \ \ \ \ \ \ \ \ \ \ \ mo\_energies\_a.push\_back(this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a1164d3b81a7271e07ce84182fce34244}{orbitalEnergies}}().alpha()[i]);}
+\DoxyCodeLine{01158\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01159\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a7dc72c9793142dd8329fb2092cef37bf}{numberOfSpinOrbitals}}(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{Spin::beta}});\ i++)\ \{}
+\DoxyCodeLine{01160\ \ \ \ \ \ \ \ \ \ \ \ \ mo\_energies\_b.push\_back(this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a1164d3b81a7271e07ce84182fce34244}{orbitalEnergies}}().beta()[i]);}
+\DoxyCodeLine{01161\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01162\ }
+\DoxyCodeLine{01163\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ the\ values\ with\ indices\ greater\ than\ the\ occupied\ orbital\ indices,\ i.e.\ the\ virtual\ orbital\ indices,\ to\ the\ new\ vector.}}
+\DoxyCodeLine{01164\ \ \ \ \ \ \ \ \ std::vector<Scalar>\ mo\_energies\_occupied\_a;}
+\DoxyCodeLine{01165\ \ \ \ \ \ \ \ \ std::vector<Scalar>\ mo\_energies\_occupied\_b;}
+\DoxyCodeLine{01166\ }
+\DoxyCodeLine{01167\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ the\ values\ with\ indices\ smaller\ than\ the\ occupied\ orbital\ indices,\ to\ the\ new\ vector.}}
+\DoxyCodeLine{01168\ \ \ \ \ \ \ \ \ std::copy(mo\_energies\_a.begin(),\ mo\_energies\_a.begin()\ +\ n\_occ\_a,\ std::back\_inserter(mo\_energies\_occupied\_a));}
+\DoxyCodeLine{01169\ \ \ \ \ \ \ \ \ std::copy(mo\_energies\_b.begin(),\ mo\_energies\_b.begin()\ +\ n\_occ\_b,\ std::back\_inserter(mo\_energies\_occupied\_b));}
+\DoxyCodeLine{01170\ }
+\DoxyCodeLine{01171\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved}{SpinResolved<std::vector<Scalar>}}>\ \{mo\_energies\_occupied\_a,\ mo\_energies\_occupied\_b\};}
+\DoxyCodeLine{01172\ \ \ \ \ \}}
+\DoxyCodeLine{01173\ }
+\DoxyCodeLine{01174\ }
+\DoxyCodeLine{01178\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved}{SpinResolved<VectorX<Scalar>}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a1164d3b81a7271e07ce84182fce34244}{orbitalEnergies}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>orbital\_energies;\ \}}
+\DoxyCodeLine{01179\ }
+\DoxyCodeLine{01180\ }
+\DoxyCodeLine{01184\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_orbital_space}{SpinResolvedOrbitalSpace}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a76068b80c899b821548b7886bb23580d}{orbitalSpace}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a76068b80c899b821548b7886bb23580d}{UHF<Scalar>::orbitalSpace}}(this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a7dc72c9793142dd8329fb2092cef37bf}{numberOfSpinOrbitals}}(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{Spin::alpha}}),\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a7dc72c9793142dd8329fb2092cef37bf}{numberOfSpinOrbitals}}(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{Spin::beta}}),}
+\DoxyCodeLine{01185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a15e287c301ada683bec5140177caecee}{numberOfElectrons}}().\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{alpha}}(),\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a15e287c301ada683bec5140177caecee}{numberOfElectrons}}().\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{beta}}());\ \}}
+\DoxyCodeLine{01186\ }
+\DoxyCodeLine{01187\ }
+\DoxyCodeLine{01191\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a8533686fdb52cf9c761beae1c55baffe}{spinOrbitalEnergiesBlocked}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{01192\ }
+\DoxyCodeLine{01193\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{GQCP::VectorX<Scalar>}}\ total\_orbital\_energies\ \{this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a7dc72c9793142dd8329fb2092cef37bf}{numberOfSpinOrbitals}}()\};}
+\DoxyCodeLine{01194\ \ \ \ \ \ \ \ \ total\_orbital\_energies.head(this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a7dc72c9793142dd8329fb2092cef37bf}{numberOfSpinOrbitals}}(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{Spin::alpha}}))\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a1164d3b81a7271e07ce84182fce34244}{orbitalEnergies}}().alpha();}
+\DoxyCodeLine{01195\ \ \ \ \ \ \ \ \ total\_orbital\_energies.tail(this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a7dc72c9793142dd8329fb2092cef37bf}{numberOfSpinOrbitals}}(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{Spin::beta}}))\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a1164d3b81a7271e07ce84182fce34244}{orbitalEnergies}}().beta();}
+\DoxyCodeLine{01196\ }
+\DoxyCodeLine{01197\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ total\_orbital\_energies;}
+\DoxyCodeLine{01198\ \ \ \ \ \}}
+\DoxyCodeLine{01199\ }
+\DoxyCodeLine{01200\ }
+\DoxyCodeLine{01204\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved}{SpinResolved<std::vector<Scalar>}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a4c4e911c01ee0bad760236a6a57b01a2}{virtualOrbitalEnergies}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{01205\ }
+\DoxyCodeLine{01206\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ number\ of\ occupied\ orbitals\ of\ the\ spin\ components.}}
+\DoxyCodeLine{01207\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ orbital\_space\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a76068b80c899b821548b7886bb23580d}{orbitalSpace}}();}
+\DoxyCodeLine{01208\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_occ\_a\ =\ orbital\_space.alpha().numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}});}
+\DoxyCodeLine{01209\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ n\_occ\_b\ =\ orbital\_space.beta().numberOfOrbitals(\mbox{\hyperlink{namespace_g_q_c_p_a3030f130c450e7134eb0670b39ab246bae0a1ca016cf8646a44cf4e074d194a4a}{OccupationType::k\_occupied}});}
+\DoxyCodeLine{01210\ }
+\DoxyCodeLine{01211\ }
+\DoxyCodeLine{01212\ \ \ \ \ \ \ \ \ std::vector<Scalar>\ mo\_energies\_a;\ \ \textcolor{comment}{//\ We\ use\ a\ std::vector\ in\ order\ to\ be\ able\ to\ slice\ the\ vector\ later\ on.}}
+\DoxyCodeLine{01213\ \ \ \ \ \ \ \ \ std::vector<Scalar>\ mo\_energies\_b;\ \ \textcolor{comment}{//\ We\ use\ a\ std::vector\ in\ order\ to\ be\ able\ to\ slice\ the\ vector\ later\ on.}}
+\DoxyCodeLine{01214\ }
+\DoxyCodeLine{01215\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a7dc72c9793142dd8329fb2092cef37bf}{numberOfSpinOrbitals}}(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6}{Spin::alpha}});\ i++)\ \{}
+\DoxyCodeLine{01216\ \ \ \ \ \ \ \ \ \ \ \ \ mo\_energies\_a.push\_back(this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a1164d3b81a7271e07ce84182fce34244}{orbitalEnergies}}().alpha()[i]);}
+\DoxyCodeLine{01217\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01218\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a7dc72c9793142dd8329fb2092cef37bf}{numberOfSpinOrbitals}}(\mbox{\hyperlink{namespace_g_q_c_p_ac6f590924cfbbf11847a4ce174fe6e4fa072822a43e425c974197a1c86efb36c5}{Spin::beta}});\ i++)\ \{}
+\DoxyCodeLine{01219\ \ \ \ \ \ \ \ \ \ \ \ \ mo\_energies\_b.push\_back(this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_a1164d3b81a7271e07ce84182fce34244}{orbitalEnergies}}().beta()[i]);}
+\DoxyCodeLine{01220\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01221\ }
+\DoxyCodeLine{01222\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ the\ values\ with\ indices\ greater\ than\ the\ occupied\ orbital\ indices,\ i.e.\ the\ virtual\ orbital\ indices,\ to\ the\ new\ vector.}}
+\DoxyCodeLine{01223\ \ \ \ \ \ \ \ \ std::vector<Scalar>\ mo\_energies\_virtual\_a;}
+\DoxyCodeLine{01224\ \ \ \ \ \ \ \ \ std::vector<Scalar>\ mo\_energies\_virtual\_b;}
+\DoxyCodeLine{01225\ }
+\DoxyCodeLine{01226\ \ \ \ \ \ \ \ \ std::copy(mo\_energies\_a.begin()\ +\ n\_occ\_a,\ mo\_energies\_a.end(),\ std::back\_inserter(mo\_energies\_virtual\_a));}
+\DoxyCodeLine{01227\ \ \ \ \ \ \ \ \ std::copy(mo\_energies\_b.begin()\ +\ n\_occ\_b,\ mo\_energies\_b.end(),\ std::back\_inserter(mo\_energies\_virtual\_b));}
+\DoxyCodeLine{01228\ }
+\DoxyCodeLine{01229\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved}{SpinResolved<std::vector<Scalar>}}>\ \{mo\_energies\_virtual\_a,\ mo\_energies\_virtual\_b\};}
+\DoxyCodeLine{01230\ \ \ \ \ \}}
+\DoxyCodeLine{01231\ \};}
+\DoxyCodeLine{01232\ }
+\DoxyCodeLine{01233\ }
+\DoxyCodeLine{01234\ \}\ \ \textcolor{comment}{//\ namespace\ QCModel}}
+\DoxyCodeLine{01235\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

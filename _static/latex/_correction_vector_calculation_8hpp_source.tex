@@ -1,0 +1,94 @@
+\hypertarget{_correction_vector_calculation_8hpp_source}{}\doxysection{Correction\+Vector\+Calculation.\+hpp}
+\label{_correction_vector_calculation_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/CorrectionVectorCalculation.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/CorrectionVectorCalculation.hpp}}
+\mbox{\hyperlink{_correction_vector_calculation_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_algorithm_2_step_8hpp}{Mathematical/Algorithm/Step.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_eigenproblem_environment_8hpp}{Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp}}"{}}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_correction_vector_calculation}{CorrectionVectorCalculation}}:}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_step}{Step}}<EigenproblemEnvironment<double>>\ \{}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ number\_of\_requested\_eigenpairs;}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{double}\ correction\_threshold;}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ \ \ \ \ *\ \ CONSTRUCTORS}}
+\DoxyCodeLine{00042\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_correction_vector_calculation_a48c74231f2206b48ee07077792b2939d}{CorrectionVectorCalculation}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ number\_of\_requested\_eigenpairs\ =\ 1,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ correction\_threshold\ =\ 1.0e-\/12)\ :}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ number\_of\_requested\_eigenpairs\ \{number\_of\_requested\_eigenpairs\},}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ correction\_threshold\ \{correction\_threshold\}\ \{\}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00054\ \textcolor{comment}{\ \ \ \ \ *\ \ PUBLIC\ OVERRIDDEN\ METHODS}}
+\DoxyCodeLine{00055\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00060\ \ \ \ \ std::string\ \mbox{\hyperlink{class_g_q_c_p_1_1_correction_vector_calculation_a0f61c24b2308938c66b306e4fa410f9e}{description}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Calculate\ the\ correction\ vectors\ by\ solving\ the\ residual\ equations."{}};}
+\DoxyCodeLine{00062\ \ \ \ \ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_correction_vector_calculation_a9138ba28606cd23c29460423351a6bfa}{execute}}(\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment}{EigenproblemEnvironment<double>}}\&\ environment)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ dim\ =\ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a5409c53cfd95076713c08a6fb341afb1}{dimension}};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ diagonal\ =\ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a25b534ad54e086e91c69bde714a0c4c4}{diagonal}};\ \ \textcolor{comment}{//\ the\ diagonal\ of\ the\ matrix}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ Lambda\ =\ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_ab9d9ff337078f8cdd90cc166f89d7cbe}{Lambda}};\ \ \ \ \ \ \textcolor{comment}{//\ the\ (requested\ number\ of)\ eigenvalues\ of\ the\ subspace\ matrix\ S}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ VA\ =\ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_ad1322f5ba8ad32def492dc275f85cb76}{VA}};\ \ \textcolor{comment}{//\ VA\ =\ A\ *\ V\ (implicitly\ calculated\ through\ the\ matrix-\/vector\ product)}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ Z\ =\ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a7f53eede93b4b59a2bdfb50dfb7bd810}{Z}};\ \ \ \ \textcolor{comment}{//\ the\ (requested\ number\ of)\ eigenvectors\ of\ the\ subspace\ matrix\ S}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ X\ =\ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a238f88df14aff1b0ce73f34e4aa8ba0f}{X}};\ \ \ \ \textcolor{comment}{//\ contains\ the\ new\ guesses\ for\ the\ eigenvectors\ (as\ a\ linear\ combination\ of\ the\ current\ subspace\ V)}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ R\ =\ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_af75cf9113b87fd65208c7b6d38910be6}{R}};\ \ \ \ \textcolor{comment}{//\ the\ residual\ vectors}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Solve\ the\ residual\ equations\ to\ find\ the\ correction\ vectors.}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ implementation\ of\ these\ equations\ is\ adapted\ from\ Klaas\ Gunst's\ DOCI\ code\ (https://github.com/klgunst/doci)}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a38990312c6e1d4f8e39eea7d714f409e}{Delta}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{MatrixX<double>::Zero}}(dim,\ this-\/>number\_of\_requested\_eigenpairs);}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ column\_index\ =\ 0;\ column\_index\ <\ this-\/>number\_of\_requested\_eigenpairs;\ column\_index++)\ \{}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<double>}}\ denominator\ =\ diagonal\ -\/\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{VectorX<double>::Constant}}(dim,\ Lambda(column\_index));}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ the\ denominator\ is\ large\ enough,\ the\ correction\ vector\ is\ the\ residual\ vector\ dividided\ by\ the\ denominator.}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ it\ isn't,\ the\ correction\ vector\ is\ the\ residual\ vector\ divided\ by\ the\ threshold.}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ clang-\/format\ off}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a38990312c6e1d4f8e39eea7d714f409e}{Delta}}.col(column\_index)\ =\ (denominator.array().abs()\ >\ this-\/>correction\_threshold).select(}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ R.col(column\_index).array()\ /\ denominator.array().abs(),}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ R.col(column\_index)\ /\ this-\/>correction\_threshold}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ clang-\/format\ on}}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_eigenproblem_environment_a38990312c6e1d4f8e39eea7d714f409e}{Delta}}.col(column\_index).normalize();}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00099\ \ \ \ \ \}}
+\DoxyCodeLine{00100\ \};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

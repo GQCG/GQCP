@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_optimization_environment" kind="class" language="C++" prot="public">
     <compoundname>GQCP::OptimizationEnvironment</compoundname>
     <includes refid="_optimization_environment_8hpp" local="no">OptimizationEnvironment.hpp</includes>
@@ -14,6 +14,7 @@
         <definition>using GQCP::OptimizationEnvironment&lt; _Iterate &gt;::Iterate =  _Iterate</definition>
         <argsstring></argsstring>
         <name>Iterate</name>
+        <qualifiedname>GQCP::OptimizationEnvironment::Iterate</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -27,6 +28,7 @@
         <definition>using GQCP::OptimizationEnvironment&lt; _Iterate &gt;::Scalar =  typename Iterate::Scalar</definition>
         <argsstring></argsstring>
         <name>Scalar</name>
+        <qualifiedname>GQCP::OptimizationEnvironment::Scalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -42,6 +44,7 @@
         <definition>std::deque&lt;_Iterate&gt; GQCP::OptimizationEnvironment&lt; _Iterate &gt;::variables</definition>
         <argsstring></argsstring>
         <name>variables</name>
+        <qualifiedname>GQCP::OptimizationEnvironment::variables</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -57,6 +60,7 @@
         <definition>GQCP::OptimizationEnvironment&lt; _Iterate &gt;::OptimizationEnvironment</definition>
         <argsstring>(const Iterate &amp;initial_guess)</argsstring>
         <name>OptimizationEnvironment</name>
+        <qualifiedname>GQCP::OptimizationEnvironment::OptimizationEnvironment</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_optimization_environment_1a062c39234632e01545cca0a90f330991" kindref="member">Iterate</ref> &amp;</type>
           <declname>initial_guess</declname>

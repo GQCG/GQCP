@@ -1,0 +1,95 @@
+\hypertarget{_c_c_d_solver_8hpp_source}{}\doxysection{CCDSolver.\+hpp}
+\label{_c_c_d_solver_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCDSolver.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCDSolver.hpp}}
+\mbox{\hyperlink{_c_c_d_solver_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_convergence_criterion_8hpp}{Mathematical/Algorithm/ConvergenceCriterion.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_iterative_algorithm_8hpp}{Mathematical/Algorithm/IterativeAlgorithm.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_step_collection_8hpp}{Mathematical/Algorithm/StepCollection.hpp}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_consecutive_iterates_norm_convergence_8hpp}{Mathematical/Optimization/ConsecutiveIteratesNormConvergence.hpp}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_c_d_amplitudes_update_8hpp}{QCMethod/CC/CCDAmplitudesUpdate.hpp}}"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_c_d_energy_calculation_8hpp}{QCMethod/CC/CCDEnergyCalculation.hpp}}"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_c_d_intermediates_update_8hpp}{QCMethod/CC/CCDIntermediatesUpdate.hpp}}"{}}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_c_s_d_environment_8hpp}{QCMethod/CC/CCSDEnvironment.hpp}}"{}}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t2_d_i_i_s_8hpp}{QCMethod/CC/T2DIIS.hpp}}"{}}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t2_error_calculation_8hpp}{QCMethod/CC/T2ErrorCalculation.hpp}}"{}}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar>}
+\DoxyCodeLine{00042\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_solver}{CCDSolver}}\ \{}
+\DoxyCodeLine{00043\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_solver_a1699b71a10a7147d4308233fc4d32141}{Scalar}}\ =\ \_Scalar;}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00049\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Factory\ methods}}
+\DoxyCodeLine{00050\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{IterativeAlgorithm<CCSDEnvironment<Scalar>}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_solver_a653dc65a6621d3e5cd7eda7e852affd0}{Plain}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ threshold\ =\ 1.0e-\/08,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ maximum\_number\_of\_iterations\ =\ 128)\ \{}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ the\ iteration\ cycle\ that\ effectively\ 'defines'\ a\ plain\ CCD\ solver.}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection}{StepCollection<CCSDEnvironment<Scalar>}}>\ plain\_ccd\_cycle\ \{\};}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ plain\_ccd\_cycle}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ .\mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_ae642fc19be01a8aadebeaed0aef863b9}{add}}(\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_intermediates_update}{CCDIntermediatesUpdate<Scalar>}}())}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ .add(\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_amplitudes_update}{CCDAmplitudesUpdate<Scalar>}}())}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ .add(\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_energy_calculation}{CCDEnergyCalculation<Scalar>}}());}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ a\ convergence\ criterion\ on\ the\ norm\ of\ subsequent\ T2-\/amplitudes,\ which\ is\ facilitated\ by\ the\ .norm()\ API\ of\ the\ T2-\/amplitudes.}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }T2ConvergenceType\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence}{ConsecutiveIteratesNormConvergence<T2Amplitudes<Scalar>}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment}{CCSDEnvironment<Scalar>}}>;}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ t2\_extractor\ =\ [](\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment}{CCSDEnvironment<Scalar>}}\&\ environment)\ \{\ \textcolor{keywordflow}{return}\ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a3a005b633746ec034014da148dfae1e5}{t2\_amplitudes}};\ \};}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ T2ConvergenceType\ t2\_convergence\_criterion\ \{threshold,\ t2\_extractor,\ \textcolor{stringliteral}{"{}the\ T2\ amplitudes"{}}\};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Put\ together\ the\ pieces\ of\ the\ algorithm.}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{IterativeAlgorithm<CCSDEnvironment<Scalar>}}>(plain\_ccd\_cycle,\ t2\_convergence\_criterion,\ maximum\_number\_of\_iterations);}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{IterativeAlgorithm<CCSDEnvironment<Scalar>}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_solver_a5ae8c6b8c2fbbe524b8995a99148ca4f}{DIIS}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ minimum\_subspace\_dimension\ =\ 6,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ maximum\_subspace\_dimension\ =\ 6,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ threshold\ =\ 1.0e-\/08,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ maximum\_number\_of\_iterations\ =\ 128)\ \{}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ the\ iteration\ cycle\ that\ effectively\ 'defines'\ a\ DIIS\ CCD\ solver.}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_step_collection}{StepCollection<CCSDEnvironment<Scalar>}}>\ diis\_ccd\_cycle\ \{\};}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ diis\_ccd\_cycle}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ .\mbox{\hyperlink{class_g_q_c_p_1_1_step_collection_ae642fc19be01a8aadebeaed0aef863b9}{add}}(\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_intermediates_update}{CCDIntermediatesUpdate<Scalar>}}())}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ .add(\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_amplitudes_update}{CCDAmplitudesUpdate<Scalar>}}())}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ .add(\mbox{\hyperlink{class_g_q_c_p_1_1_t2_error_calculation}{T2ErrorCalculation<Scalar>}}())}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ .add(\mbox{\hyperlink{class_g_q_c_p_1_1_t2_d_i_i_s}{T2DIIS<Scalar>}}(minimum\_subspace\_dimension,\ maximum\_subspace\_dimension))}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ .add(\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_d_energy_calculation}{CCDEnergyCalculation<Scalar>}}());}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ a\ convergence\ criterion\ on\ the\ norm\ of\ subsequent\ T2-\/amplitudes,\ which\ is\ facilitated\ by\ the\ .norm()\ API\ of\ the\ T2-\/amplitudes.}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }T2ConvergenceType\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_consecutive_iterates_norm_convergence}{ConsecutiveIteratesNormConvergence<T2Amplitudes<Scalar>}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment}{CCSDEnvironment<Scalar>}}>;}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ t2\_extractor\ =\ [](\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment}{CCSDEnvironment<Scalar>}}\&\ environment)\ \{\ \textcolor{keywordflow}{return}\ environment.\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a3a005b633746ec034014da148dfae1e5}{t2\_amplitudes}};\ \};}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ T2ConvergenceType\ t2\_convergence\_criterion\ \{threshold,\ t2\_extractor,\ \textcolor{stringliteral}{"{}the\ T2\ amplitudes"{}}\};}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Put\ together\ the\ pieces\ of\ the\ algorithm.}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_iterative_algorithm}{IterativeAlgorithm<CCSDEnvironment<Scalar>}}>(diis\_ccd\_cycle,\ t2\_convergence\_criterion,\ maximum\_number\_of\_iterations);}
+\DoxyCodeLine{00108\ \ \ \ \ \}}
+\DoxyCodeLine{00109\ \};}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

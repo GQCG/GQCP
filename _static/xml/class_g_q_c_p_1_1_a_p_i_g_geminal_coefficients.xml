@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients" kind="class" language="C++" prot="public">
     <compoundname>GQCP::APIGGeminalCoefficients</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_geminal_coefficients_interface" prot="public" virt="non-virtual">GQCP::GeminalCoefficientsInterface</basecompoundref>
@@ -10,6 +10,7 @@
         <definition>size_t GQCP::APIGGeminalCoefficients::K</definition>
         <argsstring></argsstring>
         <name>K</name>
+        <qualifiedname>GQCP::APIGGeminalCoefficients::K</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -23,6 +24,7 @@
         <definition>size_t GQCP::APIGGeminalCoefficients::N_P</definition>
         <argsstring></argsstring>
         <name>N_P</name>
+        <qualifiedname>GQCP::APIGGeminalCoefficients::N_P</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -36,6 +38,7 @@
         <definition>MatrixX&lt;double&gt; GQCP::APIGGeminalCoefficients::G</definition>
         <argsstring></argsstring>
         <name>G</name>
+        <qualifiedname>GQCP::APIGGeminalCoefficients::G</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -51,6 +54,7 @@
         <definition>GQCP::APIGGeminalCoefficients::APIGGeminalCoefficients</definition>
         <argsstring>(const MatrixX&lt; double &gt; &amp;G)</argsstring>
         <name>APIGGeminalCoefficients</name>
+        <qualifiedname>GQCP::APIGGeminalCoefficients::APIGGeminalCoefficients</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" kindref="member">MatrixX</ref>&lt; double &gt; &amp;</type>
           <declname>G</declname>
@@ -86,6 +90,7 @@
         <definition>GQCP::APIGGeminalCoefficients::APIGGeminalCoefficients</definition>
         <argsstring>(const size_t N_P, const size_t K)</argsstring>
         <name>APIGGeminalCoefficients</name>
+        <qualifiedname>GQCP::APIGGeminalCoefficients::APIGGeminalCoefficients</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>N_P</declname>
@@ -126,6 +131,7 @@
         <definition>GQCP::APIGGeminalCoefficients::~APIGGeminalCoefficients</definition>
         <argsstring>() override</argsstring>
         <name>~APIGGeminalCoefficients</name>
+        <qualifiedname>GQCP::APIGGeminalCoefficients::~APIGGeminalCoefficients</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -140,6 +146,7 @@
         <definition>double GQCP::APIGGeminalCoefficients::operator()</definition>
         <argsstring>(const size_t i, const size_t p) const</argsstring>
         <name>operator()</name>
+        <qualifiedname>GQCP::APIGGeminalCoefficients::operator()</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>i</declname>
@@ -176,11 +183,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/Geminals/APIGGeminalCoefficients.hpp" line="72" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/src/QCModel/Geminals/APIGGeminalCoefficients.cpp" bodystart="71" bodyend="74"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_1a793c2fe466d0e10c3fd903bf73b62e49" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_1a654804df9962a00acd643907d7b15d40" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" kindref="member">MatrixX</ref>&lt; double &gt; &amp;</type>
-        <definition>const MatrixX&lt;double&gt;&amp; GQCP::APIGGeminalCoefficients::asMatrix</definition>
+        <definition>const MatrixX&lt; double &gt; &amp; GQCP::APIGGeminalCoefficients::asMatrix</definition>
         <argsstring>() const</argsstring>
         <name>asMatrix</name>
+        <qualifiedname>GQCP::APIGGeminalCoefficients::asMatrix</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -197,6 +205,7 @@
         <definition>double GQCP::APIGGeminalCoefficients::overlap</definition>
         <argsstring>(const SpinUnresolvedONV &amp;onv) const override</argsstring>
         <name>overlap</name>
+        <qualifiedname>GQCP::APIGGeminalCoefficients::overlap</qualifiedname>
         <reimplements refid="class_g_q_c_p_1_1_geminal_coefficients_interface_1a3be4021a57bdf21adab08a5a4521eb0f">overlap</reimplements>
         <param>
           <type>const SpinUnresolvedONV &amp;</type>
@@ -229,6 +238,7 @@
         <definition>APIGGeminalCoefficients GQCP::APIGGeminalCoefficients::FromColumnMajor</definition>
         <argsstring>(const VectorX&lt; double &gt; &amp;g, const size_t N_P, const size_t K)</argsstring>
         <name>FromColumnMajor</name>
+        <qualifiedname>GQCP::APIGGeminalCoefficients::FromColumnMajor</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; double &gt; &amp;</type>
           <declname>g</declname>
@@ -280,6 +290,7 @@
         <definition>APIGGeminalCoefficients GQCP::APIGGeminalCoefficients::FromRowMajor</definition>
         <argsstring>(const VectorX&lt; double &gt; &amp;g, const size_t N_P, const size_t K)</argsstring>
         <name>FromRowMajor</name>
+        <qualifiedname>GQCP::APIGGeminalCoefficients::FromRowMajor</qualifiedname>
         <param>
           <type>const <ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; double &gt; &amp;</type>
           <declname>g</declname>
@@ -331,6 +342,7 @@
         <definition>size_t GQCP::APIGGeminalCoefficients::numberOfGeminalCoefficients</definition>
         <argsstring>(const size_t N_P, const size_t K)</argsstring>
         <name>numberOfGeminalCoefficients</name>
+        <qualifiedname>GQCP::APIGGeminalCoefficients::numberOfGeminalCoefficients</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>N_P</declname>
@@ -401,7 +413,7 @@
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_1a33eb09e64b5de6b4cf849105ab38ab1b" prot="public" virt="non-virtual"><scope>GQCP::APIGGeminalCoefficients</scope><name>APIGGeminalCoefficients</name></member>
       <member refid="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_1a64591d3c0289ef64e015adafe43c0cc5" prot="public" virt="non-virtual"><scope>GQCP::APIGGeminalCoefficients</scope><name>APIGGeminalCoefficients</name></member>
-      <member refid="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_1a793c2fe466d0e10c3fd903bf73b62e49" prot="public" virt="non-virtual"><scope>GQCP::APIGGeminalCoefficients</scope><name>asMatrix</name></member>
+      <member refid="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_1a654804df9962a00acd643907d7b15d40" prot="public" virt="non-virtual"><scope>GQCP::APIGGeminalCoefficients</scope><name>asMatrix</name></member>
       <member refid="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_1a4f077d1f3afbe54f734e39cd618fccab" prot="public" virt="non-virtual"><scope>GQCP::APIGGeminalCoefficients</scope><name>FromColumnMajor</name></member>
       <member refid="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_1ac6fabe6616d102fc8bc583d5a48a3ad6" prot="public" virt="non-virtual"><scope>GQCP::APIGGeminalCoefficients</scope><name>FromRowMajor</name></member>
       <member refid="class_g_q_c_p_1_1_a_p_i_g_geminal_coefficients_1a499010d6384322f76991a5f99b1cd2c9" prot="private" virt="non-virtual"><scope>GQCP::APIGGeminalCoefficients</scope><name>G</name></member>

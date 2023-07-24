@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_nucleus" kind="class" language="C++" prot="public">
     <compoundname>GQCP::Nucleus</compoundname>
     <includes refid="_nucleus_8hpp" local="no">Nucleus.hpp</includes>
@@ -9,6 +9,7 @@
         <definition>size_t GQCP::Nucleus::Z</definition>
         <argsstring></argsstring>
         <name>Z</name>
+        <qualifiedname>GQCP::Nucleus::Z</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -22,6 +23,7 @@
         <definition>Vector&lt;double, 3&gt; GQCP::Nucleus::R</definition>
         <argsstring></argsstring>
         <name>R</name>
+        <qualifiedname>GQCP::Nucleus::R</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -37,6 +39,7 @@
         <definition>GQCP::Nucleus::Nucleus</definition>
         <argsstring>(const size_t Z, const double x, const double y, const double z)</argsstring>
         <name>Nucleus</name>
+        <qualifiedname>GQCP::Nucleus::Nucleus</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>Z</declname>
@@ -100,6 +103,7 @@
         <definition>GQCP::Nucleus::Nucleus</definition>
         <argsstring>(const size_t Z, const Vector&lt; double, 3 &gt; &amp;position)</argsstring>
         <name>Nucleus</name>
+        <qualifiedname>GQCP::Nucleus::Nucleus</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>Z</declname>
@@ -139,6 +143,7 @@
         <definition>GQCP::Nucleus::Nucleus</definition>
         <argsstring>()</argsstring>
         <name>Nucleus</name>
+        <qualifiedname>GQCP::Nucleus::Nucleus</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -153,6 +158,7 @@
         <definition>double GQCP::Nucleus::calculateDistanceWith</definition>
         <argsstring>(const Nucleus &amp;other) const</argsstring>
         <name>calculateDistanceWith</name>
+        <qualifiedname>GQCP::Nucleus::calculateDistanceWith</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_nucleus" kindref="compound">Nucleus</ref> &amp;</type>
           <declname>other</declname>
@@ -182,6 +188,7 @@
         <definition>std::string GQCP::Nucleus::description</definition>
         <argsstring>() const</argsstring>
         <name>description</name>
+        <qualifiedname>GQCP::Nucleus::description</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -198,6 +205,7 @@
         <definition>std::string GQCP::Nucleus::element</definition>
         <argsstring>() const</argsstring>
         <name>element</name>
+        <qualifiedname>GQCP::Nucleus::element</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -214,6 +222,7 @@
         <definition>size_t GQCP::Nucleus::charge</definition>
         <argsstring>() const</argsstring>
         <name>charge</name>
+        <qualifiedname>GQCP::Nucleus::charge</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -225,11 +234,12 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Molecule/Nucleus.hpp" line="121" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Molecule/Nucleus.hpp" bodystart="121" bodyend="121"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_nucleus_1a051a913283f5a20066e45d2c369ffccb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_nucleus_1a128e4938dd44d00372c25a4160740f41" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; double, 3 &gt; &amp;</type>
-        <definition>const Vector&lt;double, 3&gt;&amp; GQCP::Nucleus::position</definition>
+        <definition>const Vector&lt; double, 3 &gt; &amp; GQCP::Nucleus::position</definition>
         <argsstring>() const</argsstring>
         <name>position</name>
+        <qualifiedname>GQCP::Nucleus::position</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -243,11 +253,12 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="friend">
-      <memberdef kind="friend" id="class_g_q_c_p_1_1_nucleus_1add3a9881efd3c38d0dd574fb5259d84c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="friend" id="class_g_q_c_p_1_1_nucleus_1ae3d5e999b9e3195cfd19f3785a5d6c9b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::ostream &amp;</type>
-        <definition>std::ostream&amp; operator&lt;&lt;</definition>
+        <definition>std::ostream &amp; operator&lt;&lt;</definition>
         <argsstring>(std::ostream &amp;os, const Nucleus &amp;nucleus)</argsstring>
         <name>operator&lt;&lt;</name>
+        <qualifiedname>GQCP::Nucleus::operator&lt;&lt;</qualifiedname>
         <param>
           <type>std::ostream &amp;</type>
           <declname>os</declname>
@@ -292,6 +303,7 @@
         <definition>std::function&lt; bool(const Nucleus &amp;, const Nucleus &amp;)&gt; GQCP::Nucleus::sortComparer</definition>
         <argsstring>(const double tolerance=1.0e-08)</argsstring>
         <name>sortComparer</name>
+        <qualifiedname>GQCP::Nucleus::sortComparer</qualifiedname>
         <param>
           <type>const double</type>
           <declname>tolerance</declname>
@@ -313,6 +325,7 @@
         <definition>std::function&lt; bool(const Nucleus &amp;, const Nucleus &amp;)&gt; GQCP::Nucleus::equalityComparer</definition>
         <argsstring>(const double tolerance=1.0e-08)</argsstring>
         <name>equalityComparer</name>
+        <qualifiedname>GQCP::Nucleus::equalityComparer</qualifiedname>
         <param>
           <type>const double</type>
           <declname>tolerance</declname>
@@ -351,8 +364,8 @@
       <member refid="class_g_q_c_p_1_1_nucleus_1a2582585e6eb8df6733751334f193753f" prot="public" virt="non-virtual"><scope>GQCP::Nucleus</scope><name>Nucleus</name></member>
       <member refid="class_g_q_c_p_1_1_nucleus_1a7ddd6804dc7e49c2e89f865c2101167a" prot="public" virt="non-virtual"><scope>GQCP::Nucleus</scope><name>Nucleus</name></member>
       <member refid="class_g_q_c_p_1_1_nucleus_1a13137959256b336277347eba7d4cb729" prot="public" virt="non-virtual"><scope>GQCP::Nucleus</scope><name>Nucleus</name></member>
-      <member refid="class_g_q_c_p_1_1_nucleus_1add3a9881efd3c38d0dd574fb5259d84c" prot="public" virt="non-virtual"><scope>GQCP::Nucleus</scope><name>operator&lt;&lt;</name></member>
-      <member refid="class_g_q_c_p_1_1_nucleus_1a051a913283f5a20066e45d2c369ffccb" prot="public" virt="non-virtual"><scope>GQCP::Nucleus</scope><name>position</name></member>
+      <member refid="class_g_q_c_p_1_1_nucleus_1ae3d5e999b9e3195cfd19f3785a5d6c9b" prot="public" virt="non-virtual"><scope>GQCP::Nucleus</scope><name>operator&lt;&lt;</name></member>
+      <member refid="class_g_q_c_p_1_1_nucleus_1a128e4938dd44d00372c25a4160740f41" prot="public" virt="non-virtual"><scope>GQCP::Nucleus</scope><name>position</name></member>
       <member refid="class_g_q_c_p_1_1_nucleus_1a21c6e993f4ec4d472487bc638890850f" prot="private" virt="non-virtual"><scope>GQCP::Nucleus</scope><name>R</name></member>
       <member refid="class_g_q_c_p_1_1_nucleus_1a97c4c1edf8ff61f3c52629761ff1dab6" prot="public" virt="non-virtual"><scope>GQCP::Nucleus</scope><name>sortComparer</name></member>
       <member refid="class_g_q_c_p_1_1_nucleus_1ade1ad260fe6c22d5b13e6f28b87ca5a7" prot="private" virt="non-virtual"><scope>GQCP::Nucleus</scope><name>Z</name></member>

@@ -1,12 +1,10 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="_eigenproblem_environment_8hpp" kind="file" language="C++">
     <compoundname>EigenproblemEnvironment.hpp</compoundname>
     <includes refid="_eigenpair_8hpp" local="yes">Mathematical/Optimization/Eigenproblem/Eigenpair.hpp</includes>
     <includes refid="_matrix_8hpp" local="yes">Mathematical/Representation/Matrix.hpp</includes>
     <includes refid="_square_matrix_8hpp" local="yes">Mathematical/Representation/SquareMatrix.hpp</includes>
-    <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
-    <includedby refid="_dense_diagonalization_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/DenseDiagonalization.hpp</includedby>
     <includedby refid="_correction_vector_calculation_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/CorrectionVectorCalculation.hpp</includedby>
     <includedby refid="_davidson_solver_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp</includedby>
     <includedby refid="_guess_vector_update_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/GuessVectorUpdate.hpp</includedby>
@@ -15,69 +13,31 @@
     <includedby refid="_subspace_matrix_calculation_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceMatrixCalculation.hpp</includedby>
     <includedby refid="_subspace_matrix_diagonalization_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceMatrixDiagonalization.hpp</includedby>
     <includedby refid="_subspace_update_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceUpdate.hpp</includedby>
+    <includedby refid="_dense_diagonalization_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/DenseDiagonalization.hpp</includedby>
     <includedby refid="_c_i_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp</includedby>
     <includedby refid="_c_i_environment_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CIEnvironment.hpp</includedby>
     <includedby refid="_d_o_c_i_newton_orbital_optimizer_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp</includedby>
+    <includedby refid="gqcp_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</includedby>
     <incdepgraph>
-      <node id="11">
-        <label>boost/algorithm/string.hpp</label>
+      <node id="4">
+        <label>Mathematical/Functions/CartesianDirection.hpp</label>
+        <link refid="_cartesian_direction_8hpp"/>
       </node>
-      <node id="18">
-        <label>functional</label>
-      </node>
-      <node id="5">
-        <label>Utilities/Eigen.hpp</label>
-        <link refid="_eigen_8hpp"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-      <node id="19">
-        <label>iterator</label>
-      </node>
-      <node id="15">
-        <label>Mathematical/Representation/SquareMatrix.hpp</label>
-        <link refid="_square_matrix_8hpp"/>
+      <node id="2">
+        <label>Mathematical/Optimization/Eigenproblem/Eigenpair.hpp</label>
+        <link refid="_eigenpair_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-        <childnode refid="22" relation="include">
-        </childnode>
       </node>
-      <node id="16">
-        <label>Utilities/miscellaneous.hpp</label>
-        <link refid="miscellaneous_8hpp"/>
-        <childnode refid="17" relation="include">
+      <node id="1">
+        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp</label>
+        <link refid="_eigenproblem_environment_8hpp"/>
+        <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="10" relation="include">
+        <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="20" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-      </node>
-      <node id="22">
-        <label>numeric</label>
-      </node>
-      <node id="20">
-        <label>string</label>
-      </node>
-      <node id="21">
-        <label>boost/numeric/conversion/converter.hpp</label>
-      </node>
-      <node id="12">
-        <label>fstream</label>
-      </node>
-      <node id="6">
-        <label>Eigen/Dense</label>
       </node>
       <node id="3">
         <label>Mathematical/Representation/Matrix.hpp</label>
@@ -99,14 +59,23 @@
         <childnode refid="14" relation="include">
         </childnode>
       </node>
-      <node id="8">
-        <label>Utilities/type_traits.hpp</label>
-        <link refid="type__traits_8hpp"/>
-        <childnode refid="9" relation="include">
+      <node id="15">
+        <label>Mathematical/Representation/SquareMatrix.hpp</label>
+        <link refid="_square_matrix_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
         </childnode>
       </node>
-      <node id="14">
-        <label>vector</label>
+      <node id="5">
+        <label>Utilities/Eigen.hpp</label>
+        <link refid="_eigen_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
       </node>
       <node id="7">
         <label>Utilities/aliases.hpp</label>
@@ -116,142 +85,139 @@
         <childnode refid="10" relation="include">
         </childnode>
       </node>
-      <node id="10">
-        <label>cstdlib</label>
-      </node>
-      <node id="13">
-        <label>iostream</label>
-      </node>
-      <node id="9">
-        <label>type_traits</label>
-      </node>
-      <node id="1">
-        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/EigenproblemEnvironment.hpp</label>
-        <link refid="_eigenproblem_environment_8hpp"/>
-        <childnode refid="2" relation="include">
+      <node id="16">
+        <label>Utilities/miscellaneous.hpp</label>
+        <link refid="miscellaneous_8hpp"/>
+        <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="3" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="15" relation="include">
+        <childnode refid="12" relation="include">
         </childnode>
-      </node>
-      <node id="17">
-        <label>algorithm</label>
-      </node>
-      <node id="4">
-        <label>Mathematical/Functions/CartesianDirection.hpp</label>
-        <link refid="_cartesian_direction_8hpp"/>
-      </node>
-      <node id="2">
-        <label>Mathematical/Optimization/Eigenproblem/Eigenpair.hpp</label>
-        <link refid="_eigenpair_8hpp"/>
-        <childnode refid="3" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
-      </node>
-    </incdepgraph>
-    <invincdepgraph>
-      <node id="8">
-        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/GuessVectorUpdate.hpp</label>
-        <link refid="_guess_vector_update_8hpp"/>
-        <childnode refid="2" relation="include">
+        <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-      <node id="7">
-        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/CorrectionVectorCalculation.hpp</label>
-        <link refid="_correction_vector_calculation_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-      <node id="15">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CIEnvironment.hpp</label>
-        <link refid="_c_i_environment_8hpp"/>
-        <childnode refid="2" relation="include">
+        <childnode refid="20" relation="include">
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
       </node>
-      <node id="5">
-        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceMatrixDiagonalization.hpp</label>
-        <link refid="_subspace_matrix_diagonalization_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
+      <node id="8">
+        <label>Utilities/type_traits.hpp</label>
+        <link refid="type__traits_8hpp"/>
+        <childnode refid="9" relation="include">
         </childnode>
       </node>
-      <node id="4">
-        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp</label>
-        <link refid="_eigenproblem_solver_8hpp"/>
-        <childnode refid="2" relation="include">
+      <node id="6">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="17">
+        <label>algorithm</label>
+      </node>
+      <node id="11">
+        <label>boost/algorithm/string.hpp</label>
+      </node>
+      <node id="21">
+        <label>boost/numeric/conversion/converter.hpp</label>
+      </node>
+      <node id="10">
+        <label>cstdlib</label>
+      </node>
+      <node id="12">
+        <label>fstream</label>
+      </node>
+      <node id="18">
+        <label>functional</label>
+      </node>
+      <node id="13">
+        <label>iostream</label>
+      </node>
+      <node id="19">
+        <label>iterator</label>
+      </node>
+      <node id="22">
+        <label>numeric</label>
+      </node>
+      <node id="20">
+        <label>string</label>
+      </node>
+      <node id="9">
+        <label>type_traits</label>
+      </node>
+      <node id="14">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/CorrectionVectorCalculation.hpp</label>
+        <link refid="_correction_vector_calculation_8hpp"/>
+        <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="5" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
       </node>
       <node id="3">
-        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/DenseDiagonalization.hpp</label>
-        <link refid="_dense_diagonalization_8hpp"/>
-        <childnode refid="2" relation="include">
+        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp</label>
+        <link refid="_davidson_solver_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/GuessVectorUpdate.hpp</label>
+        <link refid="_guess_vector_update_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/MatrixVectorProductCalculation.hpp</label>
+        <link refid="_matrix_vector_product_calculation_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/ResidualVectorCalculation.hpp</label>
+        <link refid="_residual_vector_calculation_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceMatrixCalculation.hpp</label>
+        <link refid="_subspace_matrix_calculation_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceMatrixDiagonalization.hpp</label>
+        <link refid="_subspace_matrix_diagonalization_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceUpdate.hpp</label>
+        <link refid="_subspace_update_8hpp"/>
+        <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
       </node>
       <node id="11">
-        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceMatrixCalculation.hpp</label>
-        <link refid="_subspace_matrix_calculation_8hpp"/>
-        <childnode refid="2" relation="include">
+        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/DenseDiagonalization.hpp</label>
+        <link refid="_dense_diagonalization_8hpp"/>
+        <childnode refid="12" relation="include">
         </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-      <node id="2">
-        <label>/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</label>
-        <link refid="gqcp_8hpp"/>
-      </node>
-      <node id="12">
-        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/SubspaceUpdate.hpp</label>
-        <link refid="_subspace_update_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-      <node id="6">
-        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp</label>
-        <link refid="_davidson_solver_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="9">
-        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/MatrixVectorProductCalculation.hpp</label>
-        <link refid="_matrix_vector_product_calculation_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-      <node id="14">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp</label>
-        <link refid="_d_o_c_i_newton_orbital_optimizer_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="10">
-        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/Davidson/ResidualVectorCalculation.hpp</label>
-        <link refid="_residual_vector_calculation_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-      <node id="13">
-        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp</label>
-        <link refid="_c_i_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
       </node>
       <node id="1">
@@ -261,9 +227,11 @@
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
+        <childnode refid="5" relation="include">
         </childnode>
         <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
@@ -273,16 +241,48 @@
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
         <childnode refid="13" relation="include">
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>/__w/GQCP/GQCP/gqcp/include/Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp</label>
+        <link refid="_eigenproblem_solver_8hpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CI.hpp</label>
+        <link refid="_c_i_8hpp"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/CIEnvironment.hpp</label>
+        <link refid="_c_i_environment_8hpp"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>/__w/GQCP/GQCP/gqcp/include/QCMethod/CI/DOCINewtonOrbitalOptimizer.hpp</label>
+        <link refid="_d_o_c_i_newton_orbital_optimizer_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>/__w/GQCP/GQCP/gqcp/include/gqcp.hpp</label>
+        <link refid="gqcp_8hpp"/>
       </node>
     </invincdepgraph>
     <innerclass refid="class_g_q_c_p_1_1_eigenproblem_environment" prot="public">GQCP::EigenproblemEnvironment</innerclass>
@@ -324,7 +324,7 @@
 <codeline lineno="35" refid="class_g_q_c_p_1_1_eigenproblem_environment" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_eigenproblem_environment" kindref="compound">EigenproblemEnvironment</ref><sp/>{</highlight></codeline>
 <codeline lineno="36"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>scalar<sp/>type<sp/>of<sp/>the<sp/>matrix<sp/>elements:<sp/>real<sp/>or<sp/>complex.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="38" refid="class_g_q_c_p_1_1_eigenproblem_environment_1a088f09eda9140bf157ab9deb5a4d7b3f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1a088f09eda9140bf157ab9deb5a4d7b3f" kindref="member">Scalar</ref><sp/>=<sp/>_Scalar;</highlight></codeline>
+<codeline lineno="38" refid="class_g_q_c_p_1_1_eigenproblem_environment_1a088f09eda9140bf157ab9deb5a4d7b3f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1a088f09eda9140bf157ab9deb5a4d7b3f" kindref="member">Scalar</ref><sp/>=<sp/>_Scalar;</highlight></codeline>
 <codeline lineno="39"><highlight class="normal"></highlight></codeline>
 <codeline lineno="40"><highlight class="normal"></highlight></codeline>
 <codeline lineno="41"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
@@ -395,9 +395,9 @@
 <codeline lineno="113"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>Named<sp/>constructors</highlight></codeline>
 <codeline lineno="114"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="115"><highlight class="normal"></highlight></codeline>
-<codeline lineno="121" refid="class_g_q_c_p_1_1_eigenproblem_environment_1acf84deadaff12d58fc9cf21d46b45787" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment" kindref="compound">EigenproblemEnvironment</ref><sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1acf84deadaff12d58fc9cf21d46b45787" kindref="member">Dense</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix&lt;Scalar&gt;</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1a849aa0ad0c9466c531ae2801fc12d8de" kindref="member">A</ref>)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1ad144d41a45edab52a494694a7e59066f" kindref="member">EigenproblemEnvironment</ref>(<ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1a849aa0ad0c9466c531ae2801fc12d8de" kindref="member">A</ref>);<sp/>}</highlight></codeline>
+<codeline lineno="121" refid="class_g_q_c_p_1_1_eigenproblem_environment_1acf84deadaff12d58fc9cf21d46b45787" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment" kindref="compound">EigenproblemEnvironment</ref><sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1acf84deadaff12d58fc9cf21d46b45787" kindref="member">Dense</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix&lt;Scalar&gt;</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1a849aa0ad0c9466c531ae2801fc12d8de" kindref="member">A</ref>)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment" kindref="compound">EigenproblemEnvironment</ref>(<ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1a849aa0ad0c9466c531ae2801fc12d8de" kindref="member">A</ref>);<sp/>}</highlight></codeline>
 <codeline lineno="122"><highlight class="normal"></highlight></codeline>
-<codeline lineno="130" refid="class_g_q_c_p_1_1_eigenproblem_environment_1a727e721f3027d6da3b35790584f4cf1a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment" kindref="compound">EigenproblemEnvironment</ref><sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1a727e721f3027d6da3b35790584f4cf1a" kindref="member">Iterative</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1ae8a9e0086f5fbab030b1d49b05202054" kindref="member">VectorFunction&lt;Scalar&gt;</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1aa5d1ac8e9e8a5124ff821328c190cd9e" kindref="member">matrix_vector_product_function</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">VectorX&lt;Scalar&gt;</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1a25b534ad54e086e91c69bde714a0c4c4" kindref="member">diagonal</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">MatrixX&lt;Scalar&gt;</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1a33c85239d26787d391d5036f136bc153" kindref="member">V</ref>)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1ad144d41a45edab52a494694a7e59066f" kindref="member">EigenproblemEnvironment</ref>(<ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1aa5d1ac8e9e8a5124ff821328c190cd9e" kindref="member">matrix_vector_product_function</ref>,<sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1a25b534ad54e086e91c69bde714a0c4c4" kindref="member">diagonal</ref>,<sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1a33c85239d26787d391d5036f136bc153" kindref="member">V</ref>);<sp/>}</highlight></codeline>
+<codeline lineno="130" refid="class_g_q_c_p_1_1_eigenproblem_environment_1a727e721f3027d6da3b35790584f4cf1a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment" kindref="compound">EigenproblemEnvironment</ref><sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1a727e721f3027d6da3b35790584f4cf1a" kindref="member">Iterative</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="namespace_g_q_c_p_1ae8a9e0086f5fbab030b1d49b05202054" kindref="member">VectorFunction&lt;Scalar&gt;</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1aa5d1ac8e9e8a5124ff821328c190cd9e" kindref="member">matrix_vector_product_function</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">VectorX&lt;Scalar&gt;</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1a25b534ad54e086e91c69bde714a0c4c4" kindref="member">diagonal</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">MatrixX&lt;Scalar&gt;</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1a33c85239d26787d391d5036f136bc153" kindref="member">V</ref>)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment" kindref="compound">EigenproblemEnvironment</ref>(<ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1aa5d1ac8e9e8a5124ff821328c190cd9e" kindref="member">matrix_vector_product_function</ref>,<sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1a25b534ad54e086e91c69bde714a0c4c4" kindref="member">diagonal</ref>,<sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1a33c85239d26787d391d5036f136bc153" kindref="member">V</ref>);<sp/>}</highlight></codeline>
 <codeline lineno="131"><highlight class="normal"></highlight></codeline>
 <codeline lineno="138" refid="class_g_q_c_p_1_1_eigenproblem_environment_1a826d9df6c704d8128195ff08dc447973" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment" kindref="compound">EigenproblemEnvironment</ref><sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1a826d9df6c704d8128195ff08dc447973" kindref="member">Iterative</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix&lt;Scalar&gt;</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1a849aa0ad0c9466c531ae2801fc12d8de" kindref="member">A</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">MatrixX&lt;Scalar&gt;</ref>&amp;<sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1a33c85239d26787d391d5036f136bc153" kindref="member">V</ref>)<sp/>{</highlight></codeline>
 <codeline lineno="139"><highlight class="normal"></highlight></codeline>
@@ -410,23 +410,23 @@
 <codeline lineno="146"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>Access</highlight></codeline>
 <codeline lineno="147"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="148"><highlight class="normal"></highlight></codeline>
-<codeline lineno="154" refid="class_g_q_c_p_1_1_eigenproblem_environment_1a95dc6b2615ff0a61db2bdc4372cdfcff" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Eigenpair&lt;double,<sp/>Scalar&gt;&gt;<sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1a95dc6b2615ff0a61db2bdc4372cdfcff" kindref="member">eigenpairs</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>number_of_requested_eigenpairs<sp/>=<sp/>1)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="154" refid="class_g_q_c_p_1_1_eigenproblem_environment_1a13adc7214798089577bc2e1705c02fc3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Eigenpair&lt;double,<sp/>Scalar&gt;&gt;<sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1a13adc7214798089577bc2e1705c02fc3" kindref="member">eigenpairs</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>number_of_requested_eigenpairs<sp/>=<sp/>1)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="155"><highlight class="normal"></highlight></codeline>
 <codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(number_of_requested_eigenpairs<sp/>&gt;<sp/>this-&gt;eigenvectors.cols())<sp/>{</highlight></codeline>
 <codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(</highlight><highlight class="stringliteral">&quot;EigenproblemEnvironment::eigenpairs(const<sp/>size_t):<sp/>You<sp/>cannot<sp/>retrieve<sp/>that<sp/>many<sp/>eigenpairs.&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="159"><highlight class="normal"></highlight></codeline>
-<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;Eigenpair&lt;double,<sp/>Scalar&gt;&gt;<sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1a95dc6b2615ff0a61db2bdc4372cdfcff" kindref="member">eigenpairs</ref><sp/>{};</highlight></codeline>
-<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1a95dc6b2615ff0a61db2bdc4372cdfcff" kindref="member">eigenpairs</ref>.reserve(number_of_requested_eigenpairs);</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;Eigenpair&lt;double,<sp/>Scalar&gt;&gt;<sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1a13adc7214798089577bc2e1705c02fc3" kindref="member">eigenpairs</ref><sp/>{};</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1a13adc7214798089577bc2e1705c02fc3" kindref="member">eigenpairs</ref>.reserve(number_of_requested_eigenpairs);</highlight></codeline>
 <codeline lineno="162"><highlight class="normal"></highlight></codeline>
 <codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>number_of_requested_eigenpairs;<sp/>i++)<sp/>{</highlight></codeline>
 <codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>eigenvalue<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1a32a61251a3de42f08c34013bd764a9bc" kindref="member">eigenvalues</ref>(i);</highlight></codeline>
 <codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>eigenvector<sp/>=<sp/>this-&gt;eigenvectors.col(i);</highlight></codeline>
 <codeline lineno="166"><highlight class="normal"></highlight></codeline>
-<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1a95dc6b2615ff0a61db2bdc4372cdfcff" kindref="member">eigenpairs</ref>.emplace_back(eigenvalue,<sp/>eigenvector);</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1a13adc7214798089577bc2e1705c02fc3" kindref="member">eigenpairs</ref>.emplace_back(eigenvalue,<sp/>eigenvector);</highlight></codeline>
 <codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="169"><highlight class="normal"></highlight></codeline>
-<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1a95dc6b2615ff0a61db2bdc4372cdfcff" kindref="member">eigenpairs</ref>;</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_eigenproblem_environment_1a13adc7214798089577bc2e1705c02fc3" kindref="member">eigenpairs</ref>;</highlight></codeline>
 <codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="172"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="173"><highlight class="normal"></highlight></codeline>

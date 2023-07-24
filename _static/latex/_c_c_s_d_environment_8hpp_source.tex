@@ -1,0 +1,125 @@
+\hypertarget{_c_c_s_d_environment_8hpp_source}{}\doxysection{CCSDEnvironment.\+hpp}
+\label{_c_c_s_d_environment_8hpp_source}\index{/\_\_w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp@{/\_\_w/GQCP/GQCP/gqcp/include/QCMethod/CC/CCSDEnvironment.hpp}}
+\mbox{\hyperlink{_c_c_s_d_environment_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ is\ part\ of\ GQCG-\/GQCP.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (C)\ 2017-\/2020\ \ the\ GQCG\ developers}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ GQCG-\/GQCP\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public\ License}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ along\ with\ GQCG-\/GQCP.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_q_hamiltonian_8hpp}{Operator/SecondQuantized/SQHamiltonian.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_q_c_model_2_c_c_2_c_c_d_8hpp}{QCModel/CC/CCD.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_q_c_model_2_c_c_2_c_c_s_d_8hpp}{QCModel/CC/CCSD.hpp}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t1_amplitudes_8hpp}{QCModel/CC/T1Amplitudes.hpp}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t2_amplitudes_8hpp}{QCModel/CC/T2Amplitudes.hpp}}"{}}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <deque>}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_Scalar>}
+\DoxyCodeLine{00039\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment}{CCSDEnvironment}}\ \{}
+\DoxyCodeLine{00040\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ The\ scalar\ type\ that\ represents\ one\ of\ the\ amplitudes.}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a582210d8ce5f4eb3c4ad4ba0a37f6aab}{Scalar}}\ =\ \_Scalar;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00046\ \ \ \ \ std::deque<Scalar>\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_ab09723fa4037b1c6cc817da6b1f1706f}{correlation\_energies}};\ \ \textcolor{comment}{//\ The\ electronic\ correlation\ energies.}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ std::deque<T1Amplitudes<Scalar>>\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_abdea2152c1643fb71b13cfd2383d92ee}{t1\_amplitudes}};}
+\DoxyCodeLine{00049\ \ \ \ \ std::deque<T2Amplitudes<Scalar>>\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a3a005b633746ec034014da148dfae1e5}{t2\_amplitudes}};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ std::deque<VectorX<Scalar>>\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a85381ffcfad2dd470437720e85a84f22}{t1\_amplitude\_errors}};}
+\DoxyCodeLine{00052\ \ \ \ \ std::deque<VectorX<Scalar>>\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a9ab250672806f9feb5cea83e66f774a9}{t2\_amplitude\_errors}};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a96da3b098a302ff00696091b168cba8e}{f}};\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ elements\ of\ the\ (inactive)\ Fock\ matrix.}}
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{SquareRankFourTensor<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a288b0979b63efb8eb9aadd045f8c93aa}{V\_A}};\ \ \textcolor{comment}{//\ The\ antisymmetrized\ two-\/electron\ integrals\ (in\ physicist's\ notation).}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{ImplicitMatrixSlice<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a72da8af53a68fa131224b46dc95c6d38}{F1}};\ \ \textcolor{comment}{//\ An\ intermediate\ that\ represents\ equation\ (3)\ in\ Stanton1991.}}
+\DoxyCodeLine{00058\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{ImplicitMatrixSlice<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_abe71efd4652b9bd6c52bb8fbba7c5a8a}{F2}};\ \ \textcolor{comment}{//\ An\ intermediate\ that\ represents\ equation\ (4)\ in\ Stanton1991.}}
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_matrix_slice}{ImplicitMatrixSlice<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_aa15efed5f0c29ad3902fb22fbfee144f}{F3}};\ \ \textcolor{comment}{//\ An\ intermediate\ that\ represents\ equation\ (5)\ in\ Stanton1991.}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_rank_four_tensor_slice}{ImplicitRankFourTensorSlice<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_af3bf999f40eb1f4019f4f6cedaf68497}{W1}};\ \ \textcolor{comment}{//\ An\ intermediate\ that\ represents\ equation\ (6)\ in\ Stanton1991.}}
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_rank_four_tensor_slice}{ImplicitRankFourTensorSlice<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a3b8177e76f48c0c23672614df1d655b9}{W2}};\ \ \textcolor{comment}{//\ An\ intermediate\ that\ represents\ equation\ (7)\ in\ Stanton1991.}}
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_rank_four_tensor_slice}{ImplicitRankFourTensorSlice<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_aebad34c0e75242395ac182c8acf8f76c}{W3}};\ \ \textcolor{comment}{//\ An\ intermediate\ that\ represents\ equation\ (8)\ in\ Stanton1991.}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_rank_four_tensor_slice}{ImplicitRankFourTensorSlice<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a7cc49f9d70f86016ce8001ff03eb49b4}{tau2}};\ \ \ \ \ \ \ \ \textcolor{comment}{//\ An\ intermediate\ that\ represents\ equation\ (10)\ in\ Stanton1991.}}
+\DoxyCodeLine{00066\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_implicit_rank_four_tensor_slice}{ImplicitRankFourTensorSlice<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a1e5a40b4e932c61662592b8cf8859902}{tau2\_tilde}};\ \ \textcolor{comment}{//\ An\ intermediate\ that\ represents\ equation\ (9)\ in\ Stanton1991.}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00071\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Constructors}}
+\DoxyCodeLine{00072\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a8741859b3abcc2d830d340da3222d494}{CCSDEnvironment}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_t1_amplitudes}{T1Amplitudes<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_abdea2152c1643fb71b13cfd2383d92ee}{t1\_amplitudes}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes}{T2Amplitudes<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a3a005b633746ec034014da148dfae1e5}{t2\_amplitudes}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a96da3b098a302ff00696091b168cba8e}{f}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{SquareRankFourTensor<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a288b0979b63efb8eb9aadd045f8c93aa}{V\_A}})\ :}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_ab09723fa4037b1c6cc817da6b1f1706f}{correlation\_energies}}\ \{QCModel::CCSD<\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a582210d8ce5f4eb3c4ad4ba0a37f6aab}{Scalar}}>::calculateCorrelationEnergy(\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a96da3b098a302ff00696091b168cba8e}{f}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a288b0979b63efb8eb9aadd045f8c93aa}{V\_A}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_abdea2152c1643fb71b13cfd2383d92ee}{t1\_amplitudes}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a3a005b633746ec034014da148dfae1e5}{t2\_amplitudes}})\},\ \ \textcolor{comment}{//\ already\ calculate\ the\ initial\ CCSD\ energy\ correction}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_abdea2152c1643fb71b13cfd2383d92ee}{t1\_amplitudes}}\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_abdea2152c1643fb71b13cfd2383d92ee}{t1\_amplitudes}}\},}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a3a005b633746ec034014da148dfae1e5}{t2\_amplitudes}}\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a3a005b633746ec034014da148dfae1e5}{t2\_amplitudes}}\},}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a96da3b098a302ff00696091b168cba8e}{f}}\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a96da3b098a302ff00696091b168cba8e}{f}}\},}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a288b0979b63efb8eb9aadd045f8c93aa}{V\_A}}\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a288b0979b63efb8eb9aadd045f8c93aa}{V\_A}}\}\ \{\}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00097\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a5d4c983ec466321e35d9f9a5171bec76}{CCSDEnvironment}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes}{T2Amplitudes<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a3a005b633746ec034014da148dfae1e5}{t2\_amplitudes}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a96da3b098a302ff00696091b168cba8e}{f}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{SquareRankFourTensor<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a288b0979b63efb8eb9aadd045f8c93aa}{V\_A}})\ :}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_ab09723fa4037b1c6cc817da6b1f1706f}{correlation\_energies}}\ \{QCModel::CCD<\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a582210d8ce5f4eb3c4ad4ba0a37f6aab}{Scalar}}>::calculateCorrelationEnergy(\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a96da3b098a302ff00696091b168cba8e}{f}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a288b0979b63efb8eb9aadd045f8c93aa}{V\_A}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a3a005b633746ec034014da148dfae1e5}{t2\_amplitudes}})\},\ \ \textcolor{comment}{//\ Make\ sure\ to\ calculate\ the\ initial\ CCD\ energy\ correction\ already.}}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a3a005b633746ec034014da148dfae1e5}{t2\_amplitudes}}\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a3a005b633746ec034014da148dfae1e5}{t2\_amplitudes}}\},}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a96da3b098a302ff00696091b168cba8e}{f}}\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a96da3b098a302ff00696091b168cba8e}{f}}\},}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a288b0979b63efb8eb9aadd045f8c93aa}{V\_A}}\ \{\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a288b0979b63efb8eb9aadd045f8c93aa}{V\_A}}\}\ \{\}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00105\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Named\ constructors}}
+\DoxyCodeLine{00106\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment}{CCSDEnvironment<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_ae223820b9556a536b66291660d30a8ed}{PerturbativeCCSD}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{GSQHamiltonian<Scalar>}}\&\ sq\_hamiltonian,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{OrbitalSpace}}\&\ orbital\_space)\ \{}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ the\ CCSD\ environment\ equation,\ we\ need\ the\ inactive\ Fock\ matrix\ and\ the\ anti-\/symmetrized\ two-\/electron\ integrals\ in\ physicist's\ notation.}}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a96da3b098a302ff00696091b168cba8e}{f}}\ =\ sq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a165d926ef2e3fd2067ea3b204f7c81f1}{calculateInactiveFockian}}(orbital\_space).parameters();}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ g\_chemists\ =\ sq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a2dc43cc8615c2c34751535f3c07ef828}{twoElectron}}();}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a288b0979b63efb8eb9aadd045f8c93aa}{V\_A}}\ =\ g\_chemists.convertedToPhysicistsNotation().antisymmetrized().parameters();}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_abdea2152c1643fb71b13cfd2383d92ee}{t1\_amplitudes}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_t1_amplitudes_a997db9414f78ae09f765c511537246a7}{T1Amplitudes<Scalar>::Perturbative}}(\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a96da3b098a302ff00696091b168cba8e}{f}},\ orbital\_space);}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a3a005b633746ec034014da148dfae1e5}{t2\_amplitudes}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes_a629dbb366ec07607636132fa4739d93f}{T2Amplitudes<Scalar>::Perturbative}}(\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a96da3b098a302ff00696091b168cba8e}{f}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a288b0979b63efb8eb9aadd045f8c93aa}{V\_A}},\ orbital\_space);}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment}{CCSDEnvironment<Scalar>}}(\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_abdea2152c1643fb71b13cfd2383d92ee}{t1\_amplitudes}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a3a005b633746ec034014da148dfae1e5}{t2\_amplitudes}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a96da3b098a302ff00696091b168cba8e}{f}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a288b0979b63efb8eb9aadd045f8c93aa}{V\_A}});}
+\DoxyCodeLine{00129\ \ \ \ \ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment}{CCSDEnvironment<Scalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_ab0fff9935d43e199e032bd567acde6f6}{PerturbativeCCD}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{GSQHamiltonian<Scalar>}}\&\ sq\_hamiltonian,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{OrbitalSpace}}\&\ orbital\_space)\ \{}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ the\ CCSD\ environment\ equation,\ we\ need\ the\ inactive\ Fock\ matrix\ and\ the\ anti-\/symmetrized\ two-\/electron\ integrals\ in\ physicist's\ notation.}}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a96da3b098a302ff00696091b168cba8e}{f}}\ =\ sq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a165d926ef2e3fd2067ea3b204f7c81f1}{calculateInactiveFockian}}(orbital\_space).parameters();}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ g\_chemists\ =\ sq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian_a2dc43cc8615c2c34751535f3c07ef828}{twoElectron}}();}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a288b0979b63efb8eb9aadd045f8c93aa}{V\_A}}\ =\ g\_chemists.convertedToPhysicistsNotation().antisymmetrized().parameters();}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a3a005b633746ec034014da148dfae1e5}{t2\_amplitudes}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_t2_amplitudes_a629dbb366ec07607636132fa4739d93f}{T2Amplitudes<Scalar>::Perturbative}}(\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a96da3b098a302ff00696091b168cba8e}{f}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a288b0979b63efb8eb9aadd045f8c93aa}{V\_A}},\ orbital\_space);}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment}{CCSDEnvironment<Scalar>}}(\mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a3a005b633746ec034014da148dfae1e5}{t2\_amplitudes}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a96da3b098a302ff00696091b168cba8e}{f}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_c_c_s_d_environment_a288b0979b63efb8eb9aadd045f8c93aa}{V\_A}});}
+\DoxyCodeLine{00151\ \ \ \ \ \}}
+\DoxyCodeLine{00152\ \};}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+
+\end{DoxyCode}

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_u_h_f_s_c_f_environment" kind="class" language="C++" prot="public">
     <compoundname>GQCP::UHFSCFEnvironment</compoundname>
     <includes refid="_u_h_f_s_c_f_environment_8hpp" local="no">UHFSCFEnvironment.hpp</includes>
@@ -14,6 +14,7 @@
         <definition>using GQCP::UHFSCFEnvironment&lt; _Scalar &gt;::Scalar =  _Scalar</definition>
         <argsstring></argsstring>
         <name>Scalar</name>
+        <qualifiedname>GQCP::UHFSCFEnvironment::Scalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -29,6 +30,7 @@
         <definition>SpinResolved&lt;size_t&gt; GQCP::UHFSCFEnvironment&lt; _Scalar &gt;::N</definition>
         <argsstring></argsstring>
         <name>N</name>
+        <qualifiedname>GQCP::UHFSCFEnvironment::N</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -42,6 +44,7 @@
         <definition>std::deque&lt;Scalar&gt; GQCP::UHFSCFEnvironment&lt; _Scalar &gt;::electronic_energies</definition>
         <argsstring></argsstring>
         <name>electronic_energies</name>
+        <qualifiedname>GQCP::UHFSCFEnvironment::electronic_energies</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -55,6 +58,7 @@
         <definition>std::deque&lt;SpinResolved&lt;VectorX&lt;Scalar&gt; &gt; &gt; GQCP::UHFSCFEnvironment&lt; _Scalar &gt;::orbital_energies</definition>
         <argsstring></argsstring>
         <name>orbital_energies</name>
+        <qualifiedname>GQCP::UHFSCFEnvironment::orbital_energies</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -68,6 +72,7 @@
         <definition>ScalarUSQOneElectronOperator&lt;Scalar&gt; GQCP::UHFSCFEnvironment&lt; _Scalar &gt;::S</definition>
         <argsstring></argsstring>
         <name>S</name>
+        <qualifiedname>GQCP::UHFSCFEnvironment::S</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -81,6 +86,7 @@
         <definition>std::deque&lt;UTransformation&lt;Scalar&gt; &gt; GQCP::UHFSCFEnvironment&lt; _Scalar &gt;::coefficient_matrices</definition>
         <argsstring></argsstring>
         <name>coefficient_matrices</name>
+        <qualifiedname>GQCP::UHFSCFEnvironment::coefficient_matrices</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -94,6 +100,7 @@
         <definition>std::deque&lt;SpinResolved1DM&lt;Scalar&gt; &gt; GQCP::UHFSCFEnvironment&lt; _Scalar &gt;::density_matrices</definition>
         <argsstring></argsstring>
         <name>density_matrices</name>
+        <qualifiedname>GQCP::UHFSCFEnvironment::density_matrices</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -107,6 +114,7 @@
         <definition>std::deque&lt;ScalarUSQOneElectronOperator&lt;Scalar&gt; &gt; GQCP::UHFSCFEnvironment&lt; _Scalar &gt;::fock_matrices</definition>
         <argsstring></argsstring>
         <name>fock_matrices</name>
+        <qualifiedname>GQCP::UHFSCFEnvironment::fock_matrices</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -120,6 +128,7 @@
         <definition>std::deque&lt;SpinResolved&lt;VectorX&lt;Scalar&gt; &gt; &gt; GQCP::UHFSCFEnvironment&lt; _Scalar &gt;::error_vectors</definition>
         <argsstring></argsstring>
         <name>error_vectors</name>
+        <qualifiedname>GQCP::UHFSCFEnvironment::error_vectors</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -133,6 +142,7 @@
         <definition>USQHamiltonian&lt;Scalar&gt; GQCP::UHFSCFEnvironment&lt; _Scalar &gt;::sq_hamiltonian</definition>
         <argsstring></argsstring>
         <name>sq_hamiltonian</name>
+        <qualifiedname>GQCP::UHFSCFEnvironment::sq_hamiltonian</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -148,6 +158,7 @@
         <definition>GQCP::UHFSCFEnvironment&lt; _Scalar &gt;::UHFSCFEnvironment</definition>
         <argsstring>(const size_t N_alpha, const size_t N_beta, const USQHamiltonian&lt; Scalar &gt; &amp;sq_hamiltonian, const ScalarUSQOneElectronOperator&lt; Scalar &gt; &amp;S, const UTransformation&lt; Scalar &gt; &amp;C_initial)</argsstring>
         <name>UHFSCFEnvironment</name>
+        <qualifiedname>GQCP::UHFSCFEnvironment::UHFSCFEnvironment</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>N_alpha</declname>
@@ -232,6 +243,7 @@
         <definition>GQCP::UHFSCFEnvironment&lt; _Scalar &gt;::UHFSCFEnvironment</definition>
         <argsstring>(const QCModel::RHF&lt; Scalar &gt; &amp;rhf_parameters, const USQHamiltonian&lt; Scalar &gt; &amp;sq_hamiltonian, const ScalarUSQOneElectronOperator&lt; Scalar &gt; &amp;S)</argsstring>
         <name>UHFSCFEnvironment</name>
+        <qualifiedname>GQCP::UHFSCFEnvironment::UHFSCFEnvironment</qualifiedname>
         <param>
           <type>const <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_r_h_f" kindref="compound">QCModel::RHF</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1afa66e61ff154f8b0fa8bb17ec0825358" kindref="member">Scalar</ref> &gt; &amp;</type>
           <declname>rhf_parameters</declname>
@@ -281,11 +293,12 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1a8d617f7039bd614a38b5acc0bf9acaa9" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1a2b30f32ccbb3da079c76c69f27391e22" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment" kindref="compound">UHFSCFEnvironment</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1afa66e61ff154f8b0fa8bb17ec0825358" kindref="member">Scalar</ref> &gt;</type>
-        <definition>static UHFSCFEnvironment&lt;Scalar&gt; GQCP::UHFSCFEnvironment&lt; _Scalar &gt;::WithCoreGuess</definition>
+        <definition>static UHFSCFEnvironment&lt; Scalar &gt; GQCP::UHFSCFEnvironment&lt; _Scalar &gt;::WithCoreGuess</definition>
         <argsstring>(const size_t N_alpha, const size_t N_beta, const USQHamiltonian&lt; Scalar &gt; &amp;sq_hamiltonian, const ScalarUSQOneElectronOperator&lt; Scalar &gt; &amp;S)</argsstring>
         <name>WithCoreGuess</name>
+        <qualifiedname>GQCP::UHFSCFEnvironment::WithCoreGuess</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>N_alpha</declname>
@@ -347,7 +360,7 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFSCFEnvironment.hpp" line="119" column="30" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFSCFEnvironment.hpp" bodystart="119" bodyend="131"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1a1150a8ea514a6e7f67a77d2498192925" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1a55723bc760165d2671ccbf28cb4074f1" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z</type>
@@ -355,9 +368,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t</ref>&lt; std::is_same&lt; Z, <ref refid="namespace_g_q_c_p_1a1ffc21109e62d09d3485c62e03677dfd" kindref="member">complex</ref> &gt;::value, <ref refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment" kindref="compound">UHFSCFEnvironment</ref>&lt; <ref refid="namespace_g_q_c_p_1a1ffc21109e62d09d3485c62e03677dfd" kindref="member">complex</ref> &gt; &gt;</type>
-        <definition>static enable_if_t&lt;std::is_same&lt;Z, complex&gt;::value, UHFSCFEnvironment&lt;complex&gt; &gt; GQCP::UHFSCFEnvironment&lt; _Scalar &gt;::WithComplexlyTransformedCoreGuess</definition>
+        <definition>static enable_if_t&lt; std::is_same&lt; Z, complex &gt;::value, UHFSCFEnvironment&lt; complex &gt; &gt; GQCP::UHFSCFEnvironment&lt; _Scalar &gt;::WithComplexlyTransformedCoreGuess</definition>
         <argsstring>(const size_t N_alpha, const size_t N_beta, const USQHamiltonian&lt; Scalar &gt; &amp;sq_hamiltonian, const ScalarUSQOneElectronOperator&lt; Scalar &gt; &amp;S)</argsstring>
         <name>WithComplexlyTransformedCoreGuess</name>
+        <qualifiedname>GQCP::UHFSCFEnvironment::WithComplexlyTransformedCoreGuess</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>N_alpha</declname>
@@ -419,7 +433,7 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFSCFEnvironment.hpp" line="145" column="25" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFSCFEnvironment.hpp" bodystart="145" bodyend="165"/>
       </memberdef>
-      <memberdef kind="function" id="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1af8505ec9774adc76f95e1653fd52e7d9" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1aa32768d0e31445fe0896b1643d4595bd" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Z</type>
@@ -427,9 +441,10 @@
           </param>
         </templateparamlist>
         <type><ref refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment" kindref="compound">UHFSCFEnvironment</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1afa66e61ff154f8b0fa8bb17ec0825358" kindref="member">Scalar</ref> &gt;</type>
-        <definition>static UHFSCFEnvironment&lt;Scalar&gt; GQCP::UHFSCFEnvironment&lt; _Scalar &gt;::WithTransformedCoreGuess</definition>
+        <definition>static UHFSCFEnvironment&lt; Scalar &gt; GQCP::UHFSCFEnvironment&lt; _Scalar &gt;::WithTransformedCoreGuess</definition>
         <argsstring>(const size_t N_alpha, const size_t N_beta, const USQHamiltonian&lt; Scalar &gt; &amp;sq_hamiltonian, const ScalarUSQOneElectronOperator&lt; Scalar &gt; &amp;S, const std::function&lt; Eigen::Matrix&lt; Scalar, Eigen::Dynamic, Eigen::Dynamic &gt;(const Eigen::Matrix&lt; Scalar, Eigen::Dynamic, Eigen::Dynamic &gt; &amp;)&gt; &amp;transformation_function)</argsstring>
         <name>WithTransformedCoreGuess</name>
+        <qualifiedname>GQCP::UHFSCFEnvironment::WithTransformedCoreGuess</qualifiedname>
         <param>
           <type>const size_t</type>
           <declname>N_alpha</declname>
@@ -521,67 +536,57 @@
 </para>
     </detaileddescription>
     <collaborationgraph>
+      <node id="11">
+        <label>GQCP::CRTP&lt; T &gt;</label>
+        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
+      </node>
+      <node id="13">
+        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      </node>
       <node id="7">
-        <label>GQCP::USQOneElectronOperator&lt; Scalar &gt;</label>
-        <link refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator"/>
-        <childnode refid="6" relation="public-inheritance">
-        </childnode>
-        <childnode refid="8" relation="public-inheritance">
-        </childnode>
-        <childnode refid="9" relation="public-inheritance">
-        </childnode>
-        <childnode refid="10" relation="public-inheritance">
-        </childnode>
+        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
+        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
       </node>
-      <node id="5">
-        <label>GQCP::SpinResolved&lt; size_t &gt;</label>
-        <link refid="class_g_q_c_p_1_1_spin_resolved"/>
-        <childnode refid="6" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="4">
+      <node id="14">
         <label>GQCP::JacobiRotatable&lt; T &gt;</label>
         <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
       </node>
-      <node id="6">
+      <node id="9">
+        <label>GQCP::JacobiRotatable&lt; T &gt;</label>
+        <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      </node>
+      <node id="5">
         <label>GQCP::SpinResolvedBase&lt; _Of, _Derived &gt;</label>
         <link refid="class_g_q_c_p_1_1_spin_resolved_base"/>
       </node>
-      <node id="2">
-        <label>GQCP::SQHamiltonian&lt; Scalar &gt;</label>
-        <link refid="class_g_q_c_p_1_1_s_q_hamiltonian"/>
-        <childnode refid="3" relation="public-inheritance">
-        </childnode>
-        <childnode refid="4" relation="public-inheritance">
+      <node id="3">
+        <label>GQCP::SpinResolvedBase&lt; _Of, _Derived &gt;</label>
+        <link refid="class_g_q_c_p_1_1_spin_resolved_base"/>
+      </node>
+      <node id="6">
+        <label>GQCP::SpinResolvedBasisTransformable&lt; Type &gt;</label>
+        <link refid="class_g_q_c_p_1_1_spin_resolved_basis_transformable"/>
+        <childnode refid="7" relation="public-inheritance">
         </childnode>
       </node>
       <node id="8">
-        <label>GQCP::SpinResolvedBasisTransformable&lt; Type &gt;</label>
-        <link refid="class_g_q_c_p_1_1_spin_resolved_basis_transformable"/>
-        <childnode refid="3" relation="public-inheritance">
+        <label>GQCP::SpinResolvedJacobiRotatable&lt; T &gt;</label>
+        <link refid="class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable"/>
+        <childnode refid="9" relation="public-inheritance">
         </childnode>
       </node>
       <node id="1">
         <label>GQCP::UHFSCFEnvironment&lt; _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment"/>
         <childnode refid="2" relation="usage">
-          <edgelabel>+sq_hamiltonian</edgelabel>
-        </childnode>
-        <childnode refid="5" relation="usage">
           <edgelabel>+N</edgelabel>
         </childnode>
-        <childnode refid="7" relation="usage">
+        <childnode refid="4" relation="usage">
           <edgelabel>+S</edgelabel>
         </childnode>
-      </node>
-      <node id="11">
-        <label>GQCP::CRTP&lt; T &gt;</label>
-        <link refid="class_g_q_c_p_1_1_c_r_t_p"/>
-      </node>
-      <node id="9">
-        <label>GQCP::SpinResolvedJacobiRotatable&lt; T &gt;</label>
-        <link refid="class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable"/>
-        <childnode refid="4" relation="public-inheritance">
+        <childnode refid="12" relation="usage">
+          <edgelabel>+sq_hamiltonian</edgelabel>
         </childnode>
       </node>
       <node id="10">
@@ -590,9 +595,31 @@
         <childnode refid="11" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="3">
-        <label>GQCP::BasisTransformable&lt; Type &gt;</label>
-        <link refid="class_g_q_c_p_1_1_basis_transformable"/>
+      <node id="12">
+        <label>GQCP::SQHamiltonian&lt; Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_s_q_hamiltonian"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>GQCP::SpinResolved&lt; size_t &gt;</label>
+        <link refid="class_g_q_c_p_1_1_spin_resolved"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>GQCP::USQOneElectronOperator&lt; Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
       </node>
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFSCFEnvironment.hpp" line="45" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFSCFEnvironment.hpp" bodystart="45" bodyend="194"/>
@@ -609,9 +636,9 @@
       <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1acf78d41999c4c6470089ec0ef3f84a0b" prot="public" virt="non-virtual"><scope>GQCP::UHFSCFEnvironment</scope><name>sq_hamiltonian</name></member>
       <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1ae3451ef8114bfd9aecf19c866455dff2" prot="public" virt="non-virtual"><scope>GQCP::UHFSCFEnvironment</scope><name>UHFSCFEnvironment</name></member>
       <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1a616b4932eba592e7aafcd1b16fe0f0b1" prot="public" virt="non-virtual"><scope>GQCP::UHFSCFEnvironment</scope><name>UHFSCFEnvironment</name></member>
-      <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1a1150a8ea514a6e7f67a77d2498192925" prot="public" virt="non-virtual"><scope>GQCP::UHFSCFEnvironment</scope><name>WithComplexlyTransformedCoreGuess</name></member>
-      <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1a8d617f7039bd614a38b5acc0bf9acaa9" prot="public" virt="non-virtual"><scope>GQCP::UHFSCFEnvironment</scope><name>WithCoreGuess</name></member>
-      <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1af8505ec9774adc76f95e1653fd52e7d9" prot="public" virt="non-virtual"><scope>GQCP::UHFSCFEnvironment</scope><name>WithTransformedCoreGuess</name></member>
+      <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1a55723bc760165d2671ccbf28cb4074f1" prot="public" virt="non-virtual"><scope>GQCP::UHFSCFEnvironment</scope><name>WithComplexlyTransformedCoreGuess</name></member>
+      <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1a2b30f32ccbb3da079c76c69f27391e22" prot="public" virt="non-virtual"><scope>GQCP::UHFSCFEnvironment</scope><name>WithCoreGuess</name></member>
+      <member refid="class_g_q_c_p_1_1_u_h_f_s_c_f_environment_1aa32768d0e31445fe0896b1643d4595bd" prot="public" virt="non-virtual"><scope>GQCP::UHFSCFEnvironment</scope><name>WithTransformedCoreGuess</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

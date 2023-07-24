@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_electronic_spin_squared_operator" kind="class" language="C++" prot="public">
     <compoundname>GQCP::ElectronicSpinSquaredOperator</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_base_scalar_f_q_operator" prot="public" virt="non-virtual">GQCP::BaseScalarFQOperator&lt; complex &gt;</basecompoundref>
@@ -10,6 +10,10 @@
 <para>The electronic spin squared operator S^2. </para>
     </detaileddescription>
     <inheritancegraph>
+      <node id="3">
+        <label>GQCP::BaseFQOperator&lt; N, _Scalar, ScalarVectorizer &gt;</label>
+        <link refid="class_g_q_c_p_1_1_base_f_q_operator"/>
+      </node>
       <node id="2">
         <label>BaseScalarFQTwoElectronOperator&lt; complex &gt;</label>
         <link refid="class_g_q_c_p_1_1_base_scalar_f_q_operator"/>
@@ -22,15 +26,11 @@
         <childnode refid="2" relation="public-inheritance">
         </childnode>
       </node>
+    </inheritancegraph>
+    <collaborationgraph>
       <node id="3">
         <label>GQCP::BaseFQOperator&lt; N, _Scalar, ScalarVectorizer &gt;</label>
         <link refid="class_g_q_c_p_1_1_base_f_q_operator"/>
-      </node>
-    </inheritancegraph>
-    <collaborationgraph>
-      <node id="4">
-        <label>GQCP::DenseVectorizer&lt; A &gt;</label>
-        <link refid="class_g_q_c_p_1_1_dense_vectorizer"/>
       </node>
       <node id="2">
         <label>BaseScalarFQTwoElectronOperator&lt; complex &gt;</label>
@@ -41,15 +41,15 @@
           <edgelabel>+vectorizer</edgelabel>
         </childnode>
       </node>
+      <node id="4">
+        <label>GQCP::DenseVectorizer&lt; A &gt;</label>
+        <link refid="class_g_q_c_p_1_1_dense_vectorizer"/>
+      </node>
       <node id="1">
         <label>GQCP::ElectronicSpinSquaredOperator</label>
         <link refid="class_g_q_c_p_1_1_electronic_spin_squared_operator"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
-      </node>
-      <node id="3">
-        <label>GQCP::BaseFQOperator&lt; N, _Scalar, ScalarVectorizer &gt;</label>
-        <link refid="class_g_q_c_p_1_1_base_f_q_operator"/>
       </node>
     </collaborationgraph>
     <location file="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/ElectronicSpinSquaredOperator.hpp" line="31" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/FirstQuantized/ElectronicSpinSquaredOperator.hpp" bodystart="32" bodyend="32"/>

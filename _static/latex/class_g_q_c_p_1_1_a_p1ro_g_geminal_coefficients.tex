@@ -39,7 +39,7 @@ double \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients_a677f52e
 \item 
 \mbox{\hyperlink{namespace_g_q_c_p_a1682f7552bb345204c32a5cc7c464dc6}{MatrixX}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients_a79fe0084a66485aeda53d18981aaf9e6}{as\+Matrix}} () const
 \item 
-\mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients_ab5f85c4500a7e278a7f3174a0ad6745c}{as\+Vector}} () const
+\mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients_a16f932e173aede97a1a244d2305584fc}{as\+Vector}} () const
 \item 
 size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients_aab25c01f638c131b5caabfa57b5a2fda}{count}} () const
 \item 
@@ -50,6 +50,15 @@ size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients_a37
 \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_space}{Orbital\+Space}} \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients_a801214dc444b950378c4ca538bd62fdc}{orbital\+Space}} () const
 \item 
 double \mbox{\hyperlink{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients_a6217bfe7a49d21e50507fb926208f975}{overlap}} (const Spin\+Unresolved\+ONV \&onv) const override
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_geminal_coefficients_interface}{GQCP\+::\+Geminal\+Coefficients\+Interface}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_g_q_c_p_1_1_geminal_coefficients_interface_a4a009b427c91b6297bcb778e891da5a7}{$\sim$\+Geminal\+Coefficients\+Interface}} ()=default
+\item 
+virtual double \mbox{\hyperlink{class_g_q_c_p_1_1_geminal_coefficients_interface_a3be4021a57bdf21adab08a5a4521eb0f}{overlap}} (const Spin\+Unresolved\+ONV \&onv) const =0
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_linear_expansion}{Linear\+Expansion}}$<$ double, Seniority\+Zero\+ONVBasis $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_geminal_coefficients_interface_a32797287bde862bf2559f3ac73bc56ec}{to\+Linear\+Expansion}} (const Seniority\+Zero\+ONVBasis \&onv\+\_\+basis) const
 \end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
@@ -123,11 +132,11 @@ The default destructor.
 \begin{DoxyReturn}{Returns}
 the total geminal coefficient matrix, including the identity matrix block 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients_ab5f85c4500a7e278a7f3174a0ad6745c}\label{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients_ab5f85c4500a7e278a7f3174a0ad6745c}} 
+\mbox{\Hypertarget{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients_a16f932e173aede97a1a244d2305584fc}\label{class_g_q_c_p_1_1_a_p1ro_g_geminal_coefficients_a16f932e173aede97a1a244d2305584fc}} 
 \index{GQCP::AP1roGGeminalCoefficients@{GQCP::AP1roGGeminalCoefficients}!asVector@{asVector}}
 \index{asVector@{asVector}!GQCP::AP1roGGeminalCoefficients@{GQCP::AP1roGGeminalCoefficients}}
 \doxysubsubsection{\texorpdfstring{asVector()}{asVector()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$double$>$ GQCP\+::\+AP1ro\+GGeminal\+Coefficients\+::as\+Vector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_g_q_c_p_a48fd76814344f532956445188044b544}{VectorX}}$<$ double $>$ GQCP\+::\+AP1ro\+GGeminal\+Coefficients\+::as\+Vector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \begin{DoxyReturn}{Returns}
 the geminal coefficients as a column-\/major vector, excluding the identity block 
