@@ -489,7 +489,7 @@ document.write(`
 <p>This hopping matrix can be used to construct the Hubbard model Hamiltonian.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hubbard_hamiltonian</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">HubbardHamiltonian</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">U</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hubbard_hamiltonian</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">HubbardHamiltonian</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="p">[</span><span class="n">U</span><span class="p">]</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">]</span><span class="o">*</span><span class="mi">4</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">hubbard_hamiltonian</span><span class="o">.</span><span class="n">core</span><span class="p">()</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span>
 </pre></div>
 </div>
