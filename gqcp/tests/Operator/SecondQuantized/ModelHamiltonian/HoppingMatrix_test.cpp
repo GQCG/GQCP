@@ -44,20 +44,19 @@ BOOST_AUTO_TEST_CASE(constructor_throws) {
 BOOST_AUTO_TEST_CASE(triangle_adjacency_matrix) {
 
     const double t = 1.0;
-    const double U = 2.0;
 
     GQCP::SquareMatrix<double> H_ref = GQCP::SquareMatrix<double>::Zero(3);
     // clang-format off
-    H_ref << U, -t, -t,
-            -t,  U, -t,
-            -t, -t,  U;
+    H_ref << 0.0, -t  , -t  ,
+            -t  ,  0.0, -t  ,
+            -t  , -t  ,  0.0;
     // clang-format on
 
 
     // Construct an adjacency matrix, convert it to a hopping matrix and check the result.
     const auto A = GQCP::AdjacencyMatrix::Cyclic(3);
 
-    const GQCP::HoppingMatrix<double> H {A, t, U};
+    const auto H = GQCP::HoppingMatrix<double>::Homogeneous(A, t);
     BOOST_CHECK(H_ref.isApprox(H.matrix()));
 }
 
@@ -69,12 +68,14 @@ BOOST_AUTO_TEST_CASE(FromCSLine) {
 
     GQCP::SquareMatrix<double> H_ref = GQCP::SquareMatrix<double>::Zero(3);
     // clang-format off
-    H_ref << 1, 2, 4,
-             2, 3, 5,
-             4, 5, 6;
+    H_ref << 0, 2, 4,
+             2, 0, 5,
+             4, 5, 0;
     // clang-format on
 
-    const auto H = GQCP::HoppingMatrix<double>::FromCSLine("1,2,4,3,5,6");
+    std::vector<double> values = {2, 4, 5};
+
+    const auto H = GQCP::HoppingMatrix<double>::Dense(values);
 
     BOOST_CHECK(H_ref.isApprox(H.matrix()));
 }

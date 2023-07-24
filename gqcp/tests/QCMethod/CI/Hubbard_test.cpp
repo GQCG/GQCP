@@ -21,6 +21,7 @@
 
 #include "Mathematical/Optimization/Eigenproblem/Davidson/DavidsonSolver.hpp"
 #include "Mathematical/Optimization/Eigenproblem/EigenproblemSolver.hpp"
+#include "Mathematical/Representation/SquareMatrix.hpp"
 #include "Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp"
 #include "Operator/SecondQuantized/SQHamiltonian.hpp"
 #include "QCMethod/CI/CI.hpp"
@@ -36,8 +37,7 @@ BOOST_AUTO_TEST_CASE(Hubbard_specialized_vs_unspecialized_dense_diagonalization)
     const auto K = 4;    // The number of lattice sites.
     const auto N_P = 2;  // The number of electron pairs.
 
-    const auto H = GQCP::HoppingMatrix<double>::Random(K);
-    const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian {H};
+    const auto hubbard_hamiltonian = GQCP::HubbardHamiltonian<double>::Random(K);
 
     const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
 
@@ -69,8 +69,7 @@ BOOST_AUTO_TEST_CASE(Hubbard_specialized_vs_unspecialized_dense_diagonalization_
     const auto K = 6;    // The number of lattice sites.
     const auto N_P = 3;  // The number of electron pairs.
 
-    const auto H = GQCP::HoppingMatrix<double>::Random(K);
-    const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian {H};
+    const auto hubbard_hamiltonian = GQCP::HubbardHamiltonian<double>::Random(K);
 
     const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
 
@@ -115,8 +114,8 @@ BOOST_AUTO_TEST_CASE(four_site_chain) {
     for (size_t i = 0; i < 7; i++) {
 
         // Create the Hubbard model Hamiltonian.
-        const GQCP::HoppingMatrix<double> H {A, t, U_list[i]};
-        const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian {H};
+        const auto H = GQCP::HoppingMatrix<double>::Homogeneous(A, t);
+        const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian {H, U_list[i]};
 
 
         // Optimize the CI model, using a dense solver.
@@ -126,6 +125,40 @@ BOOST_AUTO_TEST_CASE(four_site_chain) {
         const auto energy = GQCP::QCMethod::CI<double, GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
         BOOST_CHECK(std::abs(energy - E_list[i]) < 1.0e-08);
     }
+}
+
+/**
+ *  Check if we can reproduce the ground-state energies for a four-site chain from a reference implementation.
+ */
+BOOST_AUTO_TEST_CASE(four_site_chain_tilted) {
+
+    // Create the adjacency matrix for a four-site chain.
+    const auto K = 4;    // The number of lattice sites.
+    const auto N_P = 2;  // The number of electron pairs.
+    const auto A = GQCP::AdjacencyMatrix::Linear(K);
+
+    // Set the reference results.
+    const double t = 1.0e-4;
+    const std::vector<double> U_list {1.0, 1.0, 1.0, 1.0};
+    const std::vector<double> mu_list {0.0, -0.5, -1.0, -1.5};
+
+    // Create the appropriate spin-resolved ONV basis.
+    const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
+
+    // Create the Hubbard model Hamiltonian.
+    const auto H = GQCP::HoppingMatrix<double>::Homogeneous(A, t);
+    const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian {H, U_list, mu_list};
+
+    // Optimize the CI model, using a dense solver.
+    auto solver = GQCP::EigenproblemSolver::Dense<double>();
+    auto environment = GQCP::CIEnvironment::Dense(hubbard_hamiltonian, onv_basis);
+
+    const auto energy = GQCP::QCMethod::CI<double, GQCP::SpinResolvedONVBasis>(onv_basis).optimize(solver, environment).groundStateEnergy();
+
+    // Reference from https://doi.org/10.1063/5.0092153.
+    const auto ref_energy = -3.5;
+
+    BOOST_CHECK(std::abs(energy - ref_energy) < 1.0e-05);
 }
 
 
@@ -152,9 +185,8 @@ BOOST_AUTO_TEST_CASE(six_site_ring) {
     for (size_t i = 0; i < 7; i++) {
 
         // Create the Hubbard model Hamiltonian.
-        const GQCP::HoppingMatrix<double> H {A, t, U_list[i]};
-        const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian {H};
-
+        const auto H = GQCP::HoppingMatrix<double>::Homogeneous(A, t);
+        const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian {H, U_list[i]};
 
         // Optimize the CI model, using a dense solver.
         auto solver = GQCP::EigenproblemSolver::Dense<double>();
@@ -175,8 +207,7 @@ BOOST_AUTO_TEST_CASE(Hubbard_specialized_vs_unspecialized_Davidson_diagonalizati
     const auto K = 4;    // The number of lattice sites.
     const auto N_P = 2;  // The number of electron pairs.
 
-    const auto H = GQCP::HoppingMatrix<double>::Random(K);
-    const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian {H};
+    const auto hubbard_hamiltonian = GQCP::HubbardHamiltonian<double>::Random(K);
 
     const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
 
@@ -209,8 +240,7 @@ BOOST_AUTO_TEST_CASE(Hubbard_specialized_vs_unspecialized_Davidson_diagonalizati
     const auto K = 6;    // The number of lattice sites.
     const auto N_P = 3;  // The number of electron pairs.
 
-    const auto H = GQCP::HoppingMatrix<double>::Random(K);
-    const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian {H};
+    const auto hubbard_hamiltonian = GQCP::HubbardHamiltonian<double>::Random(K);
 
     const GQCP::SpinResolvedONVBasis onv_basis {K, N_P, N_P};
 
