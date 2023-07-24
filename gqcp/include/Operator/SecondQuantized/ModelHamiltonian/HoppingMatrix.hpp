@@ -66,7 +66,7 @@ public:
      */
 
     /**
-     *  Create a hopping matrix from a vectro containing the upper triangle.
+     *  Create a hopping matrix from a vector containing the upper triangle.
      *
      *  @param csline           A vector that contains the upper triangle (in column-major ordering) of the Hubbard hopping matrix.
      *

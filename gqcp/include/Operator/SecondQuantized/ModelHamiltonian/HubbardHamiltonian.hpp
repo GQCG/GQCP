@@ -35,7 +35,7 @@ namespace GQCP {
 template <typename _Scalar>
 class HubbardHamiltonian {
 public:
-    // The scalar type for a matrix element.
+    // The scalar type for a Hubbard Hamiltonian matrix element.
     using Scalar = _Scalar;
 
 
@@ -75,15 +75,15 @@ public:
      *  Create a `HubbardHamiltonian` from a `HoppingMatrix` and constant parameters `U`and `mu`.
      *
      *  @param H            The Hubbard hopping matrix.
-     *  @param U            The on site repulsion value.
-     *  @param mu           The on site potential. Default is zero.
+     *  @param U            The on-site repulsion value.
+     *  @param mu           The on-site potential. Default is zero.
      */
     HubbardHamiltonian(const HoppingMatrix<Scalar>& H, const double& U, const double& mu = 0.0) :
         hopping_matrix {H},
         U_matrix {SquareMatrix<double>::Identity(H.matrix().dimension())},
         mu_matrix {SquareMatrix<double>::Identity(H.matrix().dimension())} {
 
-        // Fill in the on site repulsion on the diagonal.
+        // Fill in the on-site repulsion on the diagonal.
         for (size_t i = 0; i < H.matrix().dimension(); i++) {
             this->U_matrix(i, i) *= U;
             this->mu_matrix(i, i) *= mu;
@@ -95,8 +95,8 @@ public:
      *  Create a `HubbardHamiltonian` from a `HoppingMatrix` and parameters `U`and `mu` for each site as a vector.
      *
      *  @param H            The Hubbard hopping matrix.
-     *  @param U            The on site repulsion values as a vector.
-     *  @param mu           The on site potential values as a vector.
+     *  @param U            The on-site repulsion values as a vector.
+     *  @param mu           The on-site potential values as a vector.
      */
     HubbardHamiltonian(const HoppingMatrix<Scalar>& H, const std::vector<double>& U, const std::vector<double>& mu) :
         hopping_matrix {H},
@@ -212,7 +212,7 @@ public:
 
 
     /**
-     *  @return the number of lattice sites corresponding used in this Hubbard model Hamiltonian
+     *  @return The number of lattice sites corresponding used in this Hubbard model Hamiltonian.
      */
     size_t numberOfLatticeSites() const { return this->hopping_matrix.matrix().dimension(); }
 
