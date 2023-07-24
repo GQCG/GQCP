@@ -18,6 +18,7 @@
 #include "Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp"
 
 #include <pybind11/pybind11.h>
+#include <pybind11/stl.h>
 
 
 namespace gqcpy {
