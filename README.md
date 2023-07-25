@@ -1,6 +1,6 @@
 ![GQCP](media/logo.jpg)
 
-![Github Actions build](https://img.shields.io/github/workflow/status/GQCG/GQCP/Docker%20deploy)
+![Github Actions build](https://img.shields.io/github/actions/workflow/status/GQCG/GQCP/.github/workflows/docker-gqcp-deploy.yml)
 [![docs](https://img.shields.io/badge/docs-latest-5077AB.svg?logo=read%20the%20docs)](https://gqcg.github.io/GQCP)
 [![obtain latest](https://img.shields.io/badge/Docker-latest-green.svg)](https://hub.docker.com/repository/docker/gqcg/gqcp)
 [![Try out with Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/GQCG/GQCP/blob/develop/gqcpy/examples/Try-out-Colab.ipynb)
@@ -8,3 +8,13 @@
 [![Examples](https://img.shields.io/badge/tutorials-green.svg)](gqcpy/examples/README.md)
 
 The Ghent Quantum Chemistry Package (GQCP) aims to provide an open-source domain specific language (DSL) for general electronic structure method development in spinor bases. This DSL is implemented in a C++ library with Python bindings.
+
+# Extensions
+
+## GQCConstraints
+
+[GQCConstraints](https://github.com/GQCG-res/GQCConstraints) (or GQCC for short) is a python extension built for GQCP. It provides the necessary methods and classes to run constrained calculations for several quantum chemical ansatzes. In order to use the extension, download the `GQCP docker container` and in it, simply run
+
+```bash
+pip install GQCConstraints
+```

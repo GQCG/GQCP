@@ -51,3 +51,9 @@ jobs:
         file: docker/GQCP.docker
         push: true
         tags: gqcg/gqcp:latest
+    - name: Test GQCC with updated container
+      uses: peter-evans/repository-dispatch@v2
+      with:
+        token: ${{ secrets.GQCC_ACCESS_TOKEN }}
+        repository: GQCG-res/GQCConstraints
+        event-type: GQCP-trigger
