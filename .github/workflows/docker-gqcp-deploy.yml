@@ -56,4 +56,4 @@ jobs:
       with:
         token: ${{ secrets.GQCC_ACCESS_TOKEN }}
         repository: GQCG-res/GQCConstraints
-        event-type: GQCC-trigger
+        event-type: GQCP-trigger
