@@ -45,7 +45,7 @@ public:
     // The scalar type used for a single parameter/matrix element: real or complex.
     using Scalar = _Scalar;
 
-    //The type of the vectorizer that relates a one-dimensional storage of tensors to the tensor structure of two-electron operators. This distinction is carried over from SimpleSQOneElectronOperator.
+    // The type of the vectorizer that relates a one-dimensional storage of tensors to the tensor structure of two-electron operators. This distinction is carried over from SimpleSQOneElectronOperator.
     using Vectorizer = _Vectorizer;
 
     // The spinor tag corresponding to a `GSQTwoElectronOperator`.
