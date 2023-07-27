@@ -66,6 +66,9 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_plain) {
     auto plain_uhf_scf_solver = GQCP::UHFSCFSolver<double>::Plain();
     plain_uhf_scf_solver.perform(uhf_environment);
 
+    // Also save the parameters.
+    const auto qc_structure = GQCP::QCMethod::UHF<double>().optimize(plain_uhf_scf_solver, uhf_environment);
+
 
     // Check the calculated results with the reference.
     const double total_energy = uhf_environment.electronic_energies.back() + GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
@@ -76,6 +79,14 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_plain) {
 
     BOOST_CHECK(ref_C.matrix().hasEqualSetsOfEigenvectorsAs(uhf_environment.coefficient_matrices.back().alpha().matrix(), 1.0e-05));
     BOOST_CHECK(ref_C.matrix().hasEqualSetsOfEigenvectorsAs(uhf_environment.coefficient_matrices.back().beta().matrix(), 1.0e-05));
+
+    // Check the total spin. Quantize the operator and calculate the density matrices.
+    const auto S2 = spinor_basis.quantize(GQCP::ElectronicSpinSquaredOperator());
+
+    const auto D = qc_structure.groundStateParameters().calculateScalarBasis1DM();
+    const auto d = qc_structure.groundStateParameters().calculateScalarBasis2DM();
+
+    BOOST_CHECK(std::abs(S2.calculateExpectationValue(D, d) - 0.0) < 1.0e-06);
 }
 
 
@@ -114,6 +125,8 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_diis) {
     auto diis_uhf_scf_solver = GQCP::UHFSCFSolver<double>::DIIS();
     diis_uhf_scf_solver.perform(uhf_environment);
 
+    // Also save the parameters.
+    const auto qc_structure = GQCP::QCMethod::UHF<double>().optimize(diis_uhf_scf_solver, uhf_environment);
 
     // Check the calculated results with the reference.
     const double total_energy = uhf_environment.electronic_energies.back() + GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
@@ -124,10 +137,18 @@ BOOST_AUTO_TEST_CASE(h2o_sto3g_diis) {
 
     BOOST_CHECK(ref_C.matrix().hasEqualSetsOfEigenvectorsAs(uhf_environment.coefficient_matrices.back().alpha().matrix(), 1.0e-05));
     BOOST_CHECK(ref_C.matrix().hasEqualSetsOfEigenvectorsAs(uhf_environment.coefficient_matrices.back().beta().matrix(), 1.0e-05));
+
+    // Check the total spin. Quantize the operator and calculate the density matrices.
+    const auto S2 = spinor_basis.quantize(GQCP::ElectronicSpinSquaredOperator());
+
+    const auto D = qc_structure.groundStateParameters().calculateScalarBasis1DM();
+    const auto d = qc_structure.groundStateParameters().calculateScalarBasis2DM();
+
+    BOOST_CHECK(std::abs(S2.calculateExpectationValue(D, d) - 0.0) < 1.0e-06);
 }
 
 /**
- *  H3 has the same solution for real and complex UHF. This test checks whether complex UHF succeeds in finding the same solution.  
+ *  H3 has the same solution for real and complex UHF. This test checks whether complex UHF succeeds in finding the same solution.
  */
 BOOST_AUTO_TEST_CASE(h3_sto3g_complex) {
 
@@ -148,4 +169,13 @@ BOOST_AUTO_TEST_CASE(h3_sto3g_complex) {
 
     // Check if the converged energy matches the reference energy.
     BOOST_CHECK(std::abs((uhf_ground_state_energy + nuc_rep) - reference_energy) < 1.0e-06);
+
+    // Check the total spin. Quantize the operator and calculate the density matrices.
+    const auto S2 = spinor_basis.quantize(GQCP::ElectronicSpinSquaredOperator());
+
+    const auto D = qc_structure.groundStateParameters().calculateScalarBasis1DM();
+    const auto d = qc_structure.groundStateParameters().calculateScalarBasis2DM();
+
+    // Reference value from GHF thesis code of @xdvriend.
+    BOOST_CHECK(std::abs(S2.calculateExpectationValue(D, d) - 0.8378834125123873) < 1.0e-06);
 }

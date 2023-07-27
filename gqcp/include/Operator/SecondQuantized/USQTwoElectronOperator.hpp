@@ -28,6 +28,7 @@
 #include "Operator/SecondQuantized/MixedUSQTwoElectronOperatorComponent.hpp"
 #include "Operator/SecondQuantized/PureUSQTwoElectronOperatorComponent.hpp"
 #include "Operator/SecondQuantized/RSQTwoElectronOperator.hpp"
+#include "Operator/SecondQuantized/USQOneElectronOperator.hpp"
 #include "QuantumChemical/DoublySpinResolvedBase.hpp"
 #include "QuantumChemical/spinor_tags.hpp"
 
@@ -357,6 +358,217 @@ struct BasisTransformableTraits<USQTwoElectronOperator<Scalar, Vectorizer>> {
  */
 template <typename Scalar, typename Vectorizer>
 struct JacobiRotatableTraits<USQTwoElectronOperator<Scalar, Vectorizer>> {
+
+    // The type of Jacobi rotation for which the Jacobi rotation should be defined.
+    using JacobiRotationType = UJacobiRotation;
+};
+
+
+/*
+ *  MARK: One-electron operator products
+ */
+
+/**
+ *  A type that encapsulates the matrix elements of the product of two scalar, unrestricted one-electron operators.
+ *
+ *  @tparam _Scalar         The scalar type of one of the matrix elements: real or complex.
+ */
+template <typename _Scalar>
+class ScalarUSQOneElectronOperatorProduct:
+    public VectorSpaceArithmetic<ScalarUSQOneElectronOperatorProduct<_Scalar>, _Scalar>,
+    public BasisTransformable<ScalarUSQOneElectronOperatorProduct<_Scalar>>,
+    public JacobiRotatable<ScalarUSQOneElectronOperatorProduct<_Scalar>> {
+public:
+    // The scalar type of one of the matrix elements: real or complex.
+    using Scalar = _Scalar;
+
+    // The type of 'this'.
+    using Self = ScalarUSQOneElectronOperatorProduct<Scalar>;
+
+
+private:
+    // The one-electron part of the product.
+    ScalarUSQOneElectronOperator<Scalar> o;
+
+    // The two-electron part of the product. Since it is expressed as a `SQTwoElectronOperator`.
+    ScalarUSQTwoElectronOperator<Scalar> t;
+
+
+public:
+    /*
+     *  MARK: Constructors
+     */
+
+    /**
+     *  Create the representation of the product of two scalar, unrestricted one-electron operators by its one- and two-electron constituents.
+     *
+     *  @param o            The one-electron part of the product.
+     *  @param t            The two-electron part of the product. Since it is expressed as a `SQTwoElectronOperator`.
+     */
+    ScalarUSQOneElectronOperatorProduct(const ScalarUSQOneElectronOperator<Scalar>& o, const ScalarUSQTwoElectronOperator<Scalar>& t) :
+        o {o},
+        t {t} {}
+
+
+    /*
+     *  MARK: Access
+     */
+
+    /**
+     *  @return A read-only reference to the one-electron part of the product.
+     */
+    const ScalarUSQOneElectronOperator<Scalar>& oneElectron() const { return this->o; }
+
+    /**
+     *  @return A read-only reference to the two-electron part of the product.
+     */
+    const ScalarUSQTwoElectronOperator<Scalar>& twoElectron() const { return this->t; }
+
+    /**
+     *  @return A writable reference to the one-electron part of the product.
+     */
+    ScalarUSQOneElectronOperator<Scalar>& oneElectron() { return this->o; }
+
+    /**
+     *  @return A writable reference to the two-electron part of the product.
+     */
+    ScalarUSQTwoElectronOperator<Scalar>& twoElectron() { return this->t; }
+
+
+    /*
+     *  MARK: Conforming to `VectorSpaceArithmetic`
+     */
+
+    /**
+     *  Addition-assignment.
+     */
+    ScalarUSQOneElectronOperatorProduct& operator+=(const ScalarUSQOneElectronOperatorProduct& rhs) override {
+
+        // Add the one- and two-electron operator parts.
+        this->oneElectron() += rhs.oneElectron();
+        this->twoElectron() += rhs.twoElectron();
+
+        return *this;
+    }
+
+
+    /**
+     *  Scalar multiplication-assignment.
+     */
+    ScalarUSQOneElectronOperatorProduct& operator*=(const Scalar& a) override {
+
+        // Multiply the one- and two-electron operator parts with the scalar.
+        this->oneElectron() *= a;
+        this->twoElectron() *= a;
+
+        return *this;
+    }
+
+
+    /*
+     *  MARK: Conforming to BasisTransformable
+     */
+
+    /**
+     *  Apply the basis transformation and return the resulting Hamiltonian.
+     *
+     *  @param T            The basis transformation.
+     *
+     *  @return The basis-transformed Hamiltonian.
+     */
+    Self transformed(const UTransformation<Scalar>& T) const override {
+
+        auto result = *this;
+
+        // Transform the one- and two-electron contributions.
+        result.oneElectron().transform(T);
+        result.twoElectron().transform(T);
+
+        return result;
+    }
+
+
+    // Allow the `rotate` method from `BasisTransformable`, since there's also a `rotate` from `JacobiRotatable`.
+    using BasisTransformable<Self>::rotate;
+
+    // Allow the `rotated` method from `BasisTransformable`, since there's also a `rotated` from `JacobiRotatable`.
+    using BasisTransformable<Self>::rotated;
+
+
+    /*
+     *  MARK: Conforming to JacobiRotatable
+     */
+
+    /**
+     *  Apply the Jacobi rotation and return the result.
+     *
+     *  @param jacobi_rotation          The Jacobi rotation.
+     *
+     *  @return The Jacobi-rotated object.
+     */
+    Self rotated(const UJacobiRotation& jacobi_rotation) const override {
+
+        auto result = *this;
+
+        // Transform the total one- and two-electron contributions.
+        result.oneElectron().rotate(jacobi_rotation);
+        result.twoElectron().rotate(jacobi_rotation);
+
+        return result;
+    }
+
+    // Allow the `rotate` method from `JacobiRotatable`, since there's also a `rotate` from `BasisTransformable`.
+    using JacobiRotatable<Self>::rotate;
+
+
+    /*
+     *  MARK: Expectation value
+     */
+
+    /**
+     *  Calculate the expectation value of this one-electron operator product.
+     *
+     *  @param D            The 1-DM.
+     *  @param d            The 2-DM.
+     *
+     *  @return The expectation value of this one-electron operator product.
+     */
+    Scalar calculateExpectationValue(const SpinResolved1DM<Scalar>& D, const SpinResolved2DM<Scalar>& d) const {
+
+        // We can access the expectation value of a scalar operator using an empty call.
+        return this->oneElectron().calculateExpectationValue(D)() + this->twoElectron().calculateExpectationValue(d)();
+    }
+};
+
+
+/*
+ *  MARK: `BasisTransformableTraits` for `ScalarUSQOneElectronOperatorProduct`.
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `BasisTransformable`.
+ *
+ *  @tparam Scalar          The scalar type of one of the matrix elements: real or complex.
+ */
+template <typename Scalar>
+struct BasisTransformableTraits<ScalarUSQOneElectronOperatorProduct<Scalar>> {
+
+    // The type of transformation matrix that is naturally associated to a `ScalarUSQOneElectronOperatorProduct`.
+    using Transformation = UTransformation<Scalar>;
+};
+
+
+/*
+ *  MARK: `JacobiRotatableTraits` for `ScalarUSQOneElectronOperatorProduct`.
+ */
+
+/**
+ *  A type that provides compile-time information related to the abstract interface `JacobiRotatable`.
+ *
+ *  @tparam Scalar           The scalar type of one of the matrix elements: real or complex.
+ */
+template <typename Scalar>
+struct JacobiRotatableTraits<ScalarUSQOneElectronOperatorProduct<Scalar>> {
 
     // The type of Jacobi rotation for which the Jacobi rotation should be defined.
     using JacobiRotationType = UJacobiRotation;

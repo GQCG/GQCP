@@ -173,7 +173,14 @@ void bindGSpinorBases(py::module& module) {
             [](const GSpinorBasis<double, GTOShell>& spinor_basis, const ElectronicSpin_zOperator& op) {
                 return spinor_basis.quantize(op);
             },
-            "Return the electronic spin 'z' operator expressed in this spinor basis.");
+            "Return the electronic spin 'z' operator expressed in this spinor basis.")
+        
+        .def(
+            "quantize",
+            [](const GSpinorBasis<double, GTOShell>& spinor_basis, const ElectronicSpinSquaredOperator& op) {
+                return spinor_basis.quantize(op);
+            },
+            "Return the electronic spin squared operator expressed in this spinor basis.");
 
     bindGSpinorBasisInterface(py_GSpinorBasis_d);
     bindGTOGSpinorBasisInterface(py_GSpinorBasis_d);
