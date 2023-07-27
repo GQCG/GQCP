@@ -321,11 +321,11 @@ public:
 
 
     /**
-     *  Quantize the z-component of the electronic spin operator in this unrestricted spin-orbital basis, i.e. express/project the one-electron operator in/onto this spin-orbital basis.
+     *  Quantize the electronic S^2 operator in this spin orbital basis.
      *
-     *  @param fq_op                                The first-quantized one-electron operator.
+     *  @param fq_S2_op             The first-quantized electronic S^2 operator.
      *
-     *  @return The second-quantized operator corresponding to the given first-quantized operator.
+     *  @return The second-quantized representation of the electronic S^2 operator in this spin orbital basis.
      */
     ScalarUSQOneElectronOperatorProduct<ExpansionScalar> quantize(const ElectronicSpinSquaredOperator& fq_op) const {
 
