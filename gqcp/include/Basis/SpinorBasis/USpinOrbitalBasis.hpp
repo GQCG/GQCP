@@ -28,6 +28,7 @@
 #include "Mathematical/Functions/CartesianDirection.hpp"
 #include "Operator/FirstQuantized/CoulombRepulsionOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicDipoleOperator.hpp"
+#include "Operator/FirstQuantized/ElectronicSpinSquaredOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicSpin_zOperator.hpp"
 #include "Operator/FirstQuantized/FQMolecularHamiltonian.hpp"
 #include "Operator/FirstQuantized/FQMolecularMagneticHamiltonian.hpp"
@@ -316,6 +317,65 @@ public:
         const auto S_z_b = -0.5 * S_b;
 
         return ResultOperator {S_z_a, S_z_b};
+    }
+
+
+    /**
+     *  Quantize the z-component of the electronic spin operator in this unrestricted spin-orbital basis, i.e. express/project the one-electron operator in/onto this spin-orbital basis.
+     *
+     *  @param fq_op                                The first-quantized one-electron operator.
+     *
+     *  @return The second-quantized operator corresponding to the given first-quantized operator.
+     */
+    ScalarUSQOneElectronOperatorProduct<ExpansionScalar> quantize(const ElectronicSpinSquaredOperator& fq_op) const {
+
+        // Dimension.
+        const auto dim = this->numberOfSpinOrbitals() / 2;
+
+        // We can use the quantization of the overlap operator for the quantization of S_z.
+        const auto S_a = this->alpha().overlap();  // In the current orbital basis.
+        const auto S_b = this->beta().overlap();   // In the current orbital basis.
+
+        // We also need S_minus_plus for the one electron contribution.
+        const auto S_mp_a_parameters = SquareMatrix<ExpansionScalar>::Zero(dim);
+        const auto S_mp_a = ScalarUSQOneElectronOperatorComponent<ExpansionScalar>(S_mp_a_parameters);
+        const auto S_mp_b = this->alpha().overlap();
+
+        // We need Sz^2 as well.
+        const auto S_z2_a = 0.25 * S_a;
+        const auto S_z2_b = -0.25 * S_b;
+
+        // Create the one electron component.
+        const ScalarUSQOneElectronOperator<ExpansionScalar> S_mp {S_mp_a, S_mp_b};
+        const ScalarUSQOneElectronOperator<ExpansionScalar> S_z2 {S_z2_a, S_z2_b};
+        const auto S_z = this->quantize(ElectronicSpin_zOperator());
+
+        const auto one_electron = S_z + S_mp + S_z2;
+
+        // Create the two electron component.
+        auto g_aa = ScalarPureUSQTwoElectronOperatorComponent<ExpansionScalar>(SquareRankFourTensor<ExpansionScalar>::Zero(dim));
+        auto g_bb = ScalarPureUSQTwoElectronOperatorComponent<ExpansionScalar>(SquareRankFourTensor<ExpansionScalar>::Zero(dim));
+
+        auto g_ab_par = SquareRankFourTensor<ExpansionScalar>::Zero(dim);
+        auto g_ba_par = SquareRankFourTensor<ExpansionScalar>::Zero(dim);
+
+        for (size_t p = 0; p < dim; p++) {
+            for (size_t q = 0; q < dim; q++) {
+                for (size_t r = 0; r < dim; r++) {
+                    for (size_t s = 0; s < dim; s++) {
+                        g_ab_par(p, q, r, s) = -1.0 * S_a.parameters()(p, r) * S_b.parameters()(q, s);
+                        g_ba_par(p, q, r, s) = -1.0 * S_b.parameters()(p, r) * S_a.parameters()(q, s);
+                    }
+                }
+            }
+        }
+
+        const auto g_ab = ScalarMixedUSQTwoElectronOperatorComponent<ExpansionScalar>(g_ab_par);
+        const auto g_ba = ScalarMixedUSQTwoElectronOperatorComponent<ExpansionScalar>(g_ba_par);
+
+        const auto two_electron = ScalarUSQTwoElectronOperator<ExpansionScalar>(g_aa, g_ab, g_ba, g_bb);
+
+        return ScalarUSQOneElectronOperatorProduct<ExpansionScalar> {one_electron, two_electron};
     }
 
 

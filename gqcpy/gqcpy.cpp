@@ -191,6 +191,7 @@ void bindPureUSQTwoElectronOperatorComponent(py::module& module);
 void bindRSQOneElectronOperator(py::module& module);
 void bindRSQTwoElectronOperator(py::module& module);
 void bindScalarGSQOneElectronOperatorProduct(py::module& module);
+void bindScalarUSQOneElectronOperatorProduct(py::module& module);
 void bindSQHamiltonians(py::module& module);
 void bindUSQOneElectronOperator(py::module& module);
 void bindUSQOneElectronOperatorComponent(py::module& module);
@@ -479,6 +480,7 @@ PYBIND11_MODULE(gqcpy, module) {
     gqcpy::bindRSQOneElectronOperator(module);
     gqcpy::bindRSQTwoElectronOperator(module);
     gqcpy::bindScalarGSQOneElectronOperatorProduct(module);
+    gqcpy::bindScalarUSQOneElectronOperatorProduct(module);
     gqcpy::bindSQHamiltonians(module);
     gqcpy::bindUSQOneElectronOperator(module);
     gqcpy::bindUSQOneElectronOperatorComponent(module);

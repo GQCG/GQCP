@@ -506,7 +506,7 @@ public:
      *
      *  @return The Jacobi-rotated object.
      */
-    Self rotated(const JacobiRotation& jacobi_rotation) const override {
+    Self rotated(const UJacobiRotation& jacobi_rotation) const override {
 
         auto result = *this;
 
@@ -571,7 +571,7 @@ template <typename Scalar>
 struct JacobiRotatableTraits<ScalarUSQOneElectronOperatorProduct<Scalar>> {
 
     // The type of Jacobi rotation for which the Jacobi rotation should be defined.
-    using JacobiRotationType = JacobiRotation;
+    using JacobiRotationType = UJacobiRotation;
 };
 
 

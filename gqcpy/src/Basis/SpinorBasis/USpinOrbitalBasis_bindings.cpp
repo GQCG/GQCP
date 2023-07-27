@@ -121,7 +121,14 @@ void bindUSpinOrbitalBasisInterface(Class& py_class) {
             [](const Type& spin_orbital_basis, const ElectronicSpin_zOperator& op) {
                 return spin_orbital_basis.quantize(op);
             },
-            "Return the spin Zeeman operator expressed in this spinor basis.");
+            "Return the spin z operator expressed in this spinor basis.")
+
+        .def(
+            "quantize",
+            [](const USpinOrbitalBasis<double, GTOShell>& spin_orbital_basis, const ElectronicSpinSquaredOperator& op) {
+                return spin_orbital_basis.quantize(op);
+            },
+            "Return the spin Squared operator expressed in this spinor basis.");
 }
 
 

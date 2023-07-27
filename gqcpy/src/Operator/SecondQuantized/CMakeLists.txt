@@ -7,6 +7,7 @@ list(APPEND python_bindings_sources
     ${CMAKE_CURRENT_SOURCE_DIR}/RSQOneElectronOperator_bindings.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/RSQTwoElectronOperator_bindings.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/ScalarGSQOneElectronOperatorProduct_bindings.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/ScalarUSQOneElectronOperatorProduct_bindings.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/SQHamiltonian_bindings.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/USQOneElectronOperator_bindings.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/USQOneElectronOperatorComponent_bindings.cpp
