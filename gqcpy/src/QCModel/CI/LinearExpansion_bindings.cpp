@@ -140,6 +140,13 @@ void bindQCModelCILinearExpansionDensityMatrixInterface(Class& py_class) {
             },
             "Return the one-electron density matrix (1-DM) for a wave function expansion of the specified type.")
 
+        .def(
+            "calculate2DM",
+            [](const Type& linear_expansion) {
+                return linear_expansion.calculate2DM();
+            },
+            "Return the two-electron density matrix (2-DM) for a wave function expansion of the specified type.")
+
         /*
          * MARK: Spin resolved
          */
