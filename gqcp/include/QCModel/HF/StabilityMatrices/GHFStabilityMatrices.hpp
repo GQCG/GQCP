@@ -219,11 +219,12 @@ public:
      *
      * @param occupied_orbitals       The amount of occupied orbitals in the system.
      * @param virtual_orbitals        The amount of virtual orbitals in the system.
+     * @param scaling_factor          The scaling factor of the stability step.
      *
      * @return  The transformation that rotates the solution in the direction of the lowest Hessian eigenvector, towards a global minimum.
      */
     template <typename S = Scalar>
-    enable_if_t<std::is_same<S, double>::value, GTransformation<double>> instabilityRotationMatrix(const size_t occupied_orbitals, const size_t virtual_orbitals) const {
+    enable_if_t<std::is_same<S, double>::value, GTransformation<double>> instabilityRotationMatrix(const size_t occupied_orbitals, const size_t virtual_orbitals, const double& scaling_factor = 1.0) const {
 
         // Calculate the internal stability matrix for the real valued GHF wavefunction.
         const auto H = this->internal();
@@ -256,7 +257,7 @@ public:
         kappa.bottomLeftCorner(virtual_orbitals, occupied_orbitals) = -1 * (sub_kappa.transpose().conjugate());
         kappa.bottomRightCorner(virtual_orbitals, virtual_orbitals) = Matrix::Zero(virtual_orbitals, virtual_orbitals);
 
-        return GTransformation<double> {(-1 * kappa).exp()};
+        return GTransformation<double> {(-1 * scaling_factor * kappa).exp()};
     }
 
 
@@ -265,11 +266,12 @@ public:
      *
      * @param occupied_orbitals       The amount of occupied orbitals in the system.
      * @param virtual_orbitals        The amount of virtual orbitals in the system.
+     * @param scaling_factor          The scaling factor of the stability step.
      *
      * @return  The transformation that rotates the solution in the direction of the lowest Hessian eigenvector, towards a global minimum.
      */
     template <typename S = Scalar>
-    enable_if_t<std::is_same<S, complex>::value, GTransformation<complex>> instabilityRotationMatrix(const size_t occupied_orbitals, const size_t virtual_orbitals) const {
+    enable_if_t<std::is_same<S, complex>::value, GTransformation<complex>> instabilityRotationMatrix(const size_t occupied_orbitals, const size_t virtual_orbitals, const double& scaling_factor = 1.0) const {
 
         // Calculate the internal stability matrix for the real valued GHF wavefunction.
         const auto H = this->internal();
@@ -313,7 +315,7 @@ public:
         kappa.bottomLeftCorner(virtual_orbitals, occupied_orbitals) = -1 * (sub_kappa.transpose().conjugate());
         kappa.bottomRightCorner(virtual_orbitals, virtual_orbitals) = Matrix::Zero(virtual_orbitals, virtual_orbitals);
 
-        return GTransformation<complex> {(-1 * kappa).exp()};
+        return GTransformation<complex> {(-1 * scaling_factor * kappa).exp()};
     }
 };
 
