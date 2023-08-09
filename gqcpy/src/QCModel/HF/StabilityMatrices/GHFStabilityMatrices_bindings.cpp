@@ -58,13 +58,13 @@ void bindQCModelGHFStabilityInterface(Class& py_class) {
 
         .def(
             "instabilityRotationMatrix",
-            [](const Type& stability_matrices, const size_t occupied_orbitals, const size_t virtual_orbitals) {
-                return stability_matrices.instabilityRotationMatrix(occupied_orbitals, virtual_orbitals);
+            [](const Type& stability_matrices, const size_t occupied_orbitals, const size_t virtual_orbitals, const double& scaling_factor) {
+                return stability_matrices.instabilityRotationMatrix(occupied_orbitals, virtual_orbitals, scaling_factor);
             },
             py::arg("N_occupied"),
             py::arg("N_virtual"),
-            "Return the transformation corresponding to the lowest-lying eigenvector of the internal instability Hessian."
-        );
+            py::arg("scaling_factor") = 1.0,
+            "Return the transformation corresponding to the lowest-lying eigenvector of the internal instability Hessian.");
 }
 
 
