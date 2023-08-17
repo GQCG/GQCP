@@ -234,3 +234,90 @@ BOOST_AUTO_TEST_CASE(H4_stability_rotation_complex) {
     // Check that the stability properties can be printed.
     stability_matrices_rotated.printStabilityDescription();
 }
+
+/**
+ *  Starting from a core guess, the UHF SCF algorithm finds a solution that should be internally unstable.
+ *  This test checks whether the stability checks confirm this. It also rotates (twice) towards the lowest eigenvector to finally find the stable solution.
+ *
+ *  The system of interest is a H3-triangle, 1 bohr apart and the reference implementation was done in PySCF.
+ */
+BOOST_AUTO_TEST_CASE(LiF_internal_instability) {
+
+    // Set up a spin orbital basis to obtain a second-quantized molecular Hamiltonian.
+    const auto left = GQCP::Nucleus(3, 0, 0, 0);
+    const auto right = GQCP::Nucleus(9, 0, 0, 2 * 1.88973);
+    const auto molecule = GQCP::Molecule({left, right}, 0);  // H3-triangle, 1 bohr apart.
+    const auto N_alpha = molecule.numberOfElectronPairs();
+    const auto N_beta = molecule.numberOfElectronPairs();
+    const auto nuc_rep = GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
+
+    const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
+    const auto S = spinor_basis.overlap();
+
+    const auto sq_hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // In an AO basis.
+
+    // Perform a UHF SCF calculation.
+    auto environment = GQCP::UHFSCFEnvironment<double>::WithCoreGuess(N_alpha, N_beta, sq_hamiltonian, S);
+    auto solver = GQCP::UHFSCFSolver<double>::Plain(1.0e-06, 3000);
+    const auto qc_structure = GQCP::QCMethod::UHF<double>().optimize(solver, environment);
+    auto uhf_parameters = qc_structure.groundStateParameters();
+
+    // We can now check the stability of the ground state parameters.
+    // For this we need an unrestricted Hamiltonian in the orthonormal MO basis.
+    const auto hamiltonian_unrestricted_mo = sq_hamiltonian.transformed(uhf_parameters.expansion());
+
+    // Calculate the stability matrices.
+    const auto stability_matrices = uhf_parameters.calculateStabilityMatrices(hamiltonian_unrestricted_mo);
+
+    // This method should be internally stable.
+    stability_matrices.printStabilityDescription();
+
+    // Check energy and internal stability.
+    BOOST_CHECK((qc_structure.groundStateEnergy() + nuc_rep) - (-105.295362733027) < 1e-6);
+    BOOST_CHECK(stability_matrices.isInternallyStable() == false);
+
+    // follow instability.
+    const auto K_alpha = spinor_basis.numberOfSpinors() / 2;
+    const auto K_beta = K_alpha;
+    const auto Va = K_alpha - N_alpha;
+    const auto Vb = K_beta - N_beta;
+
+    const auto rotation_matrix = stability_matrices.instabilityRotationMatrix(N_alpha, N_beta, Va, Vb);
+    const auto new_guess = uhf_parameters.expansion().rotated(rotation_matrix);
+
+    auto environment_2 = GQCP::UHFSCFEnvironment<double>(N_alpha, N_beta, sq_hamiltonian, S, new_guess);
+    const auto qc_structure_2 = GQCP::QCMethod::UHF<double>().optimize(solver, environment_2);
+
+    auto uhf_parameters_2 = qc_structure_2.groundStateParameters();
+    const auto hamiltonian_unrestricted_mo_2 = sq_hamiltonian.transformed(uhf_parameters_2.expansion());
+
+    // Calculate the stability matrices.
+    const auto stability_matrices_2 = uhf_parameters_2.calculateStabilityMatrices(hamiltonian_unrestricted_mo_2);
+
+    // This method should be internally stable.
+    stability_matrices_2.printStabilityDescription();
+
+    // Check energy and internal stability.
+    BOOST_CHECK((qc_structure_2.groundStateEnergy() + nuc_rep) - (-105.317595983304) < 1e-6);
+    BOOST_CHECK(stability_matrices_2.isInternallyStable() == false);
+
+    // follow instability.
+    const auto rotation_matrix_2 = stability_matrices_2.instabilityRotationMatrix(N_alpha, N_beta, Va, Vb);
+    const auto new_guess_2 = uhf_parameters_2.expansion().rotated(rotation_matrix_2);
+
+    auto environment_3 = GQCP::UHFSCFEnvironment<double>(N_alpha, N_beta, sq_hamiltonian, S, new_guess_2);
+    const auto qc_structure_3 = GQCP::QCMethod::UHF<double>().optimize(solver, environment_3);
+
+    auto uhf_parameters_3 = qc_structure_3.groundStateParameters();
+    const auto hamiltonian_unrestricted_mo_3 = sq_hamiltonian.transformed(uhf_parameters_3.expansion());
+
+    // Calculate the stability matrices.
+    const auto stability_matrices_3 = uhf_parameters_3.calculateStabilityMatrices(hamiltonian_unrestricted_mo_3);
+
+    // This method should be internally stable.
+    stability_matrices_3.printStabilityDescription();
+
+    // Check energy and internal stability.
+    BOOST_CHECK((qc_structure_3.groundStateEnergy() + nuc_rep) - (-105.325920420114) < 1e-6);
+    BOOST_CHECK(stability_matrices_3.isInternallyStable() == true);
+}
