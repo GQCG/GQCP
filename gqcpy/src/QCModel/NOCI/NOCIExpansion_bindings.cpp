@@ -99,6 +99,16 @@ void bindNOCIExpansions(py::module& module) {
     py::class_<NOCIExpansion<double, RNonOrthogonalStateBasis<double>>> py_NOCIExpansion_RNonOrthogonalStateBasis_d {module, "py_NOCIExpansion_RNonOrthogonalStateBasis_d", "The real-valued expansion (non-orthogonal configuration interaction) wave function model in a non-orthogonal basis of `restricted` states."};
     py::class_<NOCIExpansion<double, UNonOrthogonalStateBasis<double>>> py_NOCIExpansion_UNonOrthogonalStateBasis_d {module, "py_NOCIExpansion_UNonOrthogonalStateBasis_d", "The real-valued expansion (non-orthogonal configuration interaction) wave function model in a non-orthogonal basis of `unrestricted` states."};
 
+    py_NOCIExpansion_GNonOrthogonalStateBasis_d
+
+        .def(
+            "calculate2DM",
+            [](const NOCIExpansion<double, GNonOrthogonalStateBasis<double>>& NOCI_expansion) {
+                return NOCI_expansion.calculate2DM();
+            },
+            "Calculate the two-electron density matrix of this NOCI expansion wave function model.");
+
+
     // Expose the NOCI expansion interface.
     bindQCModelNOCIExpansionInterface(py_NOCIExpansion_GNonOrthogonalStateBasis_d);
     bindQCModelNOCIExpansionInterface(py_NOCIExpansion_RNonOrthogonalStateBasis_d);
@@ -108,6 +118,15 @@ void bindNOCIExpansions(py::module& module) {
     py::class_<NOCIExpansion<complex, GNonOrthogonalStateBasis<complex>>> py_NOCIExpansion_GNonOrthogonalStateBasis_cd {module, "py_NOCIExpansion_GNonOrthogonalStateBasis_cd", "The complex-valued expansion (non-orthogonal configuration interaction) wave function model in a non-orthogonal basis of `generalized` states."};
     py::class_<NOCIExpansion<complex, RNonOrthogonalStateBasis<complex>>> py_NOCIExpansion_RNonOrthogonalStateBasis_cd {module, "py_NOCIExpansion_RNonOrthogonalStateBasis_cd", "The complex-valued expansion (non-orthogonal configuration interaction) wave function model in a non-orthogonal basis of `restricted` states."};
     py::class_<NOCIExpansion<complex, UNonOrthogonalStateBasis<complex>>> py_NOCIExpansion_UNonOrthogonalStateBasis_cd {module, "py_NOCIExpansion_UNonOrthogonalStateBasis_cd", "The complex-valued expansion (non-orthogonal configuration interaction) wave function model in a non-orthogonal basis of `unrestricted` states."};
+
+    py_NOCIExpansion_GNonOrthogonalStateBasis_cd
+
+        .def(
+            "calculate2DM",
+            [](const NOCIExpansion<complex, GNonOrthogonalStateBasis<complex>>& NOCI_expansion) {
+                return NOCI_expansion.calculate2DM();
+            },
+            "Calculate the two-electron density matrix of this NOCI expansion wave function model.");
 
     // Expose the NOCI expansion interface.
     bindQCModelNOCIExpansionInterface(py_NOCIExpansion_GNonOrthogonalStateBasis_cd);

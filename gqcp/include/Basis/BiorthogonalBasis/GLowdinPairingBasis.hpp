@@ -34,7 +34,7 @@ namespace GQCP {
 
 /**
  *  A type used to represent a Löwdin pairing basis, generated from a set of generalized expansion coefficients.
- * 
+ *
  *  @tparam _Scalar                 The scalar type used for the expansion coefficients: real or complex.
  */
 template <typename _Scalar>
@@ -74,6 +74,9 @@ struct LowdinPairingBasisTraits<GLowdinPairingBasis<_Scalar>> {
 
     // The type of density matrix naturally associated with a `GLowdinPairingBasis`.
     using DM = G1DM<Scalar>;
+
+    // The type of two-particle density matrix naturally associated with a `GLowdinPairingBasis`.
+    using TwoDM = G2DM<Scalar>;
 };
 
 }  // namespace GQCP

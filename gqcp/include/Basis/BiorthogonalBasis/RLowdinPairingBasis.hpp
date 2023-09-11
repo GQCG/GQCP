@@ -74,6 +74,9 @@ struct LowdinPairingBasisTraits<RLowdinPairingBasis<_Scalar>> {
 
     // The type of density matrix naturally associated with the `RLowdinPairingBasis`.
     using DM = Orbital1DM<Scalar>;
+
+    // The type of two-particle density matrix naturally associated with the `RLowdinPairingBasis`.
+    using TwoDM = Orbital2DM<Scalar>;
 };
 
 }  // namespace GQCP
