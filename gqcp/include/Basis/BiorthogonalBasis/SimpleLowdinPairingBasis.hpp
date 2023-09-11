@@ -18,6 +18,7 @@
 #pragma once
 
 
+#include "Mathematical/Representation/SquareRankFourTensor.hpp"
 #include "Mathematical/Representation/Tensor.hpp"
 #include "Utilities/CRTP.hpp"
 #include "Utilities/Eigen.hpp"
@@ -61,6 +62,9 @@ public:
     // The matrices associated with the scalar of the expansion coefficients.
     using Matrix = MatrixX<Scalar>;
 
+    // The Square Rank Four Tensor associated with the scalar of the expansion coefficients.
+    using SquareTensor = SquareRankFourTensor<Scalar>;
+
     // The type of the derived Lowdin pairing Basis from this parent class.
     using DerivedLowdinPairingBasis = _DerivedLowdinPairingBasis;
 
@@ -72,6 +76,9 @@ public:
 
     // The density matrix associated with a lowdin paring basis.
     using DM = typename LowdinPairingBasisTraits<DerivedLowdinPairingBasis>::DM;
+
+    // The two-particle density matrix associated with a lowdin paring basis.
+    using TwoDM = typename LowdinPairingBasisTraits<DerivedLowdinPairingBasis>::TwoDM;
 
     // The representation of this `SimpleLowdinPairingBasis`.
     using Self = SimpleLowdinPairingBasis<Scalar, DerivedLowdinPairingBasis>;
@@ -420,6 +427,57 @@ public:
         }
 
         return DM {transition_1DM.transpose()};
+    }
+
+
+    /**
+     * Calculate and return the transition two-electron density matrix. The contractions vary depending on the number of zero overlaps (Burton equation 46 and 47).
+     * These matrices are then summed and returned.
+     *
+     * @return The transition two-electron density matrix.
+     *
+     * @note This implementation is based on equation 54 from the 2021 paper by Hugh Burton (https://aip.scitation.org/doi/abs/10.1063/5.0045442).
+     */
+    TwoDM transition2DM() const {
+
+        // Initialize a zero matrix.
+        SquareTensor transition_2DM = SquareTensor::Zero(this->M);
+
+        // The form of the transition one-electron density matrix depends on the number of zero overlaps.
+        if (this->numberOfZeroOverlaps() == 0) {
+            for (size_t mu = 0; mu < this->M; mu++) {
+                for (size_t nu = 0; nu < this->M; nu++) {
+                    for (size_t sigma = 0; sigma < this->M; sigma++) {
+                        for (size_t tau = 0; tau < this->M; tau++) {
+                            transition_2DM(mu, tau, nu, sigma) = this->reducedOverlap() * ((this->coDensitySum().matrix()(tau, mu) * this->coDensitySum().matrix()(sigma, nu)) - (this->coDensitySum().matrix()(sigma, mu) * this->coDensitySum().matrix()(tau, nu)));
+                        }
+                    }
+                }
+            }
+        } else if (this->numberOfZeroOverlaps() == 1) {
+            for (size_t mu = 0; mu < this->M; mu++) {
+                for (size_t nu = 0; nu < this->M; nu++) {
+                    for (size_t sigma = 0; sigma < this->M; sigma++) {
+                        for (size_t tau = 0; tau < this->M; tau++) {
+                            transition_2DM(mu, tau, nu, sigma) = this->reducedOverlap() * ((this->zeroOverlapCoDensity().matrix()(tau, mu) * this->coDensitySum().matrix()(sigma, nu)) + (this->coDensitySum().matrix()(tau, mu) * this->zeroOverlapCoDensity().matrix()(sigma, nu)) - (this->zeroOverlapCoDensity().matrix()(sigma, mu) * this->coDensitySum().matrix()(tau, nu)) - (this->coDensitySum().matrix()(sigma, mu) * this->zeroOverlapCoDensity().matrix()(tau, nu)));
+                        }
+                    }
+                }
+            }
+
+        } else if (this->numberOfZeroOverlaps() == 2) {
+            for (size_t mu = 0; mu < this->M; mu++) {
+                for (size_t nu = 0; nu < this->M; nu++) {
+                    for (size_t sigma = 0; sigma < this->M; sigma++) {
+                        for (size_t tau = 0; tau < this->M; tau++) {
+                            transition_2DM(mu, tau, nu, sigma) = this->reducedOverlap() * ((this->zeroOverlapCoDensity().matrix()(tau, mu) * this->zeroOverlapCoDensity().matrix()(sigma, nu)) - (this->zeroOverlapCoDensity().matrix()(sigma, mu) * this->zeroOverlapCoDensity().matrix()(tau, nu)));
+                        }
+                    }
+                }
+            }
+        }
+
+        return TwoDM {transition_2DM};
     }
 
 

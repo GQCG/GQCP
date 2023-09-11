@@ -66,14 +66,17 @@ struct LowdinPairingBasisTraits<ULowdinPairingBasisComponent<_Scalar>> {
     // The scalar type used to represent a coefficient of the biorthogonalized expansions: real or complex.
     using Scalar = _Scalar;
 
-    // The type of transformation that is naturally related to the `RLowdinPairingBasis`.
+    // The type of transformation that is naturally related to the `ULowdinPairingBasisComponent`.
     using Transformation = UTransformationComponent<Scalar>;
 
-    // The second-quantized representation of the overlap operator related to the `RLowdinPairingBasis`.
+    // The second-quantized representation of the overlap operator related to the `ULowdinPairingBasisComponent`.
     using SQOverlapOperator = ScalarUSQOneElectronOperatorComponent<Scalar>;
 
-    // The type of density matrix naturally associated with the `RLowdinPairingBasis`.
+    // The type of density matrix naturally associated with the `ULowdinPairingBasisComponent`.
     using DM = SpinResolved1DMComponent<Scalar>;
+
+    // The type of density matrix naturally associated with the `ULowdinPairingBasisComponent`.
+    using TwoDM = PureSpinResolved2DMComponent<Scalar>;
 };
 
 }  // namespace GQCP

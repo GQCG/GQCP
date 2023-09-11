@@ -29,6 +29,7 @@
 #include "DensityMatrix/SpinResolved1DM.hpp"
 #include "DensityMatrix/SpinResolved1DMComponent.hpp"
 #include "Mathematical/Representation/Matrix.hpp"
+#include "Mathematical/Representation/SquareRankFourTensor.hpp"
 #include "Utilities/aliases.hpp"
 
 #include <boost/algorithm/string.hpp>
@@ -175,6 +176,75 @@ public:
         return G1DM<complex> {D};
     }
 
+
+    /**
+     *  Calculate the general one-electron density matrix for a real valued expansion in a generalized non-orthogonal basis.
+     *
+     *  @return The generalized two-electron density matrix.
+     */
+    template <typename Z1 = Scalar, typename Z2 = NonOrthogonalBasis>
+    enable_if_t<std::is_same<Z1, double>::value && std::is_same<Z2, GNonOrthogonalStateBasis<double>>::value, G2DM<double>> calculate2DM() const {
+
+        // Initialize a zero matrix.
+        SquareRankFourTensor<double> d = SquareRankFourTensor<double>::Zero(this->nonOrthogonalStateBasis().basisStateDimension());
+
+        // Loop over all bra-ket combinations in the non-orthogonal basis.
+        for (size_t i = 0; i < this->nonOrthogonalStateBasis().numberOfBasisStates(); i++) {
+
+            // Initialize the parameters that are identical for the bra and the ket.
+            const auto occupied_orbitals = this->nonOrthogonalStateBasis().numberOfOccupiedOrbitals();
+            const auto S = this->nonOrthogonalStateBasis().metric();
+
+            for (size_t j = 0; j < this->nonOrthogonalStateBasis().numberOfBasisStates(); j++) {
+
+                // The first step is to create a biorthogonal basis from the two states that are being looped over.
+                const GLowdinPairingBasis<double> lowdin_pairing_basis {this->nonOrthogonalStateBasis().basisState(i), this->nonOrthogonalStateBasis().basisState(j), S, occupied_orbitals};
+
+                // Calculate the transition 1-DM.
+                const auto d_xw = lowdin_pairing_basis.transition2DM().tensor();
+                const auto total_coefficient = this->coefficient(i) * this->coefficient(j);
+
+                // Calculate the 1DM contribution of the bra and ket, add them to the total matrix and repeat the process.
+                d += total_coefficient * d_xw;
+            }
+        }
+        return G2DM<double> {d};
+    }
+
+
+    /**
+     *  Calculate the general one-electron density matrix for a real valued expansion in a generalized non-orthogonal basis.
+     *
+     *  @return The generalized two-electron density matrix.
+     */
+    template <typename Z1 = Scalar, typename Z2 = NonOrthogonalBasis>
+    enable_if_t<std::is_same<Z1, complex>::value && std::is_same<Z2, GNonOrthogonalStateBasis<complex>>::value, G2DM<complex>> calculate2DM() const {
+
+        // Initialize a zero matrix.
+        SquareRankFourTensor<complex> d = SquareRankFourTensor<complex>::Zero(this->nonOrthogonalStateBasis().basisStateDimension());
+
+        // Loop over all bra-ket combinations in the non-orthogonal basis.
+        for (size_t i = 0; i < this->nonOrthogonalStateBasis().numberOfBasisStates(); i++) {
+
+            // Initialize the parameters that are identical for the bra and the ket.
+            const auto occupied_orbitals = this->nonOrthogonalStateBasis().numberOfOccupiedOrbitals();
+            const auto S = this->nonOrthogonalStateBasis().metric();
+
+            for (size_t j = 0; j < this->nonOrthogonalStateBasis().numberOfBasisStates(); j++) {
+
+                // The first step is to create a biorthogonal basis from the two states that are being looped over.
+                const GLowdinPairingBasis<complex> lowdin_pairing_basis {this->nonOrthogonalStateBasis().basisState(i), this->nonOrthogonalStateBasis().basisState(j), S, occupied_orbitals};
+
+                // Calculate the transition 1-DM.
+                const auto d_xw = lowdin_pairing_basis.transition2DM().tensor();
+                const auto total_coefficient = this->coefficient(i) * this->coefficient(j);
+
+                // Calculate the 1DM contribution of the bra and ket, add them to the total matrix and repeat the process.
+                d += total_coefficient * d_xw;
+            }
+        }
+        return G2DM<complex> {d};
+    }
 
     /**
      * MARK: Density maytrices for `RNonOrthogonalStateBases`
