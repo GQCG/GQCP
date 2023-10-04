@@ -45,4 +45,4 @@ jobs:
         context: .
         file: docker/GQCP-dev.docker
         push: true
-        tags: gqcg/gqcp-dev:latest
+        tags: gqcg/gqcp-develop:latest
