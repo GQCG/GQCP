@@ -25,6 +25,7 @@
     - file: examples/HF-Stability
     - file: examples/Following-internal-GHF-instabilities
     - file: examples/ONVPath
+    - file: examples/CIS-with-CUHF-reference
     - file: examples/DOCI
     - file: examples/OO-DOCI
     - file: examples/FCI

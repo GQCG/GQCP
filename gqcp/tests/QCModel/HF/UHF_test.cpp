@@ -106,7 +106,7 @@ BOOST_AUTO_TEST_CASE(spinorbitalEnergies) {
 BOOST_AUTO_TEST_CASE(UHF_DMs) {
 
     // Perform a UHF calculation.
-    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+    const auto molecule = GQCP::Molecule::HRingFromDistance(3, 1.8897259886);
     const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> u_spin_orbital_basis {molecule, "STO-3G"};
     auto hamiltonian = u_spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // In an AO basis.
 
@@ -138,7 +138,7 @@ BOOST_AUTO_TEST_CASE(UHF_DMs) {
 BOOST_AUTO_TEST_CASE(UHF_DMs_scalar_basis) {
 
     // Perform a UHF calculation.
-    const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
+    const auto molecule = GQCP::Molecule::HRingFromDistance(3, 1.8897259886);
     const GQCP::USpinOrbitalBasis<double, GQCP::GTOShell> u_spin_orbital_basis {molecule, "STO-3G"};
     auto hamiltonian = u_spin_orbital_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // In an AO basis.
 

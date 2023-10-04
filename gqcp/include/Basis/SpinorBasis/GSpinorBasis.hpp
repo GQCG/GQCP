@@ -809,7 +809,8 @@ public:
      *
      *  @note Due to the way one-electron products are implemented, this quantization will only provide the correct result if the spinor basis is orthonormal.
      */
-    ScalarGSQOneElectronOperatorProduct<ExpansionScalar> quantize(const ElectronicSpinSquaredOperator& fq_S2_op) const {
+    template <typename S = ExpansionScalar>
+    enable_if_t<std::is_same<S, complex>::value, ScalarGSQOneElectronOperatorProduct<complex>> quantize(const ElectronicSpinSquaredOperator& fq_S2_op) const {
 
         // Prepare the 3 vector components of the electronic spin operator S = (S_x, S_y, S_z).
         const auto S_op = this->quantize(ElectronicSpinOperator());
@@ -824,6 +825,61 @@ public:
         const auto S_z_2 = S_z_op * S_z_op;
 
         return S_x_2 + S_y_2 + S_z_2;
+    }
+
+
+    /**
+     *  Quantize the electronic S^2 operator in this spinor basis.
+     *
+     *  @param fq_S2_op             The first-quantized electronic S^2 operator.
+     *
+     *  @return The second-quantized representation of the electronic S^2 operator in this spinor basis.
+     */
+    template <typename S = ExpansionScalar>
+    enable_if_t<std::is_same<S, double>::value, ScalarGSQOneElectronOperatorProduct<double>> quantize(const ElectronicSpinSquaredOperator& fq_S2_op) const {
+        // Define the dimensions and empty matrices.
+        const auto K = this->numberOfCoefficients(Spin::alpha);
+        const auto M = this->numberOfSpinors();
+
+        SquareMatrix<double> S_plus = SquareMatrix<double>::Zero(M);
+        SquareMatrix<double> S_minus = SquareMatrix<double>::Zero(M);
+        SquareMatrix<double> S_plus_minus = SquareMatrix<double>::Zero(M);
+        SquareMatrix<double> S_z_squared = SquareMatrix<double>::Zero(M);
+
+        // Calculate the necessary overlap integrals over the scalar bases.
+        const auto S_aa = IntegralCalculator::calculateLibintIntegrals(OverlapOperator(), this->scalarBases().alpha());
+
+        // Calculate the S_z operator.
+        const auto S_z = this->quantize(ElectronicSpin_zOperator()).parameters();
+
+        // Fill in the overlap in the correct positions.
+        S_plus.topRightCorner(K, K) = S_aa;
+        S_minus.bottomLeftCorner(K, K) = S_aa;
+        S_plus_minus.bottomRightCorner(K, K) = S_aa;
+
+        S_z_squared.topLeftCorner(K, K) = 0.25 * S_aa;
+        S_z_squared.bottomRightCorner(K, K) = 0.25 * S_aa;
+
+        // Create the one electron part.
+        ScalarGSQOneElectronOperator<double> one_electron_part {S_z_squared + S_z + S_plus_minus};
+
+        // Determine the tensors of the two-electron contributions.
+        SquareRankFourTensor<double> T_S_z = SquareRankFourTensor<double>::Zero(M);
+        SquareRankFourTensor<double> T_S_minus_plus = SquareRankFourTensor<double>::Zero(M);
+        for (size_t p = 0; p < M; p++) {
+            for (size_t q = 0; q < M; q++) {
+                for (size_t r = 0; r < M; r++) {
+                    for (size_t s = 0; s < M; s++) {
+                        T_S_z(p, q, r, s) = 2.0 * S_z(p, q) * S_z(r, s);                  // Include the prefactor '2' because we're going to encapsulate these matrix elements with a `ScalarGSQTwoElectronOperator`, whose matrix elements should not embet the prefactor 0.5 for two-electron operators.
+                        T_S_minus_plus(p, q, r, s) = 2.0 * S_minus(p, q) * S_plus(r, s);  // Include the prefactor '2' because we're going to encapsulate these matrix elements with a `ScalarGSQTwoElectronOperator`, whose matrix elements should not embet the prefactor 0.5 for two-electron operators.
+                    }
+                }
+            }
+        }
+        // Create the two electron part.
+        ScalarGSQTwoElectronOperator<double> two_electron_part = ScalarGSQTwoElectronOperator<double> {T_S_z} + ScalarGSQTwoElectronOperator<double> {T_S_minus_plus};
+
+        return ScalarGSQOneElectronOperatorProduct<double>(one_electron_part, two_electron_part);
     }
 
 

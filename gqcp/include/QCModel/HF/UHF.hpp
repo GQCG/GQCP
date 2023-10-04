@@ -259,7 +259,7 @@ public:
                 for (const auto& k : orbital_space.alpha().indices(OccupationType::k_occupied)) {
                     for (const auto& l : orbital_space.alpha().indices(OccupationType::k_occupied)) {
                         if ((i == j) && (k == l)) {
-                            d_aabb(i, j, k, l) += 1.0;
+                            d_bbaa(i, j, k, l) += 1.0;
                         }
                     }
                 }
@@ -273,11 +273,11 @@ public:
                 for (const auto& k : orbital_space.beta().indices(OccupationType::k_occupied)) {
                     for (const auto& l : orbital_space.beta().indices(OccupationType::k_occupied)) {
                         if ((i == j) && (k == l)) {
-                            d_aaaa(i, j, k, l) += 1.0;
+                            d_bbbb(i, j, k, l) += 1.0;
                         }
 
                         if ((i == l) && (j == k)) {
-                            d_aaaa(i, j, k, l) -= 1.0;
+                            d_bbbb(i, j, k, l) -= 1.0;
                         }
                     }
                 }
@@ -649,6 +649,7 @@ public:
         // The pure alpha-alpha two electron integrals are extracted from the Hamiltonian.
         // We need the anti-symmetrized tensor: (AI||JB) = (AI|JB) - (AB|JI). This is obtained by the `.antisymmetrized()` method.
         const auto g_aaaa = usq_hamiltonian.twoElectron().alphaAlpha().antisymmetrized().parameters();
+        const auto g_bbbb = usq_hamiltonian.twoElectron().betaBeta().antisymmetrized().parameters();
 
         // The elements F_BA and F_IJ are the eigenvalues of the one-electron Fock operator.
         // The excitationEnergies API can be used to find these values.
@@ -661,7 +662,11 @@ public:
             for (const auto& a : orbital_space_sigma.indices(OccupationType::k_virtual)) {
                 for (const auto& j : orbital_space_sigma.indices(OccupationType::k_occupied)) {
                     for (const auto& b : orbital_space_sigma.indices(OccupationType::k_virtual)) {
-                        A_iajb_slice(i, a, j, b) = g_aaaa(a, i, j, b);
+                        if (sigma == Spin::alpha) {
+                            A_iajb_slice(i, a, j, b) = g_aaaa(a, i, j, b);
+                        } else {
+                            A_iajb_slice(i, a, j, b) = g_bbbb(a, i, j, b);
+                        }
                     }
                 }
             }
@@ -708,6 +713,7 @@ public:
 
         // The pure beta-beta two electron integrals are extracted from the Hamiltonian.
         // We need the anti-symmetrized tensor: (AI||JB) = (AI|JB) - (AB|JI). This is obtained by the `.antisymmetrized()` method.
+        const auto g_aaaa = usq_hamiltonian.twoElectron().alphaAlpha().antisymmetrized().parameters();
         const auto g_bbbb = usq_hamiltonian.twoElectron().betaBeta().antisymmetrized().parameters();
 
         // The next step is to create the needed tensor slice.
@@ -717,7 +723,11 @@ public:
             for (const auto& a : orbital_space_sigma.indices(OccupationType::k_virtual)) {
                 for (const auto& j : orbital_space_sigma.indices(OccupationType::k_occupied)) {
                     for (const auto& b : orbital_space_sigma.indices(OccupationType::k_virtual)) {
-                        B_iajb_slice(i, a, j, b) = g_bbbb(a, i, b, j);
+                        if (sigma == Spin::alpha) {
+                            B_iajb_slice(i, a, j, b) = g_aaaa(a, i, b, j);
+                        } else {
+                            B_iajb_slice(i, a, j, b) = g_bbbb(a, i, b, j);
+                        }
                     }
                 }
             }

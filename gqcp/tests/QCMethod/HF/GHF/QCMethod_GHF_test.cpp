@@ -294,9 +294,11 @@ BOOST_AUTO_TEST_CASE(GHF_spin_expectation_values) {
 
     // Calculate <S^2> through a general expectation value, in MO basis. This requires the quantization of the S^2 operator, through some complex intermediates.
     const auto D_MO_real = ghf_parameters.calculateOrthonormalBasis1DM();
+    const auto D_AO_real = ghf_parameters.calculateScalarBasis1DM();
     const GQCP::G1DM<GQCP::complex> D_MO {D_MO_real.matrix().cast<GQCP::complex>()};
 
     auto d_MO_real = ghf_parameters.calculateOrthonormalBasis2DM();
+    auto d_AO_real = ghf_parameters.calculateScalarBasis2DM();
     const GQCP::G2DM<GQCP::complex> d_MO {d_MO_real.tensor().cast<GQCP::complex>()};
 
     GQCP::GSpinorBasis<GQCP::complex, GQCP::GTOShell> spinor_basis {molecule, "STO-3G"};
@@ -316,11 +318,18 @@ BOOST_AUTO_TEST_CASE(GHF_spin_expectation_values) {
     const auto S2_AO = S2_MO.transformed(C.inverse());
 
     const auto s2_general_AO = S2_AO.calculateExpectationValue(D_AO, d_AO);
+
+    // We can also quantize this instantly in AO basis.
+    const GQCP::GSpinorBasis<double, GQCP::GTOShell> g_spinor_basis_AO {molecule, "STO-3G"};
+    const auto s2_quantized = g_spinor_basis_AO.quantize(GQCP::ElectronicSpinSquaredOperator());
+    const auto s2_quantized_expval = s2_quantized.calculateExpectationValue(D_AO_real, d_AO_real);
+
     BOOST_CHECK(std::abs(s2_specialized - s2_general_AO) < 1.0e-08);
+    BOOST_CHECK(std::abs(s2_specialized - s2_quantized_expval) < 1.0e-08);
 }
 
 /**
- *  This test checks whether the lower lying complex GHF solution can indeed be found. 
+ *  This test checks whether the lower lying complex GHF solution can indeed be found.
  *  Note that this solution can also be found using real valued parameters.
  */
 BOOST_AUTO_TEST_CASE(h3_sto3g_complex) {

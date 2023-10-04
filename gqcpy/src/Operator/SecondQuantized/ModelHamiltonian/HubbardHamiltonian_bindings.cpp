@@ -18,6 +18,7 @@
 #include "Operator/SecondQuantized/ModelHamiltonian/HubbardHamiltonian.hpp"
 
 #include <pybind11/pybind11.h>
+#include <pybind11/stl.h>
 
 
 namespace gqcpy {
@@ -35,8 +36,15 @@ void bindHubbardHamiltonian(py::module& module) {
          *  MARK: Constructors
          */
 
-        .def(py::init<const HoppingMatrix<double>&>(),
-             py::arg("H"))
+        .def(py::init<const HoppingMatrix<double>&, const double&, const double&>(),
+             py::arg("H"),
+             py::arg("U"),
+             py::arg("mu") = 0.0)
+
+        .def(py::init<const HoppingMatrix<double>&, std::vector<double>&, std::vector<double>&>(),
+             py::arg("H"),
+             py::arg("U_vector"),
+             py::arg("mu_vector"))
 
 
         /*
@@ -62,7 +70,28 @@ void bindHubbardHamiltonian(py::module& module) {
             [](const HubbardHamiltonian<double>& hamiltonian) {
                 return hamiltonian.hoppingMatrix();
             },
-            "Return the Hubbard hopping matrix for this Hubbard model Hamiltonian.");
+            "Return the Hubbard Hamiltonian hopping matrix for this Hubbard model Hamiltonian.")
+
+        .def(
+            "oneElectronContributions",
+            [](const HubbardHamiltonian<double>& hamiltonian) {
+                return hamiltonian.oneElectronContributions();
+            },
+            "Return the one electron contributions as a matrix for this Hubbard model Hamiltonian.")
+
+        .def(
+            "onSitePotentialMatrix",
+            [](const HubbardHamiltonian<double>& hamiltonian) {
+                return hamiltonian.onSitePotentialMatrix();
+            },
+            "Return the on-site potentials as a matrix for this Hubbard model Hamiltonian.")
+
+        .def(
+            "onSiteRepulsionMatrix",
+            [](const HubbardHamiltonian<double>& hamiltonian) {
+                return hamiltonian.onSiteRepulsionMatrix();
+            },
+            "Return the on-site repulsion contributions as a matrix for this Hubbard model Hamiltonian.");
 }
 
 

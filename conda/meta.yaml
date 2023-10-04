@@ -19,7 +19,7 @@ requirements:
       - blas
       - boost-cpp
       - libcint
-      - eigen
+      - eigen 3.4.0
       - intel-openmp
       - mkl-include
       - mkl-static
@@ -34,7 +34,7 @@ requirements:
       - blas
       - boost-cpp
       - libcint
-      - eigen
+      - eigen 3.4.0
       - intel-openmp
       - mkl-include
       - mkl-static

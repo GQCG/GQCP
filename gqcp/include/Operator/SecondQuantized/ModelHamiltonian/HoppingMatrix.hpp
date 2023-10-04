@@ -27,7 +27,7 @@ namespace GQCP {
 
 /**
  *  The Hubbard hopping matrix.
- * 
+ *
  *  @tparam _Scalar         The scalar type of the elements of the hopping matrix.
  */
 template <typename _Scalar>
@@ -49,7 +49,7 @@ public:
 
     /**
      *  Create a hopping matrix from its representation as a `SquareMatrix`.
-     * 
+     *
      *  @param H        The Hubbard hopping matrix, represented as a `SquareMatrix`.
      */
     HoppingMatrix(const SquareMatrix<Scalar>& H) :
@@ -59,67 +59,40 @@ public:
             throw std::invalid_argument("HoppingMatrix::HoppingMatrix(const SquareMatrix<Scalar>&): The given hopping matrix must be Hermitian.");
         }
     }
-
-
-    /**
-     *  Generate the Hubbard hopping matrix from an adjacency matrix and Hubbard model parameters U and t.
-     *
-     *  @param A        The adjacency matrix specifying the connectivity of the Hubbard lattice.
-     *  @param t        The Hubbard parameter t. Note that a positive value for t means a negative neighbour hopping term.
-     *  @param U        The Hubbard parameter U.
-     *
-     *  @note This constructor is only available in the real case (for the std::enable_if, see https://stackoverflow.com/a/17842695/7930415).
-     */
-    template <typename Z = Scalar>
-    HoppingMatrix(const AdjacencyMatrix& A, const double t, const double U,
-                  typename std::enable_if<std::is_same<Z, double>::value>::type* = 0) :
-        HoppingMatrix(U * SquareMatrix<double>::Identity(A.matrix().dimension()) - t * A.matrix().cast<double>()) {}
-
+    
 
     /*
      *  MARK: Named constructors
      */
 
     /**
-     *  Create a hopping matrix from a comma-separated line.
-     * 
-     *  @param csline           A comma-separated line that contains the upper triangle (in column-major ordering) of the Hubbard hopping matrix.
-     * 
+     *  Create a hopping matrix from a vector containing the upper triangle.
+     *
+     *  @param csline           A vector that contains the upper triangle (in column-major ordering) of the Hubbard hopping matrix.
+     *
      *  @return The hopping matrix that corresponds to the given comma-separated line.
      */
     template <typename Z = Scalar>
-    static enable_if_t<std::is_same<Z, double>::value, HoppingMatrix<double>> FromCSLine(const std::string& csline) {
-
-        if (csline.empty()) {
-            throw std::invalid_argument("HoppingMatrix::FromCSLine(const std::string&): Comma-separated line was empty!");
-        }
-
-        // Split the comma-separated line into a std::vector
-        std::vector<std::string> splitted_line;
-        boost::split(splitted_line, csline, boost::is_any_of(","));
-
-        std::vector<double> triagonal_data;
-        for (const auto& x : splitted_line) {
-            triagonal_data.push_back(std::stod(x));  // immediately convert string to double
-        }
+    static enable_if_t<std::is_same<Z, double>::value, HoppingMatrix<double>> Dense(std::vector<double>& triagonal_data) {
 
         // Map the std::vector<double> into a VectorX<double> to be used into an other constructor
         GQCP::VectorX<double> upper_triangle = Eigen::Map<Eigen::VectorXd>(triagonal_data.data(), triagonal_data.size());
-        return GQCP::SquareMatrix<double>::SymmetricFromUpperTriangle(upper_triangle);
+        return HoppingMatrix {SquareMatrix<double>::SymmetricFromUpperTriangleWithoutDiagonal(upper_triangle)};
     }
 
 
     /**
-     *  Create a random Hopping matrix with elements distributed uniformly in [-1.0, 1.0].
-     * 
-     *  @param K        The number of lattice sites.
+     *  Generate the Hubbard hopping matrix from an adjacency matrix and Hubbard model parameter t.
      *
-     *  @return A random hopping matrix.
-     * 
-     *  @note This method is only available for real scalars.
+     *  @param A        The adjacency matrix specifying the connectivity of the Hubbard lattice.
+     *  @param t        The Hubbard parameter t. Note that a positive value for t means a negative neighbour hopping term.
+     *
+     *  @note This constructor is only available in the real case (for the std::enable_if, see https://stackoverflow.com/a/17842695/7930415).
      */
     template <typename Z = Scalar>
-    static enable_if_t<std::is_same<Z, double>::value, HoppingMatrix<double>> Random(const size_t K) { return SquareMatrix<double>::RandomSymmetric(K); }
+    static enable_if_t<std::is_same<Z, double>::value, HoppingMatrix<double>> Homogeneous(const AdjacencyMatrix& A, const double t) {
+        return HoppingMatrix {-1 * t * A.matrix().cast<double>()};
+    }
 
 
     /*

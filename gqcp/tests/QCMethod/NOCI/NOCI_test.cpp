@@ -24,6 +24,8 @@
 #include "Basis/Transformations/GTransformation.hpp"
 #include "Mathematical/Optimization/Eigenproblem/GeneralizedEigenproblemSolver.hpp"
 #include "Molecule/Molecule.hpp"
+#include "QCMethod/HF/GHF/GHF.hpp"
+#include "QCMethod/HF/GHF/GHFSCFSolver.hpp"
 #include "QCMethod/NOCI/NOCI.hpp"
 #include "QCMethod/NOCI/NOCIEnvironment.hpp"
 #include "QCModel/NOCI/NOCIExpansion.hpp"
@@ -462,4 +464,64 @@ BOOST_AUTO_TEST_CASE(NOCI_unrestricted_one_zero) {
 
     // Check the energy versus the reference.
     BOOST_CHECK(std::abs(reference_energy - NOCI_model.groundStateEnergy()) < 1e-6);
+}
+
+/**
+ *  This test checks whether the lower lying complex GHF solution can indeed be found.
+ *  Note that this solution can also be found using real valued parameters.
+ */
+BOOST_AUTO_TEST_CASE(h3_sto3g_s2) {
+
+    // Do our own GHF calculation.
+    const auto molecule = GQCP::Molecule::HRingFromDistance(3, 1.8897259886);  // H3-ring, 1 Angstrom apart.
+
+    const GQCP::GSpinorBasis<double, GQCP::GTOShell> spinor_basis {molecule, "sto-3g"};
+    const auto sq_hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // In an AO basis.
+    const auto S = spinor_basis.overlap();
+
+    // Solve the GHF SCF equations, using a special initial guess from @xdvriend's implementation. This makes sure the off-diagonal spin-blocks are not zero blocks and helps the calculation to converge to a true GHF solution.
+    GQCP::SquareMatrix<double> C_initial_matrix {6};
+    // clang-format off
+    C_initial_matrix << -0.3100721,  -0.15761163, -0.51612194, -0.38100148,  0.57090929, -0.37620802,
+                        -0.00741269,  0.38801568, -0.25974834, -0.41043789, -0.67141074, -0.40332126,
+                        -0.61961507,  0.18043708,  0.58367365,  0.17317687,  0.05464039, -0.45811451,
+                         0.67031756,  0.28266352,  0.37079814, -0.23639173,  0.37758712, -0.3671939,
+                         0.18059725, -0.8326703,   0.16282789, -0.03436191, -0.27832567, -0.41095738,
+                         0.19477298,  0.13713633, -0.4018331,   0.77416187,  0.01572939, -0.42686445;
+    // clang-format on
+
+    const GQCP::GTransformation<double> C_initial {C_initial_matrix};
+    GQCP::GHFSCFEnvironment<double> environment {3, sq_hamiltonian, S, C_initial};
+
+    auto solver = GQCP::GHFSCFSolver<double>::Plain(1.0e-08, 4000);
+    const auto qc_structure = GQCP::QCMethod::GHF<double>().optimize(solver, environment);
+    const auto nuc_rep = GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
+
+    const auto S2 = spinor_basis.quantize(GQCP::ElectronicSpinSquaredOperator());
+    const auto Sz = spinor_basis.quantize(GQCP::ElectronicSpin_zOperator());
+
+    const auto D_ghf = qc_structure.groundStateParameters().calculateScalarBasis1DM();
+    const auto d_ghf = qc_structure.groundStateParameters().calculateScalarBasis2DM();
+
+    // Create a non-orthogonal state basis, using the basis state vector, the overlap operator in AO basis and the number of occupied orbitals for alpha and beta.
+    std::vector<GQCP::GTransformation<double>> basis_vector {qc_structure.groundStateParameters().expansion()};
+    const auto NOS_basis = GQCP::GNonOrthogonalStateBasis<double> {basis_vector, S, 3};
+
+    // Create a dense solver and corresponding environment and put them together in the QCMethod.
+    auto noci_environment = GQCP::NOCIEnvironment::Dense(sq_hamiltonian, NOS_basis, molecule);
+    auto noci_solver = GQCP::GeneralizedEigenproblemSolver::Dense<double>();
+
+    // We do not specify the number of states, meaning we only request the ground state.
+    const auto NOCI_model = GQCP::QCMethod::NOCI<double, GQCP::GNonOrthogonalStateBasis<double>>(NOS_basis).optimize(noci_solver, noci_environment);
+
+    const auto D_noci = NOCI_model.groundStateParameters().calculate1DM();
+    const auto d_noci = NOCI_model.groundStateParameters().calculate2DM();
+
+    // Initialize a reference energy. (From the code of @xdvriend.)
+    const double reference_energy = -1.34044;
+
+    // Check if the converged energy matches the reference energy.
+    BOOST_CHECK(std::abs(reference_energy - NOCI_model.groundStateEnergy()) < 1e-6);
+    BOOST_CHECK(d_ghf.tensor().isApprox(d_noci.tensor()));
+    BOOST_CHECK(std::abs(0.840668 - S2.calculateExpectationValue(D_noci, d_noci)) < 1e-6);
 }

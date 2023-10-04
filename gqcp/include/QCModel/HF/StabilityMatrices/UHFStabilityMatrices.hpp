@@ -335,11 +335,12 @@ public:
      * @param occupied_beta_orbitals        The amount of occupied beta orbitals in the system.
      * @param virtual_alpha_orbitals        The amount of virtual alpha orbitals in the system.
      * @param virtual_beta_orbitals         The amount of virtual beta orbitals in the system.
+     * @param scaling_factor                The scaling factor of the stability step.
      *
      * @return  The transformation that rotates the solution in the direction of the lowest Hessian eigenvector, towards a global minimum.
      */
     template <typename S = Scalar>
-    enable_if_t<std::is_same<S, double>::value, UTransformation<double>> instabilityRotationMatrix(const size_t occupied_alpha_orbitals, const size_t occupied_beta_orbitals, const size_t virtual_alpha_orbitals, const size_t virtual_beta_orbitals) const {
+    enable_if_t<std::is_same<S, double>::value, UTransformation<double>> instabilityRotationMatrix(const size_t occupied_alpha_orbitals, const size_t occupied_beta_orbitals, const size_t virtual_alpha_orbitals, const size_t virtual_beta_orbitals, const double& scaling_factor = 1.0) const {
 
         // Calculate the internal stability matrix for the real valued GHF wavefunction.
         const auto H = this->internal();
@@ -391,7 +392,7 @@ public:
             Ka.topRightCorner(occupied_alpha_orbitals, virtual_alpha_orbitals) = kappa_alpha;
             Ka.bottomLeftCorner(virtual_alpha_orbitals, occupied_alpha_orbitals) = -1 * (kappa_alpha.transpose().conjugate());
             Ka.bottomRightCorner(virtual_alpha_orbitals, virtual_alpha_orbitals) = Matrix::Zero(virtual_alpha_orbitals, virtual_alpha_orbitals);
-            Ka = (-1 * Ka).exp();
+            Ka = (-1 * scaling_factor * Ka).exp();
         } else {
             Ka = Matrix::Zero(occupied_alpha_orbitals + virtual_alpha_orbitals, occupied_alpha_orbitals + virtual_alpha_orbitals);
             for (size_t i = 0; i < Ka.rows(); i++) {
@@ -403,7 +404,7 @@ public:
             Kb.topRightCorner(occupied_beta_orbitals, virtual_beta_orbitals) = kappa_beta;
             Kb.bottomLeftCorner(virtual_beta_orbitals, occupied_beta_orbitals) = -1 * (kappa_beta.transpose().conjugate());
             Kb.bottomRightCorner(virtual_beta_orbitals, virtual_beta_orbitals) = Matrix::Zero(virtual_beta_orbitals, virtual_beta_orbitals);
-            Kb = (-1 * Kb).exp();
+            Kb = (-1 * scaling_factor * Kb).exp();
         } else {
             Kb = Matrix::Zero(occupied_beta_orbitals + virtual_beta_orbitals, occupied_beta_orbitals + virtual_beta_orbitals);
             for (size_t i = 0; i < Ka.rows(); i++) {
@@ -422,11 +423,12 @@ public:
      * @param occupied_beta_orbitals        The amount of occupied beta orbitals in the system.
      * @param virtual_alpha_orbitals        The amount of virtual alpha orbitals in the system.
      * @param virtual_beta_orbitals         The amount of virtual beta orbitals in the system.
+     * @param scaling_factor                The scaling factor of the stability step.
      *
      * @return  The transformation that rotates the solution in the direction of the lowest Hessian eigenvector, towards a global minimum.
      */
     template <typename S = Scalar>
-    enable_if_t<std::is_same<S, complex>::value, UTransformation<complex>> instabilityRotationMatrix(const size_t occupied_alpha_orbitals, const size_t occupied_beta_orbitals, const size_t virtual_alpha_orbitals, const size_t virtual_beta_orbitals) const {
+    enable_if_t<std::is_same<S, complex>::value, UTransformation<complex>> instabilityRotationMatrix(const size_t occupied_alpha_orbitals, const size_t occupied_beta_orbitals, const size_t virtual_alpha_orbitals, const size_t virtual_beta_orbitals, const double& scaling_factor = 1.0) const {
 
         // Calculate the internal stability matrix for the real valued GHF wavefunction.
         const auto H = this->internal();
@@ -489,7 +491,7 @@ public:
             Ka.topRightCorner(occupied_alpha_orbitals, virtual_alpha_orbitals) = kappa_alpha;
             Ka.bottomLeftCorner(virtual_alpha_orbitals, occupied_alpha_orbitals) = -1 * (kappa_alpha.transpose().conjugate());
             Ka.bottomRightCorner(virtual_alpha_orbitals, virtual_alpha_orbitals) = Matrix::Zero(virtual_alpha_orbitals, virtual_alpha_orbitals);
-            Ka = (-1 * Ka).exp();
+            Ka = (-1 * scaling_factor * Ka).exp();
         } else {
             Ka = Matrix::Zero(occupied_alpha_orbitals + virtual_alpha_orbitals, occupied_alpha_orbitals + virtual_alpha_orbitals);
             for (size_t i = 0; i < Ka.rows(); i++) {
@@ -501,7 +503,7 @@ public:
             Kb.topRightCorner(occupied_beta_orbitals, virtual_beta_orbitals) = kappa_beta;
             Kb.bottomLeftCorner(virtual_beta_orbitals, occupied_beta_orbitals) = -1 * (kappa_beta.transpose().conjugate());
             Kb.bottomRightCorner(virtual_beta_orbitals, virtual_beta_orbitals) = Matrix::Zero(virtual_beta_orbitals, virtual_beta_orbitals);
-            Kb = (-1 * Kb).exp();
+            Kb = (-1 * scaling_factor * Kb).exp();
         } else {
             Kb = Matrix::Zero(occupied_beta_orbitals + virtual_beta_orbitals, occupied_beta_orbitals + virtual_beta_orbitals);
             for (size_t i = 0; i < Ka.rows(); i++) {

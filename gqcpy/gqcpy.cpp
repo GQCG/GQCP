@@ -88,6 +88,7 @@ void bindSpinResolved1DMComponent(py::module& module);
 void bindSpinResolved2DM(py::module& module);
 
 // Domain - HubbardDomain
+void bindDiscreteDomain(py::module& module);
 void bindHubbardDomain(py::module& module);
 
 
@@ -190,10 +191,18 @@ void bindPureUSQTwoElectronOperatorComponent(py::module& module);
 void bindRSQOneElectronOperator(py::module& module);
 void bindRSQTwoElectronOperator(py::module& module);
 void bindScalarGSQOneElectronOperatorProduct(py::module& module);
+void bindScalarUSQOneElectronOperatorProduct(py::module& module);
 void bindSQHamiltonians(py::module& module);
 void bindUSQOneElectronOperator(py::module& module);
 void bindUSQOneElectronOperatorComponent(py::module& module);
 void bindUSQTwoElectronOperator(py::module& module);
+
+
+// Partition
+void bindDiscreteDomainPartition(py::module& module);
+void bindONVPartition(py::module& module);
+void bindSpinResolvedElectronPartition(py::module& module);
+void bindSpinUnresolvedElectronPartition(py::module& module);
 
 
 // Physical
@@ -368,6 +377,7 @@ PYBIND11_MODULE(gqcpy, module) {
 
 
     // Domain - HubbardDomain
+    gqcpy::bindDiscreteDomain(module);
     gqcpy::bindHubbardDomain(module);
 
 
@@ -470,10 +480,18 @@ PYBIND11_MODULE(gqcpy, module) {
     gqcpy::bindRSQOneElectronOperator(module);
     gqcpy::bindRSQTwoElectronOperator(module);
     gqcpy::bindScalarGSQOneElectronOperatorProduct(module);
+    gqcpy::bindScalarUSQOneElectronOperatorProduct(module);
     gqcpy::bindSQHamiltonians(module);
     gqcpy::bindUSQOneElectronOperator(module);
     gqcpy::bindUSQOneElectronOperatorComponent(module);
     gqcpy::bindUSQTwoElectronOperator(module);
+
+
+    // Partition
+    gqcpy::bindDiscreteDomainPartition(module);
+    gqcpy::bindONVPartition(module);
+    gqcpy::bindSpinResolvedElectronPartition(module);
+    gqcpy::bindSpinUnresolvedElectronPartition(module);
 
 
     // Physical

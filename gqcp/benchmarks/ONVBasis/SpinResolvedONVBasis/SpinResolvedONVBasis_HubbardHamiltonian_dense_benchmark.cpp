@@ -20,8 +20,7 @@ static void constructHamiltonian(benchmark::State& state) {
     // Prepare a random Hubbard model Hamiltonian.
     const size_t K = state.range(0);    // The number of lattice sites.
     const size_t N_P = state.range(1);  // The number of electron pairs.
-    const auto H = GQCP::HoppingMatrix<double>::Random(K);
-    const GQCP::HubbardHamiltonian<double> hubbard_hamiltonian {H};
+    const auto hubbard_hamiltonian = GQCP::HubbardHamiltonian<double>::Random(K);
 
 
     // Set up the full spin-resolved ONV basis.
