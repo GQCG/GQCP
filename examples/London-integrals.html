@@ -728,6 +728,35 @@ document.write(`
 </div>
 </div>
 </div>
+<p>We can also include the Spin-Zeeman operator to the kinetic energy to obtain the kinetic energy when minimal coupling is applied at the Pauli-Hamiltonian level.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SZ1</span> <span class="o">=</span> <span class="n">spinor_basis1</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">SpinZeemanOperator</span><span class="p">(</span><span class="n">B1</span><span class="p">))</span><span class="o">.</span><span class="n">parameters</span><span class="p">()</span>
+<span class="n">SZ2</span> <span class="o">=</span> <span class="n">spinor_basis2</span><span class="o">.</span><span class="n">quantize</span><span class="p">(</span><span class="n">gqcpy</span><span class="o">.</span><span class="n">SpinZeemanOperator</span><span class="p">(</span><span class="n">B2</span><span class="p">))</span><span class="o">.</span><span class="n">parameters</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">SZ1</span><span class="p">,</span> <span class="n">SZ2</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 0.05      +0.j  0.03982941+0.j  0.        +0.j  0.        +0.j]
+ [ 0.03982941+0.j  0.05      +0.j  0.        +0.j  0.        +0.j]
+ [ 0.        +0.j  0.        +0.j -0.05      +0.j -0.03982941+0.j]
+ [ 0.        +0.j  0.        +0.j -0.03982941+0.j -0.05      +0.j]]
+
+[[ 0.05      +0.j  0.03982941+0.j  0.        +0.j  0.        +0.j]
+ [ 0.03982941+0.j  0.05      +0.j  0.        +0.j  0.        +0.j]
+ [ 0.        +0.j  0.        +0.j -0.05      +0.j -0.03982941+0.j]
+ [ 0.        +0.j  0.        +0.j -0.03982941+0.j -0.05      +0.j]]
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 

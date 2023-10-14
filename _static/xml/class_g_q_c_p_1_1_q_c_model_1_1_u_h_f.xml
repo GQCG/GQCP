@@ -481,7 +481,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="640" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="640" bodyend="684"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="640" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="640" bodyend="689"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a19a22c7c44449937e0048f626a014cd5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">GQCP::Matrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt;</type>
@@ -528,7 +528,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="700" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="700" bodyend="733"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="705" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="705" bodyend="743"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a64e9b12c8e05e1052f669de8f05d8a07" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" kindref="member">GQCP::MatrixX</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt;</type>
@@ -563,7 +563,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="749" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="749" bodyend="774"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="759" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="759" bodyend="784"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae1efa4e3a079baf50362ac2556d1789f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" kindref="member">GQCP::MatrixX</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt;</type>
@@ -598,7 +598,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="790" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="790" bodyend="815"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="800" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="800" bodyend="825"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a72be993c43e8973a4a72f8608632e07e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">GQCP::Matrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt;</type>
@@ -660,7 +660,7 @@
         <inbodydescription>
 <para>The mixed alpha-beta two electron integrals are extracted from the Hamiltonian.</para>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="834" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="834" bodyend="901"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="844" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="844" bodyend="911"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a970e0b9a5f3854ec2acfb95e75b32610" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_matrix" kindref="compound">GQCP::Matrix</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt;</type>
@@ -721,7 +721,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="920" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="920" bodyend="970"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="930" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="930" bodyend="980"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a781e5c73848a6bfb5db693803d489d65" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" kindref="member">GQCP::MatrixX</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt;</type>
@@ -756,7 +756,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="986" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="986" bodyend="1013"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="996" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="996" bodyend="1023"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a6565f06dc695bfa8a1be535a444b6536" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" kindref="member">GQCP::MatrixX</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt;</type>
@@ -791,7 +791,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="1029" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="1029" bodyend="1056"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="1039" column="19" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="1039" bodyend="1066"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ab8d6eeb50b84bd52e30f415439052f65" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>UHFStabilityMatrices&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt;</type>
@@ -822,7 +822,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="1066" column="26" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="1066" bodyend="1069"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="1076" column="26" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="1076" bodyend="1079"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a10d0afb3a3452ac926713a73cb394ba6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_spin_resolved" kindref="compound">SpinResolved</ref>&lt; <ref refid="namespace_g_q_c_p_1a1682f7552bb345204c32a5cc7c464dc6" kindref="member">GQCP::MatrixX</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt; &gt;</type>
@@ -841,7 +841,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="1078" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="1078" bodyend="1108"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="1088" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="1088" bodyend="1118"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a75def8b1ed213c242ac7a8417587e423" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_u_transformation" kindref="compound">UTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt; &amp;</type>
@@ -858,7 +858,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="1114" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="1114" bodyend="1114"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="1124" column="27" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="1124" bodyend="1124"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a15e287c301ada683bec5140177caecee" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_spin_resolved" kindref="compound">SpinResolved</ref>&lt; size_t &gt;</type>
@@ -875,7 +875,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="1120" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="1120" bodyend="1120"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="1130" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="1130" bodyend="1130"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a7dc72c9793142dd8329fb2092cef37bf" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>size_t</type>
@@ -892,7 +892,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="1126" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="1126" bodyend="1129"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="1136" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="1136" bodyend="1139"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae9ea834e051059018203fba5ccc4c05e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>size_t</type>
@@ -922,7 +922,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="1137" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="1137" bodyend="1139"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="1147" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="1147" bodyend="1149"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a22d6d09d1017a87a07add3260e03aae3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_spin_resolved" kindref="compound">SpinResolved</ref>&lt; std::vector&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt; &gt;</type>
@@ -939,7 +939,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="1145" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="1145" bodyend="1172"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="1155" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="1155" bodyend="1182"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a1164d3b81a7271e07ce84182fce34244" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="class_g_q_c_p_1_1_spin_resolved" kindref="compound">SpinResolved</ref>&lt; <ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt; &gt;</type>
@@ -956,7 +956,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="1178" column="24" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="1178" bodyend="1178"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="1188" column="24" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="1188" bodyend="1188"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a76068b80c899b821548b7886bb23580d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_spin_resolved_orbital_space" kindref="compound">SpinResolvedOrbitalSpace</ref></type>
@@ -973,7 +973,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="1184" column="30" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="1184" bodyend="1185"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="1194" column="30" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="1194" bodyend="1195"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a8533686fdb52cf9c761beae1c55baffe" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt;</type>
@@ -990,7 +990,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="1191" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="1191" bodyend="1198"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="1201" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="1201" bodyend="1208"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1a4c4e911c01ee0bad760236a6a57b01a2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_spin_resolved" kindref="compound">SpinResolved</ref>&lt; std::vector&lt; <ref refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ae7a146281f8c7be62eedfd166661bc79" kindref="member">Scalar</ref> &gt; &gt;</type>
@@ -1007,7 +1007,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="1204" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="1204" bodyend="1230"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="1214" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="1214" bodyend="1240"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
@@ -1568,7 +1568,7 @@
         <link refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f"/>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="45" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="45" bodyend="1231"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" line="45" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp" bodystart="45" bodyend="1241"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1aa6b6d1c5171e7d69bd308d438bcdc934" prot="private" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>C</name></member>
       <member refid="class_g_q_c_p_1_1_q_c_model_1_1_u_h_f_1ac0fa1294c9de2a55a1340b7dd691d216" prot="public" virt="non-virtual"><scope>GQCP::QCModel::UHF</scope><name>calculateElectronicEnergy</name></member>

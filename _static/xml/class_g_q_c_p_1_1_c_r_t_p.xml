@@ -21,6 +21,7 @@
     <derivedcompoundref refid="class_g_q_c_p_1_1_vector_space_arithmetic" prot="public" virt="non-virtual">GQCP::VectorSpaceArithmetic&lt; OperatorTraits&lt; SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, RSQTwoElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt; &gt;::DerivedOperator, OperatorTraits&lt; SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, RSQTwoElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt; &gt;::Scalar &gt;</derivedcompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_vector_space_arithmetic" prot="public" virt="non-virtual">GQCP::VectorSpaceArithmetic&lt; OperatorTraits&lt; _DerivedOperator &gt;::DerivedOperator, OperatorTraits&lt; _DerivedOperator &gt;::Scalar &gt;</derivedcompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_vector_space_arithmetic" prot="public" virt="non-virtual">GQCP::VectorSpaceArithmetic&lt; ScalarGSQOneElectronOperatorProduct&lt; _Scalar &gt;, _Scalar &gt;</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_vector_space_arithmetic" prot="public" virt="non-virtual">GQCP::VectorSpaceArithmetic&lt; ScalarUSQOneElectronOperatorProduct&lt; _Scalar &gt;, _Scalar &gt;</derivedcompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_vector_space_arithmetic" prot="public" virt="non-virtual">GQCP::VectorSpaceArithmetic&lt; _DerivedDM, _Scalar &gt;</derivedcompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_vector_space_arithmetic" prot="public" virt="non-virtual">GQCP::VectorSpaceArithmetic&lt; OperatorTraits&lt; SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;::DerivedOperator, OperatorTraits&lt; SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;::Scalar &gt;</derivedcompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_vector_space_arithmetic" prot="public" virt="non-virtual">GQCP::VectorSpaceArithmetic&lt; OperatorTraits&lt; SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;::DerivedOperator, OperatorTraits&lt; SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;::Scalar &gt;</derivedcompoundref>
@@ -44,6 +45,9 @@
     <derivedcompoundref refid="class_g_q_c_p_1_1_vector_space_arithmetic" prot="public" virt="non-virtual">GQCP::VectorSpaceArithmetic&lt; OperatorTraits&lt; SimpleSQTwoElectronOperator&lt; Scalar, _Vectorizer, GSQTwoElectronOperator&lt; Scalar, _Vectorizer &gt; &gt; &gt;::DerivedOperator, OperatorTraits&lt; SimpleSQTwoElectronOperator&lt; Scalar, _Vectorizer, GSQTwoElectronOperator&lt; Scalar, _Vectorizer &gt; &gt; &gt;::Scalar &gt;</derivedcompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_vector_space_arithmetic" prot="public" virt="non-virtual">GQCP::VectorSpaceArithmetic&lt; OperatorTraits&lt; SimpleSQOneElectronOperator&lt; Scalar, _Vectorizer, USQOneElectronOperatorComponent&lt; Scalar, _Vectorizer &gt; &gt; &gt;::DerivedOperator, OperatorTraits&lt; SimpleSQOneElectronOperator&lt; Scalar, _Vectorizer, USQOneElectronOperatorComponent&lt; Scalar, _Vectorizer &gt; &gt; &gt;::Scalar &gt;</derivedcompoundref>
     <derivedcompoundref refid="class_g_q_c_p_1_1_vector_space_arithmetic" prot="public" virt="non-virtual">GQCP::VectorSpaceArithmetic&lt; USQOneElectronOperator&lt; Scalar, _Vectorizer &gt;, Scalar &gt;</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_vector_space_arithmetic" prot="public" virt="non-virtual">GQCP::VectorSpaceArithmetic&lt; OperatorTraits&lt; SimpleSQTwoElectronOperator&lt; Scalar, _Vectorizer, PureUSQTwoElectronOperatorComponent&lt; Scalar, _Vectorizer &gt; &gt; &gt;::DerivedOperator, OperatorTraits&lt; SimpleSQTwoElectronOperator&lt; Scalar, _Vectorizer, PureUSQTwoElectronOperatorComponent&lt; Scalar, _Vectorizer &gt; &gt; &gt;::Scalar &gt;</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_vector_space_arithmetic" prot="public" virt="non-virtual">GQCP::VectorSpaceArithmetic&lt; OperatorTraits&lt; MixedUSQTwoElectronOperatorComponent&lt; Scalar, _Vectorizer &gt; &gt;::DerivedOperator, OperatorTraits&lt; MixedUSQTwoElectronOperatorComponent&lt; Scalar, _Vectorizer &gt; &gt;::Scalar &gt;</derivedcompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_vector_space_arithmetic" prot="public" virt="non-virtual">GQCP::VectorSpaceArithmetic&lt; USQTwoElectronOperator&lt; Scalar, _Vectorizer &gt;, Scalar &gt;</derivedcompoundref>
     <includes refid="_c_r_t_p_8hpp" local="no">CRTP.hpp</includes>
     <templateparamlist>
       <param>
@@ -128,16 +132,16 @@ Implementation adapted from (<ulink url="https://www.fluentcpp.com/2017/05/19/cr
         <childnode refid="8" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="26">
+      <node id="27">
         <label>GQCP::GSQOneElectronOperator&lt; _Scalar, _Vectorizer &gt;</label>
         <link refid="class_g_q_c_p_1_1_g_s_q_one_electron_operator"/>
-        <childnode refid="25" relation="public-inheritance">
+        <childnode refid="26" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="35">
+      <node id="36">
         <label>GQCP::GSQTwoElectronOperator&lt; _Scalar, _Vectorizer &gt;</label>
         <link refid="class_g_q_c_p_1_1_g_s_q_two_electron_operator"/>
-        <childnode refid="34" relation="public-inheritance">
+        <childnode refid="35" relation="public-inheritance">
         </childnode>
       </node>
       <node id="3">
@@ -152,22 +156,22 @@ Implementation adapted from (<ulink url="https://www.fluentcpp.com/2017/05/19/cr
         <childnode refid="14" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="37">
+      <node id="38">
         <label>GQCP::PureUSQTwoElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt;</label>
         <link refid="class_g_q_c_p_1_1_pure_u_s_q_two_electron_operator_component"/>
-        <childnode refid="36" relation="public-inheritance">
+        <childnode refid="37" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="28">
+      <node id="29">
         <label>GQCP::RSQOneElectronOperator&lt; _Scalar, _Vectorizer &gt;</label>
         <link refid="class_g_q_c_p_1_1_r_s_q_one_electron_operator"/>
-        <childnode refid="27" relation="public-inheritance">
+        <childnode refid="28" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="39">
+      <node id="40">
         <label>GQCP::RSQTwoElectronOperator&lt; _Scalar, _Vectorizer &gt;</label>
         <link refid="class_g_q_c_p_1_1_r_s_q_two_electron_operator"/>
-        <childnode refid="38" relation="public-inheritance">
+        <childnode refid="39" relation="public-inheritance">
         </childnode>
       </node>
       <node id="24">
@@ -176,22 +180,28 @@ Implementation adapted from (<ulink url="https://www.fluentcpp.com/2017/05/19/cr
         <childnode refid="23" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="42">
+      <node id="44">
         <label>GQCP::ScalarGSQOneElectronOperatorProduct&lt; _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product"/>
-        <childnode refid="41" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="44">
-        <label>GQCP::Simple1DM&lt; _Scalar, _DerivedDM &gt;</label>
-        <link refid="class_g_q_c_p_1_1_simple1_d_m"/>
         <childnode refid="43" relation="public-inheritance">
         </childnode>
       </node>
       <node id="46">
+        <label>GQCP::ScalarUSQOneElectronOperatorProduct&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_scalar_u_s_q_one_electron_operator_product"/>
+        <childnode refid="45" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="48">
+        <label>GQCP::Simple1DM&lt; _Scalar, _DerivedDM &gt;</label>
+        <link refid="class_g_q_c_p_1_1_simple1_d_m"/>
+        <childnode refid="47" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="50">
         <label>GQCP::Simple2DM&lt; _Scalar, _DerivedDM &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple2_d_m"/>
-        <childnode refid="43" relation="public-inheritance">
+        <childnode refid="47" relation="public-inheritance">
         </childnode>
       </node>
       <node id="6">
@@ -200,109 +210,121 @@ Implementation adapted from (<ulink url="https://www.fluentcpp.com/2017/05/19/cr
         <childnode refid="5" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="52">
+      <node id="56">
         <label>GQCP::SpinResolved1DM&lt; _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_spin_resolved1_d_m"/>
-        <childnode refid="51" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="56">
-        <label>GQCP::T1Amplitudes&lt; _Scalar &gt;</label>
-        <link refid="class_g_q_c_p_1_1_t1_amplitudes"/>
         <childnode refid="55" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="58">
-        <label>GQCP::T2Amplitudes&lt; _Scalar &gt;</label>
-        <link refid="class_g_q_c_p_1_1_t2_amplitudes"/>
-        <childnode refid="57" relation="public-inheritance">
-        </childnode>
-      </node>
       <node id="60">
-        <label>GQCP::USQOneElectronOperator&lt; _Scalar, _Vectorizer &gt;</label>
-        <link refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator"/>
+        <label>GQCP::T1Amplitudes&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_t1_amplitudes"/>
         <childnode refid="59" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="30">
-        <label>GQCP::USQOneElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt;</label>
-        <link refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator_component"/>
-        <childnode refid="29" relation="public-inheritance">
+      <node id="62">
+        <label>GQCP::T2Amplitudes&lt; _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_t2_amplitudes"/>
+        <childnode refid="61" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="63">
-        <label>GQCP::USQTwoElectronOperator&lt; _Scalar, _Vectorizer &gt;</label>
-        <link refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator"/>
-        <childnode refid="62" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="45">
-        <label>GQCP::Orbital1DM&lt; double &gt;</label>
-        <link refid="class_g_q_c_p_1_1_orbital1_d_m"/>
-        <childnode refid="44" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="47">
-        <label>GQCP::Orbital2DM&lt; double &gt;</label>
-        <link refid="class_g_q_c_p_1_1_orbital2_d_m"/>
-        <childnode refid="46" relation="public-inheritance">
+      <node id="64">
+        <label>GQCP::USQOneElectronOperator&lt; _Scalar, _Vectorizer &gt;</label>
+        <link refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator"/>
+        <childnode refid="63" relation="public-inheritance">
         </childnode>
       </node>
       <node id="31">
+        <label>GQCP::USQOneElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt;</label>
+        <link refid="class_g_q_c_p_1_1_u_s_q_one_electron_operator_component"/>
+        <childnode refid="30" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="67">
+        <label>GQCP::USQTwoElectronOperator&lt; _Scalar, _Vectorizer &gt;</label>
+        <link refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator"/>
+        <childnode refid="66" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>GQCP::MixedUSQTwoElectronOperatorComponent&lt; Scalar, _Vectorizer &gt;</label>
+        <link refid="class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component"/>
+        <childnode refid="24" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="49">
+        <label>GQCP::Orbital1DM&lt; double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_orbital1_d_m"/>
+        <childnode refid="48" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="51">
+        <label>GQCP::Orbital2DM&lt; double &gt;</label>
+        <link refid="class_g_q_c_p_1_1_orbital2_d_m"/>
+        <childnode refid="50" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="32">
         <label>GQCP::SimpleSQOneElectronOperator&lt; Scalar, _Vectorizer, GSQOneElectronOperator&lt; Scalar, _Vectorizer &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator"/>
         <childnode refid="24" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="32">
+      <node id="33">
         <label>GQCP::SimpleSQOneElectronOperator&lt; Scalar, _Vectorizer, RSQOneElectronOperator&lt; Scalar, _Vectorizer &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator"/>
         <childnode refid="24" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="33">
+      <node id="34">
         <label>GQCP::SimpleSQOneElectronOperator&lt; Scalar, _Vectorizer, USQOneElectronOperatorComponent&lt; Scalar, _Vectorizer &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator"/>
         <childnode refid="24" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="25">
+      <node id="26">
         <label>GQCP::SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, GSQOneElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator"/>
         <childnode refid="24" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="27">
+      <node id="28">
         <label>GQCP::SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, RSQOneElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator"/>
         <childnode refid="24" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="29">
+      <node id="30">
         <label>GQCP::SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, USQOneElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple_s_q_one_electron_operator"/>
         <childnode refid="24" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="40">
+      <node id="41">
         <label>GQCP::SimpleSQTwoElectronOperator&lt; Scalar, _Vectorizer, GSQTwoElectronOperator&lt; Scalar, _Vectorizer &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator"/>
         <childnode refid="24" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="34">
+      <node id="42">
+        <label>GQCP::SimpleSQTwoElectronOperator&lt; Scalar, _Vectorizer, PureUSQTwoElectronOperatorComponent&lt; Scalar, _Vectorizer &gt; &gt;</label>
+        <link refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator"/>
+        <childnode refid="24" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="35">
         <label>GQCP::SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, GSQTwoElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator"/>
         <childnode refid="24" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="36">
+      <node id="37">
         <label>GQCP::SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, PureUSQTwoElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator"/>
         <childnode refid="24" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="38">
+      <node id="39">
         <label>GQCP::SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, RSQTwoElectronOperator&lt; _Scalar, _Vectorizer &gt; &gt;</label>
         <link refid="class_g_q_c_p_1_1_simple_s_q_two_electron_operator"/>
         <childnode refid="24" relation="public-inheritance">
@@ -332,13 +354,13 @@ Implementation adapted from (<ulink url="https://www.fluentcpp.com/2017/05/19/cr
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="64">
+      <node id="68">
         <label>GQCP::VectorSpaceArithmetic&lt; EvaluableLinearCombination&lt; Scalar, BasisFunction &gt;, Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="65">
+      <node id="69">
         <label>GQCP::VectorSpaceArithmetic&lt; EvaluableLinearCombination&lt; Scalar, BasisFunctionDerivative &gt;, Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
         <childnode refid="1" relation="public-inheritance">
@@ -350,7 +372,7 @@ Implementation adapted from (<ulink url="https://www.fluentcpp.com/2017/05/19/cr
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="54">
+      <node id="58">
         <label>GQCP::VectorSpaceArithmetic&lt; EvaluableLinearCombination&lt; _Scalar, _BasisFunction &gt;, _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
         <childnode refid="1" relation="public-inheritance">
@@ -374,25 +396,31 @@ Implementation adapted from (<ulink url="https://www.fluentcpp.com/2017/05/19/cr
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
+      <node id="80">
+        <label>GQCP::VectorSpaceArithmetic&lt; OperatorTraits&lt; MixedUSQTwoElectronOperatorComponent&lt; Scalar, _Vectorizer &gt; &gt;::DerivedOperator, OperatorTraits&lt; MixedUSQTwoElectronOperatorComponent&lt; Scalar, _Vectorizer &gt; &gt;::Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
       <node id="16">
         <label>GQCP::VectorSpaceArithmetic&lt; OperatorTraits&lt; MixedUSQTwoElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt; &gt;::DerivedOperator, OperatorTraits&lt; MixedUSQTwoElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt; &gt;::Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="66">
+      <node id="70">
         <label>GQCP::VectorSpaceArithmetic&lt; OperatorTraits&lt; SimpleSQOneElectronOperator&lt; Scalar, _Vectorizer, GSQOneElectronOperator&lt; Scalar, _Vectorizer &gt; &gt; &gt;::DerivedOperator, OperatorTraits&lt; SimpleSQOneElectronOperator&lt; Scalar, _Vectorizer, GSQOneElectronOperator&lt; Scalar, _Vectorizer &gt; &gt; &gt;::Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="71">
+      <node id="75">
         <label>GQCP::VectorSpaceArithmetic&lt; OperatorTraits&lt; SimpleSQOneElectronOperator&lt; Scalar, _Vectorizer, RSQOneElectronOperator&lt; Scalar, _Vectorizer &gt; &gt; &gt;::DerivedOperator, OperatorTraits&lt; SimpleSQOneElectronOperator&lt; Scalar, _Vectorizer, RSQOneElectronOperator&lt; Scalar, _Vectorizer &gt; &gt; &gt;::Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="73">
+      <node id="77">
         <label>GQCP::VectorSpaceArithmetic&lt; OperatorTraits&lt; SimpleSQOneElectronOperator&lt; Scalar, _Vectorizer, USQOneElectronOperatorComponent&lt; Scalar, _Vectorizer &gt; &gt; &gt;::DerivedOperator, OperatorTraits&lt; SimpleSQOneElectronOperator&lt; Scalar, _Vectorizer, USQOneElectronOperatorComponent&lt; Scalar, _Vectorizer &gt; &gt; &gt;::Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
         <childnode refid="1" relation="public-inheritance">
@@ -410,20 +438,26 @@ Implementation adapted from (<ulink url="https://www.fluentcpp.com/2017/05/19/cr
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="61">
+      <node id="65">
         <label>GQCP::VectorSpaceArithmetic&lt; OperatorTraits&lt; SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, USQOneElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt; &gt; &gt;::DerivedOperator, OperatorTraits&lt; SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, USQOneElectronOperatorComponent&lt; _Scalar, _Vectorizer &gt; &gt; &gt;::Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="48">
+      <node id="52">
         <label>GQCP::VectorSpaceArithmetic&lt; OperatorTraits&lt; SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;::DerivedOperator, OperatorTraits&lt; SimpleSQOneElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;::Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="72">
+      <node id="76">
         <label>GQCP::VectorSpaceArithmetic&lt; OperatorTraits&lt; SimpleSQTwoElectronOperator&lt; Scalar, _Vectorizer, GSQTwoElectronOperator&lt; Scalar, _Vectorizer &gt; &gt; &gt;::DerivedOperator, OperatorTraits&lt; SimpleSQTwoElectronOperator&lt; Scalar, _Vectorizer, GSQTwoElectronOperator&lt; Scalar, _Vectorizer &gt; &gt; &gt;::Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="79">
+        <label>GQCP::VectorSpaceArithmetic&lt; OperatorTraits&lt; SimpleSQTwoElectronOperator&lt; Scalar, _Vectorizer, PureUSQTwoElectronOperatorComponent&lt; Scalar, _Vectorizer &gt; &gt; &gt;::DerivedOperator, OperatorTraits&lt; SimpleSQTwoElectronOperator&lt; Scalar, _Vectorizer, PureUSQTwoElectronOperatorComponent&lt; Scalar, _Vectorizer &gt; &gt; &gt;::Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
@@ -446,7 +480,7 @@ Implementation adapted from (<ulink url="https://www.fluentcpp.com/2017/05/19/cr
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="49">
+      <node id="53">
         <label>GQCP::VectorSpaceArithmetic&lt; OperatorTraits&lt; SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;::DerivedOperator, OperatorTraits&lt; SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;::Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
         <childnode refid="1" relation="public-inheritance">
@@ -464,7 +498,7 @@ Implementation adapted from (<ulink url="https://www.fluentcpp.com/2017/05/19/cr
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="67">
+      <node id="71">
         <label>GQCP::VectorSpaceArithmetic&lt; Orbital1DM&lt; double &gt;, double &gt;</label>
         <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
         <childnode refid="1" relation="public-inheritance">
@@ -476,7 +510,7 @@ Implementation adapted from (<ulink url="https://www.fluentcpp.com/2017/05/19/cr
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="68">
+      <node id="72">
         <label>GQCP::VectorSpaceArithmetic&lt; Orbital2DM&lt; double &gt;, double &gt;</label>
         <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
         <childnode refid="1" relation="public-inheritance">
@@ -488,73 +522,85 @@ Implementation adapted from (<ulink url="https://www.fluentcpp.com/2017/05/19/cr
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="41">
+      <node id="43">
         <label>GQCP::VectorSpaceArithmetic&lt; ScalarGSQOneElectronOperatorProduct&lt; _Scalar &gt;, _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="50">
+      <node id="45">
+        <label>GQCP::VectorSpaceArithmetic&lt; ScalarUSQOneElectronOperatorProduct&lt; _Scalar &gt;, _Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="54">
         <label>GQCP::VectorSpaceArithmetic&lt; SpinDensity1DM&lt; _Scalar &gt;, _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="51">
+      <node id="55">
         <label>GQCP::VectorSpaceArithmetic&lt; SpinResolved1DM&lt; _Scalar &gt;, _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="53">
+      <node id="57">
         <label>GQCP::VectorSpaceArithmetic&lt; SpinResolved1DMComponent&lt; _Scalar &gt;, _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="70">
+      <node id="74">
         <label>GQCP::VectorSpaceArithmetic&lt; T1Amplitudes&lt; Scalar &gt;, Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="55">
+      <node id="59">
         <label>GQCP::VectorSpaceArithmetic&lt; T1Amplitudes&lt; _Scalar &gt;, _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="69">
+      <node id="73">
         <label>GQCP::VectorSpaceArithmetic&lt; T2Amplitudes&lt; Scalar &gt;, Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="57">
+      <node id="61">
         <label>GQCP::VectorSpaceArithmetic&lt; T2Amplitudes&lt; _Scalar &gt;, _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="74">
+      <node id="78">
         <label>GQCP::VectorSpaceArithmetic&lt; USQOneElectronOperator&lt; Scalar, _Vectorizer &gt;, Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="59">
+      <node id="63">
         <label>GQCP::VectorSpaceArithmetic&lt; USQOneElectronOperator&lt; _Scalar, _Vectorizer &gt;, _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="62">
+      <node id="81">
+        <label>GQCP::VectorSpaceArithmetic&lt; USQTwoElectronOperator&lt; Scalar, _Vectorizer &gt;, Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="66">
         <label>GQCP::VectorSpaceArithmetic&lt; USQTwoElectronOperator&lt; _Scalar, _Vectorizer &gt;, _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="43">
+      <node id="47">
         <label>GQCP::VectorSpaceArithmetic&lt; _DerivedDM, _Scalar &gt;</label>
         <link refid="class_g_q_c_p_1_1_vector_space_arithmetic"/>
         <childnode refid="1" relation="public-inheritance">

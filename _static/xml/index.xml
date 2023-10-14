@@ -300,6 +300,9 @@
   <compound refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_scalar_g_s_q_one_electron_operator_product_3_01_scalar_01_4_01_4" kind="struct"><name>GQCP::BasisTransformableTraits&lt; ScalarGSQOneElectronOperatorProduct&lt; Scalar &gt; &gt;</name>
     <member refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_scalar_g_s_q_one_electron_operator_product_3_01_scalar_01_4_01_4_1af4d444e48084797f7bd578004e6c361d" kind="typedef"><name>Transformation</name></member>
   </compound>
+  <compound refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_scalar_u_s_q_one_electron_operator_product_3_01_scalar_01_4_01_4" kind="struct"><name>GQCP::BasisTransformableTraits&lt; ScalarUSQOneElectronOperatorProduct&lt; Scalar &gt; &gt;</name>
+    <member refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_scalar_u_s_q_one_electron_operator_product_3_01_scalar_01_4_01_4_1aefe8b4d365e7331d7736539ece5290a9" kind="typedef"><name>Transformation</name></member>
+  </compound>
   <compound refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_simple_s_q_two_electron_operator_3_01___scalac9aaaed38cee8ca8d58805ca730bc427" kind="struct"><name>GQCP::BasisTransformableTraits&lt; SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;</name>
     <member refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_simple_s_q_two_electron_operator_3_01___scalac9aaaed38cee8ca8d58805ca730bc427_1aa3c48369388eedecb93f0f4fb13b85ab" kind="typedef"><name>Transformation</name></member>
   </compound>
@@ -1113,7 +1116,8 @@
     <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a11fe5ed21d1cf075f43c8bcbdfacca92" kind="function"><name>quantize</name></member>
     <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a4968d4266157455e4e8b0e69f6b0487a" kind="function"><name>quantize</name></member>
     <member refid="class_g_q_c_p_1_1_g_spinor_basis_1adb07b2944761a3dfa4952f54e29f7d12" kind="function"><name>quantize</name></member>
-    <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a07c10877443c76843ccebee8e5df2a68" kind="function"><name>quantize</name></member>
+    <member refid="class_g_q_c_p_1_1_g_spinor_basis_1aa6cec48557ef843ab901f485c22aa4b0" kind="function"><name>quantize</name></member>
+    <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a35a561b127972553b94236148abee94a" kind="function"><name>quantize</name></member>
     <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a84558401a2607c6b72621759c7874f76" kind="function"><name>scalarBases</name></member>
     <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a9bca5ab09f3984352e5c40cdb75eec8b" kind="function"><name>mullikenDomain</name></member>
     <member refid="class_g_q_c_p_1_1_g_spinor_basis_1a46340b1127f69b7cec4a82455ecd8eb4" kind="function"><name>mullikenDomain</name></member>
@@ -1385,6 +1389,9 @@
   </compound>
   <compound refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_scalar_g_s_q_one_electron_operator_product_3_01_scalar_01_4_01_4" kind="struct"><name>GQCP::JacobiRotatableTraits&lt; ScalarGSQOneElectronOperatorProduct&lt; Scalar &gt; &gt;</name>
     <member refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_scalar_g_s_q_one_electron_operator_product_3_01_scalar_01_4_01_4_1a50a688465998e62b57be61b980a8b15c" kind="typedef"><name>JacobiRotationType</name></member>
+  </compound>
+  <compound refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_scalar_u_s_q_one_electron_operator_product_3_01_scalar_01_4_01_4" kind="struct"><name>GQCP::JacobiRotatableTraits&lt; ScalarUSQOneElectronOperatorProduct&lt; Scalar &gt; &gt;</name>
+    <member refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_scalar_u_s_q_one_electron_operator_product_3_01_scalar_01_4_01_4_1ace3528918a54e986cae72451b0052fb2" kind="typedef"><name>JacobiRotationType</name></member>
   </compound>
   <compound refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_simple_s_q_two_electron_operator_3_01___scalar_00d91ca45987de7bd8c30b8b73d55a889" kind="struct"><name>GQCP::JacobiRotatableTraits&lt; SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;</name>
     <member refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_simple_s_q_two_electron_operator_3_01___scalar_00d91ca45987de7bd8c30b8b73d55a889_1a0a0a59859d13a1dbb1bea21632834fa2" kind="typedef"><name>JacobiRotationType</name></member>
@@ -2451,6 +2458,22 @@
     <member refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a555ca48e10ebe6ec4eabf755f32c1629" kind="function"><name>rotated</name></member>
     <member refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product_1a20bb473f3d35ea3f1d93f5c66dc54241" kind="function"><name>calculateExpectationValue</name></member>
   </compound>
+  <compound refid="class_g_q_c_p_1_1_scalar_u_s_q_one_electron_operator_product" kind="class"><name>GQCP::ScalarUSQOneElectronOperatorProduct</name>
+    <member refid="class_g_q_c_p_1_1_scalar_u_s_q_one_electron_operator_product_1ae101f97c4d96c5c6ce336e5de17681a5" kind="typedef"><name>Scalar</name></member>
+    <member refid="class_g_q_c_p_1_1_scalar_u_s_q_one_electron_operator_product_1a07dca2fe755cbf29ee64a10a0c7777cb" kind="typedef"><name>Self</name></member>
+    <member refid="class_g_q_c_p_1_1_scalar_u_s_q_one_electron_operator_product_1aa1de6a0e7bd5efee6c566fcf7179de67" kind="variable"><name>o</name></member>
+    <member refid="class_g_q_c_p_1_1_scalar_u_s_q_one_electron_operator_product_1a40dfd4951d0948f6e1081e411e24c915" kind="variable"><name>t</name></member>
+    <member refid="class_g_q_c_p_1_1_scalar_u_s_q_one_electron_operator_product_1a18f0643c1c4c957463b3ed13655244f1" kind="function"><name>ScalarUSQOneElectronOperatorProduct</name></member>
+    <member refid="class_g_q_c_p_1_1_scalar_u_s_q_one_electron_operator_product_1a8eddb6dfe10b3a3f1ab6f8fe276757a4" kind="function"><name>oneElectron</name></member>
+    <member refid="class_g_q_c_p_1_1_scalar_u_s_q_one_electron_operator_product_1ad3d47a2d0fd1dced2c5e6a8746d9eace" kind="function"><name>twoElectron</name></member>
+    <member refid="class_g_q_c_p_1_1_scalar_u_s_q_one_electron_operator_product_1a7dab39aca5a3999795c30186c7ea94db" kind="function"><name>oneElectron</name></member>
+    <member refid="class_g_q_c_p_1_1_scalar_u_s_q_one_electron_operator_product_1acd141d9c6e9cc7da9e948d9f86e9f0d1" kind="function"><name>twoElectron</name></member>
+    <member refid="class_g_q_c_p_1_1_scalar_u_s_q_one_electron_operator_product_1a78ed779475ce2402eb6ceb7e9f86a572" kind="function"><name>operator+=</name></member>
+    <member refid="class_g_q_c_p_1_1_scalar_u_s_q_one_electron_operator_product_1a82f2805f0809dc3fc267fa36470833f9" kind="function"><name>operator*=</name></member>
+    <member refid="class_g_q_c_p_1_1_scalar_u_s_q_one_electron_operator_product_1a3a8b65de21621debaffd87c5a63c9daa" kind="function"><name>transformed</name></member>
+    <member refid="class_g_q_c_p_1_1_scalar_u_s_q_one_electron_operator_product_1a13a2a944a932c88c3d87dc132c5b6d81" kind="function"><name>rotated</name></member>
+    <member refid="class_g_q_c_p_1_1_scalar_u_s_q_one_electron_operator_product_1a1656ed807eb95ea022214aab4e51d98f" kind="function"><name>calculateExpectationValue</name></member>
+  </compound>
   <compound refid="class_g_q_c_p_1_1_shell_set" kind="class"><name>GQCP::ShellSet</name>
     <member refid="class_g_q_c_p_1_1_shell_set_1a4d526a30292159e7edc9c5bc0225967f" kind="typedef"><name>Shell</name></member>
     <member refid="class_g_q_c_p_1_1_shell_set_1a4434580128915230eabf525c93a56dde" kind="typedef"><name>Primitive</name></member>
@@ -3145,6 +3168,7 @@
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1a3a556b1182985c621912237ffd91af9e" kind="function"><name>lowdinOrthonormalization</name></member>
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1a4eb3449b97998a8f1aad758fc9add0a3" kind="function"><name>lowdinOrthonormalize</name></member>
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1ae9bdd6d24535343b77020c561f24ae49" kind="function"><name>quantize</name></member>
+    <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1a63468459ce0e9e8febe2229cb2769c17" kind="function"><name>quantize</name></member>
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1af5dca5a682a24c055cb2b1b576411814" kind="function"><name>quantize</name></member>
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1a2983417dd2a15dc2141965a31e6436e6" kind="function"><name>overlap</name></member>
     <member refid="class_g_q_c_p_1_1_u_spin_orbital_basis_1aabc94b88ca368c7eb4092dad2556f1ce" kind="function"><name>quantize</name></member>

@@ -1890,6 +1890,8 @@
         <link refid="_electronic_spin_squared_operator_8hpp"/>
         <childnode refid="6" relation="include">
         </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
         <childnode refid="205" relation="include">
         </childnode>
       </node>
@@ -2269,6 +2271,8 @@
         <childnode refid="128" relation="include">
         </childnode>
         <childnode refid="178" relation="include">
+        </childnode>
+        <childnode refid="212" relation="include">
         </childnode>
         <childnode refid="100" relation="include">
         </childnode>

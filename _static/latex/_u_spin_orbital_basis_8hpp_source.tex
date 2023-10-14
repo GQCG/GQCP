@@ -32,404 +32,457 @@
 \DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_cartesian_direction_8hpp}{Mathematical/Functions/CartesianDirection.hpp}}"{}}}
 \DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_coulomb_repulsion_operator_8hpp}{Operator/FirstQuantized/CoulombRepulsionOperator.hpp}}"{}}}
 \DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_electronic_dipole_operator_8hpp}{Operator/FirstQuantized/ElectronicDipoleOperator.hpp}}"{}}}
-\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_electronic_spin__z_operator_8hpp}{Operator/FirstQuantized/ElectronicSpin\_zOperator.hpp}}"{}}}
-\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_f_q_molecular_hamiltonian_8hpp}{Operator/FirstQuantized/FQMolecularHamiltonian.hpp}}"{}}}
-\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_f_q_molecular_magnetic_hamiltonian_8hpp}{Operator/FirstQuantized/FQMolecularMagneticHamiltonian.hpp}}"{}}}
-\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_f_q_molecular_pauli_hamiltonian_8hpp}{Operator/FirstQuantized/FQMolecularPauliHamiltonian.hpp}}"{}}}
-\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_kinetic_operator_8hpp}{Operator/FirstQuantized/KineticOperator.hpp}}"{}}}
-\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_nuclear_attraction_operator_8hpp}{Operator/FirstQuantized/NuclearAttractionOperator.hpp}}"{}}}
-\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_overlap_operator_8hpp}{Operator/FirstQuantized/OverlapOperator.hpp}}"{}}}
-\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_q_hamiltonian_8hpp}{Operator/SecondQuantized/SQHamiltonian.hpp}}"{}}}
-\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_u_s_q_one_electron_operator_8hpp}{Operator/SecondQuantized/USQOneElectronOperator.hpp}}"{}}}
-\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_u_s_q_two_electron_operator_8hpp}{Operator/SecondQuantized/USQTwoElectronOperator.hpp}}"{}}}
-\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_spin_resolved_base_8hpp}{QuantumChemical/SpinResolvedBase.hpp}}"{}}}
-\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{type__traits_8hpp}{Utilities/type\_traits.hpp}}"{}}}
-\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_electronic_spin_squared_operator_8hpp}{Operator/FirstQuantized/ElectronicSpinSquaredOperator.hpp}}"{}}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_electronic_spin__z_operator_8hpp}{Operator/FirstQuantized/ElectronicSpin\_zOperator.hpp}}"{}}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_f_q_molecular_hamiltonian_8hpp}{Operator/FirstQuantized/FQMolecularHamiltonian.hpp}}"{}}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_f_q_molecular_magnetic_hamiltonian_8hpp}{Operator/FirstQuantized/FQMolecularMagneticHamiltonian.hpp}}"{}}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_f_q_molecular_pauli_hamiltonian_8hpp}{Operator/FirstQuantized/FQMolecularPauliHamiltonian.hpp}}"{}}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_kinetic_operator_8hpp}{Operator/FirstQuantized/KineticOperator.hpp}}"{}}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_nuclear_attraction_operator_8hpp}{Operator/FirstQuantized/NuclearAttractionOperator.hpp}}"{}}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_overlap_operator_8hpp}{Operator/FirstQuantized/OverlapOperator.hpp}}"{}}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_q_hamiltonian_8hpp}{Operator/SecondQuantized/SQHamiltonian.hpp}}"{}}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_u_s_q_one_electron_operator_8hpp}{Operator/SecondQuantized/USQOneElectronOperator.hpp}}"{}}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_u_s_q_two_electron_operator_8hpp}{Operator/SecondQuantized/USQTwoElectronOperator.hpp}}"{}}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_spin_resolved_base_8hpp}{QuantumChemical/SpinResolvedBase.hpp}}"{}}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{type__traits_8hpp}{Utilities/type\_traits.hpp}}"{}}}
 \DoxyCodeLine{00044\ }
-\DoxyCodeLine{00045\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
-\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_q_c_p}{GQCP}}\ \{}
 \DoxyCodeLine{00047\ }
-\DoxyCodeLine{00055\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_ExpansionScalar,\ \textcolor{keyword}{typename}\ \_Shell>}
-\DoxyCodeLine{00056\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{USpinOrbitalBasis}}:}
-\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base}{SpinResolvedBase}}<USpinOrbitalBasisComponent<\_ExpansionScalar,\ \_Shell>,\ USpinOrbitalBasis<\_ExpansionScalar,\ \_Shell>>,}
-\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_basis_transformable}{SpinResolvedBasisTransformable}}<USpinOrbitalBasis<\_ExpansionScalar,\ \_Shell>>,}
-\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable}{SpinResolvedJacobiRotatable}}<USpinOrbitalBasis<\_ExpansionScalar,\ \_Shell>>\ \{}
-\DoxyCodeLine{00060\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00061\ \ \ \ \ \textcolor{comment}{//\ The\ scalar\ type\ used\ to\ represent\ an\ expansion\ coefficient\ of\ the\ spinors\ in\ the\ underlying\ scalar\ orbitals:\ real\ or\ complex.}}
-\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae20445a1b3cf603f62e96ed8840e4d81}{ExpansionScalar}}\ =\ \_ExpansionScalar;}
-\DoxyCodeLine{00063\ }
-\DoxyCodeLine{00064\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ shell\ the\ underlying\ scalar\ bases\ contain.}}
-\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a359a0209c9e89ac045fece42ba6ad1c6}{Shell}}\ =\ \_Shell;}
-\DoxyCodeLine{00066\ }
-\DoxyCodeLine{00067\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ 'this'.}}
-\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{Self}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{USpinOrbitalBasis<ExpansionScalar,\ Shell>}};}
-\DoxyCodeLine{00069\ }
-\DoxyCodeLine{00070\ \ \ \ \ \textcolor{comment}{//\ The\ type\ that\ is\ used\ for\ representing\ the\ primitive\ for\ a\ basis\ function\ of\ this\ spin-\/orbital\ basis'\ underlying\ AO\ basis.}}
-\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a28ee9b8176eb78f5b0af328a0291ba0c}{Primitive}}\ =\ \textcolor{keyword}{typename}\ Shell::Primitive;}
-\DoxyCodeLine{00072\ }
-\DoxyCodeLine{00073\ \ \ \ \ \textcolor{comment}{//\ The\ type\ that\ is\ used\ for\ representing\ the\ underlying\ basis\ functions\ of\ this\ spin-\/orbital\ basis.}}
-\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a1b300eaa8d2637d545c0c6a1f8b4f2b9}{BasisFunction}}\ =\ \textcolor{keyword}{typename}\ Shell::BasisFunction;}
-\DoxyCodeLine{00075\ }
-\DoxyCodeLine{00076\ \ \ \ \ \textcolor{comment}{//\ The\ type\ component\ this\ spin\ resolved\ object\ is\ made\ of.}}
-\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a4a27d7ac6936062dc62851de79a06fdd}{ComponentType}}\ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base}{SpinResolvedBase<USpinOrbitalBasisComponent<ExpansionScalar,\ Shell>}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{Self}}>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a012e7533770449f494a6066c36bd835a}{::Of}};}
-\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00056\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_ExpansionScalar,\ \textcolor{keyword}{typename}\ \_Shell>}
+\DoxyCodeLine{00057\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{USpinOrbitalBasis}}:}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base}{SpinResolvedBase}}<USpinOrbitalBasisComponent<\_ExpansionScalar,\ \_Shell>,\ USpinOrbitalBasis<\_ExpansionScalar,\ \_Shell>>,}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_basis_transformable}{SpinResolvedBasisTransformable}}<USpinOrbitalBasis<\_ExpansionScalar,\ \_Shell>>,}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable}{SpinResolvedJacobiRotatable}}<USpinOrbitalBasis<\_ExpansionScalar,\ \_Shell>>\ \{}
+\DoxyCodeLine{00061\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{comment}{//\ The\ scalar\ type\ used\ to\ represent\ an\ expansion\ coefficient\ of\ the\ spinors\ in\ the\ underlying\ scalar\ orbitals:\ real\ or\ complex.}}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae20445a1b3cf603f62e96ed8840e4d81}{ExpansionScalar}}\ =\ \_ExpansionScalar;}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ shell\ the\ underlying\ scalar\ bases\ contain.}}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a359a0209c9e89ac045fece42ba6ad1c6}{Shell}}\ =\ \_Shell;}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ 'this'.}}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{Self}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{USpinOrbitalBasis<ExpansionScalar,\ Shell>}};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{comment}{//\ The\ type\ that\ is\ used\ for\ representing\ the\ primitive\ for\ a\ basis\ function\ of\ this\ spin-\/orbital\ basis'\ underlying\ AO\ basis.}}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a28ee9b8176eb78f5b0af328a0291ba0c}{Primitive}}\ =\ \textcolor{keyword}{typename}\ Shell::Primitive;}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{comment}{//\ The\ type\ that\ is\ used\ for\ representing\ the\ underlying\ basis\ functions\ of\ this\ spin-\/orbital\ basis.}}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a1b300eaa8d2637d545c0c6a1f8b4f2b9}{BasisFunction}}\ =\ \textcolor{keyword}{typename}\ Shell::BasisFunction;}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{comment}{//\ The\ type\ component\ this\ spin\ resolved\ object\ is\ made\ of.}}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a4a27d7ac6936062dc62851de79a06fdd}{ComponentType}}\ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base}{SpinResolvedBase<USpinOrbitalBasisComponent<ExpansionScalar,\ Shell>}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{Self}}>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a012e7533770449f494a6066c36bd835a}{::Of}};}
 \DoxyCodeLine{00079\ }
-\DoxyCodeLine{00080\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00081\ \ \ \ \ \textcolor{comment}{/*}}
-\DoxyCodeLine{00082\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Constructors}}
-\DoxyCodeLine{00083\ \textcolor{comment}{\ \ \ \ \ */}}
-\DoxyCodeLine{00084\ }
-\DoxyCodeLine{00085\ \ \ \ \ \textcolor{comment}{//\ Inherit\ `SpinResolvedBase`'s\ constructors.}}
-\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base}{SpinResolvedBase}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component}{USpinOrbitalBasisComponent<ExpansionScalar,\ Shell>}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{USpinOrbitalBasis<ExpansionScalar,\ Shell>}}>::SpinResolvedBase;}
-\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00083\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Constructors}}
+\DoxyCodeLine{00084\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{comment}{//\ Inherit\ `SpinResolvedBase`'s\ constructors.}}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base}{SpinResolvedBase}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component}{USpinOrbitalBasisComponent<ExpansionScalar,\ Shell>}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{USpinOrbitalBasis<ExpansionScalar,\ Shell>}}>::SpinResolvedBase;}
 \DoxyCodeLine{00088\ }
-\DoxyCodeLine{00096\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_aee04c0bffc6f03cc458762e98d05162d}{USpinOrbitalBasis}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{ScalarBasis<Shell>}}\&\ alpha\_scalar\_basis,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{ScalarBasis<Shell>}}\&\ beta\_scalar\_basis,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<ExpansionScalar>}}\&\ C)\ :}
-\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{USpinOrbitalBasis}}(\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component}{USpinOrbitalBasisComponent}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae20445a1b3cf603f62e96ed8840e4d81}{ExpansionScalar}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a359a0209c9e89ac045fece42ba6ad1c6}{Shell}}>\ \{alpha\_scalar\_basis,\ C.\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}()\},}
-\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component}{USpinOrbitalBasisComponent<ExpansionScalar,\ Shell>}}\ \{beta\_scalar\_basis,\ C.beta()\})\ \{}
-\DoxyCodeLine{00099\ }
-\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ the\ dimensions\ of\ the\ given\ objects\ are\ compatible.}}
-\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (C.alpha().numberOfOrbitals()\ !=\ alpha\_scalar\_basis.numberOfBasisFunctions())\ \{}
-\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}USpinOrbitalBasis(const\ ScalarBasis<Shell>\&,\ const\ ScalarBasis<Shell>\&,\ const\ UTransformation<ExpansionScalar>\&):\ The\ given\ dimensions\ of\ the\ scalar\ basis\ and\ coefficient\ matrix\ for\ the\ alpha\ spin-\/orbitals\ are\ incompatible."{}});}
-\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00104\ }
-\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (C.beta().numberOfOrbitals()\ !=\ beta\_scalar\_basis.numberOfBasisFunctions())\ \{}
-\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}USpinOrbitalBasis(const\ ScalarBasis<Shell>\&,\ const\ ScalarBasis<Shell>\&,\ const\ UTransformation<ExpansionScalar>\&):\ The\ given\ dimensions\ of\ the\ scalar\ basis\ and\ coefficient\ matrix\ for\ the\ beta\ spin-\/orbitals\ are\ incompatible."{}});}
-\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00108\ \ \ \ \ \}}
-\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00097\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_aee04c0bffc6f03cc458762e98d05162d}{USpinOrbitalBasis}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{ScalarBasis<Shell>}}\&\ alpha\_scalar\_basis,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{ScalarBasis<Shell>}}\&\ beta\_scalar\_basis,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<ExpansionScalar>}}\&\ C)\ :}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{USpinOrbitalBasis}}(\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component}{USpinOrbitalBasisComponent}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae20445a1b3cf603f62e96ed8840e4d81}{ExpansionScalar}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a359a0209c9e89ac045fece42ba6ad1c6}{Shell}}>\ \{alpha\_scalar\_basis,\ C.\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}()\},}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component}{USpinOrbitalBasisComponent<ExpansionScalar,\ Shell>}}\ \{beta\_scalar\_basis,\ C.beta()\})\ \{}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ the\ dimensions\ of\ the\ given\ objects\ are\ compatible.}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (C.alpha().numberOfOrbitals()\ !=\ alpha\_scalar\_basis.numberOfBasisFunctions())\ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}USpinOrbitalBasis(const\ ScalarBasis<Shell>\&,\ const\ ScalarBasis<Shell>\&,\ const\ UTransformation<ExpansionScalar>\&):\ The\ given\ dimensions\ of\ the\ scalar\ basis\ and\ coefficient\ matrix\ for\ the\ alpha\ spin-\/orbitals\ are\ incompatible."{}});}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (C.beta().numberOfOrbitals()\ !=\ beta\_scalar\_basis.numberOfBasisFunctions())\ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}USpinOrbitalBasis(const\ ScalarBasis<Shell>\&,\ const\ ScalarBasis<Shell>\&,\ const\ UTransformation<ExpansionScalar>\&):\ The\ given\ dimensions\ of\ the\ scalar\ basis\ and\ coefficient\ matrix\ for\ the\ beta\ spin-\/orbitals\ are\ incompatible."{}});}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00109\ \ \ \ \ \}}
 \DoxyCodeLine{00110\ }
-\DoxyCodeLine{00117\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a393e69a090834b0c40dd1f6256d6c020}{USpinOrbitalBasis}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{ScalarBasis<Shell>}}\&\ scalar\_basis,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation_component}{UTransformationComponent<ExpansionScalar>}}\&\ C)\ :}
-\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{USpinOrbitalBasis}}(scalar\_basis,\ scalar\_basis,\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae20445a1b3cf603f62e96ed8840e4d81}{ExpansionScalar}}>::\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_ad684026f9ce2481de03ed06267365e46}{FromEqual}}(C))\ \{\}}
-\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00118\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a393e69a090834b0c40dd1f6256d6c020}{USpinOrbitalBasis}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{ScalarBasis<Shell>}}\&\ scalar\_basis,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation_component}{UTransformationComponent<ExpansionScalar>}}\&\ C)\ :}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{USpinOrbitalBasis}}(scalar\_basis,\ scalar\_basis,\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae20445a1b3cf603f62e96ed8840e4d81}{ExpansionScalar}}>::\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_ad684026f9ce2481de03ed06267365e46}{FromEqual}}(C))\ \{\}}
 \DoxyCodeLine{00120\ }
-\DoxyCodeLine{00127\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_afe8f99e8ce84ac868aba2e9062917008}{USpinOrbitalBasis}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{ScalarBasis<Shell>}}\&\ alpha\_scalar\_basis,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{ScalarBasis<Shell>}}\&\ beta\_scalar\_basis)\ :}
-\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{USpinOrbitalBasis}}(alpha\_scalar\_basis,\ beta\_scalar\_basis,}
-\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae20445a1b3cf603f62e96ed8840e4d81}{ExpansionScalar}}>(}
-\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation_component}{UTransformationComponent}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae20445a1b3cf603f62e96ed8840e4d81}{ExpansionScalar}}>::Identity(alpha\_scalar\_basis.numberOfBasisFunctions()),}
-\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation_component}{UTransformationComponent}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae20445a1b3cf603f62e96ed8840e4d81}{ExpansionScalar}}>::Identity(beta\_scalar\_basis.numberOfBasisFunctions())))\ \{\}}
-\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00128\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_afe8f99e8ce84ac868aba2e9062917008}{USpinOrbitalBasis}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{ScalarBasis<Shell>}}\&\ alpha\_scalar\_basis,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{ScalarBasis<Shell>}}\&\ beta\_scalar\_basis)\ :}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{USpinOrbitalBasis}}(alpha\_scalar\_basis,\ beta\_scalar\_basis,}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae20445a1b3cf603f62e96ed8840e4d81}{ExpansionScalar}}>(}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation_component}{UTransformationComponent}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae20445a1b3cf603f62e96ed8840e4d81}{ExpansionScalar}}>::Identity(alpha\_scalar\_basis.numberOfBasisFunctions()),}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation_component}{UTransformationComponent}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae20445a1b3cf603f62e96ed8840e4d81}{ExpansionScalar}}>::Identity(beta\_scalar\_basis.numberOfBasisFunctions())))\ \{\}}
 \DoxyCodeLine{00133\ }
-\DoxyCodeLine{00139\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ace6431c7d2d00be53fb65e5f030c9483}{USpinOrbitalBasis}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{ScalarBasis<Shell>}}\&\ scalar\_basis)\ :}
-\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{USpinOrbitalBasis}}(scalar\_basis,\ scalar\_basis)\ \{\}}
-\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00140\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ace6431c7d2d00be53fb65e5f030c9483}{USpinOrbitalBasis}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{ScalarBasis<Shell>}}\&\ scalar\_basis)\ :}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{USpinOrbitalBasis}}(scalar\_basis,\ scalar\_basis)\ \{\}}
 \DoxyCodeLine{00142\ }
-\DoxyCodeLine{00151\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a410b8d61448ae6dfd637ea986504629a}{USpinOrbitalBasis}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework}{NuclearFramework}}\&\ nuclear\_framework,\ \textcolor{keyword}{const}\ std::string\&\ basisset\_name)\ :}
-\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{USpinOrbitalBasis}}(\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{ScalarBasis}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a359a0209c9e89ac045fece42ba6ad1c6}{Shell}}>(nuclear\_framework,\ basisset\_name))\ \{\}}
-\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00152\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a410b8d61448ae6dfd637ea986504629a}{USpinOrbitalBasis}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework}{NuclearFramework}}\&\ nuclear\_framework,\ \textcolor{keyword}{const}\ std::string\&\ basisset\_name)\ :}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{USpinOrbitalBasis}}(\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{ScalarBasis}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a359a0209c9e89ac045fece42ba6ad1c6}{Shell}}>(nuclear\_framework,\ basisset\_name))\ \{\}}
 \DoxyCodeLine{00154\ }
-\DoxyCodeLine{00163\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_abb42b49627bca4d2ef2b0e823446d7de}{USpinOrbitalBasis}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}}\&\ molecule,\ \textcolor{keyword}{const}\ std::string\&\ basisset\_name)\ :}
-\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{USpinOrbitalBasis}}(\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{ScalarBasis}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a359a0209c9e89ac045fece42ba6ad1c6}{Shell}}>(molecule.nuclearFramework(),\ basisset\_name))\ \{\}}
-\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00164\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_abb42b49627bca4d2ef2b0e823446d7de}{USpinOrbitalBasis}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}}\&\ molecule,\ \textcolor{keyword}{const}\ std::string\&\ basisset\_name)\ :}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{USpinOrbitalBasis}}(\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{ScalarBasis}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a359a0209c9e89ac045fece42ba6ad1c6}{Shell}}>(molecule.nuclearFramework(),\ basisset\_name))\ \{\}}
 \DoxyCodeLine{00166\ }
-\DoxyCodeLine{00176\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a61bed093085a840a1433f2f5c3a7ede4}{USpinOrbitalBasis}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework}{NuclearFramework}}\&\ nuclear\_framework,\ \textcolor{keyword}{const}\ std::string\&\ basisset\_name\_alpha,\ \textcolor{keyword}{const}\ std::string\&\ basisset\_name\_beta)\ :}
-\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{USpinOrbitalBasis}}(\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{ScalarBasis}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a359a0209c9e89ac045fece42ba6ad1c6}{Shell}}>(nuclear\_framework,\ basisset\_name\_alpha),}
-\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{ScalarBasis}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a359a0209c9e89ac045fece42ba6ad1c6}{Shell}}>(nuclear\_framework,\ basisset\_name\_beta))\ \{\}}
-\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00177\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a61bed093085a840a1433f2f5c3a7ede4}{USpinOrbitalBasis}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_nuclear_framework}{NuclearFramework}}\&\ nuclear\_framework,\ \textcolor{keyword}{const}\ std::string\&\ basisset\_name\_alpha,\ \textcolor{keyword}{const}\ std::string\&\ basisset\_name\_beta)\ :}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{USpinOrbitalBasis}}(\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{ScalarBasis}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a359a0209c9e89ac045fece42ba6ad1c6}{Shell}}>(nuclear\_framework,\ basisset\_name\_alpha),}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{ScalarBasis}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a359a0209c9e89ac045fece42ba6ad1c6}{Shell}}>(nuclear\_framework,\ basisset\_name\_beta))\ \{\}}
 \DoxyCodeLine{00180\ }
-\DoxyCodeLine{00190\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a8318cd22c98453bb9ace5196ae980f46}{USpinOrbitalBasis}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}}\&\ molecule,\ \textcolor{keyword}{const}\ std::string\&\ basisset\_name\_alpha,\ \textcolor{keyword}{const}\ std::string\&\ basisset\_name\_beta)\ :}
-\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{USpinOrbitalBasis}}(\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{ScalarBasis}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a359a0209c9e89ac045fece42ba6ad1c6}{Shell}}>(molecule.nuclearFramework(),\ basisset\_name\_alpha),}
-\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{ScalarBasis}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a359a0209c9e89ac045fece42ba6ad1c6}{Shell}}>(molecule.nuclearFramework(),\ basisset\_name\_beta))\ \{\}}
-\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00191\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a8318cd22c98453bb9ace5196ae980f46}{USpinOrbitalBasis}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}}\&\ molecule,\ \textcolor{keyword}{const}\ std::string\&\ basisset\_name\_alpha,\ \textcolor{keyword}{const}\ std::string\&\ basisset\_name\_beta)\ :}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{USpinOrbitalBasis}}(\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{ScalarBasis}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a359a0209c9e89ac045fece42ba6ad1c6}{Shell}}>(molecule.nuclearFramework(),\ basisset\_name\_alpha),}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{ScalarBasis}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a359a0209c9e89ac045fece42ba6ad1c6}{Shell}}>(molecule.nuclearFramework(),\ basisset\_name\_beta))\ \{\}}
 \DoxyCodeLine{00194\ }
-\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Shell>}
-\DoxyCodeLine{00205\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_aaf902f4303cb96069d1d83ecccafd1e6}{USpinOrbitalBasis}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}}\&\ molecule,\ \textcolor{keyword}{const}\ std::string\&\ basisset\_name,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{HomogeneousMagneticField}}\&\ B,}
-\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ std::enable\_if<std::is\_same<Z,\ LondonGTOShell>::value>::type*\ =\ 0)\ :}
-\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{USpinOrbitalBasis}}(\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{ScalarBasis}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a359a0209c9e89ac045fece42ba6ad1c6}{Shell}}>(molecule.nuclearFramework(),\ basisset\_name,\ B))\ \{\}}
-\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Shell>}
+\DoxyCodeLine{00206\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_aaf902f4303cb96069d1d83ecccafd1e6}{USpinOrbitalBasis}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_molecule}{Molecule}}\&\ molecule,\ \textcolor{keyword}{const}\ std::string\&\ basisset\_name,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_homogeneous_magnetic_field}{HomogeneousMagneticField}}\&\ B,}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ std::enable\_if<std::is\_same<Z,\ LondonGTOShell>::value>::type*\ =\ 0)\ :}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{USpinOrbitalBasis}}(\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{ScalarBasis}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a359a0209c9e89ac045fece42ba6ad1c6}{Shell}}>(molecule.nuclearFramework(),\ basisset\_name,\ B))\ \{\}}
 \DoxyCodeLine{00209\ }
-\DoxyCodeLine{00210\ \ \ \ \ \textcolor{comment}{/*}}
-\DoxyCodeLine{00211\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Named\ constructors}}
-\DoxyCodeLine{00212\ \textcolor{comment}{\ \ \ \ \ */}}
-\DoxyCodeLine{00213\ }
-\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{USpinOrbitalBasis<ExpansionScalar,\ Shell>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a0b01af1505ef78ef98c76b79aff98af4}{FromRestricted}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis}{RSpinOrbitalBasis<ExpansionScalar,\ Shell>}}\&\ r\_spinor\_basis)\ \{}
-\DoxyCodeLine{00222\ }
-\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ scalar\_basis\ =\ r\_spinor\_basis.\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spin_orbital_basis_ae4d021b1d29a7f7b6fb6763448f7a137}{scalarBasis}}();}
-\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ C\ =\ r\_spinor\_basis.\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_a6f28eee1bd0c2890b7fd3355913fb414}{expansion}}();}
-\DoxyCodeLine{00225\ }
-\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{USpinOrbitalBasis<ExpansionScalar,\ Shell>}}(scalar\_basis,\ scalar\_basis,\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<ExpansionScalar>::FromRestricted}}(C));}
-\DoxyCodeLine{00227\ \ \ \ \ \}}
-\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00212\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Named\ constructors}}
+\DoxyCodeLine{00213\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00222\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{USpinOrbitalBasis<ExpansionScalar,\ Shell>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a0b01af1505ef78ef98c76b79aff98af4}{FromRestricted}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis}{RSpinOrbitalBasis<ExpansionScalar,\ Shell>}}\&\ r\_spinor\_basis)\ \{}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ scalar\_basis\ =\ r\_spinor\_basis.\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spin_orbital_basis_ae4d021b1d29a7f7b6fb6763448f7a137}{scalarBasis}}();}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ C\ =\ r\_spinor\_basis.\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_a6f28eee1bd0c2890b7fd3355913fb414}{expansion}}();}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{USpinOrbitalBasis<ExpansionScalar,\ Shell>}}(scalar\_basis,\ scalar\_basis,\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<ExpansionScalar>::FromRestricted}}(C));}
+\DoxyCodeLine{00228\ \ \ \ \ \}}
 \DoxyCodeLine{00229\ }
-\DoxyCodeLine{00230\ \ \ \ \ \textcolor{comment}{/*}}
-\DoxyCodeLine{00231\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ General\ information}}
-\DoxyCodeLine{00232\ \textcolor{comment}{\ \ \ \ \ */}}
-\DoxyCodeLine{00233\ }
-\DoxyCodeLine{00237\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<ExpansionScalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_adcf8108e1346f002b5ab2618bf79afb8}{expansion}}()\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<ExpansionScalar>}}\ \{this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_a6f28eee1bd0c2890b7fd3355913fb414}{expansion}}(),\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_a6f28eee1bd0c2890b7fd3355913fb414}{expansion}}()\};}
-\DoxyCodeLine{00239\ \ \ \ \ \}}
-\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00232\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ General\ information}}
+\DoxyCodeLine{00233\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00238\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<ExpansionScalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_adcf8108e1346f002b5ab2618bf79afb8}{expansion}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<ExpansionScalar>}}\ \{this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_a6f28eee1bd0c2890b7fd3355913fb414}{expansion}}(),\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_a6f28eee1bd0c2890b7fd3355913fb414}{expansion}}()\};}
+\DoxyCodeLine{00240\ \ \ \ \ \}}
 \DoxyCodeLine{00241\ }
-\DoxyCodeLine{00245\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a4d13ceda13422fdbdda0e2092faa90eb}{numberOfSpinors}}()\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00246\ }
-\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\_alpha\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_abbad8e4366b720933a378ea276bf9502}{simpleDimension}}();}
-\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\_beta\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_abbad8e4366b720933a378ea276bf9502}{simpleDimension}}();}
-\DoxyCodeLine{00249\ }
-\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ K\_alpha\ +\ K\_beta;}
-\DoxyCodeLine{00251\ \ \ \ \ \}}
-\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00246\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a4d13ceda13422fdbdda0e2092faa90eb}{numberOfSpinors}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\_alpha\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_abbad8e4366b720933a378ea276bf9502}{simpleDimension}}();}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ K\_beta\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_abbad8e4366b720933a378ea276bf9502}{simpleDimension}}();}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ K\_alpha\ +\ K\_beta;}
+\DoxyCodeLine{00252\ \ \ \ \ \}}
 \DoxyCodeLine{00253\ }
-\DoxyCodeLine{00257\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a6e6f8f6f10158b22ed787fab7bcfa268}{numberOfSpinOrbitals}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a4d13ceda13422fdbdda0e2092faa90eb}{numberOfSpinors}}();\ \}}
-\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a6e6f8f6f10158b22ed787fab7bcfa268}{numberOfSpinOrbitals}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a4d13ceda13422fdbdda0e2092faa90eb}{numberOfSpinors}}();\ \}}
 \DoxyCodeLine{00259\ }
-\DoxyCodeLine{00260\ \ \ \ \ \textcolor{comment}{/*}}
-\DoxyCodeLine{00261\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Orthonormality}}
-\DoxyCodeLine{00262\ \textcolor{comment}{\ \ \ \ \ */}}
-\DoxyCodeLine{00263\ }
-\DoxyCodeLine{00271\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ad6d69d1e1c6dbb2787f10e36555ba9c6}{isOrthonormal}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ precision\ =\ 1.0e-\/08)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_aa00b804a0f522ee6b046e45d9e39a7b8}{isOrthonormal}}(precision)\ \&\&\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_aa00b804a0f522ee6b046e45d9e39a7b8}{isOrthonormal}}(precision);\ \}}
-\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00261\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00262\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Orthonormality}}
+\DoxyCodeLine{00263\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00272\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ad6d69d1e1c6dbb2787f10e36555ba9c6}{isOrthonormal}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ precision\ =\ 1.0e-\/08)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_aa00b804a0f522ee6b046e45d9e39a7b8}{isOrthonormal}}(precision)\ \&\&\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_aa00b804a0f522ee6b046e45d9e39a7b8}{isOrthonormal}}(precision);\ \}}
 \DoxyCodeLine{00273\ }
-\DoxyCodeLine{00277\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<ExpansionScalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a3a556b1182985c621912237ffd91af9e}{lowdinOrthonormalization}}()\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00278\ }
-\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ T\_a\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_a7dcbcf5803cb8c3b4b65cb49ce3f5f69}{lowdinOrthonormalization}}();}
-\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ T\_b\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_a7dcbcf5803cb8c3b4b65cb49ce3f5f69}{lowdinOrthonormalization}}();}
-\DoxyCodeLine{00281\ }
-\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<ExpansionScalar>}}\ \{T\_a,\ T\_b\};}
-\DoxyCodeLine{00283\ \ \ \ \ \}}
-\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00278\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<ExpansionScalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a3a556b1182985c621912237ffd91af9e}{lowdinOrthonormalization}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ T\_a\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_a7dcbcf5803cb8c3b4b65cb49ce3f5f69}{lowdinOrthonormalization}}();}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ T\_b\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_a7dcbcf5803cb8c3b4b65cb49ce3f5f69}{lowdinOrthonormalization}}();}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<ExpansionScalar>}}\ \{T\_a,\ T\_b\};}
+\DoxyCodeLine{00284\ \ \ \ \ \}}
 \DoxyCodeLine{00285\ }
-\DoxyCodeLine{00289\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a4eb3449b97998a8f1aad758fc9add0a3}{lowdinOrthonormalize}}()\ \{}
-\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_a53160b32246fe945f0fb7aa46d15c4e9}{lowdinOrthonormalize}}();}
-\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_a53160b32246fe945f0fb7aa46d15c4e9}{lowdinOrthonormalize}}();}
-\DoxyCodeLine{00292\ \ \ \ \ \}}
-\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00290\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a4eb3449b97998a8f1aad758fc9add0a3}{lowdinOrthonormalize}}()\ \{}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_a53160b32246fe945f0fb7aa46d15c4e9}{lowdinOrthonormalize}}();}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_a53160b32246fe945f0fb7aa46d15c4e9}{lowdinOrthonormalize}}();}
+\DoxyCodeLine{00293\ \ \ \ \ \}}
 \DoxyCodeLine{00294\ }
-\DoxyCodeLine{00295\ \ \ \ \ \textcolor{comment}{/*}}
-\DoxyCodeLine{00296\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Quantization\ of\ first-\/quantized\ operators\ (GTOShell)}}
-\DoxyCodeLine{00297\ \textcolor{comment}{\ \ \ \ \ */}}
-\DoxyCodeLine{00298\ }
-\DoxyCodeLine{00306\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator}{USQOneElectronOperator<product\_t<ElectronicSpin\_zOperator::Scalar,\ ExpansionScalar>}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer}{ElectronicSpin\_zOperator::Vectorizer}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae9bdd6d24535343b77020c561f24ae49}{quantize}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_spin__z_operator}{ElectronicSpin\_zOperator}}\&\ fq\_op)\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00307\ }
-\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }ResultScalar\ =\ \mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\_t<ElectronicSpin\_zOperator::Scalar,\ ExpansionScalar>}};}
-\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }ResultOperator\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator}{USQOneElectronOperator<ResultScalar,\ ElectronicSpin\_zOperator::Vectorizer>}};}
-\DoxyCodeLine{00310\ }
-\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ can\ use\ the\ quantization\ of\ the\ overlap\ operator\ for\ the\ quantization\ of\ S\_z.}}
-\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ S\_a\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_a42b2813a11f43e74c7fa60ee90a5ae0e}{overlap}}();\ \ \textcolor{comment}{//\ In\ the\ current\ orbital\ basis.}}
-\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ S\_b\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_a42b2813a11f43e74c7fa60ee90a5ae0e}{overlap}}();\ \ \ \textcolor{comment}{//\ In\ the\ current\ orbital\ basis.}}
-\DoxyCodeLine{00314\ }
-\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ S\_z\_a\ =\ 0.5\ *\ S\_a;}
-\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ S\_z\_b\ =\ -\/0.5\ *\ S\_b;}
-\DoxyCodeLine{00317\ }
-\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ResultOperator\ \{S\_z\_a,\ S\_z\_b\};}
-\DoxyCodeLine{00319\ \ \ \ \ \}}
-\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00295\ }
+\DoxyCodeLine{00296\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00297\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Quantization\ of\ first-\/quantized\ operators\ (GTOShell)}}
+\DoxyCodeLine{00298\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00307\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator}{USQOneElectronOperator<product\_t<ElectronicSpin\_zOperator::Scalar,\ ExpansionScalar>}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer}{ElectronicSpin\_zOperator::Vectorizer}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae9bdd6d24535343b77020c561f24ae49}{quantize}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_spin__z_operator}{ElectronicSpin\_zOperator}}\&\ fq\_op)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }ResultScalar\ =\ \mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\_t<ElectronicSpin\_zOperator::Scalar,\ ExpansionScalar>}};}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }ResultOperator\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator}{USQOneElectronOperator<ResultScalar,\ ElectronicSpin\_zOperator::Vectorizer>}};}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ can\ use\ the\ quantization\ of\ the\ overlap\ operator\ for\ the\ quantization\ of\ S\_z.}}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ S\_a\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_a42b2813a11f43e74c7fa60ee90a5ae0e}{overlap}}();\ \ \textcolor{comment}{//\ In\ the\ current\ orbital\ basis.}}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ S\_b\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_a42b2813a11f43e74c7fa60ee90a5ae0e}{overlap}}();\ \ \ \textcolor{comment}{//\ In\ the\ current\ orbital\ basis.}}
+\DoxyCodeLine{00315\ }
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ S\_z\_a\ =\ 0.5\ *\ S\_a;}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ S\_z\_b\ =\ -\/0.5\ *\ S\_b;}
+\DoxyCodeLine{00318\ }
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ResultOperator\ \{S\_z\_a,\ S\_z\_b\};}
+\DoxyCodeLine{00320\ \ \ \ \ \}}
 \DoxyCodeLine{00321\ }
-\DoxyCodeLine{00329\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Shell>}
-\DoxyCodeLine{00330\ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_af5dca5a682a24c055cb2b1b576411814}{quantize}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_zeeman_operator}{SpinZeemanOperator}}\&\ fq\_op)\ \textcolor{keyword}{const}\ -\/>\ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<std::is\_same<Z,\ LondonGTOShell>::value}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator}{USQOneElectronOperator<product\_t<SpinZeemanOperator::Scalar,\ ExpansionScalar>}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer}{SpinZeemanOperator::Vectorizer}}>>\ \{}
+\DoxyCodeLine{00322\ }
+\DoxyCodeLine{00330\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_u_s_q_one_electron_operator_product}{ScalarUSQOneElectronOperatorProduct<ExpansionScalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a63468459ce0e9e8febe2229cb2769c17}{quantize}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_spin_squared_operator}{ElectronicSpinSquaredOperator}}\&\ fq\_op)\textcolor{keyword}{\ const\ }\{}
 \DoxyCodeLine{00331\ }
-\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ B\ =\ fq\_op.magneticField().strength();}
-\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((std::abs(B(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{CartesianDirection::x}}))\ >\ 1.0e-\/12)\ ||\ (std::abs(B(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a8611d87f8dc5908d04f3d314c7c321b1}{CartesianDirection::y}}))\ >\ 1.0e-\/12))\ \{}
-\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}USpinOrbitalBasis::quantize(const\ FQMolecularPauliHamiltonian\&):\ Only\ the\ spin\ Zeeman\ operator\ for\ a\ magnetic\ field\ along\ the\ z-\/axis\ can\ be\ quantized\ in\ an\ USpinOrbitalBasis."{}});}
-\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00336\ }
-\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}}(B(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a11d242b501b62c0182e98a9d516335f7}{CartesianDirection::z}}))\ *\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae9bdd6d24535343b77020c561f24ae49}{quantize}}(\mbox{\hyperlink{class_g_q_c_p_1_1_electronic_spin__z_operator}{ElectronicSpin\_zOperator}}());}
-\DoxyCodeLine{00338\ \ \ \ \ \}}
-\DoxyCodeLine{00339\ }
-\DoxyCodeLine{00340\ }
-\DoxyCodeLine{00346\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator}{ScalarUSQOneElectronOperator<ExpansionScalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a2983417dd2a15dc2141965a31e6436e6}{overlap}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae9bdd6d24535343b77020c561f24ae49}{quantize}}(\mbox{\hyperlink{class_g_q_c_p_1_1_overlap_operator}{OverlapOperator}}());\ \}}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Dimension.}}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ dim\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a6e6f8f6f10158b22ed787fab7bcfa268}{numberOfSpinOrbitals}}()\ /\ 2;}
+\DoxyCodeLine{00334\ }
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ can\ use\ the\ quantization\ of\ the\ overlap\ operator\ for\ the\ quantization\ of\ S\_z.}}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ S\_a\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_a42b2813a11f43e74c7fa60ee90a5ae0e}{overlap}}();\ \ \textcolor{comment}{//\ In\ the\ current\ orbital\ basis.}}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ S\_b\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_a42b2813a11f43e74c7fa60ee90a5ae0e}{overlap}}();\ \ \ \textcolor{comment}{//\ In\ the\ current\ orbital\ basis.}}
+\DoxyCodeLine{00338\ }
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ also\ need\ S\_minus\_plus\ for\ the\ one\ electron\ contribution.}}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ S\_mp\_a\_parameters\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_ae3551bb3ac15b2560846f7a5956d1d90}{SquareMatrix<ExpansionScalar>::Zero}}(dim);}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ S\_mp\_a\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator_component}{ScalarUSQOneElectronOperatorComponent<ExpansionScalar>}}(S\_mp\_a\_parameters);}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ S\_mp\_b\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spinor_basis_a42b2813a11f43e74c7fa60ee90a5ae0e}{overlap}}();}
+\DoxyCodeLine{00343\ }
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ need\ Sz\string^2\ as\ well.}}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ S\_z2\_a\ =\ 0.25\ *\ S\_a;}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ S\_z2\_b\ =\ -\/0.25\ *\ S\_b;}
 \DoxyCodeLine{00347\ }
-\DoxyCodeLine{00348\ }
-\DoxyCodeLine{00356\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Shell>}
-\DoxyCodeLine{00357\ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_aabc94b88ca368c7eb4092dad2556f1ce}{quantize}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{CoulombRepulsionOperator}}\&\ coulomb\_op)\ \textcolor{keyword}{const}\ -\/>\ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<std::is\_same<Z,\ GTOShell>::value}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_two_electron_operator}{ScalarUSQTwoElectronOperator<product\_t<typename\ CoulombRepulsionOperator::Scalar,\ ExpansionScalar>}}>>\ \{}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ the\ one\ electron\ component.}}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator}{ScalarUSQOneElectronOperator<ExpansionScalar>}}\ S\_mp\ \{S\_mp\_a,\ S\_mp\_b\};}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator}{ScalarUSQOneElectronOperator<ExpansionScalar>}}\ S\_z2\ \{S\_z2\_a,\ S\_z2\_b\};}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ S\_z\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae9bdd6d24535343b77020c561f24ae49}{quantize}}(\mbox{\hyperlink{class_g_q_c_p_1_1_electronic_spin__z_operator}{ElectronicSpin\_zOperator}}());}
+\DoxyCodeLine{00352\ }
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ one\_electron\ =\ S\_z\ +\ S\_mp\ +\ S\_z2;}
+\DoxyCodeLine{00354\ }
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ the\ two\ electron\ component.}}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ g\_aa\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_pure_u_s_q_two_electron_operator_component}{ScalarPureUSQTwoElectronOperatorComponent<ExpansionScalar>}}(\mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{SquareRankFourTensor<ExpansionScalar>::Zero}}(dim));}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ g\_bb\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_pure_u_s_q_two_electron_operator_component}{ScalarPureUSQTwoElectronOperatorComponent<ExpansionScalar>}}(\mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor}{SquareRankFourTensor<ExpansionScalar>::Zero}}(dim));}
 \DoxyCodeLine{00358\ }
-\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }ResultScalar\ =\ \mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\_t<typename\ CoulombRepulsionOperator::Scalar,\ ExpansionScalar>}};}
-\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }ResultOperator\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_two_electron_operator}{ScalarUSQTwoElectronOperator<ResultScalar>}};}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ g\_ab\_par\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor_ac8d9dac01c85a4f11aa67c7efa877e04}{SquareRankFourTensor<ExpansionScalar>::Zero}}(dim);}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ g\_ba\_par\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor_ac8d9dac01c85a4f11aa67c7efa877e04}{SquareRankFourTensor<ExpansionScalar>::Zero}}(dim);}
 \DoxyCodeLine{00361\ }
-\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ matrix\ representation\ of\ the\ four\ spin-\/components\ of\ the\ second-\/quantized\ Coulomb\ operator.}}
-\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ g\_aa\_par\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_calculator_a1e7dd209c9fac23b0f298cac64ac7696}{IntegralCalculator::calculateLibintIntegrals}}(coulomb\_op,\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().scalarBasis(),\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().scalarBasis());\ \ \textcolor{comment}{//\ 'par'\ for\ 'parameters'}}
-\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ g\_ab\_par\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_calculator_a1e7dd209c9fac23b0f298cac64ac7696}{IntegralCalculator::calculateLibintIntegrals}}(coulomb\_op,\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().scalarBasis(),\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().scalarBasis());\ \ \ \textcolor{comment}{//\ 'par'\ for\ 'parameters'}}
-\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ g\_ba\_par\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_calculator_a1e7dd209c9fac23b0f298cac64ac7696}{IntegralCalculator::calculateLibintIntegrals}}(coulomb\_op,\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().scalarBasis(),\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().scalarBasis());\ \ \ \textcolor{comment}{//\ 'par'\ for\ 'parameters'}}
-\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ g\_bb\_par\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_calculator_a1e7dd209c9fac23b0f298cac64ac7696}{IntegralCalculator::calculateLibintIntegrals}}(coulomb\_op,\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().scalarBasis(),\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().scalarBasis());\ \ \ \ \textcolor{comment}{//\ 'par'\ for\ 'parameters'}}
-\DoxyCodeLine{00367\ }
-\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ g\_aa\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor_ac8d9dac01c85a4f11aa67c7efa877e04}{SquareRankFourTensor<ResultScalar>::Zero}}(g\_aa\_par.dimension(0));}
-\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ g\_ab\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor_ac8d9dac01c85a4f11aa67c7efa877e04}{SquareRankFourTensor<ResultScalar>::Zero}}(g\_ab\_par.dimension(0));}
-\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ g\_ba\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor_ac8d9dac01c85a4f11aa67c7efa877e04}{SquareRankFourTensor<ResultScalar>::Zero}}(g\_ba\_par.dimension(0));}
-\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ g\_bb\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor_ac8d9dac01c85a4f11aa67c7efa877e04}{SquareRankFourTensor<ResultScalar>::Zero}}(g\_bb\_par.dimension(0));}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ p\ =\ 0;\ p\ <\ dim;\ p++)\ \{}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ q\ =\ 0;\ q\ <\ dim;\ q++)\ \{}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ r\ =\ 0;\ r\ <\ dim;\ r++)\ \{}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ s\ =\ 0;\ s\ <\ dim;\ s++)\ \{}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ g\_ab\_par(p,\ q,\ r,\ s)\ =\ -\/1.0\ *\ S\_a.parameters()(p,\ r)\ *\ S\_b.parameters()(q,\ s);}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ g\_ba\_par(p,\ q,\ r,\ s)\ =\ -\/1.0\ *\ S\_b.parameters()(p,\ r)\ *\ S\_a.parameters()(q,\ s);}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00372\ }
-\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ g\_aa\_par.dimension(0);\ i++)\ \{}
-\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ j\ =\ 0;\ j\ <\ g\_aa\_par.dimension(1);\ j++)\ \{}
-\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ k\ =\ 0;\ k\ <\ g\_aa\_par.dimension(2);\ k++)\ \{}
-\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ l\ =\ 0;\ l\ <\ g\_aa\_par.dimension(3);\ l++)\ \{}
-\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ g\_aa(i,\ j,\ k,\ l)\ =\ g\_aa\_par(i,\ j,\ k,\ l);}
-\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ g\_ab(i,\ j,\ k,\ l)\ =\ g\_ab\_par(i,\ j,\ k,\ l);}
-\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ g\_ba(i,\ j,\ k,\ l)\ =\ g\_ba\_par(i,\ j,\ k,\ l);}
-\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ g\_bb(i,\ j,\ k,\ l)\ =\ g\_bb\_par(i,\ j,\ k,\ l);}
-\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00385\ }
-\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ have\ previously\ calculated\ the\ representations\ in\ the\ AO\ basis,\ so\ we'll\ still\ have\ to\ transform\ these\ representations\ to\ the\ current\ spin-\/orbitals.}}
-\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ ResultOperator\ g\ \{g\_aa,\ g\_ab,\ g\_ba,\ g\_bb\};}
-\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ g.transform(this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_adcf8108e1346f002b5ab2618bf79afb8}{expansion}}());\ \ \textcolor{comment}{//\ Now,\ g\ is\ expressed\ in\ the\ current\ spin-\/orbital\ basis.}}
-\DoxyCodeLine{00389\ }
-\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ g;}
-\DoxyCodeLine{00391\ \ \ \ \ \}}
-\DoxyCodeLine{00392\ }
-\DoxyCodeLine{00393\ }
-\DoxyCodeLine{00394\ \ \ \ \ \textcolor{comment}{/*}}
-\DoxyCodeLine{00395\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Quantization\ of\ first-\/quantized\ operators\ (LondonGTOShell)}}
-\DoxyCodeLine{00396\ \textcolor{comment}{\ \ \ \ \ */}}
-\DoxyCodeLine{00397\ }
-\DoxyCodeLine{00405\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Shell>}
-\DoxyCodeLine{00406\ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a554367a4e6dd29925905548fb311b70a}{quantize}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{CoulombRepulsionOperator}}\&\ coulomb\_op)\ \textcolor{keyword}{const}\ -\/>\ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<std::is\_same<Z,\ LondonGTOShell>::value}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_two_electron_operator}{ScalarUSQTwoElectronOperator<product\_t<typename\ CoulombRepulsionOperator::Scalar,\ ExpansionScalar>}}>>\ \{}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ g\_ab\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component}{ScalarMixedUSQTwoElectronOperatorComponent<ExpansionScalar>}}(g\_ab\_par);}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ g\_ba\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component}{ScalarMixedUSQTwoElectronOperatorComponent<ExpansionScalar>}}(g\_ba\_par);}
+\DoxyCodeLine{00375\ }
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ two\_electron\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_two_electron_operator}{ScalarUSQTwoElectronOperator<ExpansionScalar>}}(g\_aa,\ g\_ab,\ g\_ba,\ g\_bb);}
+\DoxyCodeLine{00377\ }
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_u_s_q_one_electron_operator_product}{ScalarUSQOneElectronOperatorProduct<ExpansionScalar>}}\ \{one\_electron,\ two\_electron\};}
+\DoxyCodeLine{00379\ \ \ \ \ \}}
+\DoxyCodeLine{00380\ }
+\DoxyCodeLine{00381\ }
+\DoxyCodeLine{00389\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Shell>}
+\DoxyCodeLine{00390\ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_af5dca5a682a24c055cb2b1b576411814}{quantize}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_spin_zeeman_operator}{SpinZeemanOperator}}\&\ fq\_op)\ \textcolor{keyword}{const}\ -\/>\ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<std::is\_same<Z,\ LondonGTOShell>::value}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator}{USQOneElectronOperator<product\_t<SpinZeemanOperator::Scalar,\ ExpansionScalar>}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_dense_vectorizer}{SpinZeemanOperator::Vectorizer}}>>\ \{}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ B\ =\ fq\_op.magneticField().strength();}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((std::abs(B(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5}{CartesianDirection::x}}))\ >\ 1.0e-\/12)\ ||\ (std::abs(B(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a8611d87f8dc5908d04f3d314c7c321b1}{CartesianDirection::y}}))\ >\ 1.0e-\/12))\ \{}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}USpinOrbitalBasis::quantize(const\ FQMolecularPauliHamiltonian\&):\ Only\ the\ spin\ Zeeman\ operator\ for\ a\ magnetic\ field\ along\ the\ z-\/axis\ can\ be\ quantized\ in\ an\ USpinOrbitalBasis."{}});}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00396\ }
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}}(B(\mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8a11d242b501b62c0182e98a9d516335f7}{CartesianDirection::z}}))\ *\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae9bdd6d24535343b77020c561f24ae49}{quantize}}(\mbox{\hyperlink{class_g_q_c_p_1_1_electronic_spin__z_operator}{ElectronicSpin\_zOperator}}());}
+\DoxyCodeLine{00398\ \ \ \ \ \}}
+\DoxyCodeLine{00399\ }
+\DoxyCodeLine{00400\ }
+\DoxyCodeLine{00406\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator}{ScalarUSQOneElectronOperator<ExpansionScalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a2983417dd2a15dc2141965a31e6436e6}{overlap}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae9bdd6d24535343b77020c561f24ae49}{quantize}}(\mbox{\hyperlink{class_g_q_c_p_1_1_overlap_operator}{OverlapOperator}}());\ \}}
 \DoxyCodeLine{00407\ }
-\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }ResultScalar\ =\ \mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\_t<typename\ CoulombRepulsionOperator::Scalar,\ ExpansionScalar>}};}
-\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }ResultOperator\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_two_electron_operator}{ScalarUSQTwoElectronOperator<ResultScalar>}};}
-\DoxyCodeLine{00410\ }
-\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ matrix\ representation\ of\ the\ four\ spin-\/components\ of\ the\ second-\/quantized\ Coulomb\ operator.}}
-\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ coulomb\_engine\ =\ GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(\mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{CoulombRepulsionOperator}}());}
-\DoxyCodeLine{00413\ }
-\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ g\_aa\_par\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_calculator_ad04f586e4635103bc9f61fc573811eb3}{GQCP::IntegralCalculator::calculate}}(coulomb\_engine,\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().scalarBasis().shellSet(),\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().scalarBasis().shellSet())[0];\ \ \textcolor{comment}{//\ In\ AO\ basis,\ 'par'\ for\ 'parameters'.}}
-\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ g\_ab\_par\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_calculator_ad04f586e4635103bc9f61fc573811eb3}{GQCP::IntegralCalculator::calculate}}(coulomb\_engine,\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().scalarBasis().shellSet(),\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().scalarBasis().shellSet())[0];\ \ \ \textcolor{comment}{//\ In\ AO\ basis,\ 'par'\ for\ 'parameters'.}}
-\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ g\_ba\_par\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_calculator_ad04f586e4635103bc9f61fc573811eb3}{GQCP::IntegralCalculator::calculate}}(coulomb\_engine,\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().scalarBasis().shellSet(),\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().scalarBasis().shellSet())[0];\ \ \ \textcolor{comment}{//\ In\ AO\ basis,\ 'par'\ for\ 'parameters'.}}
-\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ g\_bb\_par\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_calculator_ad04f586e4635103bc9f61fc573811eb3}{GQCP::IntegralCalculator::calculate}}(coulomb\_engine,\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().scalarBasis().shellSet(),\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().scalarBasis().shellSet())[0];\ \ \ \ \textcolor{comment}{//\ In\ AO\ basis,\ 'par'\ for\ 'parameters'.}}
+\DoxyCodeLine{00408\ }
+\DoxyCodeLine{00416\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Shell>}
+\DoxyCodeLine{00417\ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_aabc94b88ca368c7eb4092dad2556f1ce}{quantize}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{CoulombRepulsionOperator}}\&\ coulomb\_op)\ \textcolor{keyword}{const}\ -\/>\ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<std::is\_same<Z,\ GTOShell>::value}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_two_electron_operator}{ScalarUSQTwoElectronOperator<product\_t<typename\ CoulombRepulsionOperator::Scalar,\ ExpansionScalar>}}>>\ \{}
 \DoxyCodeLine{00418\ }
-\DoxyCodeLine{00419\ }
-\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ g\_aa\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor_ac8d9dac01c85a4f11aa67c7efa877e04}{SquareRankFourTensor<ResultScalar>::Zero}}(g\_aa\_par.dimension(0));}
-\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ g\_ab\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor_ac8d9dac01c85a4f11aa67c7efa877e04}{SquareRankFourTensor<ResultScalar>::Zero}}(g\_ab\_par.dimension(0));}
-\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ g\_ba\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor_ac8d9dac01c85a4f11aa67c7efa877e04}{SquareRankFourTensor<ResultScalar>::Zero}}(g\_ba\_par.dimension(0));}
-\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ g\_bb\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor_ac8d9dac01c85a4f11aa67c7efa877e04}{SquareRankFourTensor<ResultScalar>::Zero}}(g\_bb\_par.dimension(0));}
-\DoxyCodeLine{00424\ }
-\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ g\_aa\_par.dimension(0);\ i++)\ \{}
-\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ j\ =\ 0;\ j\ <\ g\_aa\_par.dimension(1);\ j++)\ \{}
-\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ k\ =\ 0;\ k\ <\ g\_aa\_par.dimension(2);\ k++)\ \{}
-\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ l\ =\ 0;\ l\ <\ g\_aa\_par.dimension(3);\ l++)\ \{}
-\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ g\_aa(i,\ j,\ k,\ l)\ =\ g\_aa\_par(i,\ j,\ k,\ l);}
-\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ g\_ab(i,\ j,\ k,\ l)\ =\ g\_ab\_par(i,\ j,\ k,\ l);}
-\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ g\_ba(i,\ j,\ k,\ l)\ =\ g\_ba\_par(i,\ j,\ k,\ l);}
-\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ g\_bb(i,\ j,\ k,\ l)\ =\ g\_bb\_par(i,\ j,\ k,\ l);}
-\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00437\ }
-\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ have\ previously\ calculated\ the\ representations\ in\ the\ AO\ basis,\ so\ we'll\ still\ have\ to\ transform\ these\ representations\ to\ the\ current\ spin-\/orbitals.}}
-\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ ResultOperator\ g\ \{g\_aa,\ g\_ab,\ g\_ba,\ g\_bb\};}
-\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ g.transform(this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_adcf8108e1346f002b5ab2618bf79afb8}{expansion}}());\ \ \textcolor{comment}{//\ Now,\ g\ is\ expressed\ in\ the\ current\ spin-\/orbital\ basis.}}
-\DoxyCodeLine{00441\ }
-\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ g;}
-\DoxyCodeLine{00443\ \ \ \ \ \}}
-\DoxyCodeLine{00444\ }
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }ResultScalar\ =\ \mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\_t<typename\ CoulombRepulsionOperator::Scalar,\ ExpansionScalar>}};}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }ResultOperator\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_two_electron_operator}{ScalarUSQTwoElectronOperator<ResultScalar>}};}
+\DoxyCodeLine{00421\ }
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ matrix\ representation\ of\ the\ four\ spin-\/components\ of\ the\ second-\/quantized\ Coulomb\ operator.}}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ g\_aa\_par\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_calculator_a1e7dd209c9fac23b0f298cac64ac7696}{IntegralCalculator::calculateLibintIntegrals}}(coulomb\_op,\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().scalarBasis(),\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().scalarBasis());\ \ \textcolor{comment}{//\ 'par'\ for\ 'parameters'}}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ g\_ab\_par\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_calculator_a1e7dd209c9fac23b0f298cac64ac7696}{IntegralCalculator::calculateLibintIntegrals}}(coulomb\_op,\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().scalarBasis(),\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().scalarBasis());\ \ \ \textcolor{comment}{//\ 'par'\ for\ 'parameters'}}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ g\_ba\_par\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_calculator_a1e7dd209c9fac23b0f298cac64ac7696}{IntegralCalculator::calculateLibintIntegrals}}(coulomb\_op,\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().scalarBasis(),\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().scalarBasis());\ \ \ \textcolor{comment}{//\ 'par'\ for\ 'parameters'}}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ g\_bb\_par\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_calculator_a1e7dd209c9fac23b0f298cac64ac7696}{IntegralCalculator::calculateLibintIntegrals}}(coulomb\_op,\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().scalarBasis(),\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().scalarBasis());\ \ \ \ \textcolor{comment}{//\ 'par'\ for\ 'parameters'}}
+\DoxyCodeLine{00427\ }
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ g\_aa\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor_ac8d9dac01c85a4f11aa67c7efa877e04}{SquareRankFourTensor<ResultScalar>::Zero}}(g\_aa\_par.dimension(0));}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ g\_ab\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor_ac8d9dac01c85a4f11aa67c7efa877e04}{SquareRankFourTensor<ResultScalar>::Zero}}(g\_ab\_par.dimension(0));}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ g\_ba\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor_ac8d9dac01c85a4f11aa67c7efa877e04}{SquareRankFourTensor<ResultScalar>::Zero}}(g\_ba\_par.dimension(0));}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ g\_bb\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor_ac8d9dac01c85a4f11aa67c7efa877e04}{SquareRankFourTensor<ResultScalar>::Zero}}(g\_bb\_par.dimension(0));}
+\DoxyCodeLine{00432\ }
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ g\_aa\_par.dimension(0);\ i++)\ \{}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ j\ =\ 0;\ j\ <\ g\_aa\_par.dimension(1);\ j++)\ \{}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ k\ =\ 0;\ k\ <\ g\_aa\_par.dimension(2);\ k++)\ \{}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ l\ =\ 0;\ l\ <\ g\_aa\_par.dimension(3);\ l++)\ \{}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ g\_aa(i,\ j,\ k,\ l)\ =\ g\_aa\_par(i,\ j,\ k,\ l);}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ g\_ab(i,\ j,\ k,\ l)\ =\ g\_ab\_par(i,\ j,\ k,\ l);}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ g\_ba(i,\ j,\ k,\ l)\ =\ g\_ba\_par(i,\ j,\ k,\ l);}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ g\_bb(i,\ j,\ k,\ l)\ =\ g\_bb\_par(i,\ j,\ k,\ l);}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00445\ }
-\DoxyCodeLine{00453\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Shell>}
-\DoxyCodeLine{00454\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<std::is\_same<Z,\ LondonGTOShell>::value}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{USQHamiltonian<ExpansionScalar>}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_afda42797f875206668241abbbc2b03eb}{quantize}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian}{FQMolecularMagneticHamiltonian}}\&\ fq\_hamiltonian)\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00455\ }
-\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ T\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae9bdd6d24535343b77020c561f24ae49}{quantize}}(fq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_a13ffc45a8ab63d2827b51b31d7c72da7}{kinetic}}());}
-\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ OZ\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae9bdd6d24535343b77020c561f24ae49}{quantize}}(fq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_accd3cd0510bb69ee67b9ab36b2840e80}{orbitalZeeman}}());}
-\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ D\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae9bdd6d24535343b77020c561f24ae49}{quantize}}(fq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_a82a21ec85efc64487f6f1c0e06722b58}{diamagnetic}}());}
-\DoxyCodeLine{00459\ }
-\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ V\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae9bdd6d24535343b77020c561f24ae49}{quantize}}(fq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_a7346cbd577abc20e1915e8397555c783}{nuclearAttraction}}());}
-\DoxyCodeLine{00461\ }
-\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ g\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae9bdd6d24535343b77020c561f24ae49}{quantize}}(fq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_a8289f81ca6f58a576905d159ffe05486}{coulombRepulsion}}());}
-\DoxyCodeLine{00463\ }
-\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{USQHamiltonian<ExpansionScalar>}}\ \{\{T,\ OZ,\ D,\ V\},\ \{g\}\};}
-\DoxyCodeLine{00465\ \ \ \ \ \}}
-\DoxyCodeLine{00466\ }
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ have\ previously\ calculated\ the\ representations\ in\ the\ AO\ basis,\ so\ we'll\ still\ have\ to\ transform\ these\ representations\ to\ the\ current\ spin-\/orbitals.}}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ ResultOperator\ g\ \{g\_aa,\ g\_ab,\ g\_ba,\ g\_bb\};}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ g.transform(this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_adcf8108e1346f002b5ab2618bf79afb8}{expansion}}());\ \ \textcolor{comment}{//\ Now,\ g\ is\ expressed\ in\ the\ current\ spin-\/orbital\ basis.}}
+\DoxyCodeLine{00449\ }
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ g;}
+\DoxyCodeLine{00451\ \ \ \ \ \}}
+\DoxyCodeLine{00452\ }
+\DoxyCodeLine{00453\ }
+\DoxyCodeLine{00454\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00455\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Quantization\ of\ first-\/quantized\ operators\ (LondonGTOShell)}}
+\DoxyCodeLine{00456\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00457\ }
+\DoxyCodeLine{00465\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Shell>}
+\DoxyCodeLine{00466\ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a554367a4e6dd29925905548fb311b70a}{quantize}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{CoulombRepulsionOperator}}\&\ coulomb\_op)\ \textcolor{keyword}{const}\ -\/>\ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<std::is\_same<Z,\ LondonGTOShell>::value}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_two_electron_operator}{ScalarUSQTwoElectronOperator<product\_t<typename\ CoulombRepulsionOperator::Scalar,\ ExpansionScalar>}}>>\ \{}
 \DoxyCodeLine{00467\ }
-\DoxyCodeLine{00475\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Shell>}
-\DoxyCodeLine{00476\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<std::is\_same<Z,\ LondonGTOShell>::value}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{USQHamiltonian<ExpansionScalar>}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a6ee8d218e8a394ed8a51336ca23a7b9e}{quantize}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_pauli_hamiltonian}{FQMolecularPauliHamiltonian}}\&\ fq\_hamiltonian)\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00477\ }
-\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ T\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae9bdd6d24535343b77020c561f24ae49}{quantize}}(fq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_a13ffc45a8ab63d2827b51b31d7c72da7}{kinetic}}());}
-\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ OZ\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae9bdd6d24535343b77020c561f24ae49}{quantize}}(fq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_accd3cd0510bb69ee67b9ab36b2840e80}{orbitalZeeman}}());}
-\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ D\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae9bdd6d24535343b77020c561f24ae49}{quantize}}(fq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_a82a21ec85efc64487f6f1c0e06722b58}{diamagnetic}}());}
-\DoxyCodeLine{00481\ }
-\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ SZ\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae9bdd6d24535343b77020c561f24ae49}{quantize}}(fq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_pauli_hamiltonian_a933fa25d77b522f303b9074382165990}{spinZeeman}}());}
-\DoxyCodeLine{00483\ }
-\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ V\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae9bdd6d24535343b77020c561f24ae49}{quantize}}(fq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_a7346cbd577abc20e1915e8397555c783}{nuclearAttraction}}());}
-\DoxyCodeLine{00485\ }
-\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ g\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae9bdd6d24535343b77020c561f24ae49}{quantize}}(fq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_a8289f81ca6f58a576905d159ffe05486}{coulombRepulsion}}());}
-\DoxyCodeLine{00487\ }
-\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{USQHamiltonian<ExpansionScalar>}}\ \{\{T,\ OZ,\ D,\ V,\ SZ\},\ \{g\}\};}
-\DoxyCodeLine{00489\ \ \ \ \ \}}
-\DoxyCodeLine{00490\ }
-\DoxyCodeLine{00491\ }
-\DoxyCodeLine{00492\ \ \ \ \ \textcolor{comment}{/*}}
-\DoxyCodeLine{00493\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Quantization\ of\ first-\/quantized\ operators}}
-\DoxyCodeLine{00494\ \textcolor{comment}{\ \ \ \ \ */}}
-\DoxyCodeLine{00495\ }
-\DoxyCodeLine{00505\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ FQOneElectronOperator>}
-\DoxyCodeLine{00506\ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a2200b24771de76df594a1971474ceeb7}{quantize}}(\textcolor{keyword}{const}\ FQOneElectronOperator\&\ fq\_op)\ \textcolor{keyword}{const}\ -\/>\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator}{USQOneElectronOperator<product\_t<typename\ FQOneElectronOperator::Scalar,\ ExpansionScalar>}},\ \textcolor{keyword}{typename}\ FQOneElectronOperator::Vectorizer>\ \{}
-\DoxyCodeLine{00507\ }
-\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }ResultScalar\ =\ \mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\_t<typename\ FQOneElectronOperator::Scalar,\ ExpansionScalar>}};}
-\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }ResultOperator\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator}{USQOneElectronOperator<ResultScalar,\ typename\ FQOneElectronOperator::Vectorizer>}};}
-\DoxyCodeLine{00510\ }
-\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Quantize\ the\ one-\/electron\ operator\ in\ the\ alpha-\/\ and\ beta-\/\ bases\ and\ return\ the\ wrapped\ result.}}
-\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ f\_a\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component_ad74bd39447eb5559e238756bfc8bde30}{quantize}}(fq\_op);}
-\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ f\_b\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component_ad74bd39447eb5559e238756bfc8bde30}{quantize}}(fq\_op);}
-\DoxyCodeLine{00514\ }
-\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ResultOperator\ \{f\_a,\ f\_b\};}
-\DoxyCodeLine{00516\ \ \ \ \ \}}
-\DoxyCodeLine{00517\ }
-\DoxyCodeLine{00518\ }
-\DoxyCodeLine{00526\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{USQHamiltonian<ExpansionScalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a6de25375aab2050878bcc5e6b4c4f2d5}{quantize}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian}{FQMolecularHamiltonian}}\&\ fq\_hamiltonian)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }ResultScalar\ =\ \mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\_t<typename\ CoulombRepulsionOperator::Scalar,\ ExpansionScalar>}};}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }ResultOperator\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_two_electron_operator}{ScalarUSQTwoElectronOperator<ResultScalar>}};}
+\DoxyCodeLine{00470\ }
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ matrix\ representation\ of\ the\ four\ spin-\/components\ of\ the\ second-\/quantized\ Coulomb\ operator.}}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ coulomb\_engine\ =\ GQCP::IntegralEngine::InHouse<GQCP::LondonGTOShell>(\mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{CoulombRepulsionOperator}}());}
+\DoxyCodeLine{00473\ }
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ g\_aa\_par\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_calculator_ad04f586e4635103bc9f61fc573811eb3}{GQCP::IntegralCalculator::calculate}}(coulomb\_engine,\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().scalarBasis().shellSet(),\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().scalarBasis().shellSet())[0];\ \ \textcolor{comment}{//\ In\ AO\ basis,\ 'par'\ for\ 'parameters'.}}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ g\_ab\_par\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_calculator_ad04f586e4635103bc9f61fc573811eb3}{GQCP::IntegralCalculator::calculate}}(coulomb\_engine,\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().scalarBasis().shellSet(),\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().scalarBasis().shellSet())[0];\ \ \ \textcolor{comment}{//\ In\ AO\ basis,\ 'par'\ for\ 'parameters'.}}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ g\_ba\_par\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_calculator_ad04f586e4635103bc9f61fc573811eb3}{GQCP::IntegralCalculator::calculate}}(coulomb\_engine,\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().scalarBasis().shellSet(),\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().scalarBasis().shellSet())[0];\ \ \ \textcolor{comment}{//\ In\ AO\ basis,\ 'par'\ for\ 'parameters'.}}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ g\_bb\_par\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_integral_calculator_ad04f586e4635103bc9f61fc573811eb3}{GQCP::IntegralCalculator::calculate}}(coulomb\_engine,\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().scalarBasis().shellSet(),\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().scalarBasis().shellSet())[0];\ \ \ \ \textcolor{comment}{//\ In\ AO\ basis,\ 'par'\ for\ 'parameters'.}}
+\DoxyCodeLine{00478\ }
+\DoxyCodeLine{00479\ }
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ g\_aa\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor_ac8d9dac01c85a4f11aa67c7efa877e04}{SquareRankFourTensor<ResultScalar>::Zero}}(g\_aa\_par.dimension(0));}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ g\_ab\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor_ac8d9dac01c85a4f11aa67c7efa877e04}{SquareRankFourTensor<ResultScalar>::Zero}}(g\_ab\_par.dimension(0));}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ g\_ba\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor_ac8d9dac01c85a4f11aa67c7efa877e04}{SquareRankFourTensor<ResultScalar>::Zero}}(g\_ba\_par.dimension(0));}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ g\_bb\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_rank_four_tensor_ac8d9dac01c85a4f11aa67c7efa877e04}{SquareRankFourTensor<ResultScalar>::Zero}}(g\_bb\_par.dimension(0));}
+\DoxyCodeLine{00484\ }
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ g\_aa\_par.dimension(0);\ i++)\ \{}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ j\ =\ 0;\ j\ <\ g\_aa\_par.dimension(1);\ j++)\ \{}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ k\ =\ 0;\ k\ <\ g\_aa\_par.dimension(2);\ k++)\ \{}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ l\ =\ 0;\ l\ <\ g\_aa\_par.dimension(3);\ l++)\ \{}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ g\_aa(i,\ j,\ k,\ l)\ =\ g\_aa\_par(i,\ j,\ k,\ l);}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ g\_ab(i,\ j,\ k,\ l)\ =\ g\_ab\_par(i,\ j,\ k,\ l);}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ g\_ba(i,\ j,\ k,\ l)\ =\ g\_ba\_par(i,\ j,\ k,\ l);}
+\DoxyCodeLine{00492\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ g\_bb(i,\ j,\ k,\ l)\ =\ g\_bb\_par(i,\ j,\ k,\ l);}
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00497\ }
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ have\ previously\ calculated\ the\ representations\ in\ the\ AO\ basis,\ so\ we'll\ still\ have\ to\ transform\ these\ representations\ to\ the\ current\ spin-\/orbitals.}}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ ResultOperator\ g\ \{g\_aa,\ g\_ab,\ g\_ba,\ g\_bb\};}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ g.transform(this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_adcf8108e1346f002b5ab2618bf79afb8}{expansion}}());\ \ \textcolor{comment}{//\ Now,\ g\ is\ expressed\ in\ the\ current\ spin-\/orbital\ basis.}}
+\DoxyCodeLine{00501\ }
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ g;}
+\DoxyCodeLine{00503\ \ \ \ \ \}}
+\DoxyCodeLine{00504\ }
+\DoxyCodeLine{00505\ }
+\DoxyCodeLine{00513\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Shell>}
+\DoxyCodeLine{00514\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<std::is\_same<Z,\ LondonGTOShell>::value}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{USQHamiltonian<ExpansionScalar>}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_afda42797f875206668241abbbc2b03eb}{quantize}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian}{FQMolecularMagneticHamiltonian}}\&\ fq\_hamiltonian)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00515\ }
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ T\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae9bdd6d24535343b77020c561f24ae49}{quantize}}(fq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_a13ffc45a8ab63d2827b51b31d7c72da7}{kinetic}}());}
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ OZ\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae9bdd6d24535343b77020c561f24ae49}{quantize}}(fq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_accd3cd0510bb69ee67b9ab36b2840e80}{orbitalZeeman}}());}
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ D\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae9bdd6d24535343b77020c561f24ae49}{quantize}}(fq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_a82a21ec85efc64487f6f1c0e06722b58}{diamagnetic}}());}
+\DoxyCodeLine{00519\ }
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ V\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae9bdd6d24535343b77020c561f24ae49}{quantize}}(fq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_a7346cbd577abc20e1915e8397555c783}{nuclearAttraction}}());}
+\DoxyCodeLine{00521\ }
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ g\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae9bdd6d24535343b77020c561f24ae49}{quantize}}(fq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_a8289f81ca6f58a576905d159ffe05486}{coulombRepulsion}}());}
+\DoxyCodeLine{00523\ }
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{USQHamiltonian<ExpansionScalar>}}\ \{\{T,\ OZ,\ D,\ V\},\ \{g\}\};}
+\DoxyCodeLine{00525\ \ \ \ \ \}}
+\DoxyCodeLine{00526\ }
 \DoxyCodeLine{00527\ }
-\DoxyCodeLine{00528\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ T\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae9bdd6d24535343b77020c561f24ae49}{quantize}}(fq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_a13ffc45a8ab63d2827b51b31d7c72da7}{kinetic}}());}
-\DoxyCodeLine{00529\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ V\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae9bdd6d24535343b77020c561f24ae49}{quantize}}(fq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_a7346cbd577abc20e1915e8397555c783}{nuclearAttraction}}());}
-\DoxyCodeLine{00530\ }
-\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ g\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae9bdd6d24535343b77020c561f24ae49}{quantize}}(fq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_a8289f81ca6f58a576905d159ffe05486}{coulombRepulsion}}());}
-\DoxyCodeLine{00532\ }
-\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{USQHamiltonian<ExpansionScalar>}}\ \{T\ +\ V,\ g\};}
-\DoxyCodeLine{00534\ \ \ \ \ \}}
-\DoxyCodeLine{00535\ }
-\DoxyCodeLine{00536\ }
-\DoxyCodeLine{00548\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_mulliken_domain}{UMullikenDomain<ExpansionScalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a583bb084be45b4a8d13048735f564f67}{mullikenDomain}}(\textcolor{keyword}{const}\ std::function<\textcolor{keywordtype}{bool}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a1b300eaa8d2637d545c0c6a1f8b4f2b9}{BasisFunction}}\&)>\&\ selector)\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00549\ }
-\DoxyCodeLine{00550\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_mulliken_domain}{UMullikenDomain<ExpansionScalar>}}\ \{this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component_a8c81a5ca5f5dddf44c64c7c08c334dc5}{mullikenDomain}}(selector),\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component_a8c81a5ca5f5dddf44c64c7c08c334dc5}{mullikenDomain}}(selector)\};}
-\DoxyCodeLine{00551\ \ \ \ \ \}}
-\DoxyCodeLine{00552\ }
-\DoxyCodeLine{00553\ }
-\DoxyCodeLine{00561\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_mulliken_domain}{UMullikenDomain<ExpansionScalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a6e93bb1a6cb5fb954d3a3eef2ed71150}{mullikenDomain}}(\textcolor{keyword}{const}\ std::function<\textcolor{keywordtype}{bool}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a359a0209c9e89ac045fece42ba6ad1c6}{Shell}}\&)>\&\ selector)\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00562\ }
-\DoxyCodeLine{00563\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_mulliken_domain}{UMullikenDomain<ExpansionScalar>}}\ \{this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component_a8c81a5ca5f5dddf44c64c7c08c334dc5}{mullikenDomain}}(selector),\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component_a8c81a5ca5f5dddf44c64c7c08c334dc5}{mullikenDomain}}(selector)\};}
-\DoxyCodeLine{00564\ \ \ \ \ \}}
-\DoxyCodeLine{00565\ }
-\DoxyCodeLine{00566\ }
-\DoxyCodeLine{00571\ \ \ \ \ \textcolor{comment}{//\ Since\ `rotate`\ and\ `rotated`\ are\ both\ defined\ in\ `SpinResolvedBasisTransformable`\ and\ `SpinResolvedJacobiRotatable`,\ we\ have\ to\ explicitly\ enable\ these\ methods\ here.}}
-\DoxyCodeLine{00572\ }
-\DoxyCodeLine{00573\ \ \ \ \ \textcolor{comment}{//\ Allow\ the\ `rotate`\ method\ from\ `SpinResolvedBasisTransformable`,\ since\ there's\ also\ a\ `rotate`\ from\ `SpinResolvedJacobiRotatable`.}}
-\DoxyCodeLine{00574\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_basis_transformable}{SpinResolvedBasisTransformable}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_af987cf0a2ee191db63496d0d52f2f203}{Self}}>\mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_a2e107bd3cf4d603c003c8cb9357d0094}{::rotate}};}
-\DoxyCodeLine{00575\ }
-\DoxyCodeLine{00576\ \ \ \ \ \textcolor{comment}{//\ Allow\ the\ `rotated`\ method\ from\ `SpinResolvedBasisTransformable`,\ since\ there's\ also\ a\ `rotated`\ from\ `SpinResolvedJacobiRotatable`.}}
-\DoxyCodeLine{00577\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_basis_transformable}{SpinResolvedBasisTransformable}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_af987cf0a2ee191db63496d0d52f2f203}{Self}}>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable_aff0df03f6211a4ee332e53c7f917066d}{::rotated}};}
+\DoxyCodeLine{00535\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Shell>}
+\DoxyCodeLine{00536\ \ \ \ \ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<std::is\_same<Z,\ LondonGTOShell>::value}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{USQHamiltonian<ExpansionScalar>}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a6ee8d218e8a394ed8a51336ca23a7b9e}{quantize}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_pauli_hamiltonian}{FQMolecularPauliHamiltonian}}\&\ fq\_hamiltonian)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00537\ }
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ T\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae9bdd6d24535343b77020c561f24ae49}{quantize}}(fq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_a13ffc45a8ab63d2827b51b31d7c72da7}{kinetic}}());}
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ OZ\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae9bdd6d24535343b77020c561f24ae49}{quantize}}(fq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_accd3cd0510bb69ee67b9ab36b2840e80}{orbitalZeeman}}());}
+\DoxyCodeLine{00540\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ D\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae9bdd6d24535343b77020c561f24ae49}{quantize}}(fq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian_a82a21ec85efc64487f6f1c0e06722b58}{diamagnetic}}());}
+\DoxyCodeLine{00541\ }
+\DoxyCodeLine{00542\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ SZ\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae9bdd6d24535343b77020c561f24ae49}{quantize}}(fq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_pauli_hamiltonian_a933fa25d77b522f303b9074382165990}{spinZeeman}}());}
+\DoxyCodeLine{00543\ }
+\DoxyCodeLine{00544\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ V\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae9bdd6d24535343b77020c561f24ae49}{quantize}}(fq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_a7346cbd577abc20e1915e8397555c783}{nuclearAttraction}}());}
+\DoxyCodeLine{00545\ }
+\DoxyCodeLine{00546\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ g\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae9bdd6d24535343b77020c561f24ae49}{quantize}}(fq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_a8289f81ca6f58a576905d159ffe05486}{coulombRepulsion}}());}
+\DoxyCodeLine{00547\ }
+\DoxyCodeLine{00548\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{USQHamiltonian<ExpansionScalar>}}\ \{\{T,\ OZ,\ D,\ V,\ SZ\},\ \{g\}\};}
+\DoxyCodeLine{00549\ \ \ \ \ \}}
+\DoxyCodeLine{00550\ }
+\DoxyCodeLine{00551\ }
+\DoxyCodeLine{00552\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00553\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Quantization\ of\ first-\/quantized\ operators}}
+\DoxyCodeLine{00554\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00555\ }
+\DoxyCodeLine{00565\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ FQOneElectronOperator>}
+\DoxyCodeLine{00566\ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a2200b24771de76df594a1971474ceeb7}{quantize}}(\textcolor{keyword}{const}\ FQOneElectronOperator\&\ fq\_op)\ \textcolor{keyword}{const}\ -\/>\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator}{USQOneElectronOperator<product\_t<typename\ FQOneElectronOperator::Scalar,\ ExpansionScalar>}},\ \textcolor{keyword}{typename}\ FQOneElectronOperator::Vectorizer>\ \{}
+\DoxyCodeLine{00567\ }
+\DoxyCodeLine{00568\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }ResultScalar\ =\ \mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\_t<typename\ FQOneElectronOperator::Scalar,\ ExpansionScalar>}};}
+\DoxyCodeLine{00569\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }ResultOperator\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_s_q_one_electron_operator}{USQOneElectronOperator<ResultScalar,\ typename\ FQOneElectronOperator::Vectorizer>}};}
+\DoxyCodeLine{00570\ }
+\DoxyCodeLine{00571\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Quantize\ the\ one-\/electron\ operator\ in\ the\ alpha-\/\ and\ beta-\/\ bases\ and\ return\ the\ wrapped\ result.}}
+\DoxyCodeLine{00572\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ f\_a\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component_ad74bd39447eb5559e238756bfc8bde30}{quantize}}(fq\_op);}
+\DoxyCodeLine{00573\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ f\_b\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component_ad74bd39447eb5559e238756bfc8bde30}{quantize}}(fq\_op);}
+\DoxyCodeLine{00574\ }
+\DoxyCodeLine{00575\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ResultOperator\ \{f\_a,\ f\_b\};}
+\DoxyCodeLine{00576\ \ \ \ \ \}}
+\DoxyCodeLine{00577\ }
 \DoxyCodeLine{00578\ }
-\DoxyCodeLine{00579\ \ \ \ \ \textcolor{comment}{//\ Allow\ the\ `rotate`\ method\ from\ `SpinResolvedJacobiRotatable`,\ since\ there's\ also\ a\ `rotate`\ from\ `SpinResolvedBasisTransformable`.}}
-\DoxyCodeLine{00580\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable}{SpinResolvedJacobiRotatable}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_af987cf0a2ee191db63496d0d52f2f203}{Self}}>\mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_a2e107bd3cf4d603c003c8cb9357d0094}{::rotate}};}
-\DoxyCodeLine{00581\ }
-\DoxyCodeLine{00582\ \ \ \ \ \textcolor{comment}{//\ Allow\ the\ `rotated`\ method\ from\ `SpinResolvedJacobiRotatable`,\ since\ there's\ also\ a\ `rotated`\ from\ `SpinResolvedBasisTransformable`.}}
-\DoxyCodeLine{00583\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable}{SpinResolvedJacobiRotatable}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_af987cf0a2ee191db63496d0d52f2f203}{Self}}>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable_aff0df03f6211a4ee332e53c7f917066d}{::rotated}};}
-\DoxyCodeLine{00584\ \};}
-\DoxyCodeLine{00585\ }
-\DoxyCodeLine{00586\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00587\ \textcolor{comment}{\ *\ \ MARK:\ Convenience\ aliases}}
-\DoxyCodeLine{00588\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00589\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ExpansionScalar,\ \textcolor{keyword}{typename}\ Shell>}
-\DoxyCodeLine{00590\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{USpinorBasis}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{USpinOrbitalBasis<ExpansionScalar,\ Shell>}};}
-\DoxyCodeLine{00591\ }
+\DoxyCodeLine{00586\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{USQHamiltonian<ExpansionScalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a6de25375aab2050878bcc5e6b4c4f2d5}{quantize}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian}{FQMolecularHamiltonian}}\&\ fq\_hamiltonian)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00587\ }
+\DoxyCodeLine{00588\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ T\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae9bdd6d24535343b77020c561f24ae49}{quantize}}(fq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_a13ffc45a8ab63d2827b51b31d7c72da7}{kinetic}}());}
+\DoxyCodeLine{00589\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ V\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae9bdd6d24535343b77020c561f24ae49}{quantize}}(fq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_a7346cbd577abc20e1915e8397555c783}{nuclearAttraction}}());}
+\DoxyCodeLine{00590\ }
+\DoxyCodeLine{00591\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ g\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_ae9bdd6d24535343b77020c561f24ae49}{quantize}}(fq\_hamiltonian.\mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian_a8289f81ca6f58a576905d159ffe05486}{coulombRepulsion}}());}
 \DoxyCodeLine{00592\ }
-\DoxyCodeLine{00593\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00594\ \textcolor{comment}{\ *\ \ MARK:\ BasisTransformableTraits}}
-\DoxyCodeLine{00595\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00593\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_s_q_hamiltonian}{USQHamiltonian<ExpansionScalar>}}\ \{T\ +\ V,\ g\};}
+\DoxyCodeLine{00594\ \ \ \ \ \}}
+\DoxyCodeLine{00595\ }
 \DoxyCodeLine{00596\ }
-\DoxyCodeLine{00600\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_ExpansionScalar,\ \textcolor{keyword}{typename}\ \_Shell>}
-\DoxyCodeLine{00601\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_g_q_c_p_1_1_basis_transformable_traits}{BasisTransformableTraits}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{USpinOrbitalBasis}}<\_ExpansionScalar,\ \_Shell>>\ \{}
-\DoxyCodeLine{00602\ }
-\DoxyCodeLine{00603\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ transformation\ that\ is\ naturally\ related\ to\ a\ `USpinOrbitalBasis`.}}
-\DoxyCodeLine{00604\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{Transformation}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<\_ExpansionScalar>}};}
-\DoxyCodeLine{00605\ \};}
-\DoxyCodeLine{00606\ }
-\DoxyCodeLine{00607\ }
-\DoxyCodeLine{00608\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00609\ \textcolor{comment}{\ *\ \ MARK:\ JacobiRotatableTraits}}
-\DoxyCodeLine{00610\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00611\ }
-\DoxyCodeLine{00615\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_ExpansionScalar,\ \textcolor{keyword}{typename}\ \_Shell>}
-\DoxyCodeLine{00616\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_g_q_c_p_1_1_jacobi_rotatable_traits}{JacobiRotatableTraits}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{USpinOrbitalBasis}}<\_ExpansionScalar,\ \_Shell>>\ \{}
-\DoxyCodeLine{00617\ }
-\DoxyCodeLine{00618\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ Jacobi\ rotation\ for\ which\ the\ Jacobi\ rotation\ should\ be\ defined.}}
-\DoxyCodeLine{00619\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_u_jacobi_rotation}{JacobiRotationType}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_jacobi_rotation}{UJacobiRotation}};}
-\DoxyCodeLine{00620\ \};}
-\DoxyCodeLine{00621\ }
+\DoxyCodeLine{00608\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_mulliken_domain}{UMullikenDomain<ExpansionScalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a583bb084be45b4a8d13048735f564f67}{mullikenDomain}}(\textcolor{keyword}{const}\ std::function<\textcolor{keywordtype}{bool}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a1b300eaa8d2637d545c0c6a1f8b4f2b9}{BasisFunction}}\&)>\&\ selector)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00609\ }
+\DoxyCodeLine{00610\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_mulliken_domain}{UMullikenDomain<ExpansionScalar>}}\ \{this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component_a8c81a5ca5f5dddf44c64c7c08c334dc5}{mullikenDomain}}(selector),\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component_a8c81a5ca5f5dddf44c64c7c08c334dc5}{mullikenDomain}}(selector)\};}
+\DoxyCodeLine{00611\ \ \ \ \ \}}
+\DoxyCodeLine{00612\ }
+\DoxyCodeLine{00613\ }
+\DoxyCodeLine{00621\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_u_mulliken_domain}{UMullikenDomain<ExpansionScalar>}}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a6e93bb1a6cb5fb954d3a3eef2ed71150}{mullikenDomain}}(\textcolor{keyword}{const}\ std::function<\textcolor{keywordtype}{bool}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_a359a0209c9e89ac045fece42ba6ad1c6}{Shell}}\&)>\&\ selector)\textcolor{keyword}{\ const\ }\{}
 \DoxyCodeLine{00622\ }
-\DoxyCodeLine{00623\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+\DoxyCodeLine{00623\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_mulliken_domain}{UMullikenDomain<ExpansionScalar>}}\ \{this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_accab13c5e8be1be72246ab1fe440cc1a}{alpha}}().\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component_a8c81a5ca5f5dddf44c64c7c08c334dc5}{mullikenDomain}}(selector),\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_base_a070d0be1f00ac25b16c623e6679bb0f6}{beta}}().\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_component_a8c81a5ca5f5dddf44c64c7c08c334dc5}{mullikenDomain}}(selector)\};}
+\DoxyCodeLine{00624\ \ \ \ \ \}}
+\DoxyCodeLine{00625\ }
+\DoxyCodeLine{00626\ }
+\DoxyCodeLine{00631\ \ \ \ \ \textcolor{comment}{//\ Since\ `rotate`\ and\ `rotated`\ are\ both\ defined\ in\ `SpinResolvedBasisTransformable`\ and\ `SpinResolvedJacobiRotatable`,\ we\ have\ to\ explicitly\ enable\ these\ methods\ here.}}
+\DoxyCodeLine{00632\ }
+\DoxyCodeLine{00633\ \ \ \ \ \textcolor{comment}{//\ Allow\ the\ `rotate`\ method\ from\ `SpinResolvedBasisTransformable`,\ since\ there's\ also\ a\ `rotate`\ from\ `SpinResolvedJacobiRotatable`.}}
+\DoxyCodeLine{00634\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_basis_transformable}{SpinResolvedBasisTransformable}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_af987cf0a2ee191db63496d0d52f2f203}{Self}}>\mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_a2e107bd3cf4d603c003c8cb9357d0094}{::rotate}};}
+\DoxyCodeLine{00635\ }
+\DoxyCodeLine{00636\ \ \ \ \ \textcolor{comment}{//\ Allow\ the\ `rotated`\ method\ from\ `SpinResolvedBasisTransformable`,\ since\ there's\ also\ a\ `rotated`\ from\ `SpinResolvedJacobiRotatable`.}}
+\DoxyCodeLine{00637\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_basis_transformable}{SpinResolvedBasisTransformable}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_af987cf0a2ee191db63496d0d52f2f203}{Self}}>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable_aff0df03f6211a4ee332e53c7f917066d}{::rotated}};}
+\DoxyCodeLine{00638\ }
+\DoxyCodeLine{00639\ \ \ \ \ \textcolor{comment}{//\ Allow\ the\ `rotate`\ method\ from\ `SpinResolvedJacobiRotatable`,\ since\ there's\ also\ a\ `rotate`\ from\ `SpinResolvedBasisTransformable`.}}
+\DoxyCodeLine{00640\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable}{SpinResolvedJacobiRotatable}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_af987cf0a2ee191db63496d0d52f2f203}{Self}}>\mbox{\hyperlink{class_g_q_c_p_1_1_basis_transformable_a2e107bd3cf4d603c003c8cb9357d0094}{::rotate}};}
+\DoxyCodeLine{00641\ }
+\DoxyCodeLine{00642\ \ \ \ \ \textcolor{comment}{//\ Allow\ the\ `rotated`\ method\ from\ `SpinResolvedJacobiRotatable`,\ since\ there's\ also\ a\ `rotated`\ from\ `SpinResolvedBasisTransformable`.}}
+\DoxyCodeLine{00643\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable}{SpinResolvedJacobiRotatable}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis_af987cf0a2ee191db63496d0d52f2f203}{Self}}>\mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved_jacobi_rotatable_aff0df03f6211a4ee332e53c7f917066d}{::rotated}};}
+\DoxyCodeLine{00644\ \};}
+\DoxyCodeLine{00645\ }
+\DoxyCodeLine{00646\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00647\ \textcolor{comment}{\ *\ \ MARK:\ Convenience\ aliases}}
+\DoxyCodeLine{00648\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00649\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ExpansionScalar,\ \textcolor{keyword}{typename}\ Shell>}
+\DoxyCodeLine{00650\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{USpinorBasis}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{USpinOrbitalBasis<ExpansionScalar,\ Shell>}};}
+\DoxyCodeLine{00651\ }
+\DoxyCodeLine{00652\ }
+\DoxyCodeLine{00653\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00654\ \textcolor{comment}{\ *\ \ MARK:\ BasisTransformableTraits}}
+\DoxyCodeLine{00655\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00656\ }
+\DoxyCodeLine{00660\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_ExpansionScalar,\ \textcolor{keyword}{typename}\ \_Shell>}
+\DoxyCodeLine{00661\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_g_q_c_p_1_1_basis_transformable_traits}{BasisTransformableTraits}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{USpinOrbitalBasis}}<\_ExpansionScalar,\ \_Shell>>\ \{}
+\DoxyCodeLine{00662\ }
+\DoxyCodeLine{00663\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ transformation\ that\ is\ naturally\ related\ to\ a\ `USpinOrbitalBasis`.}}
+\DoxyCodeLine{00664\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{Transformation}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_transformation}{UTransformation<\_ExpansionScalar>}};}
+\DoxyCodeLine{00665\ \};}
+\DoxyCodeLine{00666\ }
+\DoxyCodeLine{00667\ }
+\DoxyCodeLine{00668\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00669\ \textcolor{comment}{\ *\ \ MARK:\ JacobiRotatableTraits}}
+\DoxyCodeLine{00670\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00671\ }
+\DoxyCodeLine{00675\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_ExpansionScalar,\ \textcolor{keyword}{typename}\ \_Shell>}
+\DoxyCodeLine{00676\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_g_q_c_p_1_1_jacobi_rotatable_traits}{JacobiRotatableTraits}}<\mbox{\hyperlink{class_g_q_c_p_1_1_u_spin_orbital_basis}{USpinOrbitalBasis}}<\_ExpansionScalar,\ \_Shell>>\ \{}
+\DoxyCodeLine{00677\ }
+\DoxyCodeLine{00678\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ Jacobi\ rotation\ for\ which\ the\ Jacobi\ rotation\ should\ be\ defined.}}
+\DoxyCodeLine{00679\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_u_jacobi_rotation}{JacobiRotationType}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_u_jacobi_rotation}{UJacobiRotation}};}
+\DoxyCodeLine{00680\ \};}
+\DoxyCodeLine{00681\ }
+\DoxyCodeLine{00682\ }
+\DoxyCodeLine{00683\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
 
 \end{DoxyCode}

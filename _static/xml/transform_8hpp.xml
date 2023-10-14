@@ -698,11 +698,13 @@
         </childnode>
         <childnode refid="188" relation="include">
         </childnode>
+        <childnode refid="189" relation="include">
+        </childnode>
         <childnode refid="132" relation="include">
         </childnode>
         <childnode refid="133" relation="include">
         </childnode>
-        <childnode refid="189" relation="include">
+        <childnode refid="190" relation="include">
         </childnode>
         <childnode refid="59" relation="include">
         </childnode>
@@ -1436,6 +1438,14 @@
         </childnode>
       </node>
       <node id="188">
+        <label>Operator/FirstQuantized/ElectronicSpinSquaredOperator.hpp</label>
+        <link refid="_electronic_spin_squared_operator_8hpp"/>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+      </node>
+      <node id="189">
         <label>Operator/FirstQuantized/ElectronicSpin_zOperator.hpp</label>
         <link refid="_electronic_spin__z_operator_8hpp"/>
         <childnode refid="53" relation="include">
@@ -1463,12 +1473,12 @@
         <childnode refid="134" relation="include">
         </childnode>
       </node>
-      <node id="189">
+      <node id="190">
         <label>Operator/FirstQuantized/FQMolecularPauliHamiltonian.hpp</label>
         <link refid="_f_q_molecular_pauli_hamiltonian_8hpp"/>
         <childnode refid="133" relation="include">
         </childnode>
-        <childnode refid="190" relation="include">
+        <childnode refid="191" relation="include">
         </childnode>
       </node>
       <node id="59">
@@ -1513,7 +1523,7 @@
         <childnode refid="53" relation="include">
         </childnode>
       </node>
-      <node id="190">
+      <node id="191">
         <label>Operator/FirstQuantized/SpinZeemanOperator.hpp</label>
         <link refid="_spin_zeeman_operator_8hpp"/>
         <childnode refid="53" relation="include">
@@ -1835,6 +1845,8 @@
         <childnode refid="158" relation="include">
         </childnode>
         <childnode refid="155" relation="include">
+        </childnode>
+        <childnode refid="183" relation="include">
         </childnode>
         <childnode refid="177" relation="include">
         </childnode>

@@ -120,7 +120,9 @@ size\+\_\+t \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad71c2691865d2ba1e
 \item 
 \mbox{\hyperlink{namespace_g_q_c_p_a18949b2153b626c420238dab2a4e7185}{GSQHamiltonian}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_adb07b2944761a3dfa4952f54e29f7d12}{quantize}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian}{FQMolecular\+Hamiltonian}} \&fq\+\_\+hamiltonian) const
 \item 
-\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product}{Scalar\+GSQOne\+Electron\+Operator\+Product}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a07c10877443c76843ccebee8e5df2a68}{quantize}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_spin_squared_operator}{Electronic\+Spin\+Squared\+Operator}} \&fq\+\_\+\+S2\+\_\+op) const
+{\footnotesize template$<$typename S  = Expansion\+Scalar$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ S, \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}} $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product}{Scalar\+GSQOne\+Electron\+Operator\+Product}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_aa6cec48557ef843ab901f485c22aa4b0}{quantize}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_spin_squared_operator}{Electronic\+Spin\+Squared\+Operator}} \&fq\+\_\+\+S2\+\_\+op) const
+\item 
+{\footnotesize template$<$typename S  = Expansion\+Scalar$>$ }\\\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ S, double $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product}{Scalar\+GSQOne\+Electron\+Operator\+Product}}$<$ double $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a35a561b127972553b94236148abee94a}{quantize}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_spin_squared_operator}{Electronic\+Spin\+Squared\+Operator}} \&fq\+\_\+\+S2\+\_\+op) const
 \item 
 const \mbox{\hyperlink{class_g_q_c_p_1_1_spin_resolved}{Spin\+Resolved}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis}{Scalar\+Basis}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a43378faf70d64f2caa796282bac433e8}{Shell}} $>$ $>$ \& \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_a84558401a2607c6b72621759c7874f76}{scalar\+Bases}} () const
 \item 
@@ -540,7 +542,7 @@ The number of spinors that are described by this generalized spinor basis.
 \mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_ab194f96b8477ee3552387ff42ebe113f}\label{class_g_q_c_p_1_1_g_spinor_basis_ab194f96b8477ee3552387ff42ebe113f}} 
 \index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!quantize@{quantize}}
 \index{quantize@{quantize}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
-\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}\hspace{0.1cm}{\footnotesize\ttfamily [1/14]}}
+\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}\hspace{0.1cm}{\footnotesize\ttfamily [1/15]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
 template$<$typename Z  = Shell$>$ \\
 auto \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{GQCP\+::\+GSpinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::quantize (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}} \&}]{coulomb\+\_\+op }\end{DoxyParamCaption}) const -\/$>$ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}}$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_g_s_q_two_electron_operator}{GSQTwo\+Electron\+Operator}}$<$\mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\+\_\+t}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}{Coulomb\+Repulsion\+Operator\+::\+Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}}$>$, \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_a3bf379636691d7d74ea96afc8f5049cf}{Coulomb\+Repulsion\+Operator\+::\+Vectorizer}}$>$$>$ \hspace{0.3cm}{\ttfamily [inline]}}
@@ -558,7 +560,7 @@ The second-\/quantized operator corresponding to the Coulomb operator.
 \mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_ae8b118b13e728b6fdf2db08a19457c7e}\label{class_g_q_c_p_1_1_g_spinor_basis_ae8b118b13e728b6fdf2db08a19457c7e}} 
 \index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!quantize@{quantize}}
 \index{quantize@{quantize}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
-\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}\hspace{0.1cm}{\footnotesize\ttfamily [2/14]}}
+\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}\hspace{0.1cm}{\footnotesize\ttfamily [2/15]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
 template$<$typename Z  = Shell$>$ \\
 auto \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{GQCP\+::\+GSpinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::quantize (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_coulomb_repulsion_operator}{Coulomb\+Repulsion\+Operator}} \&}]{coulomb\+\_\+op }\end{DoxyParamCaption}) const -\/$>$ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, \mbox{\hyperlink{class_g_q_c_p_1_1_london_g_t_o_shell}{London\+GTOShell}}$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_g_s_q_two_electron_operator}{GSQTwo\+Electron\+Operator}}$<$\mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\+\_\+t}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}{Coulomb\+Repulsion\+Operator\+::\+Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}}$>$, \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_a3bf379636691d7d74ea96afc8f5049cf}{Coulomb\+Repulsion\+Operator\+::\+Vectorizer}}$>$$>$ \hspace{0.3cm}{\ttfamily [inline]}}
@@ -579,7 +581,7 @@ For efficiency reasons (two-\/electron integrals over London orbitals are partic
 \mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_aa28937e7f33c89f090c28a40a600596d}\label{class_g_q_c_p_1_1_g_spinor_basis_aa28937e7f33c89f090c28a40a600596d}} 
 \index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!quantize@{quantize}}
 \index{quantize@{quantize}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
-\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}\hspace{0.1cm}{\footnotesize\ttfamily [3/14]}}
+\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}\hspace{0.1cm}{\footnotesize\ttfamily [3/15]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
 template$<$typename Z  = Shell$>$ \\
 auto \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{GQCP\+::\+GSpinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::quantize (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_diamagnetic_operator}{Diamagnetic\+Operator}} \&}]{op }\end{DoxyParamCaption}) const -\/$>$ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, \mbox{\hyperlink{class_g_q_c_p_1_1_london_g_t_o_shell}{London\+GTOShell}}$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_g_s_q_one_electron_operator}{GSQOne\+Electron\+Operator}}$<$\mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\+\_\+t}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}{Diamagnetic\+Operator\+::\+Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}}$>$, \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_a3bf379636691d7d74ea96afc8f5049cf}{Diamagnetic\+Operator\+::\+Vectorizer}}$>$$>$ \hspace{0.3cm}{\ttfamily [inline]}}
@@ -597,7 +599,7 @@ The diamagnetic operator expressed in this spinor basis.
 \mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_afa612dafddb17f11881b67b45fe14271}\label{class_g_q_c_p_1_1_g_spinor_basis_afa612dafddb17f11881b67b45fe14271}} 
 \index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!quantize@{quantize}}
 \index{quantize@{quantize}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
-\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}\hspace{0.1cm}{\footnotesize\ttfamily [4/14]}}
+\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}\hspace{0.1cm}{\footnotesize\ttfamily [4/15]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
 template$<$typename Z  = Shell$>$ \\
 auto \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{GQCP\+::\+GSpinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::quantize (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_spin__z_operator}{Electronic\+Spin\+\_\+z\+Operator}} \&}]{fq\+\_\+one\+\_\+op }\end{DoxyParamCaption}) const -\/$>$ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}}$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_g_s_q_one_electron_operator}{GSQOne\+Electron\+Operator}}$<$\mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\+\_\+t}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}{Electronic\+Spin\+\_\+z\+Operator\+::\+Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}}$>$, \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_a3bf379636691d7d74ea96afc8f5049cf}{Electronic\+Spin\+\_\+z\+Operator\+::\+Vectorizer}}$>$$>$ \hspace{0.3cm}{\ttfamily [inline]}}
@@ -615,7 +617,7 @@ The electronic spin \char`\"{}z\char`\"{} operator expressed in this spinor basi
 \mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_a4b71a43e9b15543064ee8e6c6f205a56}\label{class_g_q_c_p_1_1_g_spinor_basis_a4b71a43e9b15543064ee8e6c6f205a56}} 
 \index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!quantize@{quantize}}
 \index{quantize@{quantize}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
-\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}\hspace{0.1cm}{\footnotesize\ttfamily [5/14]}}
+\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}\hspace{0.1cm}{\footnotesize\ttfamily [5/15]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
 template$<$typename Z  = Shell$>$ \\
 auto \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{GQCP\+::\+GSpinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::quantize (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_spin_operator}{Electronic\+Spin\+Operator}} \&}]{fq\+\_\+one\+\_\+op }\end{DoxyParamCaption}) const -\/$>$ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}}$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_g_s_q_one_electron_operator}{GSQOne\+Electron\+Operator}}$<$\mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\+\_\+t}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}{Electronic\+Spin\+Operator\+::\+Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}}$>$, \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_a3bf379636691d7d74ea96afc8f5049cf}{Electronic\+Spin\+Operator\+::\+Vectorizer}}$>$$>$ \hspace{0.3cm}{\ttfamily [inline]}}
@@ -633,7 +635,7 @@ The electronic spin operator expressed in this spinor basis.
 \mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_ab374832e9980b6b6917913c9cf9ed9f8}\label{class_g_q_c_p_1_1_g_spinor_basis_ab374832e9980b6b6917913c9cf9ed9f8}} 
 \index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!quantize@{quantize}}
 \index{quantize@{quantize}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
-\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}\hspace{0.1cm}{\footnotesize\ttfamily [6/14]}}
+\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}\hspace{0.1cm}{\footnotesize\ttfamily [6/15]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
 template$<$typename Z  = Shell$>$ \\
 auto \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{GQCP\+::\+GSpinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::quantize (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_spin_operator}{Electronic\+Spin\+Operator}} \&}]{fq\+\_\+one\+\_\+op }\end{DoxyParamCaption}) const -\/$>$ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, \mbox{\hyperlink{class_g_q_c_p_1_1_london_g_t_o_shell}{London\+GTOShell}}$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_g_s_q_one_electron_operator}{GSQOne\+Electron\+Operator}}$<$\mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\+\_\+t}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}{Electronic\+Spin\+Operator\+::\+Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}}$>$, \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_a3bf379636691d7d74ea96afc8f5049cf}{Electronic\+Spin\+Operator\+::\+Vectorizer}}$>$$>$ \hspace{0.3cm}{\ttfamily [inline]}}
@@ -648,12 +650,13 @@ Quantize the electronic spin operator in this general spinor basis.
 \begin{DoxyReturn}{Returns}
 The electronic spin operator expressed in this spinor basis. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_a07c10877443c76843ccebee8e5df2a68}\label{class_g_q_c_p_1_1_g_spinor_basis_a07c10877443c76843ccebee8e5df2a68}} 
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_aa6cec48557ef843ab901f485c22aa4b0}\label{class_g_q_c_p_1_1_g_spinor_basis_aa6cec48557ef843ab901f485c22aa4b0}} 
 \index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!quantize@{quantize}}
 \index{quantize@{quantize}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
-\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}\hspace{0.1cm}{\footnotesize\ttfamily [7/14]}}
+\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}\hspace{0.1cm}{\footnotesize\ttfamily [7/15]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
-\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product}{Scalar\+GSQOne\+Electron\+Operator\+Product}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{GQCP\+::\+GSpinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::quantize (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_spin_squared_operator}{Electronic\+Spin\+Squared\+Operator}} \&}]{fq\+\_\+\+S2\+\_\+op }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+template$<$typename S  = Expansion\+Scalar$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ S, \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}} $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product}{Scalar\+GSQOne\+Electron\+Operator\+Product}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{GQCP\+::\+GSpinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::quantize (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_spin_squared_operator}{Electronic\+Spin\+Squared\+Operator}} \&}]{fq\+\_\+\+S2\+\_\+op }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 Quantize the electronic S$^\wedge$2 operator in this spinor basis.
 
@@ -668,10 +671,28 @@ The second-\/quantized representation of the electronic S$^\wedge$2 operator in 
 \begin{DoxyNote}{Note}
 Due to the way one-\/electron products are implemented, this quantization will only provide the correct result if the spinor basis is orthonormal. 
 \end{DoxyNote}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_a35a561b127972553b94236148abee94a}\label{class_g_q_c_p_1_1_g_spinor_basis_a35a561b127972553b94236148abee94a}} 
+\index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!quantize@{quantize}}
+\index{quantize@{quantize}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}\hspace{0.1cm}{\footnotesize\ttfamily [8/15]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
+template$<$typename S  = Expansion\+Scalar$>$ \\
+\mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ S, double $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product}{Scalar\+GSQOne\+Electron\+Operator\+Product}}$<$ double $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{GQCP\+::\+GSpinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::quantize (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_electronic_spin_squared_operator}{Electronic\+Spin\+Squared\+Operator}} \&}]{fq\+\_\+\+S2\+\_\+op }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Quantize the electronic S$^\wedge$2 operator in this spinor basis.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fq\+\_\+\+S2\+\_\+op} & The first-\/quantized electronic S$^\wedge$2 operator.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The second-\/quantized representation of the electronic S$^\wedge$2 operator in this spinor basis. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_adb07b2944761a3dfa4952f54e29f7d12}\label{class_g_q_c_p_1_1_g_spinor_basis_adb07b2944761a3dfa4952f54e29f7d12}} 
 \index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!quantize@{quantize}}
 \index{quantize@{quantize}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
-\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}\hspace{0.1cm}{\footnotesize\ttfamily [8/14]}}
+\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}\hspace{0.1cm}{\footnotesize\ttfamily [9/15]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
 \mbox{\hyperlink{namespace_g_q_c_p_a18949b2153b626c420238dab2a4e7185}{GSQHamiltonian}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{GQCP\+::\+GSpinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::quantize (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_hamiltonian}{FQMolecular\+Hamiltonian}} \&}]{fq\+\_\+hamiltonian }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
@@ -688,7 +709,7 @@ The second-\/quantized molecular Hamiltonian.
 \mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_a11fe5ed21d1cf075f43c8bcbdfacca92}\label{class_g_q_c_p_1_1_g_spinor_basis_a11fe5ed21d1cf075f43c8bcbdfacca92}} 
 \index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!quantize@{quantize}}
 \index{quantize@{quantize}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
-\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}\hspace{0.1cm}{\footnotesize\ttfamily [9/14]}}
+\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}\hspace{0.1cm}{\footnotesize\ttfamily [10/15]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
 template$<$typename Z  = Shell$>$ \\
 \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, \mbox{\hyperlink{class_g_q_c_p_1_1_london_g_t_o_shell}{London\+GTOShell}} $>$\+::value, \mbox{\hyperlink{namespace_g_q_c_p_a18949b2153b626c420238dab2a4e7185}{GSQHamiltonian}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{GQCP\+::\+GSpinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::quantize (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_magnetic_hamiltonian}{FQMolecular\+Magnetic\+Hamiltonian}} \&}]{fq\+\_\+hamiltonian }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
@@ -706,7 +727,7 @@ The second-\/quantized molecular magnetic Hamiltonian.
 \mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_a4968d4266157455e4e8b0e69f6b0487a}\label{class_g_q_c_p_1_1_g_spinor_basis_a4968d4266157455e4e8b0e69f6b0487a}} 
 \index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!quantize@{quantize}}
 \index{quantize@{quantize}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
-\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}\hspace{0.1cm}{\footnotesize\ttfamily [10/14]}}
+\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}\hspace{0.1cm}{\footnotesize\ttfamily [11/15]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
 template$<$typename Z  = Shell$>$ \\
 \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, \mbox{\hyperlink{class_g_q_c_p_1_1_london_g_t_o_shell}{London\+GTOShell}} $>$\+::value, \mbox{\hyperlink{namespace_g_q_c_p_a18949b2153b626c420238dab2a4e7185}{GSQHamiltonian}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}} $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{GQCP\+::\+GSpinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::quantize (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_f_q_molecular_pauli_hamiltonian}{FQMolecular\+Pauli\+Hamiltonian}} \&}]{fq\+\_\+hamiltonian }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
@@ -724,7 +745,7 @@ The second-\/quantized molecular Pauli Hamiltonian.
 \mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_a3545f357983b7395d9626d9875ff62a4}\label{class_g_q_c_p_1_1_g_spinor_basis_a3545f357983b7395d9626d9875ff62a4}} 
 \index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!quantize@{quantize}}
 \index{quantize@{quantize}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
-\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}\hspace{0.1cm}{\footnotesize\ttfamily [11/14]}}
+\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}\hspace{0.1cm}{\footnotesize\ttfamily [12/15]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
 template$<$typename FQOne\+Electron\+Operator , typename Z  = Shell$>$ \\
 auto \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{GQCP\+::\+GSpinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::quantize (\begin{DoxyParamCaption}\item[{const FQOne\+Electron\+Operator \&}]{fq\+\_\+one\+\_\+op }\end{DoxyParamCaption}) const -\/$>$ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, \mbox{\hyperlink{class_g_q_c_p_1_1_g_t_o_shell}{GTOShell}}$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_g_s_q_one_electron_operator}{GSQOne\+Electron\+Operator}}$<$\mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\+\_\+t}}$<$typename FQOne\+Electron\+Operator\+::\+Scalar, \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}}$>$, typename FQOne\+Electron\+Operator\+::\+Vectorizer$>$$>$ \hspace{0.3cm}{\ttfamily [inline]}}
@@ -742,7 +763,7 @@ The second-\/quantized representation of the given operator.
 \mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_a7cfac63f7b59c179dcd1ddd97a60f43f}\label{class_g_q_c_p_1_1_g_spinor_basis_a7cfac63f7b59c179dcd1ddd97a60f43f}} 
 \index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!quantize@{quantize}}
 \index{quantize@{quantize}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
-\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}\hspace{0.1cm}{\footnotesize\ttfamily [12/14]}}
+\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}\hspace{0.1cm}{\footnotesize\ttfamily [13/15]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
 template$<$typename FQOne\+Electron\+Operator , typename Z  = Shell$>$ \\
 auto \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{GQCP\+::\+GSpinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::quantize (\begin{DoxyParamCaption}\item[{const FQOne\+Electron\+Operator \&}]{fq\+\_\+one\+\_\+op }\end{DoxyParamCaption}) const -\/$>$ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, \mbox{\hyperlink{class_g_q_c_p_1_1_london_g_t_o_shell}{London\+GTOShell}}$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_g_s_q_one_electron_operator}{GSQOne\+Electron\+Operator}}$<$\mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\+\_\+t}}$<$typename FQOne\+Electron\+Operator\+::\+Scalar, \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}}$>$, typename FQOne\+Electron\+Operator\+::\+Vectorizer$>$$>$ \hspace{0.3cm}{\ttfamily [inline]}}
@@ -760,7 +781,7 @@ The second-\/quantized representation of the given operator.
 \mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_ac39d64f41ada5e3f4293774fbd8e9924}\label{class_g_q_c_p_1_1_g_spinor_basis_ac39d64f41ada5e3f4293774fbd8e9924}} 
 \index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!quantize@{quantize}}
 \index{quantize@{quantize}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
-\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}\hspace{0.1cm}{\footnotesize\ttfamily [13/14]}}
+\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}\hspace{0.1cm}{\footnotesize\ttfamily [14/15]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
 template$<$typename Z  = Shell$>$ \\
 auto \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{GQCP\+::\+GSpinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::quantize (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_orbital_zeeman_operator}{Orbital\+Zeeman\+Operator}} \&}]{op }\end{DoxyParamCaption}) const -\/$>$ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, \mbox{\hyperlink{class_g_q_c_p_1_1_london_g_t_o_shell}{London\+GTOShell}}$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_g_s_q_one_electron_operator}{GSQOne\+Electron\+Operator}}$<$\mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\+\_\+t}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}{Orbital\+Zeeman\+Operator\+::\+Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}}$>$, \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_a3bf379636691d7d74ea96afc8f5049cf}{Orbital\+Zeeman\+Operator\+::\+Vectorizer}}$>$$>$ \hspace{0.3cm}{\ttfamily [inline]}}
@@ -778,7 +799,7 @@ The orbital Zeeman operator expressed in this spinor basis.
 \mbox{\Hypertarget{class_g_q_c_p_1_1_g_spinor_basis_a7acbad3ae2f272662b0ae361947d9ee3}\label{class_g_q_c_p_1_1_g_spinor_basis_a7acbad3ae2f272662b0ae361947d9ee3}} 
 \index{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}!quantize@{quantize}}
 \index{quantize@{quantize}!GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::GSpinorBasis$<$ \_ExpansionScalar, \_Shell $>$}}
-\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}\hspace{0.1cm}{\footnotesize\ttfamily [14/14]}}
+\doxysubsubsection{\texorpdfstring{quantize()}{quantize()}\hspace{0.1cm}{\footnotesize\ttfamily [15/15]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
 template$<$typename Z  = Shell$>$ \\
 auto \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis}{GQCP\+::\+GSpinor\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::quantize (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_spin_zeeman_operator}{Spin\+Zeeman\+Operator}} \&}]{op }\end{DoxyParamCaption}) const -\/$>$ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$std\+::is\+\_\+same$<$Z, \mbox{\hyperlink{class_g_q_c_p_1_1_london_g_t_o_shell}{London\+GTOShell}}$>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_g_s_q_one_electron_operator}{GSQOne\+Electron\+Operator}}$<$\mbox{\hyperlink{namespace_g_q_c_p_a09e1543a47643a7a62401aa600bb2e28}{product\+\_\+t}}$<$\mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_afebca98f82d7d9d4c27b39beaf4c58fb}{Spin\+Zeeman\+Operator\+::\+Scalar}}, \mbox{\hyperlink{class_g_q_c_p_1_1_g_spinor_basis_ad1e7388d307f59370481718021fd8710}{Expansion\+Scalar}}$>$, \mbox{\hyperlink{class_g_q_c_p_1_1_base_f_q_operator_a3bf379636691d7d74ea96afc8f5049cf}{Spin\+Zeeman\+Operator\+::\+Vectorizer}}$>$$>$ \hspace{0.3cm}{\ttfamily [inline]}}

@@ -14,5 +14,6 @@ var searchData=
   ['minimizer_11',['Minimizer',['../class_g_q_c_p_1_1_minimizer.html',1,'GQCP']]],
   ['mixedspinresolved2dmcomponent_12',['MixedSpinResolved2DMComponent',['../class_g_q_c_p_1_1_mixed_spin_resolved2_d_m_component.html',1,'GQCP']]],
   ['mixedusqtwoelectronoperatorcomponent_13',['MixedUSQTwoElectronOperatorComponent',['../class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component.html',1,'GQCP']]],
-  ['molecule_14',['Molecule',['../class_g_q_c_p_1_1_molecule.html',1,'GQCP']]]
+  ['mixedusqtwoelectronoperatorcomponent_3c_20scalar_2c_20_5fvectorizer_20_3e_14',['MixedUSQTwoElectronOperatorComponent&lt; Scalar, _Vectorizer &gt;',['../class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component.html',1,'GQCP']]],
+  ['molecule_15',['Molecule',['../class_g_q_c_p_1_1_molecule.html',1,'GQCP']]]
 ];

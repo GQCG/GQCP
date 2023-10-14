@@ -606,15 +606,15 @@
         </childnode>
         <childnode refid="59" relation="include">
         </childnode>
-        <childnode refid="191" relation="include">
-        </childnode>
         <childnode refid="192" relation="include">
         </childnode>
         <childnode refid="188" relation="include">
         </childnode>
+        <childnode refid="189" relation="include">
+        </childnode>
         <childnode refid="132" relation="include">
         </childnode>
-        <childnode refid="189" relation="include">
+        <childnode refid="190" relation="include">
         </childnode>
         <childnode refid="61" relation="include">
         </childnode>
@@ -624,7 +624,7 @@
         </childnode>
         <childnode refid="64" relation="include">
         </childnode>
-        <childnode refid="190" relation="include">
+        <childnode refid="191" relation="include">
         </childnode>
         <childnode refid="161" relation="include">
         </childnode>
@@ -776,11 +776,13 @@
         </childnode>
         <childnode refid="188" relation="include">
         </childnode>
+        <childnode refid="189" relation="include">
+        </childnode>
         <childnode refid="132" relation="include">
         </childnode>
         <childnode refid="133" relation="include">
         </childnode>
-        <childnode refid="189" relation="include">
+        <childnode refid="190" relation="include">
         </childnode>
         <childnode refid="61" relation="include">
         </childnode>
@@ -1501,7 +1503,7 @@
         <childnode refid="60" relation="include">
         </childnode>
       </node>
-      <node id="191">
+      <node id="192">
         <label>Operator/FirstQuantized/ElectronicSpinOperator.hpp</label>
         <link refid="_electronic_spin_operator_8hpp"/>
         <childnode refid="55" relation="include">
@@ -1509,7 +1511,7 @@
         <childnode refid="19" relation="include">
         </childnode>
       </node>
-      <node id="192">
+      <node id="188">
         <label>Operator/FirstQuantized/ElectronicSpinSquaredOperator.hpp</label>
         <link refid="_electronic_spin_squared_operator_8hpp"/>
         <childnode refid="55" relation="include">
@@ -1517,7 +1519,7 @@
         <childnode refid="19" relation="include">
         </childnode>
       </node>
-      <node id="188">
+      <node id="189">
         <label>Operator/FirstQuantized/ElectronicSpin_zOperator.hpp</label>
         <link refid="_electronic_spin__z_operator_8hpp"/>
         <childnode refid="55" relation="include">
@@ -1545,12 +1547,12 @@
         <childnode refid="134" relation="include">
         </childnode>
       </node>
-      <node id="189">
+      <node id="190">
         <label>Operator/FirstQuantized/FQMolecularPauliHamiltonian.hpp</label>
         <link refid="_f_q_molecular_pauli_hamiltonian_8hpp"/>
         <childnode refid="133" relation="include">
         </childnode>
-        <childnode refid="190" relation="include">
+        <childnode refid="191" relation="include">
         </childnode>
       </node>
       <node id="61">
@@ -1595,7 +1597,7 @@
         <childnode refid="55" relation="include">
         </childnode>
       </node>
-      <node id="190">
+      <node id="191">
         <label>Operator/FirstQuantized/SpinZeemanOperator.hpp</label>
         <link refid="_spin_zeeman_operator_8hpp"/>
         <childnode refid="55" relation="include">
@@ -1917,6 +1919,8 @@
         <childnode refid="158" relation="include">
         </childnode>
         <childnode refid="155" relation="include">
+        </childnode>
+        <childnode refid="183" relation="include">
         </childnode>
         <childnode refid="177" relation="include">
         </childnode>
@@ -2940,90 +2944,139 @@
 <codeline lineno="800"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="801"><highlight class="normal"></highlight></codeline>
 <codeline lineno="802"><highlight class="normal"></highlight></codeline>
-<codeline lineno="812" refid="class_g_q_c_p_1_1_g_spinor_basis_1a07c10877443c76843ccebee8e5df2a68" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product" kindref="compound">ScalarGSQOneElectronOperatorProduct&lt;ExpansionScalar&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_g_spinor_basis_1a07c10877443c76843ccebee8e5df2a68" kindref="member">quantize</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_electronic_spin_squared_operator" kindref="compound">ElectronicSpinSquaredOperator</ref>&amp;<sp/>fq_S2_op)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="813"><highlight class="normal"></highlight></codeline>
-<codeline lineno="814"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Prepare<sp/>the<sp/>3<sp/>vector<sp/>components<sp/>of<sp/>the<sp/>electronic<sp/>spin<sp/>operator<sp/>S<sp/>=<sp/>(S_x,<sp/>S_y,<sp/>S_z).</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="815"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>S_op<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_g_spinor_basis_1a3545f357983b7395d9626d9875ff62a4" kindref="member">quantize</ref>(<ref refid="class_g_q_c_p_1_1_electronic_spin_operator" kindref="compound">ElectronicSpinOperator</ref>());</highlight></codeline>
-<codeline lineno="816"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>S_x_op<sp/>=<sp/>S_op(<ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5" kindref="member">CartesianDirection::x</ref>);</highlight></codeline>
-<codeline lineno="817"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>S_y_op<sp/>=<sp/>S_op(<ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a8611d87f8dc5908d04f3d314c7c321b1" kindref="member">CartesianDirection::y</ref>);</highlight></codeline>
-<codeline lineno="818"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>S_z_op<sp/>=<sp/>S_op(<ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a11d242b501b62c0182e98a9d516335f7" kindref="member">CartesianDirection::z</ref>);</highlight></codeline>
-<codeline lineno="819"><highlight class="normal"></highlight></codeline>
+<codeline lineno="812"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>S<sp/>=<sp/>ExpansionScalar&gt;</highlight></codeline>
+<codeline lineno="813" refid="class_g_q_c_p_1_1_g_spinor_basis_1aa6cec48557ef843ab901f485c22aa4b0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t&lt;std::is_same&lt;S, complex&gt;::value</ref>,<sp/><ref refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product" kindref="compound">ScalarGSQOneElectronOperatorProduct&lt;complex&gt;</ref>&gt;<sp/><ref refid="class_g_q_c_p_1_1_g_spinor_basis_1aa6cec48557ef843ab901f485c22aa4b0" kindref="member">quantize</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_electronic_spin_squared_operator" kindref="compound">ElectronicSpinSquaredOperator</ref>&amp;<sp/>fq_S2_op)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="814"><highlight class="normal"></highlight></codeline>
+<codeline lineno="815"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Prepare<sp/>the<sp/>3<sp/>vector<sp/>components<sp/>of<sp/>the<sp/>electronic<sp/>spin<sp/>operator<sp/>S<sp/>=<sp/>(S_x,<sp/>S_y,<sp/>S_z).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="816"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>S_op<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_g_spinor_basis_1a3545f357983b7395d9626d9875ff62a4" kindref="member">quantize</ref>(<ref refid="class_g_q_c_p_1_1_electronic_spin_operator" kindref="compound">ElectronicSpinOperator</ref>());</highlight></codeline>
+<codeline lineno="817"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>S_x_op<sp/>=<sp/>S_op(<ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a2bb47fa9aafe67dde5d4e205193140b5" kindref="member">CartesianDirection::x</ref>);</highlight></codeline>
+<codeline lineno="818"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>S_y_op<sp/>=<sp/>S_op(<ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a8611d87f8dc5908d04f3d314c7c321b1" kindref="member">CartesianDirection::y</ref>);</highlight></codeline>
+<codeline lineno="819"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>S_z_op<sp/>=<sp/>S_op(<ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8a11d242b501b62c0182e98a9d516335f7" kindref="member">CartesianDirection::z</ref>);</highlight></codeline>
 <codeline lineno="820"><highlight class="normal"></highlight></codeline>
-<codeline lineno="821"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Calculate<sp/>S^2<sp/>=<sp/>S_x^2<sp/>+<sp/>S_y^2<sp/>+<sp/>S_z^2.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="822"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>S_x_2<sp/>=<sp/>S_x_op<sp/>*<sp/>S_x_op;</highlight></codeline>
-<codeline lineno="823"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>S_y_2<sp/>=<sp/>S_y_op<sp/>*<sp/>S_y_op;</highlight></codeline>
-<codeline lineno="824"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>S_z_2<sp/>=<sp/>S_z_op<sp/>*<sp/>S_z_op;</highlight></codeline>
-<codeline lineno="825"><highlight class="normal"></highlight></codeline>
-<codeline lineno="826"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>S_x_2<sp/>+<sp/>S_y_2<sp/>+<sp/>S_z_2;</highlight></codeline>
-<codeline lineno="827"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="828"><highlight class="normal"></highlight></codeline>
+<codeline lineno="821"><highlight class="normal"></highlight></codeline>
+<codeline lineno="822"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Calculate<sp/>S^2<sp/>=<sp/>S_x^2<sp/>+<sp/>S_y^2<sp/>+<sp/>S_z^2.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="823"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>S_x_2<sp/>=<sp/>S_x_op<sp/>*<sp/>S_x_op;</highlight></codeline>
+<codeline lineno="824"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>S_y_2<sp/>=<sp/>S_y_op<sp/>*<sp/>S_y_op;</highlight></codeline>
+<codeline lineno="825"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>S_z_2<sp/>=<sp/>S_z_op<sp/>*<sp/>S_z_op;</highlight></codeline>
+<codeline lineno="826"><highlight class="normal"></highlight></codeline>
+<codeline lineno="827"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>S_x_2<sp/>+<sp/>S_y_2<sp/>+<sp/>S_z_2;</highlight></codeline>
+<codeline lineno="828"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="829"><highlight class="normal"></highlight></codeline>
-<codeline lineno="830"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="831"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>Scalar<sp/>basis</highlight></codeline>
-<codeline lineno="832"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="833"><highlight class="normal"></highlight></codeline>
-<codeline lineno="837" refid="class_g_q_c_p_1_1_g_spinor_basis_1a84558401a2607c6b72621759c7874f76" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_spin_resolved" kindref="compound">SpinResolved&lt;ScalarBasis&lt;Shell&gt;</ref>&gt;&amp;<sp/><ref refid="class_g_q_c_p_1_1_g_spinor_basis_1a84558401a2607c6b72621759c7874f76" kindref="member">scalarBases</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;scalar_bases;<sp/>}</highlight></codeline>
-<codeline lineno="838"><highlight class="normal"></highlight></codeline>
-<codeline lineno="839"><highlight class="normal"></highlight></codeline>
-<codeline lineno="853" refid="class_g_q_c_p_1_1_g_spinor_basis_1a9bca5ab09f3984352e5c40cdb75eec8b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_g_mulliken_domain" kindref="compound">GMullikenDomain&lt;ExpansionScalar&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_g_spinor_basis_1a9bca5ab09f3984352e5c40cdb75eec8b" kindref="member">mullikenDomain</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::function&lt;</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal">(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_g_spinor_basis_1a30600aed0df6ba06f37e8d0f267da733" kindref="member">BasisFunction</ref>&amp;)&gt;&amp;<sp/>selector)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="830"><highlight class="normal"></highlight></codeline>
+<codeline lineno="838"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>S<sp/>=<sp/>ExpansionScalar&gt;</highlight></codeline>
+<codeline lineno="839" refid="class_g_q_c_p_1_1_g_spinor_basis_1a35a561b127972553b94236148abee94a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespace_g_q_c_p_1a006e5cafd5827d2685c9e0bb7e01cfa2" kindref="member">enable_if_t&lt;std::is_same&lt;S, double&gt;::value</ref>,<sp/><ref refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product" kindref="compound">ScalarGSQOneElectronOperatorProduct&lt;double&gt;</ref>&gt;<sp/><ref refid="class_g_q_c_p_1_1_g_spinor_basis_1a35a561b127972553b94236148abee94a" kindref="member">quantize</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_electronic_spin_squared_operator" kindref="compound">ElectronicSpinSquaredOperator</ref>&amp;<sp/>fq_S2_op)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="840"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Define<sp/>the<sp/>dimensions<sp/>and<sp/>empty<sp/>matrices.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="841"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>K<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_g_spinor_basis_1a9062fb369d11c2ede60ae0dd34d9cbd8" kindref="member">numberOfCoefficients</ref>(<ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6" kindref="member">Spin::alpha</ref>);</highlight></codeline>
+<codeline lineno="842"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>M<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_g_spinor_basis_1ad71c2691865d2ba1ee0d038b81ceb8a8" kindref="member">numberOfSpinors</ref>();</highlight></codeline>
+<codeline lineno="843"><highlight class="normal"></highlight></codeline>
+<codeline lineno="844"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix&lt;double&gt;</ref><sp/>S_plus<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_square_matrix_1ae3551bb3ac15b2560846f7a5956d1d90" kindref="member">SquareMatrix&lt;double&gt;::Zero</ref>(M);</highlight></codeline>
+<codeline lineno="845"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix&lt;double&gt;</ref><sp/>S_minus<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_square_matrix_1ae3551bb3ac15b2560846f7a5956d1d90" kindref="member">SquareMatrix&lt;double&gt;::Zero</ref>(M);</highlight></codeline>
+<codeline lineno="846"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix&lt;double&gt;</ref><sp/>S_plus_minus<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_square_matrix_1ae3551bb3ac15b2560846f7a5956d1d90" kindref="member">SquareMatrix&lt;double&gt;::Zero</ref>(M);</highlight></codeline>
+<codeline lineno="847"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_square_matrix" kindref="compound">SquareMatrix&lt;double&gt;</ref><sp/>S_z_squared<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_square_matrix_1ae3551bb3ac15b2560846f7a5956d1d90" kindref="member">SquareMatrix&lt;double&gt;::Zero</ref>(M);</highlight></codeline>
+<codeline lineno="848"><highlight class="normal"></highlight></codeline>
+<codeline lineno="849"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Calculate<sp/>the<sp/>necessary<sp/>overlap<sp/>integrals<sp/>over<sp/>the<sp/>scalar<sp/>bases.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="850"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>S_aa<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_integral_calculator_1a1e7dd209c9fac23b0f298cac64ac7696" kindref="member">IntegralCalculator::calculateLibintIntegrals</ref>(<ref refid="class_g_q_c_p_1_1_overlap_operator" kindref="compound">OverlapOperator</ref>(),<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_g_spinor_basis_1a84558401a2607c6b72621759c7874f76" kindref="member">scalarBases</ref>().<ref refid="namespace_g_q_c_p_1ac6f590924cfbbf11847a4ce174fe6e4fa834333af336cb600f3164028970f7ac6" kindref="member">alpha</ref>());</highlight></codeline>
+<codeline lineno="851"><highlight class="normal"></highlight></codeline>
+<codeline lineno="852"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Calculate<sp/>the<sp/>S_z<sp/>operator.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="853"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>S_z<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_g_spinor_basis_1a3545f357983b7395d9626d9875ff62a4" kindref="member">quantize</ref>(<ref refid="class_g_q_c_p_1_1_electronic_spin__z_operator" kindref="compound">ElectronicSpin_zOperator</ref>()).parameters();</highlight></codeline>
 <codeline lineno="854"><highlight class="normal"></highlight></codeline>
-<codeline lineno="855"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Assume<sp/>the<sp/>underlying<sp/>scalar<sp/>bases<sp/>are<sp/>equal,<sp/>and<sp/>proceed<sp/>to<sp/>work<sp/>with<sp/>the<sp/>one<sp/>for<sp/>the<sp/>alpha<sp/>component.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="856"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>ao_indices<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_g_spinor_basis_1a84558401a2607c6b72621759c7874f76" kindref="member">scalarBases</ref>().alpha().basisFunctionIndices(selector);</highlight></codeline>
-<codeline lineno="857"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_g_mulliken_domain" kindref="compound">GMullikenDomain&lt;ExpansionScalar&gt;</ref><sp/>{ao_indices,<sp/>ao_indices.size()};</highlight></codeline>
-<codeline lineno="858"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="855"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Fill<sp/>in<sp/>the<sp/>overlap<sp/>in<sp/>the<sp/>correct<sp/>positions.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="856"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>S_plus.topRightCorner(K,<sp/>K)<sp/>=<sp/>S_aa;</highlight></codeline>
+<codeline lineno="857"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>S_minus.bottomLeftCorner(K,<sp/>K)<sp/>=<sp/>S_aa;</highlight></codeline>
+<codeline lineno="858"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>S_plus_minus.bottomRightCorner(K,<sp/>K)<sp/>=<sp/>S_aa;</highlight></codeline>
 <codeline lineno="859"><highlight class="normal"></highlight></codeline>
-<codeline lineno="860"><highlight class="normal"></highlight></codeline>
-<codeline lineno="870" refid="class_g_q_c_p_1_1_g_spinor_basis_1a46340b1127f69b7cec4a82455ecd8eb4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_g_mulliken_domain" kindref="compound">GMullikenDomain&lt;ExpansionScalar&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_g_spinor_basis_1a46340b1127f69b7cec4a82455ecd8eb4" kindref="member">mullikenDomain</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::function&lt;</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal">(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_g_spinor_basis_1a43378faf70d64f2caa796282bac433e8" kindref="member">Shell</ref>&amp;)&gt;&amp;<sp/>selector)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="871"><highlight class="normal"></highlight></codeline>
-<codeline lineno="872"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Assume<sp/>the<sp/>underlying<sp/>scalar<sp/>bases<sp/>are<sp/>equal,<sp/>and<sp/>proceed<sp/>to<sp/>work<sp/>with<sp/>the<sp/>one<sp/>for<sp/>the<sp/>alpha<sp/>component.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="873"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>ao_indices<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_g_spinor_basis_1a84558401a2607c6b72621759c7874f76" kindref="member">scalarBases</ref>().alpha().basisFunctionIndices(selector);</highlight></codeline>
-<codeline lineno="874"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_g_mulliken_domain" kindref="compound">GMullikenDomain&lt;ExpansionScalar&gt;</ref><sp/>{ao_indices,<sp/>ao_indices.size()};</highlight></codeline>
-<codeline lineno="875"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="876"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="877"><highlight class="normal"></highlight></codeline>
-<codeline lineno="878"><highlight class="normal"></highlight></codeline>
-<codeline lineno="879"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="880"><highlight class="comment"><sp/>*<sp/><sp/>MARK:<sp/>SpinorBasisTraits</highlight></codeline>
-<codeline lineno="881"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="882"><highlight class="normal"></highlight></codeline>
-<codeline lineno="886"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_ExpansionScalar,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Shell&gt;</highlight></codeline>
-<codeline lineno="887" refid="struct_g_q_c_p_1_1_spinor_basis_traits_3_01_g_spinor_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_g_q_c_p_1_1_spinor_basis_traits" kindref="compound">SpinorBasisTraits</ref>&lt;<ref refid="class_g_q_c_p_1_1_g_spinor_basis" kindref="compound">GSpinorBasis</ref>&lt;_ExpansionScalar,<sp/>_Shell&gt;&gt;<sp/>{</highlight></codeline>
-<codeline lineno="888"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>scalar<sp/>type<sp/>used<sp/>to<sp/>represent<sp/>an<sp/>expansion<sp/>coefficient<sp/>of<sp/>the<sp/>spinors<sp/>in<sp/>the<sp/>underlying<sp/>scalar<sp/>orbitals:<sp/>real<sp/>or<sp/>complex.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="889" refid="struct_g_q_c_p_1_1_spinor_basis_traits_3_01_g_spinor_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4_1a8f40619baa98d5164e5ff34e22f69a19" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="struct_g_q_c_p_1_1_spinor_basis_traits_3_01_g_spinor_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4_1a8f40619baa98d5164e5ff34e22f69a19" kindref="member">ExpansionScalar</ref><sp/>=<sp/>_ExpansionScalar;</highlight></codeline>
-<codeline lineno="890"><highlight class="normal"></highlight></codeline>
-<codeline lineno="891"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>type<sp/>of<sp/>transformation<sp/>that<sp/>is<sp/>naturally<sp/>related<sp/>to<sp/>a<sp/>`GSpinorBasis`.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="892" refid="struct_g_q_c_p_1_1_spinor_basis_traits_3_01_g_spinor_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4_1a1d452bacd98a4e2ae23a07bdf221c468" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">Transformation</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">GTransformation&lt;ExpansionScalar&gt;</ref>;</highlight></codeline>
-<codeline lineno="893"><highlight class="normal"></highlight></codeline>
-<codeline lineno="894"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>second-quantized<sp/>representation<sp/>of<sp/>the<sp/>overlap<sp/>operator<sp/>related<sp/>to<sp/>the<sp/>derived<sp/>spinor<sp/>basis.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="895" refid="struct_g_q_c_p_1_1_spinor_basis_traits_3_01_g_spinor_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4_1a3b8f47b817b8c70f4910144fb91f5aed" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_g_s_q_one_electron_operator" kindref="compound">SQOverlapOperator</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_g_s_q_one_electron_operator" kindref="compound">ScalarGSQOneElectronOperator&lt;ExpansionScalar&gt;</ref>;</highlight></codeline>
-<codeline lineno="896"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="897"><highlight class="normal"></highlight></codeline>
-<codeline lineno="898"><highlight class="normal"></highlight></codeline>
-<codeline lineno="899"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="900"><highlight class="comment"><sp/>*<sp/><sp/>MARK:<sp/>BasisTransformableTraits</highlight></codeline>
-<codeline lineno="901"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="902"><highlight class="normal"></highlight></codeline>
-<codeline lineno="906"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_ExpansionScalar,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Shell&gt;</highlight></codeline>
-<codeline lineno="907" refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g_spinor_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_g_q_c_p_1_1_basis_transformable_traits" kindref="compound">BasisTransformableTraits</ref>&lt;<ref refid="class_g_q_c_p_1_1_g_spinor_basis" kindref="compound">GSpinorBasis</ref>&lt;_ExpansionScalar,<sp/>_Shell&gt;&gt;<sp/>{</highlight></codeline>
-<codeline lineno="908"><highlight class="normal"></highlight></codeline>
-<codeline lineno="909"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>type<sp/>of<sp/>transformation<sp/>that<sp/>is<sp/>naturally<sp/>related<sp/>to<sp/>a<sp/>`GSpinorBasis`.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="910" refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g_spinor_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4_1a4a04f19dac730449d11e67c1bee74918" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">Transformation</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">GTransformation&lt;_ExpansionScalar&gt;</ref>;</highlight></codeline>
-<codeline lineno="911"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="912"><highlight class="normal"></highlight></codeline>
-<codeline lineno="913"><highlight class="normal"></highlight></codeline>
-<codeline lineno="914"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
-<codeline lineno="915"><highlight class="comment"><sp/>*<sp/><sp/>MARK:<sp/>JacobiRotatableTraits</highlight></codeline>
-<codeline lineno="916"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="917"><highlight class="normal"></highlight></codeline>
-<codeline lineno="921"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_ExpansionScalar,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Shell&gt;</highlight></codeline>
-<codeline lineno="922" refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_g_spinor_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits" kindref="compound">JacobiRotatableTraits</ref>&lt;<ref refid="class_g_q_c_p_1_1_g_spinor_basis" kindref="compound">GSpinorBasis</ref>&lt;_ExpansionScalar,<sp/>_Shell&gt;&gt;<sp/>{</highlight></codeline>
-<codeline lineno="923"><highlight class="normal"></highlight></codeline>
-<codeline lineno="924"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>type<sp/>of<sp/>Jacobi<sp/>rotation<sp/>that<sp/>is<sp/>naturally<sp/>related<sp/>to<sp/>a<sp/>`GSpinorBasis`.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="925" refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_g_spinor_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4_1a0d79f9c626c22e69eb8acee6c9c85ee9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_jacobi_rotation" kindref="compound">JacobiRotationType</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_jacobi_rotation" kindref="compound">JacobiRotation</ref>;</highlight></codeline>
-<codeline lineno="926"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="860"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>S_z_squared.topLeftCorner(K,<sp/>K)<sp/>=<sp/>0.25<sp/>*<sp/>S_aa;</highlight></codeline>
+<codeline lineno="861"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>S_z_squared.bottomRightCorner(K,<sp/>K)<sp/>=<sp/>0.25<sp/>*<sp/>S_aa;</highlight></codeline>
+<codeline lineno="862"><highlight class="normal"></highlight></codeline>
+<codeline lineno="863"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Create<sp/>the<sp/>one<sp/>electron<sp/>part.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="864"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_g_s_q_one_electron_operator" kindref="compound">ScalarGSQOneElectronOperator&lt;double&gt;</ref><sp/>one_electron_part<sp/>{S_z_squared<sp/>+<sp/>S_z<sp/>+<sp/>S_plus_minus};</highlight></codeline>
+<codeline lineno="865"><highlight class="normal"></highlight></codeline>
+<codeline lineno="866"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Determine<sp/>the<sp/>tensors<sp/>of<sp/>the<sp/>two-electron<sp/>contributions.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="867"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor&lt;double&gt;</ref><sp/>T_S_z<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_square_rank_four_tensor_1ac8d9dac01c85a4f11aa67c7efa877e04" kindref="member">SquareRankFourTensor&lt;double&gt;::Zero</ref>(M);</highlight></codeline>
+<codeline lineno="868"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_square_rank_four_tensor" kindref="compound">SquareRankFourTensor&lt;double&gt;</ref><sp/>T_S_minus_plus<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_square_rank_four_tensor_1ac8d9dac01c85a4f11aa67c7efa877e04" kindref="member">SquareRankFourTensor&lt;double&gt;::Zero</ref>(M);</highlight></codeline>
+<codeline lineno="869"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>p<sp/>=<sp/>0;<sp/>p<sp/>&lt;<sp/>M;<sp/>p++)<sp/>{</highlight></codeline>
+<codeline lineno="870"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>q<sp/>=<sp/>0;<sp/>q<sp/>&lt;<sp/>M;<sp/>q++)<sp/>{</highlight></codeline>
+<codeline lineno="871"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>r<sp/>=<sp/>0;<sp/>r<sp/>&lt;<sp/>M;<sp/>r++)<sp/>{</highlight></codeline>
+<codeline lineno="872"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>s<sp/>=<sp/>0;<sp/>s<sp/>&lt;<sp/>M;<sp/>s++)<sp/>{</highlight></codeline>
+<codeline lineno="873"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>T_S_z(p,<sp/>q,<sp/>r,<sp/>s)<sp/>=<sp/>2.0<sp/>*<sp/>S_z(p,<sp/>q)<sp/>*<sp/>S_z(r,<sp/>s);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Include<sp/>the<sp/>prefactor<sp/>&apos;2&apos;<sp/>because<sp/>we&apos;re<sp/>going<sp/>to<sp/>encapsulate<sp/>these<sp/>matrix<sp/>elements<sp/>with<sp/>a<sp/>`ScalarGSQTwoElectronOperator`,<sp/>whose<sp/>matrix<sp/>elements<sp/>should<sp/>not<sp/>embet<sp/>the<sp/>prefactor<sp/>0.5<sp/>for<sp/>two-electron<sp/>operators.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="874"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>T_S_minus_plus(p,<sp/>q,<sp/>r,<sp/>s)<sp/>=<sp/>2.0<sp/>*<sp/>S_minus(p,<sp/>q)<sp/>*<sp/>S_plus(r,<sp/>s);<sp/><sp/></highlight><highlight class="comment">//<sp/>Include<sp/>the<sp/>prefactor<sp/>&apos;2&apos;<sp/>because<sp/>we&apos;re<sp/>going<sp/>to<sp/>encapsulate<sp/>these<sp/>matrix<sp/>elements<sp/>with<sp/>a<sp/>`ScalarGSQTwoElectronOperator`,<sp/>whose<sp/>matrix<sp/>elements<sp/>should<sp/>not<sp/>embet<sp/>the<sp/>prefactor<sp/>0.5<sp/>for<sp/>two-electron<sp/>operators.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="875"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="876"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="877"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="878"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="879"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Create<sp/>the<sp/>two<sp/>electron<sp/>part.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="880"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_g_s_q_two_electron_operator" kindref="compound">ScalarGSQTwoElectronOperator&lt;double&gt;</ref><sp/>two_electron_part<sp/>=<sp/><ref refid="class_g_q_c_p_1_1_g_s_q_two_electron_operator" kindref="compound">ScalarGSQTwoElectronOperator&lt;double&gt;</ref><sp/>{T_S_z}<sp/>+<sp/><ref refid="class_g_q_c_p_1_1_g_s_q_two_electron_operator" kindref="compound">ScalarGSQTwoElectronOperator&lt;double&gt;</ref><sp/>{T_S_minus_plus};</highlight></codeline>
+<codeline lineno="881"><highlight class="normal"></highlight></codeline>
+<codeline lineno="882"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product" kindref="compound">ScalarGSQOneElectronOperatorProduct&lt;double&gt;</ref>(one_electron_part,<sp/>two_electron_part);</highlight></codeline>
+<codeline lineno="883"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="884"><highlight class="normal"></highlight></codeline>
+<codeline lineno="885"><highlight class="normal"></highlight></codeline>
+<codeline lineno="886"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="887"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>MARK:<sp/>Scalar<sp/>basis</highlight></codeline>
+<codeline lineno="888"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="889"><highlight class="normal"></highlight></codeline>
+<codeline lineno="893" refid="class_g_q_c_p_1_1_g_spinor_basis_1a84558401a2607c6b72621759c7874f76" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_spin_resolved" kindref="compound">SpinResolved&lt;ScalarBasis&lt;Shell&gt;</ref>&gt;&amp;<sp/><ref refid="class_g_q_c_p_1_1_g_spinor_basis_1a84558401a2607c6b72621759c7874f76" kindref="member">scalarBases</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;scalar_bases;<sp/>}</highlight></codeline>
+<codeline lineno="894"><highlight class="normal"></highlight></codeline>
+<codeline lineno="895"><highlight class="normal"></highlight></codeline>
+<codeline lineno="909" refid="class_g_q_c_p_1_1_g_spinor_basis_1a9bca5ab09f3984352e5c40cdb75eec8b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_g_mulliken_domain" kindref="compound">GMullikenDomain&lt;ExpansionScalar&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_g_spinor_basis_1a9bca5ab09f3984352e5c40cdb75eec8b" kindref="member">mullikenDomain</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::function&lt;</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal">(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_g_spinor_basis_1a30600aed0df6ba06f37e8d0f267da733" kindref="member">BasisFunction</ref>&amp;)&gt;&amp;<sp/>selector)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="910"><highlight class="normal"></highlight></codeline>
+<codeline lineno="911"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Assume<sp/>the<sp/>underlying<sp/>scalar<sp/>bases<sp/>are<sp/>equal,<sp/>and<sp/>proceed<sp/>to<sp/>work<sp/>with<sp/>the<sp/>one<sp/>for<sp/>the<sp/>alpha<sp/>component.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="912"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>ao_indices<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_g_spinor_basis_1a84558401a2607c6b72621759c7874f76" kindref="member">scalarBases</ref>().alpha().basisFunctionIndices(selector);</highlight></codeline>
+<codeline lineno="913"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_g_mulliken_domain" kindref="compound">GMullikenDomain&lt;ExpansionScalar&gt;</ref><sp/>{ao_indices,<sp/>ao_indices.size()};</highlight></codeline>
+<codeline lineno="914"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="915"><highlight class="normal"></highlight></codeline>
+<codeline lineno="916"><highlight class="normal"></highlight></codeline>
+<codeline lineno="926" refid="class_g_q_c_p_1_1_g_spinor_basis_1a46340b1127f69b7cec4a82455ecd8eb4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_g_q_c_p_1_1_g_mulliken_domain" kindref="compound">GMullikenDomain&lt;ExpansionScalar&gt;</ref><sp/><ref refid="class_g_q_c_p_1_1_g_spinor_basis_1a46340b1127f69b7cec4a82455ecd8eb4" kindref="member">mullikenDomain</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::function&lt;</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal">(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_g_spinor_basis_1a43378faf70d64f2caa796282bac433e8" kindref="member">Shell</ref>&amp;)&gt;&amp;<sp/>selector)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="927"><highlight class="normal"></highlight></codeline>
-<codeline lineno="928"><highlight class="normal"></highlight></codeline>
-<codeline lineno="929"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="928"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Assume<sp/>the<sp/>underlying<sp/>scalar<sp/>bases<sp/>are<sp/>equal,<sp/>and<sp/>proceed<sp/>to<sp/>work<sp/>with<sp/>the<sp/>one<sp/>for<sp/>the<sp/>alpha<sp/>component.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="929"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>ao_indices<sp/>=<sp/>this-&gt;<ref refid="class_g_q_c_p_1_1_g_spinor_basis_1a84558401a2607c6b72621759c7874f76" kindref="member">scalarBases</ref>().alpha().basisFunctionIndices(selector);</highlight></codeline>
+<codeline lineno="930"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_g_q_c_p_1_1_g_mulliken_domain" kindref="compound">GMullikenDomain&lt;ExpansionScalar&gt;</ref><sp/>{ao_indices,<sp/>ao_indices.size()};</highlight></codeline>
+<codeline lineno="931"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="932"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="933"><highlight class="normal"></highlight></codeline>
+<codeline lineno="934"><highlight class="normal"></highlight></codeline>
+<codeline lineno="935"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="936"><highlight class="comment"><sp/>*<sp/><sp/>MARK:<sp/>SpinorBasisTraits</highlight></codeline>
+<codeline lineno="937"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="938"><highlight class="normal"></highlight></codeline>
+<codeline lineno="942"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_ExpansionScalar,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Shell&gt;</highlight></codeline>
+<codeline lineno="943" refid="struct_g_q_c_p_1_1_spinor_basis_traits_3_01_g_spinor_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_g_q_c_p_1_1_spinor_basis_traits" kindref="compound">SpinorBasisTraits</ref>&lt;<ref refid="class_g_q_c_p_1_1_g_spinor_basis" kindref="compound">GSpinorBasis</ref>&lt;_ExpansionScalar,<sp/>_Shell&gt;&gt;<sp/>{</highlight></codeline>
+<codeline lineno="944"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>scalar<sp/>type<sp/>used<sp/>to<sp/>represent<sp/>an<sp/>expansion<sp/>coefficient<sp/>of<sp/>the<sp/>spinors<sp/>in<sp/>the<sp/>underlying<sp/>scalar<sp/>orbitals:<sp/>real<sp/>or<sp/>complex.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="945" refid="struct_g_q_c_p_1_1_spinor_basis_traits_3_01_g_spinor_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4_1a8f40619baa98d5164e5ff34e22f69a19" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="struct_g_q_c_p_1_1_spinor_basis_traits_3_01_g_spinor_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4_1a8f40619baa98d5164e5ff34e22f69a19" kindref="member">ExpansionScalar</ref><sp/>=<sp/>_ExpansionScalar;</highlight></codeline>
+<codeline lineno="946"><highlight class="normal"></highlight></codeline>
+<codeline lineno="947"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>type<sp/>of<sp/>transformation<sp/>that<sp/>is<sp/>naturally<sp/>related<sp/>to<sp/>a<sp/>`GSpinorBasis`.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="948" refid="struct_g_q_c_p_1_1_spinor_basis_traits_3_01_g_spinor_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4_1a1d452bacd98a4e2ae23a07bdf221c468" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">Transformation</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">GTransformation&lt;ExpansionScalar&gt;</ref>;</highlight></codeline>
+<codeline lineno="949"><highlight class="normal"></highlight></codeline>
+<codeline lineno="950"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>second-quantized<sp/>representation<sp/>of<sp/>the<sp/>overlap<sp/>operator<sp/>related<sp/>to<sp/>the<sp/>derived<sp/>spinor<sp/>basis.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="951" refid="struct_g_q_c_p_1_1_spinor_basis_traits_3_01_g_spinor_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4_1a3b8f47b817b8c70f4910144fb91f5aed" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_g_s_q_one_electron_operator" kindref="compound">SQOverlapOperator</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_g_s_q_one_electron_operator" kindref="compound">ScalarGSQOneElectronOperator&lt;ExpansionScalar&gt;</ref>;</highlight></codeline>
+<codeline lineno="952"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="953"><highlight class="normal"></highlight></codeline>
+<codeline lineno="954"><highlight class="normal"></highlight></codeline>
+<codeline lineno="955"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="956"><highlight class="comment"><sp/>*<sp/><sp/>MARK:<sp/>BasisTransformableTraits</highlight></codeline>
+<codeline lineno="957"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="958"><highlight class="normal"></highlight></codeline>
+<codeline lineno="962"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_ExpansionScalar,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Shell&gt;</highlight></codeline>
+<codeline lineno="963" refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g_spinor_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_g_q_c_p_1_1_basis_transformable_traits" kindref="compound">BasisTransformableTraits</ref>&lt;<ref refid="class_g_q_c_p_1_1_g_spinor_basis" kindref="compound">GSpinorBasis</ref>&lt;_ExpansionScalar,<sp/>_Shell&gt;&gt;<sp/>{</highlight></codeline>
+<codeline lineno="964"><highlight class="normal"></highlight></codeline>
+<codeline lineno="965"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>type<sp/>of<sp/>transformation<sp/>that<sp/>is<sp/>naturally<sp/>related<sp/>to<sp/>a<sp/>`GSpinorBasis`.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="966" refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_g_spinor_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4_1a4a04f19dac730449d11e67c1bee74918" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">Transformation</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_g_transformation" kindref="compound">GTransformation&lt;_ExpansionScalar&gt;</ref>;</highlight></codeline>
+<codeline lineno="967"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="968"><highlight class="normal"></highlight></codeline>
+<codeline lineno="969"><highlight class="normal"></highlight></codeline>
+<codeline lineno="970"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="971"><highlight class="comment"><sp/>*<sp/><sp/>MARK:<sp/>JacobiRotatableTraits</highlight></codeline>
+<codeline lineno="972"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="973"><highlight class="normal"></highlight></codeline>
+<codeline lineno="977"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_ExpansionScalar,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_Shell&gt;</highlight></codeline>
+<codeline lineno="978" refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_g_spinor_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits" kindref="compound">JacobiRotatableTraits</ref>&lt;<ref refid="class_g_q_c_p_1_1_g_spinor_basis" kindref="compound">GSpinorBasis</ref>&lt;_ExpansionScalar,<sp/>_Shell&gt;&gt;<sp/>{</highlight></codeline>
+<codeline lineno="979"><highlight class="normal"></highlight></codeline>
+<codeline lineno="980"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>type<sp/>of<sp/>Jacobi<sp/>rotation<sp/>that<sp/>is<sp/>naturally<sp/>related<sp/>to<sp/>a<sp/>`GSpinorBasis`.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="981" refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_g_spinor_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4_1a0d79f9c626c22e69eb8acee6c9c85ee9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="class_g_q_c_p_1_1_jacobi_rotation" kindref="compound">JacobiRotationType</ref><sp/>=<sp/><ref refid="class_g_q_c_p_1_1_jacobi_rotation" kindref="compound">JacobiRotation</ref>;</highlight></codeline>
+<codeline lineno="982"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="983"><highlight class="normal"></highlight></codeline>
+<codeline lineno="984"><highlight class="normal"></highlight></codeline>
+<codeline lineno="985"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>GQCP</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/GSpinorBasis.hpp"/>
   </compounddef>

@@ -9,5 +9,6 @@ var searchData=
   ['primitivenuclearattractionintegralengine_6',['PrimitiveNuclearAttractionIntegralEngine',['../class_g_q_c_p_1_1_primitive_nuclear_attraction_integral_engine.html',1,'GQCP']]],
   ['primitiveoverlapintegralengine_7',['PrimitiveOverlapIntegralEngine',['../class_g_q_c_p_1_1_primitive_overlap_integral_engine.html',1,'GQCP']]],
   ['purespinresolved2dmcomponent_8',['PureSpinResolved2DMComponent',['../class_g_q_c_p_1_1_pure_spin_resolved2_d_m_component.html',1,'GQCP']]],
-  ['pureusqtwoelectronoperatorcomponent_9',['PureUSQTwoElectronOperatorComponent',['../class_g_q_c_p_1_1_pure_u_s_q_two_electron_operator_component.html',1,'GQCP']]]
+  ['pureusqtwoelectronoperatorcomponent_9',['PureUSQTwoElectronOperatorComponent',['../class_g_q_c_p_1_1_pure_u_s_q_two_electron_operator_component.html',1,'GQCP']]],
+  ['pureusqtwoelectronoperatorcomponent_3c_20scalar_2c_20_5fvectorizer_20_3e_10',['PureUSQTwoElectronOperatorComponent&lt; Scalar, _Vectorizer &gt;',['../class_g_q_c_p_1_1_pure_u_s_q_two_electron_operator_component.html',1,'GQCP']]]
 ];

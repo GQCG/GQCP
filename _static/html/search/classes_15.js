@@ -23,8 +23,9 @@ var searchData=
   ['usqoneelectronoperatorcomponent_20',['USQOneElectronOperatorComponent',['../class_g_q_c_p_1_1_u_s_q_one_electron_operator_component.html',1,'GQCP']]],
   ['usqoneelectronoperatorcomponent_3c_20scalar_2c_20_5fvectorizer_20_3e_21',['USQOneElectronOperatorComponent&lt; Scalar, _Vectorizer &gt;',['../class_g_q_c_p_1_1_u_s_q_one_electron_operator_component.html',1,'GQCP']]],
   ['usqtwoelectronoperator_22',['USQTwoElectronOperator',['../class_g_q_c_p_1_1_u_s_q_two_electron_operator.html',1,'GQCP']]],
-  ['utransformation_23',['UTransformation',['../class_g_q_c_p_1_1_u_transformation.html',1,'GQCP']]],
-  ['utransformation_3c_20scalar_20_3e_24',['UTransformation&lt; Scalar &gt;',['../class_g_q_c_p_1_1_u_transformation.html',1,'GQCP']]],
-  ['utransformationcomponent_25',['UTransformationComponent',['../class_g_q_c_p_1_1_u_transformation_component.html',1,'GQCP']]],
-  ['utransformationcomponent_3c_20scalar_20_3e_26',['UTransformationComponent&lt; Scalar &gt;',['../class_g_q_c_p_1_1_u_transformation_component.html',1,'GQCP']]]
+  ['usqtwoelectronoperator_3c_20scalar_20_3e_23',['USQTwoElectronOperator&lt; Scalar &gt;',['../class_g_q_c_p_1_1_u_s_q_two_electron_operator.html',1,'GQCP']]],
+  ['utransformation_24',['UTransformation',['../class_g_q_c_p_1_1_u_transformation.html',1,'GQCP']]],
+  ['utransformation_3c_20scalar_20_3e_25',['UTransformation&lt; Scalar &gt;',['../class_g_q_c_p_1_1_u_transformation.html',1,'GQCP']]],
+  ['utransformationcomponent_26',['UTransformationComponent',['../class_g_q_c_p_1_1_u_transformation_component.html',1,'GQCP']]],
+  ['utransformationcomponent_3c_20scalar_20_3e_27',['UTransformationComponent&lt; Scalar &gt;',['../class_g_q_c_p_1_1_u_transformation_component.html',1,'GQCP']]]
 ];

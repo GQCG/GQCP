@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
   <compounddef id="class_g_q_c_p_1_1_doubly_spin_resolved_base" kind="class" language="C++" prot="public">
     <compoundname>GQCP::DoublySpinResolvedBase</compoundname>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator" prot="public" virt="non-virtual">GQCP::USQTwoElectronOperator&lt; Scalar &gt;</derivedcompoundref>
     <includes refid="_doubly_spin_resolved_base_8hpp" local="no">DoublySpinResolvedBase.hpp</includes>
     <templateparamlist>
       <param>
@@ -424,6 +425,18 @@
 </parameterlist>
 </para>
     </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GQCP::DoublySpinResolvedBase&lt; _Pure, _Mixed, _Derived &gt;</label>
+        <link refid="class_g_q_c_p_1_1_doubly_spin_resolved_base"/>
+      </node>
+      <node id="2">
+        <label>GQCP::USQTwoElectronOperator&lt; Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
     <collaborationgraph>
       <node id="1">
         <label>GQCP::DoublySpinResolvedBase&lt; _Pure, _Mixed, _Derived &gt;</label>

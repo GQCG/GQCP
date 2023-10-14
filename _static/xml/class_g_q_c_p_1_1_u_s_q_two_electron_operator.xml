@@ -28,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="52" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="52" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="53" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="53" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1a69320d4106afd5ef75e9c2dbdf351528" prot="public" static="no">
         <type>_Vectorizer</type>
@@ -42,7 +42,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="55" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="55" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="56" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="56" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1a18cef515647e1b62519dde7e9077be49" prot="public" static="no">
         <type><ref refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator" kindref="compound">USQTwoElectronOperator</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1a45795892bc81620abb4282fdabd725a5" kindref="member">Scalar</ref>, <ref refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1a69320d4106afd5ef75e9c2dbdf351528" kindref="member">Vectorizer</ref> &gt;</type>
@@ -56,7 +56,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="58" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="58" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="59" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="59" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1ab7ec3d27968b558dc79654dc35a00362" prot="public" static="no">
         <type><ref refid="class_g_q_c_p_1_1_u_transformation" kindref="compound">UTransformation</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1a45795892bc81620abb4282fdabd725a5" kindref="member">Scalar</ref> &gt;</type>
@@ -70,7 +70,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="61" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="61" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="62" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="62" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1a6db397c500c999841da2018ef27acd87" prot="public" static="no">
         <type><ref refid="class_g_q_c_p_1_1_u_jacobi_rotation" kindref="compound">UJacobiRotation</ref></type>
@@ -84,7 +84,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="64" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="64" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="65" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="65" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1ae3d6317cab5cc865f48f86be11b13842" prot="public" static="no">
         <type><ref refid="namespace_g_q_c_p_1a4e2fa2707828e181d1a0dbe949627abf" kindref="member">UnrestrictedSpinOrbitalTag</ref></type>
@@ -98,7 +98,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="67" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="67" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="68" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="68" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1a4b127c1ab31a371d4c2340d20ca8e5d9" prot="public" static="no">
         <type>typename <ref refid="class_g_q_c_p_1_1_doubly_spin_resolved_base" kindref="compound">DoublySpinResolvedBase</ref>&lt; <ref refid="class_g_q_c_p_1_1_pure_u_s_q_two_electron_operator_component" kindref="compound">PureUSQTwoElectronOperatorComponent</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1a45795892bc81620abb4282fdabd725a5" kindref="member">Scalar</ref>, <ref refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1a69320d4106afd5ef75e9c2dbdf351528" kindref="member">Vectorizer</ref> &gt;, <ref refid="class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component" kindref="compound">MixedUSQTwoElectronOperatorComponent</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1a45795892bc81620abb4282fdabd725a5" kindref="member">Scalar</ref>, <ref refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1a69320d4106afd5ef75e9c2dbdf351528" kindref="member">Vectorizer</ref> &gt;, <ref refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator" kindref="compound">USQTwoElectronOperator</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1a45795892bc81620abb4282fdabd725a5" kindref="member">Scalar</ref>, <ref refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1a69320d4106afd5ef75e9c2dbdf351528" kindref="member">Vectorizer</ref> &gt; &gt;<ref refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1aca1c50d6a880fe35529aec8e60bc8dd2" kindref="member">::Pure</ref></type>
@@ -112,7 +112,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="70" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="70" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="71" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="71" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1aaf70198ff086416e97a4004371467bef" prot="public" static="no">
         <type>typename <ref refid="class_g_q_c_p_1_1_doubly_spin_resolved_base" kindref="compound">DoublySpinResolvedBase</ref>&lt; <ref refid="class_g_q_c_p_1_1_pure_u_s_q_two_electron_operator_component" kindref="compound">PureUSQTwoElectronOperatorComponent</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1a45795892bc81620abb4282fdabd725a5" kindref="member">Scalar</ref>, <ref refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1a69320d4106afd5ef75e9c2dbdf351528" kindref="member">Vectorizer</ref> &gt;, <ref refid="class_g_q_c_p_1_1_mixed_u_s_q_two_electron_operator_component" kindref="compound">MixedUSQTwoElectronOperatorComponent</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1a45795892bc81620abb4282fdabd725a5" kindref="member">Scalar</ref>, <ref refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1a69320d4106afd5ef75e9c2dbdf351528" kindref="member">Vectorizer</ref> &gt;, <ref refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator" kindref="compound">USQTwoElectronOperator</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1a45795892bc81620abb4282fdabd725a5" kindref="member">Scalar</ref>, <ref refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1a69320d4106afd5ef75e9c2dbdf351528" kindref="member">Vectorizer</ref> &gt; &gt;<ref refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1a230628c5e23252fa38b8cc228430757e" kindref="member">::Mixed</ref></type>
@@ -126,7 +126,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="71" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="71" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="72" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="72" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -221,7 +221,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="95" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="95" bodyend="121"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="96" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="96" bodyend="122"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1a7d10ee7472cb3129b2677ce055c3154a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -298,7 +298,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="135" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="135" bodyend="137"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="136" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="136" bodyend="138"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1a60246004fd8389e883e9c9b1468a9210" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -313,7 +313,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="143" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="143" bodyend="144"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="144" column="5" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="144" bodyend="145"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1ae1cb1d1ce648058b293dd0c41d07d069" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_storage_array" kindref="compound">StorageArray</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1a45795892bc81620abb4282fdabd725a5" kindref="member">Scalar</ref>, <ref refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1a69320d4106afd5ef75e9c2dbdf351528" kindref="member">Vectorizer</ref> &gt;</type>
@@ -344,7 +344,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="187" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="187" bodyend="203"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="188" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="188" bodyend="204"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1a20e8181da9e29ee84071274b96eb3530" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>size_t</type>
@@ -386,7 +386,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="216" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="216" bodyend="227"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="217" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="217" bodyend="228"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1a7871fc68290790116d0b7567c3f053a2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>size_t</type>
@@ -400,7 +400,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="235" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="235" bodyend="235"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="236" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="236" bodyend="236"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1a1b8a992e97464e216c49e13ea33ec44a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1a18cef515647e1b62519dde7e9077be49" kindref="member">Self</ref> &amp;</type>
@@ -419,7 +419,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="264" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="264" bodyend="273"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="265" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="265" bodyend="274"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1af94e5aab4a74b9dfce63d06ec8eef575" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type><ref refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1a18cef515647e1b62519dde7e9077be49" kindref="member">Self</ref> &amp;</type>
@@ -439,7 +439,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="279" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="279" bodyend="288"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="280" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="280" bodyend="289"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
@@ -470,7 +470,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="156" column="35" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="156" bodyend="162"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="157" column="35" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="157" bodyend="163"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1a010f64d1330a6002fe793e82ec7a0335" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator" kindref="compound">USQTwoElectronOperator</ref>&lt; <ref refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1a45795892bc81620abb4282fdabd725a5" kindref="member">Scalar</ref>, <ref refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator_1a69320d4106afd5ef75e9c2dbdf351528" kindref="member">Vectorizer</ref> &gt;</type>
@@ -499,7 +499,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="170" column="35" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="170" bodyend="173"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="171" column="35" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="171" bodyend="174"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -621,7 +621,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="45" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="49" bodyend="289"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="46" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="50" bodyend="290"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1a9c49bbea8e139a0e2d743c3f0d9c81df" prot="public" virt="non-virtual"><scope>GQCP::USQTwoElectronOperator</scope><name>alphaAlpha</name></member>
       <member refid="class_g_q_c_p_1_1_doubly_spin_resolved_base_1a31fefeed695886f170160cf7325f2019" prot="public" virt="non-virtual"><scope>GQCP::USQTwoElectronOperator</scope><name>alphaAlpha</name></member>

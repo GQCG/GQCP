@@ -44,6 +44,7 @@
     <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_r_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; RSQTwoElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
     <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_r_transformation_3_01_scalar_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; RTransformation&lt; Scalar &gt; &gt;</innerclass>
     <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_scalar_g_s_q_one_electron_operator_product_3_01_scalar_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; ScalarGSQOneElectronOperatorProduct&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_scalar_u_s_q_one_electron_operator_product_3_01_scalar_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; ScalarUSQOneElectronOperatorProduct&lt; Scalar &gt; &gt;</innerclass>
     <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_simple_s_q_two_electron_operator_3_01___scalac9aaaed38cee8ca8d58805ca730bc427" prot="public">GQCP::BasisTransformableTraits&lt; SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;</innerclass>
     <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_simple_transformation_3_01_scalar_00_01_derived_transformation_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; SimpleTransformation&lt; Scalar, DerivedTransformation &gt; &gt;</innerclass>
     <innerclass refid="struct_g_q_c_p_1_1_basis_transformable_traits_3_01_spin_density1_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::BasisTransformableTraits&lt; SpinDensity1DM&lt; Scalar &gt; &gt;</innerclass>
@@ -175,6 +176,7 @@
     <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_r_s_q_two_electron_operator_3_01_scalar_00_01_vectorizer_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; RSQTwoElectronOperator&lt; Scalar, Vectorizer &gt; &gt;</innerclass>
     <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_r_transformation_3_01_scalar_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; RTransformation&lt; Scalar &gt; &gt;</innerclass>
     <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_scalar_g_s_q_one_electron_operator_product_3_01_scalar_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; ScalarGSQOneElectronOperatorProduct&lt; Scalar &gt; &gt;</innerclass>
+    <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_scalar_u_s_q_one_electron_operator_product_3_01_scalar_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; ScalarUSQOneElectronOperatorProduct&lt; Scalar &gt; &gt;</innerclass>
     <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_simple_s_q_two_electron_operator_3_01___scalar_00d91ca45987de7bd8c30b8b73d55a889" prot="public">GQCP::JacobiRotatableTraits&lt; SimpleSQTwoElectronOperator&lt; _Scalar, _Vectorizer, _DerivedOperator &gt; &gt;</innerclass>
     <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_simple_transformation_3_01_scalar_00_01_derived_transformation_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; SimpleTransformation&lt; Scalar, DerivedTransformation &gt; &gt;</innerclass>
     <innerclass refid="struct_g_q_c_p_1_1_jacobi_rotatable_traits_3_01_spin_density1_d_m_3_01_scalar_01_4_01_4" prot="public">GQCP::JacobiRotatableTraits&lt; SpinDensity1DM&lt; Scalar &gt; &gt;</innerclass>
@@ -290,6 +292,7 @@
     <innerclass refid="class_g_q_c_p_1_1_r_transformation" prot="public">GQCP::RTransformation</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_scalar_basis" prot="public">GQCP::ScalarBasis</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_scalar_g_s_q_one_electron_operator_product" prot="public">GQCP::ScalarGSQOneElectronOperatorProduct</innerclass>
+    <innerclass refid="class_g_q_c_p_1_1_scalar_u_s_q_one_electron_operator_product" prot="public">GQCP::ScalarUSQOneElectronOperatorProduct</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_shell_set" prot="public">GQCP::ShellSet</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_simple1_d_m" prot="public">GQCP::Simple1DM</innerclass>
     <innerclass refid="class_g_q_c_p_1_1_simple2_d_m" prot="public">GQCP::Simple2DM</innerclass>
@@ -671,7 +674,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="590" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="590" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" line="650" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp" bodystart="650" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespace_g_q_c_p_1a87cc0b2adf737c5194d7a791bd4cb513" prot="public" static="no">
         <templateparamlist>
@@ -2140,7 +2143,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="298" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="298" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="299" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="299" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespace_g_q_c_p_1aa3aa234c019dcb885a1194c9ebd326a2" prot="public" static="no">
         <templateparamlist>
@@ -2159,7 +2162,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="302" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="302" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="303" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="303" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespace_g_q_c_p_1a1747382d67cc4d689a22084d7724bcb8" prot="public" static="no">
         <templateparamlist>
@@ -2178,7 +2181,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="306" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="306" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="307" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="307" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespace_g_q_c_p_1a08a64042d8fbe49b115f079671c8b9d0" prot="public" static="no">
         <templateparamlist>
@@ -2202,7 +2205,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="310" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="310" bodyend="-1"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" line="311" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp" bodystart="311" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespace_g_q_c_p_1a7f6dc73e9642604cae80dd2e813b91f5" prot="public" static="no">
         <type><ref refid="class_g_q_c_p_1_1_restricted_spinor_tag" kindref="compound">RestrictedSpinorTag</ref></type>

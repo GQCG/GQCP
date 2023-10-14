@@ -179,6 +179,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a4eb3449b97998a8f1aad758fc9add0a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9bdd6d24535343b77020c561f24ae49"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_g_q_c_p_1_1_u_s_q_one_electron_operator.html">USQOneElectronOperator</a>&lt; <a class="el" href="namespace_g_q_c_p.html#a09e1543a47643a7a62401aa600bb2e28">product_t</a>&lt; <a class="el" href="class_g_q_c_p_1_1_base_f_q_operator.html#afebca98f82d7d9d4c27b39beaf4c58fb">ElectronicSpin_zOperator::Scalar</a>, <a class="el" href="class_g_q_c_p_1_1_u_spin_orbital_basis.html#ae20445a1b3cf603f62e96ed8840e4d81">ExpansionScalar</a> &gt;, <a class="el" href="class_g_q_c_p_1_1_base_f_q_operator.html#a3bf379636691d7d74ea96afc8f5049cf">ElectronicSpin_zOperator::Vectorizer</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_u_spin_orbital_basis.html#ae9bdd6d24535343b77020c561f24ae49">quantize</a> (const <a class="el" href="class_g_q_c_p_1_1_electronic_spin__z_operator.html">ElectronicSpin_zOperator</a> &amp;fq_op) const</td></tr>
 <tr class="separator:ae9bdd6d24535343b77020c561f24ae49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63468459ce0e9e8febe2229cb2769c17"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_g_q_c_p_1_1_scalar_u_s_q_one_electron_operator_product.html">ScalarUSQOneElectronOperatorProduct</a>&lt; <a class="el" href="class_g_q_c_p_1_1_u_spin_orbital_basis.html#ae20445a1b3cf603f62e96ed8840e4d81">ExpansionScalar</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_u_spin_orbital_basis.html#a63468459ce0e9e8febe2229cb2769c17">quantize</a> (const <a class="el" href="class_g_q_c_p_1_1_electronic_spin_squared_operator.html">ElectronicSpinSquaredOperator</a> &amp;fq_op) const</td></tr>
+<tr class="separator:a63468459ce0e9e8febe2229cb2769c17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5dca5a682a24c055cb2b1b576411814"><td class="memTemplParams" colspan="2">template&lt;typename Z  = Shell&gt; </td></tr>
 <tr class="memitem:af5dca5a682a24c055cb2b1b576411814"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_u_spin_orbital_basis.html#af5dca5a682a24c055cb2b1b576411814">quantize</a> (const <a class="el" href="class_g_q_c_p_1_1_spin_zeeman_operator.html">SpinZeemanOperator</a> &amp;fq_op) const -&gt; <a class="el" href="namespace_g_q_c_p.html#a006e5cafd5827d2685c9e0bb7e01cfa2">enable_if_t</a>&lt; std::is_same&lt; Z, <a class="el" href="class_g_q_c_p_1_1_london_g_t_o_shell.html">LondonGTOShell</a> &gt;::value, <a class="el" href="class_g_q_c_p_1_1_u_s_q_one_electron_operator.html">USQOneElectronOperator</a>&lt; <a class="el" href="namespace_g_q_c_p.html#a09e1543a47643a7a62401aa600bb2e28">product_t</a>&lt; <a class="el" href="class_g_q_c_p_1_1_base_f_q_operator.html#afebca98f82d7d9d4c27b39beaf4c58fb">SpinZeemanOperator::Scalar</a>, <a class="el" href="class_g_q_c_p_1_1_u_spin_orbital_basis.html#ae20445a1b3cf603f62e96ed8840e4d81">ExpansionScalar</a> &gt;, <a class="el" href="class_g_q_c_p_1_1_base_f_q_operator.html#a3bf379636691d7d74ea96afc8f5049cf">SpinZeemanOperator::Vectorizer</a> &gt; &gt;</td></tr>
 <tr class="separator:af5dca5a682a24c055cb2b1b576411814"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1119,7 +1121,7 @@ template&lt;typename _ExpansionScalar , typename _Shell &gt; </div>
 </div>
 </div>
 <a id="aabc94b88ca368c7eb4092dad2556f1ce" name="aabc94b88ca368c7eb4092dad2556f1ce"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aabc94b88ca368c7eb4092dad2556f1ce">&#9670;&#160;</a></span>quantize() <span class="overload">[1/8]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aabc94b88ca368c7eb4092dad2556f1ce">&#9670;&#160;</a></span>quantize() <span class="overload">[1/9]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1157,7 +1159,7 @@ template&lt;typename Z  = Shell&gt; </div>
 </div>
 </div>
 <a id="a554367a4e6dd29925905548fb311b70a" name="a554367a4e6dd29925905548fb311b70a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a554367a4e6dd29925905548fb311b70a">&#9670;&#160;</a></span>quantize() <span class="overload">[2/8]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a554367a4e6dd29925905548fb311b70a">&#9670;&#160;</a></span>quantize() <span class="overload">[2/9]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1195,7 +1197,7 @@ template&lt;typename Z  = Shell&gt; </div>
 </div>
 </div>
 <a id="ae9bdd6d24535343b77020c561f24ae49" name="ae9bdd6d24535343b77020c561f24ae49"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae9bdd6d24535343b77020c561f24ae49">&#9670;&#160;</a></span>quantize() <span class="overload">[3/8]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9bdd6d24535343b77020c561f24ae49">&#9670;&#160;</a></span>quantize() <span class="overload">[3/9]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1230,8 +1232,44 @@ template&lt;typename _ExpansionScalar , typename _Shell &gt; </div>
 
 </div>
 </div>
+<a id="a63468459ce0e9e8febe2229cb2769c17" name="a63468459ce0e9e8febe2229cb2769c17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63468459ce0e9e8febe2229cb2769c17">&#9670;&#160;</a></span>quantize() <span class="overload">[4/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename _ExpansionScalar , typename _Shell &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_g_q_c_p_1_1_scalar_u_s_q_one_electron_operator_product.html">ScalarUSQOneElectronOperatorProduct</a>&lt; <a class="el" href="class_g_q_c_p_1_1_u_spin_orbital_basis.html#ae20445a1b3cf603f62e96ed8840e4d81">ExpansionScalar</a> &gt; <a class="el" href="class_g_q_c_p_1_1_u_spin_orbital_basis.html">GQCP::USpinOrbitalBasis</a>&lt; _ExpansionScalar, _Shell &gt;::quantize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_g_q_c_p_1_1_electronic_spin_squared_operator.html">ElectronicSpinSquaredOperator</a> &amp;&#160;</td>
+          <td class="paramname"><em>fq_op</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Quantize the electronic S^2 operator in this spin orbital basis.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fq_S2_op</td><td>The first-quantized electronic S^2 operator.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The second-quantized representation of the electronic S^2 operator in this spin orbital basis. </dd></dl>
+
+</div>
+</div>
 <a id="a6de25375aab2050878bcc5e6b4c4f2d5" name="a6de25375aab2050878bcc5e6b4c4f2d5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6de25375aab2050878bcc5e6b4c4f2d5">&#9670;&#160;</a></span>quantize() <span class="overload">[4/8]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a6de25375aab2050878bcc5e6b4c4f2d5">&#9670;&#160;</a></span>quantize() <span class="overload">[5/9]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1267,7 +1305,7 @@ template&lt;typename _ExpansionScalar , typename _Shell &gt; </div>
 </div>
 </div>
 <a id="afda42797f875206668241abbbc2b03eb" name="afda42797f875206668241abbbc2b03eb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afda42797f875206668241abbbc2b03eb">&#9670;&#160;</a></span>quantize() <span class="overload">[5/8]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#afda42797f875206668241abbbc2b03eb">&#9670;&#160;</a></span>quantize() <span class="overload">[6/9]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1305,7 +1343,7 @@ template&lt;typename Z  = Shell&gt; </div>
 </div>
 </div>
 <a id="a6ee8d218e8a394ed8a51336ca23a7b9e" name="a6ee8d218e8a394ed8a51336ca23a7b9e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6ee8d218e8a394ed8a51336ca23a7b9e">&#9670;&#160;</a></span>quantize() <span class="overload">[6/8]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ee8d218e8a394ed8a51336ca23a7b9e">&#9670;&#160;</a></span>quantize() <span class="overload">[7/9]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1343,7 +1381,7 @@ template&lt;typename Z  = Shell&gt; </div>
 </div>
 </div>
 <a id="a2200b24771de76df594a1971474ceeb7" name="a2200b24771de76df594a1971474ceeb7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2200b24771de76df594a1971474ceeb7">&#9670;&#160;</a></span>quantize() <span class="overload">[7/8]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a2200b24771de76df594a1971474ceeb7">&#9670;&#160;</a></span>quantize() <span class="overload">[8/9]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1387,7 +1425,7 @@ template&lt;typename FQOneElectronOperator &gt; </div>
 </div>
 </div>
 <a id="af5dca5a682a24c055cb2b1b576411814" name="af5dca5a682a24c055cb2b1b576411814"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af5dca5a682a24c055cb2b1b576411814">&#9670;&#160;</a></span>quantize() <span class="overload">[8/8]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#af5dca5a682a24c055cb2b1b576411814">&#9670;&#160;</a></span>quantize() <span class="overload">[9/9]</span></h2>
 
 <div class="memitem">
 <div class="memproto">

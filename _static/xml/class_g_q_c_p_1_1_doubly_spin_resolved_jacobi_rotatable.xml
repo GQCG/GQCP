@@ -3,6 +3,7 @@
   <compounddef id="class_g_q_c_p_1_1_doubly_spin_resolved_jacobi_rotatable" kind="class" language="C++" prot="public">
     <compoundname>GQCP::DoublySpinResolvedJacobiRotatable</compoundname>
     <basecompoundref refid="class_g_q_c_p_1_1_jacobi_rotatable" prot="public" virt="non-virtual">GQCP::JacobiRotatable&lt; T &gt;</basecompoundref>
+    <derivedcompoundref refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator" prot="public" virt="non-virtual">GQCP::USQTwoElectronOperator&lt; Scalar &gt;</derivedcompoundref>
     <includes refid="_doubly_spin_resolved_jacobi_rotatable_8hpp" local="no">DoublySpinResolvedJacobiRotatable.hpp</includes>
     <templateparamlist>
       <param>
@@ -83,6 +84,12 @@
       <node id="2">
         <label>GQCP::JacobiRotatable&lt; T &gt;</label>
         <link refid="class_g_q_c_p_1_1_jacobi_rotatable"/>
+      </node>
+      <node id="3">
+        <label>GQCP::USQTwoElectronOperator&lt; Scalar &gt;</label>
+        <link refid="class_g_q_c_p_1_1_u_s_q_two_electron_operator"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>

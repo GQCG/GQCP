@@ -16,6 +16,7 @@
     <includedby refid="_u_spin_orbital_basis_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/USpinOrbitalBasis.hpp</includedby>
     <includedby refid="_evaluable_u_s_q_one_electron_operator_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/EvaluableUSQOneElectronOperator.hpp</includedby>
     <includedby refid="_s_q_hamiltonian_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/SQHamiltonian.hpp</includedby>
+    <includedby refid="_u_s_q_two_electron_operator_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp</includedby>
     <includedby refid="_u_h_f_electronic_energy_calculation_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFElectronicEnergyCalculation.hpp</includedby>
     <includedby refid="_u_h_f_s_c_f_environment_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/QCMethod/HF/UHF/UHFSCFEnvironment.hpp</includedby>
     <includedby refid="_q_c_model_2_h_f_2_u_h_f_8hpp" local="yes">/__w/GQCP/GQCP/gqcp/include/QCModel/HF/UHF.hpp</includedby>
@@ -848,11 +849,23 @@
         </childnode>
         <childnode refid="33" relation="include">
         </childnode>
+        <childnode refid="101" relation="include">
+        </childnode>
         <childnode refid="87" relation="include">
         </childnode>
         <childnode refid="84" relation="include">
         </childnode>
         <childnode refid="100" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="101">
+        <label>/__w/GQCP/GQCP/gqcp/include/Operator/SecondQuantized/USQTwoElectronOperator.hpp</label>
+        <link refid="_u_s_q_two_electron_operator_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>

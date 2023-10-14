@@ -611,15 +611,15 @@
         </childnode>
         <childnode refid="60" relation="include">
         </childnode>
-        <childnode refid="192" relation="include">
-        </childnode>
         <childnode refid="193" relation="include">
         </childnode>
         <childnode refid="189" relation="include">
         </childnode>
+        <childnode refid="190" relation="include">
+        </childnode>
         <childnode refid="133" relation="include">
         </childnode>
-        <childnode refid="190" relation="include">
+        <childnode refid="191" relation="include">
         </childnode>
         <childnode refid="62" relation="include">
         </childnode>
@@ -629,7 +629,7 @@
         </childnode>
         <childnode refid="65" relation="include">
         </childnode>
-        <childnode refid="191" relation="include">
+        <childnode refid="192" relation="include">
         </childnode>
         <childnode refid="162" relation="include">
         </childnode>
@@ -781,11 +781,13 @@
         </childnode>
         <childnode refid="189" relation="include">
         </childnode>
+        <childnode refid="190" relation="include">
+        </childnode>
         <childnode refid="133" relation="include">
         </childnode>
         <childnode refid="134" relation="include">
         </childnode>
-        <childnode refid="190" relation="include">
+        <childnode refid="191" relation="include">
         </childnode>
         <childnode refid="62" relation="include">
         </childnode>
@@ -1506,7 +1508,7 @@
         <childnode refid="61" relation="include">
         </childnode>
       </node>
-      <node id="192">
+      <node id="193">
         <label>Operator/FirstQuantized/ElectronicSpinOperator.hpp</label>
         <link refid="_electronic_spin_operator_8hpp"/>
         <childnode refid="56" relation="include">
@@ -1514,7 +1516,7 @@
         <childnode refid="19" relation="include">
         </childnode>
       </node>
-      <node id="193">
+      <node id="189">
         <label>Operator/FirstQuantized/ElectronicSpinSquaredOperator.hpp</label>
         <link refid="_electronic_spin_squared_operator_8hpp"/>
         <childnode refid="56" relation="include">
@@ -1522,7 +1524,7 @@
         <childnode refid="19" relation="include">
         </childnode>
       </node>
-      <node id="189">
+      <node id="190">
         <label>Operator/FirstQuantized/ElectronicSpin_zOperator.hpp</label>
         <link refid="_electronic_spin__z_operator_8hpp"/>
         <childnode refid="56" relation="include">
@@ -1550,12 +1552,12 @@
         <childnode refid="135" relation="include">
         </childnode>
       </node>
-      <node id="190">
+      <node id="191">
         <label>Operator/FirstQuantized/FQMolecularPauliHamiltonian.hpp</label>
         <link refid="_f_q_molecular_pauli_hamiltonian_8hpp"/>
         <childnode refid="134" relation="include">
         </childnode>
-        <childnode refid="191" relation="include">
+        <childnode refid="192" relation="include">
         </childnode>
       </node>
       <node id="62">
@@ -1600,7 +1602,7 @@
         <childnode refid="56" relation="include">
         </childnode>
       </node>
-      <node id="191">
+      <node id="192">
         <label>Operator/FirstQuantized/SpinZeemanOperator.hpp</label>
         <link refid="_spin_zeeman_operator_8hpp"/>
         <childnode refid="56" relation="include">
@@ -1922,6 +1924,8 @@
         <childnode refid="159" relation="include">
         </childnode>
         <childnode refid="156" relation="include">
+        </childnode>
+        <childnode refid="184" relation="include">
         </childnode>
         <childnode refid="178" relation="include">
         </childnode>
