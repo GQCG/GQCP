@@ -465,6 +465,7 @@ void bindLondonSpinorBasisQuantizationInterface(Class& py_class) {
             },
             "Return the electronic quadrupole operator expressed in this spinor basis.")
 
+
         .def(
             "quantize",
             [](const Type& spinor_basis, const OrbitalZeemanOperator& op) {
