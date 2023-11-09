@@ -108,7 +108,7 @@ BOOST_AUTO_TEST_CASE(h2o_crawdad) {
 
 /**
  *  Validate the correctness of complex-valued CCSD by checking it against the complex FCI results for H2.
- * 
+ *
  *  The calculations are performed in a 6-31G basis set, using London orbitals to describe the magnetic Hamiltonian.
  */
 BOOST_AUTO_TEST_CASE(CCSD_vs_CI_complex) {
@@ -129,7 +129,7 @@ BOOST_AUTO_TEST_CASE(CCSD_vs_CI_complex) {
 
     // Solve the GHF SCF equations.
     auto ghf_environment = GQCP::GHFSCFEnvironment<GQCP::complex>::WithComplexlyTransformedCoreGuess(N, hamiltonian, S);
-    auto scf_solver = GQCP::GHFSCFSolver<GQCP::complex>::Plain();
+    auto scf_solver = GQCP::GHFSCFSolver<GQCP::complex>::Plain(1.0e-08, 4000);
     const auto ghf_qc_structure = GQCP::QCMethod::GHF<GQCP::complex>().optimize(scf_solver, ghf_environment);
     const auto& ghf_parameters = ghf_qc_structure.groundStateParameters();
     const auto rhf_energy = ghf_qc_structure.groundStateEnergy();
@@ -145,7 +145,7 @@ BOOST_AUTO_TEST_CASE(CCSD_vs_CI_complex) {
 
 
     // Prepare the CCSD solver and optimize the CCSD model parameters.
-    auto ccsd_solver = GQCP::CCSDSolver<GQCP::complex>::Plain();
+    auto ccsd_solver = GQCP::CCSDSolver<GQCP::complex>::Plain(1.0e-08, 4000);
     const auto ccsd_qc_structure = GQCP::QCMethod::CCSD<GQCP::complex>().optimize(ccsd_solver, ccsd_environment);
     const auto ccsd_correlation_energy = ccsd_qc_structure.groundStateEnergy();
     const auto ccsd_electronic_energy = ccsd_correlation_energy + rhf_energy;
