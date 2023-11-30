@@ -33,6 +33,7 @@
 #include "Operator/FirstQuantized/DiamagneticOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicDensityOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicDipoleOperator.hpp"
+#include "Operator/FirstQuantized/ElectronicQuadrupoleOperator.hpp"
 #include "Operator/FirstQuantized/FQMolecularHamiltonian.hpp"
 #include "Operator/FirstQuantized/FQMolecularMagneticHamiltonian.hpp"
 #include "Operator/FirstQuantized/KineticOperator.hpp"
@@ -363,6 +364,19 @@ public:
         const auto L = this->quantize(op.angularMomentum());
         const auto& B = op.magneticField().strength();
         return 0.5 * L.dot(B);
+    }
+
+
+    /**
+     *  Quantize the quadrupole operator in this restricted spin-orbital basis.
+     *
+     *  @param op               The (first-quantized) electronic quadrupole operator.
+     *
+     *  @return The quadrupole operator expressed in this restricted spin-orbital basis.
+     */
+    template <typename Z = Shell>
+    auto quantize(const ElectronicQuadrupoleOperator& op) const -> enable_if_t<std::is_same<Z, LondonGTOShell>::value, RSQOneElectronOperator<product_t<ElectronicQuadrupoleOperator::Scalar, ExpansionScalar>, ElectronicQuadrupoleOperator::Vectorizer>> {
+        return this->quantize(op);
     }
 
 
