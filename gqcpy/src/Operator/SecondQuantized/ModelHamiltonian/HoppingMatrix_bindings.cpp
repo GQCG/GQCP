@@ -19,6 +19,7 @@
 
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
+#include <pybind11/stl.h>
 
 
 namespace gqcpy {
@@ -53,6 +54,15 @@ void bindHoppingMatrix(py::module& module) {
             },
             py::arg("triagonal_data"),
             "Return the hopping matrix that corresponds to the given upper triangle values.")
+
+        .def_static(
+            "FromLinkVector",
+            [](const AdjacencyMatrix& A, std::vector<double>& link_vector) {
+                return HoppingMatrix<double>::FromLinkVector(A, link_vector);
+            },
+            py::arg("A"),
+            py::arg("link_vector"),
+            "Return the Hubbard hopping matrix from an adjacency matrix and link vector containing values for different parameters t.")
 
         /*
          *  MARK: Access
