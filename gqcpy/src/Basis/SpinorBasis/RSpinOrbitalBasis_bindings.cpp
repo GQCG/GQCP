@@ -169,7 +169,14 @@ void bindRSpinOrbitalBases(py::module& module) {
             [](const RSpinOrbitalBasis<complex, LondonGTOShell>& spin_orbital_basis, const ElectronicDipoleOperator& op) {
                 return spin_orbital_basis.quantize(op);
             },
-            "Return the electronic dipole operator expressed in this London spinor basis.");
+            "Return the electronic dipole operator expressed in this London spinor basis.")
+            
+        .def(
+            "quantize",
+            [](const RSpinOrbitalBasis<complex, LondonGTOShell>& spin_orbital_basis, const ElectronicQuadrupoleOperator& op) {
+                return spin_orbital_basis.quantize(op);
+            },
+            "Return the electronic quadrupole operator expressed in this London spinor basis.");
 
     bindRSpinOrbitalBasisInterface(py_LondonRSpinOrbitalBasis);
     bindLondonSpinorBasisQuantizationInterface(py_LondonRSpinOrbitalBasis);
