@@ -32,7 +32,7 @@ using namespace GQCP;
 
 /**
  *  Register multiple variants of `RSQOneElectronOperator` to the gqcpy module and expose a part of its C++ interface to Python.
- * 
+ *
  *  @param module           The Pybind11 module in which the `RSQOneElectronOperator`s should be registered.
  */
 void bindRSQOneElectronOperator(py::module& module) {
@@ -58,6 +58,10 @@ void bindRSQOneElectronOperator(py::module& module) {
     py::class_<VectorRSQOneElectronOperator<complex>> py_VectorRSQOneElectronOperator_cd {module, "VectorRSQOneElectronOperator_cd", "A (complex) restricted one-electron operator, which is suited for expressing non-relativistic (spin-free) one-electron operators."};
 
     bindSimpleSQOneElectronOperatorInterface(py_VectorRSQOneElectronOperator_cd);
+
+    py::class_<MatrixRSQOneElectronOperator<complex>> py_MatrixRSQOneElectronOperator_cd {module, "MatrixRSQOneElectronOperator_cd", "A (complex) restricted one-electron operator, which is suited for expressing non-relativistic (spin-free) one-electron operators."};
+
+    bindSimpleSQOneElectronOperatorInterface(py_MatrixRSQOneElectronOperator_cd);
 }
 
 

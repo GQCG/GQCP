@@ -33,6 +33,7 @@
 #include "Operator/FirstQuantized/DiamagneticOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicDensityOperator.hpp"
 #include "Operator/FirstQuantized/ElectronicDipoleOperator.hpp"
+#include "Operator/FirstQuantized/ElectronicQuadrupoleOperator.hpp"
 #include "Operator/FirstQuantized/FQMolecularHamiltonian.hpp"
 #include "Operator/FirstQuantized/FQMolecularMagneticHamiltonian.hpp"
 #include "Operator/FirstQuantized/KineticOperator.hpp"

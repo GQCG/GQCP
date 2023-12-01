@@ -259,10 +259,8 @@ public:
      */
     static Self SymmetricFromUpperTriangleWithoutDiagonal(const VectorX<Scalar>& v) {
 
-        size_t dim = 0;
-        for (size_t d = 1; d < v.size(); d++) {
-            dim += d;
-        }
+        double D = 1 + 8 * v.size();
+        double dim = (1 + std::sqrt(D)) / 2;
 
         Self A = Self::Zero(dim);
 

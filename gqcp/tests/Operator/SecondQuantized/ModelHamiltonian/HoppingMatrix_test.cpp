@@ -79,3 +79,63 @@ BOOST_AUTO_TEST_CASE(FromCSLine) {
 
     BOOST_CHECK(H_ref.isApprox(H.matrix()));
 }
+
+/**
+ *  Check if the conversion from a comma-separated line (CSLine) works as expected.
+ */
+BOOST_AUTO_TEST_CASE(FromCSLine2) {
+
+    GQCP::SquareMatrix<double> H_ref = GQCP::SquareMatrix<double>::Zero(4);
+    // clang-format off
+    H_ref << 0, 1, 2, 3,
+             1, 0, 4, 5,
+             2, 4, 0, 6,
+             3, 5, 6, 0;
+    // clang-format on
+
+    std::vector<double> values = {1, 2, 3, 4, 5, 6};
+
+    const auto H = GQCP::HoppingMatrix<double>::Dense(values);
+
+    BOOST_CHECK(H_ref.isApprox(H.matrix()));
+}
+
+/**
+ *  Check if the adjacency matrix from a given link vector works as expected for a linear system.
+ */
+BOOST_AUTO_TEST_CASE(FromLinkVectorLinear) {
+
+    GQCP::SquareMatrix<double> H_ref = GQCP::SquareMatrix<double>::Zero(4);
+    // clang-format off
+    H_ref << 0, 1, 0, 0,
+             1, 0, 4, 0,
+             0, 4, 0, 6,
+             0, 0, 6, 0;
+    // clang-format on
+
+    std::vector<double> values = {1, 4, 6};
+    const auto A = GQCP::AdjacencyMatrix::Linear(4);
+    const auto H = GQCP::HoppingMatrix<double>::FromLinkVector(A, values);
+
+    BOOST_CHECK(H_ref.isApprox(H.matrix()));
+}
+
+/**
+ *  Check if the adjacency matrix from a given link vector works as expected for a cyclic system.
+ */
+BOOST_AUTO_TEST_CASE(FromLinkVectorCyclic) {
+
+    GQCP::SquareMatrix<double> H_ref = GQCP::SquareMatrix<double>::Zero(4);
+    // clang-format off
+    H_ref << 0, 1, 0, 8,
+             1, 0, 4, 0,
+             0, 4, 0, 6,
+             8, 0, 6, 0;
+    // clang-format on
+
+    std::vector<double> values = {1, 4, 6, 8};
+    const auto A = GQCP::AdjacencyMatrix::Cyclic(4);
+    const auto H = GQCP::HoppingMatrix<double>::FromLinkVector(A, values);
+
+    BOOST_CHECK(H_ref.isApprox(H.matrix()));
+}
