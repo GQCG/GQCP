@@ -476,7 +476,7 @@ BOOST_AUTO_TEST_CASE(h2_london_s2) {
         {1, -0.703827, 0.0, 0.0},
         {1, 0.703827, 0.0, 0.0}};
 
-    const GQCP::Molecule molecule(nuclei, 0);  // H3-ring, 1 Angstrom apart.
+    const GQCP::Molecule molecule(nuclei, 0);  // H2-ring, Gauge origin at zero.
 
     const GQCP::HomogeneousMagneticField B {{0.0, 0.0, -0.1}};  // Gauge origin at the origin.
     GQCP::GSpinorBasis<GQCP::complex, GQCP::LondonGTOShell> spinor_basis {molecule, "6-31G", B};
