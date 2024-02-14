@@ -467,8 +467,64 @@ BOOST_AUTO_TEST_CASE(NOCI_unrestricted_one_zero) {
 }
 
 /**
- *  This test checks whether the lower lying complex GHF solution can indeed be found.
- *  Note that this solution can also be found using real valued parameters.
+ *  This test checks whether the NOCI algorithms and density matrices work as expected for complex valued wavefunctions.
+ */
+BOOST_AUTO_TEST_CASE(h2_london_s2) {
+
+    // Create our molecule.
+    const std::vector<GQCP::Nucleus> nuclei = {
+        {1, -0.703827, 0.0, 0.0},
+        {1, 0.703827, 0.0, 0.0}};
+
+    const GQCP::Molecule molecule(nuclei, 0);  // H2-ring, Gauge origin at zero.
+
+    const GQCP::HomogeneousMagneticField B {{0.0, 0.0, -0.1}};  // Gauge origin at the origin.
+    GQCP::GSpinorBasis<GQCP::complex, GQCP::LondonGTOShell> spinor_basis {molecule, "6-31G", B};
+    const auto sq_hamiltonian = spinor_basis.quantize(GQCP::FQMolecularPauliHamiltonian(molecule, B));  // In an AO basis.
+    const auto S = spinor_basis.quantize(GQCP::OverlapOperator());
+
+    // Create the basis state.
+    GQCP::SquareMatrix<GQCP::complex> C_initial_matrix {8};
+    using namespace std::complex_literals;
+    // clang-format off
+    C_initial_matrix << 0.32743285 + 0.00000003i,  0.0        + 0.0j       ,  0.12144985 + 0.00000001i,  0.0        + 0.0i       , -0.7684182  + 0.00000007i,  0.0        + 0.0i       ,  1.11562804 - 0.00000001i,  0.0        + 0.0i       ,
+                        0.272106   - 0.00000004i,  0.0        + 0.0i       ,  1.68731281 - 0.00000003i,  0.0        + 0.0i       ,  0.68794604 - 0.00000009i,  0.0        + 0.0i       , -1.31811931 + 0.00000002i,  0.0        + 0.0i       ,
+                        0.32743285 + 0.00000003i,  0.0        + 0.0i       , -0.12144985 - 0.00000001i,  0.0        + 0.0i       , -0.7684182  + 0.00000007i,  0.0        + 0.0i       , -1.11562804 + 0.00000001i,  0.0        + 0.0i       ,
+                        0.272106   - 0.00000004i,  0.0        + 0.0i       , -1.68731281 + 0.00000003i,  0.0        + 0.0i       ,  0.68794604 - 0.00000009i,  0.0        + 0.0i       ,  1.31811931 - 0.00000002i,  0.0        + 0.0i       ,
+                        0.0        + 0.0i       ,  0.32743285 + 0.00000003i,  0.0        + 0.0i       ,  0.12144985 + 0.00000001i,  0.0        + 0.0i       , -0.7684182  + 0.00000007i,  0.0        + 0.0i       ,  1.11562804 - 0.00000001i,
+                        0.0        + 0.0i       ,  0.272106   - 0.00000004i,  0.0        + 0.0i       ,  1.68731281 - 0.00000003i,  0.0        + 0.0i       ,  0.68794604 - 0.00000009i,  0.0        + 0.0i       , -1.31811931 + 0.00000002i,
+                        0.0        + 0.0i       ,  0.32743285 + 0.00000003i,  0.0        + 0.0i       , -0.12144985 - 0.00000001i,  0.0        + 0.0i       , -0.7684182  + 0.00000007i,  0.0        + 0.0i       , -1.11562804 + 0.00000001i,
+                        0.0        + 0.0i       ,  0.272106   - 0.00000004i,  0.0        + 0.0i       , -1.68731281 + 0.00000003i,  0.0        + 0.0i       ,  0.68794604 - 0.00000009i,  0.0        + 0.0i       ,  1.31811931 - 0.00000002i;
+    // clang-format on
+    GQCP::GTransformation<GQCP::complex> basis_state {C_initial_matrix};
+
+    // Quantize the operators.
+    GQCP::GSpinorBasis<GQCP::complex, GQCP::LondonGTOShell> spinor_basis_orth {molecule, "6-31G", B};
+    spinor_basis_orth.transform(basis_state);
+
+    const auto S2_MO = spinor_basis_orth.quantize(GQCP::ElectronicSpinSquaredOperator());
+    const auto S2 = S2_MO.transformed(basis_state.inverse());
+
+    // Create a non-orthogonal state basis, using the basis state vector, the overlap operator in AO basis and the number of occupied orbitals for alpha and beta.
+    std::vector<GQCP::GTransformation<GQCP::complex>> basis_vector {basis_state};
+    const auto NOS_basis = GQCP::GNonOrthogonalStateBasis<GQCP::complex> {basis_vector, S, 2};
+
+    // Create a dense solver and corresponding environment and put them together in the QCMethod.
+    auto noci_environment = GQCP::NOCIEnvironment::Dense(sq_hamiltonian, NOS_basis, molecule);
+    auto noci_solver = GQCP::GeneralizedEigenproblemSolver::Dense<GQCP::complex>();
+
+    // We do not specify the number of states, meaning we only request the ground state.
+    const auto NOCI_model = GQCP::QCMethod::NOCI<GQCP::complex, GQCP::GNonOrthogonalStateBasis<GQCP::complex>>(NOS_basis).optimize(noci_solver, noci_environment);
+
+    const auto D_noci = NOCI_model.groundStateParameters().calculate1DM();
+    const auto d_noci = NOCI_model.groundStateParameters().calculate2DM();
+
+    // Check if the converged energy matches the reference energy.
+    BOOST_CHECK(std::abs(0.0 - S2.calculateExpectationValue(D_noci, d_noci)) < 1e-6);
+}
+
+/**
+ *  This test checks whether the NOCI algorithms and density matrices work as expected for real valued wavefunctions.
  */
 BOOST_AUTO_TEST_CASE(h3_sto3g_s2) {
 
@@ -513,6 +569,57 @@ BOOST_AUTO_TEST_CASE(h3_sto3g_s2) {
 
     // We do not specify the number of states, meaning we only request the ground state.
     const auto NOCI_model = GQCP::QCMethod::NOCI<double, GQCP::GNonOrthogonalStateBasis<double>>(NOS_basis).optimize(noci_solver, noci_environment);
+
+    const auto D_noci = NOCI_model.groundStateParameters().calculate1DM();
+    const auto d_noci = NOCI_model.groundStateParameters().calculate2DM();
+
+    // Initialize a reference energy. (From the code of @xdvriend.)
+    const double reference_energy = -1.34044;
+
+    // Check if the converged energy matches the reference energy.
+    BOOST_CHECK(std::abs(reference_energy - NOCI_model.groundStateEnergy()) < 1e-6);
+    BOOST_CHECK(d_ghf.tensor().isApprox(d_noci.tensor()));
+    BOOST_CHECK(std::abs(0.840668 - S2.calculateExpectationValue(D_noci, d_noci)) < 1e-6);
+}
+
+/**
+ *  This test checks whether the NOCI algorithms and density matrices work as expected for real valued wavefunctions.
+ */
+BOOST_AUTO_TEST_CASE(h3_sto3g_s2_complex) {
+
+    // Do our own GHF calculation.
+    const auto molecule = GQCP::Molecule::HRingFromDistance(3, 1.8897259886);  // H3-ring, 1 Angstrom apart.
+
+    const GQCP::GSpinorBasis<GQCP::complex, GQCP::GTOShell> spinor_basis {molecule, "sto-3g"};
+    const auto sq_hamiltonian = spinor_basis.quantize(GQCP::FQMolecularHamiltonian(molecule));  // In an AO basis.
+    const auto S = spinor_basis.overlap();
+
+    auto environment = GQCP::GHFSCFEnvironment<GQCP::complex>::WithComplexlyTransformedCoreGuess(3, sq_hamiltonian, S);
+
+    auto solver = GQCP::GHFSCFSolver<GQCP::complex>::Plain(1.0e-08, 4000);
+    const auto qc_structure = GQCP::QCMethod::GHF<GQCP::complex>().optimize(solver, environment);
+    const auto nuc_rep = GQCP::NuclearRepulsionOperator(molecule.nuclearFramework()).value();
+
+    GQCP::GSpinorBasis<GQCP::complex, GQCP::GTOShell> spinor_basis_orth {molecule, "STO-3G"};
+    spinor_basis_orth.transform(qc_structure.groundStateParameters().expansion());
+
+    const auto S2_MO = spinor_basis_orth.quantize(GQCP::ElectronicSpinSquaredOperator());
+    const auto S2 = S2_MO.transformed(qc_structure.groundStateParameters().expansion().inverse());
+    const auto Sz = spinor_basis.quantize(GQCP::ElectronicSpin_zOperator());
+
+    const auto D_ghf = qc_structure.groundStateParameters().calculateScalarBasis1DM();
+    const auto d_ghf = qc_structure.groundStateParameters().calculateScalarBasis2DM();
+
+    // Create a non-orthogonal state basis, using the basis state vector, the overlap operator in AO basis and the number of occupied orbitals for alpha and beta.
+    std::vector<GQCP::GTransformation<GQCP::complex>> basis_vector {qc_structure.groundStateParameters().expansion()};
+    const auto NOS_basis = GQCP::GNonOrthogonalStateBasis<GQCP::complex> {basis_vector, S, 3};
+
+    // Create a dense solver and corresponding environment and put them together in the QCMethod.
+    auto noci_environment = GQCP::NOCIEnvironment::Dense(sq_hamiltonian, NOS_basis, molecule);
+    auto noci_solver = GQCP::GeneralizedEigenproblemSolver::Dense<GQCP::complex>();
+
+    // We do not specify the number of states, meaning we only request the ground state.
+    const auto NOCI_model = GQCP::QCMethod::NOCI<GQCP::complex, GQCP::GNonOrthogonalStateBasis<GQCP::complex>>(NOS_basis).optimize(noci_solver, noci_environment);
 
     const auto D_noci = NOCI_model.groundStateParameters().calculate1DM();
     const auto d_noci = NOCI_model.groundStateParameters().calculate2DM();
