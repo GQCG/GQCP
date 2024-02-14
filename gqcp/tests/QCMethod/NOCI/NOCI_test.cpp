@@ -485,6 +485,7 @@ BOOST_AUTO_TEST_CASE(h2_london_s2) {
 
     // Create the basis state.
     GQCP::SquareMatrix<GQCP::complex> C_initial_matrix {8};
+    using namespace std::complex_literals;
     // clang-format off
     C_initial_matrix << 0.32743285 + 0.00000003i,  0.0        + 0.0j       ,  0.12144985 + 0.00000001i,  0.0        + 0.0i       , -0.7684182  + 0.00000007i,  0.0        + 0.0i       ,  1.11562804 - 0.00000001i,  0.0        + 0.0i       ,
                         0.272106   - 0.00000004i,  0.0        + 0.0i       ,  1.68731281 - 0.00000003i,  0.0        + 0.0i       ,  0.68794604 - 0.00000009i,  0.0        + 0.0i       , -1.31811931 + 0.00000002i,  0.0        + 0.0i       ,
