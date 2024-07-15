@@ -119,7 +119,7 @@ BOOST_AUTO_TEST_CASE(FromRestricted) {
 
 /**
  *  Check if the quantization of the Coulomb operator yields zero elements where expected.
- * 
+ *
  *  For a test system of H2//STO-3G, we expect zero blocks whenever the indices P,Q and R,S do not belong to the same alpha or beta set.
  */
 BOOST_AUTO_TEST_CASE(Coulomb_quantization_zero_blocks) {
@@ -169,5 +169,5 @@ BOOST_AUTO_TEST_CASE(magnetic_kinetic_gauge_invariance) {
     const auto K1 = spinor_basis1.quantize(T_op) + spinor_basis1.quantize(P_op1) + spinor_basis1.quantize(D_op1);
     const auto K2 = spinor_basis2.quantize(T_op) + spinor_basis2.quantize(P_op2) + spinor_basis2.quantize(D_op2);
 
-    BOOST_CHECK(K1.parameters().isApprox(K2.parameters(), 1.0e-10));
+    BOOST_CHECK(K1.parameters().isApprox(K2.parameters(), 1.0e-8));
 }

@@ -19,7 +19,7 @@ if [ `uname` == Darwin ]; then
         -DCMAKE_CXX_FLAGS="${CXXFLAGS} ${OPTS}" \
         -DCMAKE_VERBOSE_MAKEFILE=TRUE \
         -DBUILD_PYTHON_BINDINGS=TRUE \
-        -DBUILD_TESTS=FALSE \
+        -DBUILD_TESTS=TRUE \
         -DPYTHON_EXECUTABLE=${PYTHON} \
         -DPYTHON_LIBRARY=${STDLIB_DIR}/libpython${PY_VER}.a
 fi
@@ -34,9 +34,9 @@ if [ `uname` == Linux ]; then
         -DCMAKE_CXX_FLAGS="${CXXFLAGS} ${OPTS}" \
         -DCMAKE_VERBOSE_MAKEFILE=TRUE \
         -DBUILD_PYTHON_BINDINGS=TRUE \
-        -DBUILD_TESTS=FALSE \
+        -DBUILD_TESTS=TRUE \
         -DPYTHON_EXECUTABLE=${PYTHON} \
         -DPYTHON_LIBRARY=${STDLIB_DIR}/libpython${PY_VER}.a
 fi
 
-make -j${CPU_COUNT} VERBOSE=1 && make install
+make -j${CPU_COUNT} VERBOSE=1 && env CTEST_OUTPUT_ON_FAILURE=1 make test && make install
