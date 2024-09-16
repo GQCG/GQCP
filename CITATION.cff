@@ -1,0 +1,55 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Lemmens"
+  given-names: "Laurent"
+  orcid: "https://orcid.org/0000-0002-8255-5784"
+- family-names: "De Vriendt"
+  given-names: "Xeno"
+  orcid: https://orcid.org/0000-0003-4260-8658"
+- family-names: "Tolstykh"
+  given-names: "Daria"
+  orcid: "https://orcid.org/0000-0001-6575-0361"
+- family-names: "Huysentruyt"
+  given-names: "Tobias"
+- family-names: "Bultinck"
+  given-names: "Patrick"
+  orcid: "https://orcid.org/0000-0003-2766-2672"
+- family-names: "Acke"
+  given-names: "Guillaume"
+  orcid: "https://orcid.org/0000-0001-6613-5707"
+
+title: "GQCP: The Ghent Quantum Chemistry Package"
+version: "0.1.0"
+doi: "10.1063/5.0057515"
+date-released: "2021-08-16"
+url: "https://github.com/GQCG/GQCP"
+preferred-citation:
+  type: article
+  authors:
+  - family-names: "Lemmens"
+    given-names: "Laurent"
+    orcid: "https://orcid.org/0000-0002-8255-5784"
+  - family-names: "De Vriendt"
+    given-names: "Xeno"
+    orcid: https://orcid.org/0000-0003-4260-8658"
+  - family-names: "Tolstykh"
+    given-names: "Daria"
+    orcid: "https://orcid.org/0000-0001-6575-0361"
+  - family-names: "Huysentruyt"
+    given-names: "Tobias"
+  - family-names: "Bultinck"
+    given-names: "Patrick"
+    orcid: "https://orcid.org/0000-0003-2766-2672"
+  - family-names: "Acke"
+    given-names: "Guillaume"
+    orcid: "https://orcid.org/0000-0001-6613-5707"
+  doi: "10.1063/5.0057515"
+  journal: "The Journal of Chemical Physics"
+  month: 8
+  start: 084802-1 # First page number
+  end: 084802-16 # Last page number
+  title: "GQCP: The Ghent Quantum Chemistry Package"
+  issue: 8
+  volume: 155
+  year: 2021
