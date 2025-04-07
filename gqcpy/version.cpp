@@ -58,4 +58,4 @@ void bindVersion(py::module& module) {
 }
 
 
-}  // namespace gqcpy
+}  // namespace gqcpy 
