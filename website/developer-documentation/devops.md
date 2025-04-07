@@ -1,4 +1,4 @@
-# GQCP devops
+# GQCP devops 
 
 [DevOps](https://en.wikipedia.org/wiki/DevOps) aims to shorten the development life cycle by providing support for continuous [integration](https://en.wikipedia.org/wiki/Continuous_integration), [delivery](https://en.wikipedia.org/wiki/Continuous_delivery) and [deployment](https://en.wikipedia.org/wiki/Continuous_deployment). 
 

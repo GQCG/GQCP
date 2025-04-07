@@ -1,6 +1,6 @@
 name: Build and test
 
-on: 
+on:  
   pull_request:
     paths:
       - '.github/workflows/build-and-test.yml'

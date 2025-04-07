@@ -21,11 +21,6 @@ jobs:
     - uses: actions/checkout@v2
 
     # Install Jupyter Book dependencies.
-    - name: Set up Python 3.7
-      uses: actions/setup-python@v1
-      with:
-        python-version: 3.7
-
     - name: Install Jupyter Book
       run: |
         pip install -U jupyter-book
