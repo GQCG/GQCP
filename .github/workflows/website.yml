@@ -45,7 +45,7 @@ jobs:
 
     # Upload an artifact of the website on pull request.
     - name: Archive build
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v4
       with:
         name: _site
         path: ./website/_build
