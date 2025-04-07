@@ -185,13 +185,6 @@ void bindRSpinOrbitalBases(py::module& module) {
             },
             "Return the linear momentum operator expressed in this London spinor basis.");
 
-        // .def(
-        //     "quantize",
-        //     [](const RSpinOrbitalBasis<complex, LondonGTOShell>& spin_orbital_basis, const CurrentDensityOperator& op) {
-        //         return spin_orbital_basis.quantize(op);
-        //     },
-        //     "Return the current density operator expressed in this London spinor basis.");
-
     bindRSpinOrbitalBasisInterface(py_LondonRSpinOrbitalBasis);
     bindLondonSpinorBasisQuantizationInterface(py_LondonRSpinOrbitalBasis);
 }

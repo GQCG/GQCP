@@ -204,20 +204,13 @@ void bindGSpinorBases(py::module& module) {
             },
             "Return the spin-Zeeman operator expressed in this spinor basis.")
         
-        // .def(
-        //     "quantize",
-        //     [](const GSpinorBasis<complex, LondonGTOShell>& spinor_basis, const LinearMomentumOperator& op) {
-        //         return spinor_basis.quantize(op);
-        //     },
-        //     "Return the linear momentum operator expressed in this spinor basis.")
+        .def(
+            "quantize",
+            [](const GSpinorBasis<complex, LondonGTOShell>& spinor_basis, const LinearMomentumOperator& op) {
+                return spinor_basis.quantize(op);
+            },
+            "Return the linear momentum operator expressed in this spinor basis.")
 
-        // .def(
-        //     "quantize",
-        //     [](const GSpinorBasis<complex, LondonGTOShell>& spinor_basis, const CurrentDensityOperator& op) {
-        //         return spinor_basis.quantize(op);
-        //     },
-        //     "Return the current density operator expressed in this spinor basis.")
-        
         .def(
             "quantize",
             [](const GSpinorBasis<complex, LondonGTOShell>& spinor_basis, const FQMolecularMagneticHamiltonian& op) {
