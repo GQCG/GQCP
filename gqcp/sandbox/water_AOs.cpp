@@ -3,6 +3,7 @@
 #include "Basis/ScalarBasis/ShellSet.hpp"
 #include "Mathematical/Functions/CartesianGTO.hpp"
 #include "Mathematical/Functions/EvaluableLinearCombination.hpp"
+#include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
 #include <iostream>
 
 
@@ -14,18 +15,26 @@ int main() {
     const GQCP::Nucleus h2 {1, 0.0, 0.0, 2.0};
     const GQCP::Molecule molecule {{h1, o, h2}};
 
-    const auto shellset = GQCP::GTOBasisSet("STO-3G").generate(molecule);
-
+    const auto B = GQCP::HomogeneousMagneticField {{0.0, 0.0, 1.0}};  // Gauge origin at the origin.
+    const auto spin_orbital_basis = GQCP::RSpinOrbitalBasis<GQCP::complex, GQCP::LondonGTOShell> {molecule, "STO-3G", B}; 
+    
+    const auto shellset = spin_orbital_basis.spatialOrbitals(); // gives all AOs (all shells) in the basis. essentially a shellset.asVector().
+                                                                          // eg for H2O STO-3G, this is 2x 1 for H, 3 for O = 5 total.
     // select one single AO
-    const auto example_shell = shellset.asVector()[4];
-    const auto basis_functions = example_shell.basisFunctions();
+    const auto example_shell = shellset[0]; 
+
+    std::cout << shellset.size() << std::endl; 
+
+    std::cout << spin_orbital_basis.numberOfSpatialOrbitals() << std::endl; 
+
+    const auto basis_functions = example_shell.functions();
 
     // initialize vector
     const GQCP::Vector<double, 3> r = {0.1, 0.2, 0.3};
 
     // Evaluate each basis function at r
     for (size_t i = 0; i < basis_functions.size(); ++i) {
-        double value = basis_functions[i](r);  // uses operator() from EvaluableLinearCombination
+        GQCP::complex value = basis_functions[i](r);  // uses operator() from EvaluableLinearCombination
         std::cout << "AO " << i << " value at r = " << r.transpose() << " is " << value << std::endl;
     }
 
