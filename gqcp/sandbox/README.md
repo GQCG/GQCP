@@ -1,4 +1,4 @@
-The compiler has been set up such that any `xxx.cpp` file inside this `sandbox` folder is compiled into an executable in `build/gqcp/sandbox/`.
+The compiler has been set up such that any `xxx.cpp` file inside this `sandbox` folder is compiled into an executable in `build/gqcp/sandbox/` once it has been added to `sandbox_target_sources` inside `sandbox/CmakeLists.txt`, line 4.
 To compile, just run
 ```bash
 cmake .. -BUILD_SANDBOX=TRUE && make -j 4
