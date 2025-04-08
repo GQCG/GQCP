@@ -1210,6 +1210,7 @@
     <member refid="class_g_q_c_p_1_1_hopping_matrix_1aba80d41fff1aed37fc8febc664523dd8" kind="function"><name>matrix</name></member>
     <member refid="class_g_q_c_p_1_1_hopping_matrix_1a38f3d5b41c8560b170cefaef049d75d3" kind="function"><name>Dense</name></member>
     <member refid="class_g_q_c_p_1_1_hopping_matrix_1a1f4175755787f746a22b6eae1a30dcb2" kind="function"><name>Homogeneous</name></member>
+    <member refid="class_g_q_c_p_1_1_hopping_matrix_1a2be4000808d45355bf31c61eeab27690" kind="function"><name>FromLinkVector</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_hubbard_hamiltonian" kind="class"><name>GQCP::HubbardHamiltonian</name>
     <member refid="class_g_q_c_p_1_1_hubbard_hamiltonian_1abe8802aff70d3230a1133417e9f0c99e" kind="typedef"><name>Scalar</name></member>

@@ -1745,6 +1745,8 @@
         <link refid="_electronic_quadrupole_operator_8hpp"/>
         <childnode refid="66" relation="include">
         </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
         <childnode refid="277" relation="include">
         </childnode>
         <childnode refid="7" relation="include">

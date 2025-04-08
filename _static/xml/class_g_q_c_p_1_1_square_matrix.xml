@@ -197,7 +197,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="301" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="301" bodyend="301"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="299" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="299" bodyend="299"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_square_matrix_1a0b63025d8fd5ed7c7cfdb6da82a1f68d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -219,7 +219,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="307" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="307" bodyend="307"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="305" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="305" bodyend="305"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_square_matrix_1a957455e43a3f0991500024376713cfec" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -241,7 +241,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="313" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="313" bodyend="313"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="311" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="311" bodyend="311"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_square_matrix_1afeb6926506aceed33af8ad57560bd67d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -263,7 +263,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="319" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="319" bodyend="319"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="317" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="317" bodyend="317"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_square_matrix_1a323cfd30a36adbf412f6f02d8a009cd3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -285,7 +285,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="325" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="325" bodyend="325"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="323" column="10" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="323" bodyend="323"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_square_matrix_1ab58bd710203f7eea5af1bedd94c86410" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>std::array&lt; <ref refid="class_g_q_c_p_1_1_square_matrix_1a3539bd6c04613bfc02561c6ae1bfff9f" kindref="member">Self</ref>, 2 &gt;</type>
@@ -304,7 +304,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="337" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="337" bodyend="387"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="335" column="16" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="335" bodyend="385"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_square_matrix_1af7a97f3e26ac36e76ed47d27443cf8dc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="namespace_g_q_c_p_1a48fd76814344f532956445188044b544" kindref="member">VectorX</ref>&lt; <ref refid="class_g_q_c_p_1_1_square_matrix_1aaeabfd4080a075f9d6dec0e4487cf3b3" kindref="member">Scalar</ref> &gt;</type>
@@ -325,7 +325,7 @@ in which m is calculated from i and j in a column-major way, with the restrictio
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="403" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="403" bodyend="418"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="401" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="401" bodyend="416"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_square_matrix_1ad2771d96e3cff714f68dbdb5c7420021" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -342,7 +342,7 @@ in which m is calculated from i and j in a column-major way, with the restrictio
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="428" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="428" bodyend="442"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="426" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="426" bodyend="440"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_square_matrix_1af4bae3858d82278f0a0ada4382b8c9f9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -359,7 +359,7 @@ Note that this algorithm does not work for dimensions larger than 64: see <ulink
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="450" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="450" bodyend="484"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="448" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="448" bodyend="482"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
@@ -671,7 +671,7 @@ Note that this algorithm does not work for dimensions larger than 64: see <ulink
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="260" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="260" bodyend="281"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="260" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="260" bodyend="279"/>
       </memberdef>
       <memberdef kind="function" id="class_g_q_c_p_1_1_square_matrix_1ae3551bb3ac15b2560846f7a5956d1d90" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="class_g_q_c_p_1_1_square_matrix_1a3539bd6c04613bfc02561c6ae1bfff9f" kindref="member">Self</ref></type>
@@ -702,7 +702,7 @@ Note that this algorithm does not work for dimensions larger than 64: see <ulink
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="291" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="291" bodyend="291"/>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="289" column="17" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="289" bodyend="289"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -754,7 +754,7 @@ Note that this algorithm does not work for dimensions larger than 64: see <ulink
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="38" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="39" bodyend="485"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" line="38" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Representation/SquareMatrix.hpp" bodystart="39" bodyend="483"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_matrix_1a263d67116c8a2b1fc1ef66c221c3c68e" prot="public" virt="non-virtual"><scope>GQCP::SquareMatrix</scope><name>areEqualEigenvaluesAs</name></member>
       <member refid="class_g_q_c_p_1_1_matrix_1aee293d22d945960b87ac42b0b36fe9ec" prot="public" virt="non-virtual"><scope>GQCP::SquareMatrix</scope><name>Base</name></member>

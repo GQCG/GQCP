@@ -53,7 +53,7 @@
 \DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}HoppingMatrix::HoppingMatrix(const\ SquareMatrix<Scalar>\&):\ The\ given\ hopping\ matrix\ must\ be\ Hermitian."{}});}
 \DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00061\ \ \ \ \ \}}
-\DoxyCodeLine{00062\ \ \ \ \ }
+\DoxyCodeLine{00062\ }
 \DoxyCodeLine{00063\ }
 \DoxyCodeLine{00064\ \ \ \ \ \textcolor{comment}{/*}}
 \DoxyCodeLine{00065\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Named\ constructors}}
@@ -74,23 +74,60 @@
 \DoxyCodeLine{00095\ \ \ \ \ \}}
 \DoxyCodeLine{00096\ }
 \DoxyCodeLine{00097\ }
-\DoxyCodeLine{00098\ \ \ \ \ \textcolor{comment}{/*}}
-\DoxyCodeLine{00099\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ General\ information}}
-\DoxyCodeLine{00100\ \textcolor{comment}{\ \ \ \ \ */}}
-\DoxyCodeLine{00101\ }
-\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix_acb5b4f6d12e5b217c09c52b35ab086a8}{numberOfLatticeSites}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix_a402859288cdbf46fd76002686933b526}{matrix}}().\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_a37d881f47fe4a016e5549e3ac22e7aea}{dimension}}();\ \}}
-\DoxyCodeLine{00106\ }
-\DoxyCodeLine{00107\ }
-\DoxyCodeLine{00108\ \ \ \ \ \textcolor{comment}{/*}}
-\DoxyCodeLine{00109\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Access}}
-\DoxyCodeLine{00110\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Z\ =\ Scalar>}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\_if\_t<std::is\_same<Z,\ double>::value}},\ \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{HoppingMatrix<double>}}>\ \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix_a2be4000808d45355bf31c61eeab27690}{FromLinkVector}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_adjacency_matrix}{AdjacencyMatrix}}\&\ A,\ std::vector<double>\&\ link\_vector)\ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Generate\ the\ hopping\ (raw)matrix.}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ dim\ =\ A.\mbox{\hyperlink{class_g_q_c_p_1_1_adjacency_matrix_abe4b3b5ca0a30f000f93e40abfa32cbd}{matrix}}().rows();}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\ H\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_ae3551bb3ac15b2560846f7a5956d1d90}{SquareMatrix<Scalar>::Zero}}(dim);}
 \DoxyCodeLine{00111\ }
-\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix_a402859288cdbf46fd76002686933b526}{matrix}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>H;\ \}}
-\DoxyCodeLine{00116\ }
-\DoxyCodeLine{00120\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix_aba80d41fff1aed37fc8febc664523dd8}{matrix}}()\ \{\ \textcolor{keywordflow}{return}\ this-\/>H;\ \}}
-\DoxyCodeLine{00121\ \};}
-\DoxyCodeLine{00122\ }
-\DoxyCodeLine{00123\ }
-\DoxyCodeLine{00124\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ the\ dimension\ of\ the\ link\ vector\ matches\ the\ adjacency\ matrix.}}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ the\ adjacency\ matrix\ corressponds\ to\ a\ linear\ system.}}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (A.\mbox{\hyperlink{class_g_q_c_p_1_1_adjacency_matrix_abe4b3b5ca0a30f000f93e40abfa32cbd}{matrix}}()(0,\ dim\ -\/\ 1)\ ==\ 0)\ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (link\_vector.size()\ !=\ dim\ -\/\ 1)\ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}HoppingMatrix::FromLinkVector(const\ AdjacencyMatrix\&\ A,\ std::vector<double>\&\ link\_vector):\ The\ dimension\ of\ the\ link\ vector\ does\ not\ match\ the\ adjacency\ matrix."{}});}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ dim\ -\/\ 1;\ i++)\ \{\ \ \textcolor{comment}{//\ row\ index}}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ H(i,\ i\ +\ 1)\ =\ link\_vector[i];}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ H(i\ +\ 1,\ i)\ =\ link\_vector[i];}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ the\ adjacency\ matrix\ corresponds\ to\ a\ cyclic\ system.}}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (A.\mbox{\hyperlink{class_g_q_c_p_1_1_adjacency_matrix_abe4b3b5ca0a30f000f93e40abfa32cbd}{matrix}}()(0,\ dim\ -\/\ 1)\ ==\ 1)\ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (link\_vector.size()\ !=\ dim)\ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}HoppingMatrix::FromLinkVector(const\ AdjacencyMatrix\&\ A,\ std::vector<double>\&\ link\_vector):\ The\ dimension\ of\ the\ link\ vector\ does\ not\ match\ the\ adjacency\ matrix."{}});}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ dim\ -\/\ 1;\ i++)\ \{\ \ \textcolor{comment}{//\ row\ index}}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ H(i,\ i\ +\ 1)\ =\ link\_vector[i];}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ H(i\ +\ 1,\ i)\ =\ link\_vector[i];}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ H(0,\ dim\ -\/\ 1)\ =\ link\_vector[dim\ -\/\ 1];}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ H(dim\ -\/\ 1,\ 0)\ =\ link\_vector[dim\ -\/\ 1];}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{HoppingMatrix}}\ \{H\};}
+\DoxyCodeLine{00140\ \ \ \ \ \}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00144\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ General\ information}}
+\DoxyCodeLine{00145\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix_acb5b4f6d12e5b217c09c52b35ab086a8}{numberOfLatticeSites}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix_a402859288cdbf46fd76002686933b526}{matrix}}().\mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix_a37d881f47fe4a016e5549e3ac22e7aea}{dimension}}();\ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00154\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ Access}}
+\DoxyCodeLine{00155\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix_a402859288cdbf46fd76002686933b526}{matrix}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ this-\/>H;\ \}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00165\ \ \ \ \ \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{SquareMatrix<Scalar>}}\&\ \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix_aba80d41fff1aed37fc8febc664523dd8}{matrix}}()\ \{\ \textcolor{keywordflow}{return}\ this-\/>H;\ \}}
+\DoxyCodeLine{00166\ \};}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
 
 \end{DoxyCode}

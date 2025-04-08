@@ -36,6 +36,8 @@ const \mbox{\hyperlink{class_g_q_c_p_1_1_square_matrix}{Square\+Matrix}}$<$ \mbo
 {\footnotesize template$<$typename Z  = Scalar$>$ }\\static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, double $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{Hopping\+Matrix}}$<$ double $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix_a38f3d5b41c8560b170cefaef049d75d3}{Dense}} (std\+::vector$<$ double $>$ \&triagonal\+\_\+data)
 \item 
 {\footnotesize template$<$typename Z  = Scalar$>$ }\\static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, double $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{Hopping\+Matrix}}$<$ double $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix_a1f4175755787f746a22b6eae1a30dcb2}{Homogeneous}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_adjacency_matrix}{Adjacency\+Matrix}} \&A, const double t)
+\item 
+{\footnotesize template$<$typename Z  = Scalar$>$ }\\static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, double $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{Hopping\+Matrix}}$<$ double $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix_a2be4000808d45355bf31c61eeab27690}{From\+Link\+Vector}} (const \mbox{\hyperlink{class_g_q_c_p_1_1_adjacency_matrix}{Adjacency\+Matrix}} \&A, std\+::vector$<$ double $>$ \&link\+\_\+vector)
 \end{DoxyCompactItemize}
 
 
@@ -97,6 +99,26 @@ Create a hopping matrix from a vector containing the upper triangle.
 \begin{DoxyReturn}{Returns}
 The hopping matrix that corresponds to the given comma-\/separated line. 
 \end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_hopping_matrix_a2be4000808d45355bf31c61eeab27690}\label{class_g_q_c_p_1_1_hopping_matrix_a2be4000808d45355bf31c61eeab27690}} 
+\index{GQCP::HoppingMatrix$<$ \_Scalar $>$@{GQCP::HoppingMatrix$<$ \_Scalar $>$}!FromLinkVector@{FromLinkVector}}
+\index{FromLinkVector@{FromLinkVector}!GQCP::HoppingMatrix$<$ \_Scalar $>$@{GQCP::HoppingMatrix$<$ \_Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{FromLinkVector()}{FromLinkVector()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+template$<$typename Z  = Scalar$>$ \\
+static \mbox{\hyperlink{namespace_g_q_c_p_a006e5cafd5827d2685c9e0bb7e01cfa2}{enable\+\_\+if\+\_\+t}}$<$ std\+::is\+\_\+same$<$ Z, double $>$\+::value, \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{Hopping\+Matrix}}$<$ double $>$ $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_hopping_matrix}{GQCP\+::\+Hopping\+Matrix}}$<$ \+\_\+\+Scalar $>$\+::\+From\+Link\+Vector (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_g_q_c_p_1_1_adjacency_matrix}{Adjacency\+Matrix}} \&}]{A,  }\item[{std\+::vector$<$ double $>$ \&}]{link\+\_\+vector }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Generate the Hubbard hopping matrix from an adjacency matrix and link vector containing values for different parameters t.
+
+
+\begin{DoxyParams}{Parameters}
+{\em A} & The adjacency matrix specifying the connectivity of the Hubbard lattice. \\
+\hline
+{\em link\+\_\+vector} & A vector that contains the values of the links, in a given adjacency matrix.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+This constructor is only available in the real case (for the std\+::enable\+\_\+if, see \href{https://stackoverflow.com/a/17842695/7930415}{\texttt{ https\+://stackoverflow.\+com/a/17842695/7930415}}). 
+\end{DoxyNote}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_hopping_matrix_a1f4175755787f746a22b6eae1a30dcb2}\label{class_g_q_c_p_1_1_hopping_matrix_a1f4175755787f746a22b6eae1a30dcb2}} 
 \index{GQCP::HoppingMatrix$<$ \_Scalar $>$@{GQCP::HoppingMatrix$<$ \_Scalar $>$}!Homogeneous@{Homogeneous}}
 \index{Homogeneous@{Homogeneous}!GQCP::HoppingMatrix$<$ \_Scalar $>$@{GQCP::HoppingMatrix$<$ \_Scalar $>$}}
