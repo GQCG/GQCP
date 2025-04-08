@@ -31,29 +31,3 @@ int main() {
 
     return 0;
 }
-
-// using namespace GQCP;
-
-// int main() {
-//     // Define a shell on a hydrogen nucleus
-//     Nucleus H(1, {0.0, 0.0, 0.0});
-//     size_t l = 0;  // s-type
-//     std::vector<double> exponents = {1.0};
-//     std::vector<double> coefficients = {1.0};
-
-//     GTOShell shell(l, H, exponents, coefficients, false);  // Cartesian
-
-//     // Get basis functions from shell
-//     auto basis_functions = shell.basisFunctions();
-
-//     // Define a point in space
-//     Vector<double, 3> r = {0.1, 0.2, 0.3};
-
-//     // Evaluate each basis function at r
-//     for (size_t i = 0; i < basis_functions.size(); ++i) {
-//         double value = basis_functions[i](r);  // uses operator() from EvaluableLinearCombination
-//         std::cout << "AO " << i << " value at r = " << r.transpose() << " is " << value << std::endl;
-//     }
-
-//     return 0;
-// }
