@@ -47,6 +47,7 @@ option(BUILD_BENCHMARKS "Build the executables used for benchmarking the C++ lib
 option(BUILD_DOCS "Build the documentation of the C++ library using Doxygen" OFF)
 option(BUILD_PYTHON_BINDINGS "Build the Python bindings for the C++ library" OFF)
 option(OPTIMIZE_FOR_NATIVE "Build with -march=native" OFF)
+option(BUILD_SANDBOX "Build sandbox" ON)
 
 if(BUILD_TESTS)
     find_package(Boost REQUIRED COMPONENTS program_options unit_test_framework)
@@ -111,6 +112,11 @@ endif()
 # Parse the options: Python bindings
 if(BUILD_PYTHON_BINDINGS)
     add_subdirectory(gqcpy)
+endif()
+
+# sandbox
+if(BUILD_SANDBOX)
+    add_subdirectory(gqcp/sandbox)
 endif()
 
 # Install the C++ library (relative to the CMAKE_INSTALL_PREFIX)
