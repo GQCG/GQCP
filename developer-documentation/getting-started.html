@@ -518,17 +518,22 @@ mkdir <span class="nv">$VSC_SCRATCH</span>/containers/tmp
 <section id="cmake-options-quick-reference">
 <h3>CMake options - quick reference<a class="headerlink" href="#cmake-options-quick-reference" title="Permalink to this headline">#</a></h3>
 <p>As you can see, there are a lot of options that can (and should) be passed to CMake. For quick reference, here’s a command that should work most of the time. In your out-of-source build directory, initialize CMake, make all targets, run all tests and install the library:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> build
-cmake .. -DCMAKE_PREFIX_PATH<span class="o">=</span><span class="si">${</span><span class="nv">CONDA_PREFIX</span><span class="si">}</span> <span class="se">\</span>
-    -DCMAKE_INSTALL_PREFIX<span class="o">=</span>~/.local <span class="se">\</span>
-    -DBUILD_TESTS<span class="o">=</span>TRUE <span class="se">\ </span>
-    -DBUILD_PYTHON_BINDINGS<span class="o">=</span>TRUE <span class="se">\</span>
-    -DPYTHON_EXECUTABLE<span class="o">=</span><span class="si">${</span><span class="nv">CONDA_PREFIX</span><span class="si">}</span>/bin/python <span class="se">\ </span>
-    -DPYTHON_LIBRARY<span class="o">=</span><span class="si">${</span><span class="nv">CONDA_PREFIX</span><span class="si">}</span>/lib/libpython3.8.a
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake .. -DCMAKE_PREFIX_PATH<span class="o">=</span><span class="si">${</span><span class="nv">CONDA_PREFIX</span><span class="si">}</span> -DCMAKE_INSTALL_PREFIX<span class="o">=</span>~/.local -DBUILD_TESTS<span class="o">=</span>TRUE -DBUILD_PYTHON_BINDINGS<span class="o">=</span>TRUE -DPYTHON_EXECUTABLE<span class="o">=</span><span class="si">${</span><span class="nv">CONDA_PREFIX</span><span class="si">}</span>/bin/python -DPYTHON_LIBRARY<span class="o">=</span><span class="si">${</span><span class="nv">CONDA_PREFIX</span><span class="si">}</span>/lib/libpython3.8.a
 make -j <span class="m">4</span> <span class="o">&amp;&amp;</span> make <span class="nb">test</span> <span class="o">&amp;&amp;</span> make install
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">-j</span> <span class="pre">4</span></code> will make sure that 4 targets will be built at once. In order to increase compilation speed, you may increase this number, related to the number of cores you have available on your machine.</p>
+<blockquote>
+<div><p>Ensure that <code class="docutils literal notranslate"><span class="pre">CONDA_PREFIX</span></code> is not empty:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>echo $CONDA_PREFIX
+</pre></div>
+</div>
+<p>If it is, set it manually using</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">CONDA_PREFIX</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">miniconda3</span>
+</pre></div>
+</div>
+<p>And rerun the <code class="docutils literal notranslate"><span class="pre">cmake</span></code> commands.</p>
+</div></blockquote>
 </section>
 <section id="using-cmake-through-vs-code">
 <h3>Using CMake through VS Code<a class="headerlink" href="#using-cmake-through-vs-code" title="Permalink to this headline">#</a></h3>

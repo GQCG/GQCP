@@ -148,18 +148,21 @@ As promised, here is an overview of all the CMake options that GQCP supports.
 As you can see, there are a lot of options that can (and should) be passed to CMake. For quick reference, here's a command that should work most of the time. In your out-of-source build directory, initialize CMake, make all targets, run all tests and install the library:
 
 ```bash
-mkdir build && cd build
-cmake .. -DCMAKE_PREFIX_PATH=${CONDA_PREFIX} \
-    -DCMAKE_INSTALL_PREFIX=~/.local \
-    -DBUILD_TESTS=TRUE \ 
-    -DBUILD_PYTHON_BINDINGS=TRUE \
-    -DPYTHON_EXECUTABLE=${CONDA_PREFIX}/bin/python \ 
-    -DPYTHON_LIBRARY=${CONDA_PREFIX}/lib/libpython3.8.a
+cmake .. -DCMAKE_PREFIX_PATH=${CONDA_PREFIX} -DCMAKE_INSTALL_PREFIX=~/.local -DBUILD_TESTS=TRUE -DBUILD_PYTHON_BINDINGS=TRUE -DPYTHON_EXECUTABLE=${CONDA_PREFIX}/bin/python -DPYTHON_LIBRARY=${CONDA_PREFIX}/lib/libpython3.8.a
 make -j 4 && make test && make install
 ```
 
 `make -j 4` will make sure that 4 targets will be built at once. In order to increase compilation speed, you may increase this number, related to the number of cores you have available on your machine.
 
+> Ensure that `CONDA_PREFIX` is not empty:
+> ```
+> echo $CONDA_PREFIX
+> ```
+> If it is, set it manually using
+> ```
+> export CONDA_PREFIX=/usr/local/miniconda3
+> ``` 
+> And rerun the `cmake` commands.
 
 ### Using CMake through VS Code
 
