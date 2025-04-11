@@ -16,21 +16,26 @@ int main() {
     const GQCP::Molecule molecule {{h1, o, h2}};
 
     const auto B = GQCP::HomogeneousMagneticField {{0.0, 0.0, 1.0}};  // Gauge origin at the origin.
-    const auto spin_orbital_basis = GQCP::RSpinOrbitalBasis<GQCP::complex, GQCP::LondonGTOShell> {molecule, "STO-3G", B}; 
+    auto spin_orbital_basis = GQCP::RSpinOrbitalBasis<GQCP::complex, GQCP::LondonGTOShell> {molecule, "STO-3G", B}; 
     
-    const auto shellset = spin_orbital_basis.spatialOrbitals(); // gives all AOs (all shells) in the basis. essentially a shellset.asVector().
-                                                                          // eg for H2O STO-3G, this is 2x 1 for H, 3 for O = 5 total.
+    // gives all AOs (all shells) in the basis. vector of (contraction coeff, function) pairs
+    // eg for H2O STO-3G, this is 2x 1 for H, 3 for O = 5 total.
+    auto shellset = spin_orbital_basis.spatialOrbitals(); 
+
     // select one single AO
-    const auto example_shell = shellset[0]; 
+    auto example_shell = shellset[0]; 
 
     std::cout << shellset.size() << std::endl; 
 
     std::cout << spin_orbital_basis.numberOfSpatialOrbitals() << std::endl; 
 
-    const auto basis_functions = example_shell.functions();
+    example_shell.basisFunctions();
+    // example_shell.embedNormalizationFactorsOfPrimitives();
+
+    auto basis_functions = example_shell.functions();
 
     // initialize vector
-    const GQCP::Vector<double, 3> r = {0.1, 0.2, 0.3};
+    GQCP::Vector<double, 3> r = {0.1, 0.2, 0.3};
 
     // Evaluate each basis function at r
     for (size_t i = 0; i < basis_functions.size(); ++i) {
