@@ -30,60 +30,43 @@ int main() {
     const GQCP::Nucleus h2 {1, 0.0, 0.0, 2.0};
     const GQCP::Molecule molecule {{h1, o, h2}};
 
-    const auto B = GQCP::HomogeneousMagneticField {{0.0, 0.0, -0.5}};  // Gauge origin at the origin.
+    const auto B = GQCP::HomogeneousMagneticField {{0.0, 0.0, 1.0}, {0.4, 12.2, -0.789}};  // Gauge origin at random point in space.
     auto spin_orbital_basis = GQCP::RSpinOrbitalBasis<GQCP::complex, GQCP::LondonGTOShell> {molecule, "STO-3G", B};
-    // print_type(spin_orbital_basis);
-
-    // auto shellset = spin_orbital_basis.scalarBasis().shellSet();
-    // // auto shell = shellset.at(0);  // This is a LondonGTOShell
-    // // print_type(shell);
-
-
-    // spin_orbital_basis.scalarBasis().shellSet()[0].embedNormalizationFactorsOfPrimitives();
     
-    // gives all AOs (all shells) in the basis. vector of (contraction coeff, function) pairs
-    // eg for H2O STO-3G, this is 2x 1 for H, 3 for O = 5 total.
-    auto all_AOs_vector = spin_orbital_basis.spatialOrbitals(); 
-    print_type(all_AOs_vector);
+    // gives all basis functions in the basis. vector of (contraction coeff, basis function) pairs.
+    // these are NOT necessarily the AO basis functions, although by default the AO basis is the expansion basis.
+    auto spatial_basis_functions_vector = spin_orbital_basis.spatialOrbitals(); 
+    print_type(spatial_basis_functions_vector);
 
     // identical:
-    std::cout << all_AOs_vector.size() << std::endl; 
+    std::cout << "amount of orbitals (MO level)" << std::endl;
+    std::cout << spatial_basis_functions_vector.size() << std::endl; 
     std::cout << spin_orbital_basis.numberOfSpatialOrbitals() << std::endl; 
 
-    // select one single AO
-    auto AO1 = all_AOs_vector[0]; 
-    print_type(AO1);
+    // select one single orbital
+    auto orbital1 = spatial_basis_functions_vector[0]; 
+    std::cout << "type of spin_orbital_basis.spatialOrbitals()[0]: ";
+    print_type(orbital1);
 
-    // example_shell.basisFunctions();
-    // example_shell.embedNormalizationFactorsOfPrimitives();
+    // this orbital is in its turn expanded in the AO basis.
+    // eg for H2O STO-3G, this is 2x 1 for H, 3 for O = 5 total.
+    auto AOs = orbital1.functions();
+    std::cout << "type of spin_orbital_basis.spatialOrbitals()[0].functions(): ";
+    print_type(AOs);
 
-    auto basis_functions = AO1.functions();
-    print_type(basis_functions);
+    // the AOs are LAOs in this case
+    auto example_LAO = AOs[0];
+    std::cout << "type of spin_orbital_basis.spatialOrbitals()[0].functions()[0]: ";
+    print_type(example_LAO);
 
-    auto coeffs = AO1.coefficients();
-    print_type(coeffs);
-
-    for (size_t i = 0; i < coeffs.size(); i++) {
-        std::cout << coeffs[i] << std::endl;
-    }
-
-    // initialize vector
+    // these can be evaluated at a point in space:
     GQCP::Vector<double, 3> r = {1.3, -0.9, 3.7};
+    std::cout << "example LAO value at" << r.transpose() << ": " << example_LAO(r) << std::endl;
 
-    // try to call AO value directly
-    std::cout << AO1(r) << std::endl;
-    std::cout << all_AOs_vector[1](r) << std::endl;
-
-    // Evaluate each basis function at r
-    for (size_t i = 0; i < basis_functions.size(); ++i) {
-        print_type(basis_functions[i]);
-        GQCP::complex value = basis_functions[i](r);  // uses operator() from EvaluableLinearCombination
-        std::cout << "AO " << i << " value at r = " << r.transpose() << " is " << value << std::endl;
-        print_type(basis_functions[i].coefficients()[0]);
-        std::cout << "basis_functions[i].coefficients()[0] :" << basis_functions[i].coefficients()[0] << std::endl;
-        print_type(basis_functions[i].functions()[0]);
-        std::cout << "basis_functions[i].functions()[0](r): " << basis_functions[i].functions()[0](r) << std::endl;
-    }
+    // this LAO is a contraction of three London GTOs. These can be indiviually evaluated and have a corresponding phase factor etc.
+    auto london_primitives = example_LAO.functions();
+    std::cout << "the LAOs are made up of " << london_primitives.size() << " primitives" << std::endl;
+    std::cout << "example phase factor" << london_primitives[0].phaseFactor(r) << std::endl;
 
     return 0;
 }
