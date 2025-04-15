@@ -26,11 +26,12 @@ int main() {
 
     // Create an STO-3G basisset on (a toy geometry of) H2O.
     const GQCP::Nucleus h1 {1, 0.0, 0.0, 0.0};
-    const GQCP::Nucleus o {8, 0.0, 0.0, 1.0};
-    const GQCP::Nucleus h2 {1, 0.0, 0.0, 2.0};
+    const GQCP::Nucleus o {8, 1.0, 0.0, 0.0};
+    const GQCP::Nucleus h2 {1, 2.0, 0.0, 0.0};
     const GQCP::Molecule molecule {{h1, o, h2}};
 
-    const auto B = GQCP::HomogeneousMagneticField {{0.0, 0.0, 1.0}, {0.4, 12.2, -0.789}};  // Gauge origin at random point in space.
+    const auto B = GQCP::HomogeneousMagneticField {{0.0, 0.0, 1.0}};  // Gauge origin at cartesian origin.
+    // const auto B = GQCP::HomogeneousMagneticField {{0.0, 0.0, 1.0}, {0.4, 12.2, -0.789}};  // Gauge origin at random point in space.
     auto spin_orbital_basis = GQCP::RSpinOrbitalBasis<GQCP::complex, GQCP::LondonGTOShell> {molecule, "STO-3G", B};
     
     // gives all basis functions in the basis. vector of (contraction coeff, basis function) pairs.
@@ -50,7 +51,7 @@ int main() {
 
     // this orbital is in its turn expanded in the AO basis.
     // eg for H2O STO-3G, this is 2x 1 for H, 3 for O = 5 total.
-    auto AOs = orbital1.functions();
+    const auto AOs = orbital1.functions();
     std::cout << "type of spin_orbital_basis.spatialOrbitals()[0].functions(): ";
     print_type(AOs);
 
@@ -69,6 +70,25 @@ int main() {
     std::cout << "example phase factor" << london_primitives[0].phaseFactor(r) << std::endl;
     // from the primitves, we can determine the center of the AO
     std::cout << "example LAO is centered at " << example_LAO.functions()[0].cartesianGTO().center().transpose() << std::endl;
+
+
+    // let's loop through all AOs, and gather their information.
+    const int n_ao = AOs.size();
+    for (size_t i = 0; i < n_ao; i++) {
+        std::cout << i << std::endl;
+        // gather relevant AO
+        auto AO_i = AOs[i];
+        // TODO: ensure to embedNormalizationFactorsOfPrimitives()
+
+        // evaluate its value at r
+        std::cout << "value at r: " << AO_i(r) << std::endl;
+        // from primitves, get more info.
+        auto primitives = AO_i.functions();
+        // phase factor at r
+        std::cout << "phase factor at r: " << primitives[0].phaseFactor(r) << std::endl;
+        // corresponding nucleus origin?
+        std::cout << "origin at " << primitives[0].cartesianGTO().center().transpose() << std::endl;
+    }
 
     return 0;
 }
