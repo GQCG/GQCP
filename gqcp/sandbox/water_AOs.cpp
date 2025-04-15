@@ -30,11 +30,14 @@ int main() {
     const GQCP::Nucleus h2 {1, 0.0, 0.0, 2.0};
     const GQCP::Molecule molecule {{h1, o, h2}};
 
-    const auto B = GQCP::HomogeneousMagneticField {{0.0, 0.0, 1.0}};  // Gauge origin at the origin.
+    const auto B = GQCP::HomogeneousMagneticField {{0.0, 0.0, -0.5}};  // Gauge origin at the origin.
     auto spin_orbital_basis = GQCP::RSpinOrbitalBasis<GQCP::complex, GQCP::LondonGTOShell> {molecule, "STO-3G", B};
-    print_type(spin_orbital_basis);
+    // print_type(spin_orbital_basis);
 
-    print_type(spin_orbital_basis.scalarBasis().shellSet());
+    // auto shellset = spin_orbital_basis.scalarBasis().shellSet();
+    // // auto shell = shellset.at(0);  // This is a LondonGTOShell
+    // // print_type(shell);
+
 
     // spin_orbital_basis.scalarBasis().shellSet()[0].embedNormalizationFactorsOfPrimitives();
     
@@ -57,8 +60,15 @@ int main() {
     auto basis_functions = AO1.functions();
     print_type(basis_functions);
 
+    auto coeffs = AO1.coefficients();
+    print_type(coeffs);
+
+    for (size_t i = 0; i < coeffs.size(); i++) {
+        std::cout << coeffs[i] << std::endl;
+    }
+
     // initialize vector
-    GQCP::Vector<double, 3> r = {0.1, 0.2, 0.3};
+    GQCP::Vector<double, 3> r = {1.3, -0.9, 3.7};
 
     // try to call AO value directly
     std::cout << AO1(r) << std::endl;
@@ -69,6 +79,10 @@ int main() {
         print_type(basis_functions[i]);
         GQCP::complex value = basis_functions[i](r);  // uses operator() from EvaluableLinearCombination
         std::cout << "AO " << i << " value at r = " << r.transpose() << " is " << value << std::endl;
+        print_type(basis_functions[i].coefficients()[0]);
+        std::cout << "basis_functions[i].coefficients()[0] :" << basis_functions[i].coefficients()[0] << std::endl;
+        print_type(basis_functions[i].functions()[0]);
+        std::cout << "basis_functions[i].functions()[0](r): " << basis_functions[i].functions()[0](r) << std::endl;
     }
 
     return 0;
