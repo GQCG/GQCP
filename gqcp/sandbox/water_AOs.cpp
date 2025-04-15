@@ -71,7 +71,6 @@ int main() {
     // from the primitves, we can determine the center of the AO
     std::cout << "example LAO is centered at " << example_LAO.functions()[0].cartesianGTO().center().transpose() << std::endl;
 
-
     // let's loop through all AOs, and gather their information.
     const int n_ao = AOs.size();
     for (size_t i = 0; i < n_ao; i++) {
@@ -89,6 +88,8 @@ int main() {
         // corresponding nucleus origin?
         std::cout << "origin at " << primitives[0].cartesianGTO().center().transpose() << std::endl;
     }
+
+    // note: see SimpleSpinOrbitalBasis.hpp: the normalization factors of the primitives are already embedded in the contraction coefficients of the underlying shells.
 
     return 0;
 }
