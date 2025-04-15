@@ -67,6 +67,8 @@ int main() {
     auto london_primitives = example_LAO.functions();
     std::cout << "the LAOs are made up of " << london_primitives.size() << " primitives" << std::endl;
     std::cout << "example phase factor" << london_primitives[0].phaseFactor(r) << std::endl;
+    // from the primitves, we can determine the center of the AO
+    std::cout << "example LAO is centered at " << example_LAO.functions()[0].cartesianGTO().center().transpose() << std::endl;
 
     return 0;
 }
