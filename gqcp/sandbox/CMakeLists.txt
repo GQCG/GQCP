@@ -4,6 +4,7 @@ set(sandbox_target_sources)
 list(APPEND sandbox_target_sources
     ${CMAKE_CURRENT_SOURCE_DIR}/test_sandbox.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/water_AOs.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/eval_ao_at_point_development.cpp
 )
 
 set(sandbox_target_sources ${sandbox_target_sources} PARENT_SCOPE)

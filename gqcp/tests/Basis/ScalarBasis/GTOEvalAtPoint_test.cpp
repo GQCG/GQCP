@@ -79,6 +79,7 @@ BOOST_AUTO_TEST_CASE(eval_gto) {
     auto spin_orbital_basis = GQCP::RSpinOrbitalBasis<GQCP::complex, GQCP::LondonGTOShell> {molecule, "STO-3G", B};
     // gather AOs
     // each spatial orbital ("spatial MO") is expanded in the AO basis set functions.
+    // const auto AOs = spin_orbital_basis.spatialOrbitals()[0].functions();
     const auto AOs = spin_orbital_basis.spatialOrbitals()[0].functions();
     const int nao = AOs.size();
 
