@@ -618,6 +618,35 @@ public:
         const auto ao_indices = this->scalarBasis().basisFunctionIndices(selector);
         return RMullikenDomain<ExpansionScalar> {ao_indices, ao_indices.size()};
     }
+
+
+    /*
+     *  MARK: basis function evaluation
+     */
+
+    /**
+     * 
+     *  @param r                    The point at which to evaluate the AO basis functions.
+     * 
+     *  @return The value of each AO at the specified point in space
+     */
+     std::vector<ExpansionScalar> evalBasisSetAtPoint(const GQCP::Vector<double, 3>& r) const {
+        // gather basis set AOs from the first spatial orbital (which could eg be a spatial MO)
+        // which is expanded in the scalar basis set
+        const auto AOs = this->spatialOrbitals()[0].functions();
+        // init vector in which to gather each AO's value at r
+        std::vector<ExpansionScalar> AO_vals;
+        AO_vals.reserve(this->numberOfSpatialOrbitals()); //n_AO = n_MO
+
+        // loop through AOs
+        for (size_t i= 0; i < this->numberOfSpatialOrbitals(); i++) {
+            // evaluate value at r, put it in vector
+            AO_vals.push_back(AOs[i](r));
+        }
+        
+        return AO_vals;
+     }
+
 };
 
 
