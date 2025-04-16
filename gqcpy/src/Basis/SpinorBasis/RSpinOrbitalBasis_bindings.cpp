@@ -92,7 +92,16 @@ void bindRSpinOrbitalBasisInterface(Class& py_class) {
         .def(
             "scalarBasis",
             &Type::scalarBasis,
-            "Return the underlying scalar basis with respect to which the basis coefficients are expressed.");
+            "Return the underlying scalar basis with respect to which the basis coefficients are expressed.")
+
+            
+        .def(
+            "evalBasisSetAtPoint",
+            [](const Type& self, const GQCP::Vector<double, 3>& r) {
+                return self.evalBasisSetAtPoint(r);
+            },
+            py::arg("r"),
+            "Evaluate the underlying AO basis functions at a given spatial point.");
 
 
     // Expose the `SimpleSpinorBasis` API to the Python class.
