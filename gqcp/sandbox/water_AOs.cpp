@@ -30,9 +30,10 @@ int main() {
     const GQCP::Nucleus h2 {1, 2.0, 0.0, 0.0};
     const GQCP::Molecule molecule {{h1, o, h2}};
 
-    const auto B = GQCP::HomogeneousMagneticField {{0.0, 0.0, 1.0}};  // Gauge origin at cartesian origin.
+    const auto B = GQCP::HomogeneousMagneticField {{0.0, 0.0, 0.0}};  // Gauge origin at cartesian origin.
     // const auto B = GQCP::HomogeneousMagneticField {{0.0, 0.0, 1.0}, {0.4, 12.2, -0.789}};  // Gauge origin at random point in space.
     auto spin_orbital_basis = GQCP::RSpinOrbitalBasis<GQCP::complex, GQCP::LondonGTOShell> {molecule, "STO-3G", B};
+    // auto spin_orbital_basis = GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> {molecule, "STO-3G"};
     
     // gives all basis functions in the basis. vector of (contraction coeff, basis function) pairs.
     // these are NOT necessarily the AO basis functions, although by default the AO basis is the expansion basis.
@@ -77,8 +78,6 @@ int main() {
         std::cout << i << std::endl;
         // gather relevant AO
         auto AO_i = AOs[i];
-        // TODO: ensure to embedNormalizationFactorsOfPrimitives()
-
         // evaluate its value at r
         std::cout << "value at r: " << AO_i(r) << std::endl;
         // from primitves, get more info.
