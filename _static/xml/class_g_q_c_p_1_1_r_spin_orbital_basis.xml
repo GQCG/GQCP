@@ -788,6 +788,36 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" line="616" column="21" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" bodystart="616" bodyend="620"/>
       </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_r_spin_orbital_basis_1ac2522093c42e541dc65de9793ef3e803" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a80cd4ad6ae5cbc165404fc7cb09e3ffe" kindref="member">ExpansionScalar</ref> &gt;</type>
+        <definition>std::vector&lt; ExpansionScalar &gt; GQCP::RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt;::evalBasisSetAtPoint</definition>
+        <argsstring>(const GQCP::Vector&lt; double, 3 &gt; &amp;r) const</argsstring>
+        <name>evalBasisSetAtPoint</name>
+        <qualifiedname>GQCP::RSpinOrbitalBasis::evalBasisSetAtPoint</qualifiedname>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">GQCP::Vector</ref>&lt; double, 3 &gt; &amp;</type>
+          <declname>r</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>r</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The point at which to evaluate the AO basis functions.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The value of each AO at the specified point in space </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" line="633" column="18" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" bodystart="633" bodyend="648"/>
+      </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
@@ -898,7 +928,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" line="62" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" bodystart="63" bodyend="621"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" line="62" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Basis/SpinorBasis/RSpinOrbitalBasis.hpp" bodystart="63" bodyend="650"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1aad32b0cc0dce8be836799d61e50cf500" prot="public" virt="non-virtual"><scope>GQCP::RSpinOrbitalBasis</scope><name>BaseSpinorBasis</name></member>
       <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1af80a4fe5fd969824042cc98025acb72e" prot="public" virt="non-virtual"><scope>GQCP::RSpinOrbitalBasis</scope><name>BasisFunction</name></member>
@@ -910,6 +940,7 @@
       <member refid="class_g_q_c_p_1_1_c_r_t_p_1a28a8bce1d2ca75d90ecf1295dd640f13" prot="public" virt="non-virtual"><scope>GQCP::RSpinOrbitalBasis</scope><name>derived</name></member>
       <member refid="class_g_q_c_p_1_1_c_r_t_p_1ab72cbeb2fad6d811d4f6fcd2c962b55e" prot="public" virt="non-virtual"><scope>GQCP::RSpinOrbitalBasis</scope><name>Derived</name></member>
       <member refid="class_g_q_c_p_1_1_simple_spin_orbital_basis_1a1df9d7598f4fac0445ef10d7eff4ec74" prot="public" virt="non-virtual"><scope>GQCP::RSpinOrbitalBasis</scope><name>DerivedSpinOrbitalBasis</name></member>
+      <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1ac2522093c42e541dc65de9793ef3e803" prot="public" virt="non-virtual"><scope>GQCP::RSpinOrbitalBasis</scope><name>evalBasisSetAtPoint</name></member>
       <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1a6f28eee1bd0c2890b7fd3355913fb414" prot="public" virt="non-virtual"><scope>GQCP::RSpinOrbitalBasis</scope><name>expansion</name></member>
       <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a80cd4ad6ae5cbc165404fc7cb09e3ffe" prot="public" virt="non-virtual"><scope>GQCP::RSpinOrbitalBasis</scope><name>ExpansionScalar</name></member>
       <member refid="class_g_q_c_p_1_1_simple_spinor_basis_1aa3b991f95864658a48cb6b7360dca2aa" prot="public" virt="non-virtual"><scope>GQCP::RSpinOrbitalBasis</scope><name>FinalSpinorBasis</name></member>

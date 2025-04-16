@@ -2401,6 +2401,7 @@
     <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a6b8b8cd530a28e8853e8b0a09a8187f8" kind="function"><name>spinOrbitals</name></member>
     <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a5ea51bafdb5544802af9fe4f2c35d47b" kind="function"><name>mullikenDomain</name></member>
     <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a25e87075130021a9c032c8d7ef24275b" kind="function"><name>mullikenDomain</name></member>
+    <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1ac2522093c42e541dc65de9793ef3e803" kind="function"><name>evalBasisSetAtPoint</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_r_s_q_one_electron_operator" kind="class"><name>GQCP::RSQOneElectronOperator</name>
     <member refid="class_g_q_c_p_1_1_r_s_q_one_electron_operator_1ab4dea0b6f2ed9906da78a5e72f9e28f4" kind="typedef"><name>Scalar</name></member>

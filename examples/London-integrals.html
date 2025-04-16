@@ -423,6 +423,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kinetic-energy-integrals">Kinetic energy integrals</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-momentum-integrals">Linear momentum integrals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluate-ao-at-point-in-space">Evaluate AO at point in space</a></li>
 </ul>
             </nav>
         </div>
@@ -794,6 +795,30 @@ document.write(`
 </div>
 </div>
 </section>
+<section id="evaluate-ao-at-point-in-space">
+<h2>Evaluate AO at point in space<a class="headerlink" href="#evaluate-ao-at-point-in-space" title="Permalink to this headline">#</a></h2>
+<p>We can also evaluate London AOs at a specific point in space.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># evalBasisSetAtPoint is currently only implemented in RSpinOrbitalBasis</span>
+<span class="n">spinor_basis3</span> <span class="o">=</span> <span class="n">gqcpy</span><span class="o">.</span><span class="n">LondonRSpinOrbitalBasis</span><span class="p">(</span><span class="n">molecule</span><span class="p">,</span> <span class="s2">&quot;STO-3G&quot;</span><span class="p">,</span> <span class="n">B1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spinor_basis3</span><span class="o">.</span><span class="n">evalBasisSetAtPoint</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(0.14601679326243822+0j), (0.24497694610131504+0j)]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -865,6 +890,7 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kinetic-energy-integrals">Kinetic energy integrals</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-momentum-integrals">Linear momentum integrals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluate-ao-at-point-in-space">Evaluate AO at point in space</a></li>
 </ul>
   </nav></div>
 

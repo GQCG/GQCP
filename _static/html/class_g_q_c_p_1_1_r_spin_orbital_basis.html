@@ -220,6 +220,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a5ea51bafdb5544802af9fe4f2c35d47b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a25e87075130021a9c032c8d7ef24275b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_g_q_c_p_1_1_r_mulliken_domain.html">RMullikenDomain</a>&lt; <a class="el" href="class_g_q_c_p_1_1_r_spin_orbital_basis.html#a80cd4ad6ae5cbc165404fc7cb09e3ffe">ExpansionScalar</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_r_spin_orbital_basis.html#a25e87075130021a9c032c8d7ef24275b">mullikenDomain</a> (const std::function&lt; bool(const <a class="el" href="class_g_q_c_p_1_1_r_spin_orbital_basis.html#a5cc5b25be3944ebe7140b30a14dedbce">Shell</a> &amp;)&gt; &amp;selector) const</td></tr>
 <tr class="separator:a25e87075130021a9c032c8d7ef24275b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2522093c42e541dc65de9793ef3e803"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_g_q_c_p_1_1_r_spin_orbital_basis.html#a80cd4ad6ae5cbc165404fc7cb09e3ffe">ExpansionScalar</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_r_spin_orbital_basis.html#ac2522093c42e541dc65de9793ef3e803">evalBasisSetAtPoint</a> (const <a class="el" href="namespace_g_q_c_p.html#a0b93cbbef69cd49e5de8027a7b945756">GQCP::Vector</a>&lt; double, 3 &gt; &amp;r) const</td></tr>
+<tr class="separator:ac2522093c42e541dc65de9793ef3e803"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_g_q_c_p_1_1_simple_spin_orbital_basis"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_g_q_c_p_1_1_simple_spin_orbital_basis')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_g_q_c_p_1_1_simple_spin_orbital_basis.html">GQCP::SimpleSpinOrbitalBasis&lt; _ExpansionScalar, _Shell, RSpinOrbitalBasis&lt; _ExpansionScalar, _Shell &gt; &gt;</a></td></tr>
 <tr class="memitem:a3db0589ecea68031a220f82e5711d2de inherit pub_methods_class_g_q_c_p_1_1_simple_spin_orbital_basis"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_q_c_p_1_1_simple_spin_orbital_basis.html#a3db0589ecea68031a220f82e5711d2de">SimpleSpinOrbitalBasis</a> (const <a class="el" href="class_g_q_c_p_1_1_scalar_basis.html">ScalarBasis</a>&lt; <a class="el" href="class_g_q_c_p_1_1_simple_spin_orbital_basis.html#a461d84956dd760d5f7be2d4c715de2ae">Shell</a> &gt; &amp;scalar_basis, const <a class="el" href="class_g_q_c_p_1_1_simple_spin_orbital_basis.html#ac3b0da5ca443326d3a8829702b504d8a">Transformation</a> &amp;C)</td></tr>
 <tr class="separator:a3db0589ecea68031a220f82e5711d2de inherit pub_methods_class_g_q_c_p_1_1_simple_spin_orbital_basis"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -485,6 +487,41 @@ template&lt;typename _ExpansionScalar , typename _Shell &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="ac2522093c42e541dc65de9793ef3e803" name="ac2522093c42e541dc65de9793ef3e803"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2522093c42e541dc65de9793ef3e803">&#9670;&#160;</a></span>evalBasisSetAtPoint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename _ExpansionScalar , typename _Shell &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="class_g_q_c_p_1_1_r_spin_orbital_basis.html#a80cd4ad6ae5cbc165404fc7cb09e3ffe">ExpansionScalar</a> &gt; <a class="el" href="class_g_q_c_p_1_1_r_spin_orbital_basis.html">GQCP::RSpinOrbitalBasis</a>&lt; _ExpansionScalar, _Shell &gt;::evalBasisSetAtPoint </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespace_g_q_c_p.html#a0b93cbbef69cd49e5de8027a7b945756">GQCP::Vector</a>&lt; double, 3 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>r</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">r</td><td>The point at which to evaluate the AO basis functions.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The value of each AO at the specified point in space </dd></dl>
+
+</div>
+</div>
 <a id="a5ea51bafdb5544802af9fe4f2c35d47b" name="a5ea51bafdb5544802af9fe4f2c35d47b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5ea51bafdb5544802af9fe4f2c35d47b">&#9670;&#160;</a></span>mullikenDomain() <span class="overload">[1/2]</span></h2>
 

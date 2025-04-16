@@ -498,57 +498,80 @@
 \DoxyCodeLine{00618\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ ao\_indices\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_simple_spin_orbital_basis_ae4d021b1d29a7f7b6fb6763448f7a137}{scalarBasis}}().\mbox{\hyperlink{class_g_q_c_p_1_1_scalar_basis_acd5f433e61fcaa284350331a566516a7}{basisFunctionIndices}}(selector);}
 \DoxyCodeLine{00619\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_mulliken_domain}{RMullikenDomain<ExpansionScalar>}}\ \{ao\_indices,\ ao\_indices.size()\};}
 \DoxyCodeLine{00620\ \ \ \ \ \}}
-\DoxyCodeLine{00621\ \};}
+\DoxyCodeLine{00621\ }
 \DoxyCodeLine{00622\ }
-\DoxyCodeLine{00623\ }
-\DoxyCodeLine{00624\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00625\ \textcolor{comment}{\ *\ \ MARK:\ Convenience\ aliases}}
-\DoxyCodeLine{00626\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00627\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ExpansionScalar,\ \textcolor{keyword}{typename}\ Shell>}
-\DoxyCodeLine{00628\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis}{RSpinorBasis}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis}{RSpinOrbitalBasis<ExpansionScalar,\ Shell>}};}
-\DoxyCodeLine{00629\ }
-\DoxyCodeLine{00630\ }
-\DoxyCodeLine{00631\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00632\ \textcolor{comment}{\ *\ \ MARK:\ SpinorBasisTraits}}
-\DoxyCodeLine{00633\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00634\ }
-\DoxyCodeLine{00638\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_ExpansionScalar,\ \textcolor{keyword}{typename}\ \_Shell>}
-\DoxyCodeLine{00639\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_g_q_c_p_1_1_spinor_basis_traits}{SpinorBasisTraits}}<\mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis}{RSpinOrbitalBasis}}<\_ExpansionScalar,\ \_Shell>>\ \{}
-\DoxyCodeLine{00640\ \ \ \ \ \textcolor{comment}{//\ The\ scalar\ type\ used\ to\ represent\ an\ expansion\ coefficient\ of\ the\ spinors\ in\ the\ underlying\ scalar\ orbitals:\ real\ or\ complex.}}
-\DoxyCodeLine{00641\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{struct_g_q_c_p_1_1_spinor_basis_traits_3_01_r_spin_orbital_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4_a438617e73318636306b950569cbb2454}{ExpansionScalar}}\ =\ \_ExpansionScalar;}
-\DoxyCodeLine{00642\ }
-\DoxyCodeLine{00643\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ transformation\ that\ is\ naturally\ related\ to\ an\ `RSpinOrbitalBasis`.}}
-\DoxyCodeLine{00644\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{Transformation}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{RTransformation<ExpansionScalar>}};}
-\DoxyCodeLine{00645\ }
-\DoxyCodeLine{00646\ \ \ \ \ \textcolor{comment}{//\ The\ second-\/quantized\ representation\ of\ the\ overlap\ operator\ related\ to\ an\ RSpinOrbitalBasis.}}
-\DoxyCodeLine{00647\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_one_electron_operator}{SQOverlapOperator}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_one_electron_operator}{ScalarRSQOneElectronOperator<ExpansionScalar>}};}
-\DoxyCodeLine{00648\ \};}
+\DoxyCodeLine{00623\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00624\ \textcolor{comment}{\ \ \ \ \ *\ \ MARK:\ basis\ function\ evaluation}}
+\DoxyCodeLine{00625\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00626\ }
+\DoxyCodeLine{00633\ \ \ \ \ \ std::vector<ExpansionScalar>\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_ac2522093c42e541dc65de9793ef3e803}{evalBasisSetAtPoint}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_q_c_p_1_1_matrix}{GQCP::Vector<double,\ 3>}}\&\ r)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00634\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ gather\ basis\ set\ AOs\ from\ the\ first\ spatial\ orbital\ (which\ could\ eg\ be\ a\ spatial\ MO)}}
+\DoxyCodeLine{00635\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ which\ is\ expanded\ in\ the\ scalar\ basis\ set}}
+\DoxyCodeLine{00636\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ AOs\ =\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a6d2074911c467ec8371e7d569eb828a9}{spatialOrbitals}}()[0].functions();}
+\DoxyCodeLine{00637\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ init\ vector\ in\ which\ to\ gather\ each\ AO's\ value\ at\ r}}
+\DoxyCodeLine{00638\ \ \ \ \ \ \ \ \ std::vector<ExpansionScalar>\ AO\_vals;}
+\DoxyCodeLine{00639\ \ \ \ \ \ \ \ \ AO\_vals.reserve(this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_acc337f6e3f3dddd0be78dacc69d3599c}{numberOfSpatialOrbitals}}());\ \textcolor{comment}{//n\_AO\ =\ n\_MO}}
+\DoxyCodeLine{00640\ }
+\DoxyCodeLine{00641\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ loop\ through\ AOs}}
+\DoxyCodeLine{00642\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i=\ 0;\ i\ <\ this-\/>\mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_acc337f6e3f3dddd0be78dacc69d3599c}{numberOfSpatialOrbitals}}();\ i++)\ \{}
+\DoxyCodeLine{00643\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ evaluate\ value\ at\ r,\ put\ it\ in\ vector}}
+\DoxyCodeLine{00644\ \ \ \ \ \ \ \ \ \ \ \ \ AO\_vals.push\_back(AOs[i](r));}
+\DoxyCodeLine{00645\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00646\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00647\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ AO\_vals;}
+\DoxyCodeLine{00648\ \ \ \ \ \ \}}
 \DoxyCodeLine{00649\ }
-\DoxyCodeLine{00650\ }
-\DoxyCodeLine{00651\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00652\ \textcolor{comment}{\ *\ \ MARK:\ BasisTransformableTraits}}
-\DoxyCodeLine{00653\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00654\ }
-\DoxyCodeLine{00658\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_ExpansionScalar,\ \textcolor{keyword}{typename}\ \_Shell>}
-\DoxyCodeLine{00659\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_g_q_c_p_1_1_basis_transformable_traits}{BasisTransformableTraits}}<\mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis}{RSpinOrbitalBasis}}<\_ExpansionScalar,\ \_Shell>>\ \{}
-\DoxyCodeLine{00660\ }
-\DoxyCodeLine{00661\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ transformation\ that\ is\ naturally\ related\ to\ an\ `RSpinOrbitalBasis`.}}
-\DoxyCodeLine{00662\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{Transformation}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{RTransformation<\_ExpansionScalar>}};}
-\DoxyCodeLine{00663\ \};}
-\DoxyCodeLine{00664\ }
-\DoxyCodeLine{00665\ }
-\DoxyCodeLine{00666\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00667\ \textcolor{comment}{\ *\ \ MARK:\ JacobiRotatableTraits}}
-\DoxyCodeLine{00668\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00669\ }
-\DoxyCodeLine{00673\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_ExpansionScalar,\ \textcolor{keyword}{typename}\ \_Shell>}
-\DoxyCodeLine{00674\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_g_q_c_p_1_1_jacobi_rotatable_traits}{JacobiRotatableTraits}}<\mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis}{RSpinOrbitalBasis}}<\_ExpansionScalar,\ \_Shell>>\ \{}
-\DoxyCodeLine{00675\ }
-\DoxyCodeLine{00676\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ Jacobi\ rotation\ that\ is\ naturally\ related\ to\ an\ `RSpinOrbitalBasis`.}}
-\DoxyCodeLine{00677\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_rotation}{JacobiRotationType}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_rotation}{JacobiRotation}};}
-\DoxyCodeLine{00678\ \};}
+\DoxyCodeLine{00650\ \};}
+\DoxyCodeLine{00651\ }
+\DoxyCodeLine{00652\ }
+\DoxyCodeLine{00653\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00654\ \textcolor{comment}{\ *\ \ MARK:\ Convenience\ aliases}}
+\DoxyCodeLine{00655\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00656\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ExpansionScalar,\ \textcolor{keyword}{typename}\ Shell>}
+\DoxyCodeLine{00657\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis}{RSpinorBasis}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis}{RSpinOrbitalBasis<ExpansionScalar,\ Shell>}};}
+\DoxyCodeLine{00658\ }
+\DoxyCodeLine{00659\ }
+\DoxyCodeLine{00660\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00661\ \textcolor{comment}{\ *\ \ MARK:\ SpinorBasisTraits}}
+\DoxyCodeLine{00662\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00663\ }
+\DoxyCodeLine{00667\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_ExpansionScalar,\ \textcolor{keyword}{typename}\ \_Shell>}
+\DoxyCodeLine{00668\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_g_q_c_p_1_1_spinor_basis_traits}{SpinorBasisTraits}}<\mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis}{RSpinOrbitalBasis}}<\_ExpansionScalar,\ \_Shell>>\ \{}
+\DoxyCodeLine{00669\ \ \ \ \ \textcolor{comment}{//\ The\ scalar\ type\ used\ to\ represent\ an\ expansion\ coefficient\ of\ the\ spinors\ in\ the\ underlying\ scalar\ orbitals:\ real\ or\ complex.}}
+\DoxyCodeLine{00670\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{struct_g_q_c_p_1_1_spinor_basis_traits_3_01_r_spin_orbital_basis_3_01___expansion_scalar_00_01___shell_01_4_01_4_a438617e73318636306b950569cbb2454}{ExpansionScalar}}\ =\ \_ExpansionScalar;}
+\DoxyCodeLine{00671\ }
+\DoxyCodeLine{00672\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ transformation\ that\ is\ naturally\ related\ to\ an\ `RSpinOrbitalBasis`.}}
+\DoxyCodeLine{00673\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{Transformation}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{RTransformation<ExpansionScalar>}};}
+\DoxyCodeLine{00674\ }
+\DoxyCodeLine{00675\ \ \ \ \ \textcolor{comment}{//\ The\ second-\/quantized\ representation\ of\ the\ overlap\ operator\ related\ to\ an\ RSpinOrbitalBasis.}}
+\DoxyCodeLine{00676\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_one_electron_operator}{SQOverlapOperator}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_s_q_one_electron_operator}{ScalarRSQOneElectronOperator<ExpansionScalar>}};}
+\DoxyCodeLine{00677\ \};}
+\DoxyCodeLine{00678\ }
 \DoxyCodeLine{00679\ }
-\DoxyCodeLine{00680\ }
-\DoxyCodeLine{00681\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
+\DoxyCodeLine{00680\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00681\ \textcolor{comment}{\ *\ \ MARK:\ BasisTransformableTraits}}
+\DoxyCodeLine{00682\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00683\ }
+\DoxyCodeLine{00687\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_ExpansionScalar,\ \textcolor{keyword}{typename}\ \_Shell>}
+\DoxyCodeLine{00688\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_g_q_c_p_1_1_basis_transformable_traits}{BasisTransformableTraits}}<\mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis}{RSpinOrbitalBasis}}<\_ExpansionScalar,\ \_Shell>>\ \{}
+\DoxyCodeLine{00689\ }
+\DoxyCodeLine{00690\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ transformation\ that\ is\ naturally\ related\ to\ an\ `RSpinOrbitalBasis`.}}
+\DoxyCodeLine{00691\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{Transformation}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_r_transformation}{RTransformation<\_ExpansionScalar>}};}
+\DoxyCodeLine{00692\ \};}
+\DoxyCodeLine{00693\ }
+\DoxyCodeLine{00694\ }
+\DoxyCodeLine{00695\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00696\ \textcolor{comment}{\ *\ \ MARK:\ JacobiRotatableTraits}}
+\DoxyCodeLine{00697\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00698\ }
+\DoxyCodeLine{00702\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \_ExpansionScalar,\ \textcolor{keyword}{typename}\ \_Shell>}
+\DoxyCodeLine{00703\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_g_q_c_p_1_1_jacobi_rotatable_traits}{JacobiRotatableTraits}}<\mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis}{RSpinOrbitalBasis}}<\_ExpansionScalar,\ \_Shell>>\ \{}
+\DoxyCodeLine{00704\ }
+\DoxyCodeLine{00705\ \ \ \ \ \textcolor{comment}{//\ The\ type\ of\ Jacobi\ rotation\ that\ is\ naturally\ related\ to\ an\ `RSpinOrbitalBasis`.}}
+\DoxyCodeLine{00706\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_rotation}{JacobiRotationType}}\ =\ \mbox{\hyperlink{class_g_q_c_p_1_1_jacobi_rotation}{JacobiRotation}};}
+\DoxyCodeLine{00707\ \};}
+\DoxyCodeLine{00708\ }
+\DoxyCodeLine{00709\ }
+\DoxyCodeLine{00710\ \}\ \ \textcolor{comment}{//\ namespace\ GQCP}}
 
 \end{DoxyCode}

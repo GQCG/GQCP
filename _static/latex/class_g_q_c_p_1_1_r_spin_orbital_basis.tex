@@ -134,6 +134,8 @@ std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_spinor}{Spinor}}$<$ \mbox{\h
 \mbox{\hyperlink{class_g_q_c_p_1_1_r_mulliken_domain}{RMulliken\+Domain}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a80cd4ad6ae5cbc165404fc7cb09e3ffe}{Expansion\+Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a5ea51bafdb5544802af9fe4f2c35d47b}{mulliken\+Domain}} (const std\+::function$<$ bool(const \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_af80a4fe5fd969824042cc98025acb72e}{Basis\+Function}} \&)$>$ \&selector) const
 \item 
 \mbox{\hyperlink{class_g_q_c_p_1_1_r_mulliken_domain}{RMulliken\+Domain}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a80cd4ad6ae5cbc165404fc7cb09e3ffe}{Expansion\+Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a25e87075130021a9c032c8d7ef24275b}{mulliken\+Domain}} (const std\+::function$<$ bool(const \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a5cc5b25be3944ebe7140b30a14dedbce}{Shell}} \&)$>$ \&selector) const
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a80cd4ad6ae5cbc165404fc7cb09e3ffe}{Expansion\+Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_ac2522093c42e541dc65de9793ef3e803}{eval\+Basis\+Set\+At\+Point}} (const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{GQCP\+::\+Vector}}$<$ double, 3 $>$ \&r) const
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_simple_spin_orbital_basis}{GQCP\+::\+Simple\+Spin\+Orbital\+Basis$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell, RSpin\+Orbital\+Basis$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$ $>$}}}
 \begin{DoxyCompactItemize}
@@ -311,6 +313,21 @@ using \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis}{GQCP\+::\+RSpin\+
 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_r_spin_orbital_basis_ac2522093c42e541dc65de9793ef3e803}\label{class_g_q_c_p_1_1_r_spin_orbital_basis_ac2522093c42e541dc65de9793ef3e803}} 
+\index{GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$}!evalBasisSetAtPoint@{evalBasisSetAtPoint}}
+\index{evalBasisSetAtPoint@{evalBasisSetAtPoint}!GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$}}
+\doxysubsubsection{\texorpdfstring{evalBasisSetAtPoint()}{evalBasisSetAtPoint()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Expansion\+Scalar , typename \+\_\+\+Shell $>$ \\
+std\+::vector$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis_a80cd4ad6ae5cbc165404fc7cb09e3ffe}{Expansion\+Scalar}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_r_spin_orbital_basis}{GQCP\+::\+RSpin\+Orbital\+Basis}}$<$ \+\_\+\+Expansion\+Scalar, \+\_\+\+Shell $>$\+::eval\+Basis\+Set\+At\+Point (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{GQCP\+::\+Vector}}$<$ double, 3 $>$ \&}]{r }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The point at which to evaluate the AO basis functions.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value of each AO at the specified point in space 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_r_spin_orbital_basis_a5ea51bafdb5544802af9fe4f2c35d47b}\label{class_g_q_c_p_1_1_r_spin_orbital_basis_a5ea51bafdb5544802af9fe4f2c35d47b}} 
 \index{GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$}!mullikenDomain@{mullikenDomain}}
 \index{mullikenDomain@{mullikenDomain}!GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$@{GQCP::RSpinOrbitalBasis$<$ \_ExpansionScalar, \_Shell $>$}}
