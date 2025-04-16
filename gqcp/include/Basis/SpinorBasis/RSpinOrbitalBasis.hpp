@@ -630,7 +630,7 @@ public:
      * 
      *  @return The value of each AO at the specified point in space
      */
-     std::vector<ExpansionScalar> evalBasisSetAtPoint(const GQCP::Vector<double, 3>& r) {
+     std::vector<ExpansionScalar> evalBasisSetAtPoint(const GQCP::Vector<double, 3>& r) const {
         // gather basis set AOs from the first spatial orbital (which could eg be a spatial MO)
         // which is expanded in the scalar basis set
         const auto AOs = this->spatialOrbitals()[0].functions();

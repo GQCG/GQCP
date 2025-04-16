@@ -45,14 +45,8 @@ BOOST_AUTO_TEST_CASE(eval_gto) {
     // init random point in space
     const GQCP::Vector<double, 3> r = {1.3, -0.9, 3.7};
 
-    // init vector
-    std::vector<double> AO_vals;
-    AO_vals.reserve(nao);
-    // loop through AOs
-    for (size_t i = 0; i < nao; i++) {
-        // gather value at r, put it in vector
-        AO_vals.push_back(AOs[i](r));
-    }
+    // compute AO values at point
+    const auto AO_vals = spin_orbital_basis.evalBasisSetAtPoint(r);
 
     // compare with hardcoded reference data
     const std::vector<double> AO_vals_ref = {0.0054346, 0.0, 0.000939672, 0.000194685, -0.000584055, 0.002401113, 0.006665074};
@@ -86,14 +80,8 @@ BOOST_AUTO_TEST_CASE(eval_gto) {
     // init random point in space
     const GQCP::Vector<double, 3> r = {1.3, -0.9, 3.7};
 
-    // init vector
-    std::vector<std::complex<double>> AO_vals;
-    AO_vals.reserve(nao);
-    // loop through AOs
-    for (size_t i = 0; i < nao; i++) {
-        // gather value at r, put it in vector
-        AO_vals.push_back(AOs[i](r));
-    }
+    // compute AO values at point
+    const auto AO_vals = spin_orbital_basis.evalBasisSetAtPoint(r);
 
     // compare with hardcoded reference data
     const std::vector<std::complex<double>> AO_vals_ref = {
