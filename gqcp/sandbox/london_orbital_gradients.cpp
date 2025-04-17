@@ -25,8 +25,10 @@ int main() {
     // auto spin_orbital_basis = GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> {molecule, "STO-3G"};
     
     auto const orbs = spin_orbital_basis.spatialOrbitalGradients();
+
+    const GQCP::Vector<double, 3> r = {1.3, -0.9, 3.7};
     
-    std::cout << orbs[0].size() << std::endl;
+    std::cout << orbs[0][1](r) << std::endl;
 
     return 0;
 }
