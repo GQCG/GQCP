@@ -83,7 +83,7 @@ complex LondonCartesianGTO::operator()(const Vector<double, 3>& r) const {
 /**
  *  @param direction            the Cartesian direction in which the derivative should be calculated
  *
- *  @return the derivative of this Cartesian GTO with respect to the position coordinate in the x-, y-, or z-direction
+ *  @return the derivative of this London Cartesian GTO with respect to the position coordinate in the x-, y-, or z-direction
  */
  EvaluableLinearCombination<complex, LondonCartesianGTO> LondonCartesianGTO::calculatePositionDerivative(const CartesianDirection direction) const {
 
@@ -130,6 +130,21 @@ complex LondonCartesianGTO::operator()(const Vector<double, 3>& r) const {
     lc += EvaluableLinearCombination<complex, LondonCartesianGTO>(plane_wave_derivative_coefficient, *this);
 
     return lc;
+}
+
+
+/**
+ *  @return the gradient of this London Cartesian GTO with respect to the position coordinate
+ */
+ Vector<EvaluableLinearCombination<complex, LondonCartesianGTO>, 3> LondonCartesianGTO::calculatePositionGradient() const {
+
+    // Calculate the gradient for each of the Cartesian components.
+    Vector<EvaluableLinearCombination<complex, LondonCartesianGTO>, 3> gradient;
+    for (const auto& direction : {CartesianDirection::x, CartesianDirection::y, CartesianDirection::z}) {
+        gradient(direction) = this->calculatePositionDerivative(direction);
+    }
+
+    return gradient;
 }
 
 
