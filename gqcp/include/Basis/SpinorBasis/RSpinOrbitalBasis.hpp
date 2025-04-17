@@ -87,10 +87,10 @@ public:
     using DensityDistribution = FunctionProduct<SpatialOrbital>;
 
     // The type of the derivative of a primitive. The derivative of a Cartesian GTO is a linear combination of Cartesian GTOs.
-    using PrimitiveDerivative = EvaluableLinearCombination<double, Primitive>;
+    using PrimitiveDerivative = EvaluableLinearCombination<ExpansionScalar, Primitive>;
 
     // The type of the derivative of a basis function.
-    using BasisFunctionDerivative = EvaluableLinearCombination<double, PrimitiveDerivative>;
+    using BasisFunctionDerivative = EvaluableLinearCombination<ExpansionScalar, PrimitiveDerivative>;
 
     // The type of the derivative of a spatial orbital.
     using SpatialOrbitalDerivative = EvaluableLinearCombination<ExpansionScalar, BasisFunctionDerivative>;
