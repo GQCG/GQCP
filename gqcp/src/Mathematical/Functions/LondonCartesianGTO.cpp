@@ -80,4 +80,55 @@ complex LondonCartesianGTO::operator()(const Vector<double, 3>& r) const {
 }
 
 
+/**
+ *  @param direction            the Cartesian direction in which the derivative should be calculated
+ *
+ *  @return the derivative of this Cartesian GTO with respect to the position coordinate in the x-, y-, or z-direction
+ */
+ EvaluableLinearCombination<complex, LondonCartesianGTO> LondonCartesianGTO::calculatePositionDerivative(const CartesianDirection direction) const {
+
+    // The formula consists of a part with the derivative of the plane wave, and a part with the derivative of the underlying GTO.
+    // We start with the GTO derivative part, based on CartesianGTO::calculatePositionDerivative:
+
+    // The formula is a sum of two parts: the derivative of the exponential and the derivative of the linear term (if applicable)
+
+    // Derivative of the exponential (for eg component x): -2\alpha * x times original primitive 
+    CartesianExponents exponential_derivative_exponents = this->gto.cartesian_exponents;
+    exponential_derivative_exponents.exponents[direction] += 1;
+    CartesianGTO exponential_derivative_gto {this->gto.gaussian_exponent, exponential_derivative_exponents, this->gto.m_center};
+    // turn this into a london gto
+    LondonCartesianGTO exponential_derivative_london_gto = {this->B, exponential_derivative_gto};
+    // get coefficient for linear combination
+    complex exponential_derivative_coefficient = -2 * this->gaussian_exponent;
+
+    // add as first term to linear combination (one of three)
+    EvaluableLinearCombination<complex, LondonCartesianGTO> lc {exponential_derivative_coefficient, exponential_derivative_london_gto};  // lc: linear combination
+
+
+    // If the exponent in x, y or z is non-zero, there is an extra contribution of the linear term
+    // i * 1/x with i the original exponent for x
+    if (this->gto.cartesian_exponents.value(direction) > 0) {
+
+        CartesianExponents linear_derivative_exponents = this->gto.cartesian_exponents;
+        linear_derivative_exponents.exponents[direction] -= 1;
+
+        CartesianGTO linear_derivative_gto(this->gaussian_exponent, linear_derivative_exponents, this->m_center);
+        // again, turn into london gto
+        LondonCartesianGTO linear_derivative_london_gto = {this->B, linear_derivative_gto};
+        // get coefficient
+        complex linear_derivative_coefficient = this->cartesian_exponents.value(direction);
+
+        lc += EvaluableLinearCombination<complex, LondonCartesianGTO>(linear_derivative_coefficient, linear_derivative_london_gto);
+    }
+
+    // third term: simply original London GTO + i * k_x
+    double k_component = this->kVector()[direction];
+    complex plane_wave_derivative_coefficient = 1.0_ii * k_component;
+
+    lc += EvaluableLinearCombination<complex, LondonCartesianGTO>(plane_wave_derivative_coefficient, *this);
+
+    return lc;
+}
+
+
 }  // namespace GQCP
