@@ -5,42 +5,44 @@
 #include "Mathematical/Functions/LondonCartesianGTO.hpp"
 #include "Mathematical/Functions/EvaluableLinearCombination.hpp"
 #include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
+#include <array>
 #include <iostream>
 
-// for determining type of object
-#include <typeinfo>
-#include <cxxabi.h>
+// -- free helper --
+auto evalGradAOsAtPoint(
+    const GQCP::RSpinOrbitalBasis<GQCP::complex, GQCP::LondonGTOShell>& spin_basis,
+    const GQCP::Vector<double,3>& r
+) {
+    // get the contracted AOs from the scalar basis
+    const auto& AOs = spin_basis.scalarBasis().basisFunctions();
+    size_t K = AOs.size();
 
+    // prepare return container: K arrays of 3 components
+    std::vector<std::array<GQCP::complex,3>> grad_AO_vals(K);
 
-std::vector<std::vector<GQCP::complex, 3>> evalGradBasisSetAtPoint(const GQCP::Vector<double, 3>& r) const {
-        // gather basis set AOs from the first spatial orbital (which could eg be a spatial MO)
-        // which is expanded in the scalar basis set
-        const auto AOs = this->spatialOrbitals()[0].functions();
-        // init vector in which to gather each AO's value at r
-        std::vector<std::vector<GQCP::complex, 3>> grad_AO_vals;
-        grad_AO_vals.reserve(this->numberOfSpatialOrbitals()); //n_AO = n_MO
-        std::vector<Vector<EvaluableLinearCombination<GQCP::complex, EvaluableLinearCombination<GQCP::complex, LondonCartesianGTO>>, 3>> basis_function_gradients {this->numberOfSpatialOrbitals()};
+    for (size_t i = 0; i < K; ++i) {
+        const auto& bf     = AOs[i];
+        const auto& coeffs = bf.coefficients();   // contraction coefficients
+        const auto& prims  = bf.functions();      // primitives
 
-        // loop through AOs
-        for (size_t i= 0; i < this->numberOfSpatialOrbitals(); i++) {
-            const auto& basis_function = AOs[i];
-            // loop through its primitives
-            const auto contraction_length = basis_function.length();
-            const auto& contraction_coefficients = basis_function.coefficients();
-            const auto& primitives = basis_function.functions();
+        // accumulate gradient in each direction
+        std::array<GQCP::complex,3> sum{0,0,0};
+        for (size_t d = 0; d < prims.size(); ++d) {
+            auto c = coeffs[d];
+            // primitive gradients: a Vector<EvaluableLinearCombination<...>,3>
+            auto prim_grad = prims[d].calculatePositionGradient();
 
-            for (size_t d = 0; d < contraction_length; d++) {
-                const auto& contraction_coefficient = contraction_coefficients[d];
-                const auto primitive_gradient = primitives[d].calculatePositionGradient();
-                grad_AO_vals[i].append(contraction_coefficient, primitive_gradient(m));
+            for (int dir = 0; dir < 3; ++dir) {
+                // evaluate that linear combination at r
+                sum[dir] += c * prim_grad(dir)(r);
             }
-
-            // evaluate value at r, put it in vector
-            grad_AO_vals.push_back(grad_AO_vals[i](r));
         }
-        
-        return AO_vals;
+        grad_AO_vals[i] = sum;
+    }
+
+    return grad_AO_vals;
 }
+
 
 int main() {
 
@@ -67,8 +69,12 @@ int main() {
     }
 
     // get gradient of LAOs.
-
-
+    auto grad_values = evalGradAOsAtPoint(spin_orbital_basis, r);
+    std::cout << "AO gradients at r:\n";
+    for (size_t i = 0; i < grad_values.size(); ++i) {
+        auto& g = grad_values[i];
+        std::cout << "  AO["<<i<<"] = (" << g[0] << ", " << g[1] << ", " << g[2] << ")\n";
+    }
 
     return 0;
 }
