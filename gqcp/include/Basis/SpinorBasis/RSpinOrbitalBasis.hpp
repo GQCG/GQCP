@@ -86,13 +86,19 @@ public:
     // The type that represents a density distribution for this spin-orbital basis.
     using DensityDistribution = FunctionProduct<SpatialOrbital>;
 
-    // The type of the derivative of a primitive. The derivative of a Cartesian GTO is a linear combination of Cartesian GTOs.
-    using PrimitiveDerivative = EvaluableLinearCombination<double, Primitive>;
+    // figure out what a single primitive actually returns: 
+    //   for CartesianGTO that is double, for LondonCartesianGTO that is complex<double>
+    using PrimitiveScalar = decltype(
+        std::declval<Primitive>()(std::declval<Vector<double, 3>>())
+    );
 
-    // The type of the derivative of a basis function.
-    using BasisFunctionDerivative = EvaluableLinearCombination<double, PrimitiveDerivative>;
+    // now the primitive‐derivative lives at the primitive’s own scalar
+    using PrimitiveDerivative = EvaluableLinearCombination<PrimitiveScalar, Primitive>;
 
-    // The type of the derivative of a spatial orbital.
+    // the basis‐function derivative uses the same contraction coefficients as the basis‐function itself
+    using BasisFunctionDerivative = EvaluableLinearCombination<PrimitiveScalar, PrimitiveDerivative>;
+
+    // and finally the spatial‐orbital derivative lives at the MO‐scalar level
     using SpatialOrbitalDerivative = EvaluableLinearCombination<ExpansionScalar, BasisFunctionDerivative>;
 
     // The type that represents a current density distribution for this spin-orbital basis.
@@ -631,9 +637,8 @@ public:
      *  @return The value of each AO at the specified point in space
      */
      std::vector<ExpansionScalar> evalBasisSetAtPoint(const GQCP::Vector<double, 3>& r) const {
-        // gather basis set AOs from the first spatial orbital (which could eg be a spatial MO)
-        // which is expanded in the scalar basis set
-        const auto AOs = this->spatialOrbitals()[0].functions();
+        // get the contracted AOs from the scalar basis
+        const auto& AOs = this->scalarBasis().basisFunctions();
         // init vector in which to gather each AO's value at r
         std::vector<ExpansionScalar> AO_vals;
         AO_vals.reserve(this->numberOfSpatialOrbitals()); //n_AO = n_MO
@@ -645,6 +650,45 @@ public:
         }
         
         return AO_vals;
+     }
+
+
+    /**
+     * 
+     *  @param r                    The point at which to evaluate the gradient of the AO basis functions.
+     * 
+     *  @return The value of the gradient of each AO at the specified point in space
+     */
+     std::vector<std::vector<ExpansionScalar>> evalGradBasisSetAtPoint(const GQCP::Vector<double, 3>& r) const {
+        // get the contracted AOs from the scalar basis
+        const auto& AOs = this->scalarBasis().basisFunctions();
+        size_t K = AOs.size();
+
+        // prepare return container: K arrays of 3 components
+        std::vector<std::vector<ExpansionScalar>> grad_AO_vals;
+        grad_AO_vals.reserve(K);
+
+        for (size_t i = 0; i < K; ++i) {
+            const auto& basis_function     = AOs[i];
+            const auto& contraction_coefficients = basis_function.coefficients();
+            const auto& primitives  = basis_function.functions();
+
+            // accumulate gradient in each direction
+            std::vector<ExpansionScalar> sum(3, ExpansionScalar{0});
+            for (size_t d = 0; d < primitives.size(); ++d) {
+                auto c = contraction_coefficients[d];
+                // primitive gradients: a Vector<EvaluableLinearCombination<...>,3>
+                auto prim_grad = primitives[d].calculatePositionGradient();
+
+                for (int dir = 0; dir < 3; ++dir) {
+                    // evaluate that linear combination at r
+                    sum[dir] += c * prim_grad(dir)(r);
+                }
+            }
+            grad_AO_vals.push_back(sum);
+        }
+
+        return grad_AO_vals;
      }
 
 };

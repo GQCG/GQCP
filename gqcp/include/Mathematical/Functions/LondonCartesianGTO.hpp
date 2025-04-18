@@ -105,6 +105,19 @@ public:
      *  @return The value of the London (Cartesian) GTO at the given point.
      */
     complex operator()(const Vector<double, 3>& r) const;
+
+    /**
+     *  @param direction            the Cartesian direction in which the derivative should be calculated
+     *
+     *  @return the derivative of this London Cartesian GTO with respect to the position coordinate in the x-, y-, or z-direction
+     */
+     EvaluableLinearCombination<complex, LondonCartesianGTO> calculatePositionDerivative(const CartesianDirection direction) const;
+
+    /**
+     *  @return the gradient of this London Cartesian GTO with respect to the position coordinate
+     */
+    Vector<EvaluableLinearCombination<complex, LondonCartesianGTO>, 3> calculatePositionGradient() const;
+
 };
 
 

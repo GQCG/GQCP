@@ -2,10 +2,14 @@
 #include "Basis/ScalarBasis/GTOShell.hpp"
 #include "Basis/ScalarBasis/ShellSet.hpp"
 #include "Mathematical/Functions/CartesianGTO.hpp"
-#include "Mathematical/Functions/LondonCartesianGTO.hpp"
 #include "Mathematical/Functions/EvaluableLinearCombination.hpp"
 #include "Basis/SpinorBasis/RSpinOrbitalBasis.hpp"
 #include <iostream>
+
+// for determining type of object
+#include <typeinfo>
+#include <cxxabi.h>
+
 
 int main() {
 
@@ -20,24 +24,11 @@ int main() {
     auto spin_orbital_basis = GQCP::RSpinOrbitalBasis<GQCP::complex, GQCP::LondonGTOShell> {molecule, "STO-3G", B};
     // auto spin_orbital_basis = GQCP::RSpinOrbitalBasis<double, GQCP::GTOShell> {molecule, "STO-3G"};
     
+    auto const orbs = spin_orbital_basis.spatialOrbitalGradients();
+
     const GQCP::Vector<double, 3> r = {1.3, -0.9, 3.7};
-
-    // get ao values
-    const auto ao_values = spin_orbital_basis.evalBasisSetAtPoint(r);
-
-    // print output
-    std::cout << "AO values at point r = (" << r.transpose() << "):" << std::endl;
-    for (size_t i = 0; i < ao_values.size(); ++i) {
-        std::cout << "AO[" << i << "] = " << ao_values[i] << std::endl;
-    }
-
-    // get gradient of LAOs.
-    auto grad_values = spin_orbital_basis.evalGradBasisSetAtPoint(r);
-    std::cout << "AO gradients at r:\n";
-    for (size_t i = 0; i < grad_values.size(); ++i) {
-        auto& g = grad_values[i];
-        std::cout << "  AO["<<i<<"] = (" << g[0] << ", " << g[1] << ", " << g[2] << ")\n";
-    }
+    
+    std::cout << orbs[0][1](r) << std::endl;
 
     return 0;
 }
