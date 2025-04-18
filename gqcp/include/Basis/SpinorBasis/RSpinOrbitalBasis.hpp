@@ -86,13 +86,19 @@ public:
     // The type that represents a density distribution for this spin-orbital basis.
     using DensityDistribution = FunctionProduct<SpatialOrbital>;
 
-    // The type of the derivative of a primitive. The derivative of a Cartesian GTO is a linear combination of Cartesian GTOs.
-    using PrimitiveDerivative = EvaluableLinearCombination<ExpansionScalar, Primitive>;
+    // figure out what a single primitive actually returns: 
+    //   for CartesianGTO that is double, for LondonCartesianGTO that is complex<double>
+    using PrimitiveScalar = decltype(
+        std::declval<Primitive>()(std::declval<Vector<double, 3>>())
+    );
 
-    // The type of the derivative of a basis function.
-    using BasisFunctionDerivative = EvaluableLinearCombination<ExpansionScalar, PrimitiveDerivative>;
+    // now the primitive‐derivative lives at the primitive’s own scalar
+    using PrimitiveDerivative = EvaluableLinearCombination<PrimitiveScalar, Primitive>;
 
-    // The type of the derivative of a spatial orbital.
+    // the basis‐function derivative uses the same contraction coefficients as the basis‐function itself
+    using BasisFunctionDerivative = EvaluableLinearCombination<PrimitiveScalar, PrimitiveDerivative>;
+
+    // and finally the spatial‐orbital derivative lives at the MO‐scalar level
     using SpatialOrbitalDerivative = EvaluableLinearCombination<ExpansionScalar, BasisFunctionDerivative>;
 
     // The type that represents a current density distribution for this spin-orbital basis.
