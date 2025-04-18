@@ -637,9 +637,8 @@ public:
      *  @return The value of each AO at the specified point in space
      */
      std::vector<ExpansionScalar> evalBasisSetAtPoint(const GQCP::Vector<double, 3>& r) const {
-        // gather basis set AOs from the first spatial orbital (which could eg be a spatial MO)
-        // which is expanded in the scalar basis set
-        const auto AOs = this->spatialOrbitals()[0].functions();
+        // get the contracted AOs from the scalar basis
+        const auto& AOs = this->scalarBasis().basisFunctions();
         // init vector in which to gather each AO's value at r
         std::vector<ExpansionScalar> AO_vals;
         AO_vals.reserve(this->numberOfSpatialOrbitals()); //n_AO = n_MO
@@ -651,6 +650,45 @@ public:
         }
         
         return AO_vals;
+     }
+
+
+    /**
+     * 
+     *  @param r                    The point at which to evaluate the gradient of the AO basis functions.
+     * 
+     *  @return The value of the gradient of each AO at the specified point in space
+     */
+     std::vector<std::vector<ExpansionScalar>> evalGradBasisSetAtPoint(const GQCP::Vector<double, 3>& r) const {
+        // get the contracted AOs from the scalar basis
+        const auto& AOs = this->scalarBasis().basisFunctions();
+        size_t K = AOs.size();
+
+        // prepare return container: K arrays of 3 components
+        std::vector<std::vector<ExpansionScalar>> grad_AO_vals;
+        grad_AO_vals.reserve(K);
+
+        for (size_t i = 0; i < K; ++i) {
+            const auto& basis_function     = AOs[i];
+            const auto& contraction_coefficients = basis_function.coefficients();
+            const auto& primitives  = basis_function.functions();
+
+            // accumulate gradient in each direction
+            std::vector<ExpansionScalar> sum(3, ExpansionScalar{0});
+            for (size_t d = 0; d < primitives.size(); ++d) {
+                auto c = contraction_coefficients[d];
+                // primitive gradients: a Vector<EvaluableLinearCombination<...>,3>
+                auto prim_grad = primitives[d].calculatePositionGradient();
+
+                for (int dir = 0; dir < 3; ++dir) {
+                    // evaluate that linear combination at r
+                    sum[dir] += c * prim_grad(dir)(r);
+                }
+            }
+            grad_AO_vals.push_back(sum);
+        }
+
+        return grad_AO_vals;
      }
 
 };
