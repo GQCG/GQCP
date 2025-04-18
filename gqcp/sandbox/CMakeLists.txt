@@ -5,6 +5,7 @@ list(APPEND sandbox_target_sources
     # ${CMAKE_CURRENT_SOURCE_DIR}/test_sandbox.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/eval_ao_at_point_development.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/london_orbital_gradients.cpp    
+    ${CMAKE_CURRENT_SOURCE_DIR}/current_density_bugfixing.cpp 
 )
 
 set(sandbox_target_sources ${sandbox_target_sources} PARENT_SCOPE)

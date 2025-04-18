@@ -45,16 +45,16 @@ public:
     using Primitive = _Primitive;
 
     // The type of basis function that underlies this current density matrix element.
-    using BasisFunction = EvaluableLinearCombination<double, Primitive>;
+    using BasisFunction = EvaluableLinearCombination<Scalar, Primitive>;
 
     // The type of spatial orbital that underlies this current density matrix element.
     using SpatialOrbital = EvaluableLinearCombination<Scalar, BasisFunction>;
 
     // The type of the derivative of a primitive. The derivative of a Cartesian GTO is a linear combination of Cartesian GTOs.
-    using PrimitiveDerivative = EvaluableLinearCombination<double, Primitive>;
+    using PrimitiveDerivative = EvaluableLinearCombination<Scalar, Primitive>;
 
     // The type of the derivative of a basis function.
-    using BasisFunctionDerivative = EvaluableLinearCombination<double, PrimitiveDerivative>;
+    using BasisFunctionDerivative = EvaluableLinearCombination<Scalar, PrimitiveDerivative>;
 
     // The type of the derivative of a spatial orbital.
     using SpatialOrbitalDerivative = EvaluableLinearCombination<Scalar, BasisFunctionDerivative>;
