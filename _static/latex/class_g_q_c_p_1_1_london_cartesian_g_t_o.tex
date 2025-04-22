@@ -11,7 +11,7 @@ Inheritance diagram for GQCP\+::London\+Cartesian\+GTO\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=233pt]{class_g_q_c_p_1_1_london_cartesian_g_t_o__inherit__graph}
+\includegraphics[width=250pt]{class_g_q_c_p_1_1_london_cartesian_g_t_o__inherit__graph}
 \end{center}
 \end{figure}
 
@@ -21,7 +21,7 @@ Collaboration diagram for GQCP\+::London\+Cartesian\+GTO\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=233pt]{class_g_q_c_p_1_1_london_cartesian_g_t_o__coll__graph}
+\includegraphics[width=250pt]{class_g_q_c_p_1_1_london_cartesian_g_t_o__coll__graph}
 \end{center}
 \end{figure}
 \doxysubsection*{Public Types}
@@ -52,6 +52,10 @@ const \mbox{\hyperlink{class_g_q_c_p_1_1_cartesian_g_t_o}{Cartesian\+GTO}} \& \m
 \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}} \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_ad3e406f8301c2c00d4c2bb477ddf1317}{phase\+Factor}} (const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&r) const
 \item 
 \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}} \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_a228010922e242c6b61b6cbf1987d2aed}{operator()}} (const \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ double, 3 $>$ \&r) const
+\item 
+\mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{Evaluable\+Linear\+Combination}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}}, \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o}{London\+Cartesian\+GTO}} $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_a706a5a4d5f11baaad43245980e920633}{calculate\+Position\+Derivative}} (const \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8}{Cartesian\+Direction}} direction) const
+\item 
+\mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{Evaluable\+Linear\+Combination}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}}, \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o}{London\+Cartesian\+GTO}} $>$, 3 $>$ \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o_a26cb7abe621ac3eb87ef24948aefb400}{calculate\+Position\+Gradient}} () const
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_g_q_c_p_1_1_function}{GQCP\+::\+Function$<$ complex, Vector$<$ double, 3 $>$ $>$}}}
 \begin{DoxyCompactItemize}
@@ -106,6 +110,29 @@ Contracted London GTOs can be expressed as linear combinations of GTOs\+: {\ttfa
 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_london_cartesian_g_t_o_a706a5a4d5f11baaad43245980e920633}\label{class_g_q_c_p_1_1_london_cartesian_g_t_o_a706a5a4d5f11baaad43245980e920633}} 
+\index{GQCP::LondonCartesianGTO@{GQCP::LondonCartesianGTO}!calculatePositionDerivative@{calculatePositionDerivative}}
+\index{calculatePositionDerivative@{calculatePositionDerivative}!GQCP::LondonCartesianGTO@{GQCP::LondonCartesianGTO}}
+\doxysubsubsection{\texorpdfstring{calculatePositionDerivative()}{calculatePositionDerivative()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{Evaluable\+Linear\+Combination}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}}, \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o}{London\+Cartesian\+GTO}} $>$ GQCP\+::\+London\+Cartesian\+GTO\+::calculate\+Position\+Derivative (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_g_q_c_p_ac4c016a1668ae66892e5b4d8846613e8}{Cartesian\+Direction}}}]{direction }\end{DoxyParamCaption}) const}
+
+
+\begin{DoxyParams}{Parameters}
+{\em direction} & the Cartesian direction in which the derivative should be calculated\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the derivative of this London Cartesian GTO with respect to the position coordinate in the x-\/, y-\/, or z-\/direction 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_g_q_c_p_1_1_london_cartesian_g_t_o_a26cb7abe621ac3eb87ef24948aefb400}\label{class_g_q_c_p_1_1_london_cartesian_g_t_o_a26cb7abe621ac3eb87ef24948aefb400}} 
+\index{GQCP::LondonCartesianGTO@{GQCP::LondonCartesianGTO}!calculatePositionGradient@{calculatePositionGradient}}
+\index{calculatePositionGradient@{calculatePositionGradient}!GQCP::LondonCartesianGTO@{GQCP::LondonCartesianGTO}}
+\doxysubsubsection{\texorpdfstring{calculatePositionGradient()}{calculatePositionGradient()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_g_q_c_p_a0b93cbbef69cd49e5de8027a7b945756}{Vector}}$<$ \mbox{\hyperlink{class_g_q_c_p_1_1_evaluable_linear_combination}{Evaluable\+Linear\+Combination}}$<$ \mbox{\hyperlink{namespace_g_q_c_p_a1ffc21109e62d09d3485c62e03677dfd}{complex}}, \mbox{\hyperlink{class_g_q_c_p_1_1_london_cartesian_g_t_o}{London\+Cartesian\+GTO}} $>$, 3 $>$ GQCP\+::\+London\+Cartesian\+GTO\+::calculate\+Position\+Gradient (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+the gradient of this London Cartesian GTO with respect to the position coordinate 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_g_q_c_p_1_1_london_cartesian_g_t_o_ab6b2dc7fbca5ba89c436254bc6bfeac8}\label{class_g_q_c_p_1_1_london_cartesian_g_t_o_ab6b2dc7fbca5ba89c436254bc6bfeac8}} 
 \index{GQCP::LondonCartesianGTO@{GQCP::LondonCartesianGTO}!cartesianGTO@{cartesianGTO}}
 \index{cartesianGTO@{cartesianGTO}!GQCP::LondonCartesianGTO@{GQCP::LondonCartesianGTO}}

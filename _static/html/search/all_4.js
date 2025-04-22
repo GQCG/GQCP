@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['d_0',['D',['../class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer.html#a3797680653af288c2ad290ca96ab30fc',1,'GQCP::QCMethodNewtonOrbitalOptimizer']]],
-  ['d_1',['d',['../class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer.html#aa4d344b06874fe4d77e62409bf8d2fa3',1,'GQCP::QCMethodNewtonOrbitalOptimizer']]],
+  ['d_0',['d',['../class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer.html#aa4d344b06874fe4d77e62409bf8d2fa3',1,'GQCP::QCMethodNewtonOrbitalOptimizer']]],
+  ['d_1',['D',['../class_g_q_c_p_1_1_q_c_method_newton_orbital_optimizer.html#a3797680653af288c2ad290ca96ab30fc',1,'GQCP::QCMethodNewtonOrbitalOptimizer']]],
   ['davidson_2',['Davidson',['../namespace_g_q_c_p_1_1_eigenproblem_solver.html#a3b9052f76c252ada23e2b5a01d838133',1,'GQCP::EigenproblemSolver']]],
   ['davidsonsolver_2ehpp_3',['DavidsonSolver.hpp',['../_davidson_solver_8hpp.html',1,'']]],
   ['delta_4',['Delta',['../class_g_q_c_p_1_1_eigenproblem_environment.html#a38990312c6e1d4f8e39eea7d714f409e',1,'GQCP::EigenproblemEnvironment']]],

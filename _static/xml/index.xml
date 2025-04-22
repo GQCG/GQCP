@@ -1636,6 +1636,8 @@
     <member refid="class_g_q_c_p_1_1_london_cartesian_g_t_o_1ab6b2dc7fbca5ba89c436254bc6bfeac8" kind="function"><name>cartesianGTO</name></member>
     <member refid="class_g_q_c_p_1_1_london_cartesian_g_t_o_1ad3e406f8301c2c00d4c2bb477ddf1317" kind="function"><name>phaseFactor</name></member>
     <member refid="class_g_q_c_p_1_1_london_cartesian_g_t_o_1a228010922e242c6b61b6cbf1987d2aed" kind="function"><name>operator()</name></member>
+    <member refid="class_g_q_c_p_1_1_london_cartesian_g_t_o_1a706a5a4d5f11baaad43245980e920633" kind="function"><name>calculatePositionDerivative</name></member>
+    <member refid="class_g_q_c_p_1_1_london_cartesian_g_t_o_1a26cb7abe621ac3eb87ef24948aefb400" kind="function"><name>calculatePositionGradient</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_london_g_t_o_shell" kind="class"><name>GQCP::LondonGTOShell</name>
     <member refid="class_g_q_c_p_1_1_london_g_t_o_shell_1a67f63a29854b9027664ef9177d84491b" kind="typedef"><name>Primitive</name></member>
@@ -2377,8 +2379,9 @@
     <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1af80a4fe5fd969824042cc98025acb72e" kind="typedef"><name>BasisFunction</name></member>
     <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a955bb69cf128b0f8a942c7e727895f95" kind="typedef"><name>SpatialOrbital</name></member>
     <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a9f1c0c128d144924eb668f0464be3c85" kind="typedef"><name>DensityDistribution</name></member>
-    <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a8f2e0fb8cc6b8813f12e64ca893272a9" kind="typedef"><name>PrimitiveDerivative</name></member>
-    <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a3921c7e49063e3206e1ae758934e6ebd" kind="typedef"><name>BasisFunctionDerivative</name></member>
+    <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1adae646d901c74c9dfaee5c99489692d6" kind="typedef"><name>PrimitiveScalar</name></member>
+    <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1abae59cdd508abe8ed12aa8d3161c1ca1" kind="typedef"><name>PrimitiveDerivative</name></member>
+    <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1ab2c4ae71a525381724f7ef399c99b18c" kind="typedef"><name>BasisFunctionDerivative</name></member>
     <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1ad9e21173bbfeb27450f602cd9df351ab" kind="typedef"><name>SpatialOrbitalDerivative</name></member>
     <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1ab985c6702814ab6a01f5fd9aaaac9289" kind="typedef"><name>CurrentDensityDistribution</name></member>
     <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1acc337f6e3f3dddd0be78dacc69d3599c" kind="function"><name>numberOfSpatialOrbitals</name></member>
@@ -2402,6 +2405,7 @@
     <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a5ea51bafdb5544802af9fe4f2c35d47b" kind="function"><name>mullikenDomain</name></member>
     <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a25e87075130021a9c032c8d7ef24275b" kind="function"><name>mullikenDomain</name></member>
     <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1ac2522093c42e541dc65de9793ef3e803" kind="function"><name>evalBasisSetAtPoint</name></member>
+    <member refid="class_g_q_c_p_1_1_r_spin_orbital_basis_1a13a758e5fdd681413eca0a4905e95ff4" kind="function"><name>evalGradBasisSetAtPoint</name></member>
   </compound>
   <compound refid="class_g_q_c_p_1_1_r_s_q_one_electron_operator" kind="class"><name>GQCP::RSQOneElectronOperator</name>
     <member refid="class_g_q_c_p_1_1_r_s_q_one_electron_operator_1ab4dea0b6f2ed9906da78a5e72f9e28f4" kind="typedef"><name>Scalar</name></member>

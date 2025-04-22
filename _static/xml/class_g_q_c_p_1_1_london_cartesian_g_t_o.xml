@@ -218,6 +218,53 @@
         </inbodydescription>
         <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/LondonCartesianGTO.hpp" line="107" column="13" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/LondonCartesianGTO.cpp" bodystart="77" bodyend="80"/>
       </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_london_cartesian_g_t_o_1a706a5a4d5f11baaad43245980e920633" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_g_q_c_p_1_1_evaluable_linear_combination" kindref="compound">EvaluableLinearCombination</ref>&lt; <ref refid="namespace_g_q_c_p_1a1ffc21109e62d09d3485c62e03677dfd" kindref="member">complex</ref>, <ref refid="class_g_q_c_p_1_1_london_cartesian_g_t_o" kindref="compound">LondonCartesianGTO</ref> &gt;</type>
+        <definition>EvaluableLinearCombination&lt; complex, LondonCartesianGTO &gt; GQCP::LondonCartesianGTO::calculatePositionDerivative</definition>
+        <argsstring>(const CartesianDirection direction) const</argsstring>
+        <name>calculatePositionDerivative</name>
+        <qualifiedname>GQCP::LondonCartesianGTO::calculatePositionDerivative</qualifiedname>
+        <param>
+          <type>const <ref refid="namespace_g_q_c_p_1ac4c016a1668ae66892e5b4d8846613e8" kindref="member">CartesianDirection</ref></type>
+          <declname>direction</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>direction</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Cartesian direction in which the derivative should be calculated</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the derivative of this London Cartesian GTO with respect to the position coordinate in the x-, y-, or z-direction </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/LondonCartesianGTO.hpp" line="114" column="33" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/LondonCartesianGTO.cpp" bodystart="88" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_q_c_p_1_1_london_cartesian_g_t_o_1a26cb7abe621ac3eb87ef24948aefb400" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespace_g_q_c_p_1a0b93cbbef69cd49e5de8027a7b945756" kindref="member">Vector</ref>&lt; <ref refid="class_g_q_c_p_1_1_evaluable_linear_combination" kindref="compound">EvaluableLinearCombination</ref>&lt; <ref refid="namespace_g_q_c_p_1a1ffc21109e62d09d3485c62e03677dfd" kindref="member">complex</ref>, <ref refid="class_g_q_c_p_1_1_london_cartesian_g_t_o" kindref="compound">LondonCartesianGTO</ref> &gt;, 3 &gt;</type>
+        <definition>Vector&lt; EvaluableLinearCombination&lt; complex, LondonCartesianGTO &gt;, 3 &gt; GQCP::LondonCartesianGTO::calculatePositionGradient</definition>
+        <argsstring>() const</argsstring>
+        <name>calculatePositionGradient</name>
+        <qualifiedname>GQCP::LondonCartesianGTO::calculatePositionGradient</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the gradient of this London Cartesian GTO with respect to the position coordinate </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/LondonCartesianGTO.hpp" line="119" column="12" bodyfile="/__w/GQCP/GQCP/gqcp/src/Mathematical/Functions/LondonCartesianGTO.cpp" bodystart="139" bodyend="148"/>
+      </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
@@ -255,9 +302,11 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/LondonCartesianGTO.hpp" line="37" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/LondonCartesianGTO.hpp" bodystart="38" bodyend="108"/>
+    <location file="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/LondonCartesianGTO.hpp" line="37" column="1" bodyfile="/__w/GQCP/GQCP/gqcp/include/Mathematical/Functions/LondonCartesianGTO.hpp" bodystart="38" bodyend="121"/>
     <listofallmembers>
       <member refid="class_g_q_c_p_1_1_london_cartesian_g_t_o_1aad0596213b6df572094bb20c697a1787" prot="private" virt="non-virtual"><scope>GQCP::LondonCartesianGTO</scope><name>B</name></member>
+      <member refid="class_g_q_c_p_1_1_london_cartesian_g_t_o_1a706a5a4d5f11baaad43245980e920633" prot="public" virt="non-virtual"><scope>GQCP::LondonCartesianGTO</scope><name>calculatePositionDerivative</name></member>
+      <member refid="class_g_q_c_p_1_1_london_cartesian_g_t_o_1a26cb7abe621ac3eb87ef24948aefb400" prot="public" virt="non-virtual"><scope>GQCP::LondonCartesianGTO</scope><name>calculatePositionGradient</name></member>
       <member refid="class_g_q_c_p_1_1_london_cartesian_g_t_o_1ab6b2dc7fbca5ba89c436254bc6bfeac8" prot="public" virt="non-virtual"><scope>GQCP::LondonCartesianGTO</scope><name>cartesianGTO</name></member>
       <member refid="class_g_q_c_p_1_1_london_cartesian_g_t_o_1a3f8d62b0f07df4960243020f33c54b37" prot="private" virt="non-virtual"><scope>GQCP::LondonCartesianGTO</scope><name>gto</name></member>
       <member refid="class_g_q_c_p_1_1_london_cartesian_g_t_o_1a91e0172dac58732ce4b7354898b7c2d4" prot="public" virt="non-virtual"><scope>GQCP::LondonCartesianGTO</scope><name>InputType</name></member>
