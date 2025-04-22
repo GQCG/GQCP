@@ -125,7 +125,7 @@ complex LondonCartesianGTO::operator()(const Vector<double, 3>& r) const {
 
     // third term: simply original London GTO + i * k_x
     double k_component = this->kVector()[direction];
-    complex plane_wave_derivative_coefficient = 1.0_ii * k_component;
+    complex plane_wave_derivative_coefficient = -1.0_ii * k_component;
 
     lc += EvaluableLinearCombination<complex, LondonCartesianGTO>(plane_wave_derivative_coefficient, *this);
 
