@@ -101,7 +101,16 @@ void bindRSpinOrbitalBasisInterface(Class& py_class) {
                 return self.evalBasisSetAtPoint(r);
             },
             py::arg("r"),
-            "Evaluate the underlying AO basis functions at a given spatial point.");
+            "Evaluate the underlying AO basis functions at a given spatial point.")
+        
+        
+        .def(
+            "evalGradBasisSetAtPoint",
+            [](const Type& self, const GQCP::Vector<double, 3>& r) {
+                return self.evalGradBasisSetAtPoint(r);
+            },
+            py::arg("r"),
+            "Evaluate the gradient of the underlying AO basis functions at a given spatial point.");
 
 
     // Expose the `SimpleSpinorBasis` API to the Python class.
