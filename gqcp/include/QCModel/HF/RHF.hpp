@@ -740,6 +740,48 @@ public:
 
 
     /**
+     *  Calculate the RHF direct (Coulomb) operator.
+     *
+     *  @param P                    The RHF density matrix expressed in the underlying scalar orbital basis.
+     *  @param sq_hamiltonian       The Hamiltonian expressed in the (same) underlying scalar orbital basis.
+     *
+     *  @return The RHF direct (Coulomb) operator.
+     */
+    static ScalarRSQOneElectronOperator<Scalar> calculateScalarBasisDirectMatrix(const Orbital1DM<Scalar>& D, const RSQHamiltonian<Scalar>& sq_hamiltonian) {
+
+        // Get the two-electron parameters.
+        const auto& g = sq_hamiltonian.twoElectron().parameters();
+
+        // To calculate J, we must perform a double contraction:
+        //      (mu nu|rho lambda) P(lambda rho),
+        const auto J = g.template einsum<2>("ijkl,kl->ij", D.matrix()).asMatrix();
+
+        return ScalarRSQOneElectronOperator<Scalar> {J};
+    };
+
+
+    /**
+     *  Calculate the RHF exchange operator.
+     *
+     *  @param P                    The RHF density matrix expressed in the underlying scalar orbital basis.
+     *  @param sq_hamiltonian       The Hamiltonian expressed in the (same) underlying scalar orbital basis.
+     *
+     *  @return The RHF Exchange operator.
+     */
+    static ScalarRSQOneElectronOperator<Scalar> calculateScalarBasisExchangeMatrix(const Orbital1DM<Scalar>& D, const RSQHamiltonian<Scalar>& sq_hamiltonian) {
+
+        // Get the two-electron parameters.
+        const auto& g = sq_hamiltonian.twoElectron().parameters();
+
+        // To calculate K, we must perform a double contraction:
+        //      (mu lambda|rho nu) P(lambda rho),
+        const auto K = g.template einsum<2>("ijkl,kj->il", D.matrix()).asMatrix();
+
+        return ScalarRSQOneElectronOperator<Scalar> {K};
+    }
+
+
+    /**
      *  Calculate the RHF Fock operator F = H_core + G, in which G is a contraction of the density matrix and the two-electron integrals.
      *
      *  @param D                    The RHF density matrix in a scalar basis.
@@ -749,20 +791,15 @@ public:
      */
     static ScalarRSQOneElectronOperator<Scalar> calculateScalarBasisFockMatrix(const Orbital1DM<Scalar>& D, const RSQHamiltonian<Scalar>& sq_hamiltonian) {
 
-        // Get the two-electron parameters.
-        const auto& g = sq_hamiltonian.twoElectron().parameters();
+        // Get the Coulomb matrix
+        const auto J = RHF<Scalar>::calculateScalarBasisDirectMatrix(D, sq_hamiltonian).parameters();
+        // Get the Exchange matrix
+        const auto K = RHF<Scalar>::calculateScalarBasisExchangeMatrix(D, sq_hamiltonian).parameters();
 
-        // To calculate G, we must perform two double contractions:
-        //      1. (mu nu|rho lambda) P(lambda rho),
-        const Tensor<Scalar, 2> direct_contraction = g.template einsum<2>("ijkl,kl->ij", D.matrix());
-        //      2. -0.5 (mu lambda|rho nu) P(lambda rho).
-        const Tensor<Scalar, 2> exchange_contraction = -0.5 * g.template einsum<2>("ijkl,kj->il", D.matrix());
+        // Calculate the restricted Fock matrix: F = H_core + J - 0.5 K
+        const auto F = sq_hamiltonian.core().parameters() + J - 0.5 * K;
 
-        // The previous contractions are Tensor<Scalar, 2> instances. In order to calculate the total G matrix, we will convert them back into GQCP::Matrix<Scalar>.
-        auto G1 = direct_contraction.asMatrix();
-        auto G2 = exchange_contraction.asMatrix();
-
-        return ScalarRSQOneElectronOperator<Scalar> {sq_hamiltonian.core().parameters() + G1 + G2};
+        return ScalarRSQOneElectronOperator<Scalar> {F};
     }
 
 
