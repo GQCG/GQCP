@@ -738,6 +738,47 @@ public:
         return RHF<Scalar>::calculateScalarBasis2DM(this->expansion(), N);
     }
 
+    /**
+     *  Calculate the RHF direct (Coulomb) operator.
+     *
+     *  @param P                    The RHF density matrix expressed in the underlying scalar orbital basis.
+     *  @param sq_hamiltonian       The Hamiltonian expressed in the (same) underlying scalar orbital basis.
+     *
+     *  @return The RHF direct (Coulomb) operator.
+     */
+    static ScalarRSQOneElectronOperator<Scalar> calculateScalarBasisDirectMatrix(const Orbital1DM<Scalar>& D, const RSQHamiltonian<Scalar>& sq_hamiltonian) {
+
+        // Get the two-electron parameters.
+        const auto& g = sq_hamiltonian.twoElectron().parameters();
+
+        // To calculate J, we must perform a double contraction:
+        //      (mu nu|rho lambda) P(lambda rho),
+        const auto J = g.template einsum<2>("ijkl,kl->ij", D.matrix()).asMatrix();
+
+        return ScalarRSQOneElectronOperator<Scalar> {J};
+    };
+
+
+    /**
+     *  Calculate the RHF exchange operator.
+     *
+     *  @param P                    The RHF density matrix expressed in the underlying scalar orbital basis.
+     *  @param sq_hamiltonian       The Hamiltonian expressed in the (same) underlying scalar orbital basis.
+     *
+     *  @return The RHF Exchange operator.
+     */
+    static ScalarRSQOneElectronOperator<Scalar> calculateScalarBasisExchangeMatrix(const Orbital1DM<Scalar>& D, const RSQHamiltonian<Scalar>& sq_hamiltonian) {
+
+        // Get the two-electron parameters.
+        const auto& g = sq_hamiltonian.twoElectron().parameters();
+
+        // To calculate K, we must perform a double contraction:
+        //      (mu lambda|rho nu) P(lambda rho),
+        const auto K = g.template einsum<2>("ijkl,kj->il", D.matrix()).asMatrix();
+
+        return ScalarRSQOneElectronOperator<Scalar> {K};
+    }
+
 
     /**
      *  Calculate the RHF Fock operator F = H_core + G, in which G is a contraction of the density matrix and the two-electron integrals.
