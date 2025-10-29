@@ -88,6 +88,33 @@ void bindQCModelRHF(py::module& module) {
             py::arg("orbital_space"),
             "Calculate the RHF orbital Hessian (H_RI -i H_II), which can be used as a response force constant when solving the CP(R)HF equations for a purely imaginary response.")
 
+        .def_static(
+            "calculateScalarBasisDirectMatrix",
+            [](const Orbital1DM<double>& D, const RSQHamiltonian<double>& sq_hamiltonian) {
+                return QCModel::RHF<double>::calculateScalarBasisDirectMatrix(D, sq_hamiltonian);
+            },
+            py::arg("density_matrix"),
+            py::arg("hamiltonian"),
+            "Return the Coulomb (J) matrix.")
+
+        .def_static(
+            "calculateScalarBasisExchangeMatrix",
+            [](const Orbital1DM<double>& D, const RSQHamiltonian<double>& sq_hamiltonian) {
+                return QCModel::RHF<double>::calculateScalarBasisExchangeMatrix(D, sq_hamiltonian);
+            },
+            py::arg("density_matrix"),
+            py::arg("hamiltonian"),
+            "Return the exchange (K) matrix.")
+
+        .def_static(
+            "calculateScalarBasisFockMatrix",
+            [](const Orbital1DM<double>& D, const RSQHamiltonian<double>& sq_hamiltonian) {
+                return QCModel::RHF<double>::calculateScalarBasisFockMatrix(D, sq_hamiltonian);
+            },
+            py::arg("density_matrix"),
+            py::arg("hamiltonian"),
+            "Return the Fock matrix (F).")
+
         .def(
             "calculateMagneticFieldResponseForce",
             [](const QCModel::RHF<double>& rhf_parameters, const VectorRSQOneElectronOperator<complex>& L_op) {
