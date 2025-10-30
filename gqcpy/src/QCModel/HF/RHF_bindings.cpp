@@ -138,6 +138,33 @@ void bindQCModelRHF(py::module& module) {
 
     py_QCModel_RHF_cd
         .def_static(
+            "calculateScalarBasisDirectMatrix",
+            [](const Orbital1DM<complex>& D, const RSQHamiltonian<complex>& sq_hamiltonian) {
+                return QCModel::RHF<complex>::calculateScalarBasisDirectMatrix(D, sq_hamiltonian);
+            },
+            py::arg("density_matrix"),
+            py::arg("hamiltonian"),
+            "Return the Coulomb (J) matrix.")
+
+        .def_static(
+            "calculateScalarBasisExchangeMatrix",
+            [](const Orbital1DM<complex>& D, const RSQHamiltonian<complex>& sq_hamiltonian) {
+                return QCModel::RHF<complex>::calculateScalarBasisExchangeMatrix(D, sq_hamiltonian);
+            },
+            py::arg("density_matrix"),
+            py::arg("hamiltonian"),
+            "Return the exchange (K) matrix.")
+
+        .def_static(
+            "calculateScalarBasisFockMatrix",
+            [](const Orbital1DM<complex>& D, const RSQHamiltonian<complex>& sq_hamiltonian) {
+                return QCModel::RHF<complex>::calculateScalarBasisFockMatrix(D, sq_hamiltonian);
+            },
+            py::arg("density_matrix"),
+            py::arg("hamiltonian"),
+            "Return the Fock matrix (F).")
+            
+        .def_static(
             "calculateIpsocentricMagneticInducibility",
             [](const Vector<double, 3>& r, const OrbitalSpace& orbital_space, const Matrix<complex, Dynamic, 3>& x_B, const Matrix<complex, Dynamic, 6>& x_G, const VectorEvaluableRSQOneElectronOperator<CurrentDensityMatrixElement<complex, CartesianGTO>>& j_op) {
                 return QCModel::RHF<complex>::calculateIpsocentricMagneticInducibility(r, orbital_space, x_B, x_G, j_op);
