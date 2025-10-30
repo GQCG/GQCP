@@ -16,6 +16,7 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "DensityMatrix/Orbital2DM.hpp"
+#include "Utilities/complex.hpp"
 #include "gqcpy/include/interfaces.hpp"
 
 #include <pybind11/pybind11.h>
@@ -38,10 +39,12 @@ void bindOrbital2DM(py::module& module) {
 
     // Define the Python class for `Orbital2DM`.
     py::class_<GQCP::Orbital2DM<double>> py_Orbital2DM_d {module, "Orbital2DM_d", "The orbital two-electron density matrix."};
+    py::class_<GQCP::Orbital2DM<complex>> py_Orbital2DM_cd {module, "Orbital2DM_cd", "The orbital two-electron density matrix."};
 
 
     // Expose the `Simple2DM` API to the Python class.
     bindSimple2DMInterface(py_Orbital2DM_d);
+    bindSimple2DMInterface(py_Orbital2DM_cd);
 }
 
 
