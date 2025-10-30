@@ -16,6 +16,7 @@
 // along with GQCG-GQCP.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "DensityMatrix/SpinResolved1DMComponent.hpp"
+#include "Utilities/complex.hpp"
 #include "gqcpy/include/interfaces.hpp"
 
 #include <pybind11/pybind11.h>
@@ -38,12 +39,15 @@ void bindSpinResolved1DMComponent(py::module& module) {
 
     // Define the Python class for `SpinResolved1DMComponent`.
     py::class_<SpinResolved1DMComponent<double>> py_SpinResolved1DMComponent_d {module, "SpinResolved1DMComponent_d", "One of the spin components of a `SpinResolved1DM`."};
+    py::class_<SpinResolved1DMComponent<complex>> py_SpinResolved1DMComponent_cd {module, "SpinResolved1DMComponent_cd", "One of the spin components of a `SpinResolved1DM`."};
 
     // Expose the `Simple1DM` API to the Python class;
     bindSimple1DMInterface(py_SpinResolved1DMComponent_d);
+    bindSimple1DMInterface(py_SpinResolved1DMComponent_cd);
 
     // Expose the `BasisTransformable` API to the Python class.
     bindBasisTransformableInterface(py_SpinResolved1DMComponent_d);
+    bindBasisTransformableInterface(py_SpinResolved1DMComponent_cd);
 }
 
 
