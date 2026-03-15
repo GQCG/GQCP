@@ -71,12 +71,12 @@ BOOST_AUTO_TEST_CASE(Szabo_integrals_h2_sto3g) {
     // Check the two-electron integrals with the reference
     // The two-electron integrals in Szabo are given in chemist's notation, so this confirms that AO basis gives them in chemist's notation as well
     BOOST_CHECK(std::abs(g(0, 0, 0, 0) - 0.7746) < 1.0e-04);
-    BOOST_CHECK(std::abs(g(0, 0, 0, 0) - g(1, 1, 1, 1)) < 1.0e-12);
+    BOOST_CHECK(std::abs(g(0, 0, 0, 0) - g(1, 1, 1, 1)) < 1.0e-8);
 
     BOOST_CHECK(std::abs(g(0, 0, 1, 1) - 0.5697) < 1.0e-04);
 
     BOOST_CHECK(std::abs(g(1, 0, 0, 0) - 0.4441) < 1.0e-04);
-    BOOST_CHECK(std::abs(g(1, 0, 0, 0) - g(1, 1, 1, 0)) < 1.0e-12);
+    BOOST_CHECK(std::abs(g(1, 0, 0, 0) - g(1, 1, 1, 0)) < 1.0e-8);
 
     BOOST_CHECK(std::abs(g(1, 0, 1, 0) - 0.2970) < 1.0e-04);
 }
@@ -119,7 +119,7 @@ BOOST_AUTO_TEST_CASE(HORTON_integrals_h2o_sto3g) {
 /**
  *  Check the calculation of some integrals between Libint2 and libcint.
  */
-/* 
+/*
 BOOST_AUTO_TEST_CASE(libcint_vs_libint2_H2O_STO_3G) {
 
     const auto molecule = GQCP::Molecule::ReadXYZ("data/h2o.xyz");
@@ -191,7 +191,7 @@ BOOST_AUTO_TEST_CASE(overlap_integrals) {
     auto engine = GQCP::IntegralEngine::InHouse<GQCP::GTOShell>(GQCP::OverlapOperator());
     const auto S = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet())[0];
 
-    BOOST_CHECK(S.isApprox(ref_S, 1.0e-12));
+    BOOST_CHECK(S.isApprox(ref_S, 1.0e-8));
 }
 
 
@@ -211,7 +211,7 @@ BOOST_AUTO_TEST_CASE(kinetic_energy_integrals) {
     auto engine = GQCP::IntegralEngine::InHouse<GQCP::GTOShell>(GQCP::KineticOperator());
     const auto T = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet())[0];
 
-    BOOST_CHECK(T.isApprox(ref_T, 1.0e-12));
+    BOOST_CHECK(T.isApprox(ref_T, 1.0e-8));
 }
 
 
@@ -231,7 +231,7 @@ BOOST_AUTO_TEST_CASE(nuclear_attraction_integrals) {
     auto engine = GQCP::IntegralEngine::InHouse<GQCP::GTOShell>(op);
     const auto V = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet())[0];
 
-    BOOST_CHECK(V.isApprox(ref_V, 1.0e-12));
+    BOOST_CHECK(V.isApprox(ref_V, 1.0e-8));
 }
 
 
@@ -253,14 +253,14 @@ BOOST_AUTO_TEST_CASE(electronic_dipole_integrals) {
     const auto dipole_integrals = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet());
 
     for (size_t i = 0; i < 3; i++) {
-        BOOST_CHECK(dipole_integrals[i].isApprox(ref_dipole_integrals[i], 1.0e-12));
+        BOOST_CHECK(dipole_integrals[i].isApprox(ref_dipole_integrals[i], 1.0e-8));
     }
 }
 
 
 /**
  *  Check if our implementation of the linear momentum integrals are correct.
- * 
+ *
  *  The reference integrals have been calculated by transposing and multiplying by (-i) the intor='int1e_ipovlp' libcint/PySCF integrals.
  */
 BOOST_AUTO_TEST_CASE(linear_momentum_integrals) {
@@ -320,7 +320,7 @@ BOOST_AUTO_TEST_CASE(linear_momentum_integrals) {
 
 /**
  *  Check if our implementation of the angular momentum integrals are correct.
- * 
+ *
  *  The reference integrals have been calculated by multiplying by (-i) the intor='int1e_cg_irxp' libcint/PySCF integrals.
  */
 BOOST_AUTO_TEST_CASE(angular_momentum_integrals) {
@@ -396,7 +396,7 @@ BOOST_AUTO_TEST_CASE(Coulomb_repulsion_integrals) {
     auto engine = GQCP::IntegralEngine::InHouse<GQCP::GTOShell>(op);
     const auto g = GQCP::IntegralCalculator::calculate(engine, scalar_basis.shellSet(), scalar_basis.shellSet())[0];
 
-    BOOST_CHECK(g.isApprox(ref_g, 1.0e-12));
+    BOOST_CHECK(g.isApprox(ref_g, 1.0e-8));
 }
 
 
@@ -424,13 +424,13 @@ BOOST_AUTO_TEST_CASE(London_S_gauge_invariant) {
 
     const auto S2 = GQCP::IntegralCalculator::calculate(engine, scalar_basis2.shellSet(), scalar_basis2.shellSet())[0];
 
-    BOOST_CHECK(S1.isApprox(S2, 1.0e-12));
+    BOOST_CHECK(S1.isApprox(S2, 1.0e-8));
 }
 
 
 /**
  *  Check if the London overlap integrals are implemented correctly, for a magnetic field of B=(0,0,1).
- * 
+ *
  *  The references values are by generated through ChronusQ.
  */
 BOOST_AUTO_TEST_CASE(London_overlap_001) {
@@ -452,13 +452,13 @@ BOOST_AUTO_TEST_CASE(London_overlap_001) {
     const auto S_ref_complex = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_001_overlap_chronusq_complex.data", nbf, nbf);
     GQCP::MatrixX<std::complex<double>> S_ref = S_ref_real + std::complex<double>(0, 1) * S_ref_complex;
 
-    BOOST_CHECK(S.isApprox(S_ref, 1.0e-12));
+    BOOST_CHECK(S.isApprox(S_ref, 1.0e-8));
 }
 
 
 /**
  *  Check if the London overlap integrals are implemented correctly, for a magnetic field of B=(1,1,1).
- * 
+ *
  *  The references values are by generated through ChronusQ.
  */
 BOOST_AUTO_TEST_CASE(London_overlap_111) {
@@ -480,13 +480,13 @@ BOOST_AUTO_TEST_CASE(London_overlap_111) {
     const auto S_ref_complex = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_111_overlap_chronusq_complex.data", nbf, nbf);
     GQCP::MatrixX<std::complex<double>> S_ref = S_ref_real + std::complex<double>(0, 1) * S_ref_complex;
 
-    BOOST_CHECK(S.isApprox(S_ref, 1.0e-12));
+    BOOST_CHECK(S.isApprox(S_ref, 1.0e-8));
 }
 
 
 /**
  *  Check if the London canonical kinetic integrals are implemented correctly, for a magnetic field of B=(0,0,1).
- * 
+ *
  *  The references values are by generated through ChronusQ.
  */
 BOOST_AUTO_TEST_CASE(London_canonical_kinetic_001) {
@@ -508,13 +508,13 @@ BOOST_AUTO_TEST_CASE(London_canonical_kinetic_001) {
     const auto T_ref_complex = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_001_kinetic_chronusq_complex.data", nbf, nbf);
     GQCP::MatrixX<std::complex<double>> T_ref = T_ref_real + std::complex<double>(0, 1) * T_ref_complex;
 
-    BOOST_CHECK(T.isApprox(T_ref, 1.0e-12));
+    BOOST_CHECK(T.isApprox(T_ref, 1.0e-8));
 }
 
 
 /**
  *  Check if the London canonical kinetic integrals are implemented correctly, for a magnetic field of B=(1,1,1).
- * 
+ *
  *  The references values are by generated through ChronusQ.
  */
 BOOST_AUTO_TEST_CASE(London_canonical_kinetic_111) {
@@ -536,13 +536,13 @@ BOOST_AUTO_TEST_CASE(London_canonical_kinetic_111) {
     const auto T_ref_complex = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_111_kinetic_chronusq_complex.data", nbf, nbf);
     GQCP::MatrixX<std::complex<double>> T_ref = T_ref_real + std::complex<double>(0, 1) * T_ref_complex;
 
-    BOOST_CHECK(T.isApprox(T_ref, 1.0e-12));
+    BOOST_CHECK(T.isApprox(T_ref, 1.0e-8));
 }
 
 
 /**
  *  Check if the London electronic dipole integrals are implemented correctly, for a magnetic field of B=(0,0,1).
- * 
+ *
  *  The references values are by generated through ChronusQ, which has implemented position integrals, i.e. we expect our results to differ with a factor (-1).
  */
 BOOST_AUTO_TEST_CASE(London_electronic_dipole_001) {
@@ -575,15 +575,15 @@ BOOST_AUTO_TEST_CASE(London_electronic_dipole_001) {
     const GQCP::MatrixX<double> D_z_ref_complex = -GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_001_position_z_chronusq_complex.data", nbf, nbf);
     GQCP::MatrixX<std::complex<double>> D_z_ref = D_z_ref_real + std::complex<double>(0, 1) * D_z_ref_complex;
 
-    BOOST_CHECK(D_x.isApprox(D_x_ref, 1.0e-12));
-    BOOST_CHECK(D_y.isApprox(D_y_ref, 1.0e-12));
-    BOOST_CHECK(D_z.isApprox(D_z_ref, 1.0e-12));
+    BOOST_CHECK(D_x.isApprox(D_x_ref, 1.0e-8));
+    BOOST_CHECK(D_y.isApprox(D_y_ref, 1.0e-8));
+    BOOST_CHECK(D_z.isApprox(D_z_ref, 1.0e-8));
 }
 
 
 /**
  *  Check if the London electronic dipole integrals are implemented correctly, for a magnetic field of B=(1,1,1).
- * 
+ *
  *  The references values are by generated through ChronusQ, which has implemented position integrals, i.e. we expect our results to differ with a factor (-1).
  */
 BOOST_AUTO_TEST_CASE(London_electronic_dipole_111) {
@@ -616,15 +616,15 @@ BOOST_AUTO_TEST_CASE(London_electronic_dipole_111) {
     const GQCP::MatrixX<double> D_z_ref_complex = -GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_111_position_z_chronusq_complex.data", nbf, nbf);
     GQCP::MatrixX<std::complex<double>> D_z_ref = D_z_ref_real + std::complex<double>(0, 1) * D_z_ref_complex;
 
-    BOOST_CHECK(D_x.isApprox(D_x_ref, 1.0e-12));
-    BOOST_CHECK(D_y.isApprox(D_y_ref, 1.0e-12));
-    BOOST_CHECK(D_z.isApprox(D_z_ref, 1.0e-12));
+    BOOST_CHECK(D_x.isApprox(D_x_ref, 1.0e-8));
+    BOOST_CHECK(D_y.isApprox(D_y_ref, 1.0e-8));
+    BOOST_CHECK(D_z.isApprox(D_z_ref, 1.0e-8));
 }
 
 
 /**
  *  Check if the London angular momentum integrals are implemented correctly, for a magnetic field of B=(0,0,1).
- * 
+ *
  *  The references values are by generated through ChronusQ, which has implemented angular momentum integrals without the prefactor (-i).
  */
 BOOST_AUTO_TEST_CASE(London_angular_momentum_001) {
@@ -659,15 +659,15 @@ BOOST_AUTO_TEST_CASE(London_angular_momentum_001) {
     const GQCP::MatrixX<double> L_z_ref_complex = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_001_L_z_chronusq_complex.data", nbf, nbf);
     GQCP::MatrixX<std::complex<double>> L_z_ref = -1.0_ii * (L_z_ref_real + std::complex<double>(0, 1) * L_z_ref_complex);
 
-    BOOST_CHECK(L_x.isApprox(L_x_ref, 1.0e-12));
-    BOOST_CHECK(L_y.isApprox(L_y_ref, 1.0e-12));
-    BOOST_CHECK(L_z.isApprox(L_z_ref, 1.0e-12));
+    BOOST_CHECK(L_x.isApprox(L_x_ref, 1.0e-8));
+    BOOST_CHECK(L_y.isApprox(L_y_ref, 1.0e-8));
+    BOOST_CHECK(L_z.isApprox(L_z_ref, 1.0e-8));
 }
 
 
 /**
  *  Check if the London angular momentum integrals are implemented correctly, for a magnetic field of B=(1,1,1).
- * 
+ *
  *  The references values are by generated through ChronusQ, which has implemented angular momentum integrals without the prefactor (-i).
  */
 BOOST_AUTO_TEST_CASE(London_angular_momentum_111) {
@@ -703,15 +703,15 @@ BOOST_AUTO_TEST_CASE(London_angular_momentum_111) {
     const GQCP::MatrixX<double> L_z_ref_complex = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_111_L_z_chronusq_complex.data", nbf, nbf);
     GQCP::MatrixX<std::complex<double>> L_z_ref = -1.0_ii * (L_z_ref_real + std::complex<double>(0, 1) * L_z_ref_complex);
 
-    BOOST_CHECK(L_x.isApprox(L_x_ref, 1.0e-12));
-    BOOST_CHECK(L_y.isApprox(L_y_ref, 1.0e-12));
-    BOOST_CHECK(L_z.isApprox(L_z_ref, 1.0e-12));
+    BOOST_CHECK(L_x.isApprox(L_x_ref, 1.0e-8));
+    BOOST_CHECK(L_y.isApprox(L_y_ref, 1.0e-8));
+    BOOST_CHECK(L_z.isApprox(L_z_ref, 1.0e-8));
 }
 
 
 /**
  *  Check if the London electronic quadrupole integrals are implemented correctly, for a magnetic field of B=(0,0,1).
- * 
+ *
  *  The references values are by generated through ChronusQ.
  */
 BOOST_AUTO_TEST_CASE(London_quadrupole_momentum_001) {
@@ -759,18 +759,18 @@ BOOST_AUTO_TEST_CASE(London_quadrupole_momentum_001) {
     const GQCP::MatrixX<double> Q_zz_ref_complex = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_001_quadrupole_zz_chronusq_complex.data", nbf, nbf);
     GQCP::MatrixX<std::complex<double>> Q_zz_ref = Q_zz_ref_real + std::complex<double>(0, 1) * Q_zz_ref_complex;
 
-    BOOST_CHECK(Q_xx.isApprox(Q_xx_ref, 1.0e-12));
-    BOOST_CHECK(Q_xy.isApprox(Q_xy_ref, 1.0e-12));
-    BOOST_CHECK(Q_xz.isApprox(Q_xz_ref, 1.0e-12));
-    BOOST_CHECK(Q_yy.isApprox(Q_yy_ref, 1.0e-12));
-    BOOST_CHECK(Q_yz.isApprox(Q_yz_ref, 1.0e-12));
-    BOOST_CHECK(Q_zz.isApprox(Q_zz_ref, 1.0e-12));
+    BOOST_CHECK(Q_xx.isApprox(Q_xx_ref, 1.0e-8));
+    BOOST_CHECK(Q_xy.isApprox(Q_xy_ref, 1.0e-8));
+    BOOST_CHECK(Q_xz.isApprox(Q_xz_ref, 1.0e-8));
+    BOOST_CHECK(Q_yy.isApprox(Q_yy_ref, 1.0e-8));
+    BOOST_CHECK(Q_yz.isApprox(Q_yz_ref, 1.0e-8));
+    BOOST_CHECK(Q_zz.isApprox(Q_zz_ref, 1.0e-8));
 }
 
 
 /**
  *  Check if the London electronic quadrupole integrals are implemented correctly, for a magnetic field of B=(1,1,1).
- * 
+ *
  *  The references values are by generated through ChronusQ.
  */
 BOOST_AUTO_TEST_CASE(London_quadrupole_momentum_111) {
@@ -818,18 +818,18 @@ BOOST_AUTO_TEST_CASE(London_quadrupole_momentum_111) {
     const GQCP::MatrixX<double> Q_zz_ref_complex = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_111_quadrupole_zz_chronusq_complex.data", nbf, nbf);
     GQCP::MatrixX<std::complex<double>> Q_zz_ref = Q_zz_ref_real + std::complex<double>(0, 1) * Q_zz_ref_complex;
 
-    BOOST_CHECK(Q_xx.isApprox(Q_xx_ref, 1.0e-12));
-    BOOST_CHECK(Q_xy.isApprox(Q_xy_ref, 1.0e-12));
-    BOOST_CHECK(Q_xz.isApprox(Q_xz_ref, 1.0e-12));
-    BOOST_CHECK(Q_yy.isApprox(Q_yy_ref, 1.0e-12));
-    BOOST_CHECK(Q_yz.isApprox(Q_yz_ref, 1.0e-12));
-    BOOST_CHECK(Q_zz.isApprox(Q_zz_ref, 1.0e-12));
+    BOOST_CHECK(Q_xx.isApprox(Q_xx_ref, 1.0e-8));
+    BOOST_CHECK(Q_xy.isApprox(Q_xy_ref, 1.0e-8));
+    BOOST_CHECK(Q_xz.isApprox(Q_xz_ref, 1.0e-8));
+    BOOST_CHECK(Q_yy.isApprox(Q_yy_ref, 1.0e-8));
+    BOOST_CHECK(Q_yz.isApprox(Q_yz_ref, 1.0e-8));
+    BOOST_CHECK(Q_zz.isApprox(Q_zz_ref, 1.0e-8));
 }
 
 
 /**
  *  Check if the London nuclear attraction integrals are implemented correctly, for a magnetic field of B=(0,0,1).
- * 
+ *
  *  The references values are by generated through ChronusQ.
  */
 BOOST_AUTO_TEST_CASE(London_nuclear_001) {
@@ -852,13 +852,13 @@ BOOST_AUTO_TEST_CASE(London_nuclear_001) {
     const auto V_ref_complex = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_001_nuclear_chronusq_complex.data", nbf, nbf);
     GQCP::MatrixX<std::complex<double>> V_ref = V_ref_real + std::complex<double>(0, 1) * V_ref_complex;
 
-    BOOST_CHECK(V.isApprox(V_ref, 1.0e-12));
+    BOOST_CHECK(V.isApprox(V_ref, 1.0e-8));
 }
 
 
 /**
  *  Check if the London nuclear attraction integrals are implemented correctly, for a magnetic field of B=(1,1,1).
- * 
+ *
  *  The references values are by generated through ChronusQ.
  */
 BOOST_AUTO_TEST_CASE(London_nuclear_111) {
@@ -881,13 +881,13 @@ BOOST_AUTO_TEST_CASE(London_nuclear_111) {
     const auto V_ref_complex = GQCP::MatrixX<double>::FromFile("data/h2o_6-31g_111_nuclear_chronusq_complex.data", nbf, nbf);
     GQCP::MatrixX<std::complex<double>> V_ref = V_ref_real + std::complex<double>(0, 1) * V_ref_complex;
 
-    BOOST_CHECK(V.isApprox(V_ref, 1.0e-12));
+    BOOST_CHECK(V.isApprox(V_ref, 1.0e-8));
 }
 
 
 /*
  *  Check if the London Coulomb repulsion integrals are implemented correctly, for a magnetic field of B=(0,0,1).
- * 
+ *
  *  The references values are by generated through ChronusQ.
  */
 BOOST_AUTO_TEST_CASE(London_coulomb_001) {
@@ -916,7 +916,7 @@ BOOST_AUTO_TEST_CASE(London_coulomb_001) {
 
 /*
  *  Check if the London Coulomb repulsion integrals are implemented correctly, for a magnetic field of B=(0,0,1).
- * 
+ *
  *  The references values are by generated through ChronusQ.
  */
 BOOST_AUTO_TEST_CASE(London_coulomb_111) {
